@@ -1,0 +1,10 @@
+.graph-pane-container {
+	display: flex;
+	flex: 1;
+}
+.graph-pane {
+	width: 1200px;
+	height: 800px;
+	border: 1px solid grey;
+	position: relative;
+}

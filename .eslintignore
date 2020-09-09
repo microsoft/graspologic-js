@@ -1,0 +1,8 @@
+dist/
+lib/
+tmp/
+site/
+coverage/
+node_modules/
+storybook-static/
+build/

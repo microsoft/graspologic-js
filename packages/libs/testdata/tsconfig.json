@@ -1,0 +1,13 @@
+{
+	"extends": "../../../tsconfig.json",
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "ES5",
+		"outDir": "lib",
+		"resolveJsonModule": true,
+		"incremental": true,
+		"allowSyntheticDefaultImports": true,
+		"tsBuildInfoFile": "lib/.tsbuildinfo"
+	},
+	"files": ["src/index.ts"]
+}

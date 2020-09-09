@@ -1,0 +1,63 @@
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '12.x'
+
+  - task: Bash@3
+    displayName: Install pnpm
+    inputs:
+      targetType: 'inline'
+      script: npm i -g pnpm
+
+  - task: npmAuthenticate@0
+    inputs:
+      workingFile: .npmrc
+
+  # Install Dependencies
+  - task: Bash@3
+    displayName: Install Dependencies
+    inputs:
+      targetType: 'inline'
+      script: pnpm install
+    env:
+      CI: true
+
+  # Verify Packages
+  - task: Bash@3
+    displayName: Verify Packages
+    inputs:
+      targetType: 'inline'
+      script: pnpm ci
+    env:
+      CI: true
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: test-report.xml
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: $(Build.SourcesDirectory)/coverage/cobertura-coverage.xml
+      reportDirectory: $(Build.SourcesDirectory)/coverage/lcov-report
+
+  - task: ComponentGovernanceComponentDetection@0
+    inputs:
+      scanType: 'Register'
+      verbosity: 'Verbose'
+      alertWarningLevel: 'High'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
+    displayName: 'Run CredScan'
+    inputs:
+      toolVersion: 'latest'
+      outputFormat: sarif
+      debugMode: false
+
+  - task: PublishSecurityAnalysisLogs@3
+    inputs:
+      ArtifactName: 'CodeAnalysisLogs'
+      ArtifactType: 'Container'

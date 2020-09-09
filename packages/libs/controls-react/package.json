@@ -1,0 +1,37 @@
+{
+	"name": "@graspologic/render-controls-react",
+	"version": "0.4.0",
+	"description": "React-components for dat.gui controls for adjusting graph-view rendering",
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)",
+		"Nathan Evans (naevans@microsoft.com)"
+	],
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.ts",
+	"license": "MIT",
+	"scripts": {
+		"bundle_types": "node ../../../scripts/bundleTypes",
+		"build_lib": "essex build --docs",
+		"build": "run-s build_lib bundle_types",
+		"clean": "essex clean lib dist",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@graspologic/react": "^0.4.0",
+		"@graspologic/render-controls": "^0.4.0",
+		"@graspologic/renderer": "^0.4.0",
+		"@types/dat.gui": "^0.7.5",
+		"dat.gui": "^0.7.7",
+		"typedoc": "0.17.8"
+	},
+	"devDependencies": {
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1"
+	},
+	"peerDependencies": {
+		"react": ">= 16.9.0",
+		"react-dom": ">= 16.9.0"
+	}
+}

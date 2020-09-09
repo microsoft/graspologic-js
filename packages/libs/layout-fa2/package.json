@@ -1,0 +1,28 @@
+{
+	"name": "@graspologic/layout-fa2",
+	"version": "0.4.0",
+	"license": "MIT",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.ts",
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)"
+	],
+	"scripts": {
+		"clean": "essex clean lib dist",
+		"build_lib": "essex build --docs",
+		"bundle_lib": "essex bundle",
+		"build": "run-s build_lib bundle_lib",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@graspologic/graph": "^0.4.0",
+		"@graspologic/layout-core": "^0.4.0",
+		"rxjs": "^6.6.0",
+		"typedoc": "0.17.8"
+	},
+	"browserslist": [
+		"last 2 Chrome versions"
+	]
+}

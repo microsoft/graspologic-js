@@ -1,0 +1,39 @@
+{
+	"name": "@graspologic/react",
+	"version": "0.4.0",
+	"description": "Graph Dataviz for React",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.ts",
+	"license": "MIT",
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)",
+		"Nathan Evans (naevans@microsoft.com)"
+	],
+	"scripts": {
+		"bundle_types": "node ../../../scripts/bundleTypes",
+		"build_lib": "essex build --docs",
+		"build": "run-s build_lib bundle_types",
+		"clean": "essex clean dist lib",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@essex-js-toolkit/hooks": "^1.1.2",
+		"@graspologic/graph": "^0.4.0",
+		"@graspologic/renderer": "^0.4.0",
+		"@types/node": "^13.13.14",
+		"@types/react": "^16.9.43",
+		"@types/react-dom": "^16.9.8",
+		"typedoc": "0.17.8",
+		"math.gl": "^3.2.2"
+	},
+	"devDependencies": {
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1"
+	},
+	"peerDependencies": {
+		"react": ">= 16.9.0",
+		"react-dom": ">= 16.9.0"
+	}
+}

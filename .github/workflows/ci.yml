@@ -1,0 +1,30 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Debug Action
+        uses: hmarr/debug-action@v1.0.0
+
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: npm i -g pnpm
+        name: Install pnpm
+
+      - run: pnpm install
+        name: Install Dependencies
+
+      - run: pnpm ci
+        name: Execute Tests
+        env:
+          CI: true

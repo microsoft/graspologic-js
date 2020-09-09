@@ -1,0 +1,4 @@
+{
+  "allow": ["color", "colors", "destroy", "primitive", "hooks"],
+  "spelling": []
+}

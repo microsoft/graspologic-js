@@ -1,0 +1,27 @@
+{
+	"name": "@graspologic/animation",
+	"version": "0.4.0",
+	"description": "Graphical primitives",
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)"
+	],
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.ts",
+	"license": "MIT",
+	"scripts": {
+		"bundle_types": "node ../../../scripts/bundleTypes",
+		"build_lib": "essex build --docs",
+		"build": "run-s build_lib bundle_types",
+		"clean": "essex clean dist lib",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@graspologic/memstore": "^0.4.0",
+		"typedoc": "0.17.8"
+	},
+	"browserslist": [
+		"last 2 Chrome versions"
+	]
+}

@@ -1,0 +1,46 @@
+{
+	"name": "@graspologic/renderer",
+	"version": "0.4.0",
+	"description": "Graph data visualization core renderer",
+	"main": "dist/cjs/bundle.js",
+	"module": "dist/esm/bundle.js",
+	"types": "dist/types/index.d.ts",
+	"license": "MIT",
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)",
+		"Nathan Evans (naevans@microsoft.com)"
+	],
+	"scripts": {
+		"build_lib": "essex build --docs",
+		"bundle_lib": "essex bundle",
+		"bundle_types": "node ../../../scripts/bundleTypes",
+		"build": "run-s build_lib bundle_lib bundle_types",
+		"clean": "essex clean dist lib",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@danmarshall/deckgl-typings": "^2.2.5",
+		"@essex-js-toolkit/toolbox": "^1.1.2",
+		"@graspologic/animation": "^0.4.0",
+		"@graspologic/graph": "^0.4.0",
+		"@graspologic/memstore": "^0.4.0",
+		"@types/node": "^13.13.14",
+		"invariant": "^2.2.4",
+		"luma.gl": "^7.3.2",
+		"@luma.gl/core": "^7.3.2",
+		"@luma.gl/webgl": "^7.3.2",
+		"@luma.gl/constants": "^7.3.2",
+		"math.gl": "^3.2.2",
+		"mjolnir.js": "^2.4.1",
+		"rxjs": "^6.6.0",
+		"typedoc": "0.17.8"
+	},
+	"browserslist": [
+		"last 2 Chrome versions"
+	],
+	"devDependencies": {
+		"glob": "^7.1.6",
+		"ncp": "^2.0.0"
+	}
+}
