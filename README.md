@@ -14,7 +14,7 @@
   - Supports [**ReactJS**](https://reactjs.org/) or standalone.
 - Contains experimental implementations of a few popular graph layout algorithms that work directly with the graph renderer.
 
-**graspologic-js** is a companion library to [**graspologic**](https://github.com/microsoft/graspologic), which is a python library for intelligently building networks and network embeddings, and for analyzing connected data.
+**graspologic-js** is a companion library to [**topologic**](https://github.com/microsoft/topologic), which is a python library for intelligently building networks and network embeddings, and for analyzing connected data.
 
 ## 🌐Browser Compatibility
 
