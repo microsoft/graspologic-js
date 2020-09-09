@@ -1,5 +1,7 @@
 # graspologic-js
 
+![CI](https://github.com/microsoft/graspologic-js/workflows/CI/badge.svg)
+
 ## 📄Overview
 
 **graspologic-js** is a high-performance graph toolkit for the web.
