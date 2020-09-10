@@ -20,7 +20,7 @@
 		"bundle": "pnpm -r --stream bundle",
 		"start": "pnpm -r --stream --parallel start",
 		"prettify": "essex prettify",
-		"release": "pnpm -r --streamlish",
+		"release": "pnpm -r --stream publish --publish-branch main",
 		"storybook": "pnpm -r --stream --stream --parallel --filter @graspologic/stories --include-dependencies start",
 		"docs_site": "pnpm -r --stream --stream --parallel --filter @graspologic/docs start",
 		"git_revert_npmrc": "git checkout .npmrc",
