@@ -35,5 +35,5 @@ jobs:
           CI: true
 
       - if: ${{ github.event_name == 'push' && matrix.node-version == '12.x' }}
-        run: pnpm release -- --tag "beta.${{ github.run_number }}"
+        run: pnpm release -- --tag "beta.${{ github.run_number }}" --git-checks false
         name: Publish to npm
