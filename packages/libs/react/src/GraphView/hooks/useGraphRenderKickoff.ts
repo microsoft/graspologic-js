@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { GraphContainer } from '@graspologic/graph'
-import { Colorizer, GraphRenderer } from '@graspologic/renderer'
+import { NodeComponentColorizer, GraphRenderer } from '@graspologic/renderer'
 import { useEffect } from 'react'
 
 /**
@@ -15,7 +15,7 @@ import { useEffect } from 'react'
 export function useGraphRenderKickoff(
 	renderer: GraphRenderer | undefined,
 	data: GraphContainer | undefined,
-	colorizer: Colorizer | undefined,
+	colorizer: NodeComponentColorizer | undefined,
 ) {
 	useEffect(() => {
 		if (renderer && !renderer.destroyed && data) {

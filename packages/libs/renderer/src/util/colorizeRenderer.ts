@@ -2,12 +2,17 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Colorizer, GraphRenderer } from '../types'
-import { getColor } from './getColor'
+import { NodeComponentColorizer, GraphRenderer } from '../types'
+import { getCachedColor } from './getColor'
 
-function getColorizer(colorizerFn: Colorizer = () => [1, 0, 0, 1]) {
-	return (key: number) => {
-		const arr = colorizerFn(key)
+export function createIntColorizer(
+	colorizerFn: NodeComponentColorizer = () => [1, 0, 0, 1],
+) {
+	return (
+		group: number | string | undefined,
+		id: number | string | undefined,
+	) => {
+		const arr = colorizerFn(group, id)
 		return (
 			((arr[3] * 255) << 24) +
 			((arr[2] * 255) << 16) +
@@ -24,13 +29,18 @@ function getColorizer(colorizerFn: Colorizer = () => [1, 0, 0, 1]) {
  */
 export function colorizeRenderer(
 	renderer: GraphRenderer,
-	colorizerFn?: Colorizer,
+	colorizerFn?: NodeComponentColorizer,
 ) {
-	const colorizer = getColorizer(colorizerFn)
+	const colorizer = createIntColorizer(colorizerFn)
 	const colorMap = new Map()
 	const nodeColors = new Map<string, number>()
 	for (const node of renderer.scene.nodes()) {
-		const newColor = getColor(colorMap, colorizer, node.community)
+		const newColor = getCachedColor(
+			colorMap,
+			colorizer,
+			node.group as any,
+			node.id as any,
+		)
 		node.color = newColor
 		nodeColors.set(node.id || 'DEFAULT', newColor)
 	}

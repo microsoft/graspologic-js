@@ -4,7 +4,7 @@
  */
 import { InputGraph, GraphContainer, Node } from '@graspologic/graph'
 import {
-	Colorizer,
+	NodeComponentColorizer,
 	ColorVector,
 	DEFAULT_BG_COLOR,
 	DEFAULT_HIDE_DESELECTED,
@@ -55,10 +55,10 @@ export interface GraphViewProps {
 	backgroundColor?: ColorVector
 
 	/**
-	 * A colorization function to use for vertex coloring. `vertex.category` is applied against the
+	 * A colorization function to use for vertex coloring. `vertex.group` is applied against the
 	 * colorization function to generate a categorical color.
 	 */
-	colorizer?: Colorizer
+	colorizer?: NodeComponentColorizer
 
 	/**
 	 * The graph dataset

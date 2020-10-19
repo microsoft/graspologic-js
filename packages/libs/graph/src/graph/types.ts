@@ -33,7 +33,6 @@ export interface InputNode {
 	size?: number
 	radius?: number
 	weight?: number
-	category?: number
 	label?: string
 	group?: string
 	shape?: Shape | 'square' | 'diamond' | 'circle'

@@ -20,11 +20,6 @@ export interface Node extends MemoryReader {
 	group: string | undefined
 
 	/**
-	 * The category of a node, controls how it is colored
-	 */
-	category: string | undefined
-
-	/**
 	 * The node label
 	 */
 	label: string | undefined
@@ -47,11 +42,6 @@ export interface Node extends MemoryReader {
 	 * @defaultValue 0
 	 */
 	size: number
-
-	/**
-	 * The community number
-	 */
-	community: number
 
 	// Colors
 

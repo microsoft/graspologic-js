@@ -7,7 +7,7 @@ import { Observable, Subscription } from 'rxjs'
 import { Camera } from '../../renderer/delegates'
 import { PropertyChangeHandler } from '../../util'
 import { CameraAdjustmentMode } from '../camera'
-import { PositionMap, Colorizer, ColorVector } from './graphData'
+import { PositionMap, NodeComponentColorizer, ColorVector } from './graphData'
 import { Scene } from './scene'
 
 /**
@@ -327,7 +327,7 @@ export interface GraphRenderer {
 	 * @param data The graph to load
 	 * @param colorizer The colorizer function which determines the color of a node
 	 */
-	load(data: GraphContainer, colorizer?: Colorizer): void
+	load(data: GraphContainer, colorizer?: NodeComponentColorizer): void
 
 	/**
 	 * Changes the position of the given nodes

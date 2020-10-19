@@ -19,7 +19,7 @@ import { processGraph } from '../data'
 import { DEFAULT_WIDTH, DEFAULT_HEIGHT } from '../defaults'
 import { NodesRenderable, EdgesRenderable } from '../renderables'
 import {
-	Colorizer,
+	NodeComponentColorizer,
 	Scene,
 	PositionMap,
 	InitializeHandler,
@@ -324,7 +324,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 * @param data The graph to load
 	 * @param colorizer The colorizer function which determines the color of a node
 	 */
-	public load(data: GraphContainer, colorizer?: Colorizer): void {
+	public load(data: GraphContainer, colorizer?: NodeComponentColorizer): void {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
 		// normalize weights and color nodes

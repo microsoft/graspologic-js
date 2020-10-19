@@ -30,7 +30,7 @@ import { exampleData, utils } from 'docs'
 export default	() => {
 	const data = useMemo(() => exampleData.smallGraph(), [])
 
-	// A function which takes a "category" property from a node and returns a color
+	// A function which takes a "group" property from a node and returns a color
 	const categoricalColorizer = useMemo(() => utils.createColorizer(), [])
 	const [nodeIds, setNodeIds] = useState<string[]>([])
 	const handleVertexClick = useCallback(
@@ -116,7 +116,7 @@ function createRenderer(data, width, height) {
 		nodeMaxRadius: 5,
 	})
 
-	// A function which takes a "category" property from a node and returns a color
+	// A function which takes a "group" property from a node and returns a color
 	const categoricalColorizer = utils.createColorizer()
 
 	// Load the dataset

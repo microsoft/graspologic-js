@@ -3,8 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { GraphContainer, Node, Edge } from '@graspologic/graph'
-import { Colorizer } from '../types'
-import { getColor } from '../util/getColor'
+import { NodeComponentColorizer, NodeIntColorizer } from '../types'
+import { createIntColorizer } from '../util/colorizeRenderer'
+import { getCachedColor } from '../util/getColor'
 
 /**
  * @internal
@@ -15,10 +16,9 @@ import { getColor } from '../util/getColor'
  */
 export function processGraph(
 	data: GraphContainer,
-	colorizerFn: Colorizer | undefined,
+	colorizerFn: NodeComponentColorizer | undefined,
 ): void {
-	const colorizer = getColorizer(colorizerFn)
-
+	const colorizer = createIntColorizer(colorizerFn)
 	if (data.nodes.count === 0) {
 		return
 	}
@@ -29,30 +29,13 @@ export function processGraph(
 }
 
 /**
- * Returns a colorizer function that returns a uint32 rather than the array of [r, g, b, a]
- * @param colorizerFn The colorizer function to wrap
- */
-function getColorizer(colorizerFn: Colorizer = () => [1, 0, 0, 1]) {
-	return (key: number) => {
-		const arr = colorizerFn(key)
-		const color = new ArrayBuffer(4)
-		const view = new DataView(color)
-		view.setUint8(0, Math.round(arr[0] * 255))
-		view.setUint8(1, Math.round(arr[1] * 255))
-		view.setUint8(2, Math.round(arr[2] * 255))
-		view.setUint8(3, Math.round(arr[3] * 255))
-		return view.getUint32(0, true)
-	}
-}
-
-/**
  * Colorizes the nodes in __data__ using the __colorizer__ function
  * @param data The graph data
  * @param colorizer The colorizer function
  */
 function colorizeNodes(
 	data: GraphContainer,
-	colorizer: (key: number) => number,
+	colorizer: NodeIntColorizer,
 ): [number, number] {
 	const colorMap = new Map()
 	let maxWeight = Number.MIN_SAFE_INTEGER
@@ -60,7 +43,9 @@ function colorizeNodes(
 
 	let node: Node
 	for (node of data.nodes) {
-		node.color = node.color || getColor(colorMap, colorizer, node.community)
+		node.color =
+			node.color ||
+			getCachedColor(colorMap, colorizer, node.group as any, node.id as any)
 		maxWeight = Math.max(maxWeight, node.weight)
 		minWeight = Math.min(minWeight, node.weight)
 	}

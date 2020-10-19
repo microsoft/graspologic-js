@@ -420,7 +420,7 @@ storiesOf('Interactive 2D Examples', module)
 						data={{
 							nodes: [
 								{
-									category: 1,
+									group: '1',
 									id: '5',
 									label: 'Should be 5px',
 									x: -20000,
@@ -428,7 +428,7 @@ storiesOf('Interactive 2D Examples', module)
 									weight: 10,
 								},
 								{
-									category: 2,
+									group: '2',
 									id: '10',
 									label: 'Should be 10px',
 									x: 20000,

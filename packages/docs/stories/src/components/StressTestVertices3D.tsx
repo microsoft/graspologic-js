@@ -32,7 +32,7 @@ export const StressTestVertices3D: React.FC = () => {
 				y: getRandomArbitrary(-1500, 1500),
 				z: getRandomArbitrary(-1500, 1500),
 				shape: getRandomInt(0, 2),
-				category: i % 20,
+				group: `${i % 20}`,
 				weight: 10,
 			})
 		}

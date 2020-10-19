@@ -78,7 +78,7 @@ export function internGraph(
 		nodeIdToIndex[inputNode.id] = i
 		nodeIndexToId[i] = inputNode.id
 		node.id = inputNode.id
-		node.community = inputNode.category || 0
+		node.group = inputNode.group
 
 		// A default size of 0 is important.  If 0, weight will be used to scale the node
 		size = inputNode.size || inputNode.radius
@@ -87,7 +87,6 @@ export function internGraph(
 		node.y = inputNode.y || 0
 		node.z = inputNode.z || 0
 		node.label = inputNode.label
-		node.group = inputNode.group
 		node.weight = inputNode.weight || 1
 		node.color = inputNode.color || 0
 		node.shape = parseShape(inputNode.shape)

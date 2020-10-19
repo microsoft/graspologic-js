@@ -21,7 +21,7 @@ export function testGraph(includePositions = false): InputGraph {
 		const size = n.size || n.weight
 		const node = {
 			id: n.id,
-			category: n.category,
+			group: `${n.category}`,
 			size,
 			weight: size,
 		} as any

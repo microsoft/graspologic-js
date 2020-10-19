@@ -2,7 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer, Colorizer, colorizeRenderer } from '@graspologic/renderer'
+import {
+	GraphRenderer,
+	NodeComponentColorizer,
+	colorizeRenderer,
+} from '@graspologic/renderer'
 import { useEffect } from 'react'
 
 /**
@@ -12,7 +16,7 @@ import { useEffect } from 'react'
  */
 export function useGraphColorizer(
 	renderer: GraphRenderer | undefined,
-	colorizerFn?: Colorizer,
+	colorizerFn?: NodeComponentColorizer,
 ) {
 	useEffect(() => {
 		if (renderer && !renderer.destroyed && colorizerFn) {
