@@ -6097,6 +6097,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/stories", "workspace:packages/docs/stories"],
             ["@babel/core", "npm:7.12.3"],
+            ["@babel/preset-env", "virtual:c13d28dff13d3270c5e70c0dd74200b4b477579350ac85746b05f0d605a64df73804af34eab592950282416d214d1e27b5a56ee6106777257e42338f4e1498ce#npm:7.12.1"],
             ["@essex/storybook-config", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:11.0.0"],
             ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
             ["@graspologic/layout-core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-core"],

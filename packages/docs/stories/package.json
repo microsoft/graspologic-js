@@ -13,8 +13,12 @@
 		"start": "start-storybook",
 		"bundle": "build-storybook"
 	},
+	"browserslist": [
+		"last 2 Chrome versions"
+	],
 	"dependencies": {
 		"@babel/core": "^7.12.3",
+		"@babel/preset-env": "^7.4.1",
 		"@graspologic/graph": "^0.4.0",
 		"@graspologic/layout-core": "^0.4.0",
 		"@graspologic/layout-fa2": "^0.4.0",
