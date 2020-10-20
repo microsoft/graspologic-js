@@ -68,5 +68,8 @@
 			"pre-commit": "essex pre-commit",
 			"commit-msg": "essex commit-msg"
 		}
+	},
+	"dependencies": {
+		"@yarnpkg/pnpify": "^2.3.3"
 	}
 }
