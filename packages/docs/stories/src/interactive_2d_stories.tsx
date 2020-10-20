@@ -41,7 +41,7 @@ import {
 	ColorVector,
 } from '@graspologic/renderer'
 import { action } from '@storybook/addon-actions'
-import { number, boolean } from '@storybook/addon-knobs'
+import { number, boolean, withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import React, { useCallback, useRef, useState } from 'react'
 import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
@@ -61,6 +61,7 @@ const VWIDTH_RANGE = { range: true, min: 0.1, max: 10, step: 0.01 }
 const HIGHLIGHT_IDS = ['3_344', '0_249', '5_534', '5_552']
 
 storiesOf('Interactive 2D Examples', module)
+	.addDecorator(withKnobs)
 	.add('can change render properties', () => {
 		const nodeCat = 'NODES'
 		const edgeCat = 'EDGES'

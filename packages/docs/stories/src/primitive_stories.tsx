@@ -124,6 +124,7 @@ const WithGraphRenderer = ({
 }
 
 storiesOf('Primitive API', module)
+	.addDecorator(withKnobs)
 	.add('single node', () => {
 		const n1 = new NodeImpl()
 		n1.id = 'A'
@@ -721,4 +722,3 @@ storiesOf('Primitive API', module)
 			/>
 		)
 	})
-	.addDecorator(withKnobs)

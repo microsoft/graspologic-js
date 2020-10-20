@@ -78,18 +78,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$)",
     "fallbackExclusionList": [
-      ["@graspologic/animation", ["workspace:packages/libs/animation"]],
-      ["@graspologic/graph", ["workspace:packages/libs/graph"]],
-      ["@graspologic/layout-core", ["workspace:packages/libs/layout-core"]],
-      ["@graspologic/layout-fa2", ["workspace:packages/libs/layout-fa2"]],
-      ["@graspologic/layout-openord", ["workspace:packages/libs/layout-openord"]],
+      ["@graspologic/animation", ["virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/libs/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation", "workspace:packages/libs/animation"]],
+      ["@graspologic/graph", ["virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph", "workspace:packages/libs/graph"]],
+      ["@graspologic/layout-core", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-core", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/layout-core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-core", "workspace:packages/libs/layout-core"]],
+      ["@graspologic/layout-fa2", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-fa2", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-fa2", "workspace:packages/libs/layout-fa2"]],
+      ["@graspologic/layout-openord", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-openord", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-openord", "workspace:packages/libs/layout-openord"]],
       ["@graspologic/layout-sandbox", ["workspace:packages/docs/layout-sandbox"]],
-      ["@graspologic/memstore", ["workspace:packages/libs/memstore"]],
+      ["@graspologic/memstore", ["virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore", "workspace:packages/libs/memstore"]],
       ["@graspologic/monorepo", ["workspace:."]],
-      ["@graspologic/react", ["virtual:0a34e70133fb6587fcddb9c79e0f3fe1381d826753c6ef27191943ec68267bf10d0a73cc9c580a860712beb1cbd0f25b95c79a687ed6bd02adb3e6045215711c#workspace:packages/libs/react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/react", "virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/react", "workspace:packages/libs/react"]],
-      ["@graspologic/render-controls", ["workspace:packages/libs/controls"]],
+      ["@graspologic/react", ["virtual:446d2d17393b1f551590430d4763b9870b32de9462bad3144f0d4a25288017b2d5ecb7a65fc809150a9f7751d065cafb4b6745689686110b8d021bb164a68178#workspace:packages/libs/react", "virtual:46cf9551d99a7f0bd4a993c86498d342485c7d33390cfd02ee500bd252f56d8d29b9e73a9df0cba038583efd39c6f399750836c170a1c150503fa5513d459f3e#workspace:packages/libs/react", "virtual:59c63b6b4200103440b7e3d422f3bbbe2e668a006c95a07825b038829325711a8a6c6a7bdf2bf7860a2a29f32010dd0ce8061feeb987290afbc7587fcd70e6da#workspace:packages/libs/react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/react", "virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/react", "workspace:packages/libs/react"]],
+      ["@graspologic/render-controls", ["virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/controls", "virtual:f9c060e00f7a16a53ad703c575d9a5a999ccb8694d7e3fddd699ba89a620d334dccd5fe206e450c703b0dad4cc176f04165f73abda86bb494d781ef5eef81b00#workspace:packages/libs/controls", "workspace:packages/libs/controls"]],
       ["@graspologic/render-controls-react", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/controls-react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/controls-react", "workspace:packages/libs/controls-react"]],
-      ["@graspologic/renderer", ["workspace:packages/libs/renderer"]],
+      ["@graspologic/renderer", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer", "workspace:packages/libs/renderer"]],
       ["@graspologic/stories", ["workspace:packages/docs/stories"]],
       ["@graspologic/testdata", ["workspace:packages/libs/testdata"]]
     ],
@@ -4945,7 +4945,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@essex/babel-config", "npm:10.0.1"],
             ["@essex/build-util-hoister", "npm:10.0.2"],
             ["@mdx-js/loader", "npm:1.6.18"],
-            ["@storybook/addon-a11y", "virtual:cff31fdb3a7e8b45b27635753b1126e5fff635a7ec023cb553fc637909f1a6c30093b3ef36fbd7e229e0b5548eb759cca89cd2572ddeb48a332f85912bd5e386#npm:6.0.26"],
+            ["@storybook/addon-a11y", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addon-actions", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addon-docs", "virtual:cff31fdb3a7e8b45b27635753b1126e5fff635a7ec023cb553fc637909f1a6c30093b3ef36fbd7e229e0b5548eb759cca89cd2572ddeb48a332f85912bd5e386#npm:6.0.26"],
             ["@storybook/addon-knobs", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
@@ -5160,75 +5160,339 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@graspologic/animation", [
+        ["virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/libs/animation", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-animation-virtual-21c9fff555/1/packages/libs/animation/",
+          "packageDependencies": [
+            ["@graspologic/animation", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/libs/animation"],
+            ["@graspologic/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-animation-virtual-f49d1d8fe8/1/packages/libs/animation/",
+          "packageDependencies": [
+            ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/animation", {
           "packageLocation": "./packages/libs/animation/",
           "packageDependencies": [
             ["@graspologic/animation", "workspace:packages/libs/animation"],
-            ["@graspologic/memstore", "workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
             ["@types/node", "npm:13.13.27"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@graspologic/graph", [
+        ["virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-graph-virtual-b2c197d794/1/packages/libs/graph/",
+          "packageDependencies": [
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/graph", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-graph-virtual-3961d3c38a/1/packages/libs/graph/",
+          "packageDependencies": [
+            ["@graspologic/graph", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/graph"],
+            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-graph-virtual-8b4c3022e0/1/packages/libs/graph/",
+          "packageDependencies": [
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/graph", {
           "packageLocation": "./packages/libs/graph/",
           "packageDependencies": [
             ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/memstore", "workspace:packages/libs/memstore"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@graspologic/layout-core", [
+        ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-core", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-layout-core-virtual-d9a06dd28c/1/packages/libs/layout-core/",
+          "packageDependencies": [
+            ["@graspologic/layout-core", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-core"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["regenerator-runtime", null],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/layout-core", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-layout-core-virtual-a126a25cb9/1/packages/libs/layout-core/",
+          "packageDependencies": [
+            ["@graspologic/layout-core", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/layout-core"],
+            ["@graspologic/graph", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/graph"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", null],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-core", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-layout-core-virtual-e971592a48/1/packages/libs/layout-core/",
+          "packageDependencies": [
+            ["@graspologic/layout-core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-core"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/layout-core", {
           "packageLocation": "./packages/libs/layout-core/",
           "packageDependencies": [
             ["@graspologic/layout-core", "workspace:packages/libs/layout-core"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["rxjs", "npm:6.6.3"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@graspologic/layout-fa2", [
+        ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-fa2", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-layout-fa2-virtual-affad77dfc/1/packages/libs/layout-fa2/",
+          "packageDependencies": [
+            ["@graspologic/layout-fa2", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-fa2"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-core"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["regenerator-runtime", null],
+            ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-fa2", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-layout-fa2-virtual-26ffdae03c/1/packages/libs/layout-fa2/",
+          "packageDependencies": [
+            ["@graspologic/layout-fa2", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-fa2"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-core"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["@types/core-js", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/layout-fa2", {
           "packageLocation": "./packages/libs/layout-fa2/",
           "packageDependencies": [
             ["@graspologic/layout-fa2", "workspace:packages/libs/layout-fa2"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/layout-core", "workspace:packages/libs/layout-core"],
-            ["@rollup/plugin-commonjs", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:13.0.2"],
-            ["@rollup/plugin-node-resolve", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:8.4.0"],
-            ["@rollup/plugin-replace", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:2.3.3"],
-            ["rollup-plugin-terser", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:6.1.0"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-core"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0"],
             ["rxjs", "npm:6.6.3"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@graspologic/layout-openord", [
+        ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-openord", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-layout-openord-virtual-d415035778/1/packages/libs/layout-openord/",
+          "packageDependencies": [
+            ["@graspologic/layout-openord", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-openord"],
+            ["@graspologic/graph", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/layout-core"],
+            ["@graspologic/testdata", "workspace:packages/libs/testdata"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["@types/core-js", null],
+            ["@types/d3-scale-chromatic", "npm:1.5.1"],
+            ["@types/regenerator-runtime", null],
+            ["chalk", "npm:4.1.0"],
+            ["core-js", "npm:3.6.5"],
+            ["d3-scale-chromatic", "npm:2.0.0"],
+            ["regenerator-runtime", null],
+            ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-openord", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-layout-openord-virtual-c016a44141/1/packages/libs/layout-openord/",
+          "packageDependencies": [
+            ["@graspologic/layout-openord", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-openord"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-core"],
+            ["@graspologic/testdata", "workspace:packages/libs/testdata"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["@types/core-js", null],
+            ["@types/d3-scale-chromatic", "npm:1.5.1"],
+            ["@types/regenerator-runtime", null],
+            ["chalk", "npm:4.1.0"],
+            ["core-js", "npm:3.6.5"],
+            ["d3-scale-chromatic", "npm:2.0.0"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/layout-openord", {
           "packageLocation": "./packages/libs/layout-openord/",
           "packageDependencies": [
             ["@graspologic/layout-openord", "workspace:packages/libs/layout-openord"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/layout-core", "workspace:packages/libs/layout-core"],
+            ["@graspologic/graph", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/layout-core"],
             ["@graspologic/testdata", "workspace:packages/libs/testdata"],
-            ["@rollup/plugin-commonjs", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:13.0.2"],
-            ["@rollup/plugin-node-resolve", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:8.4.0"],
-            ["@rollup/plugin-replace", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:2.3.3"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
             ["@types/d3-scale-chromatic", "npm:1.5.1"],
             ["chalk", "npm:4.1.0"],
             ["core-js", "npm:3.6.5"],
             ["d3-scale-chromatic", "npm:2.0.0"],
-            ["rollup-plugin-terser", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:6.1.0"],
+            ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0"],
             ["rxjs", "npm:6.6.3"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
@@ -5243,13 +5507,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chart-parts/react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:0.1.3"],
             ["@chart-parts/react-svg-renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:0.1.3"],
             ["@chart-parts/transform", "npm:0.1.3"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/layout-core", "workspace:packages/libs/layout-core"],
-            ["@graspologic/layout-fa2", "workspace:packages/libs/layout-fa2"],
-            ["@graspologic/layout-openord", "workspace:packages/libs/layout-openord"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-core"],
+            ["@graspologic/layout-fa2", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-fa2"],
+            ["@graspologic/layout-openord", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-openord"],
             ["@graspologic/react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/react"],
             ["@graspologic/render-controls-react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/controls-react"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
             ["@graspologic/testdata", "workspace:packages/libs/testdata"],
             ["@thematic/core", "npm:0.8.0"],
             ["@types/d3-scale", "npm:2.2.4"],
@@ -5271,19 +5535,76 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-helmet", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:6.1.0"],
             ["rxjs", "npm:6.6.3"],
             ["styled-components", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:5.2.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"],
             ["use-pan-and-zoom", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:0.5.1"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@graspologic/memstore", [
+        ["virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-memstore-virtual-993e73269d/1/packages/libs/memstore/",
+          "packageDependencies": [
+            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-memstore-virtual-5ecedbc15f/1/packages/libs/memstore/",
+          "packageDependencies": [
+            ["@graspologic/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-memstore-virtual-221945d339/1/packages/libs/memstore/",
+          "packageDependencies": [
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/memstore", {
           "packageLocation": "./packages/libs/memstore/",
           "packageDependencies": [
             ["@graspologic/memstore", "workspace:packages/libs/memstore"],
             ["@types/node", "npm:13.13.27"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
@@ -5320,20 +5641,86 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@graspologic/react", [
-        ["virtual:0a34e70133fb6587fcddb9c79e0f3fe1381d826753c6ef27191943ec68267bf10d0a73cc9c580a860712beb1cbd0f25b95c79a687ed6bd02adb3e6045215711c#workspace:packages/libs/react", {
-          "packageLocation": "./.yarn/$$virtual/@graspologic-react-virtual-d3beae5528/1/packages/libs/react/",
+        ["virtual:446d2d17393b1f551590430d4763b9870b32de9462bad3144f0d4a25288017b2d5ecb7a65fc809150a9f7751d065cafb4b6745689686110b8d021bb164a68178#workspace:packages/libs/react", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-react-virtual-5d421066a7/1/packages/libs/react/",
           "packageDependencies": [
-            ["@graspologic/react", "virtual:0a34e70133fb6587fcddb9c79e0f3fe1381d826753c6ef27191943ec68267bf10d0a73cc9c580a860712beb1cbd0f25b95c79a687ed6bd02adb3e6045215711c#workspace:packages/libs/react"],
+            ["@graspologic/react", "virtual:446d2d17393b1f551590430d4763b9870b32de9462bad3144f0d4a25288017b2d5ecb7a65fc809150a9f7751d065cafb4b6745689686110b8d021bb164a68178#workspace:packages/libs/react"],
             ["@essex-js-toolkit/hooks", "virtual:8bc1f1e16ad76380ca9d84eded58e009eaa59b2525079f620faca5beecb0d383368bcd8d0fc69b438aff0972f4c2ef325fe859fc9fabe82b0355d5c7e0f5611d#npm:1.1.2"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
             ["@types/node", "npm:13.13.27"],
             ["@types/react", "npm:16.9.53"],
             ["@types/react-dom", "npm:16.9.8"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
             ["math.gl", "npm:3.3.0"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:46cf9551d99a7f0bd4a993c86498d342485c7d33390cfd02ee500bd252f56d8d29b9e73a9df0cba038583efd39c6f399750836c170a1c150503fa5513d459f3e#workspace:packages/libs/react", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-react-virtual-0bdae93b22/1/packages/libs/react/",
+          "packageDependencies": [
+            ["@graspologic/react", "virtual:46cf9551d99a7f0bd4a993c86498d342485c7d33390cfd02ee500bd252f56d8d29b9e73a9df0cba038583efd39c6f399750836c170a1c150503fa5513d459f3e#workspace:packages/libs/react"],
+            ["@essex-js-toolkit/hooks", "virtual:8bc1f1e16ad76380ca9d84eded58e009eaa59b2525079f620faca5beecb0d383368bcd8d0fc69b438aff0972f4c2ef325fe859fc9fabe82b0355d5c7e0f5611d#npm:1.1.2"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/react", "npm:16.9.53"],
+            ["@types/react-dom", "npm:16.9.8"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["math.gl", "npm:3.3.0"],
+            ["react", "npm:16.14.0"],
+            ["react-dom", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:16.14.0"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:59c63b6b4200103440b7e3d422f3bbbe2e668a006c95a07825b038829325711a8a6c6a7bdf2bf7860a2a29f32010dd0ce8061feeb987290afbc7587fcd70e6da#workspace:packages/libs/react", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-react-virtual-27ec3e82fe/1/packages/libs/react/",
+          "packageDependencies": [
+            ["@graspologic/react", "virtual:59c63b6b4200103440b7e3d422f3bbbe2e668a006c95a07825b038829325711a8a6c6a7bdf2bf7860a2a29f32010dd0ce8061feeb987290afbc7587fcd70e6da#workspace:packages/libs/react"],
+            ["@essex-js-toolkit/hooks", "virtual:8bc1f1e16ad76380ca9d84eded58e009eaa59b2525079f620faca5beecb0d383368bcd8d0fc69b438aff0972f4c2ef325fe859fc9fabe82b0355d5c7e0f5611d#npm:1.1.2"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/react", "npm:16.9.53"],
+            ["@types/react-dom", "npm:16.9.8"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["math.gl", "npm:3.3.0"],
+            ["react", "npm:16.14.0"],
+            ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "react-dom",
+            "react",
+            "regenerator-runtime"
           ],
           "linkType": "SOFT",
         }],
@@ -5342,21 +5729,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/react"],
             ["@essex-js-toolkit/hooks", "virtual:8bc1f1e16ad76380ca9d84eded58e009eaa59b2525079f620faca5beecb0d383368bcd8d0fc69b438aff0972f4c2ef325fe859fc9fabe82b0355d5c7e0f5611d#npm:1.1.2"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
             ["@types/node", "npm:13.13.27"],
             ["@types/react", "npm:16.9.53"],
             ["@types/react-dom", "npm:16.9.8"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
             ["math.gl", "npm:3.3.0"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "packagePeers": [
+            "@types/core-js",
             "@types/react-dom",
             "@types/react",
+            "@types/regenerator-runtime",
+            "core-js",
             "react-dom",
-            "react"
+            "react",
+            "regenerator-runtime"
           ],
           "linkType": "SOFT",
         }],
@@ -5365,21 +5760,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/react", "virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/react"],
             ["@essex-js-toolkit/hooks", "virtual:6aff35bbfaf712c39624bb43500cf7bcbebd4d33275d4a14285ff1818076e67f06f4a9f68e9ea3bb0929e9676e57aa2e29589d3f8cd87644eefe4daa938ccd08#npm:1.1.2"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
             ["@types/node", "npm:13.13.27"],
             ["@types/react", null],
             ["@types/react-dom", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
             ["math.gl", "npm:3.3.0"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "packagePeers": [
+            "@types/core-js",
             "@types/react-dom",
             "@types/react",
+            "@types/regenerator-runtime",
+            "core-js",
             "react-dom",
-            "react"
+            "react",
+            "regenerator-runtime"
           ],
           "linkType": "SOFT",
         }],
@@ -5388,19 +5791,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/react"],
             ["@essex-js-toolkit/hooks", "virtual:8bc1f1e16ad76380ca9d84eded58e009eaa59b2525079f620faca5beecb0d383368bcd8d0fc69b438aff0972f4c2ef325fe859fc9fabe82b0355d5c7e0f5611d#npm:1.1.2"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
             ["@types/node", "npm:13.13.27"],
             ["@types/react", "npm:16.9.53"],
             ["@types/react-dom", "npm:16.9.8"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
             ["math.gl", "npm:3.3.0"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
             "react-dom",
-            "react"
+            "react",
+            "regenerator-runtime"
           ],
           "linkType": "SOFT",
         }],
@@ -5409,29 +5820,73 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/react", "workspace:packages/libs/react"],
             ["@essex-js-toolkit/hooks", "virtual:8bc1f1e16ad76380ca9d84eded58e009eaa59b2525079f620faca5beecb0d383368bcd8d0fc69b438aff0972f4c2ef325fe859fc9fabe82b0355d5c7e0f5611d#npm:1.1.2"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
             ["@types/node", "npm:13.13.27"],
             ["@types/react", "npm:16.9.53"],
             ["@types/react-dom", "npm:16.9.8"],
             ["math.gl", "npm:3.3.0"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@graspologic/render-controls", [
+        ["virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/controls", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-render-controls-virtual-46cf9551d9/1/packages/libs/controls/",
+          "packageDependencies": [
+            ["@graspologic/render-controls", "virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/controls"],
+            ["@graspologic/react", "virtual:46cf9551d99a7f0bd4a993c86498d342485c7d33390cfd02ee500bd252f56d8d29b9e73a9df0cba038583efd39c6f399750836c170a1c150503fa5513d459f3e#workspace:packages/libs/react"],
+            ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
+            ["@types/dat.gui", "npm:0.7.5"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["dat.gui", "npm:0.7.7"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:f9c060e00f7a16a53ad703c575d9a5a999ccb8694d7e3fddd699ba89a620d334dccd5fe206e450c703b0dad4cc176f04165f73abda86bb494d781ef5eef81b00#workspace:packages/libs/controls", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-render-controls-virtual-446d2d1739/1/packages/libs/controls/",
+          "packageDependencies": [
+            ["@graspologic/render-controls", "virtual:f9c060e00f7a16a53ad703c575d9a5a999ccb8694d7e3fddd699ba89a620d334dccd5fe206e450c703b0dad4cc176f04165f73abda86bb494d781ef5eef81b00#workspace:packages/libs/controls"],
+            ["@graspologic/react", "virtual:446d2d17393b1f551590430d4763b9870b32de9462bad3144f0d4a25288017b2d5ecb7a65fc809150a9f7751d065cafb4b6745689686110b8d021bb164a68178#workspace:packages/libs/react"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
+            ["@types/dat.gui", "npm:0.7.5"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["dat.gui", "npm:0.7.7"],
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/controls", {
           "packageLocation": "./packages/libs/controls/",
           "packageDependencies": [
             ["@graspologic/render-controls", "workspace:packages/libs/controls"],
-            ["@graspologic/react", "virtual:0a34e70133fb6587fcddb9c79e0f3fe1381d826753c6ef27191943ec68267bf10d0a73cc9c580a860712beb1cbd0f25b95c79a687ed6bd02adb3e6045215711c#workspace:packages/libs/react"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/react", "virtual:446d2d17393b1f551590430d4763b9870b32de9462bad3144f0d4a25288017b2d5ecb7a65fc809150a9f7751d065cafb4b6745689686110b8d021bb164a68178#workspace:packages/libs/react"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
             ["@types/dat.gui", "npm:0.7.5"],
             ["dat.gui", "npm:0.7.7"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
@@ -5442,21 +5897,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/render-controls-react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/controls-react"],
             ["@graspologic/react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/react"],
-            ["@graspologic/render-controls", "workspace:packages/libs/controls"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/render-controls", "virtual:f9c060e00f7a16a53ad703c575d9a5a999ccb8694d7e3fddd699ba89a620d334dccd5fe206e450c703b0dad4cc176f04165f73abda86bb494d781ef5eef81b00#workspace:packages/libs/controls"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
             ["@types/dat.gui", "npm:0.7.5"],
             ["@types/react", "npm:16.9.53"],
             ["@types/react-dom", "npm:16.9.8"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
             ["dat.gui", "npm:0.7.7"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["regenerator-runtime", null],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "packagePeers": [
+            "@types/core-js",
             "@types/react-dom",
             "@types/react",
+            "@types/regenerator-runtime",
+            "core-js",
             "react-dom",
-            "react"
+            "react",
+            "regenerator-runtime"
           ],
           "linkType": "SOFT",
         }],
@@ -5465,21 +5928,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/render-controls-react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/controls-react"],
             ["@graspologic/react", "virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/react"],
-            ["@graspologic/render-controls", "workspace:packages/libs/controls"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/render-controls", "virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/controls"],
+            ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
+            ["@types/core-js", null],
             ["@types/dat.gui", "npm:0.7.5"],
             ["@types/react", null],
             ["@types/react-dom", null],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
             ["dat.gui", "npm:0.7.7"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "packagePeers": [
+            "@types/core-js",
             "@types/react-dom",
             "@types/react",
+            "@types/regenerator-runtime",
+            "core-js",
             "react-dom",
-            "react"
+            "react",
+            "regenerator-runtime"
           ],
           "linkType": "SOFT",
         }],
@@ -5487,35 +5958,113 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/libs/controls-react/",
           "packageDependencies": [
             ["@graspologic/render-controls-react", "workspace:packages/libs/controls-react"],
-            ["@graspologic/react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/react"],
-            ["@graspologic/render-controls", "workspace:packages/libs/controls"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/react", "virtual:59c63b6b4200103440b7e3d422f3bbbe2e668a006c95a07825b038829325711a8a6c6a7bdf2bf7860a2a29f32010dd0ce8061feeb987290afbc7587fcd70e6da#workspace:packages/libs/react"],
+            ["@graspologic/render-controls", "virtual:f9c060e00f7a16a53ad703c575d9a5a999ccb8694d7e3fddd699ba89a620d334dccd5fe206e450c703b0dad4cc176f04165f73abda86bb494d781ef5eef81b00#workspace:packages/libs/controls"],
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
             ["@types/dat.gui", "npm:0.7.5"],
             ["dat.gui", "npm:0.7.7"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@graspologic/renderer", [
+        ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-renderer-virtual-a906dd2440/1/packages/libs/renderer/",
+          "packageDependencies": [
+            ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
+            ["@danmarshall/deckgl-typings", "npm:2.2.5"],
+            ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
+            ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@luma.gl/constants", "npm:7.3.2"],
+            ["@luma.gl/core", "npm:7.3.2"],
+            ["@luma.gl/webgl", "npm:7.3.2"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-multi-entry", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:3.0.1"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", null],
+            ["glob", "npm:7.1.6"],
+            ["invariant", "npm:2.2.4"],
+            ["luma.gl", "npm:7.3.2"],
+            ["math.gl", "npm:3.3.0"],
+            ["mjolnir.js", "npm:2.4.1"],
+            ["ncp", "npm:2.0.0"],
+            ["regenerator-runtime", null],
+            ["rollup-plugin-web-worker-loader", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:1.4.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-renderer-virtual-72bb8352ed/1/packages/libs/renderer/",
+          "packageDependencies": [
+            ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
+            ["@danmarshall/deckgl-typings", "npm:2.2.5"],
+            ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
+            ["@graspologic/animation", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/libs/animation"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore"],
+            ["@luma.gl/constants", "npm:7.3.2"],
+            ["@luma.gl/core", "npm:7.3.2"],
+            ["@luma.gl/webgl", "npm:7.3.2"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-multi-entry", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:3.0.1"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:13.13.27"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.6.5"],
+            ["glob", "npm:7.1.6"],
+            ["invariant", "npm:2.2.4"],
+            ["luma.gl", "npm:7.3.2"],
+            ["math.gl", "npm:3.3.0"],
+            ["mjolnir.js", "npm:2.4.1"],
+            ["ncp", "npm:2.0.0"],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["rollup-plugin-web-worker-loader", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:1.4.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
         ["workspace:packages/libs/renderer", {
           "packageLocation": "./packages/libs/renderer/",
           "packageDependencies": [
             ["@graspologic/renderer", "workspace:packages/libs/renderer"],
             ["@danmarshall/deckgl-typings", "npm:2.2.5"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
-            ["@graspologic/animation", "workspace:packages/libs/animation"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/memstore", "workspace:packages/libs/memstore"],
+            ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
             ["@luma.gl/constants", "npm:7.3.2"],
             ["@luma.gl/core", "npm:7.3.2"],
             ["@luma.gl/webgl", "npm:7.3.2"],
-            ["@rollup/plugin-commonjs", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:13.0.2"],
-            ["@rollup/plugin-multi-entry", "virtual:10f6fec453b14594eb987d1f351f7d6ce8d5f0c83e1a4675f9bb9dca3d5a1e7501cf329211323e8b930518733d0623a9c809813d6ce7fd1f64cf690ebdc13c1e#npm:3.0.1"],
-            ["@rollup/plugin-node-resolve", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:8.4.0"],
-            ["@rollup/plugin-replace", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:2.3.3"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/plugin-multi-entry", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:3.0.1"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
             ["@types/node", "npm:13.13.27"],
             ["glob", "npm:7.1.6"],
             ["invariant", "npm:2.2.4"],
@@ -5523,9 +6072,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["math.gl", "npm:3.3.0"],
             ["mjolnir.js", "npm:2.4.1"],
             ["ncp", "npm:2.0.0"],
-            ["rollup-plugin-web-worker-loader", "virtual:10f6fec453b14594eb987d1f351f7d6ce8d5f0c83e1a4675f9bb9dca3d5a1e7501cf329211323e8b930518733d0623a9c809813d6ce7fd1f64cf690ebdc13c1e#npm:1.4.0"],
+            ["rollup-plugin-web-worker-loader", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:1.4.0"],
             ["rxjs", "npm:6.6.3"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
@@ -5537,15 +6086,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/stories", "workspace:packages/docs/stories"],
             ["@babel/core", "npm:7.12.3"],
             ["@essex/storybook-config", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:11.0.0"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
-            ["@graspologic/layout-core", "workspace:packages/libs/layout-core"],
-            ["@graspologic/layout-fa2", "workspace:packages/libs/layout-fa2"],
-            ["@graspologic/layout-openord", "workspace:packages/libs/layout-openord"],
+            ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/layout-core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-core"],
+            ["@graspologic/layout-fa2", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-fa2"],
+            ["@graspologic/layout-openord", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-openord"],
             ["@graspologic/react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/react"],
             ["@graspologic/render-controls-react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/controls-react"],
-            ["@graspologic/renderer", "workspace:packages/libs/renderer"],
+            ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
             ["@graspologic/testdata", "workspace:packages/libs/testdata"],
+            ["@storybook/addon-a11y", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addon-actions", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
+            ["@storybook/addon-docs", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addon-knobs", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addon-links", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
@@ -5554,13 +6105,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@thematic/core", "npm:0.8.0"],
             ["babel-loader", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:8.1.0"],
             ["core-js", "npm:3.6.5"],
+            ["prop-types", "npm:15.7.2"],
             ["raw-loader", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#npm:4.0.2"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
             ["react-fps-stats", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:0.1.3"],
             ["react-markdown", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:4.3.1"],
+            ["regenerator-runtime", "npm:0.13.7"],
             ["source-map-loader", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:1.1.1"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
@@ -5570,9 +6123,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/libs/testdata/",
           "packageDependencies": [
             ["@graspologic/testdata", "workspace:packages/libs/testdata"],
-            ["@graspologic/graph", "workspace:packages/libs/graph"],
+            ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@types/node", "npm:14.14.0"],
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"]
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"]
           ],
           "linkType": "SOFT",
         }]
@@ -6275,11 +6828,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@rollup/plugin-commonjs", [
-        ["virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:13.0.2", {
-          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-commonjs-virtual-29ec17c2ca/0/cache/@rollup-plugin-commonjs-npm-13.0.2-2ff361dca8-3a3f6fd5ec.zip/node_modules/@rollup/plugin-commonjs/",
+        ["virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2", {
+          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-commonjs-virtual-63f312526e/0/cache/@rollup-plugin-commonjs-npm-13.0.2-2ff361dca8-3a3f6fd5ec.zip/node_modules/@rollup/plugin-commonjs/",
           "packageDependencies": [
-            ["@rollup/plugin-commonjs", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:13.0.2"],
-            ["@rollup/pluginutils", "virtual:29ec17c2caea4e893ff0a70511fe0ea84d6926ed8a1c38ade52d3f1c8b37734864c7191da8a2d74bd8b2becc112ed2459f737fcabbf2f5a246fc3381319b95d8#npm:3.1.0"],
+            ["@rollup/plugin-commonjs", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:13.0.2"],
+            ["@rollup/pluginutils", "virtual:63f312526e1bb85b7ca43daf8180a3105725d3fefc6eb8a9a0b07875823d8649941f414d8822121163bd3653ac0dc9b9f1318ce6abaa0a8a33e67cebcae8d1dd#npm:3.1.0"],
             ["@types/rollup", null],
             ["commondir", "npm:1.0.1"],
             ["estree-walker", "npm:1.0.1"],
@@ -6297,10 +6850,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@rollup/plugin-multi-entry", [
-        ["virtual:10f6fec453b14594eb987d1f351f7d6ce8d5f0c83e1a4675f9bb9dca3d5a1e7501cf329211323e8b930518733d0623a9c809813d6ce7fd1f64cf690ebdc13c1e#npm:3.0.1", {
-          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-multi-entry-virtual-b28f012f38/0/cache/@rollup-plugin-multi-entry-npm-3.0.1-0a4f0c1fe6-ce3e211f4b.zip/node_modules/@rollup/plugin-multi-entry/",
+        ["virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:3.0.1", {
+          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-multi-entry-virtual-3d0f3ab76d/0/cache/@rollup-plugin-multi-entry-npm-3.0.1-0a4f0c1fe6-ce3e211f4b.zip/node_modules/@rollup/plugin-multi-entry/",
           "packageDependencies": [
-            ["@rollup/plugin-multi-entry", "virtual:10f6fec453b14594eb987d1f351f7d6ce8d5f0c83e1a4675f9bb9dca3d5a1e7501cf329211323e8b930518733d0623a9c809813d6ce7fd1f64cf690ebdc13c1e#npm:3.0.1"],
+            ["@rollup/plugin-multi-entry", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:3.0.1"],
             ["@types/rollup", null],
             ["matched", "npm:1.0.2"],
             ["rollup", null]
@@ -6313,11 +6866,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@rollup/plugin-node-resolve", [
-        ["virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:8.4.0", {
-          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-node-resolve-virtual-fddee013a3/0/cache/@rollup-plugin-node-resolve-npm-8.4.0-4a347c713e-1c3da8d000.zip/node_modules/@rollup/plugin-node-resolve/",
+        ["virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0", {
+          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-node-resolve-virtual-c4a21db35f/0/cache/@rollup-plugin-node-resolve-npm-8.4.0-4a347c713e-1c3da8d000.zip/node_modules/@rollup/plugin-node-resolve/",
           "packageDependencies": [
-            ["@rollup/plugin-node-resolve", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:8.4.0"],
-            ["@rollup/pluginutils", "virtual:29ec17c2caea4e893ff0a70511fe0ea84d6926ed8a1c38ade52d3f1c8b37734864c7191da8a2d74bd8b2becc112ed2459f737fcabbf2f5a246fc3381319b95d8#npm:3.1.0"],
+            ["@rollup/plugin-node-resolve", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:8.4.0"],
+            ["@rollup/pluginutils", "virtual:63f312526e1bb85b7ca43daf8180a3105725d3fefc6eb8a9a0b07875823d8649941f414d8822121163bd3653ac0dc9b9f1318ce6abaa0a8a33e67cebcae8d1dd#npm:3.1.0"],
             ["@types/resolve", "npm:1.17.1"],
             ["@types/rollup", null],
             ["builtin-modules", "npm:3.1.0"],
@@ -6335,11 +6888,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@rollup/plugin-replace", [
-        ["virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:2.3.3", {
-          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-replace-virtual-19edfd3c16/0/cache/@rollup-plugin-replace-npm-2.3.3-ca49948ae3-d08a514b8f.zip/node_modules/@rollup/plugin-replace/",
+        ["virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3", {
+          "packageLocation": "./.yarn/$$virtual/@rollup-plugin-replace-virtual-ed5a82903e/0/cache/@rollup-plugin-replace-npm-2.3.3-ca49948ae3-d08a514b8f.zip/node_modules/@rollup/plugin-replace/",
           "packageDependencies": [
-            ["@rollup/plugin-replace", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:2.3.3"],
-            ["@rollup/pluginutils", "virtual:29ec17c2caea4e893ff0a70511fe0ea84d6926ed8a1c38ade52d3f1c8b37734864c7191da8a2d74bd8b2becc112ed2459f737fcabbf2f5a246fc3381319b95d8#npm:3.1.0"],
+            ["@rollup/plugin-replace", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:2.3.3"],
+            ["@rollup/pluginutils", "virtual:63f312526e1bb85b7ca43daf8180a3105725d3fefc6eb8a9a0b07875823d8649941f414d8822121163bd3653ac0dc9b9f1318ce6abaa0a8a33e67cebcae8d1dd#npm:3.1.0"],
             ["@types/rollup", null],
             ["magic-string", "npm:0.25.7"],
             ["rollup", null]
@@ -6352,10 +6905,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@rollup/pluginutils", [
-        ["virtual:29ec17c2caea4e893ff0a70511fe0ea84d6926ed8a1c38ade52d3f1c8b37734864c7191da8a2d74bd8b2becc112ed2459f737fcabbf2f5a246fc3381319b95d8#npm:3.1.0", {
-          "packageLocation": "./.yarn/$$virtual/@rollup-pluginutils-virtual-de3ad50c78/0/cache/@rollup-pluginutils-npm-3.1.0-b44b222e7d-45da6411e0.zip/node_modules/@rollup/pluginutils/",
+        ["virtual:63f312526e1bb85b7ca43daf8180a3105725d3fefc6eb8a9a0b07875823d8649941f414d8822121163bd3653ac0dc9b9f1318ce6abaa0a8a33e67cebcae8d1dd#npm:3.1.0", {
+          "packageLocation": "./.yarn/$$virtual/@rollup-pluginutils-virtual-974d093a3b/0/cache/@rollup-pluginutils-npm-3.1.0-b44b222e7d-45da6411e0.zip/node_modules/@rollup/pluginutils/",
           "packageDependencies": [
-            ["@rollup/pluginutils", "virtual:29ec17c2caea4e893ff0a70511fe0ea84d6926ed8a1c38ade52d3f1c8b37734864c7191da8a2d74bd8b2becc112ed2459f737fcabbf2f5a246fc3381319b95d8#npm:3.1.0"],
+            ["@rollup/pluginutils", "virtual:63f312526e1bb85b7ca43daf8180a3105725d3fefc6eb8a9a0b07875823d8649941f414d8822121163bd3653ac0dc9b9f1318ce6abaa0a8a33e67cebcae8d1dd#npm:3.1.0"],
             ["@types/estree", "npm:0.0.39"],
             ["@types/rollup", null],
             ["estree-walker", "npm:1.0.1"],
@@ -6423,14 +6976,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["virtual:cff31fdb3a7e8b45b27635753b1126e5fff635a7ec023cb553fc637909f1a6c30093b3ef36fbd7e229e0b5548eb759cca89cd2572ddeb48a332f85912bd5e386#npm:6.0.26", {
-          "packageLocation": "./.yarn/$$virtual/@storybook-addon-a11y-virtual-4abe46acf6/0/cache/@storybook-addon-a11y-npm-6.0.26-61d6dcd2b3-8f32f3f140.zip/node_modules/@storybook/addon-a11y/",
+        ["virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26", {
+          "packageLocation": "./.yarn/$$virtual/@storybook-addon-a11y-virtual-c6e9f423b1/0/cache/@storybook-addon-a11y-npm-6.0.26-61d6dcd2b3-8f32f3f140.zip/node_modules/@storybook/addon-a11y/",
           "packageDependencies": [
-            ["@storybook/addon-a11y", "virtual:cff31fdb3a7e8b45b27635753b1126e5fff635a7ec023cb553fc637909f1a6c30093b3ef36fbd7e229e0b5548eb759cca89cd2572ddeb48a332f85912bd5e386#npm:6.0.26"],
+            ["@storybook/addon-a11y", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/api", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/channels", "npm:6.0.26"],
-            ["@storybook/client-api", "virtual:4abe46acf6b849c124ee398d3b95f70f90b492a71e2262eecbfc5d219d4591b8f2402c669d440375ce7154293f25ddbce6ddb0fa21a18081daa458792e5db988#npm:6.0.26"],
+            ["@storybook/client-api", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26"],
             ["@storybook/client-logger", "npm:6.0.26"],
             ["@storybook/components", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/core-events", "npm:6.0.26"],
@@ -6495,7 +7048,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@storybook/addon-actions", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
             ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/api", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
-            ["@storybook/client-api", "virtual:4abe46acf6b849c124ee398d3b95f70f90b492a71e2262eecbfc5d219d4591b8f2402c669d440375ce7154293f25ddbce6ddb0fa21a18081daa458792e5db988#npm:6.0.26"],
+            ["@storybook/client-api", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26"],
             ["@storybook/components", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/core-events", "npm:6.0.26"],
             ["@storybook/theming", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
@@ -6620,7 +7173,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mdx-js/react", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:1.6.18"],
             ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/api", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
-            ["@storybook/client-api", "virtual:4abe46acf6b849c124ee398d3b95f70f90b492a71e2262eecbfc5d219d4591b8f2402c669d440375ce7154293f25ddbce6ddb0fa21a18081daa458792e5db988#npm:6.0.26"],
+            ["@storybook/client-api", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26"],
             ["@storybook/client-logger", "npm:6.0.26"],
             ["@storybook/components", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
@@ -6665,6 +7218,89 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["vue-docgen-api", null],
             ["vue-docgen-loader", null],
             ["webpack", "virtual:7ad0b0816776592415fe954a57d3b3d6b22c0f07e6a4ef4a64a5a055c7cecc8d3e2b45bb04653444f50f5e42449b9e38e7c8d11b70353209799f6cec22ad2dcc#npm:4.44.2"]
+          ],
+          "packagePeers": [
+            "@babel/core",
+            "@types/babel-loader",
+            "@types/babel__core",
+            "@types/react-dom",
+            "@types/react-is",
+            "@types/react",
+            "@types/vue-docgen-api",
+            "@types/vue-docgen-loader",
+            "@types/vue",
+            "@types/webpack",
+            "babel-loader",
+            "react-dom",
+            "react-is",
+            "react",
+            "vue-docgen-api",
+            "vue-docgen-loader",
+            "vue",
+            "webpack"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26", {
+          "packageLocation": "./.yarn/$$virtual/@storybook-addon-docs-virtual-d5a358cf64/0/cache/@storybook-addon-docs-npm-6.0.26-aaf558629d-3c7c5e583a.zip/node_modules/@storybook/addon-docs/",
+          "packageDependencies": [
+            ["@storybook/addon-docs", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
+            ["@babel/core", "npm:7.12.3"],
+            ["@babel/generator", "npm:7.12.1"],
+            ["@babel/parser", "npm:7.12.3"],
+            ["@babel/plugin-transform-react-jsx", "virtual:59f50090a51a7e63ce3bca636f6061f2ba3f88716abf214689a019cfdb5e9da67b6590b5ce49b08c1077c183134174ebfa43e1833bd1d3036af435609dd9c9ec#npm:7.12.1"],
+            ["@babel/preset-env", "virtual:c13d28dff13d3270c5e70c0dd74200b4b477579350ac85746b05f0d605a64df73804af34eab592950282416d214d1e27b5a56ee6106777257e42338f4e1498ce#npm:7.12.1"],
+            ["@jest/transform", "npm:26.6.0"],
+            ["@mdx-js/loader", "npm:1.6.18"],
+            ["@mdx-js/mdx", "npm:1.6.18"],
+            ["@mdx-js/react", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:1.6.18"],
+            ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
+            ["@storybook/api", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
+            ["@storybook/client-api", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26"],
+            ["@storybook/client-logger", "npm:6.0.26"],
+            ["@storybook/components", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
+            ["@storybook/core", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:6.0.26"],
+            ["@storybook/core-events", "npm:6.0.26"],
+            ["@storybook/csf", "npm:0.0.1"],
+            ["@storybook/node-logger", "npm:6.0.26"],
+            ["@storybook/postinstall", "npm:6.0.26"],
+            ["@storybook/source-loader", "virtual:cff31fdb3a7e8b45b27635753b1126e5fff635a7ec023cb553fc637909f1a6c30093b3ef36fbd7e229e0b5548eb759cca89cd2572ddeb48a332f85912bd5e386#npm:6.0.26"],
+            ["@storybook/theming", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
+            ["@types/babel-loader", null],
+            ["@types/babel__core", null],
+            ["@types/react", null],
+            ["@types/react-dom", null],
+            ["@types/react-is", null],
+            ["@types/vue", null],
+            ["@types/vue-docgen-api", null],
+            ["@types/vue-docgen-loader", null],
+            ["@types/webpack", null],
+            ["acorn", "npm:7.4.1"],
+            ["acorn-jsx", "virtual:d2b7d87b7d1b24ae28c976e6a4dd1f4502c0b4861c48ac890edb4bef9b304b0f14bb5b927b0e2264534c1a0de7bfcddcb87164733cca942d507282121e821e10#npm:5.3.1"],
+            ["acorn-walk", "npm:7.2.0"],
+            ["babel-loader", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:8.1.0"],
+            ["core-js", "npm:3.6.5"],
+            ["doctrine", "npm:3.0.0"],
+            ["escodegen", "npm:1.14.3"],
+            ["fast-deep-equal", "npm:3.1.3"],
+            ["global", "npm:4.4.0"],
+            ["html-tags", "npm:3.1.0"],
+            ["js-string-escape", "npm:1.0.1"],
+            ["lodash", "npm:4.17.20"],
+            ["prop-types", "npm:15.7.2"],
+            ["react", "npm:16.14.0"],
+            ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
+            ["react-element-to-jsx-string", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:14.3.1"],
+            ["react-is", null],
+            ["regenerator-runtime", "npm:0.13.7"],
+            ["remark-external-links", "npm:6.1.0"],
+            ["remark-slug", "npm:6.0.0"],
+            ["ts-dedent", "npm:1.2.0"],
+            ["util-deprecate", "npm:1.0.2"],
+            ["vue", null],
+            ["vue-docgen-api", null],
+            ["vue-docgen-loader", null],
+            ["webpack", null]
           ],
           "packagePeers": [
             "@babel/core",
@@ -6733,7 +7369,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/api", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/channels", "npm:6.0.26"],
-            ["@storybook/client-api", "virtual:4abe46acf6b849c124ee398d3b95f70f90b492a71e2262eecbfc5d219d4591b8f2402c669d440375ce7154293f25ddbce6ddb0fa21a18081daa458792e5db988#npm:6.0.26"],
+            ["@storybook/client-api", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26"],
             ["@storybook/components", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/core-events", "npm:6.0.26"],
             ["@storybook/theming", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
@@ -7000,6 +7636,40 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@storybook/client-api", [
+        ["virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26", {
+          "packageLocation": "./.yarn/$$virtual/@storybook-client-api-virtual-496655a65b/0/cache/@storybook-client-api-npm-6.0.26-d809a31c16-2709a2c132.zip/node_modules/@storybook/client-api/",
+          "packageDependencies": [
+            ["@storybook/client-api", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26"],
+            ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
+            ["@storybook/channel-postmessage", "npm:6.0.26"],
+            ["@storybook/channels", "npm:6.0.26"],
+            ["@storybook/client-logger", "npm:6.0.26"],
+            ["@storybook/core-events", "npm:6.0.26"],
+            ["@storybook/csf", "npm:0.0.1"],
+            ["@types/qs", "npm:6.9.5"],
+            ["@types/react", null],
+            ["@types/react-dom", null],
+            ["@types/webpack-env", "npm:1.15.3"],
+            ["core-js", "npm:3.6.5"],
+            ["global", "npm:4.4.0"],
+            ["lodash", "npm:4.17.20"],
+            ["memoizerific", "npm:1.11.3"],
+            ["qs", "npm:6.9.4"],
+            ["react", "npm:16.14.0"],
+            ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
+            ["stable", "npm:0.1.8"],
+            ["store2", "npm:2.12.0"],
+            ["ts-dedent", "npm:1.2.0"],
+            ["util-deprecate", "npm:1.0.2"]
+          ],
+          "packagePeers": [
+            "@types/react-dom",
+            "@types/react",
+            "react-dom",
+            "react"
+          ],
+          "linkType": "HARD",
+        }],
         ["virtual:3cb6792b795248506f8ec33f9d9e767a3961903342f9f577ba053927a721446b02cd47c895232567b1f789299c5bd92bd06b5492252f32347a124f9da90be6bb#npm:6.0.26", {
           "packageLocation": "./.yarn/$$virtual/@storybook-client-api-virtual-635fb2ed0c/0/cache/@storybook-client-api-npm-6.0.26-d809a31c16-2709a2c132.zip/node_modules/@storybook/client-api/",
           "packageDependencies": [
@@ -7021,40 +7691,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["qs", "npm:6.9.4"],
             ["react", null],
             ["react-dom", null],
-            ["stable", "npm:0.1.8"],
-            ["store2", "npm:2.12.0"],
-            ["ts-dedent", "npm:1.2.0"],
-            ["util-deprecate", "npm:1.0.2"]
-          ],
-          "packagePeers": [
-            "@types/react-dom",
-            "@types/react",
-            "react-dom",
-            "react"
-          ],
-          "linkType": "HARD",
-        }],
-        ["virtual:4abe46acf6b849c124ee398d3b95f70f90b492a71e2262eecbfc5d219d4591b8f2402c669d440375ce7154293f25ddbce6ddb0fa21a18081daa458792e5db988#npm:6.0.26", {
-          "packageLocation": "./.yarn/$$virtual/@storybook-client-api-virtual-d3e112be5f/0/cache/@storybook-client-api-npm-6.0.26-d809a31c16-2709a2c132.zip/node_modules/@storybook/client-api/",
-          "packageDependencies": [
-            ["@storybook/client-api", "virtual:4abe46acf6b849c124ee398d3b95f70f90b492a71e2262eecbfc5d219d4591b8f2402c669d440375ce7154293f25ddbce6ddb0fa21a18081daa458792e5db988#npm:6.0.26"],
-            ["@storybook/addons", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
-            ["@storybook/channel-postmessage", "npm:6.0.26"],
-            ["@storybook/channels", "npm:6.0.26"],
-            ["@storybook/client-logger", "npm:6.0.26"],
-            ["@storybook/core-events", "npm:6.0.26"],
-            ["@storybook/csf", "npm:0.0.1"],
-            ["@types/qs", "npm:6.9.5"],
-            ["@types/react", null],
-            ["@types/react-dom", null],
-            ["@types/webpack-env", "npm:1.15.3"],
-            ["core-js", "npm:3.6.5"],
-            ["global", "npm:4.4.0"],
-            ["lodash", "npm:4.17.20"],
-            ["memoizerific", "npm:1.11.3"],
-            ["qs", "npm:6.9.4"],
-            ["react", "npm:16.14.0"],
-            ["react-dom", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:16.14.0"],
             ["stable", "npm:0.1.8"],
             ["store2", "npm:2.12.0"],
             ["ts-dedent", "npm:1.2.0"],
@@ -7376,7 +8012,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@storybook/api", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/channel-postmessage", "npm:6.0.26"],
             ["@storybook/channels", "npm:6.0.26"],
-            ["@storybook/client-api", "virtual:4abe46acf6b849c124ee398d3b95f70f90b492a71e2262eecbfc5d219d4591b8f2402c669d440375ce7154293f25ddbce6ddb0fa21a18081daa458792e5db988#npm:6.0.26"],
+            ["@storybook/client-api", "virtual:34e0652654510d7431deea003702af38448b4145d6d5d432872de10a16dc7609e93bcd4a1f9b10ea8a151104e426c49bdef1dd2d1464a2532567084c9713bea5#npm:6.0.26"],
             ["@storybook/client-logger", "npm:6.0.26"],
             ["@storybook/components", "virtual:7b680c063b425e0a7f90e7e11378ffefb9e075daa99ba4ee8deb7284a7e6996c705ab45d92c1c77ea22c8c57a225a4627ed650f46b4515de32f233c8292c7b2f#npm:6.0.26"],
             ["@storybook/core-events", "npm:6.0.26"],
@@ -23939,7 +24575,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-fps-stats", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#npm:0.1.3"],
             ["@types/prop-types", null],
             ["@types/react", null],
-            ["prop-types", null],
+            ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.14.0"]
           ],
           "packagePeers": [
@@ -25351,10 +25987,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["rollup-plugin-terser", [
-        ["virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:6.1.0", {
-          "packageLocation": "./.yarn/$$virtual/rollup-plugin-terser-virtual-04ae1ca451/0/cache/rollup-plugin-terser-npm-6.1.0-e2a2c12583-fd34a331f6.zip/node_modules/rollup-plugin-terser/",
+        ["virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0", {
+          "packageLocation": "./.yarn/$$virtual/rollup-plugin-terser-virtual-2eeaaaaa72/0/cache/rollup-plugin-terser-npm-6.1.0-e2a2c12583-fd34a331f6.zip/node_modules/rollup-plugin-terser/",
           "packageDependencies": [
-            ["rollup-plugin-terser", "virtual:31f48be987b609f034a3b9c959eb205513060b90053c67e60c136e132c978715cad588250b75efc15ad7f89866844239a755fe6074db28f59dbb14254c54b9a9#npm:6.1.0"],
+            ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:6.1.0"],
             ["@babel/code-frame", "npm:7.10.4"],
             ["@types/rollup", null],
             ["jest-worker", "npm:26.5.0"],
@@ -25370,10 +26006,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["rollup-plugin-web-worker-loader", [
-        ["virtual:10f6fec453b14594eb987d1f351f7d6ce8d5f0c83e1a4675f9bb9dca3d5a1e7501cf329211323e8b930518733d0623a9c809813d6ce7fd1f64cf690ebdc13c1e#npm:1.4.0", {
-          "packageLocation": "./.yarn/$$virtual/rollup-plugin-web-worker-loader-virtual-f6271d0607/0/cache/rollup-plugin-web-worker-loader-npm-1.4.0-7464b49811-96cec6feb8.zip/node_modules/rollup-plugin-web-worker-loader/",
+        ["virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:1.4.0", {
+          "packageLocation": "./.yarn/$$virtual/rollup-plugin-web-worker-loader-virtual-b2d2b5aba8/0/cache/rollup-plugin-web-worker-loader-npm-1.4.0-7464b49811-96cec6feb8.zip/node_modules/rollup-plugin-web-worker-loader/",
           "packageDependencies": [
-            ["rollup-plugin-web-worker-loader", "virtual:10f6fec453b14594eb987d1f351f7d6ce8d5f0c83e1a4675f9bb9dca3d5a1e7501cf329211323e8b930518733d0623a9c809813d6ce7fd1f64cf690ebdc13c1e#npm:1.4.0"],
+            ["rollup-plugin-web-worker-loader", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:1.4.0"],
             ["@types/rollup", null],
             ["rollup", null]
           ],
@@ -27763,10 +28399,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["typedoc", [
-        ["virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8", {
-          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-fd8d1eeaa2/0/cache/typedoc-npm-0.17.8-b927902c31-5c8d869a85.zip/node_modules/typedoc/",
+        ["virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8", {
+          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-8ebc816ae7/0/cache/typedoc-npm-0.17.8-b927902c31-5c8d869a85.zip/node_modules/typedoc/",
           "packageDependencies": [
-            ["typedoc", "virtual:013abc85217f13692e5f8c0fc1bc5e904d7935a696328a2bfa14b2cda4225d3533eb22ebacee780986bdc29aafb094f45a009ab7d5c71f82aec6428653698569#npm:0.17.8"],
+            ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.17.8"],
             ["@types/typescript", null],
             ["fs-extra", "npm:8.1.0"],
             ["handlebars", "npm:4.7.6"],

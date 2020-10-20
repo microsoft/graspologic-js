@@ -22,5 +22,9 @@
 	"dependencies": {
 		"@types/node": "^13.13.14",
 		"typedoc": "0.17.8"
+	},
+	"peerDependencies": {
+		"core-js": "^3.6.5",
+		"regenerator-runtime": "^0.13.7"
 	}
 }

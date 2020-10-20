@@ -33,6 +33,10 @@
 		"d3-scale-chromatic": "^2.0.0",
 		"rollup-plugin-terser": "^6.1.0"
 	},
+	"peerDependencies": {
+		"core-js": "^3.6.5",
+		"regenerator-runtime": "^0.13.7"
+	},
 	"browserslist": [
 		"last 2 Chrome versions"
 	]
