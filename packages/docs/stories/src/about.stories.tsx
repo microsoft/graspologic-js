@@ -7,13 +7,12 @@ import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 const ReactMarkdown = require('react-markdown')
 const readmeText = require('../../../../README.md').default
-const lerna = require('../../../../lerna.json')
 const pkg = require('../../../../package.json')
 
 storiesOf('About Library', module).add('about', () => (
 	<div style={{ padding: 20 }}>
 		<h1>
-			{pkg.name} - {lerna.version}
+			{pkg.name}
 		</h1>
 		<h2>{pkg.description}</h2>
 		<h3>{pkg.repository}</h3>

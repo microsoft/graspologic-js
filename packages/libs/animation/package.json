@@ -21,6 +21,9 @@
 		"@graspologic/memstore": "^0.4.0",
 		"typedoc": "0.17.8"
 	},
+	"devDependencies": {
+		"@types/node": "^13.13.14"
+	},
 	"browserslist": [
 		"last 2 Chrome versions"
 	]

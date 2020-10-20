@@ -10,7 +10,6 @@
 		// However, application code can use it to write idiomatic react imports.
 		"allowSyntheticDefaultImports": false,
 		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"typeRoots": ["./node_modules/@types"]
+		"strict": true
 	}
 }
