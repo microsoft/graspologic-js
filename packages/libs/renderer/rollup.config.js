@@ -3,9 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import * as fs from 'fs'
-import cjsResolve from '@rollup/plugin-commonjs'
+import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
+import sucrase from '@rollup/plugin-sucrase'
 import glob from 'glob'
 import webWorkerLoader from 'rollup-plugin-web-worker-loader'
 import pkg from './package.json'
@@ -52,45 +53,45 @@ if (process.env.ROLLUP_WATCH) {
 	)
 }
 
-const rollupConfig = [
-	{
-		input: 'dist/esm/index.js',
-		external: [
-			// Externalize Libraries - the rollup process is really to roll up _this_ library with its WebGL shader code
-			'luma.gl',
-			'@luma.gl/constants',
-			'@luma.gl/core',
-			'@luma.gl/webgl',
-			'math.gl',
-			'rxjs',
-			'mjolnir.js',
-			'@graspologic/graph',
-			'@graspologic/memstore',
-			'@graspologic/primitivestore',
-		],
-		plugins: [
-			replace({
-				values: { 'process.env.NODE_ENV': JSON.stringify('production') },
-				delimiters: ['', ''],
-			}),
-			nodeResolve(),
-			cjsResolve(),
-			{
-				transform(code, id) {
-					if (STRINGIFY_MATCHER.test(id)) {
-						return {
-							code: `export default ${JSON.stringify(code)};`,
-							map: { mappings: '' },
-						}
+const rollupConfig = {
+	input: 'src/index.ts',
+	external: [
+		// Externalize Libraries - the rollup process is really to roll up _this_ library with its WebGL shader code
+		'luma.gl',
+		'@luma.gl/constants',
+		'@luma.gl/core',
+		'@luma.gl/webgl',
+		'math.gl',
+		'rxjs',
+		'mjolnir.js',
+		'@graspologic/graph',
+		'@graspologic/memstore',
+		'@graspologic/primitivestore',
+		'@graspologic/animation',
+	],
+	plugins: [
+		sucrase({ transforms: ['typescript'], exclude: ['**/*.glsl'] }),
+		replace({
+			values: { 'process.env.NODE_ENV': JSON.stringify('production') },
+			delimiters: ['', ''],
+		}),
+		nodeResolve(),
+		commonjs({ extensions: ['.js', '.ts'], include: [/core-js/] }),
+		{
+			transform(code, id) {
+				if (STRINGIFY_MATCHER.test(id)) {
+					return {
+						code: `export default ${JSON.stringify(code)};`,
+						map: { mappings: '' },
 					}
-				},
+				}
 			},
-			webWorkerLoader(),
-		],
-		output: [
-			{ file: pkg.main, format: 'cjs' },
-			{ file: pkg.module, format: 'es' },
-		],
-	},
-]
+		},
+		webWorkerLoader(),
+	],
+	output: [
+		{ file: pkg.publishConfig.main, format: 'cjs' },
+		{ file: pkg.publishConfig.module, format: 'es' },
+	],
+}
 export default rollupConfig

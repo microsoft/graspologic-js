@@ -18,7 +18,7 @@
 	],
 	"dependencies": {
 		"@babel/core": "^7.12.3",
-		"@babel/preset-env": "^7.4.1",
+		"@babel/preset-env": "^7.12.1",
 		"@graspologic/graph": "^0.4.0",
 		"@graspologic/layout-core": "^0.4.0",
 		"@graspologic/layout-fa2": "^0.4.0",
@@ -27,16 +27,17 @@
 		"@graspologic/render-controls-react": "^0.4.0",
 		"@graspologic/renderer": "^0.4.0",
 		"@graspologic/testdata": "^0.4.0",
-		"@thematic/core": "^0.8.0",
+		"@thematic/core": "^0.9.0",
 		"core-js": "^3.6.5",
 		"prop-types": "^15.7.2",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
+		"react": "^16.14.0",
+		"react-dom": "^16.14.0",
 		"react-markdown": "^4.3.1",
 		"regenerator-runtime": "^0.13.7",
-		"typedoc": "0.17.8"
+		"typedoc": "0.19.2"
 	},
 	"devDependencies": {
+		"@essex/scripts": "^11.0.1",
 		"@essex/storybook-config": "^11.0.0",
 		"@storybook/addon-a11y": "^6.0.26",
 		"@storybook/addon-actions": "^6.0.26",
@@ -47,11 +48,11 @@
 		"@storybook/core": "^6.0.26",
 		"@storybook/react": "^6.0.26",
 		"babel-loader": "^8.1.0",
-		"raw-loader": "^4.0.1",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
+		"raw-loader": "^4.0.2",
+		"react": "^16.14.0",
+		"react-dom": "^16.14.0",
 		"react-fps-stats": "^0.1.3",
 		"react-markdown": "^4.3.1",
-		"source-map-loader": "^1.0.1"
+		"source-map-loader": "^1.1.1"
 	}
 }

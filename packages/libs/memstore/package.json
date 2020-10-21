@@ -23,10 +23,15 @@
 		"last 2 Chrome versions"
 	],
 	"dependencies": {
-		"@types/node": "^13.13.14",
-		"typedoc": "0.17.8"
+		"typedoc": "0.19.2"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^11.0.1",
+		"@types/node": "^14.14.1",
+		"npm-run-all": "^4.1.5"
 	},
 	"peerDependencies": {
+		"@types/node": "*",
 		"core-js": "^3.6.5",
 		"regenerator-runtime": "^0.13.7"
 	}
