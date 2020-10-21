@@ -10,9 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Debug Action
-        uses: hmarr/debug-action@v1.0.0
-
       - name: Use Node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -22,23 +19,20 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-      - run: npm i -g pnpm
-        name: Install pnpm
+      - run: yarn version check
+        if: "github.actor != 'dependabot-preview[bot]' && !contains(github.ref , 'release/') && !contains(github.head_ref , 'release/')"
+        name: Version Check
 
-      - run: pnpm install
+      - run: yarn
         name: Install Dependencies
 
-      - run: pnpm ci
+      - run: yarn ci
         name: Execute Tests
         env:
           CI: true
 
-      - if: ${{ github.event_name == 'push' && matrix.node-version == '12.x' }}
-        run: pnpm recursive exec --stream -- npm version prerelease --git-tag-version false --preid "beta.${{ github.run_number }}"
-        name: Update version numbers for publish
-
-      - if: ${{ github.event_name == 'push' && matrix.node-version == '12.x' }}
-        run: pnpm release -- --tag "beta.${{ github.run_number }}" --git-checks false
-        name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      #- if: ${{ github.event_name == 'push' && matrix.node-version == '12.x' }}
+      #  run: pnpm release -- --tag "beta.${{ github.run_number }}" --git-checks false
+      #  name: Publish to npm
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
