@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 const fs = require('fs/promises')
 const path = require('path')
 
@@ -36,18 +40,14 @@ async function processGlslFiles(src, cjsDest, esmDest) {
 			const writeCjsPromise = fs.writeFile(fullCjsDestPath, cjsify(content), {
 				encoding: 'utf-8',
 			})
-			
+
 			const fullEsmDestPath = path.join(esmDest, file + '.js')
 			const fullEsmDtsPath = path.join(esmDest, file + '.d.ts')
 			const writeEsmPromise = fs.writeFile(fullEsmDestPath, esmify(content), {
 				encoding: 'utf-8',
 			})
 			const writeEsmDtsPromise = fs.writeFile(fullEsmDtsPath, DTS_CONTENT)
-			return Promise.all([
-				writeCjsPromise,
-				writeEsmPromise,				
-				writeEsmDtsPromise,
-			])
+			return Promise.all([writeCjsPromise, writeEsmPromise, writeEsmDtsPromise])
 		}),
 	)
 }
