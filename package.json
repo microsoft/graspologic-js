@@ -21,7 +21,7 @@
 		"start": "yarn workspaces foreach -pivt run start",
 		"prettify": "essex prettify",
 		"release": "yarn workspaces foreach run publish --access public",
-		"storybook": "yarn workspaces foreach -pivt --include @graspologic/stories run start",
+		"storybook": "yarn workspaces foreach --exclude \"@graspologic/layout-sandbox\" -piv run start",
 		"git_revert_npmrc": "git checkout .npmrc",
 		"git_is_clean": "essex git-is-clean",
 		"audit": "essex audit",
