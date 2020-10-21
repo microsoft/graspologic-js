@@ -2545,7 +2545,6 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": ^0.4.0
     "@types/node": ^14.14.1
-    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2561,7 +2560,6 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": ^0.4.0
     "@types/node": ^14.14.1
-    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2577,7 +2575,6 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/graph": ^0.4.0
     "@types/node": ^14.14.1
-    npm-run-all: ^4.1.5
     rxjs: ^6.6.3
     typedoc: 0.19.2
   peerDependencies:
@@ -2599,7 +2596,6 @@ __metadata:
     "@rollup/plugin-replace": ^2.3.3
     "@rollup/plugin-sucrase": ^3.1.0
     "@types/node": ^14.14.1
-    npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
     rxjs: ^6.6.3
@@ -2628,7 +2624,6 @@ __metadata:
     chalk: ^4.1.0
     core-js: ^3.6.5
     d3-scale-chromatic: ^2.0.0
-    npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
     rxjs: ^6.6.3
@@ -2664,10 +2659,10 @@ __metadata:
     "@types/d3-scale-chromatic": ^1.5.0
     "@types/lodash": ^4.14.162
     "@types/node": ^14.14.1
-    "@types/react": ^16.9.43
+    "@types/react": ^16.9.53
     "@types/react-dom": ^16.9.8
     "@types/react-helmet": ^5.0.16
-    "@types/styled-components": ^5.1.1
+    "@types/styled-components": ^5.1.4
     "@uifabric/icons": ^7.5.12
     d3-scale: ^3.2.2
     d3-scale-chromatic: ^1.5.0
@@ -2693,7 +2688,6 @@ __metadata:
   dependencies:
     "@essex/scripts": ^11.0.1
     "@types/node": ^14.14.1
-    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2741,10 +2735,9 @@ __metadata:
     "@graspologic/graph": ^0.4.0
     "@graspologic/renderer": ^0.4.0
     "@types/node": ^14.14.1
-    "@types/react": ^16.9.43
+    "@types/react": ^16.9.53
     "@types/react-dom": ^16.9.8
     math.gl: ^3.2.2
-    npm-run-all: ^4.1.5
     react: ^16.14.0
     react-dom: ^16.14.0
     typedoc: 0.19.2
@@ -2770,7 +2763,6 @@ __metadata:
     "@types/dat.gui": ^0.7.5
     "@types/node": ^14.14.1
     dat.gui: ^0.7.7
-    npm-run-all: ^4.1.5
     react: ^16.14.0
     react-dom: ^16.14.0
     typedoc: 0.19.2
@@ -2794,7 +2786,6 @@ __metadata:
     "@types/dat.gui": ^0.7.5
     "@types/node": ^14.14.1
     dat.gui: ^0.7.7
-    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2828,7 +2819,6 @@ __metadata:
     math.gl: ^3.2.2
     mjolnir.js: ^2.4.1
     ncp: ^2.0.0
-    npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
     rollup-plugin-web-worker-loader: ^1.4.0
@@ -5018,7 +5008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:@types/react@*, @types/react@npm:*, @types/react@npm:^16.9.43":
+"@types/react-native@npm:@types/react@*, @types/react@npm:*, @types/react@npm:^16.9.53":
   version: 16.9.53
   resolution: "@types/react@npm:16.9.53"
   dependencies:
@@ -5095,7 +5085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-components@npm:^5.1.1":
+"@types/styled-components@npm:^5.1.4":
   version: 5.1.4
   resolution: "@types/styled-components@npm:5.1.4"
   dependencies:

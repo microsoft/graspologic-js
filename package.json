@@ -14,16 +14,18 @@
 		"preinstall": "npx only-allow yarn",
 		"clean_all": "yarn workspaces foreach -pv run clean",
 		"build_all": "yarn workspaces foreach -pv run build",
+		"bundle_lib_all": "yarn workspaces foreach -pv run bundle_lib",
+		"bundle_types_all": "yarn workspaces foreach -pv run bundle_lib",
 		"bundle_all": "yarn workspaces foreach -pv run bundle",
+		"pipeline": "run-s build_all bundle_lib_all bundle_types_all bundle_all",
 		"start_all": "yarn workspaces foreach -pv run start",
 		"release_all": "yarn workspaces foreach run npm publish --tolerate-republish --access public",
 		"lint": "essex lint --docs",
 		"unit_test": "essex test --coverage",
 		"prettify": "essex prettify",
 		"storybook": "yarn workspaces foreach --exclude \"@graspologic/layout-sandbox\" -piv run start",
-		"git_revert_npmrc": "git checkout .npmrc",
 		"git_is_clean": "essex git-is-clean",
-		"ci": "run-s build lint unit_test git_revert_npmrc git_is_clean"
+		"ci": "run-s pipeline lint unit_test git_is_clean"
 	},
 	"engines": {
 		"node": ">= 12",

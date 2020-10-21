@@ -15,10 +15,9 @@
 		"Nathan Evans (naevans@microsoft.com)"
 	],
 	"scripts": {
-		"build_lib": "essex build --docs",
+		"build": "essex build --docs",
 		"bundle_lib": "essex bundle --rollup",
 		"bundle_types": "node ../../../scripts/bundleTypes",
-		"build": "run-p build_lib bundle_lib bundle_types",
 		"clean": "essex clean dist lib",
 		"start": "essex watch"
 	},
@@ -48,7 +47,6 @@
 		"@types/node": "^14.14.1",
 		"glob": "^7.1.6",
 		"ncp": "^2.0.0",
-		"npm-run-all": "^4.1.5",
 		"rollup": "^2.32.1",
 		"rollup-plugin-terser": "^7.0.2",
 		"rollup-plugin-web-worker-loader": "^1.4.0"
