@@ -2707,6 +2707,8 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@types/enzyme": ^3.10.5
     "@types/invariant": ^2.2.33
+    "@types/jest": ^26.0.15
+    "@types/node": ^14.14.2
     "@typescript-eslint/eslint-plugin": ^4.5.0
     "@typescript-eslint/parser": ^4.5.0
     "@yarnpkg/pnpify": ^2.3.3
@@ -2719,9 +2721,14 @@ __metadata:
     husky: ^4.3.0
     jest-webgl-canvas-mock: ^0.2.3
     lint-staged: ^10.4.2
+    luma.gl: ^7.3.2
     npm-run-all: ^4.1.5
+    react: ^16.14.0
+    react-dom: ^16.14.0
+    regenerator-runtime: ^0.13.7
     rollup: ^2.32.1
     shx: ^0.3.2
+    ts-jest: ^26.4.1
     typedoc-plugin-markdown: ^2.4.2
     typescript: 4.0.3
   languageName: unknown
@@ -4777,7 +4784,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:26.x, @types/jest@npm:^26.0.14":
+"@types/jest@npm:26.x, @types/jest@npm:^26.0.14, @types/jest@npm:^26.0.15":
   version: 26.0.15
   resolution: "@types/jest@npm:26.0.15"
   dependencies:
@@ -4900,6 +4907,13 @@ __metadata:
   version: 13.13.27
   resolution: "@types/node@npm:13.13.27"
   checksum: d47d3d6e36762a260f3d63f0930d2c14ccf45f6c62445c440ea1bdcaf27759f96706fac9a143c073f5a326e857dcdebd5c7857fbe6f9e439b2c41179864eb7d7
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^14.14.2":
+  version: 14.14.2
+  resolution: "@types/node@npm:14.14.2"
+  checksum: e6ad786008ec81e010525beb09067f31cc55a3a02120a7e383e21309c1422a0d4a56059c1da46716509e36dbd4d2c607790f3fd715275a09b9f3ffb2cf3b243e
   languageName: node
   linkType: hard
 
@@ -21267,7 +21281,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:~26.4.1":
+"ts-jest@npm:^26.4.1, ts-jest@npm:~26.4.1":
   version: 26.4.1
   resolution: "ts-jest@npm:26.4.1"
   dependencies:
