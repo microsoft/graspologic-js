@@ -2,8 +2,7 @@
 	"compilerOptions": {
 		"module": "CommonJS",
 		"allowJs": true,
-		"downlevelIteration": true,
-		"target": "es6",
+		"target": "ES2018",
 		"moduleResolution": "Node",
 		"jsx": "react",
 		"forceConsistentCasingInFileNames": true,

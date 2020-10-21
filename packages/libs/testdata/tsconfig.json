@@ -2,7 +2,7 @@
 	"extends": "../../../tsconfig.json",
 	"compilerOptions": {
 		"module": "CommonJS",
-		"target": "ES5",
+		"target": "ES2018",
 		"outDir": "lib",
 		"resolveJsonModule": true,
 		"incremental": true,

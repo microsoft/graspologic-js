@@ -7105,7 +7105,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@types/node", "npm:14.14.1"],
-            ["shx", "npm:0.3.2"],
             ["typedoc", "virtual:cc227d25e3a4291c4d766fd78a332e05952d48353d9dc816e29571315d22d9bd8b621b4f41e18eecd4aaaec769186722ca61b46c728e73c87fe6f6d253112279#npm:0.19.2"],
             ["typescript", "patch:typescript@npm%3A4.0.3#builtin<compat/typescript>::version=4.0.3&hash=5bf698"]
           ],
