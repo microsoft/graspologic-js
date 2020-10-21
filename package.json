@@ -23,10 +23,9 @@
 		"lint": "essex lint --docs",
 		"unit_test": "essex test --coverage",
 		"prettify": "essex prettify",
-		"build_glsl": "yarn build:glsl",
 		"storybook": "yarn build:glsl && yarn start:storybook",
 		"git_is_clean": "essex git-is-clean",
-		"ci": "npm-run-all -s build_glsl pipeline -p lint unit_test -s git_is_clean"
+		"ci": "run-s pipeline lint unit_test git_is_clean"
 	},
 	"engines": {
 		"node": ">= 12",
