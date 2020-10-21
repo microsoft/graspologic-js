@@ -13,7 +13,7 @@
 	"scripts": {
 		"preinstall": "npx only-allow yarn",
 		"clean_all": "yarn workspaces foreach -pv run clean",
-		"build_all": "yarn workspaces foreach -pvt run build",
+		"build_all": "yarn workspaces foreach -pv run build",
 		"bundle_all": "yarn workspaces foreach -pv run bundle",
 		"start_all": "yarn workspaces foreach -pv run start",
 		"release_all": "yarn workspaces foreach run npm publish --tolerate-republish --access public",
