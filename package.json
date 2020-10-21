@@ -12,27 +12,24 @@
 	"license": "MIT",
 	"scripts": {
 		"preinstall": "npx only-allow yarn",
-		"postinstall": "shx rm -rf node_modules/@types/react-native",
-		"clean": "yarn workspaces foreach -piv run clean",
+		"clean_all": "yarn workspaces foreach -pv run clean",
+		"build_all": "yarn workspaces foreach -pvt run build",
+		"bundle_all": "yarn workspaces foreach -pv run bundle",
+		"start_all": "yarn workspaces foreach -pv run start",
+		"release_all": "yarn workspaces foreach run npm publish --tolerate-republish --access public",
 		"lint": "essex lint --docs",
 		"unit_test": "essex test --coverage",
-		"build": "yarn workspaces foreach -pivt run build",
-		"bundle": "yarn workspaces foreach -pivt run bundle",
-		"start": "yarn workspaces foreach -pivt run start",
 		"prettify": "essex prettify",
-		"release": "yarn workspaces foreach run publish --access public",
 		"storybook": "yarn workspaces foreach --exclude \"@graspologic/layout-sandbox\" -piv run start",
 		"git_revert_npmrc": "git checkout .npmrc",
 		"git_is_clean": "essex git-is-clean",
-		"audit": "essex audit",
-		"ci": "run-s build lint unit_test git_revert_npmrc git_is_clean audit"
+		"ci": "run-s build lint unit_test git_revert_npmrc git_is_clean"
 	},
 	"engines": {
 		"node": ">= 12",
 		"pnpm": ">= 5"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^9.1.2",
 		"@essex/eslint-config": "^10.0.1",
 		"@essex/jest-config": "^10.0.2",
 		"@essex/prettier-config": "^10.0.0",
@@ -65,8 +62,7 @@
 	"prettier": "@essex/prettier-config",
 	"husky": {
 		"hooks": {
-			"pre-commit": "essex pre-commit",
-			"commit-msg": "essex commit-msg"
+			"pre-commit": "yarn essex pre-commit"
 		}
 	},
 	"dependencies": {
