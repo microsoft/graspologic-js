@@ -3,7 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 // @ts-ignore
-import { nodeMemoryLayout } from '@graspologic/graph'
 import * as GL from '@luma.gl/constants'
 import { Model, Geometry, picking } from 'luma.gl'
 
@@ -12,6 +11,7 @@ import { adaptMemoryLayoutToLuma } from '../../util'
 import { tween } from '../shaders/modules'
 // @ts-ignore
 import nodeFS from '../shaders/node.fs.glsl'
+import { nodeMemoryLayout } from '@graspologic/graph'
 
 const GL_TYPE_MAPPINGS = {
 	color: uint32ColorTypeMapping,

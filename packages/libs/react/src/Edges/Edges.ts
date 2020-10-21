@@ -2,6 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import * as React from 'react'
+import { memo, useContext, useEffect } from 'react'
+import { GraphRendererContext } from '../GraphView'
 import {
 	DEFAULT_HIDE_EDGES_ON_MOVE,
 	DEFAULT_DRAW_EDGES,
@@ -14,9 +17,6 @@ import {
 	DEFAULT_EDGE_FILTERED_OUT_SATURATION,
 	DEFAULT_EDGE_FILTERED_IN_SATURATION,
 } from '@graspologic/renderer'
-import * as React from 'react'
-import { memo, useContext, useEffect } from 'react'
-import { GraphRendererContext } from '../GraphView'
 
 /**
  * The set of properties for the Edges component

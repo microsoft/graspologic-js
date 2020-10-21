@@ -2,6 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import * as React from 'react'
+import { memo, useContext, useEffect } from 'react'
+import { GraphRendererContext } from '../GraphView'
 import {
 	DEFAULT_NODE_MIN_RADIUS,
 	DEFAULT_NODE_MAX_RADIUS,
@@ -11,9 +14,6 @@ import {
 	DEFAULT_NODE_FILTERED_OUT_SATURATION,
 	DEFAULT_NODE_FILTERED_IN_SATURATION,
 } from '@graspologic/renderer'
-import * as React from 'react'
-import { memo, useContext, useEffect } from 'react'
-import { GraphRendererContext } from '../GraphView'
 
 /**
  * The set of properties for the Nodes component

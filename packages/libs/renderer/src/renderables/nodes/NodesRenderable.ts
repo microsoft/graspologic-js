@@ -3,8 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 // @ts-ignore
-import { readTween, restartTween } from '@graspologic/animation'
-import { NodeStore, Node } from '@graspologic/graph'
 import * as GL from '@luma.gl/constants'
 import { readPixelsToArray } from '@luma.gl/core'
 import { cssToDevicePixels } from '@luma.gl/webgl'
@@ -20,6 +18,8 @@ import { DirtyableRenderable } from '../Renderables'
 // @ts-ignore
 import nodeVS from '../shaders/node.vs.glsl'
 import createModel from './model'
+import { readTween, restartTween } from '@graspologic/animation'
+import { NodeStore, Node } from '@graspologic/graph'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214

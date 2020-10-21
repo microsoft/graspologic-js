@@ -2,15 +2,15 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { NodeImpl, AnimatableNodeImpl } from './impl'
+import { nodeMemoryLayout } from './layout'
+import { NodeStoreConfig, NodeStore } from './types'
 import {
 	ArrayStore,
 	ArrayStoreImpl,
 	SlotAllocator,
 	ReaderStoreImpl,
 } from '@graspologic/memstore'
-import { NodeImpl, AnimatableNodeImpl } from './impl'
-import { nodeMemoryLayout } from './layout'
-import { NodeStoreConfig, NodeStore } from './types'
 
 /**
  * @internal

@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { createReader, MemoryReader } from '@graspologic/memstore'
 import { Pos3D, Pos2D, ClassType } from '../../types'
 import { edgeType, edgeMemoryLayout, ADDITIONAL_EDGE_PROPS } from '../layout'
 import { AnimatableEdge, Edge } from '../types'
+import { createReader, MemoryReader } from '@graspologic/memstore'
 
 /**
  * A reflection based edge impl which emits change events

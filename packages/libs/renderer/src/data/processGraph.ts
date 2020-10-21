@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer, Node, Edge } from '@graspologic/graph'
 import { NodeComponentColorizer, NodeIntColorizer } from '../types'
 import { createIntColorizer } from '../util/colorizeRenderer'
 import { getCachedColor } from '../util/getColor'
+import { GraphContainer, Node, Edge } from '@graspologic/graph'
 
 /**
  * @internal

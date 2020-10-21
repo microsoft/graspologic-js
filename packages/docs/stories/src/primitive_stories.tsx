@@ -2,6 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { number, withKnobs, boolean, radios } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React, { useEffect, useRef, useState } from 'react'
+
+import { getRandomArbitrary, getRandomInt } from './utils'
 import { NodeImpl, EdgeImpl, AnimatableNodeImpl } from '@graspologic/graph'
 import {
 	WebGLGraphRenderer,
@@ -9,11 +14,6 @@ import {
 	CameraAdjustmentMode,
 	enablePanZoomEvents,
 } from '@graspologic/renderer'
-import { number, withKnobs, boolean, radios } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
-import React, { useEffect, useRef, useState } from 'react'
-
-import { getRandomArbitrary, getRandomInt } from './utils'
 
 const node = () => new AnimatableNodeImpl()
 const edge = () => new EdgeImpl()

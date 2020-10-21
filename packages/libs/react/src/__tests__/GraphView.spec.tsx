@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer } from '@graspologic/renderer'
 import { mount } from 'enzyme'
 import * as React from 'react'
 import { GraphView } from '../GraphView'
+import { GraphRenderer } from '@graspologic/renderer'
 
 const mountWithRef = (el: JSX.Element, options?: any) => {
 	const WithRef = (): JSX.Element => el

@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { createContext } from 'react'
 import { InputGraph } from '@graspologic/graph'
 import { FA2Configuration } from '@graspologic/layout-fa2'
 import { OpenOrdConfiguration } from '@graspologic/layout-openord'
-import { createContext } from 'react'
 
 export const InputGraphContext = createContext<InputGraph>({
 	nodes: [],

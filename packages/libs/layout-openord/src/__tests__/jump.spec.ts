@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { distanceTo } from '@graspologic/graph'
 import { jumpRandom, jumpTowards } from '../jumps'
+import { distanceTo } from '@graspologic/graph'
 
 describe('jump utilities', () => {
 	it('can execute random jumps', () => {

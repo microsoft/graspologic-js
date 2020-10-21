@@ -46,6 +46,7 @@
 		"dts-bundle": "^0.7.3",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.5",
+		"eslint-import-resolver-node": "^0.3.4",
 		"husky": "^4.3.0",
 		"jest-webgl-canvas-mock": "^0.2.3",
 		"lint-staged": "^10.4.2",
@@ -62,12 +63,6 @@
 	"workspaces": [
 		"packages/*/*"
 	],
-	"prettier": "@essex/prettier-config",
-	"husky": {
-		"hooks": {
-			"pre-commit": "yarn essex pre-commit"
-		}
-	},
 	"dependencies": {
 		"@yarnpkg/pnpify": "^2.3.3"
 	}

@@ -2,6 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { action } from '@storybook/addon-actions'
+import { storiesOf } from '@storybook/react'
+import * as React from 'react'
+import colorizer from './data/categoricalColorizer'
+import processGraphJson from './data/processGraphJson'
 import { Shape } from '@graspologic/graph'
 import {
 	Axes,
@@ -19,11 +24,6 @@ import {
 	NodeSettings,
 	EdgeSettings,
 } from '@graspologic/render-controls-react'
-import { action } from '@storybook/addon-actions'
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
-import colorizer from './data/categoricalColorizer'
-import processGraphJson from './data/processGraphJson'
 
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires

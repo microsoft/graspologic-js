@@ -2,6 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { boolean } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import * as React from 'react'
+import colorizer from './data/categoricalColorizer'
+import processGraphJson from './data/processGraphJson'
 import {
 	GraphView,
 	Camera,
@@ -9,11 +14,6 @@ import {
 	Nodes,
 	Edges,
 } from '@graspologic/react'
-import { boolean } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
-import colorizer from './data/categoricalColorizer'
-import processGraphJson from './data/processGraphJson'
 
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires

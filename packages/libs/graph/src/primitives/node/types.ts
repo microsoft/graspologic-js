@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
 import { Pos3D, Shape, Pos2D } from '../types'
+import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
 
 /**
  * An interface representing a node

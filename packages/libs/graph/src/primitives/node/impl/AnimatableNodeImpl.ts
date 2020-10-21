@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { createReader, MemoryReader } from '@graspologic/memstore'
 import { Pos3D, Pos2D, ClassType } from '../../types'
 import { nodeType, nodeMemoryLayout, ADDITIONAL_NODE_PROPS } from '../layout'
 import { AnimatableNode, Node } from '../types'
+import { createReader, MemoryReader } from '@graspologic/memstore'
 
 /**
  * A reflection based node impl which emits change events

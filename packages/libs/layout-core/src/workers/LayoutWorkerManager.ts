@@ -2,13 +2,13 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer } from '@graspologic/graph'
 import { Subject, Observable } from 'rxjs'
 import {
 	WorkerMessageType,
 	WorkerMessage,
 	ExecuteMessagePayload,
 } from './types'
+import { GraphContainer } from '@graspologic/graph'
 
 /**
  * A manager class for using webworker-based layout execution

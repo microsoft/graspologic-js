@@ -3,9 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 // @ts-ignore
-import { MemoryLayout, AttributeType } from '@graspologic/memstore'
 import * as GL from '@luma.gl/constants'
 import { Buffer } from 'luma.gl'
+import { MemoryLayout, AttributeType } from '@graspologic/memstore'
 
 /**
  * Returns the appropriate GL type representing the given Attribute Type

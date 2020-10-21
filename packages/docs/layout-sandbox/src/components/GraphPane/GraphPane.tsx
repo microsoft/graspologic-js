@@ -2,6 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import React, { memo, useContext } from 'react'
+import styled from 'styled-components'
+import { colorizer } from '../../colorizer'
+import { InputGraphContext } from '../context'
 import { GraphView, Camera, Nodes, Edges } from '@graspologic/react'
 import {
 	SettingsPane,
@@ -10,10 +14,6 @@ import {
 	EdgeSettings,
 } from '@graspologic/render-controls-react'
 import { GraphRenderer } from '@graspologic/renderer'
-import React, { memo, useContext } from 'react'
-import styled from 'styled-components'
-import { colorizer } from '../../colorizer'
-import { InputGraphContext } from '../context'
 
 export interface GraphPaneProps {
 	graphViewRef: React.Ref<GraphRenderer>

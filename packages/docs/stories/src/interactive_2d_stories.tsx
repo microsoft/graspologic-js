@@ -2,6 +2,14 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { action } from '@storybook/addon-actions'
+import { number, boolean, withKnobs } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React, { useCallback, useRef, useState } from 'react'
+import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
+import colorizer from './data/categoricalColorizer'
+import processGraphJson from './data/processGraphJson'
+import { getRandomArbitrary } from './utils'
 import { InputGraph, InputNode, Node } from '@graspologic/graph'
 import {
 	Axes,
@@ -40,14 +48,6 @@ import {
 	GraphRenderer,
 	ColorVector,
 } from '@graspologic/renderer'
-import { action } from '@storybook/addon-actions'
-import { number, boolean, withKnobs } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
-import React, { useCallback, useRef, useState } from 'react'
-import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
-import colorizer from './data/categoricalColorizer'
-import processGraphJson from './data/processGraphJson'
-import { getRandomArbitrary } from './utils'
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	require('@graspologic/testdata/data/testGraph.json'),

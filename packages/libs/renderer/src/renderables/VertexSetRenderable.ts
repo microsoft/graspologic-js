@@ -3,8 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 // @ts-ignore
-import { Node } from '@graspologic/graph'
-import { createLayoutBuilder } from '@graspologic/memstore'
 import * as GL from '@luma.gl/constants'
 import { Model, Geometry, Buffer } from 'luma.gl'
 import { RenderOptions } from '../types/internal'
@@ -19,6 +17,8 @@ import highlightFS from './shaders/highlight.fs.glsl'
 
 // @ts-ignore
 import highlightVS from './shaders/highlight.vs.glsl'
+import { Node } from '@graspologic/graph'
+import { createLayoutBuilder } from '@graspologic/memstore'
 
 // We have no equivalent in the typings
 const getNextId = createIdFactory('VertexHighlight')

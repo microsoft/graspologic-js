@@ -10,8 +10,9 @@
 	],
 	"scripts": {
 		"clean": "essex clean storybook-static",
-		"start": "start-storybook",
-		"bundle": "build-storybook"
+		"start": "essex serve --storybook",
+		"bundle": "essex bundle --storybook",
+		"start:storybook": "yarn start"
 	},
 	"browserslist": [
 		"last 2 Chrome versions"

@@ -3,8 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 // @ts-ignore
-import { restartTween, readTween } from '@graspologic/animation'
-import { EdgeStore, Edge } from '@graspologic/graph'
 import * as GL from '@luma.gl/constants'
 import { Model, Buffer } from 'luma.gl'
 import { processMinMaxBounds } from '../../data/util'
@@ -18,6 +16,8 @@ import { DirtyableRenderable } from '../Renderables'
 import edgeVS from '../shaders/edge.vs.glsl'
 
 import createModel from './model'
+import { restartTween, readTween } from '@graspologic/animation'
+import { EdgeStore, Edge } from '@graspologic/graph'
 
 // We have no equivalent in the typings
 // @ts-ignore

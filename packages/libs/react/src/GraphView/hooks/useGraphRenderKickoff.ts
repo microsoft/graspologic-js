@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { useEffect } from 'react'
 import { GraphContainer } from '@graspologic/graph'
 import { NodeComponentColorizer, GraphRenderer } from '@graspologic/renderer'
-import { useEffect } from 'react'
 
 /**
  * Loads the __renderer__ with __data__ when __data__ changes, and colorizes when __colorizer__ changes

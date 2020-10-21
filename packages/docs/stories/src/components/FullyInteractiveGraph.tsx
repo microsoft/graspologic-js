@@ -2,6 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { action } from '@storybook/addon-actions'
+import React, { memo, useState, useCallback } from 'react'
+import colorizer from '../data/categoricalColorizer'
 import { GraphContainer, InputGraph } from '@graspologic/graph'
 import {
 	Axes,
@@ -17,9 +20,6 @@ import {
 	EdgeSettings,
 	NodeSettings,
 } from '@graspologic/render-controls-react'
-import { action } from '@storybook/addon-actions'
-import React, { memo, useState, useCallback } from 'react'
-import colorizer from '../data/categoricalColorizer'
 
 export interface FullyInteractiveGraphProps {
 	data: GraphContainer | InputGraph

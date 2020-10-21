@@ -6,9 +6,10 @@
 	"private": true,
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"scripts": {
-		"bundle": "essex bundle",
+		"bundle": "essex bundle --webpack",
 		"clean": "essex clean build",
-		"start": "essex serve"
+		"start": "essex serve",
+		"start:layouts": "yarn start"
 	},
 	"browserslist": [
 		"last 2 Chrome versions"

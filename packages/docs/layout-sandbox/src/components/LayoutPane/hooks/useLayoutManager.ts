@@ -4,17 +4,17 @@
  */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { LayoutWorkerManager } from '@graspologic/layout-core'
-import {
-	OpenOrdConfiguration,
-	OpenOrdTickProgress,
-} from '@graspologic/layout-openord'
 import { useMemo, useEffect, useContext } from 'react'
 import { LayoutAlgorithm } from '../../../types'
 import {
 	OpenOrdConfigurationContext,
 	FA2ConfigurationContext,
 } from '../../context'
+import { LayoutWorkerManager } from '@graspologic/layout-core'
+import {
+	OpenOrdConfiguration,
+	OpenOrdTickProgress,
+} from '@graspologic/layout-openord'
 
 declare const require: any
 

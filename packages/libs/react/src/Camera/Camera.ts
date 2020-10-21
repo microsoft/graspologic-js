@@ -2,7 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Bounds, CameraAdjustmentMode } from '@graspologic/renderer'
 import * as React from 'react'
 import { memo, useContext } from 'react'
 import { GraphRendererContext } from '../GraphView/context'
@@ -10,6 +9,7 @@ import { useCameraAdjustmentMode } from './hooks/useCameraAdjustmentMode'
 import { useCameraBounds } from './hooks/useCameraBounds'
 import { usePanZoomBehavior } from './hooks/usePanZoomBehavior'
 import { useZoomSynchronization } from './hooks/useZoomSynchronization'
+import { Bounds, CameraAdjustmentMode } from '@graspologic/renderer'
 
 /**
  * The properties for the Camera component

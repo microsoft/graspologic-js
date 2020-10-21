@@ -3,6 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
+import React, { useState, useCallback, useMemo, useRef } from 'react'
+import DEFAULT_COLORIZER from '../data/categoricalColorizer'
+import { getRandomArbitrary, getRandomInt } from '../utils'
 import { InputGraph } from '@graspologic/graph'
 import {
 	GraphView,
@@ -15,9 +18,6 @@ import {
 	NodeComponentColorizer,
 	GraphRenderer,
 } from '@graspologic/renderer'
-import React, { useState, useCallback, useMemo, useRef } from 'react'
-import DEFAULT_COLORIZER from '../data/categoricalColorizer'
-import { getRandomArbitrary, getRandomInt } from '../utils'
 const FPSStats = require('react-fps-stats').default
 
 interface StressTestVertices2DProps {

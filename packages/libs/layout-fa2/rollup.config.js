@@ -5,8 +5,8 @@
 import path from 'path'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
-import sucrase from '@rollup/plugin-sucrase'
 import replace from '@rollup/plugin-replace'
+import sucrase from '@rollup/plugin-sucrase'
 import { terser } from 'rollup-plugin-terser'
 
 const rollupConfig = [createConfig(true), createConfig(false)]
