@@ -9,10 +9,7 @@ import * as React from 'react'
 import { memo, useMemo, useEffect, useRef } from 'react'
 import colorizer from '../data/categoricalColorizer'
 import { GraphContainer, InputGraph } from '@graspologic/graph'
-import {
-	LayoutWorkerManager,
-	workerFactoryFromScript,
-} from '@graspologic/layout-core'
+import { LayoutWorkerManager } from '@graspologic/layout-core'
 import { FA2Configuration, FA2TickProgress } from '@graspologic/layout-fa2'
 import {
 	Axes,
@@ -29,8 +26,9 @@ import {
 import { GraphRenderer } from '@graspologic/renderer'
 
 // Worker content
-const workerScript = require('!!raw-loader!@graspologic/layout-fa2/dist/fa2_worker.js')
-	.default
+function getWorker() {
+	return require('worker-loader!@graspologic/layout-fa2/src/worker').default()
+}
 
 export interface ForceAtlas2GraphProps {
 	data: InputGraph
@@ -43,6 +41,7 @@ export const ForceAtlas2Graph: React.FC<ForceAtlas2GraphProps> = memo(
 		const internedData = useInternedGraphData(data)
 		const manager = useFA2LayoutManager()
 		useEffect(() => {
+			console.log('RUN LAYOUT')
 			if (!internedData) {
 				return
 			}
@@ -81,7 +80,7 @@ ForceAtlas2Graph.displayName = 'ForceAtlas2Graph'
 
 function useFA2LayoutManager() {
 	return useMemo<LayoutWorkerManager<FA2Configuration, FA2TickProgress>>(
-		() => new LayoutWorkerManager(workerFactoryFromScript(workerScript)),
+		() => new LayoutWorkerManager(getWorker),
 		[],
 	)
 }

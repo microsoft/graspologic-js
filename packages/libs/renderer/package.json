@@ -15,7 +15,7 @@
 		"Nathan Evans (naevans@microsoft.com)"
 	],
 	"scripts": {
-		"build": "essex build --docs",		
+		"build": "essex build --docs",
 		"bundle_types": "node ../../../scripts/bundleTypes",
 		"clean": "essex clean dist lib",
 		"start": "essex watch"
@@ -40,8 +40,8 @@
 	"devDependencies": {
 		"@essex/scripts": "^11.0.1",
 		"@types/node": "^14.14.1",
-		"glob": "^7.1.6",		
-		"rollup": "^2.32.1"		
+		"glob": "^7.1.6",
+		"rollup": "^2.32.1"
 	},
 	"peerDependencies": {
 		"@types/node": "*",

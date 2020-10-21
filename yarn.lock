@@ -2827,21 +2827,13 @@ __metadata:
     "@luma.gl/constants": ^7.3.2
     "@luma.gl/core": ^7.3.2
     "@luma.gl/webgl": ^7.3.2
-    "@rollup/plugin-commonjs": ^15.1.0
-    "@rollup/plugin-multi-entry": ^4.0.0
-    "@rollup/plugin-node-resolve": ^9.0.0
-    "@rollup/plugin-replace": ^2.3.3
-    "@rollup/plugin-sucrase": ^3.1.0
     "@types/node": ^14.14.1
     glob: ^7.1.6
     invariant: ^2.2.4
     luma.gl: ^7.3.2
     math.gl: ^3.2.2
     mjolnir.js: ^2.4.1
-    ncp: ^2.0.0
     rollup: ^2.32.1
-    rollup-plugin-terser: ^7.0.2
-    rollup-plugin-web-worker-loader: ^1.4.0
     rxjs: ^6.6.3
     typedoc: 0.19.2
   peerDependencies:
@@ -2887,6 +2879,8 @@ __metadata:
     regenerator-runtime: ^0.13.7
     source-map-loader: ^1.1.1
     typedoc: 0.19.2
+    webpack: ^4
+    worker-loader: ^3.0.5
   languageName: unknown
   linkType: soft
 
@@ -3485,18 +3479,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-multi-entry@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@rollup/plugin-multi-entry@npm:4.0.0"
-  dependencies:
-    "@rollup/plugin-virtual": ^2.0.3
-    matched: ^5.0.0
-  peerDependencies:
-    rollup: ^1.20.0 || ^2.0.0
-  checksum: 8ccc30b54fc712b75bd736e94475a36f875fab6b01c7d13381a5e370b008551c0348cafd13a26dccddd569fc0ed2e138fa4bcb1a8359f802808523bc5fdafc0a
-  languageName: node
-  linkType: hard
-
 "@rollup/plugin-node-resolve@npm:^9.0.0":
   version: 9.0.0
   resolution: "@rollup/plugin-node-resolve@npm:9.0.0"
@@ -3534,15 +3516,6 @@ __metadata:
   peerDependencies:
     rollup: ^1.20.0 || ^2.0.0
   checksum: 2ca71ba945a2e805f4b6358b320e33ba2c28effd383eeff0c7f249c67cc47406d5dfe7870f4e162b1860718538994f66283fdb38867b3568bb10c991edbd37db
-  languageName: node
-  linkType: hard
-
-"@rollup/plugin-virtual@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "@rollup/plugin-virtual@npm:2.0.3"
-  peerDependencies:
-    rollup: ^1.20.0||^2.0.0
-  checksum: 8cc4568e355c6a9017259fe0b369396aa0b8e7503de791627c009d4140fa3c2fde6dff2598b701ea4899d51e0b4af41b5014dfeb0558a20fecc57c5ff198051e
   languageName: node
   linkType: hard
 
@@ -15373,16 +15346,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"matched@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "matched@npm:5.0.0"
-  dependencies:
-    glob: ^7.1.6
-    picomatch: ^2.2.1
-  checksum: 0a4602070f3c2fd39c220d839025b471314c2b3f2b30ace53f840cf4d0a18922a06820bdfae9bf1d9dda7727fc2480ef42edbdc1bb1f2961ede6b734bc5f15dc
-  languageName: node
-  linkType: hard
-
 "material-colors@npm:^1.2.1":
   version: 1.2.6
   resolution: "material-colors@npm:1.2.6"
@@ -16086,15 +16049,6 @@ fsevents@^1.2.7:
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
   checksum: 2daf93d9bb516eddb06e2e80657a605af2e494d47c65d090ba43691aaffbc41f520840f1c9d3b7b641977af950217a4ab6ffb85bafcd5dfa8ba6fe4e68c43b53
-  languageName: node
-  linkType: hard
-
-"ncp@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "ncp@npm:2.0.0"
-  bin:
-    ncp: ./bin/ncp
-  checksum: a751e4c94bc810b34b81c8cad288b90ac59fa83890e701483fd70f800d3c2228bea9eff84d1c034074cd1b393cec40696c04558a70b17476eba7acb06e20e71c
   languageName: node
   linkType: hard
 
@@ -19358,15 +19312,6 @@ fsevents@^1.2.7:
   peerDependencies:
     rollup: ^2.0.0
   checksum: 553cc21efcea3e4d46c61fbd41cb4a82a3ab8e02ae4ce7c03f9248dea93e5a91c3624e2271490ee05b2bb481568305733b496d968d3ac9c99b777a588a336f01
-  languageName: node
-  linkType: hard
-
-"rollup-plugin-web-worker-loader@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "rollup-plugin-web-worker-loader@npm:1.4.0"
-  peerDependencies:
-    rollup: ^1.9.2 || ^2.0.0
-  checksum: 96cec6feb84e3e4e9b784606033851c6c68736c75cc6b4bcae5074c73d7375ae10469d9deb2519968727b4627f194e83a1b4b1d12fc03b19e2a26ed898e46de2
   languageName: node
   linkType: hard
 
@@ -22664,7 +22609,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"webpack@npm:^4.43.0, webpack@npm:^4.44.2":
+"webpack@npm:^4, webpack@npm:^4.43.0, webpack@npm:^4.44.2":
   version: 4.44.2
   resolution: "webpack@npm:4.44.2"
   dependencies:
@@ -22826,6 +22771,18 @@ fsevents@^1.2.7:
   dependencies:
     errno: ~0.1.7
   checksum: ef76a6892bdf6a4231e6d657c13e2e960278535915d6235d9e0e3e23b65da94a56e5bed17ac5fda282370601d4cd18f4cba9552aa52f4fa9a25cc9fd3fcf58a9
+  languageName: node
+  linkType: hard
+
+"worker-loader@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "worker-loader@npm:3.0.5"
+  dependencies:
+    loader-utils: ^2.0.0
+    schema-utils: ^3.0.0
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: a478bdb632bb78b9ba5203660fd9976605c2532f9a1bff660f0ab2af6f06f9c80e4780392e4e5549bf929177b8cb7089a6d0fe636b671340e526aa97e6508445
   languageName: node
   linkType: hard
 

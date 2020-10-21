@@ -10,7 +10,6 @@ import colorizer from '../data/categoricalColorizer'
 import { GraphContainer, InputGraph } from '@graspologic/graph'
 import {
 	LayoutWorkerManager,
-	workerFactoryFromScript,
 } from '@graspologic/layout-core'
 import {
 	OpenOrdConfiguration,
@@ -31,8 +30,9 @@ import {
 import { GraphRenderer } from '@graspologic/renderer'
 
 // Worker content
-const workerScript = require('!!raw-loader!@graspologic/layout-openord/dist/openord_worker.js')
-	.default
+function getWorker() {
+	return require('worker-loader!@graspologic/layout-openord/src/worker').default()
+}
 
 export interface OpenOrdGraphProps {
 	data: InputGraph
@@ -76,7 +76,7 @@ OpenOrdGraph.displayName = 'OpenOrdGraph'
 function useOpenOrdLayoutManager() {
 	return useMemo<
 		LayoutWorkerManager<OpenOrdConfiguration, OpenOrdTickProgress>
-	>(() => new LayoutWorkerManager(workerFactoryFromScript(workerScript)), [])
+	>(() => new LayoutWorkerManager(getWorker), [])
 }
 
 function useInternedGraphData(data: InputGraph) {
