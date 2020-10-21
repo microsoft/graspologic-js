@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-const fs = require('fs/promises')
+const fs = require('fs-extra')
 const path = require('path')
 
 const DTS_CONTENT = `
@@ -28,6 +28,11 @@ function esmify(content) {
 	return `export default \`${content}\``
 }
 
+function emit(filename, content) {
+	console.log(`emit ${filename}`)
+	return fs.writeFile(filename, content, { encoding: 'utf-8' })
+}
+
 async function processGlslFiles(src, cjsDest, esmDest) {
 	const files = await fs.readdir(src)
 
@@ -37,16 +42,12 @@ async function processGlslFiles(src, cjsDest, esmDest) {
 			const content = await fs.readFile(fullSrcPath, { encoding: 'utf-8' })
 
 			const fullCjsDestPath = path.join(cjsDest, file + '.js')
-			const writeCjsPromise = fs.writeFile(fullCjsDestPath, cjsify(content), {
-				encoding: 'utf-8',
-			})
+			const writeCjsPromise = emit(fullCjsDestPath, cjsify(content))
 
 			const fullEsmDestPath = path.join(esmDest, file + '.js')
 			const fullEsmDtsPath = path.join(esmDest, file + '.d.ts')
-			const writeEsmPromise = fs.writeFile(fullEsmDestPath, esmify(content), {
-				encoding: 'utf-8',
-			})
-			const writeEsmDtsPromise = fs.writeFile(fullEsmDtsPath, DTS_CONTENT)
+			const writeEsmPromise = emit(fullEsmDestPath, esmify(content))
+			const writeEsmDtsPromise = emit(fullEsmDtsPath, DTS_CONTENT)
 			return Promise.all([writeCjsPromise, writeEsmPromise, writeEsmDtsPromise])
 		}),
 	)

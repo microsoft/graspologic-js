@@ -7128,7 +7128,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/libs/renderer-glsl/",
           "packageDependencies": [
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
-            ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"]
+            ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
+            ["@types/fs-extra", "npm:9.0.2"],
+            ["fs-extra", "npm:9.0.1"]
           ],
           "linkType": "SOFT",
         }]
@@ -11871,6 +11873,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.14.1"],
             ["@types/qs", "npm:6.9.5"],
             ["@types/range-parser", "npm:1.2.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/fs-extra", [
+        ["npm:9.0.2", {
+          "packageLocation": "./.yarn/cache/@types-fs-extra-npm-9.0.2-76105aa5a6-9fb00885d8.zip/node_modules/@types/fs-extra/",
+          "packageDependencies": [
+            ["@types/fs-extra", "npm:9.0.2"],
+            ["@types/node", "npm:14.14.1"]
           ],
           "linkType": "HARD",
         }]

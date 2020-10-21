@@ -2811,6 +2811,8 @@ __metadata:
   resolution: "@graspologic/renderer-glsl@workspace:packages/libs/renderer-glsl"
   dependencies:
     "@essex/scripts": ^11.0.1
+    "@types/fs-extra": ^9
+    fs-extra: ^9.0.1
   languageName: unknown
   linkType: soft
 
@@ -4602,6 +4604,15 @@ __metadata:
     "@types/qs": "*"
     "@types/serve-static": "*"
   checksum: 9220ef3cb010faea3f77f85453b0ef3bd41e70003ac7d0ea2b7611ac9c36184995256cc61a7bb205f80a3bc51006cf7ccb29a0186c0d1fe0c0582946a0e65e7a
+  languageName: node
+  linkType: hard
+
+"@types/fs-extra@npm:^9":
+  version: 9.0.2
+  resolution: "@types/fs-extra@npm:9.0.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 9fb00885d8d064cf81e25722e6ee6f8af316065beb33b980f24a4a918e06c15ae328b82d3ede240e9b99e039c59467a266c1e4549d5b3ad2498111c75eb90987
   languageName: node
   linkType: hard
 
