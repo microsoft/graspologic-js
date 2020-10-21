@@ -52,8 +52,9 @@
 		"@types/react-dom": "^16.9.8",
 		"@types/react-helmet": "^5.0.16",
 		"@types/styled-components": "^5.1.4",
-		"raw-loader": "^4.0.2",
-		"styled-components": "^5.2.0"
+		"styled-components": "^5.2.0",
+		"webpack": "4",
+		"worker-loader": "^3.0.5"
 	},
 	"peerDependencies": {
 		"core-js": "^3.6.5",

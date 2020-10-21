@@ -4,6 +4,7 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { Model, Geometry, picking } from 'luma.gl'
 
 import { uint32ColorTypeMapping } from '../../data'

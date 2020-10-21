@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+// @ts-ignore
 import { setParameters } from 'luma.gl'
 import { ScreenQuadRenderable } from '../../renderables/ScreenQuadRenderable'
 import { DataStore, Scene, RenderConfiguration } from '../../types'

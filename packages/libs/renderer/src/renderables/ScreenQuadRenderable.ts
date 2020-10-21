@@ -4,6 +4,7 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { Model, Geometry, Framebuffer, Texture2D } from 'luma.gl'
 import { Renderable, RenderOptions } from '../types/internal'
 import { createIdFactory } from '../util/ids'

@@ -4,6 +4,7 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { Model, Geometry, Texture2D } from 'luma.gl'
 import { RenderOptions } from '../types/internal'
 import { PropertyContainer } from '../util/Properties'

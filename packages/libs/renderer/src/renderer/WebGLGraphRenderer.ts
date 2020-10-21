@@ -3,6 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
+// @ts-ignore
 import { AnimationLoop, createGLContext } from 'luma.gl'
 import { Subject, Observable } from 'rxjs'
 import { createConfiguration } from '../RenderConfiguration'

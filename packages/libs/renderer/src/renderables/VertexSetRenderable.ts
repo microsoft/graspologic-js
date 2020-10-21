@@ -4,6 +4,7 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { Model, Geometry, Buffer } from 'luma.gl'
 import { RenderOptions } from '../types/internal'
 import { adaptMemoryLayoutToLuma } from '../util'

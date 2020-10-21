@@ -4,6 +4,7 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { Buffer } from 'luma.gl'
 import { MemoryLayout, AttributeType } from '@graspologic/memstore'
 

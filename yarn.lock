@@ -2669,7 +2669,6 @@ __metadata:
     d3-scale-chromatic: ^1.5.0
     lodash: ^4.17.20
     office-ui-fabric-react: ^7.147.1
-    raw-loader: ^4.0.2
     react: ^16.14.0
     react-dom: ^16.14.0
     react-helmet: ^6.1.0
@@ -2677,6 +2676,8 @@ __metadata:
     styled-components: ^5.2.0
     typedoc: 0.19.2
     use-pan-and-zoom: ^0.5.1
+    webpack: 4
+    worker-loader: ^3.0.5
   peerDependencies:
     core-js: ^3.6.5
     regenerator-runtime: ^0.13.7
@@ -22609,7 +22610,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"webpack@npm:^4, webpack@npm:^4.43.0, webpack@npm:^4.44.2":
+"webpack@npm:4, webpack@npm:^4, webpack@npm:^4.43.0, webpack@npm:^4.44.2":
   version: 4.44.2
   resolution: "webpack@npm:4.44.2"
   dependencies:

@@ -4,6 +4,7 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { Model, Buffer } from 'luma.gl'
 import { processMinMaxBounds } from '../../data/util'
 import { RenderConfiguration, Bounds3D } from '../../types'
