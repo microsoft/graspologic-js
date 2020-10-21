@@ -7,9 +7,12 @@
 		"David Tittsworth (datittsw@microsoft.com)",
 		"Nathan Evans (naevans@microsoft.com)"
 	],
-	"main": "dist/cjs/index.js",
-	"module": "dist/esm/index.js",
-	"types": "dist/types/index.d.ts",
+	"main": "src/index.ts",
+	"publishConfig": {
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
+		"types": "dist/types/index.d.ts"
+	},
 	"license": "MIT",
 	"scripts": {
 		"bundle_types": "node ../../../scripts/bundleTypes",
