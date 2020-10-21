@@ -6067,7 +6067,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/animation", "workspace:packages/libs/animation"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
-            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
             ["@types/node", "npm:14.14.1"],
             ["typedoc", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#npm:0.19.2"]
           ],
@@ -6151,7 +6151,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/graph", "workspace:packages/libs/graph"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
-            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
             ["@types/node", "npm:14.14.1"],
             ["typedoc", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#npm:0.19.2"]
           ],
@@ -6554,6 +6554,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/memstore", "workspace:packages/libs/memstore"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@types/node", "npm:14.14.1"],
+            ["core-js", "npm:3.6.5"],
             ["typedoc", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#npm:0.19.2"]
           ],
           "linkType": "SOFT",
@@ -7105,7 +7106,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@essex/scripts", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:11.0.1"],
             ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
-            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@luma.gl/constants", "npm:7.3.2"],
             ["@luma.gl/core", "npm:7.3.2"],

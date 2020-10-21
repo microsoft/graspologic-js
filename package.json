@@ -13,11 +13,11 @@
 	"scripts": {
 		"preinstall": "npx only-allow yarn",
 		"clean_all": "yarn workspaces foreach -pv run clean",
-		"build_all": "yarn workspaces foreach -pv run build",
+		"build_all": "yarn workspaces foreach -pvt run build",
 		"bundle_lib_all": "yarn workspaces foreach -pv run bundle_lib",
 		"bundle_types_all": "yarn workspaces foreach -pv run bundle_types",
 		"bundle_all": "yarn workspaces foreach -pv run bundle",
-		"pipeline": "npm-run-all -p build_all bundle_lib_all -s bundle_types_all bundle_all",
+		"pipeline": "run-s build_all bundle_lib_all bundle_types_all bundle_all",
 		"start_all": "yarn workspaces foreach -pv run start",
 		"release_all": "yarn workspaces foreach run npm publish --tolerate-republish --access public",
 		"lint": "essex lint --docs",
