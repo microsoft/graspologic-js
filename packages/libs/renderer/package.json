@@ -2,13 +2,10 @@
 	"name": "@graspologic/renderer",
 	"version": "0.4.0",
 	"description": "Graph data visualization core renderer",
-	"//main": "src/index.ts",
-	"main": "dist/cjs/index_bundled.js",
-	"module": "dist/esm/index_bundled.js",
-	"types": "dist/types/index.d.ts",
+	"main": "src/index.ts",
 	"publishConfig": {
-		"main": "dist/cjs/index_bundled.js",
-		"module": "dist/esm/index_bundled.js",
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts"
 	},
 	"license": "MIT",
@@ -18,8 +15,7 @@
 		"Nathan Evans (naevans@microsoft.com)"
 	],
 	"scripts": {
-		"build": "essex build --docs",
-		"bundle_lib": "essex bundle --rollup",
+		"build": "essex build --docs",		
 		"bundle_types": "node ../../../scripts/bundleTypes",
 		"clean": "essex clean dist lib",
 		"start": "essex watch"
@@ -30,6 +26,7 @@
 		"@graspologic/animation": "^0.4.0",
 		"@graspologic/graph": "^0.4.0",
 		"@graspologic/memstore": "^0.4.0",
+		"@graspologic/renderer-glsl": "^0.4.0",
 		"@luma.gl/constants": "^7.3.2",
 		"@luma.gl/core": "^7.3.2",
 		"@luma.gl/webgl": "^7.3.2",
@@ -42,17 +39,9 @@
 	},
 	"devDependencies": {
 		"@essex/scripts": "^11.0.1",
-		"@rollup/plugin-commonjs": "^15.1.0",
-		"@rollup/plugin-multi-entry": "^4.0.0",
-		"@rollup/plugin-node-resolve": "^9.0.0",
-		"@rollup/plugin-replace": "^2.3.3",
-		"@rollup/plugin-sucrase": "^3.1.0",
 		"@types/node": "^14.14.1",
-		"glob": "^7.1.6",
-		"ncp": "^2.0.0",
-		"rollup": "^2.32.1",
-		"rollup-plugin-terser": "^7.0.2",
-		"rollup-plugin-web-worker-loader": "^1.4.0"
+		"glob": "^7.1.6",		
+		"rollup": "^2.32.1"		
 	},
 	"peerDependencies": {
 		"@types/node": "*",

@@ -9,8 +9,7 @@ import { Model, Geometry, picking } from 'luma.gl'
 import { uint32ColorTypeMapping } from '../../data'
 import { adaptMemoryLayoutToLuma } from '../../util'
 import { tween } from '../shaders/modules'
-// @ts-ignore
-import nodeFS from '../shaders/node.fs.glsl'
+import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
 import { nodeMemoryLayout } from '@graspologic/graph'
 
 const GL_TYPE_MAPPINGS = {

@@ -12,11 +12,9 @@ import { areColorsEqual } from '../util/equality'
 import { createIdFactory } from '../util/ids'
 import { DataboundRenderable } from './Renderables'
 
-// @ts-ignore
-import highlightFS from './shaders/highlight.fs.glsl'
+import highlightFS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.fs.glsl'
+import highlightVS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.vs.glsl'
 
-// @ts-ignore
-import highlightVS from './shaders/highlight.vs.glsl'
 import { Node } from '@graspologic/graph'
 import { createLayoutBuilder } from '@graspologic/memstore'
 

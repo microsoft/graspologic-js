@@ -71,6 +71,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/libs/renderer"
       },
       {
+        "name": "@graspologic/renderer-glsl",
+        "reference": "workspace:packages/libs/renderer-glsl"
+      },
+      {
         "name": "@graspologic/testdata",
         "reference": "workspace:packages/libs/testdata"
       }
@@ -90,6 +94,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@graspologic/render-controls", ["virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/controls", "virtual:f9c060e00f7a16a53ad703c575d9a5a999ccb8694d7e3fddd699ba89a620d334dccd5fe206e450c703b0dad4cc176f04165f73abda86bb494d781ef5eef81b00#workspace:packages/libs/controls", "workspace:packages/libs/controls"]],
       ["@graspologic/render-controls-react", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/controls-react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/controls-react", "workspace:packages/libs/controls-react"]],
       ["@graspologic/renderer", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer", "workspace:packages/libs/renderer"]],
+      ["@graspologic/renderer-glsl", ["workspace:packages/libs/renderer-glsl"]],
       ["@graspologic/stories", ["workspace:packages/docs/stories"]],
       ["@graspologic/testdata", ["workspace:packages/libs/testdata"]]
     ],
@@ -6982,6 +6987,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@luma.gl/constants", "npm:7.3.2"],
             ["@luma.gl/core", "npm:7.3.2"],
             ["@luma.gl/webgl", "npm:7.3.2"],
@@ -7028,6 +7034,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/animation", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/libs/animation"],
             ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
             ["@graspologic/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore"],
+            ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@luma.gl/constants", "npm:7.3.2"],
             ["@luma.gl/core", "npm:7.3.2"],
             ["@luma.gl/webgl", "npm:7.3.2"],
@@ -7073,6 +7080,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
+            ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@luma.gl/constants", "npm:7.3.2"],
             ["@luma.gl/core", "npm:7.3.2"],
             ["@luma.gl/webgl", "npm:7.3.2"],
@@ -7093,6 +7101,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-web-worker-loader", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#npm:1.4.0"],
             ["rxjs", "npm:6.6.3"],
             ["typedoc", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#npm:0.19.2"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@graspologic/renderer-glsl", [
+        ["workspace:packages/libs/renderer-glsl", {
+          "packageLocation": "./packages/libs/renderer-glsl/",
+          "packageDependencies": [
+            ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
+            ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"]
           ],
           "linkType": "SOFT",
         }]

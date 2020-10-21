@@ -23,7 +23,7 @@
 		"lint": "essex lint --docs",
 		"unit_test": "essex test --coverage",
 		"prettify": "essex prettify",
-		"storybook": "yarn bundle_lib_all && yarn start:storybook",
+		"storybook": "yarn build:glsl && yarn bundle_lib_all && yarn start:storybook",
 		"git_is_clean": "essex git-is-clean",
 		"ci": "npm-run-all -p pipeline lint unit_test -s git_is_clean"
 	},

@@ -10,11 +10,8 @@ import { PropertyContainer } from '../util/Properties'
 import { createIdFactory } from '../util/ids'
 import { DirtyableRenderable } from './Renderables'
 
-// @ts-ignore
-import labelFS from './shaders/label.fs.glsl'
-
-// @ts-ignore
-import labelVS from './shaders/label.vs.glsl'
+import labelFS from '@graspologic/renderer-glsl/dist/esm/shaders/label.fs.glsl'
+import labelVS from '@graspologic/renderer-glsl/dist/esm/shaders/label.vs.glsl'
 
 // We have no equivalent in the typings
 // @ts-ignore

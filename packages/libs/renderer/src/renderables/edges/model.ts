@@ -7,8 +7,7 @@ import * as GL from '@luma.gl/constants'
 import { Geometry, Model } from 'luma.gl'
 import { uint32ColorTypeMapping } from '../../data'
 import { adaptMemoryLayoutToLuma } from '../../util'
-// @ts-ignore
-import edgeFS from '../shaders/edge.fs.glsl'
+import edgeFS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.fs.glsl'
 import { tween } from '../shaders/modules'
 import { edgeMemoryLayout } from '@graspologic/graph'
 

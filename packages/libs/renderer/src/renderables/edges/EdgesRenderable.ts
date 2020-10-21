@@ -12,8 +12,7 @@ import { PropertyContainer } from '../../util/Properties'
 import { createIdFactory } from '../../util/ids'
 import { DirtyableRenderable } from '../Renderables'
 
-// @ts-ignore
-import edgeVS from '../shaders/edge.vs.glsl'
+import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
 
 import createModel from './model'
 import { restartTween, readTween } from '@graspologic/animation'

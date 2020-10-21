@@ -14,9 +14,7 @@ import { RenderOptions } from '../../types/internal'
 import { PropertyContainer } from '../../util/Properties'
 import { createIdFactory } from '../../util/ids'
 import { DirtyableRenderable } from '../Renderables'
-
-// @ts-ignore
-import nodeVS from '../shaders/node.vs.glsl'
+import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 import createModel from './model'
 import { readTween, restartTween } from '@graspologic/animation'
 import { NodeStore, Node } from '@graspologic/graph'
