@@ -1,0 +1,18 @@
+releases:
+  "@graspologic/animation": patch
+  "@graspologic/graph": patch
+  "@graspologic/layout-core": patch
+  "@graspologic/layout-fa2": patch
+  "@graspologic/layout-openord": patch
+  "@graspologic/memstore": patch
+  "@graspologic/react": patch
+  "@graspologic/render-controls": patch
+  "@graspologic/render-controls-react": patch
+  "@graspologic/renderer": patch
+  "@graspologic/renderer-glsl": patch
+  "@graspologic/testdata": patch
+
+declined:
+  - "@graspologic/monorepo"
+  - "@graspologic/layout-sandbox"
+  - "@graspologic/stories"
