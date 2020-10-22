@@ -7,4 +7,5 @@ const config = configure(
 	['<rootDir>/jest.setup.js'],
 	'<rootDir>/tsconfig.jest.json',
 )
+config.collectCoverageFrom.push('!.yarn/**')
 module.exports = config
