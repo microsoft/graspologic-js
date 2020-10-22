@@ -18,7 +18,7 @@
 		"start_all": "yarn workspaces foreach -piv run start",
 		"release_all": "yarn workspaces foreach run npm publish --tolerate-republish --access public",
 		"lint": "essex lint --docs",
-		"unit_test": "essex test --coverage --ci",
+		"unit_test": "essex test --ci",
 		"prettify": "essex prettify",
 		"storybook": "yarn build:glsl && yarn start:storybook",
 		"build_glsl": "yarn build:glsl",
