@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+// @ts-nocheck
 import * as GL from '@luma.gl/constants'
 import { Model, Geometry, Buffer } from 'luma.gl'
 import { RenderOptions } from '../types/internal'
@@ -15,7 +16,6 @@ import { Node } from '@graspologic/graph'
 import { createLayoutBuilder } from '@graspologic/memstore'
 import highlightFS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.fs.glsl'
 import highlightVS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.vs.glsl'
-
 
 // We have no equivalent in the typings
 const getNextId = createIdFactory('VertexHighlight')

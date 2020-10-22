@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+// @ts-nocheck
 import * as GL from '@luma.gl/constants'
 import { Model, Geometry, picking } from 'luma.gl'
 

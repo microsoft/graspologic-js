@@ -3,6 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Quaternion } from 'math.gl'
+// @ts-ignore
 import { EventManager } from 'mjolnir.js'
 import { Disconnect, GraphRenderer } from '../types'
 

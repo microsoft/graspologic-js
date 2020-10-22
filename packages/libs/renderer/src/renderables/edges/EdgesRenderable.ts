@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+// @ts-nocheck
 import * as GL from '@luma.gl/constants'
 import { Model, Buffer } from 'luma.gl'
 import { processMinMaxBounds } from '../../data/util'
@@ -10,7 +11,6 @@ import { RenderOptions } from '../../types/internal'
 import { PropertyContainer } from '../../util/Properties'
 import { createIdFactory } from '../../util/ids'
 import { DirtyableRenderable } from '../Renderables'
-
 
 import createModel from './model'
 import { restartTween, readTween } from '@graspologic/animation'

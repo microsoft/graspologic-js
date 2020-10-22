@@ -2,8 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+// @ts-nocheck
 import * as GL from '@luma.gl/constants'
+// @ts-nocheck
 import { readPixelsToArray } from '@luma.gl/core'
+// @ts-nocheck
 import { cssToDevicePixels } from '@luma.gl/webgl'
 import { Model, decodePickingColor, Buffer, encodePickingColor } from 'luma.gl'
 import { Subject, Observable } from 'rxjs'
