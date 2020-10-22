@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import * as chalk from 'chalk'
+import chalk from 'chalk'
 import { interpolateOranges as getColor } from 'd3-scale-chromatic'
 import { DensityGrid, FALLOFF, DIAMETER, GRID_SIZE } from '../DensityGrid'
 import { NodeImpl, Position } from '@graspologic/graph'
