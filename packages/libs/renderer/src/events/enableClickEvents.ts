@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-nocheck
+// @ts-ignore
 import { EventManager } from 'mjolnir.js'
 import { Disconnect, GraphRenderer } from '../types'
 
