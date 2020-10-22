@@ -1,16 +1,12 @@
 {
+	"extends": "./tsconfig",
 	"compilerOptions": {
 		"module": "CommonJS",
-		"allowJs": true,
 		"target": "ES2019",
-		"moduleResolution": "Node",
+		"allowJs": true,
 		"resolveJsonModule": true,
-		"jsx": "react",
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
 		"allowSyntheticDefaultImports": true,
 		"lib": ["esnext", "dom"],
 		"types": ["node", "jest"]
-	},
-	"include": ["./typings/deck.gl.d.ts"]
+	}
 }
