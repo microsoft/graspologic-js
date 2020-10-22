@@ -2544,7 +2544,7 @@ __metadata:
   dependencies:
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": ^0.4.0
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
@@ -2560,7 +2560,7 @@ __metadata:
   dependencies:
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": ^0.4.0
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
@@ -2576,7 +2576,7 @@ __metadata:
   dependencies:
     "@essex/scripts": ^11.0.1
     "@graspologic/graph": ^0.4.0
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
     rxjs: ^6.6.3
     typedoc: 0.19.2
@@ -2598,7 +2598,7 @@ __metadata:
     "@rollup/plugin-node-resolve": ^9.0.0
     "@rollup/plugin-replace": ^2.3.3
     "@rollup/plugin-sucrase": ^3.1.0
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
@@ -2624,7 +2624,7 @@ __metadata:
     "@rollup/plugin-replace": ^2.3.3
     "@rollup/plugin-sucrase": ^3.1.0
     "@types/d3-scale-chromatic": ^1.5.0
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     chalk: ^4.1.0
     core-js: ^3.6.5
     d3-scale-chromatic: ^2.0.0
@@ -2664,7 +2664,7 @@ __metadata:
     "@types/d3-scale": ^2.2.0
     "@types/d3-scale-chromatic": ^1.5.0
     "@types/lodash": ^4.14.162
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     "@types/react": ^16.9.53
     "@types/react-dom": ^16.9.8
     "@types/react-helmet": ^5.0.16
@@ -2681,7 +2681,7 @@ __metadata:
     styled-components: ^5.2.0
     typedoc: 0.19.2
     use-pan-and-zoom: ^0.5.1
-    webpack: 4
+    webpack: 4.44.2
     worker-loader: ^3.0.5
   peerDependencies:
     core-js: ^3.6.5
@@ -2694,7 +2694,7 @@ __metadata:
   resolution: "@graspologic/memstore@workspace:packages/libs/memstore"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     core-js: ^3.6.5
     npm-run-all: ^4.1.5
     typedoc: 0.19.2
@@ -2714,8 +2714,8 @@ __metadata:
     "@essex/jest-config": ^10.0.2
     "@essex/prettier-config": ^10.0.0
     "@essex/scripts": ^11.0.1
-    "@types/enzyme": ^3.10.5
-    "@types/invariant": ^2.2.33
+    "@types/enzyme": ^3.10.7
+    "@types/invariant": ^2.2.34
     "@types/jest": ^26.0.15
     "@types/node": ^14.14.2
     "@typescript-eslint/eslint-plugin": ^4.5.0
@@ -2751,8 +2751,8 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/graph": ^0.4.0
     "@graspologic/renderer": ^0.4.0
-    "@types/enzyme": ^3.10.5
-    "@types/node": ^14.14.1
+    "@types/enzyme": ^3.10.7
+    "@types/node": ^14.14.2
     "@types/react": ^16.9.53
     "@types/react-dom": ^16.9.8
     enzyme: ^3.11.0
@@ -2781,7 +2781,7 @@ __metadata:
     "@graspologic/render-controls": ^0.4.0
     "@graspologic/renderer": ^0.4.0
     "@types/dat.gui": ^0.7.5
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     dat.gui: ^0.7.7
     npm-run-all: ^4.1.5
     react: ^16.14.0
@@ -2805,7 +2805,7 @@ __metadata:
     "@graspologic/react": ^0.4.0
     "@graspologic/renderer": ^0.4.0
     "@types/dat.gui": ^0.7.5
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     dat.gui: ^0.7.7
     npm-run-all: ^4.1.5
     typedoc: 0.19.2
@@ -2821,7 +2821,7 @@ __metadata:
   resolution: "@graspologic/renderer-glsl@workspace:packages/libs/renderer-glsl"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@types/fs-extra": ^9
+    "@types/fs-extra": ^9.0.2
     fs-extra: ^9.0.1
   languageName: unknown
   linkType: soft
@@ -2840,7 +2840,7 @@ __metadata:
     "@luma.gl/constants": ^7.3.2
     "@luma.gl/core": ^7.3.2
     "@luma.gl/webgl": ^7.3.2
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     glob: ^7.1.6
     invariant: ^2.2.4
     luma.gl: ^7.3.2
@@ -2892,7 +2892,7 @@ __metadata:
     regenerator-runtime: ^0.13.7
     source-map-loader: ^1.1.1
     typedoc: 0.19.2
-    webpack: ^4
+    webpack: ^4.44.2
     worker-loader: ^3.0.5
   languageName: unknown
   linkType: soft
@@ -2903,7 +2903,7 @@ __metadata:
   dependencies:
     "@essex/scripts": ^11.0.1
     "@graspologic/graph": ^0.4.0
-    "@types/node": ^14.14.1
+    "@types/node": ^14.14.2
     typedoc: 0.19.2
     typescript: ^4.0.3
   languageName: unknown
@@ -4563,7 +4563,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/enzyme@npm:^3.10.5":
+"@types/enzyme@npm:^3.10.7":
   version: 3.10.7
   resolution: "@types/enzyme@npm:3.10.7"
   dependencies:
@@ -4617,7 +4617,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/fs-extra@npm:^9":
+"@types/fs-extra@npm:^9.0.2":
   version: 9.0.2
   resolution: "@types/fs-extra@npm:9.0.2"
   dependencies:
@@ -4664,11 +4664,11 @@ __metadata:
   linkType: hard
 
 "@types/graceful-fs@npm:^4.1.2":
-  version: 4.1.3
-  resolution: "@types/graceful-fs@npm:4.1.3"
+  version: 4.1.4
+  resolution: "@types/graceful-fs@npm:4.1.4"
   dependencies:
     "@types/node": "*"
-  checksum: 5e2ec610a96de2a7b13ee1e071a31a225b68df07880f80f1112a3540299288d943c69c0f1114a60480aa137d424333392c11732969f14b964c1c419fae48a6f0
+  checksum: acffaa4f4b11776f6894a906d3cd0498d45be2ad1315fe44c2ac8208339a2456967cd65835863bf40f8d522f6614f25e0f6a952375f03d428d5e35d5e7104068
   languageName: node
   linkType: hard
 
@@ -4750,7 +4750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/invariant@npm:^2.2.33":
+"@types/invariant@npm:^2.2.34":
   version: 2.2.34
   resolution: "@types/invariant@npm:2.2.34"
   checksum: d0ecc665e5c95abf1ad7263c8cc32604d6b3444cfbc97657fede7e63f3751554a4f35f72ae565d70c28184dfb8b0cd4c058eaec1af972999edfd0a81b365f74b
@@ -4894,10 +4894,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^14.0.13, @types/node@npm:^14.14.1":
-  version: 14.14.1
-  resolution: "@types/node@npm:14.14.1"
-  checksum: 6e17842ab09fd128f1bef254f2d4bae9bd30a8c9fbaa10c28062726faa7805c0d48ccda0f5ea45db8ecf107ec92b9ab754849c37d0f422c20793e90ddc0b62fc
+"@types/node@npm:*, @types/node@npm:^14.0.13, @types/node@npm:^14.14.2":
+  version: 14.14.2
+  resolution: "@types/node@npm:14.14.2"
+  checksum: e6ad786008ec81e010525beb09067f31cc55a3a02120a7e383e21309c1422a0d4a56059c1da46716509e36dbd4d2c607790f3fd715275a09b9f3ffb2cf3b243e
   languageName: node
   linkType: hard
 
@@ -4909,16 +4909,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:^13.7.0":
-  version: 13.13.27
-  resolution: "@types/node@npm:13.13.27"
-  checksum: d47d3d6e36762a260f3d63f0930d2c14ccf45f6c62445c440ea1bdcaf27759f96706fac9a143c073f5a326e857dcdebd5c7857fbe6f9e439b2c41179864eb7d7
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^14.14.2":
-  version: 14.14.2
-  resolution: "@types/node@npm:14.14.2"
-  checksum: e6ad786008ec81e010525beb09067f31cc55a3a02120a7e383e21309c1422a0d4a56059c1da46716509e36dbd4d2c607790f3fd715275a09b9f3ffb2cf3b243e
+  version: 13.13.28
+  resolution: "@types/node@npm:13.13.28"
+  checksum: a65a138179bfc693c2038356dacddff78ae2cbe5f74d6ec67279bbd9a2bda858d0ee2793c1d52df0a65393a4256bb0a3ee5d65e9d0a57c6f55b2a3552af3a4aa
   languageName: node
   linkType: hard
 
@@ -7276,11 +7269,11 @@ __metadata:
   linkType: hard
 
 "better-opn@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "better-opn@npm:2.1.0"
+  version: 2.1.1
+  resolution: "better-opn@npm:2.1.1"
   dependencies:
     open: ^7.0.3
-  checksum: 4e4d106bb896c873e6c762fd387da820804c9525cfadc13eb55394a33a3389da0a12a1aaebc5515c725ec50b3767a92aee3752cd1c37ddfc072764cecb4181e5
+  checksum: 70c70d61d77cfe8323f655a345bcc2e3b78125e4c28b87f3e267a2102d932c303bb6c3650bd41e70034d296485fd2271b5a7169af37201aef875c329df376433
   languageName: node
   linkType: hard
 
@@ -16040,11 +16033,11 @@ fsevents@^1.2.7:
   linkType: hard
 
 "nanoid@npm:^3.1.12":
-  version: 3.1.12
-  resolution: "nanoid@npm:3.1.12"
+  version: 3.1.13
+  resolution: "nanoid@npm:3.1.13"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: dc51417babadca4b00c2126ac0bc1c01e842e3c40edda2d3e1da40e8aae4d691a2a0b9d8e9c3a8cdb16133345a47f9135f0d0eef85a66ad31711ad3d908050e4
+  checksum: bec26d5c3226e5d32ee7a0aa1df5b148d40ce8200626772992d5827f448c35daf65d719e4bf0475dccd9e715121e8ae1152bfb28b21b3f43f603597902978add
   languageName: node
   linkType: hard
 
@@ -18598,7 +18591,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:1 || 2, readable-stream@npm:^2.0.0, readable-stream@npm:^2.0.1, readable-stream@npm:^2.0.2, readable-stream@npm:^2.0.5, readable-stream@npm:^2.0.6, readable-stream@npm:^2.1.5, readable-stream@npm:^2.2.2, readable-stream@npm:^2.3.3, readable-stream@npm:^2.3.5, readable-stream@npm:^2.3.6, readable-stream@npm:~2.3.6":
+"readable-stream@npm:1 || 2, readable-stream@npm:2 || 3, readable-stream@npm:^2.0.0, readable-stream@npm:^2.0.1, readable-stream@npm:^2.0.2, readable-stream@npm:^2.0.5, readable-stream@npm:^2.0.6, readable-stream@npm:^2.1.5, readable-stream@npm:^2.2.2, readable-stream@npm:^2.3.3, readable-stream@npm:^2.3.5, readable-stream@npm:^2.3.6, readable-stream@npm:~2.3.6":
   version: 2.3.7
   resolution: "readable-stream@npm:2.3.7"
   dependencies:
@@ -18613,7 +18606,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:2 || 3, readable-stream@npm:3, readable-stream@npm:^3.0.2, readable-stream@npm:^3.0.6, readable-stream@npm:^3.1.1, readable-stream@npm:^3.4.0, readable-stream@npm:^3.6.0":
+"readable-stream@npm:3, readable-stream@npm:^3.0.2, readable-stream@npm:^3.0.6, readable-stream@npm:^3.1.1, readable-stream@npm:^3.4.0, readable-stream@npm:^3.6.0":
   version: 3.6.0
   resolution: "readable-stream@npm:3.6.0"
   dependencies:
@@ -19414,14 +19407,14 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:5.1.2, safe-buffer@npm:^5.1.0, safe-buffer@npm:^5.1.2, safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
+"safe-buffer@npm:5.1.2, safe-buffer@npm:^5.1.0, safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
   version: 5.1.2
   resolution: "safe-buffer@npm:5.1.2"
   checksum: 2708587c1b5e70a5e420714ceb59f30f5791c6e831d39812125a008eca63a4ac18578abd020a0776ea497ff03b4543f2b2a223a7b9073bf2d6c7af9ec6829218
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.1, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
+"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.1, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: 0bb57f0d8f9d1fa4fe35ad8a2db1f83a027d48f2822d59ede88fd5cd4ddad83c0b497213feb7a70fbf90597a70c5217f735b0eb1850df40ce9b4ae81dd22b3f9
@@ -22631,7 +22624,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"webpack@npm:4, webpack@npm:^4, webpack@npm:^4.43.0, webpack@npm:^4.44.2":
+"webpack@npm:4.44.2, webpack@npm:^4.43.0, webpack@npm:^4.44.2":
   version: 4.44.2
   resolution: "webpack@npm:4.44.2"
   dependencies:
