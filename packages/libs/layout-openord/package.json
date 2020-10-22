@@ -14,8 +14,10 @@
 	],
 	"scripts": {
 		"clean": "essex clean lib dist",
-		"build": "essex build --docs",
+		"bundle_types": "node ../../../scripts/bundleTypes",
 		"bundle_lib": "essex bundle --rollup",
+		"build_lib": "essex build --docs",
+		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
 		"start": "essex watch"
 	},
 	"dependencies": {
@@ -36,6 +38,7 @@
 		"@types/node": "^14.14.1",
 		"chalk": "^4.1.0",
 		"d3-scale-chromatic": "^2.0.0",
+		"npm-run-all": "^4.1.5",
 		"rollup": "^2.32.1",
 		"rollup-plugin-terser": "^7.0.2"
 	},

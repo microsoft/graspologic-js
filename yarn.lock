@@ -2545,6 +2545,7 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": ^0.4.0
     "@types/node": ^14.14.1
+    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2560,6 +2561,7 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": ^0.4.0
     "@types/node": ^14.14.1
+    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2575,6 +2577,7 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/graph": ^0.4.0
     "@types/node": ^14.14.1
+    npm-run-all: ^4.1.5
     rxjs: ^6.6.3
     typedoc: 0.19.2
   peerDependencies:
@@ -2596,6 +2599,7 @@ __metadata:
     "@rollup/plugin-replace": ^2.3.3
     "@rollup/plugin-sucrase": ^3.1.0
     "@types/node": ^14.14.1
+    npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
     rxjs: ^6.6.3
@@ -2624,6 +2628,7 @@ __metadata:
     chalk: ^4.1.0
     core-js: ^3.6.5
     d3-scale-chromatic: ^2.0.0
+    npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
     rxjs: ^6.6.3
@@ -2691,6 +2696,7 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@types/node": ^14.14.1
     core-js: ^3.6.5
+    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2751,6 +2757,7 @@ __metadata:
     "@types/react-dom": ^16.9.8
     enzyme: ^3.11.0
     math.gl: ^3.2.2
+    npm-run-all: ^4.1.5
     react: ^16.14.0
     react-dom: ^16.14.0
     typedoc: 0.19.2
@@ -2776,6 +2783,7 @@ __metadata:
     "@types/dat.gui": ^0.7.5
     "@types/node": ^14.14.1
     dat.gui: ^0.7.7
+    npm-run-all: ^4.1.5
     react: ^16.14.0
     react-dom: ^16.14.0
     typedoc: 0.19.2
@@ -2799,6 +2807,7 @@ __metadata:
     "@types/dat.gui": ^0.7.5
     "@types/node": ^14.14.1
     dat.gui: ^0.7.7
+    npm-run-all: ^4.1.5
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2837,7 +2846,7 @@ __metadata:
     luma.gl: ^7.3.2
     math.gl: ^3.2.2
     mjolnir.js: ^2.4.1
-    rollup: ^2.32.1
+    npm-run-all: ^4.1.5
     rxjs: ^6.6.3
     typedoc: 0.19.2
   peerDependencies:

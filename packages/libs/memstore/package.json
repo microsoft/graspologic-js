@@ -14,7 +14,8 @@
 	],
 	"scripts": {
 		"bundle_types": "node ../../../scripts/bundleTypes",
-		"build": "essex build --docs",
+		"build_lib": "essex build --docs",
+		"build": "run-s build_lib bundle_types",
 		"clean": "essex clean dist lib",
 		"start": "essex watch"
 	},
@@ -27,7 +28,8 @@
 	"devDependencies": {
 		"@essex/scripts": "^11.0.1",
 		"@types/node": "^14.14.1",
-		"core-js": "^3.6.5"
+		"core-js": "^3.6.5",
+		"npm-run-all": "^4.1.5"
 	},
 	"peerDependencies": {
 		"@types/node": "*",

@@ -16,7 +16,8 @@
 	],
 	"scripts": {
 		"bundle_types": "node ../../../scripts/bundleTypes",
-		"build": "essex build --docs",
+		"build_lib": "essex build --docs",
+		"build": "run-s build_lib bundle_types",
 		"clean": "essex clean dist lib",
 		"start": "essex watch"
 	},
@@ -34,6 +35,7 @@
 		"@types/react": "^16.9.53",
 		"@types/react-dom": "^16.9.8",
 		"enzyme": "^3.11.0",
+		"npm-run-all": "^4.1.5",
 		"react": "^16.14.0",
 		"react-dom": "^16.14.0"
 	},
