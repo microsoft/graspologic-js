@@ -2,9 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
 import * as GL from '@luma.gl/constants'
-// @ts-ignore
 import { Model, Geometry, Framebuffer, Texture2D } from 'luma.gl'
 import { Renderable, RenderOptions } from '../types/internal'
 import { createIdFactory } from '../util/ids'
@@ -13,8 +11,6 @@ import { DirtyableRenderable } from './Renderables'
 import screenQuadFS from '@graspologic/renderer-glsl/dist/esm/shaders/screenQuad.fs.glsl'
 import screenQuadVS from '@graspologic/renderer-glsl/dist/esm/shaders/screenQuad.vs.glsl'
 
-// We have no equivalent in the typings
-// @ts-ignore
 const getNextId = createIdFactory('ScreenQuadInstance')
 
 const CLEAR_FRAMEBUFFER_ARG = { color: [0, 0, 0, 0], depth: true }

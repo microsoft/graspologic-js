@@ -2,13 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
 import * as GL from '@luma.gl/constants'
-// @ts-ignore
 import { readPixelsToArray } from '@luma.gl/core'
-// @ts-ignore
 import { cssToDevicePixels } from '@luma.gl/webgl'
-// @ts-ignore
 import { Model, decodePickingColor, Buffer, encodePickingColor } from 'luma.gl'
 import { Subject, Observable } from 'rxjs'
 import { processMinMaxBounds } from '../../data/util'
@@ -17,10 +13,10 @@ import { RenderOptions } from '../../types/internal'
 import { PropertyContainer } from '../../util/Properties'
 import { createIdFactory } from '../../util/ids'
 import { DirtyableRenderable } from '../Renderables'
-import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 import createModel from './model'
 import { readTween, restartTween } from '@graspologic/animation'
 import { NodeStore, Node } from '@graspologic/graph'
+import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214

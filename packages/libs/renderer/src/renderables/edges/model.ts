@@ -2,15 +2,13 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
 import * as GL from '@luma.gl/constants'
-// @ts-ignore
 import { Geometry, Model } from 'luma.gl'
 import { uint32ColorTypeMapping } from '../../data'
 import { adaptMemoryLayoutToLuma } from '../../util'
-import edgeFS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.fs.glsl'
 import { tween } from '../shaders/modules'
 import { edgeMemoryLayout } from '@graspologic/graph'
+import edgeFS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.fs.glsl'
 
 const GL_TYPE_MAPPINGS = {
 	color: uint32ColorTypeMapping,

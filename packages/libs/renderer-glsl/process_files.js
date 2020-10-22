@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-const fs = require('fs-extra')
 const path = require('path')
+const fs = require('fs-extra')
 
 const DTS_CONTENT = `
 	declare const _default: string;

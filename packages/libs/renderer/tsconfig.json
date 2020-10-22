@@ -6,5 +6,5 @@
 		"noImplicitAny": false,
 		"tsBuildInfoFile": "dist/.tsbuildinfo"
 	},
-	"files": ["typings/deck.gl.d.ts", "src"]
+	"files": ["src"]
 }

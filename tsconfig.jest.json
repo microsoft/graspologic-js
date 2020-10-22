@@ -2,17 +2,15 @@
 	"compilerOptions": {
 		"module": "CommonJS",
 		"allowJs": true,
-		"target": "ES2018",
+		"target": "ES2019",
 		"moduleResolution": "Node",
-		"jsx": "react",
-		"forceConsistentCasingInFileNames": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
 		"resolveJsonModule": true,
-		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true,
+		"jsx": "react",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"allowSyntheticDefaultImports": true,
 		"lib": ["esnext", "dom"],
 		"types": ["node", "jest"]
 	},
-	"include": ["./typings/deck.gl.d.ts"]
+	"include": ["./packages/libs/renderer/typings/deck.gl.d.ts"]
 }

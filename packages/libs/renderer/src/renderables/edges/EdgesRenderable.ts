@@ -2,9 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
 import * as GL from '@luma.gl/constants'
-// @ts-ignore
 import { Model, Buffer } from 'luma.gl'
 import { processMinMaxBounds } from '../../data/util'
 import { RenderConfiguration, Bounds3D } from '../../types'
@@ -13,14 +11,12 @@ import { PropertyContainer } from '../../util/Properties'
 import { createIdFactory } from '../../util/ids'
 import { DirtyableRenderable } from '../Renderables'
 
-import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
 
 import createModel from './model'
 import { restartTween, readTween } from '@graspologic/animation'
 import { EdgeStore, Edge } from '@graspologic/graph'
+import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
 
-// We have no equivalent in the typings
-// @ts-ignore
 const getNextId = createIdFactory('EdgesInstance')
 
 /**

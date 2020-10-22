@@ -2,9 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
 import * as GL from '@luma.gl/constants'
-// @ts-ignore
 import { Model, Geometry, Texture2D } from 'luma.gl'
 import { RenderOptions } from '../types/internal'
 import { PropertyContainer } from '../util/Properties'
@@ -15,7 +13,6 @@ import labelFS from '@graspologic/renderer-glsl/dist/esm/shaders/label.fs.glsl'
 import labelVS from '@graspologic/renderer-glsl/dist/esm/shaders/label.vs.glsl'
 
 // We have no equivalent in the typings
-// @ts-ignore
 const getNextId = createIdFactory('LabelInstance')
 
 /**

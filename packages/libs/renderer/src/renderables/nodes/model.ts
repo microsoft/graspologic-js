@@ -2,16 +2,14 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
 import * as GL from '@luma.gl/constants'
-// @ts-ignore
 import { Model, Geometry, picking } from 'luma.gl'
 
 import { uint32ColorTypeMapping } from '../../data'
 import { adaptMemoryLayoutToLuma } from '../../util'
 import { tween } from '../shaders/modules'
-import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
 import { nodeMemoryLayout } from '@graspologic/graph'
+import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
 
 const GL_TYPE_MAPPINGS = {
 	color: uint32ColorTypeMapping,
