@@ -20,7 +20,7 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/memstore": "^0.4.0",
+		"@graspologic/memstore": "workspace:packages/libs/memstore",
 		"typedoc": "0.19.2"
 	},
 	"devDependencies": {

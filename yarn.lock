@@ -2538,12 +2538,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graspologic/animation@^0.4.0, @graspologic/animation@workspace:packages/libs/animation":
+"@graspologic/animation@workspace:packages/libs/animation":
   version: 0.0.0-use.local
   resolution: "@graspologic/animation@workspace:packages/libs/animation"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/memstore": ^0.4.0
+    "@graspologic/memstore": "workspace:packages/libs/memstore"
     "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
     typedoc: 0.19.2
@@ -2554,12 +2554,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/graph@^0.4.0, @graspologic/graph@workspace:packages/libs/graph":
+"@graspologic/graph@workspace:packages/libs/graph":
   version: 0.0.0-use.local
   resolution: "@graspologic/graph@workspace:packages/libs/graph"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/memstore": ^0.4.0
+    "@graspologic/memstore": "workspace:packages/libs/memstore"
     "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
     typedoc: 0.19.2
@@ -2570,12 +2570,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/layout-core@^0.4.0, @graspologic/layout-core@workspace:packages/libs/layout-core":
+"@graspologic/layout-core@workspace:packages/libs/layout-core":
   version: 0.0.0-use.local
   resolution: "@graspologic/layout-core@workspace:packages/libs/layout-core"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/graph": ^0.4.0
+    "@graspologic/graph": "workspace:packages/libs/graph"
     "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
     rxjs: ^6.6.3
@@ -2587,13 +2587,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/layout-fa2@^0.4.0, @graspologic/layout-fa2@workspace:packages/libs/layout-fa2":
+"@graspologic/layout-fa2@workspace:packages/libs/layout-fa2":
   version: 0.0.0-use.local
   resolution: "@graspologic/layout-fa2@workspace:packages/libs/layout-fa2"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/graph": ^0.4.0
-    "@graspologic/layout-core": ^0.4.0
+    "@graspologic/graph": "workspace:packages/libs/graph"
+    "@graspologic/layout-core": "workspace:packages/libs/layout-core"
     "@rollup/plugin-commonjs": ^15.1.0
     "@rollup/plugin-node-resolve": ^9.0.0
     "@rollup/plugin-replace": ^2.3.3
@@ -2611,14 +2611,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/layout-openord@^0.4.0, @graspologic/layout-openord@workspace:packages/libs/layout-openord":
+"@graspologic/layout-openord@workspace:packages/libs/layout-openord":
   version: 0.0.0-use.local
   resolution: "@graspologic/layout-openord@workspace:packages/libs/layout-openord"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/graph": ^0.4.0
-    "@graspologic/layout-core": ^0.4.0
-    "@graspologic/testdata": ^0.4.0
+    "@graspologic/graph": "workspace:packages/libs/graph"
+    "@graspologic/layout-core": "workspace:packages/libs/layout-core"
+    "@graspologic/testdata": "workspace:packages/libs/testdata"
     "@rollup/plugin-commonjs": ^15.1.0
     "@rollup/plugin-node-resolve": ^9.0.0
     "@rollup/plugin-replace": ^2.3.3
@@ -2652,14 +2652,14 @@ __metadata:
     "@chart-parts/transform": ^0.1.3
     "@essex/scripts": ^11.0.1
     "@essex/webpack-config": ^10.0.2
-    "@graspologic/graph": ^0.4.0
-    "@graspologic/layout-core": ^0.4.0
-    "@graspologic/layout-fa2": ^0.4.0
-    "@graspologic/layout-openord": ^0.4.0
-    "@graspologic/react": ^0.4.0
-    "@graspologic/render-controls-react": ^0.4.0
-    "@graspologic/renderer": ^0.4.0
-    "@graspologic/testdata": ^0.4.0
+    "@graspologic/graph": "workspace:packages/libs/graph"
+    "@graspologic/layout-core": "workspace:packages/libs/layout-core"
+    "@graspologic/layout-fa2": "workspace:packages/libs/layout-fa2"
+    "@graspologic/layout-openord": "workspace:packages/libs/layout-openord"
+    "@graspologic/react": "workspace:packages/libs/react"
+    "@graspologic/render-controls-react": "workspace:packages/libs/controls-react"
+    "@graspologic/renderer": "workspace:packages/libs/renderer"
+    "@graspologic/testdata": "workspace:packages/libs/testdata"
     "@thematic/core": ^0.9.0
     "@types/d3-scale": ^2.2.0
     "@types/d3-scale-chromatic": ^1.5.0
@@ -2689,7 +2689,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/memstore@^0.4.0, @graspologic/memstore@workspace:packages/libs/memstore":
+"@graspologic/memstore@workspace:packages/libs/memstore":
   version: 0.0.0-use.local
   resolution: "@graspologic/memstore@workspace:packages/libs/memstore"
   dependencies:
@@ -2747,14 +2747,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/react@^0.4.0, @graspologic/react@workspace:packages/libs/react":
+"@graspologic/react@workspace:packages/libs/react":
   version: 0.0.0-use.local
   resolution: "@graspologic/react@workspace:packages/libs/react"
   dependencies:
     "@essex-js-toolkit/hooks": ^1.1.2
     "@essex/scripts": ^11.0.1
-    "@graspologic/graph": ^0.4.0
-    "@graspologic/renderer": ^0.4.0
+    "@graspologic/graph": "workspace:packages/libs/graph"
+    "@graspologic/renderer": "workspace:packages/libs/renderer"
     "@types/enzyme": ^3.10.7
     "@types/node": ^14.14.2
     "@types/react": ^16.9.53
@@ -2777,14 +2777,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/render-controls-react@^0.4.0, @graspologic/render-controls-react@workspace:packages/libs/controls-react":
+"@graspologic/render-controls-react@workspace:packages/libs/controls-react":
   version: 0.0.0-use.local
   resolution: "@graspologic/render-controls-react@workspace:packages/libs/controls-react"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/react": ^0.4.0
-    "@graspologic/render-controls": ^0.4.0
-    "@graspologic/renderer": ^0.4.0
+    "@graspologic/react": "workspace:packages/libs/react"
+    "@graspologic/render-controls": "workspace:packages/libs/controls"
+    "@graspologic/renderer": "workspace:packages/libs/renderer"
     "@types/dat.gui": ^0.7.5
     "@types/node": ^14.14.2
     dat.gui: ^0.7.7
@@ -2802,13 +2802,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/render-controls@^0.4.0, @graspologic/render-controls@workspace:packages/libs/controls":
+"@graspologic/render-controls@workspace:packages/libs/controls":
   version: 0.0.0-use.local
   resolution: "@graspologic/render-controls@workspace:packages/libs/controls"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/react": ^0.4.0
-    "@graspologic/renderer": ^0.4.0
+    "@graspologic/react": "workspace:packages/libs/react"
+    "@graspologic/renderer": "workspace:packages/libs/renderer"
     "@types/dat.gui": ^0.7.5
     "@types/node": ^14.14.2
     dat.gui: ^0.7.7
@@ -2821,7 +2821,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderer-glsl@^0.4.0, @graspologic/renderer-glsl@workspace:packages/libs/renderer-glsl":
+"@graspologic/renderer-glsl@workspace:packages/libs/renderer-glsl":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderer-glsl@workspace:packages/libs/renderer-glsl"
   dependencies:
@@ -2831,17 +2831,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderer@^0.4.0, @graspologic/renderer@workspace:packages/libs/renderer":
+"@graspologic/renderer@workspace:packages/libs/renderer":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderer@workspace:packages/libs/renderer"
   dependencies:
     "@danmarshall/deckgl-typings": ^2.2.5
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
-    "@graspologic/animation": ^0.4.0
-    "@graspologic/graph": ^0.4.0
-    "@graspologic/memstore": ^0.4.0
-    "@graspologic/renderer-glsl": ^0.4.0
+    "@graspologic/animation": "workspace:packages/libs/animation"
+    "@graspologic/graph": "workspace:packages/libs/graph"
+    "@graspologic/memstore": "workspace:packages/libs/memstore"
+    "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
     "@luma.gl/constants": ^7.3.2
     "@luma.gl/core": ^7.3.2
     "@luma.gl/webgl": ^7.3.2
@@ -2869,14 +2869,14 @@ __metadata:
     "@babel/preset-env": ^7.12.1
     "@essex/scripts": ^11.0.1
     "@essex/storybook-config": ^11.0.0
-    "@graspologic/graph": ^0.4.0
-    "@graspologic/layout-core": ^0.4.0
-    "@graspologic/layout-fa2": ^0.4.0
-    "@graspologic/layout-openord": ^0.4.0
-    "@graspologic/react": ^0.4.0
-    "@graspologic/render-controls-react": ^0.4.0
-    "@graspologic/renderer": ^0.4.0
-    "@graspologic/testdata": ^0.4.0
+    "@graspologic/graph": "workspace:packages/libs/graph"
+    "@graspologic/layout-core": "workspace:packages/libs/layout-core"
+    "@graspologic/layout-fa2": "workspace:packages/libs/layout-fa2"
+    "@graspologic/layout-openord": "workspace:packages/libs/layout-openord"
+    "@graspologic/react": "workspace:packages/libs/react"
+    "@graspologic/render-controls-react": "workspace:packages/libs/controls-react"
+    "@graspologic/renderer": "workspace:packages/libs/renderer"
+    "@graspologic/testdata": "workspace:packages/libs/testdata"
     "@storybook/addon-a11y": ^6.0.26
     "@storybook/addon-actions": ^6.0.26
     "@storybook/addon-docs": ^6.0.26
@@ -2902,12 +2902,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/testdata@^0.4.0, @graspologic/testdata@workspace:packages/libs/testdata":
+"@graspologic/testdata@workspace:packages/libs/testdata":
   version: 0.0.0-use.local
   resolution: "@graspologic/testdata@workspace:packages/libs/testdata"
   dependencies:
     "@essex/scripts": ^11.0.1
-    "@graspologic/graph": ^0.4.0
+    "@graspologic/graph": "workspace:packages/libs/graph"
     "@types/node": ^14.14.2
     typedoc: 0.19.2
     typescript: ^4.0.3
