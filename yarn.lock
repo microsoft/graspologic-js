@@ -2715,9 +2715,11 @@ __metadata:
     "@essex/prettier-config": ^10.0.0
     "@essex/scripts": ^11.0.1
     "@types/enzyme": ^3.10.7
+    "@types/eslint": ^7
     "@types/invariant": ^2.2.34
     "@types/jest": ^26.0.15
     "@types/node": ^14.14.2
+    "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^4.5.0
     "@typescript-eslint/parser": ^4.5.0
     "@yarnpkg/pnpify": ^2.3.3
@@ -2726,12 +2728,14 @@ __metadata:
     dts-bundle: ^0.7.3
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.5
+    eslint: ^7.11.0
     eslint-import-resolver-node: ^0.3.4
     husky: ^4.3.0
     jest-webgl-canvas-mock: ^0.2.3
     lint-staged: ^10.4.2
     luma.gl: ^7.3.2
     npm-run-all: ^4.1.5
+    prettier: ^2.1.2
     react: ^16.14.0
     react-dom: ^16.14.0
     regenerator-runtime: ^0.13.7
@@ -4573,6 +4577,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/eslint@npm:^7":
+  version: 7.2.4
+  resolution: "@types/eslint@npm:7.2.4"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: 281fbca931a7a9e4d9512cdb7f7ff92ecbc66362615712bb42f9fa7405b8cfad77e8fef35999c0533954effc0dfd153aa496bef08e3c160e0d89367166d7becb
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:*":
   version: 0.0.45
   resolution: "@types/estree@npm:0.0.45"
@@ -4799,7 +4813,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.3, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.6":
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.3, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.6":
   version: 7.0.6
   resolution: "@types/json-schema@npm:7.0.6"
   checksum: 820cabe35ac915b93e38b0c01957e5c49d7d9f69251dddfbf39af0ff4fe24f6e08b39e55603e0d212dea7bcaa383b1218b58a738d1c02013dc22df06547ff238
@@ -4950,7 +4964,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:^2.0.0":
+"@types/prettier@npm:^2, @types/prettier@npm:^2.0.0":
   version: 2.1.5
   resolution: "@types/prettier@npm:2.1.5"
   checksum: bc6271235d881fa49b2f03e8e9242a7be8ecbcdcffeb7e31347afd0343f5f5e372ce65fe257e44254156737935c9249c9722cbe991dfad9aab72056c6acdbdaa
