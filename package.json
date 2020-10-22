@@ -18,12 +18,12 @@
 		"start_all": "yarn workspaces foreach -piv run start",
 		"release_all": "yarn workspaces foreach run npm publish --tolerate-republish --access public",
 		"lint": "essex lint --docs",
-		"unit_test": "essex test --coverage",
+		"unit_test": "essex test --ci",
 		"prettify": "essex prettify",
 		"storybook": "yarn build:glsl && yarn start:storybook",
 		"build_glsl": "yarn build:glsl",
 		"git_is_clean": "essex git-is-clean",
-		"ci": "npm-run-all -s build_glsl -p build_all bundle_all lint unit_test -s git_is_clean"
+		"ci": "npm-run-all -s build_glsl -p build_all bundle_all lint unit_test -s  git_is_clean"
 	},
 	"engines": {
 		"node": ">= 12",
