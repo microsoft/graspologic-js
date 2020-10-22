@@ -12,5 +12,5 @@
 		"lib": ["esnext", "dom"],
 		"types": ["node", "jest"]
 	},
-	"include": ["./packages/libs/renderer/typings/deck.gl.d.ts"]
+	"include": ["./typings/deck.gl.d.ts"]
 }

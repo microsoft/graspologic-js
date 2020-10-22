@@ -107,6 +107,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
+            ["@danmarshall/deckgl-typings", "npm:2.2.5"],
             ["@essex/eslint-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/eslint-plugin", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/jest-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.2"],
@@ -6590,6 +6591,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@graspologic/monorepo", "workspace:."],
+            ["@danmarshall/deckgl-typings", "npm:2.2.5"],
             ["@essex/eslint-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/eslint-plugin", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/jest-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.2"],
