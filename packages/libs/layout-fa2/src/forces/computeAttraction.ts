@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Edge, Node, NodeStore, EdgeStore } from '@graspologic/graph'
 import { FA2Configuration } from '../types'
+import { Edge, Node, NodeStore, EdgeStore } from '@graspologic/graph'
 
 /**
  * @internal

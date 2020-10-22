@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { useMemo, useEffect } from 'react'
 import {
 	GraphRenderer,
 	UsesWebGL,
 	VertexSetRenderable,
 } from '@graspologic/renderer'
-import { useMemo, useEffect } from 'react'
 
 /**
  * Creates a VertexSetRenderable

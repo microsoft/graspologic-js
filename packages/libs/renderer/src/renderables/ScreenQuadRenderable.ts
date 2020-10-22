@@ -9,14 +9,9 @@ import { Renderable, RenderOptions } from '../types/internal'
 import { createIdFactory } from '../util/ids'
 import { DirtyableRenderable } from './Renderables'
 
-// @ts-ignore
-import screenQuadFS from './shaders/screenQuad.fs.glsl'
+import screenQuadFS from '@graspologic/renderer-glsl/dist/esm/shaders/screenQuad.fs.glsl'
+import screenQuadVS from '@graspologic/renderer-glsl/dist/esm/shaders/screenQuad.vs.glsl'
 
-// @ts-ignore
-import screenQuadVS from './shaders/screenQuad.vs.glsl'
-
-// We have no equivalent in the typings
-// @ts-ignore
 const getNextId = createIdFactory('ScreenQuadInstance')
 
 const CLEAR_FRAMEBUFFER_ARG = { color: [0, 0, 0, 0], depth: true }

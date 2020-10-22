@@ -2,6 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { setParameters } from 'luma.gl'
+import { ScreenQuadRenderable } from '../../renderables/ScreenQuadRenderable'
+import { DataStore, Scene, RenderConfiguration } from '../../types'
+import { Primitive, Renderable, RenderOptions } from '../../types/internal'
+import { Interpolator } from './Interpolator'
+import { Camera } from './camera'
 import {
 	Edge,
 	Node,
@@ -11,12 +17,6 @@ import {
 	NodeStore,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
-import { setParameters } from 'luma.gl'
-import { ScreenQuadRenderable } from '../../renderables/ScreenQuadRenderable'
-import { DataStore, Scene, RenderConfiguration } from '../../types'
-import { Primitive, Renderable, RenderOptions } from '../../types/internal'
-import { Interpolator } from './Interpolator'
-import { Camera } from './camera'
 
 /**
  * @internal

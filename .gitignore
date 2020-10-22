@@ -1,18 +1,31 @@
+# NodeJS Outputs
 node_modules
-lib/
-site
+packages/*/*/lib/
+packages/*/*/dist/
+packages/*/*/build/
+packages/*/*/storybook-static/
+packages/*/*/site/
+
+# Misc
 *.log
 .DS_Store
 tmp/
-coverage/
-test-report.xml
-report*.json
-build/
-dist/
-storybook-static/
-/performance
 .docz
 monaco-bundle
+
+# Test Output
+coverage/
+performance/
+test-report.xml
+report*.json
+
+# https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored
+.yarn/*
+!.yarn/cache
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
 
 # TODO: these screw with the typedoc generation - maybe just put them in docs/?
 # !**/dist/docs

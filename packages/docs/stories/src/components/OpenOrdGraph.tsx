@@ -4,10 +4,12 @@
  */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable @typescript-eslint/no-var-requires */
+import { memo, useMemo, useEffect, useRef } from 'react'
+import * as React from 'react'
+import colorizer from '../data/categoricalColorizer'
 import { GraphContainer, InputGraph } from '@graspologic/graph'
 import {
 	LayoutWorkerManager,
-	workerFactoryFromScript,
 } from '@graspologic/layout-core'
 import {
 	OpenOrdConfiguration,
@@ -26,13 +28,11 @@ import {
 	NodeSettings,
 } from '@graspologic/render-controls-react'
 import { GraphRenderer } from '@graspologic/renderer'
-import { memo, useMemo, useEffect, useRef } from 'react'
-import * as React from 'react'
-import colorizer from '../data/categoricalColorizer'
 
 // Worker content
-const workerScript = require('!!raw-loader!@graspologic/layout-openord/dist/openord_worker.js')
-	.default
+function getWorker() {
+	return require('worker-loader!@graspologic/layout-openord/src/worker').default()
+}
 
 export interface OpenOrdGraphProps {
 	data: InputGraph
@@ -76,7 +76,7 @@ OpenOrdGraph.displayName = 'OpenOrdGraph'
 function useOpenOrdLayoutManager() {
 	return useMemo<
 		LayoutWorkerManager<OpenOrdConfiguration, OpenOrdTickProgress>
-	>(() => new LayoutWorkerManager(workerFactoryFromScript(workerScript)), [])
+	>(() => new LayoutWorkerManager(getWorker), [])
 }
 
 function useInternedGraphData(data: InputGraph) {

@@ -2,6 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { action } from '@storybook/addon-actions'
+import { storiesOf } from '@storybook/react'
+import * as React from 'react'
+import colorizer from './data/categoricalColorizer'
+import processGraphJson from './data/processGraphJson'
 import { Shape } from '@graspologic/graph'
 import {
 	Axes,
@@ -19,11 +24,6 @@ import {
 	NodeSettings,
 	EdgeSettings,
 } from '@graspologic/render-controls-react'
-import { action } from '@storybook/addon-actions'
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
-import colorizer from './data/categoricalColorizer'
-import processGraphJson from './data/processGraphJson'
 
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -44,7 +44,7 @@ storiesOf('Simple 2D Examples', module)
 				data={{
 					nodes: [
 						{
-							category: 1,
+							group: '1',
 							id: 'A',
 							label: 'A',
 							weight: 10.0,
@@ -52,7 +52,7 @@ storiesOf('Simple 2D Examples', module)
 							y: 100.9663430468361,
 						},
 						{
-							category: 2,
+							group: '2',
 							id: 'B',
 							label: 'B',
 							weight: 50.0,
@@ -60,7 +60,7 @@ storiesOf('Simple 2D Examples', module)
 							y: -96.58517255185609,
 						},
 						{
-							category: 3,
+							group: '3',
 							id: 'C',
 							label: 'C',
 							weight: 100.0,
@@ -68,7 +68,7 @@ storiesOf('Simple 2D Examples', module)
 							y: -120.15483189996596,
 						},
 						{
-							category: 4,
+							group: '4',
 							id: 'D',
 							label: 'D',
 							weight: 1.0,
@@ -164,7 +164,7 @@ storiesOf('Simple 2D Examples', module)
 				data={{
 					nodes: [
 						{
-							category: 1,
+							group: '1',
 							id: 'CIRCLE',
 							label: 'CIRCLE',
 							shape: Shape.Circle,
@@ -172,7 +172,7 @@ storiesOf('Simple 2D Examples', module)
 							y: 0,
 						},
 						{
-							category: 2,
+							group: '2',
 							id: 'SQUARE',
 							label: 'SQUARE',
 							shape: Shape.Square,
@@ -180,7 +180,7 @@ storiesOf('Simple 2D Examples', module)
 							y: 0,
 						},
 						{
-							category: 3,
+							group: '3',
 							id: 'DIAMOND',
 							label: 'DIAMOND',
 							shape: Shape.Diamond,

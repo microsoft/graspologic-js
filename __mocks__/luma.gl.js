@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-const luma = jest.genMockFromModule('luma.gl')
+const luma = jest.createMockFromModule('luma.gl')
 
 luma.createGLContext = () => ({
 	canvas: {

@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer } from '@graspologic/graph'
 import { Subject, Observable, Subscription } from 'rxjs'
 import { TickingClock } from '../clock'
+import { GraphContainer } from '@graspologic/graph'
 
 /**
  * @internal

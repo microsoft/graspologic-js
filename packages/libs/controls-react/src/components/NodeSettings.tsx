@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRendererContext } from '@graspologic/react'
-import { attachNodeSettings } from '@graspologic/render-controls'
 import * as React from 'react'
 import { memo, useContext, useEffect } from 'react'
 import { DatGuiContext } from '../context'
+import { GraphRendererContext } from '@graspologic/react'
+import { attachNodeSettings } from '@graspologic/render-controls'
 
 export interface NodeSettingsProps {
 	/**

@@ -3,6 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
+import React, { useState, useCallback, useMemo, useRef } from 'react'
+import DEFAULT_COLORIZER from '../data/categoricalColorizer'
+import { getRandomArbitrary, getRandomInt } from '../utils'
 import { InputGraph } from '@graspologic/graph'
 import {
 	GraphView,
@@ -10,14 +13,15 @@ import {
 	Nodes,
 	HighlightHoveredNode,
 } from '@graspologic/react'
-import { PositionMap, Colorizer, GraphRenderer } from '@graspologic/renderer'
-import React, { useState, useCallback, useMemo, useRef } from 'react'
-import DEFAULT_COLORIZER from '../data/categoricalColorizer'
-import { getRandomArbitrary, getRandomInt } from '../utils'
+import {
+	PositionMap,
+	NodeComponentColorizer,
+	GraphRenderer,
+} from '@graspologic/renderer'
 const FPSStats = require('react-fps-stats').default
 
 interface StressTestVertices2DProps {
-	colorizer?: Colorizer
+	colorizer?: NodeComponentColorizer
 }
 
 export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
@@ -36,7 +40,7 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 				id: `node-${i}`,
 				x: getRandomArbitrary(-1500, 1500),
 				y: getRandomArbitrary(-1500, 1500),
-				category: i % 20,
+				group: `${i % 20}`,
 				shape: getRandomInt(0, 2),
 				weight: 10,
 			})

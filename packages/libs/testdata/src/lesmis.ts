@@ -358,7 +358,7 @@ export function lesMisGraph(): InputGraph {
 		nodeIndexToId[idx] = n.name
 		result.nodes.push({
 			id: n.name,
-			category: n.group,
+			group: `${n.group}`,
 		})
 	})
 

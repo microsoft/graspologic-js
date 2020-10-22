@@ -7,9 +7,12 @@
 		"David Tittsworth (datittsw@microsoft.com)",
 		"Nathan Evans (naevans@microsoft.com)"
 	],
-	"main": "dist/cjs/index.js",
-	"module": "dist/esm/index.js",
-	"types": "dist/types/index.d.ts",
+	"main": "src/index.ts",
+	"publishConfig": {
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
+		"types": "dist/types/index.d.ts"
+	},
 	"license": "MIT",
 	"scripts": {
 		"bundle_types": "node ../../../scripts/bundleTypes",
@@ -19,10 +22,20 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/react": "^0.4.0",
-		"@graspologic/renderer": "^0.4.0",
+		"@graspologic/react": "workspace:packages/libs/react",
+		"@graspologic/renderer": "workspace:packages/libs/renderer",
 		"@types/dat.gui": "^0.7.5",
 		"dat.gui": "^0.7.7",
-		"typedoc": "0.17.8"
+		"typedoc": "0.19.2"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^11.0.1",
+		"@types/node": "^14.14.2",
+		"npm-run-all": "^4.1.5"
+	},
+	"peerDependencies": {
+		"@types/node": "*",
+		"core-js": "^3.6.5",
+		"regenerator-runtime": "^0.13.7"
 	}
 }

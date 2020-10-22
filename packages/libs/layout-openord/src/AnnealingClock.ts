@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { TickingClock } from '@graspologic/layout-core'
 import { AnnealingPhase, PhaseSchedule } from './types'
+import { TickingClock } from '@graspologic/layout-core'
 
 /**
  * @internal

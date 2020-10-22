@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Node } from '@graspologic/graph'
 import { FA2Configuration } from '../../types'
+import { Node } from '@graspologic/graph'
 
 /**
  * @internal

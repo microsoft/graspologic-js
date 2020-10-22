@@ -2,14 +2,14 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { useContext, useEffect, useMemo } from 'react'
+import { GraphRendererContext } from '../../GraphView/context'
 import {
 	VertexSetRenderable,
 	GraphRenderer,
 	UsesWebGL,
 	ColorVector,
 } from '@graspologic/renderer'
-import { useContext, useEffect, useMemo } from 'react'
-import { GraphRendererContext } from '../../GraphView/context'
 
 /**
  * Adds a renderable to GraphView which will highlight nodes as they are hovered over

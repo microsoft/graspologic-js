@@ -2,13 +2,13 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Node, GraphContainer } from '@graspologic/graph'
 import { Observable, Subscription } from 'rxjs'
 import { Camera } from '../../renderer/delegates'
 import { PropertyChangeHandler } from '../../util'
 import { CameraAdjustmentMode } from '../camera'
-import { PositionMap, Colorizer, ColorVector } from './graphData'
+import { PositionMap, NodeComponentColorizer, ColorVector } from './graphData'
 import { Scene } from './scene'
+import { Node, GraphContainer } from '@graspologic/graph'
 
 /**
  * The set of graph renderer configuration options
@@ -327,7 +327,7 @@ export interface GraphRenderer {
 	 * @param data The graph to load
 	 * @param colorizer The colorizer function which determines the color of a node
 	 */
-	load(data: GraphContainer, colorizer?: Colorizer): void
+	load(data: GraphContainer, colorizer?: NodeComponentColorizer): void
 
 	/**
 	 * Changes the position of the given nodes

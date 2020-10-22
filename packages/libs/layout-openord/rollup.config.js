@@ -3,32 +3,36 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import path from 'path'
-import commonJs from '@rollup/plugin-commonjs'
+import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-// import { terser } from 'rollup-plugin-terser'
+import sucrase from '@rollup/plugin-sucrase'
+import { terser } from 'rollup-plugin-terser'
 
-const rollupConfig = [
-	{
-		input: path.join(__dirname, 'dist/esm/worker.js'),
+function createConfig(minified) {
+	return {
+		input: path.join(__dirname, 'src/worker.ts'),
 		output: {
-			file: path.join(__dirname, 'dist/openord_worker.js'),
+			file:
+				path.join(__dirname, 'dist/openord_worker') +
+				(minified ? '.min.js' : '.js'),
 			format: 'iife',
 		},
 		plugins: [
+			sucrase({ transforms: ['typescript'] }),
 			replace({
 				values: { 'process.env.NODE_ENV': JSON.stringify('production') },
 				delimiters: ['', ''],
 			}),
 			resolve({
 				rootDir: path.join(process.cwd(), '../../..'),
+				extensions: ['.js', '.ts'],
 			}),
-			commonJs({
-				include: [/core-js/],
-			}),
-			// terser(),
-		],
-	},
-]
+			commonjs({ extensions: ['.js', '.ts'], include: [/core-js/] }),
+			minified ? terser() : undefined,
+		].filter(t => !!t),
+	}
+}
 
+const rollupConfig = [createConfig(true), createConfig(false)]
 export default rollupConfig

@@ -3,15 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
-import { AnimationUtil, createAnimationUtil } from '@graspologic/animation'
-import {
-	Node,
-	Edge,
-	nodeType,
-	edgeType,
-	GraphContainer,
-} from '@graspologic/graph'
-import { ReaderStore } from '@graspologic/memstore'
 import { AnimationLoop, createGLContext } from 'luma.gl'
 import { Subject, Observable } from 'rxjs'
 import { createConfiguration } from '../RenderConfiguration'
@@ -19,7 +10,7 @@ import { processGraph } from '../data'
 import { DEFAULT_WIDTH, DEFAULT_HEIGHT } from '../defaults'
 import { NodesRenderable, EdgesRenderable } from '../renderables'
 import {
-	Colorizer,
+	NodeComponentColorizer,
 	Scene,
 	PositionMap,
 	InitializeHandler,
@@ -33,6 +24,15 @@ import {
 } from '../types'
 import { fastDebounce } from '../util'
 import { Camera, Scenegraph, createDataStore } from './delegates'
+import { AnimationUtil, createAnimationUtil } from '@graspologic/animation'
+import {
+	Node,
+	Edge,
+	nodeType,
+	edgeType,
+	GraphContainer,
+} from '@graspologic/graph'
+import { ReaderStore } from '@graspologic/memstore'
 
 // typings are messed up for this
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -324,7 +324,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 * @param data The graph to load
 	 * @param colorizer The colorizer function which determines the color of a node
 	 */
-	public load(data: GraphContainer, colorizer?: Colorizer): void {
+	public load(data: GraphContainer, colorizer?: NodeComponentColorizer): void {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
 		// normalize weights and color nodes

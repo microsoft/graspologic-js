@@ -3,10 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 // @ts-ignore
-import { readTween, restartTween } from '@graspologic/animation'
-import { NodeStore, Node } from '@graspologic/graph'
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { readPixelsToArray } from '@luma.gl/core'
+// @ts-ignore
 import { cssToDevicePixels } from '@luma.gl/webgl'
 import { Model, decodePickingColor, Buffer, encodePickingColor } from 'luma.gl'
 import { Subject, Observable } from 'rxjs'
@@ -16,10 +16,10 @@ import { RenderOptions } from '../../types/internal'
 import { PropertyContainer } from '../../util/Properties'
 import { createIdFactory } from '../../util/ids'
 import { DirtyableRenderable } from '../Renderables'
-
-// @ts-ignore
-import nodeVS from '../shaders/node.vs.glsl'
 import createModel from './model'
+import { readTween, restartTween } from '@graspologic/animation'
+import { NodeStore, Node } from '@graspologic/graph'
+import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214

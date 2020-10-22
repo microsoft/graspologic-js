@@ -2,6 +2,14 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { action } from '@storybook/addon-actions'
+import { number, boolean, withKnobs } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React, { useCallback, useRef, useState } from 'react'
+import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
+import colorizer from './data/categoricalColorizer'
+import processGraphJson from './data/processGraphJson'
+import { getRandomArbitrary } from './utils'
 import { InputGraph, InputNode, Node } from '@graspologic/graph'
 import {
 	Axes,
@@ -40,14 +48,6 @@ import {
 	GraphRenderer,
 	ColorVector,
 } from '@graspologic/renderer'
-import { action } from '@storybook/addon-actions'
-import { number, boolean } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
-import React, { useCallback, useRef, useState } from 'react'
-import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
-import colorizer from './data/categoricalColorizer'
-import processGraphJson from './data/processGraphJson'
-import { getRandomArbitrary } from './utils'
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	require('@graspologic/testdata/data/testGraph.json'),
@@ -61,6 +61,7 @@ const VWIDTH_RANGE = { range: true, min: 0.1, max: 10, step: 0.01 }
 const HIGHLIGHT_IDS = ['3_344', '0_249', '5_534', '5_552']
 
 storiesOf('Interactive 2D Examples', module)
+	.addDecorator(withKnobs)
 	.add('can change render properties', () => {
 		const nodeCat = 'NODES'
 		const edgeCat = 'EDGES'
@@ -420,7 +421,7 @@ storiesOf('Interactive 2D Examples', module)
 						data={{
 							nodes: [
 								{
-									category: 1,
+									group: '1',
 									id: '5',
 									label: 'Should be 5px',
 									x: -20000,
@@ -428,7 +429,7 @@ storiesOf('Interactive 2D Examples', module)
 									weight: 10,
 								},
 								{
-									category: 2,
+									group: '2',
 									id: '10',
 									label: 'Should be 10px',
 									x: 20000,

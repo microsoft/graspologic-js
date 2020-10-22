@@ -76,7 +76,7 @@ import {
 export default	() => {
 	const data = useMemo(() => getMyGraphData(), [])
 
-	// A function which takes a "category" property from a node and returns a color
+	// A function which takes a "group" property from a node and returns a color
 	const categoricalColorizer = useMemo(() => createColorizer(), [])
 	const [nodeIds, setNodeIds] = useState<string[]>([])
 	const handleVertexClick = useCallback(

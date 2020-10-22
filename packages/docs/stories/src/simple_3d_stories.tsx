@@ -2,6 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { boolean } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import * as React from 'react'
+import colorizer from './data/categoricalColorizer'
+import processGraphJson from './data/processGraphJson'
 import {
 	GraphView,
 	Camera,
@@ -9,11 +14,6 @@ import {
 	Nodes,
 	Edges,
 } from '@graspologic/react'
-import { boolean } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
-import colorizer from './data/categoricalColorizer'
-import processGraphJson from './data/processGraphJson'
 
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -58,7 +58,7 @@ storiesOf('Simple 3D Examples', module)
 				data={{
 					nodes: [
 						{
-							category: 1,
+							group: '1',
 							id: 'A',
 							label: 'A',
 							weight: 10.0,
@@ -67,7 +67,7 @@ storiesOf('Simple 3D Examples', module)
 							z: 50,
 						},
 						{
-							category: 2,
+							group: '2',
 							id: 'B',
 							label: 'B',
 							weight: 50.0,
@@ -76,7 +76,7 @@ storiesOf('Simple 3D Examples', module)
 							z: -25,
 						},
 						{
-							category: 3,
+							group: '3',
 							id: 'C',
 							label: 'C',
 							weight: 100.0,
@@ -85,7 +85,7 @@ storiesOf('Simple 3D Examples', module)
 							z: 30,
 						},
 						{
-							category: 4,
+							group: '4',
 							id: 'D',
 							label: 'D',
 							weight: 1.0,

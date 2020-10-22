@@ -2,15 +2,15 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { EdgeImpl, AnimatableEdgeImpl } from './impl'
+import { edgeMemoryLayout } from './layout'
+import { EdgeStore, EdgeStoreConfig } from './types'
 import {
 	ArrayStoreImpl,
 	SlotAllocator,
 	ArrayStore,
 	ReaderStoreImpl,
 } from '@graspologic/memstore'
-import { EdgeImpl, AnimatableEdgeImpl } from './impl'
-import { edgeMemoryLayout } from './layout'
-import { EdgeStore, EdgeStoreConfig } from './types'
 
 /**
  * @internal

@@ -6,26 +6,33 @@ import path from 'path'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-// import { terser } from 'rollup-plugin-terser'
+import sucrase from '@rollup/plugin-sucrase'
+import { terser } from 'rollup-plugin-terser'
 
-const rollupConfig = [
-	{
-		input: path.join(__dirname, 'dist/esm/worker.js'),
+const rollupConfig = [createConfig(true), createConfig(false)]
+export default rollupConfig
+
+function createConfig(minified) {
+	return {
+		input: path.join(__dirname, 'src/worker.ts'),
 		output: {
-			file: path.join(__dirname, 'dist/fa2_worker.js'),
+			file:
+				path.join(__dirname, 'dist/fa2_worker') +
+				(minified ? '.min.js' : '.js'),
 			format: 'iife',
 		},
 		plugins: [
+			sucrase({ transforms: ['typescript'] }),
 			replace({
 				values: { 'process.env.NODE_ENV': JSON.stringify('production') },
 				delimiters: ['', ''],
 			}),
 			resolve({
 				rootDir: path.join(process.cwd(), '../../..'),
+				extensions: ['.js', '.ts'],
 			}),
-			commonjs(),
-			//			terser(),
-		],
-	},
-]
-export default rollupConfig
+			commonjs({ extensions: ['.js', '.ts'], include: [/core-js/] }),
+			minified ? terser() : undefined,
+		].filter(t => !!t),
+	}
+}

@@ -3,16 +3,16 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable no-restricted-globals */
+import { Subscription } from 'rxjs'
+import { FA2LayoutExecutor } from './FA2LayoutExecutor'
+import { createInstance } from './factory'
+import { FA2Configuration } from './types'
 import { GraphContainer } from '@graspologic/graph'
 import {
 	WorkerMessage,
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
-import { Subscription } from 'rxjs'
-import { FA2LayoutExecutor } from './FA2LayoutExecutor'
-import { createInstance } from './factory'
-import { FA2Configuration } from './types'
 
 /**
  * The ForceAtlas2 layout worker

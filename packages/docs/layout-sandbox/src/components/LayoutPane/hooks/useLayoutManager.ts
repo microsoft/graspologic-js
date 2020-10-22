@@ -4,17 +4,17 @@
  */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { LayoutWorkerManager } from '@graspologic/layout-core'
-import {
-	OpenOrdConfiguration,
-	OpenOrdTickProgress,
-} from '@graspologic/layout-openord'
 import { useMemo, useEffect, useContext } from 'react'
 import { LayoutAlgorithm } from '../../../types'
 import {
 	OpenOrdConfigurationContext,
 	FA2ConfigurationContext,
 } from '../../context'
+import { LayoutWorkerManager } from '@graspologic/layout-core'
+import {
+	OpenOrdConfiguration,
+	OpenOrdTickProgress,
+} from '@graspologic/layout-openord'
 
 declare const require: any
 
@@ -26,21 +26,17 @@ export function useLayoutManager(
 	return manager
 }
 
+function getWorker(algorithm: LayoutAlgorithm) {
+	return algorithm === LayoutAlgorithm.OpenOrd
+		? require('worker-loader!@graspologic/layout-openord/src/worker').default()
+		: require('worker-loader!@graspologic/layout-fa2/src/worker').default()
+}
+
 function useOpenOrdManagerInstance(
 	algorithm: LayoutAlgorithm,
 ): LayoutWorkerManager<OpenOrdConfiguration, OpenOrdTickProgress> {
 	return useMemo(() => {
-		const workerText =
-			algorithm === LayoutAlgorithm.OpenOrd
-				? require('!!raw-loader!@graspologic/layout-openord/dist/openord_worker.js')
-						.default
-				: require('!!raw-loader!@graspologic/layout-fa2/dist/fa2_worker.js')
-						.default
-
-		const workerBlob = getBlobFromText(workerText)
-		return new LayoutWorkerManager(
-			() => new Worker(window.URL.createObjectURL(workerBlob)),
-		)
+		return new LayoutWorkerManager(() => getWorker(algorithm))
 	}, [algorithm])
 }
 

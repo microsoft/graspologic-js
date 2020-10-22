@@ -3,16 +3,16 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable no-restricted-globals */
+import { Subscription } from 'rxjs'
+import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
+import { createInstance } from './factory'
+import { OpenOrdConfiguration } from './types'
 import { GraphContainer } from '@graspologic/graph'
 import {
 	WorkerMessage,
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
-import { Subscription } from 'rxjs'
-import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
-import { createInstance } from './factory'
-import { OpenOrdConfiguration } from './types'
 
 let executor: OpenOrdLayoutExecutor | undefined
 let subscription: Subscription | undefined

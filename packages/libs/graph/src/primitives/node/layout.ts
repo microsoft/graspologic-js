@@ -22,7 +22,6 @@ export const nodeType = Symbol('@graspologic::node')
 export const ADDITIONAL_NODE_PROPS: PropertySpecification[] = [
 	'id',
 	'group',
-	'category',
 	'label',
 	'data',
 	{ name: 'mass', ephemeral: true, initialValue: 0 },
@@ -45,7 +44,6 @@ export const nodeMemoryLayout = createLayoutBuilder()
 		aliases: [{ name: 'size', type: AttributeType.Float32 }],
 	})
 	.addUint8('fixed')
-	.addUint32('community')
 
 	// Colors
 	.addUint32('color')

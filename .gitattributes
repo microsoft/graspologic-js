@@ -1,1 +1,13 @@
-* eol=lf
+* text=lf
+*.txt text
+*.js text
+*.json text
+*.cjs text
+*.mjs text
+*.ts text
+*.tsx text
+*.md text
+*.gql text
+*.yml text
+*.html text
+*.glsl text

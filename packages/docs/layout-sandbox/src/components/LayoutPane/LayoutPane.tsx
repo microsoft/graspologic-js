@@ -2,7 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer } from '@graspologic/renderer'
 import React, { memo, useRef, useMemo, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { LayoutAlgorithm } from '../../types'
@@ -14,6 +13,7 @@ import { useDensityGridSnapshot } from './hooks/useDensityGridSnapshot'
 import { useLayoutManager } from './hooks/useLayoutManager'
 import { useLayoutPositionChanges } from './hooks/useLayoutPositionChanges'
 import { useLayoutProgress } from './hooks/useLayoutProgress'
+import { GraphRenderer } from '@graspologic/renderer'
 
 export interface LayoutPaneProps {
 	iterative: boolean

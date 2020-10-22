@@ -39,9 +39,9 @@ export function usePixelPainter(
 	return usePaintPixelFunction(
 		snapshot,
 		ctx,
-		scale,
-		xScale,
-		yScale,
+		scale as (input: number) => number,
+		xScale as (input: number) => number,
+		yScale as (input: number) => number,
 		pixelDimensions,
 	)
 }

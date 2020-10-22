@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { WebGLGraphRenderer, GraphRenderer } from '@graspologic/renderer'
 import * as React from 'react'
 import { useRef, useEffect, useState } from 'react'
+import { WebGLGraphRenderer, GraphRenderer } from '@graspologic/renderer'
 
 /**
  * Creates a new GraphRenderer instance
