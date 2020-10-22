@@ -2715,11 +2715,11 @@ __metadata:
     "@essex/prettier-config": ^10.0.0
     "@essex/scripts": ^11.0.1
     "@types/enzyme": ^3.10.7
-    "@types/eslint": ^7
+    "@types/eslint": ^7.2.4
     "@types/invariant": ^2.2.34
     "@types/jest": ^26.0.15
     "@types/node": ^14.14.2
-    "@types/prettier": ^2
+    "@types/prettier": ^2.1.5
     "@typescript-eslint/eslint-plugin": ^4.5.0
     "@typescript-eslint/parser": ^4.5.0
     "@yarnpkg/pnpify": ^2.3.3
@@ -4578,7 +4578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^7":
+"@types/eslint@npm:^7.2.4":
   version: 7.2.4
   resolution: "@types/eslint@npm:7.2.4"
   dependencies:
@@ -4965,7 +4965,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:^2, @types/prettier@npm:^2.0.0":
+"@types/prettier@npm:^2.0.0, @types/prettier@npm:^2.1.5":
   version: 2.1.5
   resolution: "@types/prettier@npm:2.1.5"
   checksum: bc6271235d881fa49b2f03e8e9242a7be8ecbcdcffeb7e31347afd0343f5f5e372ce65fe257e44254156737935c9249c9722cbe991dfad9aab72056c6acdbdaa
