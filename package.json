@@ -76,7 +76,8 @@
 		"@types/react-dom": "16.9.8",
 		"react": "16.14.0",
 		"react-dom": "16.14.0",
-		"react-is": "16.13.1"
+		"react-is": "16.13.1",
+		"@essex/alpha-build-utils": "portal:/C:/Users/datittsw/windows_projects/essex-alpha-build-infra"
 	},
 	"workspaces": [
 		"packages/*/*"

@@ -4,11 +4,10 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
+// @ts-ignore
 import { Model, Geometry, picking } from 'luma.gl'
 
-import { uint32ColorTypeMapping } from '../../data'
-import { adaptMemoryLayoutToLuma } from '../../util'
-import { tween } from '../shaders/modules'
+import { tween, adaptMemoryLayoutToLuma, uint32ColorTypeMapping } from '@graspologic/luma-utils'
 import { nodeMemoryLayout } from '@graspologic/graph'
 import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
 

@@ -1,0 +1,21 @@
+{
+    "name": "@graspologic/utils",
+    "main": "src/index.ts",
+    "publishConfig": {
+        "main": "dist/cjs/index.js",
+        "module": "dist/esm/index.js",
+        "types": "dist/types/index.d.ts"
+    },
+    "author": "Chris Trevino (chtrevin@microsoft.com)",
+    "contributors": [
+        "David Tittsworth (datittsw@microsoft.com)"
+    ],
+    "scripts": {
+        "clean": "essex clean lib dist",
+        "bundle_types": "node ../../../scripts/bundleTypes",
+        "bundle_lib": "essex bundle --rollup",
+        "build_lib": "essex build --docs",
+        "build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
+        "start": "essex watch"
+    }
+}

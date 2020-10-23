@@ -4,21 +4,20 @@
  */
 // @ts-ignore
 import * as GL from '@luma.gl/constants'
-// @ts-ignore
 import { readPixelsToArray } from '@luma.gl/core'
 // @ts-ignore
 import { cssToDevicePixels } from '@luma.gl/webgl'
+// @ts-ignore
 import { Model, decodePickingColor, Buffer, encodePickingColor } from 'luma.gl'
-import { Subject, Observable } from 'rxjs'
-import { processMinMaxBounds } from '../../data/util'
-import { RenderConfiguration, Bounds3D } from '../../types'
-import { RenderOptions } from '../../types/internal'
-import { PropertyContainer } from '../../util/Properties'
-import { createIdFactory } from '../../util/ids'
-import { DirtyableRenderable } from '../Renderables'
-import createModel from './model'
+
 import { readTween, restartTween } from '@graspologic/animation'
 import { NodeStore, Node } from '@graspologic/graph'
+import { createIdFactory } from '@graspologic/luma-utils'
+import { DirtyableRenderable } from '@graspologic/renderables-base'
+import { processMinMaxBounds, Bounds3D } from '@graspologic/utils'
+import { RenderOptions } from '@graspologic/renderables-base'
+
+import createModel from './model'
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 
 const getNextId = createIdFactory('NodesInstance')
@@ -34,13 +33,9 @@ export class NodesRenderable extends DirtyableRenderable {
 	private readonly translucentModelBuffer: Buffer
 	private tweenUntil = 0
 	private needsDataBind = true
-	private _data = new PropertyContainer<NodeStore | undefined>(
-		undefined,
-		() => false,
-	)
+	private _data: NodeStore | undefined
 
-	private _onNodeHoveredEvent = new Subject<Node | undefined>()
-	private pickingSelectedColor: any | undefined
+	private pickingSelectedColor: number[] | undefined
 
 	/**
 	 * Constructor
@@ -52,7 +47,7 @@ export class NodesRenderable extends DirtyableRenderable {
 	public constructor(
 		gl: WebGLRenderingContext,
 		private engineTime: () => number,
-		protected config: RenderConfiguration,
+		protected config: any /*RenderConfiguration*/,
 		id = getNextId(),
 	) {
 		super()
@@ -76,18 +71,13 @@ export class NodesRenderable extends DirtyableRenderable {
 		config.onNodeOutlineChanged(this.makeDirtyHandler)
 		config.onDrawNodesChanged(this.makeDirtyHandler)
 		config.onHideNodesOnMoveChanged(this.makeDirtyHandler)
-
-		this._data.onChange.subscribe(() => {
-			this.bindDataToModel(true)
-			this.setNeedsRedraw(true)
-		})
 	}
 
 	/**
 	 * Gets the node data that should be rendered
 	 */
 	public get data(): NodeStore | undefined {
-		return this._data.value
+		return this._data
 	}
 
 	/**
@@ -95,15 +85,18 @@ export class NodesRenderable extends DirtyableRenderable {
 	 */
 	public set data(value: NodeStore | undefined) {
 		// We attach this here, because in the onChange handler it is fired after the changes happen
-		if (value !== this._data.value && value) {
+		if (value !== this._data && value) {
 			value.onAttributeUpdated(this.handleNodeAttributeUpdated)
 			value.onAddItem(this.handleNodeAdded)
 			value.onRemoveItem(this.handleNodeRemoved)
 			for (const node of value) {
 				this.handleNodeAdded(node)
 			}
+
+			this.bindDataToModel(true)
+			this.setNeedsRedraw(true)
 		}
-		this._data.value = value
+		this._data = value
 	}
 
 	/**
@@ -145,14 +138,14 @@ export class NodesRenderable extends DirtyableRenderable {
 			if (pickingSelectedColor !== null) {
 				this.pickingSelectedColor = pickingSelectedColor
 				const idx = decodePickingColor(this.pickingSelectedColor)
-				this._onNodeHoveredEvent.next(
-					idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
+				this.dispatchEvent(new CustomEvent("nodeHovered", {
+					detail: idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
 						? this.data?.itemAt(idx)
-						: undefined,
-				)
+						: undefined
+				}));
 			} else {
 				this.pickingSelectedColor = undefined
-				this._onNodeHoveredEvent.next()
+				this.dispatchEvent(new CustomEvent("nodeHovered", {}));
 			}
 		}
 		return this.pickingSelectedColor
@@ -209,13 +202,6 @@ export class NodesRenderable extends DirtyableRenderable {
 	}
 
 	/**
-	 * Gets an observable representing when a node has been hovered on
-	 */
-	public get onNodeHovered(): Observable<Node | undefined> {
-		return this._onNodeHoveredEvent
-	}
-
-	/**
 	 * Computes the bounds of the nodes
 	 */
 	public computeDomain(): Bounds3D | undefined {
@@ -223,7 +209,7 @@ export class NodesRenderable extends DirtyableRenderable {
 		let hasWeights = false
 		// Below is a little more complicated to allow us to set the initial bounds
 		// to the first primitives bounds, without doing a "first" check each time
-		const iterator = this._data.value![Symbol.iterator]()
+		const iterator = this._data![Symbol.iterator]()
 		if (iterator) {
 			let result = iterator.next()
 			if (result.value) {
@@ -277,11 +263,11 @@ export class NodesRenderable extends DirtyableRenderable {
 			updated = forceAll || this.needsDataBind
 			if (updated) {
 				this.needsDataBind = false
-				const uint8 = this._data.value!.store.uint8Array
+				const uint8 = this._data!.store.uint8Array
 				this.modelBuffer.setData(uint8)
 				this.translucentModelBuffer.setData(uint8)
 
-				const instanceCount = this._data.value!.store.count
+				const instanceCount = this._data!.store.count
 				this.model.setInstanceCount(instanceCount)
 				this.translucentModel.setInstanceCount(instanceCount)
 			}
@@ -402,7 +388,7 @@ export class NodesRenderable extends DirtyableRenderable {
 	 * @param color1 The first picking color
 	 * @param color2 The second picking color
 	 */
-	private _comparePickingColors(color1: number[], color2: number[]) {
+	private _comparePickingColors(color1: number[] | undefined, color2: number[] | undefined) {
 		if (color1 && color2) {
 			return (
 				color1[0] === color2[0] &&
