@@ -2,11 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
-import * as GL from '@luma.gl/constants'
-// @ts-ignore
-import { Buffer } from 'luma.gl'
+import { Buffer } from '@luma.gl/core/dist/esm'
 import { MemoryLayout, AttributeType } from '@graspologic/memstore'
+import { GL_UNSIGNED_BYTE, GL_FLOAT, GL_UNSIGNED_INT } from './glConstants'
 
 /**
  * Returns the appropriate GL type representing the given Attribute Type
@@ -14,11 +12,11 @@ import { MemoryLayout, AttributeType } from '@graspologic/memstore'
  */
 function getGLTypeFromAttributeType(type: AttributeType): number {
 	if (type === AttributeType.Float32) {
-		return GL.FLOAT
+		return GL_FLOAT
 	} else if (type === AttributeType.Uint32) {
-		return GL.UNSIGNED_INT
+		return GL_UNSIGNED_INT
 	}
-	return GL.UNSIGNED_BYTE
+	return GL_UNSIGNED_BYTE
 }
 
 /**
@@ -36,9 +34,9 @@ function getShaderAttributeName(attribute: string): string {
  * @param type The attribute type to get the size for
  */
 function getByteSizeFromWebGLType(type: number): number {
-	if (type === GL.FLOAT) {
+	if (type === GL_FLOAT) {
 		return 4
-	} else if (type === GL.UNSIGNED_INT) {
+	} else if (type === GL_UNSIGNED_INT) {
 		return 4
 	}
 	return 1

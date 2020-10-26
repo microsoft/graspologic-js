@@ -22,11 +22,12 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@danmarshall/deckgl-typings": "^2.2.5",
+		"@danmarshall/deckgl-typings": "^3.5.0",
 		"@essex-js-toolkit/toolbox": "^1.1.2",
 		"@graspologic/animation": "workspace:packages/libs/animation",
 		"@graspologic/graph": "workspace:packages/libs/graph",
 		"@graspologic/memstore": "workspace:packages/libs/memstore",
+		"@graspologic/renderables-nodes": "workspace:packages/renderables/nodes",
 		"@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
 		"@luma.gl/constants": "^7.3.2",
 		"@luma.gl/core": "^7.3.2",

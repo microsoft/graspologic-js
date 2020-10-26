@@ -2,13 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
-import * as GL from '@luma.gl/constants'
-// @ts-ignore
-import { Model, Geometry, picking } from 'luma.gl'
+import { Model, Geometry, picking } from '@luma.gl/core/dist/esm'
 
-import { tween, adaptMemoryLayoutToLuma, uint32ColorTypeMapping } from '@graspologic/luma-utils'
-import { nodeMemoryLayout } from '@graspologic/graph'
+import { tween, adaptMemoryLayoutToLuma, uint32ColorTypeMapping, GL_FLOAT, GL_TRIANGLES } from '@graspologic/luma-utils'
+import { nodeMemoryLayout } from './memoryLayout'
 import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
 
 const GL_TYPE_MAPPINGS = {
@@ -73,13 +70,13 @@ export default function createModel(
 			isInstanced: true,
 			shaderCache: null,
 			geometry: new Geometry({
-				drawMode: GL.TRIANGLES,
+				drawMode: GL_TRIANGLES,
 				vertexCount: 6,
 				attributes: {
 					aVertex: {
 						value: new Float32Array(positions),
 						size: 3,
-						type: GL.FLOAT,
+						type: GL_FLOAT,
 					},
 				},
 			}),

@@ -2,17 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
-import * as GL from '@luma.gl/constants'
-import { readPixelsToArray } from '@luma.gl/core'
-// @ts-ignore
-import { cssToDevicePixels } from '@luma.gl/webgl'
-// @ts-ignore
-import { Model, decodePickingColor, Buffer, encodePickingColor } from 'luma.gl'
-
+import { readPixelsToArray, encodePickingColor, decodePickingColor, Model, Buffer } from '@luma.gl/core'
 import { readTween, restartTween } from '@graspologic/animation'
-import { NodeStore, Node } from '@graspologic/graph'
-import { createIdFactory } from '@graspologic/luma-utils'
+import type { NodeStore, Node } from '@graspologic/graph'
+import { createIdFactory, cssToDevicePixels, GL_DEPTH_TEST } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
 import { processMinMaxBounds, Bounds3D } from '@graspologic/utils'
 import { RenderOptions } from '@graspologic/renderables-base'
@@ -112,7 +105,7 @@ export class NodesRenderable extends DirtyableRenderable {
 			framebuffer,
 			parameters: {
 				depthMask: true,
-				[GL.DEPTH_TEST]: true,
+				[GL_DEPTH_TEST]: true,
 			},
 		})
 		this.model.setUniforms({ picking_uActive: 0 })
@@ -175,7 +168,7 @@ export class NodesRenderable extends DirtyableRenderable {
 				parameters: {
 					blend: true,
 					depthMask: true,
-					[GL.DEPTH_TEST]: true,
+					[GL_DEPTH_TEST]: true,
 				},
 				uniforms: {
 					uModelView: modelViewMatrix,

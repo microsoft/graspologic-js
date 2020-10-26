@@ -1789,14 +1789,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@danmarshall/deckgl-typings@npm:^2.2.5":
-  version: 2.2.5
-  resolution: "@danmarshall/deckgl-typings@npm:2.2.5"
+"@danmarshall/deckgl-typings@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "@danmarshall/deckgl-typings@npm:3.5.0"
   dependencies:
     "@types/hammerjs": ^2.0.36
     "@types/react": "*"
-    indefinitely-typed: ^1.0.2
-  checksum: d7e82757f1332ff2c2d8f5bb8c79218b79461938ad866db7201fbfc19274e5b13edab1f9e5351b805467cdf87a8a9f8f8894275390cb753520cd4789c22f10e9
+    indefinitely-typed: ^1.1.0
+  checksum: 98daedc3c391ee6c8f7dd706a2e3a5e150637df76e6fd93a9d17b77f3ed6e1aff3b0290a32df3e44d43b75e8b6e0d2497b1993d40b0b8bdad8b399e1b35bae50
   languageName: node
   linkType: hard
 
@@ -2693,12 +2693,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/luma-utils@workspace:packages/renderables/luma-utils"
   dependencies:
-    "@danmarshall/deckgl-typings": ^2.2.5
+    "@danmarshall/deckgl-typings": ^3.5.0
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": "workspace:packages/libs/memstore"
     "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
-    "@luma.gl/constants": ^7.3.2
     "@luma.gl/core": ^7.3.2
     "@luma.gl/webgl": ^7.3.2
     "@types/node": ^14.14.2
@@ -2731,7 +2730,7 @@ __metadata:
     "@babel/preset-env": ^7.12.1
     "@babel/preset-react": ^7.12.1
     "@babel/preset-typescript": ^7.12.1
-    "@danmarshall/deckgl-typings": ^2.2.5
+    "@danmarshall/deckgl-typings": ^3.5.0
     "@essex/eslint-config": ^10.0.1
     "@essex/eslint-plugin": ^10.0.1
     "@essex/jest-config": ^10.0.2
@@ -2767,6 +2766,67 @@ __metadata:
     shx: ^0.3.2
     typedoc-plugin-markdown: ^2.4.2
     typescript: 4.0.3
+  dependenciesMeta:
+    "@essex/babel-config@10.0.1":
+      unplugged: true
+    "@essex/build-step-azure@10.0.2":
+      unplugged: true
+    "@essex/build-step-babel@10.0.2":
+      unplugged: true
+    "@essex/build-step-clean@10.0.2":
+      unplugged: true
+    "@essex/build-step-docs@10.0.2":
+      unplugged: true
+    "@essex/build-step-eslint@10.0.2":
+      unplugged: true
+    "@essex/build-step-init@11.0.1":
+      unplugged: true
+    "@essex/build-step-jest@10.0.2":
+      unplugged: true
+    "@essex/build-step-lint-staged@10.0.2":
+      unplugged: true
+    "@essex/build-step-pretty-quick@10.0.2":
+      unplugged: true
+    "@essex/build-step-recipes@10.0.2":
+      unplugged: true
+    "@essex/build-step-rollup@10.0.2":
+      unplugged: true
+    "@essex/build-step-storybook@10.0.2":
+      unplugged: true
+    "@essex/build-step-typedoc@10.0.2":
+      unplugged: true
+    "@essex/build-step-typescript@10.0.2":
+      unplugged: true
+    "@essex/build-step-webpack@10.0.2":
+      unplugged: true
+    "@essex/build-step-zip@10.0.2":
+      unplugged: true
+    "@essex/build-util-hoister@10.0.2":
+      unplugged: true
+    "@essex/build-utils@10.0.2":
+      unplugged: true
+    "@essex/eslint-config@10.0.1":
+      unplugged: true
+    "@essex/eslint-plugin@10.0.1":
+      unplugged: true
+    "@essex/jest-config@10.0.2":
+      unplugged: true
+    "@essex/prettier-config@10.0.0":
+      unplugged: true
+    "@essex/scripts@11.0.1":
+      unplugged: true
+    "@essex/shellrunner@10.0.2":
+      unplugged: true
+    "@essex/storybook-config@11.0.0":
+      unplugged: true
+    "@essex/tasklogger@10.0.2":
+      unplugged: true
+    "@essex/webpack-config@10.0.2":
+      unplugged: true
+    "@luma.gl/webgl@7.3.2":
+      unplugged: true
+    luma.gl@7.3.2:
+      unplugged: true
   languageName: unknown
   linkType: soft
 
@@ -2859,9 +2919,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-nodes@workspace:packages/renderables/nodes"
   dependencies:
-    "@danmarshall/deckgl-typings": ^2.2.5
+    "@danmarshall/deckgl-typings": ^3.5.0
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
+    "@essex/webpack-config": ^10.0.2
     "@graspologic/animation": "workspace:packages/libs/animation"
     "@graspologic/graph": "workspace:packages/libs/graph"
     "@graspologic/luma-utils": "workspace:packages/renderables/luma-utils"
@@ -2869,12 +2930,12 @@ __metadata:
     "@graspologic/renderables-base": "workspace:packages/renderables/base"
     "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
     "@graspologic/utils": "workspace:packages/libs/utils"
-    "@luma.gl/constants": ^7.3.2
     "@luma.gl/core": ^7.3.2
-    "@luma.gl/webgl": ^7.3.2
     "@types/node": ^14.14.2
+    "@types/webpack-bundle-analyzer": ^3
     glob: ^7.1.6
     npm-run-all: ^4.1.5
+    webpack-bundle-analyzer: ^3.9.0
   peerDependencies:
     "@types/node": "*"
     core-js: ^3.6.5
@@ -2896,12 +2957,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderer@workspace:packages/libs/renderer"
   dependencies:
-    "@danmarshall/deckgl-typings": ^2.2.5
+    "@danmarshall/deckgl-typings": ^3.5.0
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
     "@graspologic/animation": "workspace:packages/libs/animation"
     "@graspologic/graph": "workspace:packages/libs/graph"
     "@graspologic/memstore": "workspace:packages/libs/memstore"
+    "@graspologic/renderables-nodes": "workspace:packages/renderables/nodes"
     "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
     "@luma.gl/constants": ^7.3.2
     "@luma.gl/core": ^7.3.2
@@ -5279,6 +5341,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/webpack-bundle-analyzer@npm:^3":
+  version: 3.9.0
+  resolution: "@types/webpack-bundle-analyzer@npm:3.9.0"
+  dependencies:
+    "@types/webpack": "*"
+  checksum: 7067fe37fca4f20260d6de343d68582361b6f21075cf051e09f0f9b51d725f21015018d74a4dc87e866ae0252bae81559a4c2ed7af715a55ad16f811f991c81d
+  languageName: node
+  linkType: hard
+
 "@types/webpack-dev-server@npm:^3.11.0":
   version: 3.11.0
   resolution: "@types/webpack-dev-server@npm:3.11.0"
@@ -7358,6 +7429,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bfj@npm:^6.1.1":
+  version: 6.1.2
+  resolution: "bfj@npm:6.1.2"
+  dependencies:
+    bluebird: ^3.5.5
+    check-types: ^8.0.3
+    hoopy: ^0.1.4
+    tryer: ^1.0.1
+  checksum: ba7bc1649cfaff7f5382bf729df3ccebcfedc3dfd62d10c791d5645ebc788688d0700f48a97041259403e57c3b20621c1759601bcaabe380e2b4fdbf5072f583
+  languageName: node
+  linkType: hard
+
 "big.js@npm:^5.2.2":
   version: 5.2.2
   resolution: "big.js@npm:5.2.2"
@@ -8046,6 +8129,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"check-types@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "check-types@npm:8.0.3"
+  checksum: 88b16cd319138fc158002fbb7349441eae7ce1625d817b34a6ecbffaeac83a816add0afc914decf30a54c4e479f6ef9b5f27916c56298f3d0b7a8c342163fd5e
+  languageName: node
+  linkType: hard
+
 "cheerio@npm:^1.0.0-rc.3":
   version: 1.0.0-rc.3
   resolution: "cheerio@npm:1.0.0-rc.3"
@@ -8503,7 +8593,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:2, commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:^2.9.0":
+"commander@npm:2, commander@npm:^2.18.0, commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:^2.9.0":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
@@ -10040,6 +10130,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ejs@npm:^2.6.1":
+  version: 2.7.4
+  resolution: "ejs@npm:2.7.4"
+  checksum: f066d9a932fb921bdb6e87133d747d5e3408a1c1303f9a15e5a7a3973afdf444a672c98c2f6d97b9a1a76363bd8ae6d05286f26c6b6b7b9674dfc5802fc8546d
+  languageName: node
+  linkType: hard
+
 "ejs@npm:^3.1.2":
   version: 3.1.5
   resolution: "ejs@npm:3.1.5"
@@ -10928,7 +11025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.17.0, express@npm:^4.17.1":
+"express@npm:^4.16.3, express@npm:^4.17.0, express@npm:^4.17.1":
   version: 4.17.1
   resolution: "express@npm:4.17.1"
   dependencies:
@@ -11232,6 +11329,13 @@ __metadata:
   version: 6.0.1
   resolution: "filesize@npm:6.0.1"
   checksum: ee259a066a05bc159f030531e6afb946426fa4d3f8bb357b00334d8c0319b37b97c628f0320dfcbe9bfcc6a215929f9d903098dc58bc9ef248907f1c78aea37e
+  languageName: node
+  linkType: hard
+
+"filesize@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "filesize@npm:3.6.1"
+  checksum: 9fb54113c906f0b7aecc05440185dc8b8dac83bd73b839a5298ce02500a487151b3a4735784bfab027fc58776f5281ec4c31e60f59b9173d62f47838dae31783
   languageName: node
   linkType: hard
 
@@ -12279,7 +12383,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"gzip-size@npm:5.1.1":
+"gzip-size@npm:5.1.1, gzip-size@npm:^5.0.0":
   version: 5.1.1
   resolution: "gzip-size@npm:5.1.1"
   dependencies:
@@ -12586,6 +12690,13 @@ fsevents@^1.2.7:
   dependencies:
     parse-passwd: ^1.0.0
   checksum: 86a4e544cac858c31bb776d65a6aebbd84efddd98a5b4ebc65846d86b6161083b52fee059b8f809e9593537d10c9aabb381906305a0ee4a52f2625d0339b015f
+  languageName: node
+  linkType: hard
+
+"hoopy@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "hoopy@npm:0.1.4"
+  checksum: 29b8c7e502d159fa4214396a3f90c3b0bd8c614333b6f2dd5510a77587a8aed87abd89ca8df928f31021858adc30586abcd7ab457ec1c1767e99e870e30ab031
   languageName: node
   linkType: hard
 
@@ -13026,7 +13137,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"indefinitely-typed@npm:^1.0.2":
+"indefinitely-typed@npm:^1.1.0":
   version: 1.1.0
   resolution: "indefinitely-typed@npm:1.1.0"
   dependencies:
@@ -16786,6 +16897,15 @@ fsevents@^1.2.7:
   bin:
     opencollective-postinstall: index.js
   checksum: d75b06b80eb426aaf099307ca4398f3119c8c86ff3806a95cfe234b979b80c07080040734fe2dc3c51fed5b15bd98dae88340807980bdc74aa1ebf045c74ef06
+  languageName: node
+  linkType: hard
+
+"opener@npm:^1.5.1":
+  version: 1.5.2
+  resolution: "opener@npm:1.5.2"
+  bin:
+    opener: bin/opener-bin.js
+  checksum: 855420de4ffbfed1a25f000e7d146c4194aa678cc113d428572de67f9491f6721183ffdeb705af3b08404e29f7ec451b88da9ae19347a515872803dfabef471c
   languageName: node
   linkType: hard
 
@@ -21324,6 +21444,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"tryer@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "tryer@npm:1.0.1"
+  checksum: 0d0fa95e8a3b518d5dc51442cf9dc185ebbc534173c4bf74c3fd4e118489b6a2f00765040c893d37dcabbe5dd401ddf5729cdba9857a50e2aabc614f42702341
+  languageName: node
+  linkType: hard
+
 "ts-dedent@npm:^1.1.1":
   version: 1.2.0
   resolution: "ts-dedent@npm:1.2.0"
@@ -22602,6 +22729,29 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"webpack-bundle-analyzer@npm:^3.9.0":
+  version: 3.9.0
+  resolution: "webpack-bundle-analyzer@npm:3.9.0"
+  dependencies:
+    acorn: ^7.1.1
+    acorn-walk: ^7.1.1
+    bfj: ^6.1.1
+    chalk: ^2.4.1
+    commander: ^2.18.0
+    ejs: ^2.6.1
+    express: ^4.16.3
+    filesize: ^3.6.1
+    gzip-size: ^5.0.0
+    lodash: ^4.17.19
+    mkdirp: ^0.5.1
+    opener: ^1.5.1
+    ws: ^6.0.0
+  bin:
+    webpack-bundle-analyzer: lib/bin/analyzer.js
+  checksum: 3ec0daf957cc17143f73bf00113aa567b466d674baae68e6f9148dfb80bdcc81c94f6da9f8e8cbb7782a6161319efcccc4a013b3820d13993934818cce7650c0
+  languageName: node
+  linkType: hard
+
 "webpack-dev-middleware@npm:^3.7.0, webpack-dev-middleware@npm:^3.7.2":
   version: 3.7.2
   resolution: "webpack-dev-middleware@npm:3.7.2"
@@ -22964,7 +23114,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"ws@npm:^6.2.1":
+"ws@npm:^6.0.0, ws@npm:^6.2.1":
   version: 6.2.1
   resolution: "ws@npm:6.2.1"
   dependencies:

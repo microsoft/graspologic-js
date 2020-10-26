@@ -19,11 +19,10 @@
         "start": "essex watch"
     },
     "dependencies": {
-        "@danmarshall/deckgl-typings": "^2.2.5",
+        "@danmarshall/deckgl-typings": "^3.5.0",
         "@essex-js-toolkit/toolbox": "^1.1.2",
         "@graspologic/memstore": "workspace:packages/libs/memstore",
         "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
-        "@luma.gl/constants": "^7.3.2",
         "@luma.gl/core": "^7.3.2",
         "@luma.gl/webgl": "^7.3.2"
     },
