@@ -2,9 +2,17 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
-import * as GL from '@luma.gl/constants'
-import { Model, Geometry, Texture2D } from 'luma.gl'
+import { 
+	GL_RGBA,
+	GL_LINEAR,
+	GL_TEXTURE_MIN_FILTER,
+	GL_CLAMP_TO_EDGE,
+	GL_TEXTURE_WRAP_S,
+	GL_TEXTURE_WRAP_T,
+	GL_DEPTH_TEST,
+	GL_TRIANGLE_STRIP 
+} from '@graspologic/luma-utils'
+import { Model, Geometry, Texture2D } from '@luma.gl/core'
 import { RenderOptions } from '../types/internal'
 import { PropertyContainer } from '../util/Properties'
 import { createIdFactory } from '../util/ids'
@@ -52,12 +60,12 @@ export class LabelRenderable extends DirtyableRenderable {
 		this.ctx = this.canvas.getContext('2d') || undefined
 
 		this.texture = new Texture2D(gl, {
-			format: GL.RGBA,
+			format: GL_RGBA,
 			mipmaps: false,
 			parameters: {
-				[GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
-				[GL.TEXTURE_WRAP_S]: GL.CLAMP_TO_EDGE,
-				[GL.TEXTURE_WRAP_T]: GL.CLAMP_TO_EDGE,
+				[GL_TEXTURE_MIN_FILTER]: GL_LINEAR,
+				[GL_TEXTURE_WRAP_S]: GL_CLAMP_TO_EDGE,
+				[GL_TEXTURE_WRAP_T]: GL_CLAMP_TO_EDGE,
 			},
 		})
 
@@ -228,7 +236,7 @@ export class LabelRenderable extends DirtyableRenderable {
 			this.model.draw({
 				parameters: {
 					depthMask: false,
-					[GL.DEPTH_TEST]: false,
+					[GL_DEPTH_TEST]: false,
 					blend: true,
 				},
 				uniforms: {
@@ -299,7 +307,7 @@ export class LabelRenderable extends DirtyableRenderable {
 			...this._getShaders(),
 			id: id,
 			geometry: new Geometry({
-				drawMode: GL.TRIANGLE_STRIP,
+				drawMode: GL_TRIANGLE_STRIP,
 				attributes: {
 					aVertex: {
 						value: new Float32Array(vertices),

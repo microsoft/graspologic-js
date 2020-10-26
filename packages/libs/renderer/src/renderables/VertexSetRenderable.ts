@@ -2,9 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
-import * as GL from '@luma.gl/constants'
-import { Model, Geometry, Buffer } from 'luma.gl'
+import { GL_DEPTH_TEST, GL_FLOAT, GL_TRIANGLE_STRIP } from '@graspologic/luma-utils'
+import { Model, Geometry, Buffer } from '@luma.gl/core'
 import { RenderOptions } from '../types/internal'
 import { adaptMemoryLayoutToLuma } from '../util'
 import { PropertyContainer } from '../util/Properties'
@@ -94,7 +93,7 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 			this.model.draw({
 				parameters: {
 					depthMask: false,
-					[GL.DEPTH_TEST]: false,
+					[GL_DEPTH_TEST]: false,
 					blend: true,
 				},
 				uniforms: {
@@ -185,13 +184,13 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 				isInstanced: true,
 				shaderCache: null,
 				geometry: new Geometry({
-					drawMode: GL.TRIANGLE_STRIP,
+					drawMode: GL_TRIANGLE_STRIP,
 					vertexCount: 4,
 					attributes: {
 						aVertex: {
 							value: new Float32Array(positions),
 							size: 3,
-							type: GL.FLOAT,
+							type: GL_FLOAT,
 						},
 					},
 				}),

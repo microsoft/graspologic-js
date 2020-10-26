@@ -131,7 +131,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-react", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-typescript", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex/eslint-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/eslint-plugin", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/jest-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.2"],
@@ -157,7 +157,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.0"],
             ["jest-webgl-canvas-mock", "npm:0.2.3"],
             ["lint-staged", "npm:10.4.2"],
-            ["luma.gl", "npm:7.3.2"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:2.1.2"],
             ["react", "npm:16.14.0"],
@@ -3888,10 +3887,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@danmarshall/deckgl-typings", [
-        ["npm:3.5.0", {
-          "packageLocation": "./.yarn/unplugged/@danmarshall-deckgl-typings-npm-3.5.0-7855c3da06/node_modules/@danmarshall/deckgl-typings/",
+        ["npm:4.3.6", {
+          "packageLocation": "./.yarn/unplugged/@danmarshall-deckgl-typings-npm-4.3.6-2356ab25fe/node_modules/@danmarshall/deckgl-typings/",
           "packageDependencies": [
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@types/hammerjs", "npm:2.0.36"],
             ["@types/react", "npm:16.9.53"],
             ["indefinitely-typed", "npm:1.1.0"]
@@ -6528,13 +6527,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/renderables/luma-utils/",
           "packageDependencies": [
             ["@graspologic/luma-utils", "workspace:packages/renderables/luma-utils"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
-            ["@luma.gl/core", "npm:7.3.2"],
-            ["@luma.gl/webgl", "npm:7.3.2"],
+            ["@luma.gl/core", "npm:8.3.1"],
+            ["@luma.gl/gltools", "npm:8.3.1"],
+            ["@luma.gl/webgl", "npm:8.3.1"],
             ["@types/node", "npm:14.14.2"],
             ["glob", "npm:7.1.6"],
             ["npm-run-all", "npm:4.1.5"]
@@ -6637,7 +6637,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-react", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-typescript", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex/eslint-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/eslint-plugin", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/jest-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.2"],
@@ -6663,7 +6663,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.0"],
             ["jest-webgl-canvas-mock", "npm:0.2.3"],
             ["lint-staged", "npm:10.4.2"],
-            ["luma.gl", "npm:7.3.2"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:2.1.2"],
             ["react", "npm:16.14.0"],
@@ -6697,7 +6696,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/types__react-dom", null],
             ["core-js", null],
             ["enzyme", "npm:3.11.0"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["react", "npm:16.14.0"],
@@ -6736,7 +6734,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/types__react-dom", null],
             ["core-js", "npm:3.6.5"],
             ["enzyme", "npm:3.11.0"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["react", "npm:16.14.0"],
@@ -6775,7 +6772,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/types__react-dom", null],
             ["core-js", null],
             ["enzyme", "npm:3.11.0"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["react", "npm:16.14.0"],
@@ -6816,7 +6812,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/types__react-dom", null],
             ["core-js", null],
             ["enzyme", "npm:3.11.0"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["react", "npm:16.14.0"],
@@ -6859,7 +6854,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/types__react-dom", null],
             ["core-js", "npm:3.6.5"],
             ["enzyme", "npm:3.11.0"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["react", "npm:16.14.0"],
@@ -6902,7 +6896,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/types__react-dom", null],
             ["core-js", "npm:3.6.5"],
             ["enzyme", "npm:3.11.0"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["react", "npm:16.14.0"],
@@ -6936,7 +6929,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:16.9.53"],
             ["@types/react-dom", "npm:16.9.8"],
             ["enzyme", "npm:3.11.0"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["react", "npm:16.14.0"],
@@ -7134,7 +7126,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderables-nodes-virtual-4d9d22afe4/1/packages/renderables/nodes/",
           "packageDependencies": [
             ["@graspologic/renderables-nodes", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/renderables/nodes"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7145,7 +7137,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderables-base", "workspace:packages/renderables/base"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@graspologic/utils", "workspace:packages/libs/utils"],
-            ["@luma.gl/core", "npm:7.3.2"],
+            ["@luma.gl/core", "npm:8.3.1"],
+            ["@luma.gl/gltools", "npm:8.3.1"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -7171,7 +7164,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderables-nodes-virtual-33e14558da/1/packages/renderables/nodes/",
           "packageDependencies": [
             ["@graspologic/renderables-nodes", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/renderables/nodes"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7182,7 +7175,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderables-base", "workspace:packages/renderables/base"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@graspologic/utils", "workspace:packages/libs/utils"],
-            ["@luma.gl/core", "npm:7.3.2"],
+            ["@luma.gl/core", "npm:8.3.1"],
+            ["@luma.gl/gltools", "npm:8.3.1"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -7208,7 +7202,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/renderables/nodes/",
           "packageDependencies": [
             ["@graspologic/renderables-nodes", "workspace:packages/renderables/nodes"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7219,7 +7213,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderables-base", "workspace:packages/renderables/base"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@graspologic/utils", "workspace:packages/libs/utils"],
-            ["@luma.gl/core", "npm:7.3.2"],
+            ["@luma.gl/core", "npm:8.3.1"],
+            ["@luma.gl/gltools", "npm:8.3.1"],
             ["@types/node", "npm:14.14.2"],
             ["@types/webpack-bundle-analyzer", "npm:3.9.0"],
             ["glob", "npm:7.1.6"],
@@ -7234,17 +7229,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderer-virtual-a906dd2440/1/packages/libs/renderer/",
           "packageDependencies": [
             ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/luma-utils", "workspace:packages/renderables/luma-utils"],
             ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
             ["@graspologic/renderables-nodes", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/renderables/nodes"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
-            ["@luma.gl/constants", "npm:7.3.2"],
-            ["@luma.gl/core", "npm:7.3.2"],
-            ["@luma.gl/webgl", "npm:7.3.2"],
+            ["@luma.gl/constants", "npm:8.3.1"],
+            ["@luma.gl/core", "npm:8.3.1"],
+            ["@luma.gl/webgl", "npm:8.3.1"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -7252,7 +7248,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["core-js", null],
             ["glob", "npm:7.1.6"],
             ["invariant", "npm:2.2.4"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["mjolnir.js", "npm:2.4.1"],
             ["npm-run-all", "npm:4.1.5"],
@@ -7274,17 +7269,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderer-virtual-72bb8352ed/1/packages/libs/renderer/",
           "packageDependencies": [
             ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/animation", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/libs/animation"],
             ["@graspologic/graph", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/graph"],
+            ["@graspologic/luma-utils", "workspace:packages/renderables/luma-utils"],
             ["@graspologic/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore"],
             ["@graspologic/renderables-nodes", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/renderables/nodes"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
-            ["@luma.gl/constants", "npm:7.3.2"],
-            ["@luma.gl/core", "npm:7.3.2"],
-            ["@luma.gl/webgl", "npm:7.3.2"],
+            ["@luma.gl/constants", "npm:8.3.1"],
+            ["@luma.gl/core", "npm:8.3.1"],
+            ["@luma.gl/webgl", "npm:8.3.1"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -7292,7 +7288,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["core-js", "npm:3.6.5"],
             ["glob", "npm:7.1.6"],
             ["invariant", "npm:2.2.4"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["mjolnir.js", "npm:2.4.1"],
             ["npm-run-all", "npm:4.1.5"],
@@ -7313,21 +7308,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/libs/renderer/",
           "packageDependencies": [
             ["@graspologic/renderer", "workspace:packages/libs/renderer"],
-            ["@danmarshall/deckgl-typings", "npm:3.5.0"],
+            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
+            ["@graspologic/luma-utils", "workspace:packages/renderables/luma-utils"],
             ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
             ["@graspologic/renderables-nodes", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/renderables/nodes"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
-            ["@luma.gl/constants", "npm:7.3.2"],
-            ["@luma.gl/core", "npm:7.3.2"],
-            ["@luma.gl/webgl", "npm:7.3.2"],
+            ["@luma.gl/constants", "npm:8.3.1"],
+            ["@luma.gl/core", "npm:8.3.1"],
+            ["@luma.gl/webgl", "npm:8.3.1"],
             ["@types/node", "npm:14.14.2"],
             ["glob", "npm:7.1.6"],
             ["invariant", "npm:2.2.4"],
-            ["luma.gl", "npm:7.3.2"],
             ["math.gl", "npm:3.3.0"],
             ["mjolnir.js", "npm:2.4.1"],
             ["npm-run-all", "npm:4.1.5"],
@@ -7716,98 +7711,63 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@loaders.gl/core", [
-        ["npm:1.3.7", {
-          "packageLocation": "./.yarn/cache/@loaders.gl-core-npm-1.3.7-535f840cf3-68f488580d.zip/node_modules/@loaders.gl/core/",
-          "packageDependencies": [
-            ["@loaders.gl/core", "npm:1.3.7"],
-            ["@babel/runtime", "npm:7.12.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@loaders.gl/gltf", [
-        ["npm:1.3.7", {
-          "packageLocation": "./.yarn/cache/@loaders.gl-gltf-npm-1.3.7-5a0dc28e48-33cd521833.zip/node_modules/@loaders.gl/gltf/",
-          "packageDependencies": [
-            ["@loaders.gl/gltf", "npm:1.3.7"],
-            ["@loaders.gl/core", "npm:1.3.7"],
-            ["@loaders.gl/images", "npm:1.3.7"],
-            ["@loaders.gl/loader-utils", "npm:1.3.7"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@loaders.gl/images", [
-        ["npm:1.3.7", {
-          "packageLocation": "./.yarn/cache/@loaders.gl-images-npm-1.3.7-4040c79bd7-76c8280ab3.zip/node_modules/@loaders.gl/images/",
-          "packageDependencies": [
-            ["@loaders.gl/images", "npm:1.3.7"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@loaders.gl/loader-utils", [
-        ["npm:1.3.7", {
-          "packageLocation": "./.yarn/cache/@loaders.gl-loader-utils-npm-1.3.7-8afc062c5e-3d0a07ff3e.zip/node_modules/@loaders.gl/loader-utils/",
-          "packageDependencies": [
-            ["@loaders.gl/loader-utils", "npm:1.3.7"],
-            ["@babel/runtime", "npm:7.12.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@luma.gl/addons", [
-        ["virtual:f5b30d837151dc3aed7fcdaf1f6274a57c7df28b31702b421d13998063a26649761b681043016abe4f0b816ecdaecde1d40aabe71c4dfecd406992ff55d3585f#npm:7.3.2", {
-          "packageLocation": "./.yarn/$$virtual/@luma.gl-addons-virtual-0686ed3100/0/cache/@luma.gl-addons-npm-7.3.2-563973ca4c-04176f801b.zip/node_modules/@luma.gl/addons/",
-          "packageDependencies": [
-            ["@luma.gl/addons", "virtual:f5b30d837151dc3aed7fcdaf1f6274a57c7df28b31702b421d13998063a26649761b681043016abe4f0b816ecdaecde1d40aabe71c4dfecd406992ff55d3585f#npm:7.3.2"],
-            ["@loaders.gl/gltf", "npm:1.3.7"],
-            ["@loaders.gl/images", "npm:1.3.7"],
-            ["@luma.gl/constants", "npm:7.3.2"],
-            ["@luma.gl/core", "npm:7.3.2"],
-            ["@types/luma.gl__core", null],
-            ["math.gl", "npm:3.3.0"]
-          ],
-          "packagePeers": [
-            "@luma.gl/core",
-            "@types/luma.gl__core"
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@luma.gl/constants", [
-        ["npm:7.3.2", {
-          "packageLocation": "./.yarn/cache/@luma.gl-constants-npm-7.3.2-7da00cf4df-c20e6d0440.zip/node_modules/@luma.gl/constants/",
+        ["npm:8.3.1", {
+          "packageLocation": "./.yarn/cache/@luma.gl-constants-npm-8.3.1-2dfffdfa21-ecc0578e90.zip/node_modules/@luma.gl/constants/",
           "packageDependencies": [
-            ["@luma.gl/constants", "npm:7.3.2"]
+            ["@luma.gl/constants", "npm:8.3.1"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@luma.gl/core", [
-        ["npm:7.3.2", {
-          "packageLocation": "./.yarn/cache/@luma.gl-core-npm-7.3.2-a1d677f563-cc89c40501.zip/node_modules/@luma.gl/core/",
+        ["npm:8.3.1", {
+          "packageLocation": "./.yarn/cache/@luma.gl-core-npm-8.3.1-470aeffe04-0a92e9e60c.zip/node_modules/@luma.gl/core/",
           "packageDependencies": [
-            ["@luma.gl/core", "npm:7.3.2"],
+            ["@luma.gl/core", "npm:8.3.1"],
             ["@babel/runtime", "npm:7.12.1"],
-            ["@luma.gl/constants", "npm:7.3.2"],
-            ["@luma.gl/shadertools", "npm:7.3.2"],
-            ["@luma.gl/webgl", "npm:7.3.2"],
-            ["@luma.gl/webgl-state-tracker", "npm:7.3.2"],
-            ["@luma.gl/webgl2-polyfill", "npm:7.3.2"],
+            ["@luma.gl/constants", "npm:8.3.1"],
+            ["@luma.gl/engine", "npm:8.3.1"],
+            ["@luma.gl/gltools", "npm:8.3.1"],
+            ["@luma.gl/shadertools", "npm:8.3.1"],
+            ["@luma.gl/webgl", "npm:8.3.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@luma.gl/engine", [
+        ["npm:8.3.1", {
+          "packageLocation": "./.yarn/cache/@luma.gl-engine-npm-8.3.1-b6eb4d0ab9-c544fdbb8e.zip/node_modules/@luma.gl/engine/",
+          "packageDependencies": [
+            ["@luma.gl/engine", "npm:8.3.1"],
+            ["@babel/runtime", "npm:7.12.1"],
+            ["@luma.gl/constants", "npm:8.3.1"],
+            ["@luma.gl/gltools", "npm:8.3.1"],
+            ["@luma.gl/shadertools", "npm:8.3.1"],
+            ["@luma.gl/webgl", "npm:8.3.1"],
             ["math.gl", "npm:3.3.0"],
-            ["probe.gl", "npm:3.3.0"],
-            ["seer", "npm:0.2.5"]
+            ["probe.gl", "npm:3.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@luma.gl/gltools", [
+        ["npm:8.3.1", {
+          "packageLocation": "./.yarn/cache/@luma.gl-gltools-npm-8.3.1-7297917d97-27ecc93a86.zip/node_modules/@luma.gl/gltools/",
+          "packageDependencies": [
+            ["@luma.gl/gltools", "npm:8.3.1"],
+            ["@babel/runtime", "npm:7.12.1"],
+            ["@luma.gl/constants", "npm:8.3.1"],
+            ["probe.gl", "npm:3.3.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@luma.gl/shadertools", [
-        ["npm:7.3.2", {
-          "packageLocation": "./.yarn/cache/@luma.gl-shadertools-npm-7.3.2-5cb3126c00-a7c7a96f58.zip/node_modules/@luma.gl/shadertools/",
+        ["npm:8.3.1", {
+          "packageLocation": "./.yarn/cache/@luma.gl-shadertools-npm-8.3.1-8c1aa5a418-ad2aafecc4.zip/node_modules/@luma.gl/shadertools/",
           "packageDependencies": [
-            ["@luma.gl/shadertools", "npm:7.3.2"],
+            ["@luma.gl/shadertools", "npm:8.3.1"],
             ["@babel/runtime", "npm:7.12.1"],
             ["math.gl", "npm:3.3.0"]
           ],
@@ -7815,37 +7775,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@luma.gl/webgl", [
-        ["npm:7.3.2", {
-          "packageLocation": "./.yarn/unplugged/@luma.gl-webgl-npm-7.3.2-0f6a0833a1/node_modules/@luma.gl/webgl/",
+        ["npm:8.3.1", {
+          "packageLocation": "./.yarn/cache/@luma.gl-webgl-npm-8.3.1-6534951608-717f2b359e.zip/node_modules/@luma.gl/webgl/",
           "packageDependencies": [
-            ["@luma.gl/webgl", "npm:7.3.2"],
+            ["@luma.gl/webgl", "npm:8.3.1"],
             ["@babel/runtime", "npm:7.12.1"],
-            ["@luma.gl/constants", "npm:7.3.2"],
-            ["@luma.gl/webgl-state-tracker", "npm:7.3.2"],
-            ["@luma.gl/webgl2-polyfill", "npm:7.3.2"],
+            ["@luma.gl/constants", "npm:8.3.1"],
+            ["@luma.gl/gltools", "npm:8.3.1"],
             ["probe.gl", "npm:3.3.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@luma.gl/webgl-state-tracker", [
-        ["npm:7.3.2", {
-          "packageLocation": "./.yarn/cache/@luma.gl-webgl-state-tracker-npm-7.3.2-d23c067022-7a6187f9f4.zip/node_modules/@luma.gl/webgl-state-tracker/",
-          "packageDependencies": [
-            ["@luma.gl/webgl-state-tracker", "npm:7.3.2"],
-            ["@babel/runtime", "npm:7.12.1"],
-            ["@luma.gl/constants", "npm:7.3.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@luma.gl/webgl2-polyfill", [
-        ["npm:7.3.2", {
-          "packageLocation": "./.yarn/cache/@luma.gl-webgl2-polyfill-npm-7.3.2-bb4daac5ce-5eb1d31039.zip/node_modules/@luma.gl/webgl2-polyfill/",
-          "packageDependencies": [
-            ["@luma.gl/webgl2-polyfill", "npm:7.3.2"],
-            ["@babel/runtime", "npm:7.12.1"],
-            ["@luma.gl/constants", "npm:7.3.2"]
           ],
           "linkType": "HARD",
         }]
@@ -24445,18 +24382,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["luma.gl", [
-        ["npm:7.3.2", {
-          "packageLocation": "./.yarn/unplugged/luma.gl-npm-7.3.2-f5b30d8371/node_modules/luma.gl/",
-          "packageDependencies": [
-            ["luma.gl", "npm:7.3.2"],
-            ["@luma.gl/addons", "virtual:f5b30d837151dc3aed7fcdaf1f6274a57c7df28b31702b421d13998063a26649761b681043016abe4f0b816ecdaecde1d40aabe71c4dfecd406992ff55d3585f#npm:7.3.2"],
-            ["@luma.gl/constants", "npm:7.3.2"],
-            ["@luma.gl/core", "npm:7.3.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["lunr", [
         ["npm:2.3.9", {
           "packageLocation": "./.yarn/cache/lunr-npm-2.3.9-fa3aa9c2d6-a2b66320c2.zip/node_modules/lunr/",
@@ -29991,15 +29916,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/json-schema", "npm:7.0.6"],
             ["ajv", "npm:6.12.6"],
             ["ajv-keywords", "virtual:f84d18c473fad3c01e1cf352f81ad13de804ca40da5bf6e752464a2e78dcb097ad579b06da5ff33a55ba9957fb9c74909b99fc5e215420a3f9b5dc87ad71363b#npm:3.5.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["seer", [
-        ["npm:0.2.5", {
-          "packageLocation": "./.yarn/cache/seer-npm-0.2.5-55c296f742-45797e0b6b.zip/node_modules/seer/",
-          "packageDependencies": [
-            ["seer", "npm:0.2.5"]
           ],
           "linkType": "HARD",
         }]

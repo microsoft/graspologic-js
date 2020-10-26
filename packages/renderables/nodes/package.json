@@ -29,10 +29,11 @@
     "@graspologic/renderables-base": "workspace:packages/renderables/base",
     "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
     "@graspologic/utils": "workspace:packages/libs/utils",
-    "@luma.gl/core": "^7.3.2"
+    "@luma.gl/core": "^8.3.1",
+    "@luma.gl/gltools": "^8.3.1"
   },
   "devDependencies": {
-    "@danmarshall/deckgl-typings": "^3.5.0",
+    "@danmarshall/deckgl-typings": "^4.3.6",
     "@essex/scripts": "^11.0.1",
     "@types/node": "^14.14.2",
     "@types/webpack-bundle-analyzer": "^3",

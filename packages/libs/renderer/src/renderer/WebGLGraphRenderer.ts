@@ -170,7 +170,8 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		this._scene.addRenderable(this.nodes, true)
 
 		// Event Wiring
-		this.nodes.onNodeHovered.subscribe((node: Node | undefined): void => {
+		this.nodes.addEventListener("nodeHovered", (e): void => {
+			const node = (e as CustomEvent<Node | undefined>).detail
 			this._onVertexHoveredEvent.next(node)
 		})
 		this.config.onHideDeselectedChanged(this.makeDirty)

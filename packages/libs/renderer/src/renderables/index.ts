@@ -5,7 +5,7 @@
 export * from './AxesRenderable'
 export { EdgesRenderable } from './edges'
 export * from './LabelRenderable'
-export { NodesRenderable } from './nodes'
+export { NodesRenderable } from '@graspologic/renderables-nodes'
 export * from './Renderables'
 export * from './ScreenQuadRenderable'
 export * from './VertexLabelRenderable'

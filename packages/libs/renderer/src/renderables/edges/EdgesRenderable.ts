@@ -2,9 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
-import * as GL from '@luma.gl/constants'
-import { Model, Buffer } from 'luma.gl'
+import { GL_DEPTH_TEST } from '@graspologic/luma-utils'
+import { Model, Buffer } from '@luma.gl/core'
 import { processMinMaxBounds } from '../../data/util'
 import { RenderConfiguration, Bounds3D } from '../../types'
 import { RenderOptions } from '../../types/internal'
@@ -160,7 +159,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 			const drawConfig = {
 				parameters: {
 					depthMask: this.edgeDepthWrite,
-					[GL.DEPTH_TEST]: true,
+					[GL_DEPTH_TEST]: true,
 					blend: true,
 				},
 				uniforms: {

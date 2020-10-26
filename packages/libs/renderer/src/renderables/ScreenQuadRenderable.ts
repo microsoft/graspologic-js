@@ -2,9 +2,23 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
-import * as GL from '@luma.gl/constants'
-import { Model, Geometry, Framebuffer, Texture2D } from 'luma.gl'
+
+import { 
+	GL_RGBA,
+	GL_LINEAR,
+	GL_TEXTURE_MIN_FILTER,
+	GL_CLAMP_TO_EDGE,
+	GL_TEXTURE_WRAP_S,
+	GL_TEXTURE_WRAP_T,
+	GL_DEPTH_TEST,
+	GL_TRIANGLE_STRIP,
+	GL_ONE,
+	GL_ONE_MINUS_SRC_ALPHA,
+	GL_FUNC_ADD,
+	GL_COLOR_ATTACHMENT0
+} from '@graspologic/luma-utils'
+
+import { Model, Geometry, Framebuffer, Texture2D } from '@luma.gl/core'
 import { Renderable, RenderOptions } from '../types/internal'
 import { createIdFactory } from '../util/ids'
 import { DirtyableRenderable } from './Renderables'
@@ -16,20 +30,20 @@ const getNextId = createIdFactory('ScreenQuadInstance')
 
 const CLEAR_FRAMEBUFFER_ARG = { color: [0, 0, 0, 0], depth: true }
 const DRAW_PARAMETERS = {
-	blendFunc: [GL.ONE, GL.ONE_MINUS_SRC_ALPHA, GL.ONE, GL.ONE_MINUS_SRC_ALPHA],
-	blendEquation: GL.FUNC_ADD,
+	blendFunc: [GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA],
+	blendEquation: GL_FUNC_ADD,
 	depthMask: true,
-	[GL.DEPTH_TEST]: true,
+	[GL_DEPTH_TEST]: true,
 	blend: true,
 }
 
 const TEXTURE_PARAMETERS = {
-	format: GL.RGBA,
+	format: GL_RGBA,
 	mipmaps: true,
 	parameters: {
-		[GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
-		[GL.TEXTURE_WRAP_S]: GL.CLAMP_TO_EDGE,
-		[GL.TEXTURE_WRAP_T]: GL.CLAMP_TO_EDGE,
+		[GL_TEXTURE_MIN_FILTER]: GL_LINEAR,
+		[GL_TEXTURE_WRAP_S]: GL_CLAMP_TO_EDGE,
+		[GL_TEXTURE_WRAP_T]: GL_CLAMP_TO_EDGE,
 	},
 }
 
@@ -198,7 +212,7 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 			...this._getShaders(),
 			id: id,
 			geometry: new Geometry({
-				drawMode: GL.TRIANGLE_STRIP,
+				drawMode: GL_TRIANGLE_STRIP,
 				attributes: {
 					aVertex: {
 						value: new Float32Array(vertices),
@@ -236,7 +250,7 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 			height: height * pixelRatio,
 			depth: true,
 		})
-		this.framebuffer.attach({ [GL.COLOR_ATTACHMENT0]: this.texture })
+		this.framebuffer.attach({ [GL_COLOR_ATTACHMENT0]: this.texture })
 		this.framebuffer.checkStatus()
 	}
 }
