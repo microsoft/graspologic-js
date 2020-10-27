@@ -2765,67 +2765,6 @@ __metadata:
     shx: ^0.3.2
     typedoc-plugin-markdown: ^2.4.2
     typescript: 4.0.3
-  dependenciesMeta:
-    "@essex/babel-config@10.0.1":
-      unplugged: true
-    "@essex/build-step-azure@10.0.2":
-      unplugged: true
-    "@essex/build-step-babel@10.0.2":
-      unplugged: true
-    "@essex/build-step-clean@10.0.2":
-      unplugged: true
-    "@essex/build-step-docs@10.0.2":
-      unplugged: true
-    "@essex/build-step-eslint@10.0.2":
-      unplugged: true
-    "@essex/build-step-init@11.0.1":
-      unplugged: true
-    "@essex/build-step-jest@10.0.2":
-      unplugged: true
-    "@essex/build-step-lint-staged@10.0.2":
-      unplugged: true
-    "@essex/build-step-pretty-quick@10.0.2":
-      unplugged: true
-    "@essex/build-step-recipes@10.0.2":
-      unplugged: true
-    "@essex/build-step-rollup@10.0.2":
-      unplugged: true
-    "@essex/build-step-storybook@10.0.2":
-      unplugged: true
-    "@essex/build-step-typedoc@10.0.2":
-      unplugged: true
-    "@essex/build-step-typescript@10.0.2":
-      unplugged: true
-    "@essex/build-step-webpack@10.0.2":
-      unplugged: true
-    "@essex/build-step-zip@10.0.2":
-      unplugged: true
-    "@essex/build-util-hoister@10.0.2":
-      unplugged: true
-    "@essex/build-utils@10.0.2":
-      unplugged: true
-    "@essex/eslint-config@10.0.1":
-      unplugged: true
-    "@essex/eslint-plugin@10.0.1":
-      unplugged: true
-    "@essex/jest-config@10.0.2":
-      unplugged: true
-    "@essex/prettier-config@10.0.0":
-      unplugged: true
-    "@essex/scripts@11.0.1":
-      unplugged: true
-    "@essex/shellrunner@10.0.2":
-      unplugged: true
-    "@essex/storybook-config@11.0.0":
-      unplugged: true
-    "@essex/tasklogger@10.0.2":
-      unplugged: true
-    "@essex/webpack-config@10.0.2":
-      unplugged: true
-    "@luma.gl/webgl@7.3.2":
-      unplugged: true
-    luma.gl@7.3.2:
-      unplugged: true
   languageName: unknown
   linkType: soft
 
