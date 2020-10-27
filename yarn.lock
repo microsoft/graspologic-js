@@ -2689,16 +2689,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/luma-utils@workspace:packages/renderables/luma-utils":
+"@graspologic/luma-utils@workspace:packages/libs/luma-utils":
   version: 0.0.0-use.local
-  resolution: "@graspologic/luma-utils@workspace:packages/renderables/luma-utils"
+  resolution: "@graspologic/luma-utils@workspace:packages/libs/luma-utils"
   dependencies:
     "@danmarshall/deckgl-typings": ^4.3.6
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": "workspace:packages/libs/memstore"
     "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
-    "@luma.gl/core": ^8.3.1
     "@luma.gl/gltools": ^8.3.1
     "@luma.gl/webgl": ^8.3.1
     "@types/node": ^14.14.2
@@ -2914,6 +2913,36 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@graspologic/renderables-edges@workspace:packages/renderables/edges":
+  version: 0.0.0-use.local
+  resolution: "@graspologic/renderables-edges@workspace:packages/renderables/edges"
+  dependencies:
+    "@danmarshall/deckgl-typings": ^4.3.6
+    "@essex-js-toolkit/toolbox": ^1.1.2
+    "@essex/scripts": ^11.0.1
+    "@essex/webpack-config": ^10.0.2
+    "@graspologic/animation": "workspace:packages/libs/animation"
+    "@graspologic/graph": "workspace:packages/libs/graph"
+    "@graspologic/luma-utils": "workspace:packages/libs/luma-utils"
+    "@graspologic/memstore": "workspace:packages/libs/memstore"
+    "@graspologic/renderables-base": "workspace:packages/renderables/base"
+    "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
+    "@graspologic/utils": "workspace:packages/libs/utils"
+    "@luma.gl/engine": ^8.3.1
+    "@luma.gl/gltools": ^8.3.1
+    "@luma.gl/webgl": ^8.3.1
+    "@types/node": ^14.14.2
+    "@types/webpack-bundle-analyzer": ^3
+    glob: ^7.1.6
+    npm-run-all: ^4.1.5
+    webpack-bundle-analyzer: ^3.9.0
+  peerDependencies:
+    "@types/node": "*"
+    core-js: ^3.6.5
+    regenerator-runtime: ^0.13.7
+  languageName: unknown
+  linkType: soft
+
 "@graspologic/renderables-nodes@workspace:packages/renderables/nodes":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-nodes@workspace:packages/renderables/nodes"
@@ -2924,13 +2953,15 @@ __metadata:
     "@essex/webpack-config": ^10.0.2
     "@graspologic/animation": "workspace:packages/libs/animation"
     "@graspologic/graph": "workspace:packages/libs/graph"
-    "@graspologic/luma-utils": "workspace:packages/renderables/luma-utils"
+    "@graspologic/luma-utils": "workspace:packages/libs/luma-utils"
     "@graspologic/memstore": "workspace:packages/libs/memstore"
     "@graspologic/renderables-base": "workspace:packages/renderables/base"
     "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
     "@graspologic/utils": "workspace:packages/libs/utils"
-    "@luma.gl/core": ^8.3.1
+    "@luma.gl/engine": ^8.3.1
     "@luma.gl/gltools": ^8.3.1
+    "@luma.gl/shadertools": ^8.3.1
+    "@luma.gl/webgl": ^8.3.1
     "@types/node": ^14.14.2
     "@types/webpack-bundle-analyzer": ^3
     glob: ^7.1.6
@@ -2962,12 +2993,14 @@ __metadata:
     "@essex/scripts": ^11.0.1
     "@graspologic/animation": "workspace:packages/libs/animation"
     "@graspologic/graph": "workspace:packages/libs/graph"
-    "@graspologic/luma-utils": "workspace:packages/renderables/luma-utils"
+    "@graspologic/luma-utils": "workspace:packages/libs/luma-utils"
     "@graspologic/memstore": "workspace:packages/libs/memstore"
+    "@graspologic/renderables-edges": "workspace:packages/renderables/edges"
     "@graspologic/renderables-nodes": "workspace:packages/renderables/nodes"
     "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl"
     "@luma.gl/constants": ^8.3.1
-    "@luma.gl/core": ^8.3.1
+    "@luma.gl/engine": ^8.3.1
+    "@luma.gl/gltools": ^8.3.1
     "@luma.gl/webgl": ^8.3.1
     "@types/node": ^14.14.2
     glob: ^7.1.6
@@ -3309,20 +3342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@luma.gl/core@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@luma.gl/core@npm:8.3.1"
-  dependencies:
-    "@babel/runtime": ^7.0.0
-    "@luma.gl/constants": 8.3.1
-    "@luma.gl/engine": 8.3.1
-    "@luma.gl/shadertools": 8.3.1
-    "@luma.gl/webgl": 8.3.1
-  checksum: 0a92e9e60c4ae5b9f2becf3511c75586a5d86381492c4397162dc40aca146b32debe94ac49462fd652fd4df84c3d7852161efc2e326b63d321dc2972081c02d7
-  languageName: node
-  linkType: hard
-
-"@luma.gl/engine@npm:8.3.1":
+"@luma.gl/engine@npm:^8.3.1":
   version: 8.3.1
   resolution: "@luma.gl/engine@npm:8.3.1"
   dependencies:
@@ -3337,7 +3357,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@luma.gl/gltools@npm:*, @luma.gl/gltools@npm:8.3.1, @luma.gl/gltools@npm:^8.3.1":
+"@luma.gl/gltools@npm:8.3.1, @luma.gl/gltools@npm:^8.3.1":
   version: 8.3.1
   resolution: "@luma.gl/gltools@npm:8.3.1"
   dependencies:
@@ -3348,7 +3368,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@luma.gl/shadertools@npm:8.3.1":
+"@luma.gl/shadertools@npm:8.3.1, @luma.gl/shadertools@npm:^8.3.1":
   version: 8.3.1
   resolution: "@luma.gl/shadertools@npm:8.3.1"
   dependencies:

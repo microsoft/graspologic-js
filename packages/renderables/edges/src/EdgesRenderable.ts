@@ -2,18 +2,16 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GL_DEPTH_TEST } from '@graspologic/luma-utils'
-import { Model, Buffer } from '@luma.gl/core'
-import { processMinMaxBounds } from '../../data/util'
-import { RenderConfiguration, Bounds3D } from '../../types'
-import { RenderOptions } from '../../types/internal'
-import { PropertyContainer } from '../../util/Properties'
-import { createIdFactory } from '../../util/ids'
-import { DirtyableRenderable } from '../Renderables'
+import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
+import { DirtyableRenderable } from '@graspologic/renderables-base'
+import { processMinMaxBounds, Bounds3D } from '@graspologic/utils'
+import { RenderOptions } from '@graspologic/renderables-base'
+import { Model } from '@luma.gl/engine'
+import { Buffer } from '@luma.gl/webgl'
 
 import createModel from './model'
 import { restartTween, readTween } from '@graspologic/animation'
-import { EdgeStore, Edge } from '@graspologic/graph'
+import type { EdgeStore, Edge } from '@graspologic/graph'
 import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
 
 const getNextId = createIdFactory('EdgesInstance')
@@ -29,10 +27,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 	private tweenUntil = 0
 	private needsDataBind = true
 
-	private _data = new PropertyContainer<EdgeStore | undefined>(
-		undefined,
-		() => false,
-	)
+	private _data: EdgeStore | undefined
 
 	/**
 	 * Constructor for EdgesRenderable
@@ -43,7 +38,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 	public constructor(
 		gl: WebGLRenderingContext,
 		private engineTime: () => number,
-		protected config: RenderConfiguration,
+		protected config: any,
 		id = getNextId(),
 	) {
 		super()
@@ -61,10 +56,6 @@ export class EdgesRenderable extends DirtyableRenderable {
 		this.translucentModel = translucentModel
 		this.translucentModelBuffer = translucentModelBuffer
 
-		this._data.onChange.subscribe(() => {
-			this.bindDataToModel(true)
-			this.setNeedsRedraw(true)
-		})
 		config.onDrawEdgesChanged(this.makeDirtyHandler)
 		config.onHideEdgesOnMoveChanged(this.makeDirtyHandler)
 		config.onEdgeConstantWidthChanged(this.makeDirtyHandler)
@@ -79,7 +70,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 	 * The edge data that should be rendered
 	 */
 	public get data() {
-		return this._data.value
+		return this._data
 	}
 
 	/**
@@ -87,15 +78,17 @@ export class EdgesRenderable extends DirtyableRenderable {
 	 */
 	public set data(value: EdgeStore | undefined) {
 		// We attach this here, because in the onChange handler it can be fired after changes happen
-		if (value !== this._data.value && value) {
+		if (value !== this._data && value) {
 			value.onAttributeUpdated(this.handleEdgeAttributeUpdated)
 			value.onAddItem(this.handleEdgeAdded)
 			value.onRemoveItem(this.handleEdgeRemoved)
 			for (const edge of value) {
 				this.handleEdgeAdded(edge)
 			}
+			this.bindDataToModel(true)
+			this.setNeedsRedraw(true)
 		}
-		this._data.value = value
+		this._data = value
 	}
 
 	/**
@@ -191,7 +184,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 		let bounds: Bounds3D | undefined
 		// Below is a little more complicated to allow us to set the initial bounds
 		// to the first primitives bounds, without doing a "first" check each time
-		const iterator = this._data.value![Symbol.iterator]()
+		const iterator = this._data![Symbol.iterator]()
 		if (iterator) {
 			let result = iterator.next()
 			if (result.value) {
@@ -341,11 +334,11 @@ export class EdgesRenderable extends DirtyableRenderable {
 			updated = forceAll || this.needsDataBind
 			if (updated) {
 				this.needsDataBind = false
-				const uint8 = this._data.value!.store.uint8Array
+				const uint8 = this._data!.store.uint8Array
 				this.modelBuffer.setData(uint8)
 				this.translucentModelBuffer.setData(uint8)
 
-				const instanceCount = this._data.value!.count
+				const instanceCount = this._data!.count
 				this.model.setInstanceCount(instanceCount)
 				this.translucentModel.setInstanceCount(instanceCount)
 			}

@@ -18,7 +18,7 @@ const mountWithRef = (el: JSX.Element, options?: any) => {
 describe('The Graph View', () => {
 	it('can mock luma', () => {
 		// eslint-disable-next-line @typescript-eslint/no-var-requires
-		const luma = require('@luma.gl/core')
+		const luma = require('@luma.gl/engine')
 		expect(luma.mock).toEqual(true)
 	})
 

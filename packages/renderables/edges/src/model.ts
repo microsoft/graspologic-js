@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GL_FLOAT, GL_TRIANGLE_STRIP } from '@graspologic/luma-utils'
-import { Geometry, Model } from '@luma.gl/core'
-import { uint32ColorTypeMapping, adaptMemoryLayoutToLuma } from '@graspologic/luma-utils'
-import { tween } from '../shaders/modules'
-import { edgeMemoryLayout } from '@graspologic/graph'
+import { Model, Geometry } from '@luma.gl/engine'
+
+import { tween, adaptMemoryLayoutToLuma, uint32ColorTypeMapping, GL_FLOAT, GL_TRIANGLE_STRIP } from '@graspologic/luma-utils'
+import { edgeMemoryLayout } from './memoryLayout'
 import edgeFS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.fs.glsl'
+
 
 const GL_TYPE_MAPPINGS = {
 	color: uint32ColorTypeMapping,

@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { readPixelsToArray, Model, Buffer } from '@luma.gl/core'
+import { Model } from '@luma.gl/engine'
+import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 import { readTween, restartTween } from '@graspologic/animation'
 import type { NodeStore, Node } from '@graspologic/graph'
 import { createIdFactory, cssToDevicePixels, GL_DEPTH_TEST, encodePickingColor, decodePickingColor } from '@graspologic/luma-utils'
@@ -16,6 +17,8 @@ import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214
 
+type PickingColor = Uint8Array | Uint16Array | Float32Array
+
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering nodes
  */
@@ -28,7 +31,7 @@ export class NodesRenderable extends DirtyableRenderable {
 	private needsDataBind = true
 	private _data: NodeStore | undefined
 
-	private pickingSelectedColor: number[] | undefined
+	private pickingSelectedColor: PickingColor | undefined
 
 	/**
 	 * Constructor
@@ -381,7 +384,7 @@ export class NodesRenderable extends DirtyableRenderable {
 	 * @param color1 The first picking color
 	 * @param color2 The second picking color
 	 */
-	private _comparePickingColors(color1: number[] | undefined, color2: number[] | undefined) {
+	private _comparePickingColors(color1: PickingColor | undefined, color2: PickingColor | undefined) {
 		if (color1 && color2) {
 			return (
 				color1[0] === color2[0] &&

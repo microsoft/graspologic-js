@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Buffer } from '@luma.gl/core/dist/esm'
+import { Buffer } from '@luma.gl/webgl'
 import { MemoryLayout, AttributeType } from '@graspologic/memstore'
 import { GL_UNSIGNED_BYTE, GL_FLOAT, GL_UNSIGNED_INT } from './glConstants'
 

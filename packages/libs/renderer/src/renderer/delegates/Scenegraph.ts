@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { setParameters } from '@luma.gl/core'
+import { setParameters } from '@luma.gl/gltools'
 import { ScreenQuadRenderable } from '../../renderables/ScreenQuadRenderable'
 import { DataStore, Scene, RenderConfiguration } from '../../types'
 import { Primitive, Renderable, RenderOptions } from '../../types/internal'

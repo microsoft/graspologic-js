@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 export * from './AxesRenderable'
-export { EdgesRenderable } from './edges'
+export { EdgesRenderable } from '@graspologic/renderables-edges'
 export * from './LabelRenderable'
 export { NodesRenderable } from '@graspologic/renderables-nodes'
 export * from './Renderables'

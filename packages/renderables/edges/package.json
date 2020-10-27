@@ -1,5 +1,5 @@
 {
-  "name": "@graspologic/renderables-nodes",
+  "name": "@graspologic/renderables-edges",
   "main": "src/index.ts",
   "publishConfig": {
     "main": "dist/cjs/index.js",
@@ -31,7 +31,6 @@
     "@graspologic/utils": "workspace:packages/libs/utils",
     "@luma.gl/engine": "^8.3.1",
     "@luma.gl/gltools": "^8.3.1",
-    "@luma.gl/shadertools": "^8.3.1",
     "@luma.gl/webgl": "^8.3.1"
   },
   "devDependencies": {

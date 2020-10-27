@@ -18,7 +18,8 @@ import {
 	GL_COLOR_ATTACHMENT0
 } from '@graspologic/luma-utils'
 
-import { Model, Geometry, Framebuffer, Texture2D } from '@luma.gl/core'
+import { Model, Geometry } from '@luma.gl/engine'
+import { Texture2D, Framebuffer } from '@luma.gl/webgl'
 import { Renderable, RenderOptions } from '../types/internal'
 import { createIdFactory } from '../util/ids'
 import { DirtyableRenderable } from './Renderables'
@@ -141,12 +142,14 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 	public destroy() {
 		if (!this.destroyed) {
 			this.destroyed = true
+
+			// .delete does exist here, but the typings aren't picking up for some reason
 			if (this.framebuffer) {
-				this.framebuffer.delete({ deleteChildren: true })
+				(this.framebuffer as any).delete({ deleteChildren: true })
 				delete this.framebuffer
 			}
 			if (this.texture) {
-				this.texture.delete({ deleteChildren: true })
+				(this.texture as any).delete({ deleteChildren: true })
 				this.texture = undefined
 			}
 		}

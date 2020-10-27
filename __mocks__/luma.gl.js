@@ -2,9 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-const luma = jest.createMockFromModule('@luma.gl/core')
+const lumaGLTools = jest.createMockFromModule('@luma.gl/gltools')
+const lumaWebGL = jest.createMockFromModule('@luma.gl/webgl')
+const lumaEngine = jest.createMockFromModule('@luma.gl/engine')
 
-luma.createGLContext = () => ({
+lumaGLTools.createGLContext = () => ({
 	canvas: {
 		getBoundingClientRect: () => ({
 			width: 100,
@@ -13,27 +15,27 @@ luma.createGLContext = () => ({
 	},
 })
 
-luma.encodePickingColor = () => [155, 155, 155, 155]
+// luma.encodePickingColor = () => [155, 155, 155, 155]
 
-luma.Framebuffer = class Framebuffer {
+lumaWebGL.Framebuffer = class Framebuffer {
 	attach() {}
 	checkStatus() {}
 }
 
-luma.Buffer = class Buffer {
+lumaWebGL.Buffer = class Buffer {
 	setData() {}
 }
 
-luma.Texture2D = class Texture2D {}
+lumaWebGL.Texture2D = class Texture2D {}
 
-luma.AnimationLoop = class AnimationLoop {
+lumaEngine.AnimationLoop = class AnimationLoop {
 	start() {}
 }
 
-luma.Geometry = class Geometry {}
+lumaEngine.Geometry = class Geometry {}
 
-luma.Model = class Model {}
+lumaEngine.Model = class Model {}
 
-luma.mock = true
+lumaEngine.mock = true
 
-module.exports = luma
+module.exports = lumaEngine

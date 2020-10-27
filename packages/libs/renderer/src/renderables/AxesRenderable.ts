@@ -5,7 +5,7 @@
 import { Matrix4 } from 'math.gl'
 import { RenderConfiguration } from '../types'
 import { RenderOptions } from '../types/internal'
-import { EdgesRenderable } from './edges'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { createEdgeStore } from '@graspologic/graph'
 
 const AXIS_COLORS = [0xff0000ff, 0xff00ff00, 0xffff0000]

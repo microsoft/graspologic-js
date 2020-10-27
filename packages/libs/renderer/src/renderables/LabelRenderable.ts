@@ -12,7 +12,8 @@ import {
 	GL_DEPTH_TEST,
 	GL_TRIANGLE_STRIP 
 } from '@graspologic/luma-utils'
-import { Model, Geometry, Texture2D } from '@luma.gl/core'
+import { Model, Geometry } from '@luma.gl/engine'
+import { Texture2D } from '@luma.gl/webgl'
 import { RenderOptions } from '../types/internal'
 import { PropertyContainer } from '../util/Properties'
 import { createIdFactory } from '../util/ids'

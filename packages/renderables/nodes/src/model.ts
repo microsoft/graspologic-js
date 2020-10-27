@@ -2,8 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Model, Geometry, picking } from '@luma.gl/core/dist/esm'
 
+import { Model, Geometry } from '@luma.gl/engine'
+import { picking } from '@luma.gl/shadertools'
 import { tween, adaptMemoryLayoutToLuma, uint32ColorTypeMapping, GL_FLOAT, GL_TRIANGLES } from '@graspologic/luma-utils'
 import { nodeMemoryLayout } from './memoryLayout'
 import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
