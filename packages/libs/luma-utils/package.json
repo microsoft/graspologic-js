@@ -1,35 +1,34 @@
 {
-    "name": "@graspologic/luma-utils",
-    "main": "src/index.ts",
-    "publishConfig": {
-        "main": "dist/cjs/index.js",
-        "module": "dist/esm/index.js",
-        "types": "dist/types/index.d.ts"
-    },
-    "author": "Chris Trevino (chtrevin@microsoft.com)",
-    "contributors": [
-        "David Tittsworth (datittsw@microsoft.com)"
-    ],
-    "scripts": {
-        "clean": "essex clean lib dist",
-        "bundle_types": "node ../../../scripts/bundleTypes",
-        "bundle_lib": "essex bundle --rollup",
-        "build_lib": "essex build --docs",
-        "build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
-        "start": "essex watch"
-    },
-    "dependencies": {
-        "@danmarshall/deckgl-typings": "^4.3.6",
-        "@essex-js-toolkit/toolbox": "^1.1.2",
-        "@graspologic/memstore": "workspace:packages/libs/memstore",
-        "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
-        "@luma.gl/gltools": "^8.3.1",
-        "@luma.gl/webgl": "^8.3.1"
-    },
-    "devDependencies": {
-        "@essex/scripts": "^11.0.1",
-        "@types/node": "^14.14.2",
-        "glob": "^7.1.6",
-        "npm-run-all": "^4.1.5"
-    }
+	"name": "@graspologic/luma-utils",
+	"main": "src/index.ts",
+	"publishConfig": {
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
+		"types": "dist/types/index.d.ts"
+	},
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)"
+	],
+	"scripts": {
+		"clean": "essex clean lib dist",
+		"bundle_types": "node ../../../scripts/bundleTypes",
+		"bundle_lib": "essex bundle --rollup",
+		"build_lib": "essex build --docs",
+		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@essex-js-toolkit/toolbox": "^1.1.2",
+		"@graspologic/memstore": "workspace:packages/libs/memstore",
+		"@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
+		"@luma.gl/gltools": "^8.3.1",
+		"@luma.gl/webgl": "^8.3.1"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^11.0.1",
+		"@types/node": "^14.14.2",
+		"glob": "^7.1.6",
+		"npm-run-all": "^4.1.5"
+	}
 }

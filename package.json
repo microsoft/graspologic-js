@@ -33,7 +33,6 @@
 		"@babel/preset-env": "^7.12.1",
 		"@babel/preset-react": "^7.12.1",
 		"@babel/preset-typescript": "^7.12.1",
-		"@danmarshall/deckgl-typings": "^4.3.6",
 		"@essex/eslint-config": "^10.0.1",
 		"@essex/eslint-plugin": "^10.0.1",
 		"@essex/jest-config": "^10.0.2",

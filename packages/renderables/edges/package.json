@@ -1,50 +1,49 @@
 {
-  "name": "@graspologic/renderables-edges",
-  "main": "src/index.ts",
-  "publishConfig": {
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "types": "dist/types/index.d.ts"
-  },
-  "author": "Chris Trevino (chtrevin@microsoft.com)",
-  "contributors": [
-    "David Tittsworth (datittsw@microsoft.com)"
-  ],
-  "scripts": {
-    "clean": "essex clean lib dist",
-    "bundle_types": "node ../../../scripts/bundleTypes",
-    "bundle_lib": "essex bundle --webpack",
-    "build_lib": "essex build --docs",
-    "build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
-    "build_renderables": "yarn build",
-    "start": "essex watch"
-  },
-  "dependencies": {
-    "@essex-js-toolkit/toolbox": "^1.1.2",
-    "@essex/webpack-config": "^10.0.2",
-    "@graspologic/animation": "workspace:packages/libs/animation",
-    "@graspologic/graph": "workspace:packages/libs/graph",
-    "@graspologic/luma-utils": "workspace:packages/libs/luma-utils",
-    "@graspologic/memstore": "workspace:packages/libs/memstore",
-    "@graspologic/renderables-base": "workspace:packages/renderables/base",
-    "@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
-    "@graspologic/utils": "workspace:packages/libs/utils",
-    "@luma.gl/engine": "^8.3.1",
-    "@luma.gl/gltools": "^8.3.1",
-    "@luma.gl/webgl": "^8.3.1"
-  },
-  "devDependencies": {
-    "@danmarshall/deckgl-typings": "^4.3.6",
-    "@essex/scripts": "^11.0.1",
-    "@types/node": "^14.14.2",
-    "@types/webpack-bundle-analyzer": "^3",
-    "glob": "^7.1.6",
-    "npm-run-all": "^4.1.5",
-    "webpack-bundle-analyzer": "^3.9.0"
-  },
-  "peerDependencies": {
-    "@types/node": "*",
-    "core-js": "^3.6.5",
-    "regenerator-runtime": "^0.13.7"
-  }
+	"name": "@graspologic/renderables-edges",
+	"main": "src/index.ts",
+	"publishConfig": {
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
+		"types": "dist/types/index.d.ts"
+	},
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)"
+	],
+	"scripts": {
+		"clean": "essex clean lib dist",
+		"bundle_types": "node ../../../scripts/bundleTypes",
+		"bundle_lib": "essex bundle --webpack",
+		"build_lib": "essex build --docs",
+		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
+		"build_renderables": "yarn build",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@essex-js-toolkit/toolbox": "^1.1.2",
+		"@essex/webpack-config": "^10.0.2",
+		"@graspologic/animation": "workspace:packages/libs/animation",
+		"@graspologic/graph": "workspace:packages/libs/graph",
+		"@graspologic/luma-utils": "workspace:packages/libs/luma-utils",
+		"@graspologic/memstore": "workspace:packages/libs/memstore",
+		"@graspologic/renderables-base": "workspace:packages/renderables/base",
+		"@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
+		"@graspologic/utils": "workspace:packages/libs/utils",
+		"@luma.gl/engine": "^8.3.1",
+		"@luma.gl/gltools": "^8.3.1",
+		"@luma.gl/webgl": "^8.3.1"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^11.0.1",
+		"@types/node": "^14.14.2",
+		"@types/webpack-bundle-analyzer": "^3",
+		"glob": "^7.1.6",
+		"npm-run-all": "^4.1.5",
+		"webpack-bundle-analyzer": "^3.9.0"
+	},
+	"peerDependencies": {
+		"@types/node": "*",
+		"core-js": "^3.6.5",
+		"regenerator-runtime": "^0.13.7"
+	}
 }

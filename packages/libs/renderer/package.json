@@ -22,7 +22,6 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@danmarshall/deckgl-typings": "^4.3.6",
 		"@essex-js-toolkit/toolbox": "^1.1.2",
 		"@graspologic/animation": "workspace:packages/libs/animation",
 		"@graspologic/graph": "workspace:packages/libs/graph",

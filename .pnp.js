@@ -136,7 +136,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-react", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-typescript", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex/eslint-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/eslint-plugin", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/jest-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.2"],
@@ -3891,18 +3890,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@danmarshall/deckgl-typings", [
-        ["npm:4.3.6", {
-          "packageLocation": "./.yarn/unplugged/@danmarshall-deckgl-typings-npm-4.3.6-2356ab25fe/node_modules/@danmarshall/deckgl-typings/",
-          "packageDependencies": [
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
-            ["@types/hammerjs", "npm:2.0.36"],
-            ["@types/react", "npm:16.9.53"],
-            ["indefinitely-typed", "npm:1.1.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@emotion/cache", [
         ["npm:10.0.29", {
           "packageLocation": "./.yarn/cache/@emotion-cache-npm-10.0.29-076efd3781-a2bdf4dd21.zip/node_modules/@emotion/cache/",
@@ -6532,7 +6519,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/libs/luma-utils/",
           "packageDependencies": [
             ["@graspologic/luma-utils", "workspace:packages/libs/luma-utils"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
@@ -6641,7 +6627,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-react", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
             ["@babel/preset-typescript", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:7.12.1"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex/eslint-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/eslint-plugin", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.1"],
             ["@essex/jest-config", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:10.0.2"],
@@ -7130,7 +7115,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderables-edges-virtual-f91118da68/1/packages/renderables/edges/",
           "packageDependencies": [
             ["@graspologic/renderables-edges", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/renderables/edges"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7169,7 +7153,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderables-edges-virtual-b1d50a66df/1/packages/renderables/edges/",
           "packageDependencies": [
             ["@graspologic/renderables-edges", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/renderables/edges"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7208,7 +7191,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/renderables/edges/",
           "packageDependencies": [
             ["@graspologic/renderables-edges", "workspace:packages/renderables/edges"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7236,7 +7218,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderables-nodes-virtual-4d9d22afe4/1/packages/renderables/nodes/",
           "packageDependencies": [
             ["@graspologic/renderables-nodes", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/renderables/nodes"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7276,7 +7257,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderables-nodes-virtual-33e14558da/1/packages/renderables/nodes/",
           "packageDependencies": [
             ["@graspologic/renderables-nodes", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/renderables/nodes"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7316,7 +7296,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/renderables/nodes/",
           "packageDependencies": [
             ["@graspologic/renderables-nodes", "workspace:packages/renderables/nodes"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@essex/webpack-config", "virtual:cc76f52d12654df7ac4ecdea1aef484804848e13a391efe871fffe05819c519220dcf70e87bb508d6593977a6aa82456f0935d127ae4032399cbec3c91f885d3#npm:10.0.2"],
@@ -7345,7 +7324,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderer-virtual-a906dd2440/1/packages/libs/renderer/",
           "packageDependencies": [
             ["@graspologic/renderer", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/renderer"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
@@ -7387,7 +7365,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@graspologic-renderer-virtual-72bb8352ed/1/packages/libs/renderer/",
           "packageDependencies": [
             ["@graspologic/renderer", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/renderer"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/animation", "virtual:72bb8352edff9520844dc228e0573823a8f9622d4adcd7585c8d2acab93a6a4aba791f0c81a7ea99039499175a31c2ad883afcf81f92198d08a6e7601758dd08#workspace:packages/libs/animation"],
@@ -7428,7 +7405,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/libs/renderer/",
           "packageDependencies": [
             ["@graspologic/renderer", "workspace:packages/libs/renderer"],
-            ["@danmarshall/deckgl-typings", "npm:4.3.6"],
             ["@essex-js-toolkit/toolbox", "npm:1.1.2"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:11.0.1"],
             ["@graspologic/animation", "virtual:a906dd244047e0aa746703f65c2084127d77cfa0376c24ffaaeef1fe90dd32af9573e3d858e94f1a668c09a6f7a4185fee2aab2fb3d0b84e5add2ba9f942c9ef#workspace:packages/libs/animation"],
@@ -12222,15 +12198,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/undertaker", "npm:1.2.3"],
             ["@types/vinyl-fs", "npm:2.4.11"],
             ["chokidar", "npm:3.4.3"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@types/hammerjs", [
-        ["npm:2.0.36", {
-          "packageLocation": "./.yarn/cache/@types-hammerjs-npm-2.0.36-1456ebf0d4-7ca40b0b93.zip/node_modules/@types/hammerjs/",
-          "packageDependencies": [
-            ["@types/hammerjs", "npm:2.0.36"]
           ],
           "linkType": "HARD",
         }]
@@ -20399,16 +20366,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:7.0.1", {
-          "packageLocation": "./.yarn/cache/fs-extra-npm-7.0.1-b33a5e53e9-0de3773953.zip/node_modules/fs-extra/",
-          "packageDependencies": [
-            ["fs-extra", "npm:7.0.1"],
-            ["graceful-fs", "npm:4.2.4"],
-            ["jsonfile", "npm:4.0.0"],
-            ["universalify", "npm:0.1.2"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:9.0.1", {
           "packageLocation": "./.yarn/cache/fs-extra-npm-9.0.1-2925889105-b7374cb058.zip/node_modules/fs-extra/",
           "packageDependencies": [
@@ -21963,17 +21920,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/imurmurhash-npm-0.1.4-610c5068a0-34d414d789.zip/node_modules/imurmurhash/",
           "packageDependencies": [
             ["imurmurhash", "npm:0.1.4"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["indefinitely-typed", [
-        ["npm:1.1.0", {
-          "packageLocation": "./.yarn/cache/indefinitely-typed-npm-1.1.0-d0b4a89b25-098676035c.zip/node_modules/indefinitely-typed/",
-          "packageDependencies": [
-            ["indefinitely-typed", "npm:1.1.0"],
-            ["fs-extra", "npm:7.0.1"],
-            ["minimist", "npm:1.2.5"]
           ],
           "linkType": "HARD",
         }]
@@ -23755,14 +23701,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/jsonfile-npm-2.4.0-5547489d6b-56a7800db8.zip/node_modules/jsonfile/",
           "packageDependencies": [
             ["jsonfile", "npm:2.4.0"],
-            ["graceful-fs", "npm:4.2.4"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:4.0.0", {
-          "packageLocation": "./.yarn/cache/jsonfile-npm-4.0.0-10ce3aea15-a40b7b64da.zip/node_modules/jsonfile/",
-          "packageDependencies": [
-            ["jsonfile", "npm:4.0.0"],
             ["graceful-fs", "npm:4.2.4"]
           ],
           "linkType": "HARD",

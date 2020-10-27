@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-const { configure } = require('@essex/jest-config')
-const baseConfig = configure();
+// const { configure } = require('@essex/jest-config')
 const config = {
+	// ...configure(),
 	testMatch: ['**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)'],
 	rootDir: process.cwd(),
 	roots: [process.cwd()],
@@ -26,8 +26,4 @@ const config = {
 	coverageReporters: ['json', 'lcov', 'text', 'clover', 'cobertura'],
 	setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 }
-console.log("BASE")
-console.log(JSON.stringify(baseConfig, null, 2))
-console.log("cfg")
-console.log(JSON.stringify(config, null, 2))
 module.exports = config

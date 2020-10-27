@@ -1789,17 +1789,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@danmarshall/deckgl-typings@npm:^4.3.6":
-  version: 4.3.6
-  resolution: "@danmarshall/deckgl-typings@npm:4.3.6"
-  dependencies:
-    "@types/hammerjs": ^2.0.36
-    "@types/react": "*"
-    indefinitely-typed: ^1.1.0
-  checksum: 0468b055486bf5dd4c31463afbe6b0e5cb43d7708fabf5cd536c312970921361e6ed626c14c7bee2e6748b19bc323b660fec7f04ed478eaaa36c1564d6fba31e
-  languageName: node
-  linkType: hard
-
 "@emotion/cache@npm:^10.0.27, @emotion/cache@npm:^10.0.9":
   version: 10.0.29
   resolution: "@emotion/cache@npm:10.0.29"
@@ -2693,7 +2682,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/luma-utils@workspace:packages/libs/luma-utils"
   dependencies:
-    "@danmarshall/deckgl-typings": ^4.3.6
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
     "@graspologic/memstore": "workspace:packages/libs/memstore"
@@ -2730,7 +2718,6 @@ __metadata:
     "@babel/preset-env": ^7.12.1
     "@babel/preset-react": ^7.12.1
     "@babel/preset-typescript": ^7.12.1
-    "@danmarshall/deckgl-typings": ^4.3.6
     "@essex/eslint-config": ^10.0.1
     "@essex/eslint-plugin": ^10.0.1
     "@essex/jest-config": ^10.0.2
@@ -2856,7 +2843,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-edges@workspace:packages/renderables/edges"
   dependencies:
-    "@danmarshall/deckgl-typings": ^4.3.6
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
     "@essex/webpack-config": ^10.0.2
@@ -2886,7 +2872,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-nodes@workspace:packages/renderables/nodes"
   dependencies:
-    "@danmarshall/deckgl-typings": ^4.3.6
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
     "@essex/webpack-config": ^10.0.2
@@ -2927,7 +2912,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderer@workspace:packages/libs/renderer"
   dependencies:
-    "@danmarshall/deckgl-typings": ^4.3.6
     "@essex-js-toolkit/toolbox": ^1.1.2
     "@essex/scripts": ^11.0.1
     "@graspologic/animation": "workspace:packages/libs/animation"
@@ -4731,13 +4715,6 @@ __metadata:
     "@types/vinyl-fs": "*"
     chokidar: ^3.3.1
   checksum: 9f57d7d9a09169c59b98e4af164d6bc30aa0ff46419d244198718d80b503ccd55d4b5318b39892f7f9da25424cf54ed1148e25309f3db0afceb9f00fb49d37c6
-  languageName: node
-  linkType: hard
-
-"@types/hammerjs@npm:^2.0.36":
-  version: 2.0.36
-  resolution: "@types/hammerjs@npm:2.0.36"
-  checksum: 7ca40b0b93262e7af6884d306bfa1360a36e974fb19c4f20170e9892244ed414898e6ff75923f1b27829d0d37000a7d3610f04c04cdf9a7e475439a7a32782d1
   languageName: node
   linkType: hard
 
@@ -11609,17 +11586,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^7.0.0":
-  version: 7.0.1
-  resolution: "fs-extra@npm:7.0.1"
-  dependencies:
-    graceful-fs: ^4.1.2
-    jsonfile: ^4.0.0
-    universalify: ^0.1.0
-  checksum: 0de3773953a13b517f053dbfa291166da076cc563cdd8f0ecefc64018ab15d2614f1707860b82e6b0e41695f613c1855f410749bd01bcb585f0243b1018a6595
-  languageName: node
-  linkType: hard
-
 "fs-extra@npm:^9.0.0, fs-extra@npm:^9.0.1":
   version: 9.0.1
   resolution: "fs-extra@npm:9.0.1"
@@ -13042,18 +13008,6 @@ fsevents@^1.2.7:
   version: 0.1.4
   resolution: "imurmurhash@npm:0.1.4"
   checksum: 34d414d789286f6ef4d2b954c76c7df40dd7cabffef9b9959c8bd148677e98151f4fa5344aae2e3ad2b62308555ccbba3022e535a3e24288c9babb1308e35532
-  languageName: node
-  linkType: hard
-
-"indefinitely-typed@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "indefinitely-typed@npm:1.1.0"
-  dependencies:
-    fs-extra: ^7.0.0
-    minimist: ^1.2.5
-  bin:
-    indefinitely-typed: bin/cli2.js
-  checksum: 098676035c7eb25d06d691c8b160f944ed644a95e4e68306d32de0dd6cac6f60e3e1777e57c39ead11d4b71ce4d0863e0ad4ba7735a0e9f00c4e304666dec8d1
   languageName: node
   linkType: hard
 
@@ -14664,18 +14618,6 @@ fsevents@^1.2.7:
     graceful-fs:
       optional: true
   checksum: 56a7800db8e652b6e23c2d441cc3fdc8a60b6d6874a9ef8137be6a1b3ddcd946ea480ceb35dd9ce62edab3ccd2ad5e51c41b882d999301d3bdf2a68d5d63b1b1
-  languageName: node
-  linkType: hard
-
-"jsonfile@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "jsonfile@npm:4.0.0"
-  dependencies:
-    graceful-fs: ^4.1.6
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: a40b7b64da41c84b0dc7ad753737ba240bb0dc50a94be20ec0b73459707dede69a6f89eb44b4d29e6994ed93ddf8c9b6e57f6b1f09dd707567959880ad6cee7f
   languageName: node
   linkType: hard
 
@@ -21988,7 +21930,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"universalify@npm:^0.1.0, universalify@npm:^0.1.2":
+"universalify@npm:^0.1.2":
   version: 0.1.2
   resolution: "universalify@npm:0.1.2"
   checksum: 420fc6547357782c700d53e9a92506a8e95345b13e97684c8f9ab75237912ec2ebb6af8ac10d4f7406b7b6bd21c58f6c5c0811414fb0b4091b78b4743fa6806e
