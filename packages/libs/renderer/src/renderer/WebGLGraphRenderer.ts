@@ -105,15 +105,13 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 	/**
 	 * Constructor for WebGLGraphRenderer
-	 * @param canvas The backing canvas
 	 * @param gl The webgl context
 	 * @param config The render configuration
 	 * @param data The data to render
 	 * @param scene The scene object
 	 */
 	private constructor(
-		public readonly canvas: HTMLCanvasElement,
-		public gl: WebGLRenderingContext,
+		public gl: WebGL2RenderingContext,
 		public config: RenderConfiguration,
 		data: DataStore,
 		scene?: Scene,
@@ -149,7 +147,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		// i.e. sets up the framebuffer and resizing framebuffer/canvas, mouse position
 		this.animationLoop = new AnimationLoop({
 			gl,
-			canvas,
+			canvas: gl.canvas,
 			useDevicePixels: true,
 			createFramebuffer: true,
 			onInitialize: (animationProps: AnimationOpts) => {
@@ -187,24 +185,23 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 */
 	public static createInstance(
 		options: Partial<RenderConfigurationOptions> = {},
+		gl?: WebGL2RenderingContext
 	): WebGLGraphRenderer {
-		const canvas = document.createElement('canvas')
-		const gl = createGLContext({
-			canvas,
-			webgl2: true,
-			webgl1: false,
-		})
+		if (!gl) {
+			const canvas = document.createElement('canvas')
+			gl = createGLContext({
+				canvas,
+				webgl2: true,
+				webgl1: false,
+			})
+		}
 		const data = createDataStore(
 			options.nodeCountHint,
 			options.edgeCountHint,
 			options.autoBind,
 		)
-		return new WebGLGraphRenderer(
-			canvas,
-			gl,
-			createConfiguration(options),
-			data,
-		)
+		const config = createConfiguration(options)
+		return new WebGLGraphRenderer(gl!, config, data)
 	}
 
 	// #endregion
@@ -316,7 +313,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 */
 	public get view() {
 		invariant(!this.destroyed, 'renderer is destroyed!')
-		return this.canvas
+		return this.gl.canvas as HTMLCanvasElement
 	}
 
 	// #endregion
@@ -407,11 +404,13 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 		const pixelRatio =
 			(typeof window !== 'undefined' && window.devicePixelRatio) || 1
-		this.canvas.width = width * pixelRatio
-		this.canvas.height = height * pixelRatio
 
-		this.canvas.style.width = `${width}px`
-		this.canvas.style.height = `${height}px`
+		const canvas = this.view
+		canvas.width = width * pixelRatio
+		canvas.height = height * pixelRatio
+
+		canvas.style.width = `${width}px`
+		canvas.style.height = `${height}px`
 
 		this.camera.resize(width, height)
 		this._scene.resize(width, height)
@@ -566,7 +565,6 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 				time,
 				engineTime: this._engineTime,
 				gl: this.gl,
-				canvas: this.canvas,
 				framebuffer: this.animationProps.framebuffer,
 				useDevicePixels: this.animationProps.useDevicePixels,
 				_mousePosition: this.animationProps._mousePosition,
