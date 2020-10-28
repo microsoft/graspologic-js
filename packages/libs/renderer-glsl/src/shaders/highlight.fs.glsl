@@ -39,7 +39,7 @@ void main(void) {
   fragColor = vColor;
 
   // Diamond and Square are treated the same
-  float distance = vShape == 1.0 || vShape == 2.0 ? calculate_square_distance() : calculate_circle_distance();
+  float distance = vShape > 0.99f && vShape < 2.01f ? calculate_square_distance() : calculate_circle_distance();
 
   // Stash the alpha channel, we restore the alpha later
   float alpha = vColor.a;
