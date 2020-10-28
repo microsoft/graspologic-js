@@ -3,8 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Matrix4 } from 'math.gl'
-import { RenderConfiguration } from '../types'
-import { RenderOptions } from '../types/internal'
+import { RenderConfiguration, RenderOptions } from '../types'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { createEdgeStore } from '@graspologic/graph'
 

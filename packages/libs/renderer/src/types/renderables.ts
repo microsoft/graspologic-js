@@ -97,9 +97,9 @@ export interface RenderOptions {
 }
 
 export interface Renderable {
-	/* @internal */ enabled: boolean
-	/* @internal */ needsRedraw: boolean
-	/* @internal */ draw(options: RenderOptions): void
-	/* @internal */ resize(width: number, height: number): void
-	/* @internal */ destroy?(): void
+	enabled: boolean
+	needsRedraw: boolean
+	draw(options: RenderOptions): void
+	resize(width: number, height: number): void
+	destroy?(): void
 }

@@ -3,9 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import type { SubscriptionLike, Subscribable } from 'rxjs'
-import { Camera } from '../../renderer/delegates'
-import { PropertyChangeHandler } from '../../util'
-import { CameraAdjustmentMode } from '../camera'
+import { Camera } from '../renderer/delegates'
+import { PropertyChangeHandler } from '../util'
+import { CameraAdjustmentMode } from './camera'
 import { PositionMap, NodeComponentColorizer, ColorVector } from './graphData'
 import { Scene } from './scene'
 import { Node, GraphContainer } from '@graspologic/graph'
@@ -176,36 +176,80 @@ export interface RenderConfigurationOptions {
  * Represents a set of configuration options to control the graph renderer
  */
 export interface RenderConfiguration extends RenderConfigurationOptions {
-	onBackgroundColorChanged(handler: PropertyChangeHandler<ColorVector>): SubscriptionLike
+	onBackgroundColorChanged(
+		handler: PropertyChangeHandler<ColorVector>,
+	): SubscriptionLike
 	onDrawEdgesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onHideEdgesOnMoveChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onHideEdgesOnMoveChanged(
+		handler: PropertyChangeHandler<boolean>,
+	): SubscriptionLike
 	onDrawNodesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onHideNodesOnMoveChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onHideDeselectedChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onEdgeConstantWidthChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onEdgeDepthWriteChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onHideNodesOnMoveChanged(
+		handler: PropertyChangeHandler<boolean>,
+	): SubscriptionLike
+	onHideDeselectedChanged(
+		handler: PropertyChangeHandler<boolean>,
+	): SubscriptionLike
+	onEdgeConstantWidthChanged(
+		handler: PropertyChangeHandler<boolean>,
+	): SubscriptionLike
+	onEdgeDepthWriteChanged(
+		handler: PropertyChangeHandler<boolean>,
+	): SubscriptionLike
 	onEdgeAlphaChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onEdgeAntialiasChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onEdgeMinWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onEdgeMaxWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onNodeMinRadiusChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onNodeMaxRadiusChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onNodeOutlineChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onEdgeAntialiasChanged(
+		handler: PropertyChangeHandler<boolean>,
+	): SubscriptionLike
+	onEdgeMinWidthChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onEdgeMaxWidthChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onNodeMinRadiusChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onNodeMaxRadiusChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onNodeOutlineChanged(
+		handler: PropertyChangeHandler<boolean>,
+	): SubscriptionLike
 	onCornerAxesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
 	onDrawAxesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onInterpolationTimeChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onHoverHighlightColorChanged(handler: PropertyChangeHandler<number[]>): SubscriptionLike
+	onInterpolationTimeChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onHoverHighlightColorChanged(
+		handler: PropertyChangeHandler<number[]>,
+	): SubscriptionLike
 	onIs3DChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onEdgeFilteredOutSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onEdgeFilteredInSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onNodeFilteredOutSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onNodeFilteredInSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onNodeFilteredIdsChanged(handler: PropertyChangeHandler<string[] | undefined>): SubscriptionLike
-	onNodeCountHintChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onEdgeCountHintChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onEdgeFilteredOutSaturationChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onEdgeFilteredInSaturationChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onNodeFilteredOutSaturationChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onNodeFilteredInSaturationChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onNodeFilteredIdsChanged(
+		handler: PropertyChangeHandler<string[] | undefined>,
+	): SubscriptionLike
+	onNodeCountHintChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
+	onEdgeCountHintChanged(
+		handler: PropertyChangeHandler<number>,
+	): SubscriptionLike
 	onWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
 	onHeightChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onCameraAdjustmentModeChanged(handler: PropertyChangeHandler<CameraAdjustmentMode>): SubscriptionLike
+	onCameraAdjustmentModeChanged(
+		handler: PropertyChangeHandler<CameraAdjustmentMode>,
+	): SubscriptionLike
 	copy(): RenderConfigurationOptions
 	load(options: Partial<RenderConfigurationOptions>): void
 }

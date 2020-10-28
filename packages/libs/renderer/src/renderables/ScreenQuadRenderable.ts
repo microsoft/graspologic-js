@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 
-import { 
+import {
 	GL_RGBA,
 	GL_LINEAR,
 	GL_TEXTURE_MIN_FILTER,
@@ -15,12 +15,12 @@ import {
 	GL_ONE,
 	GL_ONE_MINUS_SRC_ALPHA,
 	GL_FUNC_ADD,
-	GL_COLOR_ATTACHMENT0
+	GL_COLOR_ATTACHMENT0,
 } from '@graspologic/luma-utils'
 
 import { Model, Geometry } from '@luma.gl/engine'
 import { Texture2D, Framebuffer } from '@luma.gl/webgl'
-import { Renderable, RenderOptions } from '../types/internal'
+import { Renderable, RenderOptions } from '../types'
 import { createIdFactory } from '../util/ids'
 import { DirtyableRenderable } from './Renderables'
 
@@ -145,11 +145,11 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 
 			// .delete does exist here, but the typings aren't picking up for some reason
 			if (this.framebuffer) {
-				(this.framebuffer as any).delete({ deleteChildren: true })
+				;(this.framebuffer as any).delete({ deleteChildren: true })
 				delete this.framebuffer
 			}
 			if (this.texture) {
-				(this.texture as any).delete({ deleteChildren: true })
+				;(this.texture as any).delete({ deleteChildren: true })
 				this.texture = undefined
 			}
 		}

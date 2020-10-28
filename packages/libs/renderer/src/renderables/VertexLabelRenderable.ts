@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { RenderOptions } from '../types/internal'
+import { RenderOptions } from '../types'
 import { LabelRenderable } from './LabelRenderable'
 import { DataboundRenderable } from './Renderables'
 import { Node } from '@graspologic/graph'

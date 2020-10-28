@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
-import { AnimationLoop } from '@luma.gl/engine';
+import { AnimationLoop } from '@luma.gl/engine'
 import { createGLContext } from '@luma.gl/gltools'
 import { Subject, Observable } from 'rxjs'
 import { createConfiguration } from '../RenderConfiguration'
@@ -22,6 +22,7 @@ import {
 	RenderConfigurationOptions,
 	DataStore,
 	Bounds3D,
+	Primitive,
 } from '../types'
 import { fastDebounce } from '../util'
 import { Camera, Scenegraph, createDataStore } from './delegates'
@@ -32,6 +33,8 @@ import {
 	nodeType,
 	edgeType,
 	GraphContainer,
+	NodeStore,
+	EdgeStore,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
 
@@ -99,7 +102,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 	/** Returns the current engine time for animation tweening */
 	public engineTime = () => this._engineTime
-	private _data: DataStore
+	private _data: DataStore<Primitive>
 
 	// #region construction
 
@@ -113,7 +116,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	private constructor(
 		public gl: WebGL2RenderingContext,
 		public config: RenderConfiguration,
-		data: DataStore,
+		data: DataStore<Primitive>,
 		scene?: Scene,
 	) {
 		this._data = data
@@ -169,7 +172,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		this._scene.addRenderable(this.nodes, true)
 
 		// Event Wiring
-		this.nodes.addEventListener("nodeHovered", (e): void => {
+		this.nodes.addEventListener('nodeHovered', (e): void => {
 			const node = (e as CustomEvent<Node | undefined>).detail
 			this._onVertexHoveredEvent.next(node)
 		})
@@ -185,7 +188,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 */
 	public static createInstance(
 		options: Partial<RenderConfigurationOptions> = {},
-		gl?: WebGL2RenderingContext
+		gl?: WebGL2RenderingContext,
 	): WebGLGraphRenderer {
 		if (!gl) {
 			const canvas = document.createElement('canvas')
@@ -225,8 +228,8 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 */
 	public get graph(): GraphContainer {
 		return new GraphContainer(
-			this._data.retrieve(nodeType)!,
-			this._data.retrieve(edgeType)!,
+			this._data.retrieve<NodeStore>(nodeType)!,
+			this._data.retrieve<EdgeStore>(edgeType)!,
 		)
 	}
 
@@ -331,8 +334,8 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 		this._data.register(nodeType, data.nodes)
 		this._data.register(edgeType, data.edges)
-		this.nodes.data = this._data.retrieve(nodeType)
-		this.edges.data = this._data.retrieve(edgeType)
+		this.nodes.data = data.nodes
+		this.edges.data = data.edges
 		this.scene.rebuildSaturation()
 		this._onLoad.next()
 	}

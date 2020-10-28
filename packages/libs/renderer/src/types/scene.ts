@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Renderable, RenderOptions, Primitive } from '../internal'
+import { Primitive } from './primitives'
+import { Renderable, RenderOptions } from './renderables'
 import { Edge, Node } from '@graspologic/graph'
 
 /**
@@ -35,7 +36,8 @@ export interface Scene {
 	/**
 	 * Gets the list of primitives contained in the scene
 	 */
-	primitives(): Iterable<Primitive>
+	primitives(ids?: Set<string>): Iterable<Primitive>
+
 	/**
 	 * Returns the list of nodes in the scene
 	 */
@@ -45,11 +47,6 @@ export interface Scene {
 	 * Gets the list of edges contained in the scene
 	 */
 	edges(): Iterable<Edge>
-
-	/**
-	 * Returns the primitives with the given ids
-	 */
-	getPrimitives<T>(ids: Set<string>): Iterable<Primitive>
 
 	/**
 	 * Adds a renderable object that will be added to the rendering pipeline

@@ -4,8 +4,14 @@
  */
 import { setParameters } from '@luma.gl/gltools'
 import { ScreenQuadRenderable } from '../../renderables/ScreenQuadRenderable'
-import { DataStore, Scene, RenderConfiguration } from '../../types'
-import { Primitive, Renderable, RenderOptions } from '../../types/internal'
+import {
+	DataStore,
+	Scene,
+	RenderConfiguration,
+	Renderable,
+	RenderOptions,
+	Primitive,
+} from '../../types'
 import { Interpolator } from './Interpolator'
 import { Camera } from './camera'
 import {
@@ -46,7 +52,7 @@ export class Scenegraph implements Scene {
 		private gl: WebGLRenderingContext,
 		private config: RenderConfiguration,
 		private camera: Camera,
-		data: DataStore,
+		private data: DataStore<Primitive>,
 	) {
 		this.doubleBufferedRenderables = new ScreenQuadRenderable(gl)
 		config.onBackgroundColorChanged(() => this.initialize({ gl: this.gl }))
@@ -100,15 +106,19 @@ export class Scenegraph implements Scene {
 				const primitive = primitives[i]
 				if (primitive.type === nodeType) {
 					this.nodeData.receive(primitive as Node)
-				} else {
+				} else if (primitive.type == edgeType) {
 					this.edgeData.receive(primitive as Edge)
+				} else {
+					this.data.retrieve(primitive.type)?.receive(primitive)
 				}
 			}
 		} else {
 			if (primitives.type === nodeType) {
 				this.nodeData.receive(primitives as Node)
-			} else {
+			} else if (primitives.type == edgeType) {
 				this.edgeData.receive(primitives as Edge)
+			} else {
+				this.data.retrieve(primitives.type)?.receive(primitives)
 			}
 		}
 	}
@@ -123,36 +133,54 @@ export class Scenegraph implements Scene {
 				const primitive = primitives[i]
 				if (primitive.type === nodeType) {
 					this.nodeData.remove(primitive.storeId)
-				} else {
+				} else if (primitive.type == edgeType) {
 					this.edgeData.remove(primitive.storeId)
+				} else {
+					this.data.retrieve(primitive.type)?.remove(primitive.storeId)
 				}
 			}
 		} else {
 			if (primitives.type === nodeType) {
 				this.nodeData.remove(primitives.storeId)
-			} else {
+			} else if (primitives.type == edgeType) {
 				this.edgeData.remove(primitives.storeId)
+			} else {
+				this.data.retrieve(primitives.type)?.remove(primitives.storeId)
 			}
 		}
 	}
 
 	public clear() {
 		// Empty the DM
-		this.nodeData.reset()
-		this.edgeData.reset()
+		for (const store of this.data) {
+			store.reset()
+		}
 		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
-	 * Gets the list of edges contained in the scene
+	 * Gets the list of primitives contained in the scene
 	 */
-	public *primitives(): Iterable<Primitive> {
+	public *primitives(ids?: Set<string>): Iterable<Primitive> {
 		// TODO: PrimitiveStore should be able to return an iterator
-		for (const prim of this.nodes()) {
-			yield prim
+		for (const store of this.data) {
+			for (const prim of store) {
+				if (!ids || ids.has(prim.id || '')) {
+					yield prim
+				}
+			}
 		}
-		for (const prim of this.edges()) {
-			yield prim
+	}
+
+	/**
+	 * Gets the list of primitives by the given type
+	 */
+	public *primitivesByType(type: symbol): Iterable<Primitive> {
+		const data = this.data.retrieve(type)
+		if (data) {
+			for (const prim of data) {
+				yield prim
+			}
 		}
 	}
 
@@ -168,17 +196,6 @@ export class Scenegraph implements Scene {
 	 */
 	public edges(): Iterable<Edge> {
 		return this.edgeData
-	}
-
-	/**
-	 * Returns the primitive with the given id
-	 */
-	public *getPrimitives<T>(ids: Set<string>): Iterable<Primitive> {
-		for (const prim of this.primitives()) {
-			if (ids.has(prim.id || '')) {
-				yield prim
-			}
-		}
 	}
 
 	/**

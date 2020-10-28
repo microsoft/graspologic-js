@@ -2,10 +2,14 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GL_DEPTH_TEST, GL_FLOAT, GL_TRIANGLE_STRIP } from '@graspologic/luma-utils'
+import {
+	GL_DEPTH_TEST,
+	GL_FLOAT,
+	GL_TRIANGLE_STRIP,
+} from '@graspologic/luma-utils'
 import { Model, Geometry } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
-import { RenderOptions } from '../types/internal'
+import { RenderOptions } from '../types'
 import { adaptMemoryLayoutToLuma } from '../util'
 import { PropertyContainer } from '../util/Properties'
 import { areColorsEqual } from '../util/equality'

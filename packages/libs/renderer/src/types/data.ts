@@ -9,7 +9,7 @@ export type RegisterHandler<T> = (type: symbol, item: T) => any
 /**
  * A generic store for storing "types" of items
  */
-export interface TypeStore<T> {
+export interface TypeStore<T> extends Iterable<T> {
 	/**
 	 * Registers a primitive store with the data manager
 	 * @param type the render primitive type
@@ -28,7 +28,7 @@ export interface TypeStore<T> {
 	 * Gets the data associated with the given primitive type
 	 * @param type The primitive type
 	 */
-	retrieve(type: symbol): T | undefined
+	retrieve<P extends T = T>(type: symbol): P | undefined
 
 	/**
 	 * Destroys the data manager
@@ -36,7 +36,7 @@ export interface TypeStore<T> {
 	destroy(): void
 }
 
-export type DataStore = TypeStore<ReaderStore<any>>
+export type DataStore<T = any> = TypeStore<ReaderStore<T>>
 
 export interface NumberRange {
 	/**

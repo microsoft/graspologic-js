@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { 
+import {
 	GL_RGBA,
 	GL_LINEAR,
 	GL_TEXTURE_MIN_FILTER,
@@ -10,11 +10,11 @@ import {
 	GL_TEXTURE_WRAP_S,
 	GL_TEXTURE_WRAP_T,
 	GL_DEPTH_TEST,
-	GL_TRIANGLE_STRIP 
+	GL_TRIANGLE_STRIP,
 } from '@graspologic/luma-utils'
 import { Model, Geometry } from '@luma.gl/engine'
 import { Texture2D } from '@luma.gl/webgl'
-import { RenderOptions } from '../types/internal'
+import { RenderOptions } from '../types'
 import { PropertyContainer } from '../util/Properties'
 import { createIdFactory } from '../util/ids'
 import { DirtyableRenderable } from './Renderables'

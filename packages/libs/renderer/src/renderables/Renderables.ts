@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { DEFAULT_WIDTH, DEFAULT_HEIGHT } from '../defaults'
-import { Renderable, RenderOptions } from '../types/internal'
+import { Renderable, RenderOptions } from '../types'
 
 /**
  * Base-class for property-holding renderable models
