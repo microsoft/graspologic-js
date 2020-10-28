@@ -2567,7 +2567,7 @@ __metadata:
     "@graspologic/graph": "workspace:packages/libs/graph"
     "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
-    rxjs: ^6.6.3
+    rxjs: 7.0.0-beta.8
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2591,7 +2591,7 @@ __metadata:
     npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
-    rxjs: ^6.6.3
+    rxjs: 7.0.0-beta.8
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2620,7 +2620,7 @@ __metadata:
     npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
-    rxjs: ^6.6.3
+    rxjs: 7.0.0-beta.8
     typedoc: 0.19.2
   peerDependencies:
     "@types/d3-scale-chromatic": "*"
@@ -2666,7 +2666,7 @@ __metadata:
     react: ^16.14.0
     react-dom: ^16.14.0
     react-helmet: ^6.1.0
-    rxjs: ^6.6.3
+    rxjs: 7.0.0-beta.8
     styled-components: ^5.2.0
     typedoc: 0.19.2
     use-pan-and-zoom: ^0.5.1
@@ -2931,7 +2931,7 @@ __metadata:
     math.gl: ^3.2.2
     mjolnir.js: ^2.4.1
     npm-run-all: ^4.1.5
-    rxjs: ^6.6.3
+    rxjs: 7.0.0-beta.8
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -19444,7 +19444,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^6.5.3, rxjs@npm:^6.6.0, rxjs@npm:^6.6.2, rxjs@npm:^6.6.3":
+"rxjs@npm:7.0.0-beta.8":
+  version: 7.0.0-beta.8
+  resolution: "rxjs@npm:7.0.0-beta.8"
+  dependencies:
+    tslib: ^1.9.0
+  checksum: 842d40cabcab28f60d20c8366551955672344d387753f998ec38149c08db3bc15302c5683799a1f8fb26655e412dcdc68b0738555b0e283b3df43c666146dbed
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^6.5.3, rxjs@npm:^6.6.0, rxjs@npm:^6.6.2":
   version: 6.6.3
   resolution: "rxjs@npm:6.6.3"
   dependencies:

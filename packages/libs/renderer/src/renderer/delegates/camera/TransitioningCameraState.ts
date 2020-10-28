@@ -16,7 +16,7 @@ import { CameraState } from './CameraState'
  */
 export class TransitioningCameraState {
 	private interpolator?: Interpolator
-	private _onComplete = new Subject()
+	private _onComplete = new Subject<void>()
 
 	/**
 	 * The start camera state

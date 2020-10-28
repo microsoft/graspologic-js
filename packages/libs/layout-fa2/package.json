@@ -23,7 +23,7 @@
 	"dependencies": {
 		"@graspologic/graph": "workspace:packages/libs/graph",
 		"@graspologic/layout-core": "workspace:packages/libs/layout-core",
-		"rxjs": "^6.6.3",
+		"rxjs": "7.0.0-beta.8",
 		"typedoc": "0.19.2"
 	},
 	"devDependencies": {

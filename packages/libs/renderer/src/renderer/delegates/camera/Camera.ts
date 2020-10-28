@@ -20,7 +20,7 @@ export class Camera {
 	public projection = new Matrix4()
 	private _fov = DEFAULT_FOV
 	private _isUserMoving = false
-	private _onMovingComplete = new Subject()
+	private _onMovingComplete = new Subject<void>()
 	private _projectionSettings = {
 		aspect: 1,
 		near: 0.1,

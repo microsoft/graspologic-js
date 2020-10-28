@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Observable, Subscription } from 'rxjs'
+import type { SubscriptionLike, Subscribable } from 'rxjs'
 import { Camera } from '../../renderer/delegates'
 import { PropertyChangeHandler } from '../../util'
 import { CameraAdjustmentMode } from '../camera'
@@ -176,60 +176,36 @@ export interface RenderConfigurationOptions {
  * Represents a set of configuration options to control the graph renderer
  */
 export interface RenderConfiguration extends RenderConfigurationOptions {
-	onBackgroundColorChanged(
-		handler: PropertyChangeHandler<ColorVector>,
-	): Subscription
-	onDrawEdgesChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onHideEdgesOnMoveChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Subscription
-	onDrawNodesChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onHideNodesOnMoveChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Subscription
-	onHideDeselectedChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onEdgeConstantWidthChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Subscription
-	onEdgeDepthWriteChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onEdgeAlphaChanged(handler: PropertyChangeHandler<number>): Subscription
-	onEdgeAntialiasChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onEdgeMinWidthChanged(handler: PropertyChangeHandler<number>): Subscription
-	onEdgeMaxWidthChanged(handler: PropertyChangeHandler<number>): Subscription
-	onNodeMinRadiusChanged(handler: PropertyChangeHandler<number>): Subscription
-	onNodeMaxRadiusChanged(handler: PropertyChangeHandler<number>): Subscription
-	onNodeOutlineChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onCornerAxesChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onDrawAxesChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onInterpolationTimeChanged(
-		handler: PropertyChangeHandler<number>,
-	): Subscription
-	onHoverHighlightColorChanged(
-		handler: PropertyChangeHandler<number[]>,
-	): Subscription
-	onIs3DChanged(handler: PropertyChangeHandler<boolean>): Subscription
-	onEdgeFilteredOutSaturationChanged(
-		handler: PropertyChangeHandler<number>,
-	): Subscription
-	onEdgeFilteredInSaturationChanged(
-		handler: PropertyChangeHandler<number>,
-	): Subscription
-	onNodeFilteredOutSaturationChanged(
-		handler: PropertyChangeHandler<number>,
-	): Subscription
-	onNodeFilteredInSaturationChanged(
-		handler: PropertyChangeHandler<number>,
-	): Subscription
-	onNodeFilteredIdsChanged(
-		handler: PropertyChangeHandler<string[] | undefined>,
-	): Subscription
-	onNodeCountHintChanged(handler: PropertyChangeHandler<number>): Subscription
-	onEdgeCountHintChanged(handler: PropertyChangeHandler<number>): Subscription
-	onWidthChanged(handler: PropertyChangeHandler<number>): Subscription
-	onHeightChanged(handler: PropertyChangeHandler<number>): Subscription
-	onCameraAdjustmentModeChanged(
-		handler: PropertyChangeHandler<CameraAdjustmentMode>,
-	): Subscription
+	onBackgroundColorChanged(handler: PropertyChangeHandler<ColorVector>): SubscriptionLike
+	onDrawEdgesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onHideEdgesOnMoveChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onDrawNodesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onHideNodesOnMoveChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onHideDeselectedChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onEdgeConstantWidthChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onEdgeDepthWriteChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onEdgeAlphaChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onEdgeAntialiasChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onEdgeMinWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onEdgeMaxWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onNodeMinRadiusChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onNodeMaxRadiusChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onNodeOutlineChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onCornerAxesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onDrawAxesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onInterpolationTimeChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onHoverHighlightColorChanged(handler: PropertyChangeHandler<number[]>): SubscriptionLike
+	onIs3DChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	onEdgeFilteredOutSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onEdgeFilteredInSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onNodeFilteredOutSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onNodeFilteredInSaturationChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onNodeFilteredIdsChanged(handler: PropertyChangeHandler<string[] | undefined>): SubscriptionLike
+	onNodeCountHintChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onEdgeCountHintChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onHeightChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	onCameraAdjustmentModeChanged(handler: PropertyChangeHandler<CameraAdjustmentMode>): SubscriptionLike
 	copy(): RenderConfigurationOptions
 	load(options: Partial<RenderConfigurationOptions>): void
 }
@@ -274,29 +250,29 @@ export interface GraphRenderer {
 	 * Subscribe to dirty changes
 	 * @param handler
 	 */
-	readonly onDirty: Observable<void>
+	readonly onDirty: Subscribable<void>
 
 	/**
 	 * Subscribe to data loads
 	 * @param handler
 	 */
-	readonly onLoad: Observable<void>
+	readonly onLoad: Subscribable<void>
 
 	/**
 	 * Subscribe to resizes
 	 * @param handler
 	 */
-	readonly onResize: Observable<void>
+	readonly onResize: Subscribable<void>
 
 	/**
-	 * Observable for when a vertex is clicked on
+	 * Subscribable for when a vertex is clicked on
 	 */
-	onVertexClick: Observable<Node | undefined>
+	onVertexClick: Subscribable<Node | undefined>
 
 	/**
-	 * Observable for when a vertex is hovered over
+	 * Subscribable for when a vertex is hovered over
 	 */
-	onVertexHover: Observable<Node | undefined>
+	onVertexHover: Subscribable<Node | undefined>
 
 	/**
 	 * Gets the scene, on which nodes and edges can be added
