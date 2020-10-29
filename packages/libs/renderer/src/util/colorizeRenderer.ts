@@ -3,7 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { NodeComponentColorizer, GraphRenderer } from '../types'
-import { getCachedColor } from './getColor'
 
 export function createIntColorizer(
 	colorizerFn: NodeComponentColorizer = () => [1, 0, 0, 1],
@@ -32,17 +31,12 @@ export function colorizeRenderer(
 	colorizerFn?: NodeComponentColorizer,
 ) {
 	const colorizer = createIntColorizer(colorizerFn)
-	const colorMap = new Map()
 	const nodeColors = new Map<string, number>()
+	let color: number
 	for (const node of renderer.scene.nodes()) {
-		const newColor = getCachedColor(
-			colorMap,
-			colorizer,
-			node.group as any,
-			node.id as any,
-		)
-		node.color = newColor
-		nodeColors.set(node.id || 'DEFAULT', newColor)
+		color = colorizer(node.group, node.id)
+		node.color = color
+		nodeColors.set(node.id || 'DEFAULT', color)
 	}
 	let nodeColor: number | undefined
 	for (const edge of renderer.scene.edges()) {

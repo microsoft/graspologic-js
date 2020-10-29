@@ -8,7 +8,6 @@ export * from './slerp'
 export * from './equality'
 export * from './fastDebounce'
 export * from './colorizeRenderer'
-export * from './getColor'
 
 // TODO: Temporary
 export * from '@graspologic/luma-utils'

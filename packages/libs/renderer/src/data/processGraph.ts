@@ -4,7 +4,6 @@
  */
 import { NodeComponentColorizer, NodeIntColorizer } from '../types'
 import { createIntColorizer } from '../util/colorizeRenderer'
-import { getCachedColor } from '../util/getColor'
 import { GraphContainer, Node, Edge } from '@graspologic/graph'
 
 /**
@@ -37,15 +36,12 @@ function colorizeNodes(
 	data: GraphContainer,
 	colorizer: NodeIntColorizer,
 ): [number, number] {
-	const colorMap = new Map()
 	let maxWeight = Number.MIN_SAFE_INTEGER
 	let minWeight = Number.MAX_SAFE_INTEGER
 
 	let node: Node
 	for (node of data.nodes) {
-		node.color =
-			node.color ||
-			getCachedColor(colorMap, colorizer, node.group as any, node.id as any)
+		node.color = node.color || colorizer(node.group as any, node.id as any)
 		maxWeight = Math.max(maxWeight, node.weight)
 		minWeight = Math.min(minWeight, node.weight)
 	}
