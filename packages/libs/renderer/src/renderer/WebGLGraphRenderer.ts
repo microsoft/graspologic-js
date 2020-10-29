@@ -42,7 +42,10 @@ import { ReaderStore } from '@graspologic/memstore'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const invariant = require('invariant')
 
-const DEFAULT_DATA_DOMAIN = Object.freeze({
+/**
+ * Default world bounds, a 2 x 2 x 2 cube centered on 0, 0, 0
+ */
+const DEFAULT_BOUNDS = Object.freeze({
 	x: {
 		min: -1,
 		max: 1,
@@ -74,7 +77,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	private _onVertexClickEvent = new Subject<Node | undefined>()
 	private _onVertexHoveredEvent = new Subject<Node | undefined>()
 	private _hoveredVertex: Node | undefined
-	private _dataDomain: Bounds3D = DEFAULT_DATA_DOMAIN
+	private _dataDomain: Bounds3D = DEFAULT_BOUNDS
 
 	// Plugins
 	private _onInitializeHandlers: Array<
@@ -508,7 +511,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	public updateWeights() {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
-		this._dataDomain = this.computeDomain() as any
+		this._dataDomain = this.computeBounds() as any
 		return this._dataDomain
 	}
 
@@ -655,24 +658,24 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	}
 
 	/**
-	 * Computes the domain of the data
+	 * Computes the world bounds of the items drawn to screen
 	 */
-	private computeDomain(): Bounds3D {
-		const edgeDomain: Bounds3D | undefined = this.edges.computeDomain()
-		const nodeDomain: Bounds3D | undefined = this.nodes.computeDomain()
-		const domain = nodeDomain || edgeDomain || DEFAULT_DATA_DOMAIN
-		if (edgeDomain) {
+	private computeBounds(): Bounds3D {
+		const edgeBounds: Bounds3D | undefined = this.edges.computeBounds()
+		const nodeBounds: Bounds3D | undefined = this.nodes.computeBounds()
+		const bounds = nodeBounds || edgeBounds || DEFAULT_BOUNDS
+		if (edgeBounds) {
 			// X
-			domain.x.max = Math.max(edgeDomain.x.min, edgeDomain.x.max, domain.x.max)
-			domain.x.min = Math.min(edgeDomain.x.min, edgeDomain.x.max, domain.x.min)
+			bounds.x.max = Math.max(edgeBounds.x.min, edgeBounds.x.max, bounds.x.max)
+			bounds.x.min = Math.min(edgeBounds.x.min, edgeBounds.x.max, bounds.x.min)
 			// Y
-			domain.y.max = Math.max(edgeDomain.y.min, edgeDomain.y.max, domain.y.max)
-			domain.y.min = Math.min(edgeDomain.y.min, edgeDomain.y.max, domain.y.min)
+			bounds.y.max = Math.max(edgeBounds.y.min, edgeBounds.y.max, bounds.y.max)
+			bounds.y.min = Math.min(edgeBounds.y.min, edgeBounds.y.max, bounds.y.min)
 			// Z
-			domain.z.max = Math.max(edgeDomain.z.min, edgeDomain.z.max, domain.z.max)
-			domain.z.min = Math.min(edgeDomain.z.min, edgeDomain.z.max, domain.z.min)
+			bounds.z.max = Math.max(edgeBounds.z.min, edgeBounds.z.max, bounds.z.max)
+			bounds.z.min = Math.min(edgeBounds.z.min, edgeBounds.z.max, bounds.z.min)
 		}
-		return Object.freeze(domain)
+		return Object.freeze(bounds)
 	}
 
 	/**

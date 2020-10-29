@@ -180,7 +180,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 	/**
 	 * Computes the bounds of the edges
 	 */
-	public computeDomain(): Bounds3D | undefined {
+	public computeBounds(): Bounds3D | undefined {
 		let bounds: Bounds3D | undefined
 		// Below is a little more complicated to allow us to set the initial bounds
 		// to the first primitives bounds, without doing a "first" check each time

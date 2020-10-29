@@ -5,7 +5,7 @@
 import { Model } from '@luma.gl/engine'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 import { readTween, restartTween } from '@graspologic/animation'
-import type { NodeStore, Node } from '@graspologic/graph'
+import type { NodeStore, Node, Pos3D } from '@graspologic/graph'
 import { createIdFactory, cssToDevicePixels, GL_DEPTH_TEST, encodePickingColor, decodePickingColor } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
 import { processMinMaxBounds, Bounds3D } from '@graspologic/utils'
@@ -200,27 +200,52 @@ export class NodesRenderable extends DirtyableRenderable {
 	/**
 	 * Computes the bounds of the nodes
 	 */
-	public computeDomain(): Bounds3D | undefined {
+	public computeBounds(): Bounds3D | undefined {
 		let bounds: Bounds3D | undefined
 		let hasWeights = false
 		// Below is a little more complicated to allow us to set the initial bounds
 		// to the first primitives bounds, without doing a "first" check each time
 		const iterator = this._data![Symbol.iterator]()
+		let center: Pos3D
+		let radius: number = 0
 		if (iterator) {
 			let result = iterator.next()
 			if (result.value) {
-				bounds = this.computeNodeDataBounds(result.value)
-				if (!result.value!.radius) {
+				center = (result.value as Node).position
+				radius = result.value.radius
+				bounds = {
+					x: {
+						min: center[0] - radius,
+						max: center[0] + radius,
+					},
+					y: {
+						min: center[1] - radius,
+						max: center[1] + radius,
+					},
+					z: {
+						min: center[2] - radius,
+						max: center[2] + radius,
+					},
+				}
+				if (!radius) {
 					hasWeights = true
 				}
 			}
 			while (!result.done) {
-				const primBounds = this.computeNodeDataBounds(result.value)
-				if (!result.value!.radius) {
+				center = (result.value as Node).position
+				radius = result.value.radius
+				bounds!.x.min = Math.min(bounds!.x.min, center[0] - radius)
+				bounds!.x.max = Math.max(bounds!.x.max, center[0] + radius)
+
+				bounds!.y.min = Math.min(bounds!.y.min, center[1] - radius)
+				bounds!.y.max = Math.max(bounds!.y.max, center[1] + radius)
+
+				bounds!.z.min = Math.min(bounds!.z.min, center[2] - radius)
+				bounds!.z.max = Math.max(bounds!.z.max, center[2] + radius)
+
+				if (!radius) {
 					hasWeights = true
 				}
-
-				processMinMaxBounds(bounds!, primBounds)
 
 				result = iterator.next()
 			}
@@ -360,7 +385,7 @@ export class NodesRenderable extends DirtyableRenderable {
 	 * Computes the given nodes bounds
 	 * @param node The node to compute the bounds for
 	 */
-	private computeNodeDataBounds(node: Node) {
+	private computeNodeBounds(node: Node) {
 		const center = node.position
 		// Weights are taking care of elsewhere
 		return {
