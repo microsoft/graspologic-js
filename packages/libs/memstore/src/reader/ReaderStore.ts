@@ -82,6 +82,23 @@ export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
 		}
 	}
 
+	public *efficientIterator(): IterableIterator<P> {
+		let idx: number
+		let item: P | undefined
+		if (this.count > 0) {
+			item = this.itemAt(0)
+		}
+		if (item) {
+			for (idx of this.itemIds()) {
+				if (!this.propertyBags[idx]) {
+					this.propertyBags[idx] = {}
+				}
+				item.connect(idx, this)
+				yield item
+			}
+		}
+	}
+
 	/**
 	 * @inheritdoc
 	 * @see {@link ReaderStore.slurp}

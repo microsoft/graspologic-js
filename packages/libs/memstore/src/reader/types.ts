@@ -134,4 +134,10 @@ export interface ReaderStore<P> extends IdStore, Iterable<P & MemoryReader> {
 		propertyBag?: any,
 		sourceOffset?: number,
 	): void
+
+	/**
+	 * Creates an iterator that efficiently re-uses memory structures,
+	 * once .next() is called, the old item cannot be used
+	 */
+	efficientIterator(): IterableIterator<P>
 }

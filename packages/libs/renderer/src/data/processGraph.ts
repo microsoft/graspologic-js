@@ -40,7 +40,7 @@ function colorizeNodes(
 	let minWeight = Number.MAX_SAFE_INTEGER
 
 	let node: Node
-	for (node of data.nodes) {
+	for (node of data.nodes.efficientIterator()) {
 		node.color = node.color || colorizer(node.group as any, node.id as any)
 		maxWeight = Math.max(maxWeight, node.weight)
 		minWeight = Math.min(minWeight, node.weight)
@@ -70,7 +70,7 @@ function normalizeNodeWeights(
 	}
 
 	let node: Node
-	for (node of data.nodes) {
+	for (node of data.nodes.efficientIterator()) {
 		node.weight = computeNodeWeight(node.weight || 0)
 	}
 }

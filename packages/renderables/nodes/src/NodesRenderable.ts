@@ -85,7 +85,7 @@ export class NodesRenderable extends DirtyableRenderable {
 			value.onAttributeUpdated(this.handleNodeAttributeUpdated)
 			value.onAddItem(this.handleNodeAdded)
 			value.onRemoveItem(this.handleNodeRemoved)
-			for (const node of value) {
+			for (const node of value.efficientIterator()) {
 				this.handleNodeAdded(node)
 			}
 

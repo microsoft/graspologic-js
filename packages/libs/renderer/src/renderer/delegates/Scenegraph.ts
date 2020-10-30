@@ -164,7 +164,7 @@ export class Scenegraph implements Scene {
 	public *primitives(ids?: Set<string>): Iterable<Primitive> {
 		// TODO: PrimitiveStore should be able to return an iterator
 		for (const store of this.data) {
-			for (const prim of store) {
+			for (const prim of store.efficientIterator()) {
 				if (!ids || ids.has(prim.id || '')) {
 					yield prim
 				}
@@ -188,14 +188,14 @@ export class Scenegraph implements Scene {
 	 * Returns the list of nodes in the scene graph
 	 */
 	public nodes(): Iterable<Node> {
-		return this.nodeData
+		return this.nodeData.efficientIterator()
 	}
 
 	/**
 	 * Gets the list of edges contained in the scene graph
 	 */
 	public edges(): Iterable<Edge> {
-		return this.edgeData
+		return this.edgeData.efficientIterator()
 	}
 
 	/**

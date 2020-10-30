@@ -67,13 +67,13 @@ export function internGraph(
 	const nodeIdToIndex: Record<string, number> = {}
 	const nodeIndexToId: Record<number, string> = {}
 
-	let i: number
+	let i: number = 0
 	let inputNode: InputNode
-	let node: Node
 	let size: number | undefined
-	for (i = 0; i < input.nodes.length; ++i) {
+
+	let node: Node
+	for (node of graph.nodes.efficientIterator()) {
 		inputNode = input.nodes[i]
-		node = graph.nodes.itemAt(i)
 
 		nodeIdToIndex[inputNode.id] = i
 		nodeIndexToId[i] = inputNode.id
@@ -95,6 +95,8 @@ export function internGraph(
 			node.x = randBetween(randomize[0], randomize[1])
 			node.y = randBetween(randomize[2], randomize[3])
 		}
+
+		++i
 	}
 
 	let inputEdge: InputEdge
