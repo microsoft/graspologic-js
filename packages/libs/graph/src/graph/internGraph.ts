@@ -69,7 +69,6 @@ export function internGraph(
 
 	let i: number = 0
 	let inputNode: InputNode
-	let size: number | undefined
 
 	let node: Node
 	for (node of graph.nodes.efficientIterator()) {
@@ -81,8 +80,7 @@ export function internGraph(
 		node.group = inputNode.group
 
 		// A default size of 0 is important.  If 0, weight will be used to scale the node
-		size = inputNode.size || inputNode.radius
-		node.size = size != null ? size : 0
+		node.size = inputNode.size || inputNode.radius || 0
 		node.x = inputNode.x || 0
 		node.y = inputNode.y || 0
 		node.z = inputNode.z || 0
@@ -99,11 +97,11 @@ export function internGraph(
 		++i
 	}
 
-	let inputEdge: InputEdge
+	i = 0
 	let edge: Edge
-	for (i = 0; i < input.edges.length; ++i) {
+	let inputEdge: InputEdge
+	for (edge of graph.edges.efficientIterator()) {
 		inputEdge = input.edges[i]
-		edge = graph.edges.itemAt(i)
 
 		edge.source = inputEdge.source
 		edge.target = inputEdge.target
@@ -116,6 +114,8 @@ export function internGraph(
 
 		edge.color = inputEdge.color || inputEdge.sourceColor || 0
 		edge.color2 = inputEdge.color2 || inputEdge.targetColor || 0
+
+		++i
 	}
 
 	graph.idMap = nodeIndexToId
@@ -127,21 +127,21 @@ export function internGraph(
  * @param unparsedShape
  */
 function parseShape(unparsedShape?: Shape | string): Shape {
-	let shape = Shape.Circle
-	if (
-		(typeof unparsedShape === 'number' && unparsedShape === Shape.Diamond) ||
-		unparsedShape === Shape.Square
-	) {
-		shape = unparsedShape as Shape
-	} else if (typeof unparsedShape === 'string') {
+	if (typeof unparsedShape === 'string') {
 		unparsedShape = unparsedShape.toLocaleLowerCase()
 		if (unparsedShape === 'square') {
-			shape = Shape.Square
+			return Shape.Square
 		} else if (unparsedShape === 'diamond') {
-			shape = Shape.Diamond
+			return Shape.Diamond
 		}
+	} else if (
+		unparsedShape === Shape.Square || 
+		unparsedShape === Shape.Diamond ||
+		unparsedShape === Shape.Circle
+	) {
+		return unparsedShape as Shape
 	}
-	return shape
+	return Shape.Circle
 }
 
 /**

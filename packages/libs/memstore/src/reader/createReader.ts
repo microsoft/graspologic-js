@@ -125,9 +125,8 @@ export function createReader<P>(
 		 */
 		public connect(storeId: number, store: ReaderStore<any>) {
 			if (this.storeId !== storeId) {
-				const byteOffset = storeId * store.store.bytesPerItem
-				this.byteOffset = byteOffset
-				this.wordOffset = byteOffset / 4
+				this.byteOffset = storeId * store.store.bytesPerItem
+				this.wordOffset = this.byteOffset / 4
 				this.storeId = storeId
 
 				// flush this items buffer out if we're waiting for a store connection
@@ -280,7 +279,6 @@ export function createReader<P>(
 					this.uint8Array[this.byteOffset + typedOffset + 1] = value[1] || 0
 					this.uint8Array[this.byteOffset + typedOffset + 2] = value[2] || 0
 					this.uint8Array[this.byteOffset + typedOffset + 3] = value[3] || 0
-					this.store.notify(this.storeId, name, value)
 				}
 			}
 		} else if (type === AttributeType.Uint32) {

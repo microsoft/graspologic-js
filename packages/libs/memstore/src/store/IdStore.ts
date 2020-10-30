@@ -243,20 +243,6 @@ export class IdStoreImpl implements IdStore {
 	}
 
 	/**
-	 * Fires the update handlers
-	 * @param id The store id
-	 * @param attribute The attribute name
-	 * @param value The value of the attribute
-	 */
-	protected fireUpdateHandlers(
-		id: number,
-		attribute?: AttributeName,
-		value?: unknown,
-	) {
-		this.notify(id, attribute, value)
-	}
-
-	/**
 	 * Raises the add event
 	 * @param itemIndex The added item index
 	 */

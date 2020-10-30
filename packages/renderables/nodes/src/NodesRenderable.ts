@@ -85,7 +85,8 @@ export class NodesRenderable extends DirtyableRenderable {
 			value.onAttributeUpdated(this.handleNodeAttributeUpdated)
 			value.onAddItem(this.handleNodeAdded)
 			value.onRemoveItem(this.handleNodeRemoved)
-			for (const node of value.efficientIterator()) {
+			let node: Node
+			for (node of value.efficientIterator()) {
 				this.handleNodeAdded(node)
 			}
 
@@ -379,29 +380,6 @@ export class NodesRenderable extends DirtyableRenderable {
 		}
 		this.needsDataBind = true
 		this.setNeedsRedraw(true)
-	}
-
-	/**
-	 * Computes the given nodes bounds
-	 * @param node The node to compute the bounds for
-	 */
-	private computeNodeBounds(node: Node) {
-		const center = node.position
-		// Weights are taking care of elsewhere
-		return {
-			x: {
-				min: center[0] - node.radius,
-				max: center[0] + node.radius,
-			},
-			y: {
-				min: center[1] - node.radius,
-				max: center[1] + node.radius,
-			},
-			z: {
-				min: center[2] - node.radius,
-				max: center[2] + node.radius,
-			},
-		}
 	}
 
 	/**
