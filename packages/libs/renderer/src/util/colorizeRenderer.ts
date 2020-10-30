@@ -4,6 +4,8 @@
  */
 import { NodeComponentColorizer, GraphRenderer } from '../types'
 
+const DEFAULT_NAME = 'DEFAULT'
+
 export function createIntColorizer(
 	colorizerFn: NodeComponentColorizer = () => [1, 0, 0, 1],
 ) {
@@ -36,7 +38,7 @@ export function colorizeRenderer(
 	for (const node of renderer.scene.nodes()) {
 		color = colorizer(node.group, node.id)
 		node.color = color
-		nodeColors.set(node.id || 'DEFAULT', color)
+		nodeColors.set(node.id || DEFAULT_NAME, color)
 	}
 	let nodeColor: number | undefined
 	for (const edge of renderer.scene.edges()) {

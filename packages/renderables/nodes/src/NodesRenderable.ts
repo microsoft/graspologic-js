@@ -4,11 +4,11 @@
  */
 import { Model } from '@luma.gl/engine'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
-import { readTween, restartTween } from '@graspologic/animation'
+import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import type { NodeStore, Node, Pos3D } from '@graspologic/graph'
 import { createIdFactory, cssToDevicePixels, GL_DEPTH_TEST, encodePickingColor, decodePickingColor } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { processMinMaxBounds, Bounds3D } from '@graspologic/utils'
+import { Bounds3D } from '@graspologic/utils'
 import { RenderOptions } from '@graspologic/renderables-base'
 
 import createModel from './model'
@@ -16,6 +16,12 @@ import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214
+
+
+const COLOR_TWEEN_ATTRIBUTE_NAME = 'color.tween'
+const POSITION_TWEEN_ATTRIBUTE_NAME = 'position.tween'
+const COLOR_DURATION_ATTRIBUTE_NAME = 'color.duration'
+const POSITION_DURATION_ATTRIBUTE_NAME = 'position.duration'
 
 type PickingColor = Uint8Array | Uint16Array | Float32Array
 
@@ -344,36 +350,34 @@ export class NodesRenderable extends DirtyableRenderable {
 	) => {
 		if (!attribute) {
 			// This makes sure tweening will renderc
-			const posTween = readTween(this.data!.store, storeId, 'position.tween')
-			const colorTween = readTween(this.data!.store, storeId, 'color.tween')
 			this.tweenUntil = Math.max(
 				this.tweenUntil,
-				posTween[0] + posTween[1],
-				colorTween[0] + colorTween[1],
+				readTweenEndTime(this.data!.store, storeId, POSITION_TWEEN_ATTRIBUTE_NAME),
+				readTweenEndTime(this.data!.store, storeId, COLOR_TWEEN_ATTRIBUTE_NAME),
 			)
 		} else {
 			// If it just writes 'duration', update it with the engine time
-			if (attribute === 'position.duration') {
+			if (attribute === POSITION_DURATION_ATTRIBUTE_NAME) {
 				const startTime = restartTween(
 					this.data!.store,
 					storeId,
-					'position.tween',
+					POSITION_TWEEN_ATTRIBUTE_NAME,
 					this.engineTime(),
 				)
 				this.tweenUntil = Math.max(this.tweenUntil, value + startTime)
-			} else if (attribute === 'color.duration') {
+			} else if (attribute === COLOR_DURATION_ATTRIBUTE_NAME) {
 				const startTime = restartTween(
 					this.data!.store,
 					storeId,
-					'color.tween',
+					COLOR_TWEEN_ATTRIBUTE_NAME,
 					this.engineTime(),
 				)
 				this.tweenUntil = Math.max(this.tweenUntil, value + startTime)
 
 				// If they write the whole tween, then update the tween until
 			} else if (
-				attribute === 'position.tween' ||
-				attribute === 'color.tween'
+				attribute === POSITION_TWEEN_ATTRIBUTE_NAME ||
+				attribute === COLOR_TWEEN_ATTRIBUTE_NAME
 			) {
 				this.tweenUntil = Math.max(this.tweenUntil, value[0] + value[1])
 			}
