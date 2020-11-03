@@ -3,8 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect } from 'react'
-import { GraphContainer } from '@graspologic/graph'
-import { NodeComponentColorizer, GraphRenderer } from '@graspologic/renderer'
+import { GraphRenderer } from '@graspologic/renderer'
 
 /**
  * Loads the __renderer__ with __data__ when __data__ changes, and colorizes when __colorizer__ changes
@@ -12,17 +11,7 @@ import { NodeComponentColorizer, GraphRenderer } from '@graspologic/renderer'
  * @param data The graph data
  * @param colorizer The colorizer to colorize the graph
  */
-export function useGraphRenderKickoff(
-	renderer: GraphRenderer | undefined,
-	data: GraphContainer | undefined,
-	colorizer: NodeComponentColorizer | undefined,
-) {
-	useEffect(() => {
-		if (renderer && !renderer.destroyed && data) {
-			renderer.load(data, colorizer)
-		}
-	}, [colorizer, data, renderer])
-
+export function useGraphRenderKickoff(renderer: GraphRenderer | undefined) {
 	useEffect(() => {
 		if (renderer && !renderer.destroyed) {
 			renderer.start()

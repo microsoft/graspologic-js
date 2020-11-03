@@ -158,10 +158,12 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 		},
 		ref,
 	) => {
+		const graphContainer = useGraphContainer(data)
 		const [renderRef, renderer] = useGraphRenderer(
 			nodeCountHint,
 			edgeCountHint,
 			drawEdges,
+			graphContainer,
 		)
 		useBindCallbacks({
 			renderer,
@@ -178,8 +180,7 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 		useGraphInterpolationTime(renderer, interpolationTime)
 		useGraphImperativeApi(renderer, ref)
 		use3DMode(renderer, is3D)
-		const graphContainer = useGraphContainer(data)
-		useGraphRenderKickoff(renderer, graphContainer, colorizer)
+		useGraphRenderKickoff(renderer)
 		useGraphColorizer(renderer, colorizer)
 		const finalStyle = useMemo(
 			() => ({

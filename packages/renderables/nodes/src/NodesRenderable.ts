@@ -210,51 +210,38 @@ export class NodesRenderable extends DirtyableRenderable {
 	public computeBounds(): Bounds3D | undefined {
 		let bounds: Bounds3D | undefined
 		let hasWeights = false
-		// Below is a little more complicated to allow us to set the initial bounds
-		// to the first primitives bounds, without doing a "first" check each time
-		const iterator = this._data![Symbol.iterator]()
-		let center: Pos3D
+		let node: Node
 		let radius: number = 0
-		if (iterator) {
-			let result = iterator.next()
-			if (result.value) {
-				center = (result.value as Node).position
-				radius = result.value.radius
+		for (node of this._data!.efficientIterator()) {
+			radius = node.radius
+			if (!bounds) {
 				bounds = {
 					x: {
-						min: center[0] - radius,
-						max: center[0] + radius,
+						min: node.x - radius,
+						max: node.x + radius,
 					},
 					y: {
-						min: center[1] - radius,
-						max: center[1] + radius,
+						min: node.y - radius,
+						max: node.y + radius,
 					},
 					z: {
-						min: center[2] - radius,
-						max: center[2] + radius,
+						min: node.z - radius,
+						max: node.z + radius,
 					},
 				}
-				if (!radius) {
-					hasWeights = true
-				}
+			} else {
+				bounds!.x.min = Math.min(bounds!.x.min, node.x - radius)
+				bounds!.x.max = Math.max(bounds!.x.max, node.x + radius)
+	
+				bounds!.y.min = Math.min(bounds!.y.min, node.y - radius)
+				bounds!.y.max = Math.max(bounds!.y.max, node.y + radius)
+	
+				bounds!.z.min = Math.min(bounds!.z.min, node.z - radius)
+				bounds!.z.max = Math.max(bounds!.z.max, node.z + radius)
 			}
-			while (!result.done) {
-				center = (result.value as Node).position
-				radius = result.value.radius
-				bounds!.x.min = Math.min(bounds!.x.min, center[0] - radius)
-				bounds!.x.max = Math.max(bounds!.x.max, center[0] + radius)
 
-				bounds!.y.min = Math.min(bounds!.y.min, center[1] - radius)
-				bounds!.y.max = Math.max(bounds!.y.max, center[1] + radius)
-
-				bounds!.z.min = Math.min(bounds!.z.min, center[2] - radius)
-				bounds!.z.max = Math.max(bounds!.z.max, center[2] + radius)
-
-				if (!radius) {
-					hasWeights = true
-				}
-
-				result = iterator.next()
+			if (!radius) {
+				hasWeights = true
 			}
 		}
 		const scale = hasWeights

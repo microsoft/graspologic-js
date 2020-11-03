@@ -4,12 +4,13 @@
  */
 import { NodeImpl, AnimatableNodeImpl } from './impl'
 import { nodeMemoryLayout } from './layout'
-import { NodeStoreConfig, NodeStore } from './types'
+import { NodeStoreConfig, NodeStore, Node } from './types'
 import {
 	ArrayStore,
 	ArrayStoreImpl,
 	SlotAllocator,
 	ReaderStoreImpl,
+	MemoryReader,
 } from '@graspologic/memstore'
 
 /**
@@ -29,5 +30,5 @@ export function createNodeStore(config?: Partial<NodeStoreConfig>): NodeStore {
 		Boolean(config?.allocatedOnCreate),
 	)
 	const Impl = config?.notifications !== false ? AnimatableNodeImpl : NodeImpl
-	return new ReaderStoreImpl(Impl, store, slotAllocator)
+	return new ReaderStoreImpl<MemoryReader & Node>(Impl, store, slotAllocator)
 }

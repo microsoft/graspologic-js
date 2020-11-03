@@ -111,9 +111,18 @@ export class SlotAllocator {
 	 * Returns an iterator for the used slots
 	 */
 	public *used(): Iterable<number> {
-		for (let i = 0; i < this.capacity; i++) {
-			if (!this.availableIndices.has(i) && this.nextAvailableIndex !== i) {
+		// Shortcut
+		if (this.availableIndices.size === 0 &&
+			(this.nextAvailableIndex === -1 || this.nextAvailableIndex === undefined)) {
+			for (let i = 0; i < this.capacity; ++i) {
 				yield i
+			}
+		}
+		else {
+			for (let i = 0; i < this.capacity; ++i) {
+				if (!this.availableIndices.has(i) && this.nextAvailableIndex !== i) {
+					yield i
+				}
 			}
 		}
 	}

@@ -9,6 +9,7 @@ import {
 	createNodeStore,
 	createEdgeStore,
 	Shape,
+	NodeImpl,
 } from '../primitives'
 import { GraphContainer } from './GraphContainer'
 import { InputGraph, InputEdge, InputNode } from './types'
@@ -70,31 +71,55 @@ export function internGraph(
 	let i: number = 0
 	let inputNode: InputNode
 
-	let node: Node
-	for (node of graph.nodes.efficientIterator()) {
+	// NodeImpl.loadStore(graph.nodes, input.nodes)
+
+	const store = graph.nodes
+	let propertyBag: any
+	let itemByteOffset: number
+	let itemWordOffset: number
+	const { typedOffset: positionTypedOffset } = store.store.layout.get('position')!
+	const { typedOffset: radiusTypedOffset } = store.store.layout.get('radius')!
+	const { typedOffset: shapeTypedOffset } = store.store.layout.get('shape')!
+	const { typedOffset: weightTypedOffset } = store.store.layout.get('weight')!
+	const { typedOffset: colorTypedOffset } = store.store.layout.get('color')!
+	const floatArray = store.store.float32Array
+	const uint8Array = store.store.uint8Array
+	const uint32Array = store.store.uint32Array
+	const bpi = store.store.bytesPerItem
+
+	let x: number
+	let y: number
+	for (let i = 0; i < input.nodes.length; ++i) {
 		inputNode = input.nodes[i]
+
+		itemByteOffset = i * bpi
+		itemWordOffset = itemByteOffset / 4
 
 		nodeIdToIndex[inputNode.id] = i
 		nodeIndexToId[i] = inputNode.id
-		node.id = inputNode.id
-		node.group = inputNode.group
 
-		// A default size of 0 is important.  If 0, weight will be used to scale the node
-		node.size = inputNode.size || inputNode.radius || 0
-		node.x = inputNode.x || 0
-		node.y = inputNode.y || 0
-		node.z = inputNode.z || 0
-		node.label = inputNode.label
-		node.weight = inputNode.weight || 1
-		node.color = inputNode.color || 0
-		node.shape = parseShape(inputNode.shape)
+		propertyBag = store.propertyBags[i] || {}
+		store.propertyBags[i] = propertyBag
 
-		if (randomize && node.x === 0 && node.y === 0) {
-			node.x = randBetween(randomize[0], randomize[1])
-			node.y = randBetween(randomize[2], randomize[3])
+		propertyBag.id = inputNode.id
+		propertyBag.group = inputNode.group
+		propertyBag.label = inputNode.label
+
+		x = inputNode.x || 0
+		y = inputNode.y || 0
+
+		if (randomize && x === 0 && y === 0) {
+			x = randBetween(randomize[0], randomize[1])
+			y = randBetween(randomize[2], randomize[3])
 		}
 
-		++i
+		floatArray[itemWordOffset + radiusTypedOffset] = inputNode.size || inputNode.radius || 0
+		floatArray[itemWordOffset + positionTypedOffset] = x
+		floatArray[itemWordOffset + positionTypedOffset + 1] = y
+		floatArray[itemWordOffset + positionTypedOffset + 2] = inputNode.z || 0
+		floatArray[itemWordOffset + weightTypedOffset] = inputNode.weight || 1
+		uint32Array[itemWordOffset + colorTypedOffset] = inputNode.color || 0
+		uint8Array[itemByteOffset + shapeTypedOffset] = parseShape(inputNode.shape)
 	}
 
 	i = 0

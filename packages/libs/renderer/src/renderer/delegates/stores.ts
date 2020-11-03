@@ -9,6 +9,7 @@ import {
 	createEdgeStore,
 	nodeType,
 	edgeType,
+	GraphContainer,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
 
@@ -35,5 +36,17 @@ export function createDataStore(
 	})
 	result.register(nodeType, nodeStore)
 	result.register(edgeType, edgeStore)
+	return result
+}
+
+/**
+ * Constructs a generic data store with node and edge stores
+ * @param container The graph container to use
+ * @returns A datastore containing node and edge stores
+ */
+export function createDataStoreFromContainer(container: GraphContainer): DataStore {
+	const result = new GenericTypeStore<ReaderStore<any>>()
+	result.register(nodeType, container.nodes)
+	result.register(edgeType, container.edges)
 	return result
 }

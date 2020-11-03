@@ -25,7 +25,7 @@ import {
 	Primitive,
 } from '../types'
 import { fastDebounce } from '../util'
-import { Camera, Scenegraph, createDataStore } from './delegates'
+import { Camera, Scenegraph, createDataStore, createDataStoreFromContainer } from './delegates'
 import { AnimationUtil, createAnimationUtil } from '@graspologic/animation'
 import {
 	Node,
@@ -191,6 +191,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 */
 	public static createInstance(
 		options: Partial<RenderConfigurationOptions> = {},
+		data?: GraphContainer,
 		gl?: WebGL2RenderingContext,
 	): WebGLGraphRenderer {
 		if (!gl) {
@@ -201,13 +202,20 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 				webgl1: false,
 			})
 		}
-		const data = createDataStore(
-			options.nodeCountHint,
-			options.edgeCountHint,
-			options.autoBind,
-		)
+		const store = data ? 
+			createDataStoreFromContainer(data) :
+			createDataStore(
+				options.nodeCountHint,
+				options.edgeCountHint,
+				options.autoBind,
+			)
+
+		if (data) {
+			processGraph(data, undefined)
+		}
+			
 		const config = createConfiguration(options)
-		return new WebGLGraphRenderer(gl!, config, data)
+		return new WebGLGraphRenderer(gl!, config, store)
 	}
 
 	// #endregion
