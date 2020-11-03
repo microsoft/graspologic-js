@@ -23,8 +23,8 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/hooks": "^1.1.2",
-		"@graspologic/graph": "workspace:packages/libs/graph",
-		"@graspologic/renderer": "workspace:packages/libs/renderer",
+		"@graspologic/graph": "workspace:*",
+		"@graspologic/renderer": "workspace:*",
 		"math.gl": "^3.2.2",
 		"typedoc": "0.19.2"
 	},

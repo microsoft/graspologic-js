@@ -22,9 +22,9 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/react": "workspace:packages/libs/react",
-		"@graspologic/render-controls": "workspace:packages/libs/controls",
-		"@graspologic/renderer": "workspace:packages/libs/renderer",
+		"@graspologic/react": "workspace:*",
+		"@graspologic/render-controls": "workspace:*",
+		"@graspologic/renderer": "workspace:*",
 		"dat.gui": "^0.7.7",
 		"typedoc": "0.19.2"
 	},

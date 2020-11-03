@@ -20,8 +20,8 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/toolbox": "^1.1.2",
-		"@graspologic/memstore": "workspace:packages/libs/memstore",
-		"@graspologic/renderer-glsl": "workspace:packages/libs/renderer-glsl",
+		"@graspologic/memstore": "workspace:*",
+		"@graspologic/renderer-glsl": "workspace:*",
 		"@luma.gl/gltools": "^8.3.1",
 		"@luma.gl/webgl": "^8.3.1"
 	},

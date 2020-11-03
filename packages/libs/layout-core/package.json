@@ -20,7 +20,7 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/graph": "workspace:packages/libs/graph",
+		"@graspologic/graph": "workspace:*",
 		"rxjs": "7.0.0-beta.8",
 		"typedoc": "0.19.2"
 	},

@@ -15,7 +15,7 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/graph": "workspace:packages/libs/graph",
+		"@graspologic/graph": "workspace:*",
 		"typedoc": "0.19.2"
 	},
 	"devDependencies": {
