@@ -125,7 +125,9 @@ export interface ReaderStore<P> extends IdStore, Iterable<P & MemoryReader> {
 	): void
 
 	/**
-	 * Creates an iterator that efficiently scans through the list of 
+	 * Creates an iterator that efficiently scans through the items contained in this store
+	 * 
+	 * _NOTE_ Items returned from this iterator should not be stored, as references are re-used for iteration
 	 */
 	scan(): IterableIterator<P>
 }

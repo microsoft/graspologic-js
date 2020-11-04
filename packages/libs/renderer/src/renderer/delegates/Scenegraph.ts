@@ -158,13 +158,15 @@ export class Scenegraph implements Scene {
 		this._sceneGraphNeedsRedraw = true
 	}
 
+
 	/**
-	 * Gets the list of primitives contained in the scene
+	 * @inheritdoc
+	 * @see {Scene.primities} 
 	 */
-	public *primitives(ids?: Set<string>, efficient = true): Iterable<Primitive> {
+	public *primitives(ids?: Set<string>, scan = false): Iterable<Primitive> {
 		// TODO: PrimitiveStore should be able to return an iterator
 		for (const store of this.data) {
-			const iterator = efficient ? store.scan() : store
+			const iterator = scan ? store.scan() : store
 			for (const prim of iterator) {
 				if (!ids || ids.has(prim.id || '')) {
 					yield prim
@@ -186,17 +188,19 @@ export class Scenegraph implements Scene {
 	}
 
 	/**
-	 * Returns the list of nodes in the scene graph
+	 * @inheritdoc
+	 * @see {Scene.nodes} 
 	 */
-	public nodes(): Iterable<Node> {
-		return this.nodeData.scan()
+	public nodes(scan = false): Iterable<Node> {
+		return scan ? this.nodeData.scan() : this.nodeData
 	}
 
 	/**
-	 * Gets the list of edges contained in the scene graph
+	 * @inheritdoc
+	 * @see {Scene.edges} 
 	 */
-	public edges(): Iterable<Edge> {
-		return this.edgeData.scan()
+	public edges(scan = false): Iterable<Edge> {
+		return scan ? this.edgeData.scan() : this.edgeData
 	}
 
 	/**
@@ -329,7 +333,7 @@ export class Scenegraph implements Scene {
 		const edgeInSat = this.config.edgeFilteredInSaturation
 		const edgeOutSat = this.config.edgeFilteredOutSaturation
 
-		for (const prim of this.primitives()) {
+		for (const prim of this.primitives(undefined, true)) {
 			const nodePrim = prim as Node
 			if (prim.type === nodeType) {
 				nodePrim.saturation =

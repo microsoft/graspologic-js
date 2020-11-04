@@ -35,7 +35,7 @@ export function colorizeRenderer(
 	const colorizer = createIntColorizer(colorizerFn)
 	const nodeColors = new Map<string, number>()
 	let color: number
-	for (const node of renderer.scene.nodes()) {
+	for (const node of renderer.scene.nodes(true)) {
 		color = colorizer(node.group, node.id)
 		node.color = color
 		nodeColors.set(node.id || DEFAULT_NAME, color)

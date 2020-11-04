@@ -364,7 +364,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 		// I'm doing (prim as Edge) below, instead of assigning it a variable
 		// as it is no additional memory cost at runtime
-		for (const prim of this.scene.primitives()) {
+		for (const prim of this.scene.primitives(undefined, true)) {
 			if (prim.type === nodeType) {
 				nodePos = newPositions[prim.id || '']
 				if (nodePos) {

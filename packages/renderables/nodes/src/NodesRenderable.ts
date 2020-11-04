@@ -4,6 +4,9 @@
  */
 import { Model } from '@luma.gl/engine'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
+
+// This is causing problems downstream for some reason
+// @ts-ignore
 import { cssToDevicePixels } from '@luma.gl/gltools'
 import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import type { NodeStore, Node } from '@graspologic/graph'
@@ -17,7 +20,6 @@ import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214
-
 
 const COLOR_TWEEN_ATTRIBUTE_NAME = 'color.tween'
 const POSITION_TWEEN_ATTRIBUTE_NAME = 'position.tween'

@@ -35,18 +35,25 @@ export interface Scene {
 
 	/**
 	 * Gets the list of primitives contained in the scene
+	 * @param ids The list of ids to filter to
+	 * @param scan If true, a scan will be used instead of a traditional iterator __NOTE__ scanning reuses object references, 
+	 * items returned should _not_ be stored
 	 */
-	primitives(ids?: Set<string>, efficient?: boolean): Iterable<Primitive>
+	primitives(ids?: Set<string>, scan?: boolean): Iterable<Primitive>
 
 	/**
 	 * Returns the list of nodes in the scene
+	 * @param scan If true, a scan will be used instead of a traditional iterator __NOTE__ scanning reuses object references, 
+	 * items returned should _not_ be stored
 	 */
-	nodes(): Iterable<Node>
+	nodes(scan?: boolean): Iterable<Node>
 
 	/**
 	 * Gets the list of edges contained in the scene
+	 * @param scan If true, a scan will be used instead of a traditional iterator __NOTE__ scanning reuses object references, 
+	 * items returned should _not_ be stored
 	 */
-	edges(): Iterable<Edge>
+	edges(scan?: boolean): Iterable<Edge>
 
 	/**
 	 * Adds a renderable object that will be added to the rendering pipeline
