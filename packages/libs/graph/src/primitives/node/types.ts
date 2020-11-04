@@ -4,6 +4,7 @@
  */
 import { Pos3D, Shape, Pos2D } from '../types'
 import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
+import { InputNode } from '../../graph'
 
 /**
  * An interface representing a node
@@ -167,6 +168,12 @@ export interface Node extends MemoryReader {
 	// #endregion
 
 	// #endregion
+
+	/**
+	 * Lodas the node from the given raw input data
+	 * @param data The raw data for the node 
+	 */
+	load(data: InputNode): void
 }
 
 /**

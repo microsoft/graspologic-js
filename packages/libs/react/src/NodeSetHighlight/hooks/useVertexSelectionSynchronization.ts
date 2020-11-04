@@ -20,7 +20,7 @@ export function useVertexSelectionSynchronization(
 		if (renderer && renderable) {
 			renderer.awaitKickoff().then(() => {
 				const vertices = Array.from(
-					renderer.scene.primitives(new Set(vertexIds)),
+					renderer.scene.primitives(new Set(vertexIds), false),
 				)
 				renderable.setData(vertices as Node[])
 			})

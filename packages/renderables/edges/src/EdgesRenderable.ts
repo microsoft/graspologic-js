@@ -82,7 +82,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 			value.onAttributeUpdated(this.handleEdgeAttributeUpdated)
 			value.onAddItem(this.handleEdgeAdded)
 			value.onRemoveItem(this.handleEdgeRemoved)
-			for (const edge of value.efficientIterator()) {
+			for (const edge of value.scan()) {
 				this.handleEdgeAdded(edge)
 			}
 			this.bindDataToModel(true)

@@ -2,65 +2,59 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ClassType, Shape } from '../../types'
+import { Shape } from '../../types'
 import { nodeMemoryLayout, nodeType, ADDITIONAL_NODE_PROPS } from '../layout'
 import { Node } from '../types'
-import { createReader, MemoryReader, ReaderStore } from '@graspologic/memstore'
+import { createReader } from '@graspologic/memstore'
 import { InputNode } from '../../../graph'
 
-/**
- * An implementation of a Node
- */
-const BaseNodeImpl: ClassType<MemoryReader & Node> = createReader<Node>(
-	nodeType,
-	nodeMemoryLayout,
-	ADDITIONAL_NODE_PROPS,
-)
+// Cache some of the attributes for the "load"
 const { typedOffset: positionTypedOffset } =  nodeMemoryLayout.get('position')!
 const { typedOffset: radiusTypedOffset } =  nodeMemoryLayout.get('radius')!
 const { typedOffset: shapeTypedOffset } =  nodeMemoryLayout.get('shape')!
 const { typedOffset: weightTypedOffset } =  nodeMemoryLayout.get('weight')!
 const { typedOffset: colorTypedOffset } =  nodeMemoryLayout.get('color')!
+const { typedOffset: visibleTypedOffset } =  nodeMemoryLayout.get('visible')!
 
-export class NodeImpl extends BaseNodeImpl {
-	public static loadStore(store: ReaderStore<Node>, nodes: Iterable<InputNode>) {
-		const floatArray = store.store.float32Array
-		const uint8Array = store.store.uint8Array
-		const uint32Array = store.store.uint32Array
-		const bpi = store.store.bytesPerItem
-	
-		let inputNode: InputNode
-		let i = 0
-		let propertyBag: any
-		let itemByteOffset: number
-		let itemWordOffset: number
-		for (inputNode of nodes) {
-			itemByteOffset = i * bpi
-			itemWordOffset = itemByteOffset / 4
-	
-			propertyBag = store.propertyBags[i] || {}
-			store.propertyBags[i] = propertyBag
-	
-			propertyBag.id = inputNode.id
-			propertyBag.group = inputNode.group
-			propertyBag.label = inputNode.label
-	
-			floatArray[itemWordOffset + radiusTypedOffset] = inputNode.size || inputNode.radius || 0
-			floatArray[itemWordOffset + positionTypedOffset] = inputNode.x || 0
-			floatArray[itemWordOffset + positionTypedOffset + 1] = inputNode.y || 0
-			floatArray[itemWordOffset + positionTypedOffset + 2] = inputNode.z || 0
-			floatArray[itemWordOffset + weightTypedOffset] = inputNode.weight || 1
-			uint32Array[itemWordOffset + colorTypedOffset] = inputNode.color || 0
-			uint8Array[itemByteOffset + shapeTypedOffset] = parseShape(inputNode.shape)
-		}
+/**
+ * An implementation of a Node
+ */
+const BaseNodeImpl = createReader<Node>(
+	nodeType,
+	nodeMemoryLayout,
+	ADDITIONAL_NODE_PROPS,
+)
+
+export class NodeImpl extends BaseNodeImpl implements Node {
+
+	/**
+	 * @inheritDoc
+	 * @see {@link Node.load}
+	 */
+	public load(data: InputNode) {
+		;(this as any).propertyBag = this.store.propertyBags[this.storeId] || {}
+		this.store.propertyBags[this.storeId] = (this as any).propertyBag
+
+		;(this as any).propertyBag.id = data.id
+		;(this as any).propertyBag.group = data.group
+		;(this as any).propertyBag.label = data.label
+
+		this.float32Array[this.wordOffset + radiusTypedOffset] = data.size || data.radius || 0
+		this.float32Array[this.wordOffset + positionTypedOffset] = data.x || 0
+		this.float32Array[this.wordOffset + positionTypedOffset + 1] = data.y || 0
+		this.float32Array[this.wordOffset + positionTypedOffset + 2] = data.z || 0
+		this.float32Array[this.wordOffset + weightTypedOffset] = data.weight || 1
+		this.uint32Array[this.wordOffset + colorTypedOffset] = data.color || 0
+		this.uint8Array[this.byteOffset + shapeTypedOffset] = parseShape(data.shape)
+		this.uint8Array[this.byteOffset + visibleTypedOffset] = 1
 	}
-}
+} 
 
 /**
  * Parses a Shape from an unparsed shape value
  * @param unparsedShape
  */
-function parseShape(unparsedShape?: Shape | string): Shape {
+export function parseShape(unparsedShape?: Shape | string): Shape {
 	if (typeof unparsedShape === 'string') {
 		unparsedShape = unparsedShape.toLocaleLowerCase()
 		if (unparsedShape === 'square') {

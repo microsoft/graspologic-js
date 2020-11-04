@@ -4,9 +4,10 @@
  */
 import { Model } from '@luma.gl/engine'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
+import { cssToDevicePixels } from '@luma.gl/gltools'
 import { readTweenEndTime, restartTween } from '@graspologic/animation'
-import type { NodeStore, Node, Pos3D } from '@graspologic/graph'
-import { createIdFactory, cssToDevicePixels, GL_DEPTH_TEST, encodePickingColor, decodePickingColor } from '@graspologic/luma-utils'
+import type { NodeStore, Node } from '@graspologic/graph'
+import { createIdFactory, GL_DEPTH_TEST, encodePickingColor, decodePickingColor, PickingColor } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
 import { Bounds3D } from '@graspologic/utils'
 import { RenderOptions } from '@graspologic/renderables-base'
@@ -22,8 +23,6 @@ const COLOR_TWEEN_ATTRIBUTE_NAME = 'color.tween'
 const POSITION_TWEEN_ATTRIBUTE_NAME = 'position.tween'
 const COLOR_DURATION_ATTRIBUTE_NAME = 'color.duration'
 const POSITION_DURATION_ATTRIBUTE_NAME = 'position.duration'
-
-type PickingColor = Uint8Array | Uint16Array | Float32Array
 
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering nodes
@@ -92,7 +91,7 @@ export class NodesRenderable extends DirtyableRenderable {
 			value.onAddItem(this.handleNodeAdded)
 			value.onRemoveItem(this.handleNodeRemoved)
 			let node: Node
-			for (node of value.efficientIterator()) {
+			for (node of value.scan()) {
 				this.handleNodeAdded(node)
 			}
 
@@ -212,7 +211,7 @@ export class NodesRenderable extends DirtyableRenderable {
 		let hasWeights = false
 		let node: Node
 		let radius: number = 0
-		for (node of this._data!.efficientIterator()) {
+		for (node of this._data!.scan()) {
 			radius = node.radius
 			if (!bounds) {
 				bounds = {

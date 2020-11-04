@@ -4,6 +4,7 @@
  */
 import { Pos2D, Pos3D } from '../types'
 import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
+import { InputEdge } from '../../graph'
 
 /**
  * An interface representing an edge
@@ -112,6 +113,14 @@ export interface Edge extends MemoryReader {
 	targetIndex: number
 
 	// #endregion
+
+	/**
+	 * Loads the edge from the given raw input data
+	 * @param data The raw data for the edge 
+	 * @param nodeIndexMap The index mapping for node ids to indices
+	 * @param defaultEdgeWeight The default edge weight to use
+	 */
+	load(data: InputEdge, nodeIndexMap: Map<string, number>, defaultEdgeWeight?: number): void
 }
 
 /**

@@ -59,22 +59,6 @@ export class GraphContainer {
 	}
 
 	/**
-	 * @internal
-	 * Gets the node index id map
-	 */
-	public get idMap(): Record<number, string> {
-		return this._indexToId
-	}
-
-	/**
-	 * @internal
-	 * Sets the node index id map
-	 */
-	public set idMap(value: Record<number, string>) {
-		this._indexToId = value
-	}
-
-	/**
 	 * Creates an instance of the GraphContainer using the given input graph
 	 * @param inputGraph The pojo graph to intern
 	 * @param options The set of options controlling how the graph is interned, defaults to @see {@link DEFAULT_INTERN_GRAPH_OPTIONS}

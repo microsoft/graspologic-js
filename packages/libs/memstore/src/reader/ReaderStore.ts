@@ -82,7 +82,7 @@ export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
 		}
 	}
 
-	public *efficientIterator(): IterableIterator<P> {
+	public *scan(): IterableIterator<P> {
 		let idx: number
 		let item: P | undefined
 		if (this.count > 0) {

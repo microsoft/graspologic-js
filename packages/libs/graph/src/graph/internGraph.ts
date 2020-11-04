@@ -65,108 +65,37 @@ export function internGraph(
 		input.edges.length,
 		shareable,
 	)
-	const nodeIdToIndex: Record<string, number> = {}
-	const nodeIndexToId: Record<number, string> = {}
 
 	let i: number = 0
-	let inputNode: InputNode
+	const nodeIdToIndex = new Map<string, number>()
 
-	// NodeImpl.loadStore(graph.nodes, input.nodes)
-
-	const store = graph.nodes
-	let propertyBag: any
-	let itemByteOffset: number
-	let itemWordOffset: number
-	const { typedOffset: positionTypedOffset } = store.store.layout.get('position')!
-	const { typedOffset: radiusTypedOffset } = store.store.layout.get('radius')!
-	const { typedOffset: shapeTypedOffset } = store.store.layout.get('shape')!
-	const { typedOffset: weightTypedOffset } = store.store.layout.get('weight')!
-	const { typedOffset: colorTypedOffset } = store.store.layout.get('color')!
-	const floatArray = store.store.float32Array
-	const uint8Array = store.store.uint8Array
-	const uint32Array = store.store.uint32Array
-	const bpi = store.store.bytesPerItem
-
-	let x: number
-	let y: number
-	for (let i = 0; i < input.nodes.length; ++i) {
-		inputNode = input.nodes[i]
-
-		itemByteOffset = i * bpi
-		itemWordOffset = itemByteOffset / 4
-
-		nodeIdToIndex[inputNode.id] = i
-		nodeIndexToId[i] = inputNode.id
-
-		propertyBag = store.propertyBags[i] || {}
-		store.propertyBags[i] = propertyBag
-
-		propertyBag.id = inputNode.id
-		propertyBag.group = inputNode.group
-		propertyBag.label = inputNode.label
-
-		x = inputNode.x || 0
-		y = inputNode.y || 0
-
-		if (randomize && x === 0 && y === 0) {
-			x = randBetween(randomize[0], randomize[1])
-			y = randBetween(randomize[2], randomize[3])
+	if (input.nodes.length > 0) {
+		let inputNode: InputNode
+		let node: Node = graph.nodes.itemAt(0)
+		i = 0
+		for (inputNode of input.nodes) {
+			nodeIdToIndex.set(inputNode.id, i)
+			node.connect(i, graph.nodes)
+			node.load(inputNode) 
+			if (randomize && node.x === 0 && node.y === 0) {
+				node.x = randBetween(randomize[0], randomize[1])
+				node.y = randBetween(randomize[2], randomize[3])
+			}
+			++i
 		}
-
-		floatArray[itemWordOffset + radiusTypedOffset] = inputNode.size || inputNode.radius || 0
-		floatArray[itemWordOffset + positionTypedOffset] = x
-		floatArray[itemWordOffset + positionTypedOffset + 1] = y
-		floatArray[itemWordOffset + positionTypedOffset + 2] = inputNode.z || 0
-		floatArray[itemWordOffset + weightTypedOffset] = inputNode.weight || 1
-		uint32Array[itemWordOffset + colorTypedOffset] = inputNode.color || 0
-		uint8Array[itemByteOffset + shapeTypedOffset] = parseShape(inputNode.shape)
 	}
 
-	i = 0
-	let edge: Edge
-	let inputEdge: InputEdge
-	for (edge of graph.edges.efficientIterator()) {
-		inputEdge = input.edges[i]
-
-		edge.source = inputEdge.source
-		edge.target = inputEdge.target
-
-		edge.sourceIndex = nodeIdToIndex[inputEdge.source]
-		edge.targetIndex = nodeIdToIndex[inputEdge.target]
-
-		edge.weight =
-			inputEdge.weight != null ? inputEdge.weight : defaultEdgeWeight
-
-		edge.color = inputEdge.color || inputEdge.sourceColor || 0
-		edge.color2 = inputEdge.color2 || inputEdge.targetColor || 0
-
-		++i
+	if (input.edges.length > 0) {
+		let edge: Edge = graph.edges.itemAt(0)
+		let inputEdge: InputEdge
+		i = 0
+		for (inputEdge of input.edges) {
+			edge.connect(i, graph.edges)
+			edge.load(inputEdge, nodeIdToIndex, defaultEdgeWeight) 
+			++i
+		}
 	}
-
-	graph.idMap = nodeIndexToId
 	return graph
-}
-
-/**
- * Parses a Shape from an unparsed shape value
- * @param unparsedShape
- */
-function parseShape(unparsedShape?: Shape | string): Shape {
-	if (typeof unparsedShape === 'string') {
-		unparsedShape = unparsedShape.toLocaleLowerCase()
-		if (unparsedShape === 'square') {
-			return Shape.Square
-		} else if (unparsedShape === 'diamond') {
-			return Shape.Diamond
-		}
-	} else if (
-		unparsedShape === Shape.Square || 
-		unparsedShape === Shape.Diamond ||
-		unparsedShape === Shape.Circle
-	) {
-		return unparsedShape as Shape
-	}
-	return Shape.Circle
 }
 
 /**

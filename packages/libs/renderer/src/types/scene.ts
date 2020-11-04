@@ -36,7 +36,7 @@ export interface Scene {
 	/**
 	 * Gets the list of primitives contained in the scene
 	 */
-	primitives(ids?: Set<string>): Iterable<Primitive>
+	primitives(ids?: Set<string>, efficient?: boolean): Iterable<Primitive>
 
 	/**
 	 * Returns the list of nodes in the scene

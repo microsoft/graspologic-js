@@ -3,35 +3,18 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Pos3D, Pos2D, ClassType } from '../../types'
-import { nodeType, nodeMemoryLayout, ADDITIONAL_NODE_PROPS } from '../layout'
 import { AnimatableNode, Node } from '../types'
-import { createReader, MemoryReader } from '@graspologic/memstore'
+import { MemoryReader } from '@graspologic/memstore'
+import { NodeImpl } from './NodeImpl'
+import { InputNode } from '../../../graph'
 
-/**
- * A reflection based node impl which emits change events
- */
-const BaseImpl = createReader<Node>(
-	nodeType,
-	nodeMemoryLayout,
-	ADDITIONAL_NODE_PROPS,
-	(setter, name: string) => {
-		return function (this: MemoryReader, value: unknown) {
-			setter.call(this, value)
-			if (this.store) {
-				this.store.notify(this.storeId, name, value)
-			}
-		}
-	},
-
-	// This cast is necessary, because in our live code editor
-	// it wasn't picking this up as an implementation of a Node
-	// so, AnimatableNodeImpl was getting hosed
-) as ClassType<Node>
+const ALL_ATTRIBUTES = '*'
 
 /**
  * An implementation of a Node that has animation capabilities
  */
-class AnimatableNodeImplInternal extends BaseImpl implements AnimatableNode {
+class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
+
 	/**
 	 * @inheritDoc
 	 * @see {@link AnimatableNode.animatePosition}
@@ -64,6 +47,26 @@ class AnimatableNodeImplInternal extends BaseImpl implements AnimatableNode {
 
 		// Update the end color
 		;(this as any)['color'] = color
+	}
+
+	/**
+	 * @inheritDoc
+	 * @see {@link Node.load}
+	 */
+	public load(data: InputNode) {
+		super.load(data)
+		this.handleAttributeUpdated(ALL_ATTRIBUTES, undefined)
+	}
+
+	/**
+	 * Handler for when an attribute is updated
+	 * @param name The name of the attribute
+	 * @param value The value of the attribute
+	 */
+	protected handleAttributeUpdated(name: string, value: unknown): void {
+		if (this.store) {
+			this.store.notify(this.storeId, name, value)
+		}
 	}
 }
 
