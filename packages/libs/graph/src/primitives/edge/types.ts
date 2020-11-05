@@ -128,7 +128,7 @@ export interface Edge extends MemoryReader {
  */
 export type EdgeStore = ReaderStore<Edge>
 
-export interface AnimatableEdge {
+export interface AnimatableEdge extends Edge {
 	/**
 	 * Animates the source position to __position__ over __duration__
 	 * @param position The position to animate to
@@ -147,4 +147,13 @@ export interface AnimatableEdge {
 /**
  * The EdgeStore configuration options
  */
-export type EdgeStoreConfig = StoreConfig
+export interface EdgeStoreConfig extends StoreConfig {
+	
+	/**
+	 * If true, items within the store will support animation
+	 *
+	 * @defaultValue true
+	 */
+	animation?: boolean
+}
+

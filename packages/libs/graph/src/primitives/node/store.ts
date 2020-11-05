@@ -33,6 +33,6 @@ export function createNodeStore(config?: Partial<NodeStoreConfig>): NodeStore {
 		config?.capacity === 0 ? false : Boolean(config?.allocatedOnCreate),
 	)
 
-	const Impl = config?.notifications !== false ? AnimatableNodeImpl : NodeImpl
+	const Impl = config?.animation !== false ? AnimatableNodeImpl : NodeImpl
 	return new ReaderStoreImpl<MemoryReader & Node>(Impl, store, slotAllocator)
 }

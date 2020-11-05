@@ -32,6 +32,6 @@ export function createEdgeStore(config?: Partial<EdgeStoreConfig>): EdgeStore {
 		config?.capacity === 0 ? false : Boolean(config?.allocatedOnCreate),
 	)
 
-	const Impl = config?.notifications !== false ? AnimatableEdgeImpl : EdgeImpl
+	const Impl = config?.animation !== false ? AnimatableEdgeImpl : EdgeImpl
 	return new ReaderStoreImpl(Impl, store, slotAllocator)
 }

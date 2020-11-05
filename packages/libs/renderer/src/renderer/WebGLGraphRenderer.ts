@@ -35,6 +35,10 @@ import {
 	GraphContainer,
 	NodeStore,
 	EdgeStore,
+	AnimatableNode,
+	AnimatableEdge,
+	Pos2D,
+	Pos3D,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
 
@@ -361,6 +365,27 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
 		let nodePos: { x: number; y: number; z?: number }
+		const animateNodePosition = this.graph.nodes.store.config.animation ? 
+			(prim: Primitive, newPos: Pos3D) => {
+				;(prim as AnimatableNode).animatePosition(newPos, duration)
+			} : (prim: Node, newPos: Pos3D) => {
+				prim.position = newPos
+			}
+		const animateSourcePosition = this.graph.edges.store.config.animation ? 
+			(prim: Edge, newPos: Pos3D) => {
+				;(prim as AnimatableEdge).animateSourcePosition(newPos, duration)
+			} : (prim: Edge, newPos: Pos3D) => {
+				prim.sourcePosition = newPos
+			}
+		const animateTargetPosition = this.graph.edges.store.config.animation ? 
+			(prim: Edge, newPos: Pos3D) => {
+				;(prim as AnimatableEdge).animateTargetPosition(newPos, duration)
+			} : (prim: Edge, newPos: Pos3D) => {
+				prim.targetPosition = newPos
+			}
+			
+
+		const position: [number, number, number] = [0, 0, 0]
 
 		// I'm doing (prim as Edge) below, instead of assigning it a variable
 		// as it is no additional memory cost at runtime
@@ -368,31 +393,25 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 			if (prim.type === nodeType) {
 				nodePos = newPositions[prim.id || '']
 				if (nodePos) {
-					this.animationUtil.animatePoint(
-						prim as Node,
-						'position',
-						[nodePos.x, nodePos.y, nodePos.z || 0],
-						duration,
-					)
+					position[0] = nodePos.x
+					position[1] = nodePos.y
+					position[2] = nodePos.z || 0
+					animateNodePosition(prim as Node, position)
 				}
 			} else if (prim.type === edgeType) {
 				nodePos = newPositions[(prim as Edge).source!]
 				if (nodePos) {
-					this.animationUtil.animatePoint(
-						prim as Edge,
-						'sourcePosition',
-						[nodePos.x, nodePos.y, nodePos.z || 0],
-						duration,
-					)
+					position[0] = nodePos.x
+					position[1] = nodePos.y
+					position[2] = nodePos.z || 0
+					animateSourcePosition(prim as Edge, position)
 				}
 				nodePos = newPositions[(prim as Edge).target!]
 				if (nodePos) {
-					this.animationUtil.animatePoint(
-						prim as Edge,
-						'targetPosition',
-						[nodePos.x, nodePos.y, nodePos.z || 0],
-						duration,
-					)
+					position[0] = nodePos.x
+					position[1] = nodePos.y
+					position[2] = nodePos.z || 0
+					animateTargetPosition(prim as Edge, position)
 				}
 			}
 		}

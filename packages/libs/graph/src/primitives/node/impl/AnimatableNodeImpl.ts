@@ -7,8 +7,25 @@ import { AnimatableNode, Node } from '../types'
 import { MemoryReader } from '@graspologic/memstore'
 import { NodeImpl } from './NodeImpl'
 import { InputNode } from '../../../graph'
+import { nodeMemoryLayout } from '../layout'
 
 const ALL_ATTRIBUTES = '*'
+
+const COLOR_ATTRIBUTE = 'color'
+const COLOR_START_ATTRIBUTE = 'color.start'
+const COLOR_DURATION_ATTRIBUTE = 'color.duration'
+const POSITION_ATTRIBUTE = 'position'
+const POSITION_START_ATTRIBUTE = 'position.start'
+const POSITION_DURATION_ATTRIBUTE = 'position.duration'
+
+const { typedOffset: positionTypedOffset } =  nodeMemoryLayout.get('position')!
+const { typedOffset: positionStartTypedOffset } =  nodeMemoryLayout.get('position.start')!
+const { typedOffset: positionTweenTypedOffset } =  nodeMemoryLayout.get('position.tween')!
+
+const { typedOffset: colorTypedOffset } =  nodeMemoryLayout.get('color')!
+const { typedOffset: colorStartTypedOffset } =  nodeMemoryLayout.get('color.start')!
+const { typedOffset: colorTweenTypedOffset } =  nodeMemoryLayout.get('color.tween')!
+
 
 /**
  * An implementation of a Node that has animation capabilities
@@ -21,16 +38,20 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 	 */
 	public animatePosition(position: Pos3D | Pos2D, duration = 0): void {
 		// Set the start to the old position
-		;(this as any)['position.start'] = (this as any)['position']
+		this.float32Array[this.wordOffset + positionStartTypedOffset] = this.float32Array[this.wordOffset + positionTypedOffset]
+		this.float32Array[this.wordOffset + positionStartTypedOffset + 1] = this.float32Array[this.wordOffset + positionTypedOffset + 1]
+		this.float32Array[this.wordOffset + positionStartTypedOffset + 2] = this.float32Array[this.wordOffset + positionTypedOffset + 2]
+		this.handleAttributeUpdated(POSITION_START_ATTRIBUTE, this.float32Array.subarray(this.wordOffset + positionStartTypedOffset, this.wordOffset + positionStartTypedOffset + 2))
 
 		// Update the duration
-		// This triggers an update in the renderer, causing it to animate
-		// We could do, position.tween = [duration, -1], but this involves an extra array allocation
-		// that is essentially unnecessary
-		;(this as any)['position.duration'] = duration
-
+		this.float32Array[this.wordOffset + positionTweenTypedOffset] = duration
+		this.handleAttributeUpdated(POSITION_DURATION_ATTRIBUTE, duration)
+		
 		// Update the end position
-		;(this as any)['position'] = position
+		this.float32Array[this.wordOffset + positionTypedOffset] = position[0] || 0
+		this.float32Array[this.wordOffset + positionTypedOffset + 1] = position[1] || 0
+		this.float32Array[this.wordOffset + positionTypedOffset + 2] = position[2] || 0
+		this.handleAttributeUpdated(POSITION_ATTRIBUTE, position)
 	}
 
 	/**
@@ -39,14 +60,16 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 	 */
 	public animateColor(color: number, duration = 0): void {
 		// Set the start to the old color
-		;(this as any)['color.start'] = (this as any)['color']
+		this.uint32Array[this.wordOffset + colorStartTypedOffset] = this.float32Array[this.wordOffset + colorTypedOffset]
+		this.handleAttributeUpdated(COLOR_START_ATTRIBUTE, this.float32Array[this.wordOffset + colorTypedOffset])
 
 		// Update the duration
-		// This triggers an update in the renderer, causing it to animate
-		;(this as any)['color.duration'] = duration
-
+		this.float32Array[this.wordOffset + colorTweenTypedOffset] = duration
+		this.handleAttributeUpdated(COLOR_DURATION_ATTRIBUTE, duration)
+		
 		// Update the end color
-		;(this as any)['color'] = color
+		this.uint32Array[this.wordOffset + colorTypedOffset] = color
+		this.handleAttributeUpdated(COLOR_ATTRIBUTE, color)
 	}
 
 	/**

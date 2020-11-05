@@ -33,13 +33,6 @@ export interface StoreConfig {
 	 * @defaultValue false
 	 */
 	allocatedOnCreate?: boolean
-
-	/**
-	 * If true, notification events will be emitted
-	 *
-	 * @defaultValue false
-	 */
-	notifications?: boolean
 }
 
 /**
