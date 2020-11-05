@@ -184,15 +184,7 @@ export type NodeStore = ReaderStore<Node>
 /**
  * The NodeStore configuration options
  */
-export interface NodeStoreConfig extends StoreConfig {
-	
-	/**
-	 * If true, items within the store will support animation
-	 *
-	 * @defaultValue false
-	 */
-	animation?: boolean
-}
+export type NodeStoreConfig = StoreConfig
 
 /**
  * An interface describing a Node that can be animated

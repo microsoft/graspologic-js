@@ -147,7 +147,7 @@ export function createReader<P>(
 		 * @param name The name of the attribute
 		 * @param value The value of the attribute
 		 */
-		protected handleAttributeUpdated(name: string, value: unknown): void {}
+		protected handleAttributeSet(name: string, value: unknown): void {}
 	}
 
 	const proto = Impl.prototype as any
@@ -174,7 +174,7 @@ export function createReader<P>(
 				}
 				setter = function (this: Impl, value: number) {
 					this.float32Array[this.wordOffset + typedOffset] = value || 0
-					this.handleAttributeUpdated(name, value)
+					this.handleAttributeSet(name, value)
 				}
 			} else if (size === 2) {
 				//
@@ -189,7 +189,7 @@ export function createReader<P>(
 				setter = function (this: Impl, value: [number, number]) {
 					this.float32Array[this.wordOffset + typedOffset] = value[0] || 0
 					this.float32Array[this.wordOffset + typedOffset + 1] = value[1] || 0
-					this.handleAttributeUpdated(name, value)
+					this.handleAttributeSet(name, value)
 				}
 			} else if (size === 3) {
 				//
@@ -206,7 +206,7 @@ export function createReader<P>(
 					this.float32Array[this.wordOffset + typedOffset] = value[0] || 0
 					this.float32Array[this.wordOffset + typedOffset + 1] = value[1] || 0
 					this.float32Array[this.wordOffset + typedOffset + 2] = value[2] || 0
-					this.handleAttributeUpdated(name, value)
+					this.handleAttributeSet(name, value)
 				}
 			}
 		} else if (type === AttributeType.Uint8) {
@@ -220,7 +220,7 @@ export function createReader<P>(
 					}
 					setter = function (this: Impl, value: boolean) {
 						this.uint8Array[this.byteOffset + typedOffset] = value ? 1 : 0
-						this.handleAttributeUpdated(name, value)
+						this.handleAttributeSet(name, value)
 					}
 				} else {
 					//
@@ -231,7 +231,7 @@ export function createReader<P>(
 					}
 					setter = function (this: Impl, value: number) {
 						this.uint8Array[this.byteOffset + typedOffset] = value
-						this.handleAttributeUpdated(name, value)
+						this.handleAttributeSet(name, value)
 					}
 				}
 			} else if (size === 2) {
@@ -247,7 +247,7 @@ export function createReader<P>(
 				setter = function (this: Impl, value: [number, number]) {
 					this.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
 					this.uint8Array[this.byteOffset + typedOffset + 1] = value[1] || 0
-					this.handleAttributeUpdated(name, value)
+					this.handleAttributeSet(name, value)
 				}
 			} else if (size === 3) {
 				//
@@ -264,7 +264,7 @@ export function createReader<P>(
 					this.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
 					this.uint8Array[this.byteOffset + typedOffset + 1] = value[1] || 0
 					this.uint8Array[this.byteOffset + typedOffset + 2] = value[2] || 0
-					this.handleAttributeUpdated(name, value)
+					this.handleAttributeSet(name, value)
 				}
 			} else if (size === 4) {
 				//
@@ -286,7 +286,7 @@ export function createReader<P>(
 					this.uint8Array[this.byteOffset + typedOffset + 1] = value[1] || 0
 					this.uint8Array[this.byteOffset + typedOffset + 2] = value[2] || 0
 					this.uint8Array[this.byteOffset + typedOffset + 3] = value[3] || 0
-					this.handleAttributeUpdated(name, value)
+					this.handleAttributeSet(name, value)
 				}
 			}
 		} else if (type === AttributeType.Uint32) {
@@ -299,7 +299,7 @@ export function createReader<P>(
 				}
 				setter = function (this: Impl, value: number) {
 					this.uint32Array[this.wordOffset + typedOffset] = value || 0
-					this.handleAttributeUpdated(name, value)
+					this.handleAttributeSet(name, value)
 				}
 			}
 		}

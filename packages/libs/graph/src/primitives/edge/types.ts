@@ -147,13 +147,4 @@ export interface AnimatableEdge extends Edge {
 /**
  * The EdgeStore configuration options
  */
-export interface EdgeStoreConfig extends StoreConfig {
-	
-	/**
-	 * If true, items within the store will support animation
-	 *
-	 * @defaultValue true
-	 */
-	animation?: boolean
-}
-
+export type EdgeStoreConfig = StoreConfig

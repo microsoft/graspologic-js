@@ -105,7 +105,6 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 	private __destroyed = false
 	private animationLoopRunning = false
-	private animationUtil: AnimationUtil
 
 	/** Returns the current engine time for animation tweening */
 	public engineTime = () => this._engineTime
@@ -128,8 +127,6 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	) {
 		this._data = data
 		data.onRegister(this.handleStoreUpdated)
-
-		this.animationUtil = createAnimationUtil(this.engineTime)
 
 		this._camera = new Camera()
 		this.onInitialize((opts: GLOpts) => {

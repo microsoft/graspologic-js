@@ -8,7 +8,6 @@ import { DEFAULT_CAPACITY } from './defaults'
  * A class for managing id allocation
  */
 export class SlotAllocator {
-	// private availableIndices: Record<number, number | undefined> = {}
 	private availableIndices: Map<number, number | undefined> = new Map()
 	private nextAvailableIndex: number | undefined
 

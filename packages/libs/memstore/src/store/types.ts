@@ -33,10 +33,17 @@ export interface StoreConfig {
 	 * @defaultValue false
 	 */
 	allocatedOnCreate?: boolean
+
+	/**
+	 * If true, items within the store will support animation
+	 *
+	 * @defaultValue true
+	 */
+	animation?: boolean
 }
 
 /**
- * A handler for when an attribute has been updated
+ * A handlernotification attribute has been updated
  * @param index The index of the item
  * @param attribute The name of the attribute that was updated, if undefined, all attributes have been changed
  * @param value The new value of the attribute
