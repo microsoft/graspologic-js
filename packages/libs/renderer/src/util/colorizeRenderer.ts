@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { NodeComponentColorizer, GraphRenderer } from '../types'
+import { GraphRenderer, NodeColorizer } from '../types'
 
 const DEFAULT_NAME = 'DEFAULT'
 
@@ -10,20 +10,15 @@ export function correctColor(color: number) {
 	return (((color ^ 0xff000000) | 0xff000000) >>> 0)
 }
 
-export function createIntColorizer(
-	colorizerFn: NodeComponentColorizer = () => [1, 0, 0, 1],
+export function createBGRAColorizer(
+	colorizerFn: NodeColorizer = () => 0xFF0000FF
 ) {
 	return (
 		group: number | string | undefined,
 		id: number | string | undefined,
 	) => {
 		const arr = colorizerFn(group, id)
-		return (
-			((arr[3] * 255) << 24) +
-			((arr[2] * 255) << 16) +
-			((arr[1] * 255) << 8) +
-			arr[0] * 255
-		)
+		return typeof arr === 'number' ? arr : componentColorToBGRA(arr)
 	}
 }
 
@@ -34,21 +29,44 @@ export function createIntColorizer(
  */
 export function colorizeRenderer(
 	renderer: GraphRenderer,
-	colorizerFn?: NodeComponentColorizer,
+	colorizerFn?: NodeColorizer,
 ) {
-	const colorizer = createIntColorizer(colorizerFn)
+	const colorizer = createBGRAColorizer(colorizerFn)
 	const nodeColors = new Map<string, number>()
 	let color: number
+	let edgeCount = renderer.graph.edges.count
 	for (const node of renderer.scene.nodes(true)) {
 		color = correctColor(colorizer(node.group, node.id))
 		node.color = color
-		nodeColors.set(node.id || DEFAULT_NAME, color)
-	}
-	let nodeColor: number | undefined
-	for (const edge of renderer.scene.edges()) {
-		nodeColor = nodeColors.get(edge.source!)
-		if (nodeColor !== undefined) {
-			edge.color = nodeColor
+		if (edgeCount > 0) {
+			nodeColors.set(node.id || DEFAULT_NAME, color)
 		}
 	}
+
+	if (edgeCount > 0) {
+		let nodeColor: number | undefined
+		for (const edge of renderer.scene.edges(true)) {
+			nodeColor = nodeColors.get(edge.source!)
+			if (nodeColor != null) {
+				edge.color = nodeColor
+			}
+			nodeColor = nodeColors.get(edge.target!)
+			if (nodeColor != null) {
+				edge.color2 = nodeColor
+			}
+		}
+	}
+}
+
+/**
+ * Converts color components to a BGRA int color
+ * @param components The color components [r, g, b, a]
+ */
+export function componentColorToBGRA(components: [number, number, number, number]) : number {
+	return (
+		((components[3] * 255) << 24) +
+		((components[2] * 255) << 16) +
+		((components[1] * 255) << 8) +
+		components[0] * 255
+	)
 }

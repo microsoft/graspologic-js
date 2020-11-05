@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { componentColorToBGRA } from '@graspologic/renderer'
 import { number } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
@@ -18,5 +19,6 @@ storiesOf('Stress Tests', module)
 		const g = number('G', 0, COL_RANGE)
 		const b = number('B', 0, COL_RANGE)
 		const a = number('A', 1, COL_RANGE)
-		return <StressTestVertices2D colorizer={() => [r, g, b, a]} />
+		const color = componentColorToBGRA([r, g, b, a])
+		return <StressTestVertices2D colorizer={() => color} />
 	})

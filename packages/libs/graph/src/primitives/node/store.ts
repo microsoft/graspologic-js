@@ -23,12 +23,16 @@ import {
  */
 export function createNodeStore(config?: Partial<NodeStoreConfig>): NodeStore {
 	const store: ArrayStore = new ArrayStoreImpl(nodeMemoryLayout, config)
-
-	// if a store is provided, assume the slots are consumed
 	const slotAllocator = new SlotAllocator(
+
+		// We use the store capacity, cause it does some defaulting
 		store.config.capacity!,
-		Boolean(config?.allocatedOnCreate),
+
+		// If the user explicitly wanted capacity of 0, 
+		// ignore the allocatedOnCreate and assume nothing is used
+		config?.capacity === 0 ? false : Boolean(config?.allocatedOnCreate),
 	)
+
 	const Impl = config?.notifications !== false ? AnimatableNodeImpl : NodeImpl
 	return new ReaderStoreImpl<MemoryReader & Node>(Impl, store, slotAllocator)
 }

@@ -5,7 +5,7 @@
 import { useEffect } from 'react'
 import {
 	GraphRenderer,
-	NodeComponentColorizer,
+	NodeColorizer,
 	colorizeRenderer,
 } from '@graspologic/renderer'
 
@@ -16,7 +16,7 @@ import {
  */
 export function useGraphColorizer(
 	renderer: GraphRenderer | undefined,
-	colorizerFn?: NodeComponentColorizer,
+	colorizerFn?: NodeColorizer,
 ) {
 	useEffect(() => {
 		if (renderer && !renderer.destroyed && colorizerFn) {

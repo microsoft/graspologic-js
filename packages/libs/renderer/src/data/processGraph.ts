@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { NodeComponentColorizer, NodeIntColorizer } from '../types'
-import { createIntColorizer, correctColor } from '../util/colorizeRenderer'
+import { NodeColorizer, NodeBGRAColorizer } from '../types'
+import { createBGRAColorizer, correctColor } from '../util/colorizeRenderer'
 import { GraphContainer, Node, Edge } from '@graspologic/graph'
 
 /**
@@ -15,9 +15,9 @@ import { GraphContainer, Node, Edge } from '@graspologic/graph'
  */
 export function processGraph(
 	data: GraphContainer,
-	colorizerFn: NodeComponentColorizer | undefined,
+	colorizerFn: NodeColorizer | undefined,
 ): void {
-	const colorizer = createIntColorizer(colorizerFn)
+	const colorizer = createBGRAColorizer(colorizerFn)
 	if (data.nodes.count === 0) {
 		return
 	}
@@ -34,7 +34,7 @@ export function processGraph(
  */
 function colorizeNodes(
 	data: GraphContainer,
-	colorizer: NodeIntColorizer,
+	colorizer: NodeBGRAColorizer,
 ): [number, number] {
 	let maxWeight = Number.MIN_SAFE_INTEGER
 	let minWeight = Number.MAX_SAFE_INTEGER
