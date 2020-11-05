@@ -45,11 +45,6 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 				weight: 10,
 			})
 		}
-		result.edges.push({
-			source: 'node-1',
-			target: 'node-2',
-			weight: 0.5,
-		})
 		return result
 	}, [numNodes])
 

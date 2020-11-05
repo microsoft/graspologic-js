@@ -70,11 +70,19 @@ export function internGraph(
 	const nodeIdToIndex = new Map<string, number>()
 
 	if (input.nodes.length > 0) {
+		let node: Node
 		let inputNode: InputNode
-		let node: Node = graph.nodes.itemAt(0)
 		i = 0
-		for (inputNode of input.nodes) {
-			nodeIdToIndex.set(inputNode.id, i)
+		for (node of graph.nodes.scan()) {
+			if (i >= input.nodes.length) {
+				break;
+			}
+			inputNode = input.nodes[i]
+
+			if (input.edges.length > 0) {
+				nodeIdToIndex.set(inputNode.id, i)
+			}
+
 			node.connect(i, graph.nodes)
 			node.load(inputNode) 
 			if (randomize && node.x === 0 && node.y === 0) {
@@ -86,12 +94,14 @@ export function internGraph(
 	}
 
 	if (input.edges.length > 0) {
-		let edge: Edge = graph.edges.itemAt(0)
-		let inputEdge: InputEdge
+		let edge: Edge
 		i = 0
-		for (inputEdge of input.edges) {
+		for (edge of graph.edges.scan()) {
+			if (i >= input.edges.length) {
+				break;
+			}
 			edge.connect(i, graph.edges)
-			edge.load(inputEdge, nodeIdToIndex, defaultEdgeWeight) 
+			edge.load(input.edges[i], nodeIdToIndex, defaultEdgeWeight) 
 			++i
 		}
 	}
