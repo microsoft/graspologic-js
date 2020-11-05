@@ -6,6 +6,10 @@ import { NodeComponentColorizer, GraphRenderer } from '../types'
 
 const DEFAULT_NAME = 'DEFAULT'
 
+export function correctColor(color: number) {
+	return (((color ^ 0xff000000) | 0xff000000) >>> 0)
+}
+
 export function createIntColorizer(
 	colorizerFn: NodeComponentColorizer = () => [1, 0, 0, 1],
 ) {
@@ -36,7 +40,7 @@ export function colorizeRenderer(
 	const nodeColors = new Map<string, number>()
 	let color: number
 	for (const node of renderer.scene.nodes(true)) {
-		color = colorizer(node.group, node.id)
+		color = correctColor(colorizer(node.group, node.id))
 		node.color = color
 		nodeColors.set(node.id || DEFAULT_NAME, color)
 	}
