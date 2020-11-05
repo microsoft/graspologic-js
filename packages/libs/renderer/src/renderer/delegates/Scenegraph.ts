@@ -3,17 +3,13 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { setParameters } from '@luma.gl/gltools'
-import { ScreenQuadRenderable } from '../../renderables/ScreenQuadRenderable'
+import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 import {
 	DataStore,
 	Scene,
-	RenderConfiguration,
-	Renderable,
-	RenderOptions,
 	Primitive,
 } from '../../types'
-import { Interpolator } from './Interpolator'
-import { Camera } from './camera'
+import { Camera } from '@graspologic/camera'
 import {
 	Edge,
 	Node,
@@ -23,6 +19,7 @@ import {
 	NodeStore,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
+import { Renderable, RenderConfiguration, RenderOptions, Interpolator } from '@graspologic/common'
 
 /**
  * @internal

@@ -6,8 +6,8 @@ import { useMemo, useEffect } from 'react'
 import {
 	GraphRenderer,
 	UsesWebGL,
-	VertexSetRenderable,
 } from '@graspologic/renderer'
+import { VertexSetRenderable } from '@graspologic/renderables-support'
 
 /**
  * Creates a VertexSetRenderable

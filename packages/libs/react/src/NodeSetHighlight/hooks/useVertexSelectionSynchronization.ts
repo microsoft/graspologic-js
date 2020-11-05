@@ -3,7 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect } from 'react'
-import { GraphRenderer, Node, DataboundRenderable } from '@graspologic/renderer'
+import type { GraphRenderer, Node } from '@graspologic/renderer'
+import type { DataboundRenderable } from '@graspologic/renderables-base'
 
 /**
  * Updates __renderable__ with the set of nodes which match the __vertexIds__ ids, when __vertexIds__ changes

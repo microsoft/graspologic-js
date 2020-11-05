@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Primitive } from './primitives'
-import { Renderable, RenderOptions } from './renderables'
+import { Renderable, RenderOptions } from '@graspologic/common'
 import { Edge, Node } from '@graspologic/graph'
 
 /**

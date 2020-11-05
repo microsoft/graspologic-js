@@ -4,8 +4,7 @@
  */
 import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { processMinMaxBounds, Bounds3D } from '@graspologic/utils'
-import { RenderOptions } from '@graspologic/renderables-base'
+import { processMinMaxBounds, Bounds3D, RenderConfiguration, RenderOptions } from '@graspologic/common'
 import { Model } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
 
@@ -38,7 +37,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 	public constructor(
 		gl: WebGLRenderingContext,
 		private engineTime: () => number,
-		protected config: any,
+		protected config: RenderConfiguration,
 		id = getNextId(),
 	) {
 		super()

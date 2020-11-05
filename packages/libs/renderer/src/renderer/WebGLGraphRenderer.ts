@@ -6,10 +6,8 @@ import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
 import { AnimationLoop } from '@luma.gl/engine'
 import { createGLContext } from '@luma.gl/gltools'
 import { Subject, Observable } from 'rxjs'
-import { createConfiguration } from '../RenderConfiguration'
+import { createConfiguration, CameraAdjustmentMode, RenderConfiguration, RenderConfigurationOptions, Bounds3D, DEFAULT_WIDTH, DEFAULT_HEIGHT, fastDebounce } from '@graspologic/common'
 import { processGraph } from '../data'
-import { DEFAULT_WIDTH, DEFAULT_HEIGHT } from '../defaults'
-import { NodesRenderable, EdgesRenderable } from '../renderables'
 import {
 	NodeComponentColorizer,
 	Scene,
@@ -17,16 +15,12 @@ import {
 	InitializeHandler,
 	GraphRenderer,
 	UsesWebGL,
-	CameraAdjustmentMode,
-	RenderConfiguration,
-	RenderConfigurationOptions,
 	DataStore,
-	Bounds3D,
 	Primitive,
 } from '../types'
-import { fastDebounce } from '../util'
-import { Camera, Scenegraph, createDataStore, createDataStoreFromContainer } from './delegates'
-import { AnimationUtil, createAnimationUtil } from '@graspologic/animation'
+import { Scenegraph, createDataStore, createDataStoreFromContainer } from './delegates'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { NodesRenderable } from '@graspologic/renderables-nodes'
 import {
 	Node,
 	Edge,
@@ -37,10 +31,10 @@ import {
 	EdgeStore,
 	AnimatableNode,
 	AnimatableEdge,
-	Pos2D,
 	Pos3D,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
+import { Camera } from '@graspologic/camera' 
 
 // typings are messed up for this
 // eslint-disable-next-line @typescript-eslint/no-var-requires

@@ -24,6 +24,8 @@
 	"dependencies": {
 		"@essex-js-toolkit/hooks": "^1.1.2",
 		"@graspologic/graph": "workspace:*",
+		"@graspologic/renderables-base": "workspace:*",
+		"@graspologic/renderables-support": "workspace:*",
 		"@graspologic/renderer": "workspace:*",
 		"math.gl": "^3.2.2",
 		"typedoc": "0.19.2"

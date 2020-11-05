@@ -23,7 +23,8 @@
 		"@graspologic/memstore": "workspace:*",
 		"@graspologic/renderer-glsl": "workspace:*",
 		"@luma.gl/gltools": "^8.3.1",
-		"@luma.gl/webgl": "^8.3.1"
+		"@luma.gl/webgl": "^8.3.1",
+		"math.gl": "^3.2.2"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^11.0.1",

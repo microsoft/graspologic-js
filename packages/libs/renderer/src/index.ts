@@ -4,10 +4,8 @@
  */
 export { Node, Edge } from '@graspologic/graph'
 export * from './renderer'
-export * from './renderables'
 export * from './types'
-export * from './defaults'
 export * from './data'
 export * from './events'
 export * from './util'
-export * from './RenderConfiguration'
+export * from '@graspologic/common'

@@ -12,8 +12,7 @@ import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import type { NodeStore, Node } from '@graspologic/graph'
 import { createIdFactory, GL_DEPTH_TEST, encodePickingColor, decodePickingColor, PickingColor } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { Bounds3D } from '@graspologic/utils'
-import { RenderOptions } from '@graspologic/renderables-base'
+import { Bounds3D, RenderOptions, RenderConfiguration } from '@graspologic/common'
 
 import createModel from './model'
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
@@ -50,7 +49,7 @@ export class NodesRenderable extends DirtyableRenderable {
 	public constructor(
 		gl: WebGLRenderingContext,
 		private engineTime: () => number,
-		protected config: any /*RenderConfiguration*/,
+		protected config: RenderConfiguration,
 		id = getNextId(),
 	) {
 		super()

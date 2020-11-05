@@ -2,5 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-export * from './defaults'
-export * from './types'
+export * from './DirtyRenderable'
+export * from './DataboundRenderable'
+export * from './CompositeDataboundRenderable'
