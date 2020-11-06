@@ -232,7 +232,11 @@ export class NodesRenderable extends NodesBase implements ItemBasedRenderable, B
 		let node: Node
 		let radius: number = 0
 		for (node of this._data!.scan()) {
-			radius = node.radius
+			radius = node.radius || 0
+			if (!radius) {
+				hasWeights = true
+			}
+
 			if (!bounds) {
 				bounds = {
 					x: {
@@ -257,10 +261,6 @@ export class NodesRenderable extends NodesBase implements ItemBasedRenderable, B
 	
 				bounds!.z.min = Math.min(bounds!.z.min, node.z - radius)
 				bounds!.z.max = Math.max(bounds!.z.max, node.z + radius)
-			}
-
-			if (!radius) {
-				hasWeights = true
 			}
 		}
 		const scale = hasWeights

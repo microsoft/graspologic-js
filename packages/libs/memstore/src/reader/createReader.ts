@@ -132,14 +132,14 @@ export function createReader<P>(
 				this.propertyBag = store.propertyBags[storeId]
 			}
 
-			if (this.store !== store) {
-				this.store = store
-
-				// copy array aliases
-				this.uint32Array = store.store.uint32Array
-				this.float32Array = store.store.float32Array
-				this.uint8Array = store.store.uint8Array
-			}
+			// TODO: It is important to not have 
+			// if (this.store != store)
+			// It's possible that the store doesn't change, but the underlying arrays do
+			// copy array aliases
+			this.store = store
+			this.uint32Array = store.store.uint32Array
+			this.float32Array = store.store.float32Array
+			this.uint8Array = store.store.uint8Array
 		}
 
 		/**

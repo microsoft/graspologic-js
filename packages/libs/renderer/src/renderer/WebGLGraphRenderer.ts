@@ -327,20 +327,22 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 	public changePositions(newPositions: PositionMap, duration = 0): void {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
+		const nodesSupportAnim = this.graph.nodes.store.config.animation !== false
+		const edgesSupportAnim = this.graph.edges.store.config.animation !== false
 		let nodePos: { x: number; y: number; z?: number }
-		const animateNodePosition = this.graph.nodes.store.config.animation ? 
+		const animateNodePosition = nodesSupportAnim ? 
 			(prim: Primitive, newPos: Pos3D) => {
 				;(prim as AnimatableNode).animatePosition(newPos, duration)
 			} : (prim: Node, newPos: Pos3D) => {
 				prim.position = newPos
 			}
-		const animateSourcePosition = this.graph.edges.store.config.animation ? 
+		const animateSourcePosition = edgesSupportAnim ? 
 			(prim: Edge, newPos: Pos3D) => {
 				;(prim as AnimatableEdge).animateSourcePosition(newPos, duration)
 			} : (prim: Edge, newPos: Pos3D) => {
 				prim.sourcePosition = newPos
 			}
-		const animateTargetPosition = this.graph.edges.store.config.animation ? 
+		const animateTargetPosition = edgesSupportAnim ? 
 			(prim: Edge, newPos: Pos3D) => {
 				;(prim as AnimatableEdge).animateTargetPosition(newPos, duration)
 			} : (prim: Edge, newPos: Pos3D) => {

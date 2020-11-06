@@ -52,7 +52,7 @@ export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
 	 * @inheritdoc
 	 * @see {@link ReaderStore.itemAt}
 	 */
-	public itemAt(storeId: number): P {
+	public itemAt(storeId: number,): P {
 		if (process.env.NODE_ENV !== 'production') {
 			if (!this.slotAllocator.has(storeId)) {
 				throw new Error(`Element ${storeId} does not exist`)
@@ -86,7 +86,7 @@ export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
 		let idx: number
 		let item: P | undefined
 		if (this.count > 0) {
-			item = this.itemAt(0)
+			item = this.createConnectedItem(0)
 		}
 		if (item) {
 			for (idx of this.itemIds()) {
