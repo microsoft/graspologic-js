@@ -11,7 +11,7 @@ export interface ClassType<T> {
 	new (...args: any[]): T
 }
 
-function applyMixins<T>(derivedCtor: ClassType<T>, constructors: any[]) {
+export function applyMixins<T>(derivedCtor: ClassType<T>, constructors: any[]) {
     constructors.forEach((baseCtor) => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
         Object.defineProperty(
@@ -22,12 +22,4 @@ function applyMixins<T>(derivedCtor: ClassType<T>, constructors: any[]) {
         });
     });
     return derivedCtor
-}
-
-export function Mixin<Base, Mixin>(Base: ClassType<Base>, Mixin: ClassType<Mixin>) {
-    class MixinImpl {}
-
-    applyMixins(MixinImpl, [Base, Mixin])
-
-    return MixinImpl as ClassType<Mixin & Base>
 }

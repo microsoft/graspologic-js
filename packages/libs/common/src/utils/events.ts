@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Mixin, ClassType, Arguments } from './mixin'
+import { applyMixins, ClassType, Arguments } from './mixin'
 
 export type Disconnect = () => void
 
@@ -73,6 +73,7 @@ export class EventEmitter<Events> implements HasEvents<Events> {
      * @param name The event name
      */
     public hasListeners<N extends keyof Events>(name: N): boolean {
+        this.listeners = this.listeners || {}
         var listeners = this.listeners[name];
         if (listeners) {
             return listeners.length > 0
@@ -85,5 +86,12 @@ export class EventEmitter<Events> implements HasEvents<Events> {
  * A mixin that adds support for event emitting
  */
 export function EventsMixin<Events, TBase>(Base: ClassType<TBase>) {
-    return Mixin(Base, EventEmitter as ClassType<EventEmitter<Events>>)
+    class EventImpl extends (Base as any) {
+        // This is a necessary evil, to ensure that the "listeners" fields gets added
+        private listeners: {
+            [P in keyof Events]?: Events[P][]
+        } = {};
+    }
+    applyMixins(EventImpl, [EventEmitter])
+    return EventImpl as any as ClassType<TBase & EventEmitter<Events>>
 }
