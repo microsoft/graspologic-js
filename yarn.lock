@@ -2555,7 +2555,6 @@ __metadata:
     math.gl: ^3.2.2
     mjolnir.js: ^2.4.1
     npm-run-all: ^4.1.5
-    rxjs: 7.0.0-beta.8
   peerDependencies:
     "@types/node": "*"
     core-js: ^3.6.5
@@ -2571,7 +2570,6 @@ __metadata:
     "@types/node": ^14.14.2
     glob: ^7.1.6
     npm-run-all: ^4.1.5
-    rxjs: 7.0.0-beta.8
   peerDependencies:
     "@types/node": "*"
     core-js: ^3.6.5
@@ -2876,7 +2874,6 @@ __metadata:
     "@types/node": ^14.14.2
     glob: ^7.1.6
     npm-run-all: ^4.1.5
-    rxjs: 7.0.0-beta.8
   languageName: unknown
   linkType: soft
 
@@ -3009,7 +3006,6 @@ __metadata:
     math.gl: ^3.2.2
     mjolnir.js: ^2.4.1
     npm-run-all: ^4.1.5
-    rxjs: 7.0.0-beta.8
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"

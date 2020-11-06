@@ -2,19 +2,25 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Subject, Observable, animationFrameScheduler } from 'rxjs'
-import { observeOn } from 'rxjs/operators'
+import { EventEmitter } from './events'
 
 export type PropertyChangeHandler<T> = (newValue: T) => void
 export type PropertyChangeValidator<T> = (newValue: T) => boolean
+
+export interface PropertyContainerEvents<T> {
+	/**
+	 * On value changed
+	 * @param value The new value
+	 */
+	change(value: T | undefined): void
+}
 
 /**
  * @internal
  *
  * A class for managing a property that emits an event when it changes
  */
-export class PropertyContainer<T> {
-	private _onChange = new Subject<T>()
+export class PropertyContainer<T> extends EventEmitter<PropertyContainerEvents<T>> {
 	private isValid: PropertyChangeValidator<T> = () => true
 
 	/**
@@ -25,7 +31,9 @@ export class PropertyContainer<T> {
 	public constructor(
 		private _value: T,
 		private areEqual = (a: T, b: T): boolean => a === b,
-	) {}
+	) {
+		super()
+	}
 
 	/**
 	 * Sets the validator which validates whether or not a value is a valid value for this property container
@@ -48,14 +56,7 @@ export class PropertyContainer<T> {
 	public set value(newValue: T) {
 		if (this.isValid(newValue) && !this.areEqual(newValue, this._value)) {
 			this._value = newValue
-			this._onChange.next(newValue)
+			this.emit('change', newValue)
 		}
-	}
-
-	/**
-	 * Gets an observable for observing the value changes in this container
-	 */
-	public get onChange(): Observable<T> {
-		return this._onChange.pipe(observeOn(animationFrameScheduler))
 	}
 }

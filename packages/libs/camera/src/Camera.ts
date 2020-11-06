@@ -3,8 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Matrix4, Quaternion, Vector3 } from 'math.gl'
-import { Subject, Subscription } from 'rxjs'
-import { Bounds } from '@graspologic/common'
+import { Bounds, EventEmitter } from '@graspologic/common'
 import { CameraState } from './CameraState'
 import { TransitioningCameraState } from './TransitioningCameraState'
 import { computeState } from './computeState'
@@ -14,13 +13,22 @@ const DEFAULT_HEIGHT = 500
 const DEFAULT_FOV = (45 * Math.PI) / 180
 
 /**
+ * The events for the camera
+ */
+export interface CameraEvents {
+	/**
+	 * Event that is fired when moving is complete
+	 */
+	movingComplete(): void
+}
+
+/**
  * Maintains Camera State for Graph Renderer
  */
-export class Camera {
+export class Camera extends EventEmitter<CameraEvents> {
 	public projection = new Matrix4()
 	private _fov = DEFAULT_FOV
 	private _isUserMoving = false
-	private _onMovingComplete = new Subject<void>()
 	private _projectionSettings = {
 		aspect: 1,
 		near: 0.1,
@@ -36,7 +44,8 @@ export class Camera {
 	/**
 	 * Constructor for the Camera
 	 */
-	public constructor() {
+	constructor() {
+		super()
 		this._projectionSettings.aspect = DEFAULT_WIDTH / DEFAULT_HEIGHT
 		this.projection = new Matrix4().perspective(this._projectionSettings)
 
@@ -175,7 +184,7 @@ export class Camera {
 
 			// If we are not still moving through transitions or whatever
 			if (!this.isMoving) {
-				this._onMovingComplete.next()
+				this.emit('movingComplete')
 			}
 		}
 	}
@@ -196,14 +205,6 @@ export class Camera {
 	}
 
 	/**
-	 * Event that is fired when moving is complete
-	 * @param handler The handler to call when moving is complete
-	 */
-	public onMovingComplete(handler: () => any): Subscription {
-		return this._onMovingComplete.subscribe(handler)
-	}
-
-	/**
 	 * Transitions to the given state
 	 * @param state The state to transition to
 	 * @param duration The duration to take
@@ -217,10 +218,10 @@ export class Camera {
 		)
 
 		if (duration > 0) {
-			this._state.onComplete(() => {
+			this._state.on('complete', () => {
 				// If we are not currently being moved by other means
 				if (!this.isMoving) {
-					this._onMovingComplete.next()
+					this.emit('movingComplete')
 				}
 			})
 		}

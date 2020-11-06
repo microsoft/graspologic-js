@@ -38,15 +38,13 @@ export function useBindCallbacks({ renderer, callbacks = {} }: CallbacksArgs) {
 
 	useEffect(() => {
 		if (renderer && onLoad) {
-			const subscription = renderer.onLoad.subscribe(() => onLoad())
-			return () => subscription.unsubscribe()
+			return renderer.on('load', () => onLoad())
 		}
 	}, [renderer, onLoad])
 
 	useEffect(() => {
 		if (renderer && onResize) {
-			const subscription = renderer.onResize.subscribe(() => onResize())
-			return () => subscription.unsubscribe()
+			return renderer.on('resize', () => onResize())
 		}
 	}, [renderer, onResize])
 
@@ -56,22 +54,21 @@ export function useBindCallbacks({ renderer, callbacks = {} }: CallbacksArgs) {
 			// normally, they are only enabled if HandleNodeClicks child component is used
 			// this provides an alternative binding to match the other handlers for consistency
 			const disconnect = enableClickEvents(renderer)
-			const subscription = renderer.onVertexClick.subscribe(node => {
+			const disconnectVertexClick = renderer.on('vertexClick', node => {
 				onNodeClick(node)
 			})
 			return () => {
 				disconnect()
-				subscription.unsubscribe()
+				disconnectVertexClick()
 			}
 		}
 	}, [renderer, onNodeClick])
 
 	useEffect(() => {
 		if (renderer && onNodeHover) {
-			const subscription = renderer.onVertexHover.subscribe(node => {
+			return renderer.on('vertexHovered', node => {
 				onNodeHover(node)
 			})
-			return () => subscription.unsubscribe()
 		}
 	}, [renderer, onNodeHover])
 }

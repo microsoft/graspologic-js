@@ -117,7 +117,7 @@ function createRenderer(data, width, height) {
 	const renderable = new VertexSetRenderable(renderer.gl)
 	renderable.color = [0.5, 0.5, 0.8, 1]
 	renderer.scene.addRenderable(renderable)
-	renderer.onVertexHover.subscribe(hovered => {
+	renderer.on('vertexHovered', hovered => {
 		renderable.setData(hovered ? [hovered] : [])
 	})
 
@@ -133,8 +133,7 @@ export default () => {
 	const renderer = createRenderer(GRAPH_DATA, 600, 300)
 	let selectedNodeIds = []
 
-	// rxjs observable
-	renderer.onVertexClick.subscribe(id => {
+	renderer.on('vertexClick', id => {
 		console.log('click', id)
 		if (id) {
 			if (selectedNodeIds.indexOf(id) === -1) {

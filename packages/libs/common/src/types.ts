@@ -2,8 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { PropertyChangeHandler } from './utils'
-import { SubscriptionLike } from 'rxjs'
+import { PropertyChangeHandler, Disconnect } from './utils'
 
 /*!
  * Copyright (c) Microsoft. All rights reserved.
@@ -38,78 +37,78 @@ export type ColorVector = [number, number, number, number]
 export interface RenderConfiguration extends RenderConfigurationOptions {
 	onBackgroundColorChanged(
 		handler: PropertyChangeHandler<ColorVector>,
-	): SubscriptionLike
-	onDrawEdgesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	): Disconnect
+	onDrawEdgesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onHideEdgesOnMoveChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike
-	onDrawNodesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	): Disconnect
+	onDrawNodesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onHideNodesOnMoveChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike
+	): Disconnect
 	onHideDeselectedChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike
+	): Disconnect
 	onEdgeConstantWidthChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike
+	): Disconnect
 	onEdgeDepthWriteChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike
-	onEdgeAlphaChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	): Disconnect
+	onEdgeAlphaChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onEdgeAntialiasChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike
+	): Disconnect
 	onEdgeMinWidthChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onEdgeMaxWidthChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onNodeMinRadiusChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onNodeMaxRadiusChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onNodeOutlineChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike
-	onCornerAxesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
-	onDrawAxesChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	): Disconnect
+	onCornerAxesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
+	onDrawAxesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onInterpolationTimeChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onHoverHighlightColorChanged(
 		handler: PropertyChangeHandler<number[]>,
-	): SubscriptionLike
-	onIs3DChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike
+	): Disconnect
+	onIs3DChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onEdgeFilteredOutSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onEdgeFilteredInSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onNodeFilteredOutSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onNodeFilteredInSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onNodeFilteredIdsChanged(
 		handler: PropertyChangeHandler<string[] | undefined>,
-	): SubscriptionLike
+	): Disconnect
 	onNodeCountHintChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
+	): Disconnect
 	onEdgeCountHintChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike
-	onWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
-	onHeightChanged(handler: PropertyChangeHandler<number>): SubscriptionLike
+	): Disconnect
+	onWidthChanged(handler: PropertyChangeHandler<number>): Disconnect
+	onHeightChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onCameraAdjustmentModeChanged(
 		handler: PropertyChangeHandler<CameraAdjustmentMode>,
-	): SubscriptionLike
+	): Disconnect
 	copy(): RenderConfigurationOptions
 	load(options: Partial<RenderConfigurationOptions>): void
 }

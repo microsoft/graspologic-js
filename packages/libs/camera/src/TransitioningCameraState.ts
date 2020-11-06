@@ -3,19 +3,21 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Vector3, Quaternion } from 'math.gl'
-import { Subject } from 'rxjs'
 import { lerp3, slerp } from '@graspologic/luma-utils'
-import { Interpolator } from '@graspologic/common'
+import { Interpolator, EventEmitter } from '@graspologic/common'
 import { CameraState } from './CameraState'
+
+export interface TransitioningCameraStateEvents {
+	complete(): void
+}
 
 /**
  * @internal
  *
  * A camera state that transitions between two different camera states
  */
-export class TransitioningCameraState {
+export class TransitioningCameraState extends EventEmitter<TransitioningCameraStateEvents> {
 	private interpolator?: Interpolator
-	private _onComplete = new Subject<void>()
 
 	/**
 	 * The start camera state
@@ -45,6 +47,7 @@ export class TransitioningCameraState {
 		current: CameraState,
 		duration: number,
 	) {
+		super()
 		this.start = start
 		this.end = end
 		this.current = current
@@ -98,7 +101,7 @@ export class TransitioningCameraState {
 			this.interpolator.current = 1
 		}
 
-		this._onComplete.next()
+		this.emit('complete')
 	}
 
 	/**
@@ -106,13 +109,5 @@ export class TransitioningCameraState {
 	 */
 	public get isComplete() {
 		return !this.interpolator || this.interpolator.isComplete
-	}
-
-	/**
-	 * Event that is fired when the transition is complete
-	 * @param handler The event handler
-	 */
-	public onComplete(handler: () => any) {
-		this._onComplete.subscribe(handler)
 	}
 }

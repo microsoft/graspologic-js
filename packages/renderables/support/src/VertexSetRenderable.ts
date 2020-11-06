@@ -63,7 +63,7 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 
 		this.model = model
 		this.nodeGLBuffer = buffer
-		this._color.onChange.subscribe(this.makeDirtyHandler)
+		this._color.on('change', this.makeDirtyHandler)
 	}
 
 	/**

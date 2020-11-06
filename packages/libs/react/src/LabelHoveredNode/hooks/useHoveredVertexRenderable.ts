@@ -27,13 +27,12 @@ export function useHoveredVertexRenderable(
 	useEffect(() => {
 		if (renderer && renderable) {
 			renderer.scene.addRenderable(renderable)
-			const subscription = renderer.onVertexHover.subscribe(hovered => {
+			return renderer.on('vertexHovered', hovered => {
 				renderable.setData(hovered)
 				if (onHover) {
 					onHover(hovered?.id)
 				}
 			})
-			return () => subscription.unsubscribe()
 		}
 	}, [onHover, renderable, renderer])
 

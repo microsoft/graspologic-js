@@ -2,10 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import type { Subscribable } from 'rxjs'
 import { Scene } from './scene'
 import { Node, GraphContainer } from '@graspologic/graph'
-import { RenderConfiguration } from '@graspologic/common'
+import { HasEvents, RenderConfiguration } from '@graspologic/common'
 import { Camera } from '@graspologic/camera'
 
 export type InitializeHandler<T> = (context: T) => void
@@ -20,10 +19,18 @@ export interface UsesWebGL {
 	readonly gl: WebGLRenderingContext
 }
 
+export interface GraphRendererEvents {
+	dirty(): void
+	resize(): void
+	load(): void
+	vertexClick(node: Node | undefined): void
+	vertexHovered(node: Node | undefined): void
+}
+
 /**
  * Renderer for rendering a graph
  */
-export interface GraphRenderer {
+export interface GraphRenderer extends HasEvents<GraphRendererEvents> {
 	/**
 	 * Gets the camera
 	 */
@@ -43,34 +50,6 @@ export interface GraphRenderer {
 	 * Gets the current render configuration
 	 */
 	config: RenderConfiguration
-
-	/**
-	 * Subscribe to dirty changes
-	 * @param handler
-	 */
-	readonly onDirty: Subscribable<void>
-
-	/**
-	 * Subscribe to data loads
-	 * @param handler
-	 */
-	readonly onLoad: Subscribable<void>
-
-	/**
-	 * Subscribe to resizes
-	 * @param handler
-	 */
-	readonly onResize: Subscribable<void>
-
-	/**
-	 * Subscribable for when a vertex is clicked on
-	 */
-	onVertexClick: Subscribable<Node | undefined>
-
-	/**
-	 * Subscribable for when a vertex is hovered over
-	 */
-	onVertexHover: Subscribable<Node | undefined>
 
 	/**
 	 * Gets the scene, on which nodes and edges can be added

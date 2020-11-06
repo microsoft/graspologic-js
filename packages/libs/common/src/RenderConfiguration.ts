@@ -2,7 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { SubscriptionLike, merge, Subscribable } from 'rxjs'
 import {
 	DEFAULT_DRAW_EDGES,
 	DEFAULT_HIDE_EDGES_ON_MOVE,
@@ -46,6 +45,7 @@ import {
 	PropertyChangeHandler,
 	PropertyChangeValidator,
 	areColorsEqual,
+	Disconnect,
 } from './utils'
 
 // TODO: These need to be documented
@@ -117,34 +117,6 @@ class RenderConfigurationImpl implements RenderConfiguration {
 	private _autoBind = new PropertyContainer(DEFAULT_AUTO_BIND)
 
 	private _cameraAdjustmentMode = new PropertyContainer(DEFAULT_CAMERA_MODE)
-	public readonly onChange: Subscribable<any> = merge(
-		this._backgroundColor.onChange,
-		this._cornerAxes.onChange,
-		this._drawAxes.onChange,
-		this._drawEdges.onChange,
-		this._drawNodes.onChange,
-		this._edgeAlpha.onChange,
-		this._edgeAntialias.onChange,
-		this._edgeConstantWidth.onChange,
-		this._edgeDepthWrite.onChange,
-		this._edgeFilteredInSaturation.onChange,
-		this._edgeFilteredOutSaturation.onChange,
-		this._edgeMaxWidth.onChange,
-		this._edgeMinWidth.onChange,
-		this._hideDeselected.onChange,
-		this._hideEdgesOnMove.onChange,
-		this._hideNodesOnMove.onChange,
-		this._hoverHighlightColor.onChange,
-		this._interpolationTime.onChange,
-		this._is3D.onChange,
-		this._nodeFilteredIds.onChange,
-		this._nodeFilteredInSaturation.onChange,
-		this._nodeFilteredOutSaturation.onChange,
-		this._nodeMaxRadius.onChange,
-		this._nodeMinRadius.onChange,
-		this._nodeOutline.onChange,
-		this._cameraAdjustmentMode.onChange,
-	)
 
 	public get backgroundColor(): ColorVector {
 		return this._backgroundColor.value
@@ -156,8 +128,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onBackgroundColorChanged(
 		handler: PropertyChangeHandler<ColorVector>,
-	): SubscriptionLike {
-		return this._backgroundColor.onChange.subscribe(handler)
+	): Disconnect {
+		return this._backgroundColor.on('change', handler)
 	}
 
 	public get drawEdges(): boolean {
@@ -170,8 +142,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onDrawEdgesChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._drawEdges.onChange.subscribe(handler)
+	): Disconnect {
+		return this._drawEdges.on('change', handler)
 	}
 
 	public get hideEdgesOnMove(): boolean {
@@ -184,8 +156,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onHideEdgesOnMoveChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._hideEdgesOnMove.onChange.subscribe(handler)
+	): Disconnect {
+		return this._hideEdgesOnMove.on('change', handler)
 	}
 
 	public get drawNodes(): boolean {
@@ -198,8 +170,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onDrawNodesChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._drawNodes.onChange.subscribe(handler)
+	): Disconnect {
+		return this._drawNodes.on('change', handler)
 	}
 
 	public get hideNodesOnMove(): boolean {
@@ -212,8 +184,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onHideNodesOnMoveChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._hideNodesOnMove.onChange.subscribe(handler)
+	): Disconnect {
+		return this._hideNodesOnMove.on('change', handler)
 	}
 
 	public get hideDeselected(): boolean {
@@ -226,8 +198,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onHideDeselectedChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._hideDeselected.onChange.subscribe(handler)
+	): Disconnect {
+		return this._hideDeselected.on('change', handler)
 	}
 
 	public get edgeConstantWidth(): boolean {
@@ -240,8 +212,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeConstantWidthChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._edgeConstantWidth.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeConstantWidth.on('change', handler)
 	}
 
 	public get edgeDepthWrite(): boolean {
@@ -254,8 +226,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeDepthWriteChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._edgeDepthWrite.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeDepthWrite.on('change', handler)
 	}
 
 	public get edgeAlpha(): number {
@@ -268,8 +240,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeAlphaChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._edgeAlpha.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeAlpha.on('change', handler)
 	}
 
 	public get edgeAntialias(): boolean {
@@ -282,8 +254,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeAntialiasChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._edgeAntialias.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeAntialias.on('change', handler)
 	}
 
 	public get edgeMinWidth(): number {
@@ -296,8 +268,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeMinWidthChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._edgeMinWidth.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeMinWidth.on('change', handler)
 	}
 
 	public get edgeMaxWidth(): number {
@@ -310,8 +282,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeMaxWidthChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._edgeMaxWidth.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeMaxWidth.on('change', handler)
 	}
 
 	public get nodeMinRadius(): number {
@@ -324,8 +296,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onNodeMinRadiusChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._nodeMinRadius.onChange.subscribe(handler)
+	): Disconnect {
+		return this._nodeMinRadius.on('change', handler)
 	}
 
 	public get autoBind(): boolean {
@@ -346,8 +318,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onNodeMaxRadiusChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._nodeMaxRadius.onChange.subscribe(handler)
+	): Disconnect {
+		return this._nodeMaxRadius.on('change', handler)
 	}
 
 	public get nodeOutline(): boolean {
@@ -360,8 +332,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onNodeOutlineChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._nodeOutline.onChange.subscribe(handler)
+	): Disconnect {
+		return this._nodeOutline.on('change', handler)
 	}
 
 	public get cornerAxes(): boolean {
@@ -374,8 +346,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onCornerAxesChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._cornerAxes.onChange.subscribe(handler)
+	): Disconnect {
+		return this._cornerAxes.on('change', handler)
 	}
 
 	public get drawAxes(): boolean {
@@ -388,8 +360,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onDrawAxesChanged(
 		handler: PropertyChangeHandler<boolean>,
-	): SubscriptionLike {
-		return this._drawAxes.onChange.subscribe(handler)
+	): Disconnect {
+		return this._drawAxes.on('change', handler)
 	}
 
 	public get interpolationTime(): number {
@@ -402,8 +374,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onInterpolationTimeChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._interpolationTime.onChange.subscribe(handler)
+	): Disconnect {
+		return this._interpolationTime.on('change', handler)
 	}
 
 	public get hoverHighlightColor(): ColorVector {
@@ -416,8 +388,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onHoverHighlightColorChanged(
 		handler: PropertyChangeHandler<number[]>,
-	): SubscriptionLike {
-		return this._hoverHighlightColor.onChange.subscribe(handler)
+	): Disconnect {
+		return this._hoverHighlightColor.on('change', handler as any)
 	}
 
 	public get is3D(): boolean {
@@ -428,8 +400,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 		this._is3D.value = value
 	}
 
-	public onIs3DChanged(handler: PropertyChangeHandler<boolean>): SubscriptionLike {
-		return this._is3D.onChange.subscribe(handler)
+	public onIs3DChanged(handler: PropertyChangeHandler<boolean>): Disconnect {
+		return this._is3D.on('change', handler)
 	}
 
 	public validateOn3DChanged(
@@ -448,8 +420,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeFilteredOutSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._edgeFilteredOutSaturation.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeFilteredOutSaturation.on('change', handler)
 	}
 
 	public get edgeFilteredInSaturation(): number {
@@ -462,8 +434,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeFilteredInSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._edgeFilteredInSaturation.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeFilteredInSaturation.on('change', handler)
 	}
 
 	public get nodeFilteredOutSaturation(): number {
@@ -476,8 +448,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onNodeFilteredOutSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._nodeFilteredOutSaturation.onChange.subscribe(handler)
+	): Disconnect {
+		return this._nodeFilteredOutSaturation.on('change', handler)
 	}
 
 	public get nodeFilteredInSaturation(): number {
@@ -490,8 +462,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onNodeFilteredInSaturationChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._edgeFilteredInSaturation.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeFilteredInSaturation.on('change', handler)
 	}
 
 	public get nodeFilteredIds(): string[] | undefined {
@@ -504,8 +476,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onNodeFilteredIdsChanged(
 		handler: PropertyChangeHandler<string[] | undefined>,
-	): SubscriptionLike {
-		return this._nodeFilteredIds.onChange.subscribe(handler)
+	): Disconnect {
+		return this._nodeFilteredIds.on('change', handler)
 	}
 
 	public get nodeCountHint(): number {
@@ -518,8 +490,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onNodeCountHintChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._nodeCountHint.onChange.subscribe(handler)
+	): Disconnect {
+		return this._nodeCountHint.on('change', handler)
 	}
 
 	public get edgeCountHint(): number {
@@ -532,8 +504,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onEdgeCountHintChanged(
 		handler: PropertyChangeHandler<number>,
-	): SubscriptionLike {
-		return this._edgeCountHint.onChange.subscribe(handler)
+	): Disconnect {
+		return this._edgeCountHint.on('change', handler)
 	}
 
 	public get width(): number {
@@ -544,8 +516,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 		this._width.value = value
 	}
 
-	public onWidthChanged(handler: PropertyChangeHandler<number>): SubscriptionLike {
-		return this._width.onChange.subscribe(handler)
+	public onWidthChanged(handler: PropertyChangeHandler<number>): Disconnect {
+		return this._width.on('change', handler)
 	}
 
 	public get height(): number {
@@ -556,8 +528,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 		this._height.value = value
 	}
 
-	public onHeightChanged(handler: PropertyChangeHandler<number>): SubscriptionLike {
-		return this._height.onChange.subscribe(handler)
+	public onHeightChanged(handler: PropertyChangeHandler<number>): Disconnect {
+		return this._height.on('change', handler)
 	}
 
 	public get cameraAdjustmentMode(): CameraAdjustmentMode {
@@ -570,8 +542,8 @@ class RenderConfigurationImpl implements RenderConfiguration {
 
 	public onCameraAdjustmentModeChanged(
 		handler: PropertyChangeHandler<CameraAdjustmentMode>,
-	): SubscriptionLike {
-		return this._cameraAdjustmentMode.onChange.subscribe(handler)
+	): Disconnect {
+		return this._cameraAdjustmentMode.on('change', handler)
 	}
 
 	public copy(): RenderConfigurationOptions {

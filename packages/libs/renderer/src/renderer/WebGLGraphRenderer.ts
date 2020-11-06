@@ -5,8 +5,7 @@
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
 import { AnimationLoop } from '@luma.gl/engine'
 import { createGLContext } from '@luma.gl/gltools'
-import { Subject, Observable } from 'rxjs'
-import { createConfiguration, CameraAdjustmentMode, RenderConfiguration, RenderConfigurationOptions, Bounds3D, DEFAULT_WIDTH, DEFAULT_HEIGHT, fastDebounce, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
+import { createConfiguration, CameraAdjustmentMode, EventEmitter, RenderConfiguration, RenderConfigurationOptions, Bounds3D, DEFAULT_WIDTH, DEFAULT_HEIGHT, fastDebounce, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
 import { processGraph } from '../data'
 import {
 	NodeComponentColorizer,
@@ -17,6 +16,7 @@ import {
 	UsesWebGL,
 	DataStore,
 	Primitive,
+	GraphRendererEvents,
 } from '../types'
 import { Scenegraph, createDataStore, createDataStoreFromContainer } from './delegates'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
@@ -34,7 +34,7 @@ import {
 	Pos3D,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
-import { Camera } from '@graspologic/camera' 
+import { Camera } from '@graspologic/camera'
 
 // typings are messed up for this
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -64,16 +64,12 @@ interface GLOpts {
 
 type AnimationOpts = any
 
+
 /**
  * A WebGL 2 based graph renderer
  */
-export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
+export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implements GraphRenderer, UsesWebGL {
 	// Observable-pattern handler lists
-	private _onDirtyEvent = new Subject<void>()
-	private _onResize = new Subject<void>()
-	private _onLoad = new Subject<void>()
-	private _onVertexClickEvent = new Subject<Node | undefined>()
-	private _onVertexHoveredEvent = new Subject<Node | undefined>()
 	private _hoveredVertex: Node | undefined
 	private _dataDomain: Bounds3D = DEFAULT_BOUNDS
 
@@ -121,6 +117,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		scene: Scene,
 		camera: Camera
 	) {
+		super()
 		this._data = data
 		data.onRegister(this.handleStoreUpdated)
 
@@ -171,12 +168,12 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		if (this.nodes) {
 			// Event Wiring
 			this.nodes.on('nodeHovered', (node): void => {
-				this._onVertexHoveredEvent.next(node)
+				this.emit('vertexHovered', node)
 			})
 		}
 
 		this.config.onHideDeselectedChanged(this.makeDirty)
-		this.onVertexHover.subscribe(node => {
+		this.on('vertexHovered', node => {
 			this._hoveredVertex = node
 		})
 	}
@@ -240,7 +237,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	public handleClicked(): void {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 		if (this._hoveredVertex) {
-			this._onVertexClickEvent.next(this._hoveredVertex)
+			this.emit('vertexClick', this._hoveredVertex)
 		}
 	}
 
@@ -270,33 +267,6 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	}
 
 	/**
-	 * Subscribe to dirty changes
-	 * @param handler
-	 */
-	public get onDirty(): Observable<void> {
-		invariant(!this.destroyed, 'renderer is destroyed!')
-		return this._onDirtyEvent
-	}
-
-	/**
-	 * Subscribe to resizes
-	 * @param handler
-	 */
-	public get onResize(): Observable<void> {
-		invariant(!this.destroyed, 'renderer is destroyed!')
-		return this._onResize
-	}
-
-	/**
-	 * Subscribe to loads()
-	 * @param handler
-	 */
-	public get onLoad(): Observable<void> {
-		invariant(!this.destroyed, 'renderer is destroyed!')
-		return this._onLoad
-	}
-
-	/**
 	 * Add an initialization callback
 	 */
 	public onInitialize<T>(initializeHandler: InitializeHandler<T>): void {
@@ -306,22 +276,6 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		} else {
 			this._onInitializeHandlers.push(initializeHandler)
 		}
-	}
-
-	/**
-	 * Observable for when a vertex is clicked on
-	 */
-	public get onVertexClick(): Observable<Node | undefined> {
-		invariant(!this.destroyed, 'renderer is destroyed!')
-		return this._onVertexClickEvent
-	}
-
-	/**
-	 * Observable for when a vertex is hovered over
-	 */
-	public get onVertexHover(): Observable<Node | undefined> {
-		invariant(!this.destroyed, 'renderer is destroyed!')
-		return this._onVertexHoveredEvent
 	}
 
 	/**
@@ -361,7 +315,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		}
 
 		this.scene.rebuildSaturation()
-		this._onLoad.next()
+		this.emit('load')
 	}
 
 	/**
@@ -425,7 +379,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 			}
 		}
 
-		this._onLoad.next()
+		this.emit('load')
 
 		this.handlePrimitivesChanged()
 	}
@@ -459,7 +413,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 		this.updateWeights()
 
-		this._onResize.next()
+		this.emit('resize')
 
 		if (this.config.cameraAdjustmentMode === CameraAdjustmentMode.Viewport) {
 			this.zoomToViewport()
@@ -495,7 +449,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 		if (!this._scene.needsRedraw) {
 			this._scene.makeDirty()
-			this._onDirtyEvent.next()
+			this.emit("dirty")
 		}
 	}
 
@@ -625,8 +579,10 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 				!this.camera.isMoving &&
 				props._mousePosition &&
 				// We only need to compute the picking if there is something actually listening to it
-				(this._onVertexClickEvent.observers.length > 0 ||
-					this._onVertexHoveredEvent.observers.length > 0)
+				(
+					this.hasListeners('vertexClick') || 
+					this.hasListeners('vertexHovered')
+				)
 			) {
 				this.nodes.computeHovered(props)
 			}

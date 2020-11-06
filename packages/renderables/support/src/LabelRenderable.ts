@@ -69,15 +69,15 @@ export class LabelRenderable extends DirtyableRenderable {
 			},
 		})
 
-		this._text.onChange.subscribe(this.renderTextureHandler)
-		this._font.onChange.subscribe(this.renderTextureHandler)
-		this._fontSize.onChange.subscribe(this.renderTextureHandler)
-		this._weight.onChange.subscribe(this.makeDirtyHandler)
-		this._horizontalPadding.onChange.subscribe(this.renderTextureHandler)
-		this._verticalPadding.onChange.subscribe(this.renderTextureHandler)
-		this._backgroundColor.onChange.subscribe(this.renderTextureHandler)
-		this._outlineColor.onChange.subscribe(this.renderTextureHandler)
-		this._textColor.onChange.subscribe(this.renderTextureHandler)
+		this._text.on('change', this.renderTextureHandler)
+		this._font.on('change', this.renderTextureHandler)
+		this._fontSize.on('change', this.renderTextureHandler)
+		this._weight.on('change', this.makeDirtyHandler)
+		this._horizontalPadding.on('change', this.renderTextureHandler)
+		this._verticalPadding.on('change', this.renderTextureHandler)
+		this._backgroundColor.on('change', this.renderTextureHandler)
+		this._outlineColor.on('change', this.renderTextureHandler)
+		this._textColor.on('change', this.renderTextureHandler)
 	}
 
 	/**

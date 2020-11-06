@@ -4,7 +4,8 @@
  */
 // @ts-ignore
 import { EventManager } from 'mjolnir.js'
-import { Disconnect, GraphRenderer } from '../types'
+import { GraphRenderer } from '../types'
+import { Disconnect } from '@graspologic/common'
 
 /**
  * Enables click events on the given graph renderer

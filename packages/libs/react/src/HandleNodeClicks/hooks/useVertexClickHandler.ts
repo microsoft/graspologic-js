@@ -17,10 +17,9 @@ export function useVertexClickHandler(
 ) {
 	useEffect(() => {
 		if (renderer) {
-			const subscription = renderer.onVertexClick.subscribe(vertex =>
+			return renderer.on('vertexClick', vertex =>
 				onVertexClick(vertex && vertex.id),
 			)
-			return () => subscription.unsubscribe()
 		}
 	}, [renderer, onVertexClick])
 }

@@ -12,7 +12,7 @@ import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import { NodeStore, Node, nodeType } from '@graspologic/graph'
 import { createIdFactory, GL_DEPTH_TEST, encodePickingColor, decodePickingColor, PickingColor } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { Bounds3D, RenderOptions, RenderConfiguration, ItemBasedRenderable, BoundedRenderable, EventEmitter } from '@graspologic/common'
+import { Bounds3D, RenderOptions, RenderConfiguration, ItemBasedRenderable, BoundedRenderable, EventsMixin } from '@graspologic/common'
 
 import createModel from './model'
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
@@ -33,7 +33,7 @@ export interface NodesRenderableEvents {
 }
 
 // The base nodes renderable class
-const NodesBase = EventEmitter<NodesRenderableEvents, DirtyableRenderable>(DirtyableRenderable)
+const NodesBase = EventsMixin<NodesRenderableEvents, DirtyableRenderable>(DirtyableRenderable)
 
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering nodes
