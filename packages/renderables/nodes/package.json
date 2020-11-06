@@ -1,6 +1,7 @@
 {
 	"name": "@graspologic/renderables-nodes",
 	"main": "src/index.ts",
+	"description": "The node renderer contained within graspologic",
 	"version": "0.4.0",
 	"license": "MIT",
 	"publishConfig": {
