@@ -7,7 +7,7 @@ import { Renderable, RenderOptions, DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@grasp
 /**
  * Base-class for property-holding renderable models
  */
-export abstract class DirtyableRenderable extends EventTarget implements Renderable {
+export class DirtyableRenderable implements Renderable {
 	protected _needsRedraw = false
 	private _enabled = true
 	protected width: number = DEFAULT_WIDTH
@@ -61,5 +61,5 @@ export abstract class DirtyableRenderable extends EventTarget implements Rendera
 	 * Draws the renderable
 	 * @param options The render options
 	 */
-	public abstract draw(options: RenderOptions): void
+	public draw(options: RenderOptions): void {}
 }

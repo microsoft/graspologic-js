@@ -12,7 +12,7 @@ import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import { NodeStore, Node, nodeType } from '@graspologic/graph'
 import { createIdFactory, GL_DEPTH_TEST, encodePickingColor, decodePickingColor, PickingColor } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { Bounds3D, RenderOptions, RenderConfiguration, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
+import { Bounds3D, RenderOptions, RenderConfiguration, ItemBasedRenderable, BoundedRenderable, EventEmitter } from '@graspologic/common'
 
 import createModel from './model'
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
@@ -26,9 +26,19 @@ const COLOR_DURATION_ATTRIBUTE_NAME = 'color.duration'
 const POSITION_DURATION_ATTRIBUTE_NAME = 'position.duration'
 
 /**
+ * The event interface for the NodesRenderable
+ */
+export interface NodesRenderableEvents {
+	nodeHovered(node?: Node): void
+}
+
+// The base nodes renderable class
+const NodesBase = EventEmitter<NodesRenderableEvents, DirtyableRenderable>(DirtyableRenderable)
+
+/**
  * A renderable that can be added to the GraphRenderer which adds support for rendering nodes
  */
-export class NodesRenderable extends DirtyableRenderable implements ItemBasedRenderable, BoundedRenderable {
+export class NodesRenderable extends NodesBase implements ItemBasedRenderable, BoundedRenderable {
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
@@ -147,14 +157,13 @@ export class NodesRenderable extends DirtyableRenderable implements ItemBasedRen
 			if (pickingSelectedColor !== null) {
 				this.pickingSelectedColor = pickingSelectedColor
 				const idx = decodePickingColor(this.pickingSelectedColor)
-				this.dispatchEvent(new CustomEvent("nodeHovered", {
-					detail: idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
-						? this.data?.itemAt(idx)
-						: undefined
-				}));
+				this.emit('nodeHovered',
+					idx !== RENDERER_BACKGROUND_INDEX && idx >= 0 ? 
+						this.data?.itemAt(idx) : undefined
+				);
 			} else {
 				this.pickingSelectedColor = undefined
-				this.dispatchEvent(new CustomEvent("nodeHovered", {}));
+				this.emit('nodeHovered', undefined);
 			}
 		}
 		return this.pickingSelectedColor
