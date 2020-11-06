@@ -39,46 +39,24 @@ export interface RenderConfiguration extends RenderConfigurationOptions {
 		handler: PropertyChangeHandler<ColorVector>,
 	): Disconnect
 	onDrawEdgesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
-	onHideEdgesOnMoveChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Disconnect
+	onHideEdgesOnMoveChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onDrawNodesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
-	onHideNodesOnMoveChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Disconnect
-	onHideDeselectedChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Disconnect
+	onHideNodesOnMoveChanged(handler: PropertyChangeHandler<boolean>): Disconnect
+	onHideDeselectedChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onEdgeConstantWidthChanged(
 		handler: PropertyChangeHandler<boolean>,
 	): Disconnect
-	onEdgeDepthWriteChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Disconnect
+	onEdgeDepthWriteChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onEdgeAlphaChanged(handler: PropertyChangeHandler<number>): Disconnect
-	onEdgeAntialiasChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Disconnect
-	onEdgeMinWidthChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect
-	onEdgeMaxWidthChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect
-	onNodeMinRadiusChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect
-	onNodeMaxRadiusChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect
-	onNodeOutlineChanged(
-		handler: PropertyChangeHandler<boolean>,
-	): Disconnect
+	onEdgeAntialiasChanged(handler: PropertyChangeHandler<boolean>): Disconnect
+	onEdgeMinWidthChanged(handler: PropertyChangeHandler<number>): Disconnect
+	onEdgeMaxWidthChanged(handler: PropertyChangeHandler<number>): Disconnect
+	onNodeMinRadiusChanged(handler: PropertyChangeHandler<number>): Disconnect
+	onNodeMaxRadiusChanged(handler: PropertyChangeHandler<number>): Disconnect
+	onNodeOutlineChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onCornerAxesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onDrawAxesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
-	onInterpolationTimeChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect
+	onInterpolationTimeChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onHoverHighlightColorChanged(
 		handler: PropertyChangeHandler<number[]>,
 	): Disconnect
@@ -98,12 +76,8 @@ export interface RenderConfiguration extends RenderConfigurationOptions {
 	onNodeFilteredIdsChanged(
 		handler: PropertyChangeHandler<string[] | undefined>,
 	): Disconnect
-	onNodeCountHintChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect
-	onEdgeCountHintChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect
+	onNodeCountHintChanged(handler: PropertyChangeHandler<number>): Disconnect
+	onEdgeCountHintChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onWidthChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onHeightChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onCameraAdjustmentModeChanged(
@@ -311,7 +285,6 @@ export interface Bounds3D extends Bounds2D {
  */
 export type Bounds = Bounds2D & Partial<Bounds3D>
 
-
 /**
  * The set of options used while rendering
  */
@@ -407,7 +380,13 @@ export interface BoundedRenderable {
 export interface Renderable {
 	enabled: boolean
 	needsRedraw: boolean
-	preDraw?(options: RenderOptions): void
+
+	/**
+	 * Updates the current engine time
+	 * @param engineTime The current engine time
+	 */
+	updateEngineTime?(engineTime: number): void
+
 	draw(options: RenderOptions): void
 	resize(width: number, height: number): void
 	destroy?(): void

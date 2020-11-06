@@ -10,9 +10,22 @@ import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 import { cssToDevicePixels } from '@luma.gl/gltools'
 import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import { NodeStore, Node, nodeType } from '@graspologic/graph'
-import { createIdFactory, GL_DEPTH_TEST, encodePickingColor, decodePickingColor, PickingColor } from '@graspologic/luma-utils'
+import {
+	createIdFactory,
+	GL_DEPTH_TEST,
+	encodePickingColor,
+	decodePickingColor,
+	PickingColor,
+} from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { Bounds3D, RenderOptions, RenderConfiguration, ItemBasedRenderable, BoundedRenderable, EventsMixin } from '@graspologic/common'
+import {
+	Bounds3D,
+	RenderOptions,
+	RenderConfiguration,
+	ItemBasedRenderable,
+	BoundedRenderable,
+	EventsMixin,
+} from '@graspologic/common'
 
 import createModel from './model'
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
@@ -33,12 +46,16 @@ export interface NodesRenderableEvents {
 }
 
 // The base nodes renderable class
-const NodesBase = EventsMixin<NodesRenderableEvents, DirtyableRenderable>(DirtyableRenderable)
+const NodesBase = EventsMixin<NodesRenderableEvents, DirtyableRenderable>(
+	DirtyableRenderable,
+)
 
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering nodes
  */
-export class NodesRenderable extends NodesBase implements ItemBasedRenderable, BoundedRenderable {
+export class NodesRenderable
+	extends NodesBase
+	implements ItemBasedRenderable, BoundedRenderable {
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
@@ -157,20 +174,22 @@ export class NodesRenderable extends NodesBase implements ItemBasedRenderable, B
 			if (pickingSelectedColor !== null) {
 				this.pickingSelectedColor = pickingSelectedColor
 				const idx = decodePickingColor(this.pickingSelectedColor)
-				this.emit('nodeHovered',
-					idx !== RENDERER_BACKGROUND_INDEX && idx >= 0 ? 
-						this.data?.itemAt(idx) : undefined
-				);
+				this.emit(
+					'nodeHovered',
+					idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
+						? this.data?.itemAt(idx)
+						: undefined,
+				)
 			} else {
 				this.pickingSelectedColor = undefined
-				this.emit('nodeHovered', undefined);
+				this.emit('nodeHovered', undefined)
 			}
 		}
 		return this.pickingSelectedColor
 	}
 
-	public preDraw(options: RenderOptions) {
-		this.lastEngineTime = options.engineTime
+	public updateEngineTime(engineTime: number) {
+		this.lastEngineTime = engineTime
 	}
 
 	/**
@@ -255,10 +274,10 @@ export class NodesRenderable extends NodesBase implements ItemBasedRenderable, B
 			} else {
 				bounds!.x.min = Math.min(bounds!.x.min, node.x - radius)
 				bounds!.x.max = Math.max(bounds!.x.max, node.x + radius)
-	
+
 				bounds!.y.min = Math.min(bounds!.y.min, node.y - radius)
 				bounds!.y.max = Math.max(bounds!.y.max, node.y + radius)
-	
+
 				bounds!.z.min = Math.min(bounds!.z.min, node.z - radius)
 				bounds!.z.max = Math.max(bounds!.z.max, node.z + radius)
 			}
@@ -358,7 +377,11 @@ export class NodesRenderable extends NodesBase implements ItemBasedRenderable, B
 			// This makes sure tweening will renderc
 			this.tweenUntil = Math.max(
 				this.tweenUntil,
-				readTweenEndTime(this.data!.store, storeId, POSITION_TWEEN_ATTRIBUTE_NAME),
+				readTweenEndTime(
+					this.data!.store,
+					storeId,
+					POSITION_TWEEN_ATTRIBUTE_NAME,
+				),
 				readTweenEndTime(this.data!.store, storeId, COLOR_TWEEN_ATTRIBUTE_NAME),
 			)
 		} else {
@@ -397,7 +420,10 @@ export class NodesRenderable extends NodesBase implements ItemBasedRenderable, B
 	 * @param color1 The first picking color
 	 * @param color2 The second picking color
 	 */
-	private _comparePickingColors(color1: PickingColor | undefined, color2: PickingColor | undefined) {
+	private _comparePickingColors(
+		color1: PickingColor | undefined,
+		color2: PickingColor | undefined,
+	) {
 		if (color1 && color2) {
 			return (
 				color1[0] === color2[0] &&

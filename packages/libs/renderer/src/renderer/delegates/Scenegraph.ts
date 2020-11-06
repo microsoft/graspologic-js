@@ -4,11 +4,7 @@
  */
 import { setParameters } from '@luma.gl/gltools'
 import { ScreenQuadRenderable } from '@graspologic/renderables-support'
-import {
-	DataStore,
-	Scene,
-	Primitive,
-} from '../../types'
+import { DataStore, Scene, Primitive } from '../../types'
 import { Camera } from '@graspologic/camera'
 import {
 	Edge,
@@ -19,7 +15,12 @@ import {
 	NodeStore,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
-import { Renderable, RenderConfiguration, RenderOptions, Interpolator } from '@graspologic/common'
+import {
+	Renderable,
+	RenderConfiguration,
+	RenderOptions,
+	Interpolator,
+} from '@graspologic/common'
 
 /**
  * @internal
@@ -155,10 +156,9 @@ export class Scenegraph implements Scene {
 		this._sceneGraphNeedsRedraw = true
 	}
 
-
 	/**
 	 * @inheritdoc
-	 * @see {Scene.primities} 
+	 * @see {Scene.primities}
 	 */
 	public *primitives(ids?: Set<string>, scan = false): Iterable<Primitive> {
 		// TODO: PrimitiveStore should be able to return an iterator
@@ -199,7 +199,7 @@ export class Scenegraph implements Scene {
 
 	/**
 	 * @inheritdoc
-	 * @see {Scene.nodes} 
+	 * @see {Scene.nodes}
 	 */
 	public nodes(scan = false): Iterable<Node> {
 		return scan ? this.nodeData.scan() : this.nodeData
@@ -207,7 +207,7 @@ export class Scenegraph implements Scene {
 
 	/**
 	 * @inheritdoc
-	 * @see {Scene.edges} 
+	 * @see {Scene.edges}
 	 */
 	public edges(scan = false): Iterable<Edge> {
 		return scan ? this.edgeData.scan() : this.edgeData
@@ -278,6 +278,8 @@ export class Scenegraph implements Scene {
 		time,
 		weightToPixel,
 	}: any): void {
+		this.updateEngineTime(engineTime)
+
 		if (this.needsRedraw) {
 			const renderOptions = this.createRenderOptions(
 				framebuffer,
@@ -287,6 +289,7 @@ export class Scenegraph implements Scene {
 				time,
 				weightToPixel,
 			)
+
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 			this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height)
 			this.drawRenderables(renderOptions)
@@ -374,13 +377,24 @@ export class Scenegraph implements Scene {
 	}
 
 	/**
+	 * Calls the before draw on the renderables
+	 * @param engineTime The current engine time
+	 */
+	private updateEngineTime(engineTime: number): void {
+		for (const renderable of this.renderables()) {
+			if (renderable.updateEngineTime) {
+				renderable.updateEngineTime(engineTime)
+			}
+		}
+	}
+
+	/**
 	 * Draws the renderables
 	 * @param renderOptions The render options
 	 */
 	private drawRenderables(renderOptions: RenderOptions): void {
 		this.doubleBufferedRenderables.update(this.needsRedraw, renderOptions)
 		this.doubleBufferedRenderables.draw()
-		this._renderables.forEach(r => r.preDraw && r.preDraw(renderOptions))
 		this._renderables.forEach(r => r.draw(renderOptions))
 	}
 

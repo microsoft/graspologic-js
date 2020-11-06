@@ -16,11 +16,9 @@ import {
 	GL_ONE_MINUS_SRC_ALPHA,
 	GL_FUNC_ADD,
 	GL_COLOR_ATTACHMENT0,
-	createIdFactory
+	createIdFactory,
 } from '@graspologic/luma-utils'
-import {
-	DirtyableRenderable
-} from '@graspologic/renderables-base'
+import { DirtyableRenderable } from '@graspologic/renderables-base'
 
 import { Model, Geometry } from '@luma.gl/engine'
 import { Texture2D, Framebuffer } from '@luma.gl/webgl'
@@ -86,7 +84,6 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 		if (forceRedraw || this.needsRedraw) {
 			const offscreenOptions = { ...options, framebuffer: this.framebuffer }
 			this._clearFramebuffer()
-			this._renderables.forEach(r => r.preDraw && r.preDraw(offscreenOptions))
 			this._renderables.forEach(r => r.draw(offscreenOptions))
 			this.setNeedsRedraw(true)
 		}

@@ -4,7 +4,14 @@
  */
 import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { processMinMaxBounds, Bounds3D, RenderConfiguration, RenderOptions, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
+import {
+	processMinMaxBounds,
+	Bounds3D,
+	RenderConfiguration,
+	RenderOptions,
+	ItemBasedRenderable,
+	BoundedRenderable,
+} from '@graspologic/common'
 import { Model } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
 
@@ -19,7 +26,9 @@ const getNextId = createIdFactory('EdgesInstance')
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering edges
  */
-export class EdgesRenderable extends DirtyableRenderable implements ItemBasedRenderable, BoundedRenderable {
+export class EdgesRenderable
+	extends DirtyableRenderable
+	implements ItemBasedRenderable, BoundedRenderable {
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
@@ -140,8 +149,8 @@ export class EdgesRenderable extends DirtyableRenderable implements ItemBasedRen
 		return this.config.edgeAntialias
 	}
 
-	public preDraw(options: RenderOptions) {
-		this.lastEngineTime = options.engineTime
+	public updateEngineTime(engineTime: number) {
+		this.lastEngineTime = engineTime
 	}
 
 	/**
