@@ -1,6 +1,7 @@
 {
 	"name": "@graspologic/camera",
 	"version": "0.4.0",
+	"license": "MIT",
 	"description": "The camera used within graspologic",
 	"main": "src/index.ts",
 	"publishConfig": {
@@ -8,7 +9,6 @@
 		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts"
 	},
-	"license": "MIT",
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"contributors": [
 		"David Tittsworth (datittsw@microsoft.com)",
