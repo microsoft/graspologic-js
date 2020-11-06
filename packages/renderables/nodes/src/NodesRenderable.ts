@@ -9,10 +9,10 @@ import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 // @ts-ignore
 import { cssToDevicePixels } from '@luma.gl/gltools'
 import { readTweenEndTime, restartTween } from '@graspologic/animation'
-import type { NodeStore, Node } from '@graspologic/graph'
+import { NodeStore, Node, nodeType } from '@graspologic/graph'
 import { createIdFactory, GL_DEPTH_TEST, encodePickingColor, decodePickingColor, PickingColor } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { Bounds3D, RenderOptions, RenderConfiguration } from '@graspologic/common'
+import { Bounds3D, RenderOptions, RenderConfiguration, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
 
 import createModel from './model'
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
@@ -28,7 +28,7 @@ const POSITION_DURATION_ATTRIBUTE_NAME = 'position.duration'
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering nodes
  */
-export class NodesRenderable extends DirtyableRenderable {
+export class NodesRenderable extends DirtyableRenderable implements ItemBasedRenderable, BoundedRenderable {
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
@@ -36,19 +36,18 @@ export class NodesRenderable extends DirtyableRenderable {
 	private tweenUntil = 0
 	private needsDataBind = true
 	private _data: NodeStore | undefined
+	private lastEngineTime: number = 0
 
 	private pickingSelectedColor: PickingColor | undefined
 
 	/**
 	 * Constructor
 	 * @param gl The gl context the nodes should be rendered to
-	 * @param engineTime Getter for the current engine time
 	 * @param config The render configuration
 	 * @param id The id of the renderable
 	 */
 	public constructor(
 		gl: WebGLRenderingContext,
-		private engineTime: () => number,
 		protected config: RenderConfiguration,
 		id = getNextId(),
 	) {
@@ -73,6 +72,13 @@ export class NodesRenderable extends DirtyableRenderable {
 		config.onNodeOutlineChanged(this.makeDirtyHandler)
 		config.onDrawNodesChanged(this.makeDirtyHandler)
 		config.onHideNodesOnMoveChanged(this.makeDirtyHandler)
+	}
+
+	/**
+	 * Gets the data type associated with this renderable
+	 */
+	public get itemType(): symbol {
+		return nodeType
 	}
 
 	/**
@@ -152,6 +158,10 @@ export class NodesRenderable extends DirtyableRenderable {
 			}
 		}
 		return this.pickingSelectedColor
+	}
+
+	public preDraw(options: RenderOptions) {
+		this.lastEngineTime = options.engineTime
 	}
 
 	/**
@@ -270,7 +280,7 @@ export class NodesRenderable extends DirtyableRenderable {
 
 	/**
 	 * Binds the data in our databuffer to the model
-	 * @param forceAll Force all the attributes to return
+	 * @param force Force a reload of all the data
 	 */
 	public bindDataToModel(forceAll = false) {
 		let updated = false
@@ -349,7 +359,7 @@ export class NodesRenderable extends DirtyableRenderable {
 					this.data!.store,
 					storeId,
 					POSITION_TWEEN_ATTRIBUTE_NAME,
-					this.engineTime(),
+					this.lastEngineTime,
 				)
 				this.tweenUntil = Math.max(this.tweenUntil, value + startTime)
 			} else if (attribute === COLOR_DURATION_ATTRIBUTE_NAME) {
@@ -357,7 +367,7 @@ export class NodesRenderable extends DirtyableRenderable {
 					this.data!.store,
 					storeId,
 					COLOR_TWEEN_ATTRIBUTE_NAME,
-					this.engineTime(),
+					this.lastEngineTime,
 				)
 				this.tweenUntil = Math.max(this.tweenUntil, value + startTime)
 

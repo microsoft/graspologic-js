@@ -4,7 +4,7 @@
  */
 import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { processMinMaxBounds, Bounds3D, RenderConfiguration, RenderOptions } from '@graspologic/common'
+import { processMinMaxBounds, Bounds3D, RenderConfiguration, RenderOptions, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
 import { Model } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
 
@@ -12,19 +12,21 @@ import createModel from './model'
 import { restartTween, readTween } from '@graspologic/animation'
 import type { EdgeStore, Edge } from '@graspologic/graph'
 import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
+import { edgeType } from '@graspologic/graph'
 
 const getNextId = createIdFactory('EdgesInstance')
 
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering edges
  */
-export class EdgesRenderable extends DirtyableRenderable {
+export class EdgesRenderable extends DirtyableRenderable implements ItemBasedRenderable, BoundedRenderable {
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
 	private readonly translucentModelBuffer: Buffer
 	private tweenUntil = 0
 	private needsDataBind = true
+	private lastEngineTime = 0
 
 	private _data: EdgeStore | undefined
 
@@ -36,7 +38,6 @@ export class EdgesRenderable extends DirtyableRenderable {
 	 */
 	public constructor(
 		gl: WebGLRenderingContext,
-		private engineTime: () => number,
 		protected config: RenderConfiguration,
 		id = getNextId(),
 	) {
@@ -63,6 +64,13 @@ export class EdgesRenderable extends DirtyableRenderable {
 		config.onEdgeAntialiasChanged(this.makeDirtyHandler)
 		config.onEdgeMinWidthChanged(this.makeDirtyHandler)
 		config.onEdgeMaxWidthChanged(this.makeDirtyHandler)
+	}
+
+	/**
+	 * Gets the data type associated with this renderable
+	 */
+	public get itemType(): symbol {
+		return edgeType
 	}
 
 	/**
@@ -130,6 +138,10 @@ export class EdgesRenderable extends DirtyableRenderable {
 	 */
 	protected get edgeAntialias(): boolean {
 		return this.config.edgeAntialias
+	}
+
+	public preDraw(options: RenderOptions) {
+		this.lastEngineTime = options.engineTime
 	}
 
 	/**
@@ -292,7 +304,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 		} else {
 			// If it just writes 'duration', update it with the engine time
 			if (attribute === 'sourcePosition.duration') {
-				const engineTime = this.engineTime()
+				const engineTime = this.lastEngineTime
 				restartTween(
 					this.data!.store,
 					storeId,
@@ -301,7 +313,7 @@ export class EdgesRenderable extends DirtyableRenderable {
 				)
 				this.tweenUntil = Math.max(this.tweenUntil, value + engineTime)
 			} else if (attribute === 'targetPosition.duration') {
-				const engineTime = this.engineTime()
+				const engineTime = this.lastEngineTime
 				restartTween(
 					this.data!.store,
 					storeId,

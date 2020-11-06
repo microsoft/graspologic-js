@@ -31,7 +31,7 @@ export class Scenegraph implements Scene {
 	public _sceneGraphNeedsRedraw = false
 	private destroyed = false
 	private doubleBufferedRenderables: ScreenQuadRenderable
-	private renderables: Renderable[] = []
+	private _renderables: Renderable[] = []
 	private dimensionInterpolator: Interpolator
 
 	// Cache these for quick lookup
@@ -186,6 +186,19 @@ export class Scenegraph implements Scene {
 
 	/**
 	 * @inheritdoc
+	 * @see {Scene.renderables}
+	 */
+	public *renderables() {
+		for (const renderable of this._renderables) {
+			yield renderable
+		}
+		for (const renderables of this.doubleBufferedRenderables.renderables()) {
+			yield renderables
+		}
+	}
+
+	/**
+	 * @inheritdoc
 	 * @see {Scene.nodes} 
 	 */
 	public nodes(scan = false): Iterable<Node> {
@@ -216,7 +229,7 @@ export class Scenegraph implements Scene {
 		if (doubleBuffered) {
 			this.doubleBufferedRenderables.addRenderable(renderable)
 		} else {
-			this.renderables.push(renderable)
+			this._renderables.push(renderable)
 			renderable.resize(this.config.width, this.config.height)
 		}
 		this._sceneGraphNeedsRedraw = true
@@ -228,7 +241,7 @@ export class Scenegraph implements Scene {
 	 */
 	public removeRenderable(renderable: Renderable): void {
 		this.doubleBufferedRenderables.removeRenderable(renderable)
-		this.renderables = this.renderables.filter(r => r !== renderable)
+		this._renderables = this._renderables.filter(r => r !== renderable)
 		this._sceneGraphNeedsRedraw = true
 	}
 
@@ -291,7 +304,7 @@ export class Scenegraph implements Scene {
 			this.dimensionInterpolator.current < 1.0 ||
 			this.camera.isMoving ||
 			this.doubleBufferedRenderables.needsRedraw ||
-			this.renderables.some(r => r.needsRedraw)
+			this._renderables.some(r => r.needsRedraw)
 		)
 	}
 
@@ -301,7 +314,7 @@ export class Scenegraph implements Scene {
 	public destroy() {
 		if (!this.destroyed) {
 			this.destroyed = true
-			this.renderables.forEach(r => {
+			this._renderables.forEach(r => {
 				if (r.destroy) {
 					r.destroy()
 				}
@@ -367,7 +380,8 @@ export class Scenegraph implements Scene {
 	private drawRenderables(renderOptions: RenderOptions): void {
 		this.doubleBufferedRenderables.update(this.needsRedraw, renderOptions)
 		this.doubleBufferedRenderables.draw()
-		this.renderables.forEach(r => r.draw(renderOptions))
+		this._renderables.forEach(r => r.preDraw && r.preDraw(renderOptions))
+		this._renderables.forEach(r => r.draw(renderOptions))
 	}
 
 	/**

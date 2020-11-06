@@ -18,6 +18,11 @@ export interface TypeStore<T> extends Iterable<T> {
 	register(type: symbol, item: T): void
 
 	/**
+	 * Gets the types of data contained in this store
+	 */
+	types(): Iterable<symbol>
+
+	/**
 	 * Adds a handler for when a type store is registered
 	 * @param handler The handler to add
 	 * @returns A unsubscribe function

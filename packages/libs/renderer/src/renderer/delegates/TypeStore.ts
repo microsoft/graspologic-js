@@ -19,6 +19,10 @@ export class GenericTypeStore<T> implements TypeStore<T> {
 		}
 	}
 
+	public types(): Iterable<symbol> {
+		return this._items.keys()
+	}
+
 	public retrieve<P extends T = T>(type: symbol): P | undefined {
 		return this._items.get(type) as P
 	}

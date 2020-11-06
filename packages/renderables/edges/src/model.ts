@@ -5,7 +5,7 @@
 import { Model, Geometry } from '@luma.gl/engine'
 
 import { tween, adaptMemoryLayoutToLuma, uint32ColorTypeMapping, GL_FLOAT, GL_TRIANGLE_STRIP } from '@graspologic/luma-utils'
-import { edgeMemoryLayout } from './memoryLayout'
+import { edgeMemoryLayout } from '@graspologic/graph'
 import edgeFS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.fs.glsl'
 
 

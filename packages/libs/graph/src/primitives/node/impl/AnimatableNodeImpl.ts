@@ -60,8 +60,8 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 	 */
 	public animateColor(color: number, duration = 0): void {
 		// Set the start to the old color
-		this.uint32Array[this.wordOffset + colorStartTypedOffset] = this.float32Array[this.wordOffset + colorTypedOffset]
-		this.handleAttributeUpdated(COLOR_START_ATTRIBUTE, this.float32Array[this.wordOffset + colorTypedOffset])
+		this.uint32Array[this.wordOffset + colorStartTypedOffset] = this.uint32Array[this.wordOffset + colorTypedOffset]
+		this.handleAttributeUpdated(COLOR_START_ATTRIBUTE, this.uint32Array[this.wordOffset + colorTypedOffset])
 
 		// Update the duration
 		this.float32Array[this.wordOffset + colorTweenTypedOffset] = duration

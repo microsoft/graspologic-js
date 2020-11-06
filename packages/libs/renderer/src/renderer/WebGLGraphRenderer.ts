@@ -6,7 +6,7 @@ import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
 import { AnimationLoop } from '@luma.gl/engine'
 import { createGLContext } from '@luma.gl/gltools'
 import { Subject, Observable } from 'rxjs'
-import { createConfiguration, CameraAdjustmentMode, RenderConfiguration, RenderConfigurationOptions, Bounds3D, DEFAULT_WIDTH, DEFAULT_HEIGHT, fastDebounce } from '@graspologic/common'
+import { createConfiguration, CameraAdjustmentMode, RenderConfiguration, RenderConfigurationOptions, Bounds3D, DEFAULT_WIDTH, DEFAULT_HEIGHT, fastDebounce, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
 import { processGraph } from '../data'
 import {
 	NodeComponentColorizer,
@@ -91,8 +91,9 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	private _scene: Scene
 	private _camera: Camera
 
-	private edges: EdgesRenderable
-	private nodes: NodesRenderable
+	private nodes: NodesRenderable | undefined
+	private edges: EdgesRenderable | undefined
+
 	private _engineTime = 0
 	private _lastRenderTime = -1
 	private _startTime = Date.now()
@@ -117,31 +118,27 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		public gl: WebGL2RenderingContext,
 		public config: RenderConfiguration,
 		data: DataStore<Primitive>,
-		scene?: Scene,
+		scene: Scene,
+		camera: Camera
 	) {
 		this._data = data
 		data.onRegister(this.handleStoreUpdated)
 
-		this._camera = new Camera()
+		this._scene = scene
+		this._camera = camera
+
 		this.onInitialize((opts: GLOpts) => {
 			this.resize(config.width, config.height)
-			this._scene.initialize(opts)
+			this.scene.initialize(opts)
 			this.initialized = true
 		})
 
 		this._kickoffDeferred = deferred()
 
-		// create nodes renderable
-		this.nodes = new NodesRenderable(gl, this.engineTime, this.config)
-
-		// Set the new data
-		this.handleStoreUpdated(nodeType, data.retrieve(nodeType)!)
-
-		// create edges renderable
-		this.edges = new EdgesRenderable(gl, this.engineTime, this.config)
-
-		// Set the new data
-		this.handleStoreUpdated(edgeType, data.retrieve(edgeType)!)
+		// Pretend all the data has updated
+		for (const dataType of data.types()) {
+			this.handleStoreUpdated(dataType, data.retrieve(dataType)!)
+		}
 
 		// We set up the animation loop here, even though
 		// we might not fully use it to render loop, because it does a lot of useful things
@@ -163,17 +160,22 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 			},
 		})
 
-		/** set up the scene */
-		this._scene =
-			scene || new Scenegraph(gl, this.config, this._camera, this._data)
-		this._scene.addRenderable(this.edges, true)
-		this._scene.addRenderable(this.nodes, true)
+		for (const renderable of scene.renderables()) {
+			if (renderable instanceof NodesRenderable) {
+				this.nodes = renderable
+			} else if (renderable instanceof EdgesRenderable) {
+				this.edges = renderable
+			}
+		}
 
-		// Event Wiring
-		this.nodes.addEventListener('nodeHovered', (e): void => {
-			const node = (e as CustomEvent<Node | undefined>).detail
-			this._onVertexHoveredEvent.next(node)
-		})
+		if (this.nodes) {
+			// Event Wiring
+			this.nodes.addEventListener('nodeHovered', (e): void => {
+				const node = (e as CustomEvent<Node | undefined>).detail
+				this._onVertexHoveredEvent.next(node)
+			})
+		}
+
 		this.config.onHideDeselectedChanged(this.makeDirty)
 		this.onVertexHover.subscribe(node => {
 			this._hoveredVertex = node
@@ -210,7 +212,21 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 		}
 			
 		const config = createConfiguration(options)
-		return new WebGLGraphRenderer(gl!, config, store)
+		const camera = new Camera()
+		
+		/** set up the scene */
+		const scene = new Scenegraph(gl!, config, camera, store)
+
+		// create nodes renderable
+		const nodes = new NodesRenderable(gl!, config)
+
+		// create edges renderable
+		const edges = new EdgesRenderable(gl!, config)
+		
+		scene.addRenderable(edges, true)
+		scene.addRenderable(nodes, true)
+
+		return new WebGLGraphRenderer(gl!, config, store, scene, camera)
 	}
 
 	// #endregion
@@ -340,8 +356,11 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 		this._data.register(nodeType, data.nodes)
 		this._data.register(edgeType, data.edges)
-		this.nodes.data = data.nodes
-		this.edges.data = data.edges
+
+		for (const dataType of this._data.types()) {
+			this.bindDataToRenderable(dataType, this._data.retrieve(dataType)!)
+		}
+
 		this.scene.rebuildSaturation()
 		this._onLoad.next()
 	}
@@ -460,8 +479,12 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	public rebind() {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
-		this.nodes.bindDataToModel(true)
-		this.edges.bindDataToModel(true)
+		for (const renderable of this.scene.renderables()) {
+			if (renderable.bindDataToModel) {
+				renderable.bindDataToModel(true)
+			}
+		}
+
 		this.makeDirty()
 	}
 
@@ -599,6 +622,7 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 
 			// Set the enabled states on the nodes/edges
 			if (
+				this.nodes &&
 				!this.camera.isMoving &&
 				props._mousePosition &&
 				// We only need to compute the picking if there is something actually listening to it
@@ -609,12 +633,16 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 			}
 
 			if (this._scene.needsRedraw) {
-				this.nodes.enabled =
-					this.config.drawNodes &&
-					(!this.config.hideNodesOnMove || !this.camera.isMoving)
-				this.edges.enabled =
-					this.config.drawEdges &&
-					(!this.config.hideEdgesOnMove || !this.camera.isMoving)
+				if (this.nodes) {
+					this.nodes.enabled =
+						this.config.drawNodes &&
+						(!this.config.hideNodesOnMove || !this.camera.isMoving)
+				}
+				if (this.edges) {
+					this.edges.enabled =
+						this.config.drawEdges &&
+						(!this.config.hideEdgesOnMove || !this.camera.isMoving)
+				}
 			}
 
 			this.animationProps.engineTime = this.engineTime()
@@ -648,22 +676,34 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	}
 
 	/**
+	 * Binds the given data to the renderable which supports it
+	 * @param type The type of data
+	 * @param store The data store
+	 */
+	private bindDataToRenderable(type: symbol, store: ReaderStore<any>) {
+		// i.e. type: Node, store: NodeStore, renderable: NodeRenderable
+		for (const renderable of this.scene.renderables()) {
+			const hasData = renderable as any as ItemBasedRenderable
+			if (hasData.itemType == type) {
+				hasData.data = store
+			}
+		}
+	}
+
+	/**
 	 * Handler when the store has been updated
 	 * @param type The type of store that was updated
 	 * @param store The new store
 	 */
 	private handleStoreUpdated = (type: symbol, store: ReaderStore<any>) => {
-		if (type === nodeType) {
-			this.nodes.data = store
-			this.nodes.data!.onAddItem(
-				fastDebounce(this.handlePrimitivesChanged, 100),
-			)
-		} else {
-			this.edges.data = store
-			this.edges.data!.onAddItem(
-				fastDebounce(this.handlePrimitivesChanged, 100),
-			)
-		}
+
+		// Update the data on the renderable
+		this.bindDataToRenderable(type, store)
+
+		// Listen for changes to the data
+		store.onAddItem(
+			fastDebounce(this.handlePrimitivesChanged, 100),
+		)
 	}
 
 	/**
@@ -679,21 +719,27 @@ export class WebGLGraphRenderer implements GraphRenderer, UsesWebGL {
 	 * Computes the world bounds of the items drawn to screen
 	 */
 	private computeBounds(): Bounds3D {
-		const edgeBounds: Bounds3D | undefined = this.edges.computeBounds()
-		const nodeBounds: Bounds3D | undefined = this.nodes.computeBounds()
-		const bounds = nodeBounds || edgeBounds || DEFAULT_BOUNDS
-		if (edgeBounds) {
-			// X
-			bounds.x.max = Math.max(edgeBounds.x.min, edgeBounds.x.max, bounds.x.max)
-			bounds.x.min = Math.min(edgeBounds.x.min, edgeBounds.x.max, bounds.x.min)
-			// Y
-			bounds.y.max = Math.max(edgeBounds.y.min, edgeBounds.y.max, bounds.y.max)
-			bounds.y.min = Math.min(edgeBounds.y.min, edgeBounds.y.max, bounds.y.min)
-			// Z
-			bounds.z.max = Math.max(edgeBounds.z.min, edgeBounds.z.max, bounds.z.max)
-			bounds.z.min = Math.min(edgeBounds.z.min, edgeBounds.z.max, bounds.z.min)
+		let bounds: Bounds3D | undefined
+		for (const renderable of this.scene.renderables()) {
+			const boundedRenderable = renderable as any as BoundedRenderable
+			if (boundedRenderable.computeBounds != undefined) {
+				const newBounds = boundedRenderable.computeBounds()
+				if (!bounds) {
+					bounds = newBounds
+				} else if (newBounds) {
+					// X
+					bounds.x.max = Math.max(newBounds.x.min, newBounds.x.max, bounds.x.max)
+					bounds.x.min = Math.min(newBounds.x.min, newBounds.x.max, bounds.x.min)
+					// Y
+					bounds.y.max = Math.max(newBounds.y.min, newBounds.y.max, bounds.y.max)
+					bounds.y.min = Math.min(newBounds.y.min, newBounds.y.max, bounds.y.min)
+					// Z
+					bounds.z.max = Math.max(newBounds.z.min, newBounds.z.max, bounds.z.max)
+					bounds.z.min = Math.min(newBounds.z.min, newBounds.z.max, bounds.z.min)
+				}
+			}
 		}
-		return Object.freeze(bounds)
+		return Object.freeze(bounds || DEFAULT_BOUNDS)
 	}
 
 	/**

@@ -29,7 +29,7 @@ export class AxesRenderable extends EdgesRenderable {
 	 * @param config The render configuration
 	 */
 	public constructor(gl: WebGLRenderingContext, config: RenderConfiguration) {
-		super(gl, () => 0, config)
+		super(gl, config)
 		config.onCornerAxesChanged(this.makeDirtyHandler)
 		config.onDrawAxesChanged(this.makeDirtyHandler)
 		config.onIs3DChanged(() => this.generateEdges())

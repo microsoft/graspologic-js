@@ -69,6 +69,11 @@ export interface Scene {
 	removeRenderable(renderable: Renderable): void
 
 	/**
+	 * Gets the list of renderables contained in this scene
+	 */
+	renderables(): Iterable<Renderable>
+
+	/**
 	 * Tells the scene that a resize has occurred
 	 * @param width The width of the scene
 	 * @param height The height of the scene

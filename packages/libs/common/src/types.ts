@@ -396,10 +396,26 @@ export interface RenderOptions {
 	time: number
 }
 
+export interface ItemBasedRenderable {
+	itemType: symbol
+	data: any
+}
+
+export interface BoundedRenderable {
+	computeBounds(): Bounds3D | undefined
+}
+
 export interface Renderable {
-	/* @internal */ enabled: boolean
-	/* @internal */ needsRedraw: boolean
-	/* @internal */ draw(options: RenderOptions): void
-	/* @internal */ resize(width: number, height: number): void
-	/* @internal */ destroy?(): void
+	enabled: boolean
+	needsRedraw: boolean
+	preDraw?(options: RenderOptions): void
+	draw(options: RenderOptions): void
+	resize(width: number, height: number): void
+	destroy?(): void
+
+	/**
+	 * Binds the data in our databuffer to the model
+	 * @param force Force a reload of all the data
+	 */
+	bindDataToModel?(force: boolean): void
 }

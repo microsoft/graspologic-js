@@ -60,7 +60,7 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 	private framebuffer?: Framebuffer
 	private texture?: Texture2D
 	private drawArgument: object | undefined
-	private renderables: Renderable[] = []
+	private _renderables: Renderable[] = []
 	private destroyed = false
 
 	/**
@@ -86,7 +86,8 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 		if (forceRedraw || this.needsRedraw) {
 			const offscreenOptions = { ...options, framebuffer: this.framebuffer }
 			this._clearFramebuffer()
-			this.renderables.forEach(r => r.draw(offscreenOptions))
+			this._renderables.forEach(r => r.preDraw && r.preDraw(offscreenOptions))
+			this._renderables.forEach(r => r.draw(offscreenOptions))
 			this.setNeedsRedraw(true)
 		}
 	}
@@ -95,7 +96,7 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 	 * Gets whether or not the screen quad needs to be redrawn
 	 */
 	public get needsRedraw() {
-		return this._needsRedraw || this.renderables.some(r => r.needsRedraw)
+		return this._needsRedraw || this._renderables.some(r => r.needsRedraw)
 	}
 
 	/**
@@ -108,7 +109,7 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 
 		this.reinit()
 
-		this.renderables.forEach(r => r.resize(width, height))
+		this._renderables.forEach(r => r.resize(width, height))
 	}
 
 	/**
@@ -124,7 +125,7 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 	 * @param renderable The renderable to add
 	 */
 	public addRenderable(renderable: Renderable) {
-		this.renderables.push(renderable)
+		this._renderables.push(renderable)
 		renderable.resize(this.width, this.height)
 		this.setNeedsRedraw(true)
 	}
@@ -134,8 +135,15 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 	 * @param renderable The renderable to add
 	 */
 	public removeRenderable(renderable: Renderable) {
-		this.renderables = this.renderables.filter(r => r !== renderable)
+		this._renderables = this._renderables.filter(r => r !== renderable)
 		this.setNeedsRedraw(true)
+	}
+
+	/**
+	 * Gets the list of renderables contained in this renderable
+	 */
+	public renderables(): Iterable<Renderable> {
+		return this._renderables
 	}
 
 	/**
