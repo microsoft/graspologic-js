@@ -2,6 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+// This is causing problems downstream for some reason
+// @ts-ignore
 import { setParameters } from '@luma.gl/gltools'
 import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 import { DataStore, Scene, Primitive } from '../../types'

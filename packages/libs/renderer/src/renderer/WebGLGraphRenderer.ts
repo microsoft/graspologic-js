@@ -4,20 +4,9 @@
  */
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
 import { AnimationLoop } from '@luma.gl/engine'
+// This is causing problems downstream for some reason
+// @ts-ignore
 import { createGLContext } from '@luma.gl/gltools'
-import {
-	createConfiguration,
-	CameraAdjustmentMode,
-	EventEmitter,
-	RenderConfiguration,
-	RenderConfigurationOptions,
-	Bounds3D,
-	DEFAULT_WIDTH,
-	DEFAULT_HEIGHT,
-	fastDebounce,
-	ItemBasedRenderable,
-	BoundedRenderable,
-} from '@graspologic/common'
 import { processGraph } from '../data'
 import {
 	NodeComponentColorizer,
@@ -35,8 +24,20 @@ import {
 	createDataStore,
 	createDataStoreFromContainer,
 } from './delegates'
-import { EdgesRenderable } from '@graspologic/renderables-edges'
-import { NodesRenderable } from '@graspologic/renderables-nodes'
+import { Camera } from '@graspologic/camera'
+import {
+	createConfiguration,
+	CameraAdjustmentMode,
+	EventEmitter,
+	RenderConfiguration,
+	RenderConfigurationOptions,
+	Bounds3D,
+	DEFAULT_WIDTH,
+	DEFAULT_HEIGHT,
+	fastDebounce,
+	ItemBasedRenderable,
+	BoundedRenderable,
+} from '@graspologic/common'
 import {
 	Node,
 	Edge,
@@ -50,7 +51,8 @@ import {
 	Pos3D,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
-import { Camera } from '@graspologic/camera'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { NodesRenderable } from '@graspologic/renderables-nodes'
 
 // typings are messed up for this
 // eslint-disable-next-line @typescript-eslint/no-var-requires
