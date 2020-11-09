@@ -7,11 +7,11 @@ import { GraphRenderer, NodeBGRAColorizer, NodeColorizer } from '../types'
 const DEFAULT_NAME = 'DEFAULT'
 
 export function correctColor(color: number) {
-	return (((color ^ 0xff000000) | 0xff000000) >>> 0)
+	return ((color ^ 0xff000000) | 0xff000000) >>> 0
 }
 
 export function createBGRAColorizer(
-	colorizerFn: NodeColorizer = () => 0xFF0000FF
+	colorizerFn: NodeColorizer = () => 0xff0000ff,
 ): NodeBGRAColorizer {
 	return (id, group) => {
 		const arr = colorizerFn(id, group)
@@ -31,7 +31,7 @@ export function colorizeRenderer(
 	const colorizer = createBGRAColorizer(colorizerFn)
 	const nodeColors = new Map<string, number>()
 	let color: number
-	let edgeCount = renderer.graph.edges.count
+	const edgeCount = renderer.graph.edges.count
 	for (const node of renderer.scene.nodes(true)) {
 		color = correctColor(colorizer(node.id, node.group))
 		node.color = color
@@ -59,7 +59,9 @@ export function colorizeRenderer(
  * Converts color components to a BGRA int color
  * @param components The color components [r, g, b, a]
  */
-export function componentColorToBGRA(components: [number, number, number, number]) : number {
+export function componentColorToBGRA(
+	components: [number, number, number, number],
+): number {
 	return (
 		((components[3] * 255) << 24) +
 		((components[2] * 255) << 16) +

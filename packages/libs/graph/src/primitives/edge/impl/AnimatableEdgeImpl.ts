@@ -58,7 +58,11 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 	 * @inheritDoc
 	 * @see {@link Edge.load}
 	 */
-	public load(data: InputEdge, nodeIndexMap: Map<string, number>, defaultEdgeWeight = 1) {
+	public load(
+		data: InputEdge,
+		nodeIndexMap: Map<string, number>,
+		defaultEdgeWeight = 1,
+	) {
 		super.load(data, nodeIndexMap, defaultEdgeWeight)
 		this.handleAttributeUpdated(ALL_ATTRIBUTES, undefined)
 	}

@@ -42,4 +42,3 @@ export interface TypeStore<T> extends Iterable<T> {
 }
 
 export type DataStore<T = any> = TypeStore<ReaderStore<T>>
-

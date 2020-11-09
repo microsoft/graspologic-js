@@ -69,10 +69,11 @@ function usePositionChangeSynchronization(
 	 */
 	useEffect(
 		function listenToPositionChanges() {
-			const subscription = 
-				new Observable(observer => manager.on('progress', val => observer.next(val)))
-					.pipe(throttleTime(0, animationFrameScheduler))
-					.subscribe(() => updatePositions(positionMap))
+			const subscription = new Observable(observer =>
+				manager.on('progress', val => observer.next(val)),
+			)
+				.pipe(throttleTime(0, animationFrameScheduler))
+				.subscribe(() => updatePositions(positionMap))
 
 			return () => subscription.unsubscribe()
 		},

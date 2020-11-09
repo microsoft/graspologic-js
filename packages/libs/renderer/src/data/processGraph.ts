@@ -100,10 +100,8 @@ function normalizeEdgeWeights(data: GraphContainer) {
 			(value - minEdgeWeight) / edgeWeightDiff
 	}
 
-	let reusableNode: Node
-
 	// We're not too worried about this right yet
-	reusableNode = data.nodes.itemAt(0)
+	const reusableNode = data.nodes.itemAt(0)
 	for (edge of data.edges.scan()) {
 		edge.trueWeight = edge.weight || 0
 		edge.weight = computeEdgeWeight(edge.weight === undefined ? 1 : edge.weight)
@@ -115,7 +113,9 @@ function normalizeEdgeWeights(data: GraphContainer) {
 
 		// Update the node to the target idx
 		reusableNode.connect(edge.targetIndex, data.nodes)
-		edge.color2 = correctColor(edge.color2 || edge.color || reusableNode.color || 0)
+		edge.color2 = correctColor(
+			edge.color2 || edge.color || reusableNode.color || 0,
+		)
 		edge.targetPosition = reusableNode.position
 	}
 }

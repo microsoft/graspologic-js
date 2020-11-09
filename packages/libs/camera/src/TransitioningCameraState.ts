@@ -8,6 +8,9 @@ import { Interpolator, EventEmitter } from '@graspologic/common'
 import { CameraState } from './CameraState'
 
 export interface TransitioningCameraStateEvents {
+	/**
+	 * An event which is raised when the transition is complete
+	 */
 	complete(): void
 }
 
@@ -16,7 +19,9 @@ export interface TransitioningCameraStateEvents {
  *
  * A camera state that transitions between two different camera states
  */
-export class TransitioningCameraState extends EventEmitter<TransitioningCameraStateEvents> {
+export class TransitioningCameraState extends EventEmitter<
+	TransitioningCameraStateEvents
+> {
 	private interpolator?: Interpolator
 
 	/**

@@ -63,7 +63,7 @@ export class NodesRenderable
 	private tweenUntil = 0
 	private needsDataBind = true
 	private _data: NodeStore | undefined
-	private lastEngineTime: number = 0
+	private lastEngineTime = 0
 
 	private pickingSelectedColor: PickingColor | undefined
 
@@ -249,7 +249,7 @@ export class NodesRenderable
 		let bounds: Bounds3D | undefined
 		let hasWeights = false
 		let node: Node
-		let radius: number = 0
+		let radius = 0
 		for (node of this._data!.scan()) {
 			radius = node.radius || 0
 			if (!radius) {

@@ -5,7 +5,19 @@
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
 import { AnimationLoop } from '@luma.gl/engine'
 import { createGLContext } from '@luma.gl/gltools'
-import { createConfiguration, CameraAdjustmentMode, EventEmitter, RenderConfiguration, RenderConfigurationOptions, Bounds3D, DEFAULT_WIDTH, DEFAULT_HEIGHT, fastDebounce, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common'
+import {
+	createConfiguration,
+	CameraAdjustmentMode,
+	EventEmitter,
+	RenderConfiguration,
+	RenderConfigurationOptions,
+	Bounds3D,
+	DEFAULT_WIDTH,
+	DEFAULT_HEIGHT,
+	fastDebounce,
+	ItemBasedRenderable,
+	BoundedRenderable,
+} from '@graspologic/common'
 import { processGraph } from '../data'
 import {
 	NodeComponentColorizer,
@@ -18,7 +30,11 @@ import {
 	Primitive,
 	GraphRendererEvents,
 } from '../types'
-import { Scenegraph, createDataStore, createDataStoreFromContainer } from './delegates'
+import {
+	Scenegraph,
+	createDataStore,
+	createDataStoreFromContainer,
+} from './delegates'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 import {
@@ -64,11 +80,12 @@ interface GLOpts {
 
 type AnimationOpts = any
 
-
 /**
  * A WebGL 2 based graph renderer
  */
-export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implements GraphRenderer, UsesWebGL {
+export class WebGLGraphRenderer
+	extends EventEmitter<GraphRendererEvents>
+	implements GraphRenderer, UsesWebGL {
 	// Observable-pattern handler lists
 	private _hoveredVertex: Node | undefined
 	private _dataDomain: Bounds3D = DEFAULT_BOUNDS
@@ -115,7 +132,7 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 		public config: RenderConfiguration,
 		data: DataStore<Primitive>,
 		scene: Scene,
-		camera: Camera
+		camera: Camera,
 	) {
 		super()
 		this._data = data
@@ -195,21 +212,21 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 				webgl1: false,
 			})
 		}
-		const store = data ? 
-			createDataStoreFromContainer(data) :
-			createDataStore(
-				options.nodeCountHint,
-				options.edgeCountHint,
-				options.autoBind,
-			)
+		const store = data
+			? createDataStoreFromContainer(data)
+			: createDataStore(
+					options.nodeCountHint,
+					options.edgeCountHint,
+					options.autoBind,
+			  )
 
 		if (data) {
 			processGraph(data, undefined)
 		}
-			
+
 		const config = createConfiguration(options)
 		const camera = new Camera()
-		
+
 		/** set up the scene */
 		const scene = new Scenegraph(gl!, config, camera, store)
 
@@ -218,7 +235,7 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 
 		// create edges renderable
 		const edges = new EdgesRenderable(gl!, config)
-		
+
 		scene.addRenderable(edges, true)
 		scene.addRenderable(nodes, true)
 
@@ -330,25 +347,27 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 		const nodesSupportAnim = this.graph.nodes.store.config.animation !== false
 		const edgesSupportAnim = this.graph.edges.store.config.animation !== false
 		let nodePos: { x: number; y: number; z?: number }
-		const animateNodePosition = nodesSupportAnim ? 
-			(prim: Primitive, newPos: Pos3D) => {
-				;(prim as AnimatableNode).animatePosition(newPos, duration)
-			} : (prim: Node, newPos: Pos3D) => {
-				prim.position = newPos
-			}
-		const animateSourcePosition = edgesSupportAnim ? 
-			(prim: Edge, newPos: Pos3D) => {
-				;(prim as AnimatableEdge).animateSourcePosition(newPos, duration)
-			} : (prim: Edge, newPos: Pos3D) => {
-				prim.sourcePosition = newPos
-			}
-		const animateTargetPosition = edgesSupportAnim ? 
-			(prim: Edge, newPos: Pos3D) => {
-				;(prim as AnimatableEdge).animateTargetPosition(newPos, duration)
-			} : (prim: Edge, newPos: Pos3D) => {
-				prim.targetPosition = newPos
-			}
-			
+		const animateNodePosition = nodesSupportAnim
+			? (prim: Primitive, newPos: Pos3D) => {
+					;(prim as AnimatableNode).animatePosition(newPos, duration)
+			  }
+			: (prim: Node, newPos: Pos3D) => {
+					prim.position = newPos
+			  }
+		const animateSourcePosition = edgesSupportAnim
+			? (prim: Edge, newPos: Pos3D) => {
+					;(prim as AnimatableEdge).animateSourcePosition(newPos, duration)
+			  }
+			: (prim: Edge, newPos: Pos3D) => {
+					prim.sourcePosition = newPos
+			  }
+		const animateTargetPosition = edgesSupportAnim
+			? (prim: Edge, newPos: Pos3D) => {
+					;(prim as AnimatableEdge).animateTargetPosition(newPos, duration)
+			  }
+			: (prim: Edge, newPos: Pos3D) => {
+					prim.targetPosition = newPos
+			  }
 
 		const position: [number, number, number] = [0, 0, 0]
 
@@ -451,7 +470,7 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 
 		if (!this._scene.needsRedraw) {
 			this._scene.makeDirty()
-			this.emit("dirty")
+			this.emit('dirty')
 		}
 	}
 
@@ -581,10 +600,7 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 				!this.camera.isMoving &&
 				props._mousePosition &&
 				// We only need to compute the picking if there is something actually listening to it
-				(
-					this.hasListeners('vertexClick') || 
-					this.hasListeners('vertexHovered')
-				)
+				(this.hasListeners('vertexClick') || this.hasListeners('vertexHovered'))
 			) {
 				this.nodes.computeHovered(props)
 			}
@@ -640,7 +656,7 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 	private bindDataToRenderable(type: symbol, store: ReaderStore<any>) {
 		// i.e. type: Node, store: NodeStore, renderable: NodeRenderable
 		for (const renderable of this.scene.renderables()) {
-			const hasData = renderable as any as ItemBasedRenderable
+			const hasData = (renderable as any) as ItemBasedRenderable
 			if (hasData.itemType == type) {
 				hasData.data = store
 			}
@@ -653,14 +669,11 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 	 * @param store The new store
 	 */
 	private handleStoreUpdated = (type: symbol, store: ReaderStore<any>) => {
-
 		// Update the data on the renderable
 		this.bindDataToRenderable(type, store)
 
 		// Listen for changes to the data
-		store.onAddItem(
-			fastDebounce(this.handlePrimitivesChanged, 100),
-		)
+		store.onAddItem(fastDebounce(this.handlePrimitivesChanged, 100))
 	}
 
 	/**
@@ -678,21 +691,45 @@ export class WebGLGraphRenderer extends EventEmitter<GraphRendererEvents> implem
 	private computeBounds(): Bounds3D {
 		let bounds: Bounds3D | undefined
 		for (const renderable of this.scene.renderables()) {
-			const boundedRenderable = renderable as any as BoundedRenderable
+			const boundedRenderable = (renderable as any) as BoundedRenderable
 			if (boundedRenderable.computeBounds != undefined) {
 				const newBounds = boundedRenderable.computeBounds()
 				if (!bounds) {
 					bounds = newBounds
 				} else if (newBounds) {
 					// X
-					bounds.x.max = Math.max(newBounds.x.min, newBounds.x.max, bounds.x.max)
-					bounds.x.min = Math.min(newBounds.x.min, newBounds.x.max, bounds.x.min)
+					bounds.x.max = Math.max(
+						newBounds.x.min,
+						newBounds.x.max,
+						bounds.x.max,
+					)
+					bounds.x.min = Math.min(
+						newBounds.x.min,
+						newBounds.x.max,
+						bounds.x.min,
+					)
 					// Y
-					bounds.y.max = Math.max(newBounds.y.min, newBounds.y.max, bounds.y.max)
-					bounds.y.min = Math.min(newBounds.y.min, newBounds.y.max, bounds.y.min)
+					bounds.y.max = Math.max(
+						newBounds.y.min,
+						newBounds.y.max,
+						bounds.y.max,
+					)
+					bounds.y.min = Math.min(
+						newBounds.y.min,
+						newBounds.y.max,
+						bounds.y.min,
+					)
 					// Z
-					bounds.z.max = Math.max(newBounds.z.min, newBounds.z.max, bounds.z.max)
-					bounds.z.min = Math.min(newBounds.z.min, newBounds.z.max, bounds.z.min)
+					bounds.z.max = Math.max(
+						newBounds.z.min,
+						newBounds.z.max,
+						bounds.z.max,
+					)
+					bounds.z.min = Math.min(
+						newBounds.z.min,
+						newBounds.z.max,
+						bounds.z.min,
+					)
 				}
 			}
 		}

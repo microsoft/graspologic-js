@@ -248,14 +248,11 @@ export class MemoryReaderInspector {
 	public copyFloat32Vec3Attr(
 		item: MemoryReader,
 		sourceAttribute: AttributeName,
-		targetAttribute: AttributeName
+		targetAttribute: AttributeName,
 	): Float32Array {
 		const offset = this.getWordOffset(item, sourceAttribute)
 		const subarray = item.float32Array.subarray(offset, offset + 2)
-		item.float32Array.set(
-			subarray,
-			this.getWordOffset(item, targetAttribute)
-		)
+		item.float32Array.set(subarray, this.getWordOffset(item, targetAttribute))
 		return subarray
 	}
 

@@ -3,10 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useMemo, useEffect } from 'react'
-import type {
-	GraphRenderer,
-	UsesWebGL,
-} from '@graspologic/renderer'
+import type { GraphRenderer, UsesWebGL } from '@graspologic/renderer'
 import { VertexSetLabelRenderable } from '@graspologic/renderables-support'
 
 export function useVertexSetHighlightRenderable(

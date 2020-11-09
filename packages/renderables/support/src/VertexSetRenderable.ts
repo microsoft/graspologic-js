@@ -7,11 +7,15 @@ import {
 	GL_FLOAT,
 	GL_TRIANGLE_STRIP,
 	adaptMemoryLayoutToLuma,
-	createIdFactory
+	createIdFactory,
 } from '@graspologic/luma-utils'
 import { Model, Geometry } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
-import { RenderOptions, areColorsEqual, PropertyContainer } from '@graspologic/common'
+import {
+	RenderOptions,
+	areColorsEqual,
+	PropertyContainer,
+} from '@graspologic/common'
 import { DataboundRenderable } from '@graspologic/renderables-base'
 
 import { Node } from '@graspologic/graph'

@@ -111,13 +111,14 @@ export class SlotAllocator {
 	 */
 	public *used(): Iterable<number> {
 		// Shortcut
-		if (this.availableIndices.size === 0 &&
-			(this.nextAvailableIndex === -1 || this.nextAvailableIndex === undefined)) {
+		if (
+			this.availableIndices.size === 0 &&
+			(this.nextAvailableIndex === -1 || this.nextAvailableIndex === undefined)
+		) {
 			for (let i = 0; i < this.capacity; ++i) {
 				yield i
 			}
-		}
-		else {
+		} else {
 			for (let i = 0; i < this.capacity; ++i) {
 				if (!this.availableIndices.has(i) && this.nextAvailableIndex !== i) {
 					yield i
@@ -131,7 +132,9 @@ export class SlotAllocator {
 	 * @param index The index to check
 	 */
 	public has(index: number) {
-		return index >= 0 && index < this.capacity && !this.availableIndices.has(index)
+		return (
+			index >= 0 && index < this.capacity && !this.availableIndices.has(index)
+		)
 	}
 
 	/**

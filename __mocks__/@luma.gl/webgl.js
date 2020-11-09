@@ -4,8 +4,6 @@
  */
 const lumaWebGL = {}
 
-// luma.encodePickingColor = () => [155, 155, 155, 155]
-
 lumaWebGL.Framebuffer = class Framebuffer {
 	attach() {}
 	checkStatus() {}

@@ -15,14 +15,15 @@ export function useDensityGridSnapshot(manager: LayoutWorkerManager<any, any>) {
 	 */
 	useEffect(
 		function listenToDensityGridChanges() {
-			const subscription = 
-				new Observable<any>(observer => manager.on('progress', val => observer.next(val)))
+			const subscription = new Observable<any>(observer =>
+				manager.on('progress', val => observer.next(val)),
+			)
 				.pipe(throttleTime(0, animationFrameScheduler))
-					.subscribe(data => {
-						if (data.densityGrid?.bitmap) {
-							setDensityGridSnapshot(data.densityGrid.bitmap!)
-						}
-					})
+				.subscribe(data => {
+					if (data.densityGrid?.bitmap) {
+						setDensityGridSnapshot(data.densityGrid.bitmap!)
+					}
+				})
 			return () => subscription.unsubscribe()
 		},
 		[manager],

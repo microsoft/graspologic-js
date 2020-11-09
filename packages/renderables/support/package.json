@@ -16,15 +16,14 @@
 	"scripts": {
 		"clean": "essex clean lib dist",
 		"bundle_types": "node ../../../scripts/bundleTypes",
-		"bundle_lib": "essex bundle --webpack",
 		"build_lib": "essex build --docs",
-		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
+		"build": "run-s build_lib bundle_types",
 		"build_renderables": "yarn build",
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@essex-js-toolkit/toolbox": "^1.1.2",
-		"@essex/webpack-config": "^10.0.2",
+		"@essex-js-toolkit/toolbox": "^1.1.3",
+		"@essex/webpack-config": "^10.0.3",
 		"@graspologic/animation": "workspace:*",
 		"@graspologic/common": "workspace:*",
 		"@graspologic/graph": "workspace:*",
@@ -41,7 +40,7 @@
 		"math.gl": "^3.2.2"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^11.0.1",
+		"@essex/scripts": "^12.0.0",
 		"@types/node": "^14.14.2",
 		"@types/webpack-bundle-analyzer": "^3",
 		"glob": "^7.1.6",

@@ -16,13 +16,12 @@
 	"scripts": {
 		"clean": "essex clean lib dist",
 		"bundle_types": "node ../../../scripts/bundleTypes",
-		"bundle_lib": "essex bundle --rollup",
 		"build_lib": "essex build --docs",
-		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
+		"build": "run-s build_lib bundle_types",
 		"start": "essex watch"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^11.0.1",
+		"@essex/scripts": "^12.0.0",
 		"@types/node": "^14.14.2",
 		"glob": "^7.1.6",
 		"npm-run-all": "^4.1.5"

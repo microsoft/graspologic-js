@@ -334,7 +334,8 @@ export class Scenegraph implements Scene {
 	 */
 	public rebuildSaturation = (): void => {
 		const nodes = this.config.nodeFilteredIds
-		const allIn = !nodes || nodes.length === 0 || nodes.length === this.nodeData.count
+		const allIn =
+			!nodes || nodes.length === 0 || nodes.length === this.nodeData.count
 
 		const nodeInSat = this.config.nodeFilteredInSaturation
 		const nodeOutSat = this.config.nodeFilteredOutSaturation
@@ -360,12 +361,16 @@ export class Scenegraph implements Scene {
 			}, {} as Record<string, boolean>)
 			for (const prim of this.primitives(undefined, true)) {
 				if (prim.type === nodeType) {
-					(prim as Node).saturation = nodeMap[prim.id! || ''] ? nodeInSat : nodeOutSat
+					;(prim as Node).saturation = nodeMap[prim.id! || '']
+						? nodeInSat
+						: nodeOutSat
 				} else if (prim.type === edgeType) {
-					;(prim as Edge).saturation = 
-						!!nodeMap[(prim as Edge).source!] ? edgeInSat : edgeOutSat
-					;(prim as Edge).saturation2 = 
-						!!nodeMap[(prim as Edge).target!] ? edgeInSat : edgeOutSat
+					;(prim as Edge).saturation = !!nodeMap[(prim as Edge).source!]
+						? edgeInSat
+						: edgeOutSat
+					;(prim as Edge).saturation2 = !!nodeMap[(prim as Edge).target!]
+						? edgeInSat
+						: edgeOutSat
 				}
 			}
 		}

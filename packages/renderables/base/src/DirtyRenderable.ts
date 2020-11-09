@@ -2,7 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Renderable, RenderOptions, DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@graspologic/common'
+import {
+	Renderable,
+	RenderOptions,
+	DEFAULT_HEIGHT,
+	DEFAULT_WIDTH,
+} from '@graspologic/common'
 
 /**
  * Base-class for property-holding renderable models
@@ -61,5 +66,6 @@ export class DirtyableRenderable implements Renderable {
 	 * Draws the renderable
 	 * @param options The render options
 	 */
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	public draw(options: RenderOptions): void {}
 }

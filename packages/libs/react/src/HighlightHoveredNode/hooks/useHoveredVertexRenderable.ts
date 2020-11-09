@@ -4,11 +4,7 @@
  */
 import { useContext, useEffect, useMemo } from 'react'
 import { GraphRendererContext } from '../../GraphView/context'
-import {
-	GraphRenderer,
-	UsesWebGL,
-	ColorVector,
-} from '@graspologic/renderer'
+import { GraphRenderer, UsesWebGL, ColorVector } from '@graspologic/renderer'
 import { VertexSetRenderable } from '@graspologic/renderables-support'
 
 /**

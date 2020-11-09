@@ -173,7 +173,7 @@ export interface PositionMap {
  */
 export type NodeComponentColorizer = (
 	id: Maybe<Id>,
-	group: Maybe<Id>
+	group: Maybe<Id>,
 ) => [number, number, number, number]
 
 /**
@@ -182,10 +182,7 @@ export type NodeComponentColorizer = (
  * @param group The group of the node
  * @returns A color in the form of 0xbbggrraa
  */
-export type NodeBGRAColorizer = (
-	id: Maybe<Id>,
-	group: Maybe<Id>
-) => number
+export type NodeBGRAColorizer = (id: Maybe<Id>, group: Maybe<Id>) => number
 
 /**
  * Provides a color for the given node
@@ -195,5 +192,5 @@ export type NodeBGRAColorizer = (
  */
 export type NodeColorizer = (
 	id: Maybe<Id>,
-	group: Maybe<Id>
+	group: Maybe<Id>,
 ) => [number, number, number, number] | number

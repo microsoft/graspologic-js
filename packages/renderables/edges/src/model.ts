@@ -4,10 +4,15 @@
  */
 import { Model, Geometry } from '@luma.gl/engine'
 
-import { tween, adaptMemoryLayoutToLuma, uint32ColorTypeMapping, GL_FLOAT, GL_TRIANGLE_STRIP } from '@graspologic/luma-utils'
+import {
+	tween,
+	adaptMemoryLayoutToLuma,
+	uint32ColorTypeMapping,
+	GL_FLOAT,
+	GL_TRIANGLE_STRIP,
+} from '@graspologic/luma-utils'
 import { edgeMemoryLayout } from '@graspologic/graph'
 import edgeFS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.fs.glsl'
-
 
 const GL_TYPE_MAPPINGS = {
 	color: uint32ColorTypeMapping,

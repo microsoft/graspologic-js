@@ -9,7 +9,7 @@ export type PropertyChangeValidator<T> = (newValue: T) => boolean
 
 export interface PropertyContainerEvents<T> {
 	/**
-	 * On value changed
+	 * Event that is raised when the property is changed
 	 * @param value The new value
 	 */
 	change(value: T | undefined): void
@@ -20,7 +20,9 @@ export interface PropertyContainerEvents<T> {
  *
  * A class for managing a property that emits an event when it changes
  */
-export class PropertyContainer<T> extends EventEmitter<PropertyContainerEvents<T>> {
+export class PropertyContainer<T> extends EventEmitter<
+	PropertyContainerEvents<T>
+> {
 	private isValid: PropertyChangeValidator<T> = () => true
 
 	/**

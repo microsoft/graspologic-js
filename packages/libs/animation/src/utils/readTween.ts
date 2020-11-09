@@ -11,7 +11,7 @@ import { AttributeName, ArrayStore } from '@graspologic/memstore'
  * @param store The attay store
  * @param storeId The item storeid
  * @param tweenAttribute The tween attribute to read
- * @returns The start time of the tween
+ * @returns The duration and start time of the tween
  */
 export function readTween(
 	store: ArrayStore,
@@ -28,11 +28,11 @@ export function readTween(
 /**
  * @internal
  *
- * Read a tween
+ * Reads the computed end time of the given tween
  * @param store The attay store
  * @param storeId The item storeid
  * @param tweenAttribute The tween attribute to read
- * @returns The start time of the tween
+ * @returns The computed end time of the tween
  */
 //
 export function readTweenEndTime(

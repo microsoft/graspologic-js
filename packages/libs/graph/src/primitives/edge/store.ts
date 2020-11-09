@@ -23,11 +23,10 @@ import {
 export function createEdgeStore(config?: Partial<EdgeStoreConfig>): EdgeStore {
 	const store: ArrayStore = new ArrayStoreImpl(edgeMemoryLayout, config)
 	const slotAllocator = new SlotAllocator(
-
 		// We use the store capacity, cause it does some defaulting
 		store.config.capacity!,
 
-		// If the user explicitly wanted capacity of 0, 
+		// If the user explicitly wanted capacity of 0,
 		// ignore the allocatedOnCreate and assume nothing is used
 		config?.capacity === 0 ? false : Boolean(config?.allocatedOnCreate),
 	)

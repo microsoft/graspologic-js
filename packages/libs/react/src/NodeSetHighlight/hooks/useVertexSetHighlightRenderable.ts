@@ -3,10 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useMemo, useEffect } from 'react'
-import {
-	GraphRenderer,
-	UsesWebGL,
-} from '@graspologic/renderer'
+import { GraphRenderer, UsesWebGL } from '@graspologic/renderer'
 import { VertexSetRenderable } from '@graspologic/renderables-support'
 
 /**

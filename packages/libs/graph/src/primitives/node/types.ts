@@ -171,7 +171,7 @@ export interface Node extends MemoryReader {
 
 	/**
 	 * Lodas the node from the given raw input data
-	 * @param data The raw data for the node 
+	 * @param data The raw data for the node
 	 */
 	load(data: InputNode): void
 }

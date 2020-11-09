@@ -33,7 +33,7 @@ export type PropertySpecification =
 export function createReader<P>(
 	readerType: symbol,
 	layout: MemoryLayout,
-	additionalProperties: PropertySpecification[] = []
+	additionalProperties: PropertySpecification[] = [],
 ): MemoryReaderClass<P> {
 	class Impl implements MemoryReader {
 		/** the store this item belongs to */
@@ -132,7 +132,7 @@ export function createReader<P>(
 				this.propertyBag = store.propertyBags[storeId]
 			}
 
-			// TODO: It is important to not have 
+			// TODO: It is important to not have
 			// if (this.store != store)
 			// It's possible that the store doesn't change, but the underlying arrays do
 			// copy array aliases
@@ -147,6 +147,7 @@ export function createReader<P>(
 		 * @param name The name of the attribute
 		 * @param value The value of the attribute
 		 */
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
 		protected handleAttributeUpdated(name: string, value: unknown): void {}
 	}
 

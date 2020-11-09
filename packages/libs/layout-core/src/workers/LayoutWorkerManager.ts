@@ -20,7 +20,10 @@ export interface LayoutWorkerManagerEvents<TickProgress> {
 /**
  * A manager class for using webworker-based layout execution
  */
-export class LayoutWorkerManager<Configuration, TickProgress> extends EventEmitter<LayoutWorkerManagerEvents<TickProgress>> {
+export class LayoutWorkerManager<
+	Configuration,
+	TickProgress
+> extends EventEmitter<LayoutWorkerManagerEvents<TickProgress>> {
 	private _createWorker: () => Worker
 	private _worker?: Worker
 	private _configuration: Partial<Configuration> = {}

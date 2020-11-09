@@ -66,7 +66,7 @@ export function internGraph(
 		shareable,
 	)
 
-	let i: number = 0
+	let i = 0
 	const nodeIdToIndex = new Map<string, number>()
 
 	if (input.nodes.length > 0) {
@@ -75,7 +75,7 @@ export function internGraph(
 		i = 0
 		for (node of graph.nodes.scan()) {
 			if (i >= input.nodes.length) {
-				break;
+				break
 			}
 			inputNode = input.nodes[i]
 
@@ -84,7 +84,7 @@ export function internGraph(
 			}
 
 			node.connect(i, graph.nodes)
-			node.load(inputNode) 
+			node.load(inputNode)
 			if (randomize && node.x === 0 && node.y === 0) {
 				node.x = randBetween(randomize[0], randomize[1])
 				node.y = randBetween(randomize[2], randomize[3])
@@ -98,10 +98,10 @@ export function internGraph(
 		i = 0
 		for (edge of graph.edges.scan()) {
 			if (i >= input.edges.length) {
-				break;
+				break
 			}
 			edge.connect(i, graph.edges)
-			edge.load(input.edges[i], nodeIdToIndex, defaultEdgeWeight) 
+			edge.load(input.edges[i], nodeIdToIndex, defaultEdgeWeight)
 			++i
 		}
 	}
