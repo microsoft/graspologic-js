@@ -9,7 +9,8 @@ import { MemoryReaderClass, ReaderStore, MemoryReader } from './types'
  * @inheritdoc
  * @see {@link ReaderStore}
  */
-export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
+export class ReaderStoreImpl<P extends MemoryReader>
+	extends IdStoreImpl
 	implements ReaderStore<P> {
 	private items: P[]
 	private itemClass: MemoryReaderClass<P>
@@ -52,7 +53,7 @@ export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
 	 * @inheritdoc
 	 * @see {@link ReaderStore.itemAt}
 	 */
-	public itemAt(storeId: number,): P {
+	public itemAt(storeId: number): P {
 		if (process.env.NODE_ENV !== 'production') {
 			if (!this.slotAllocator.has(storeId)) {
 				throw new Error(`Element ${storeId} does not exist`)

@@ -9,12 +9,12 @@ import { createReader } from '@graspologic/memstore'
 import { InputNode } from '../../../graph'
 
 // Cache some of the attributes for the "load"
-const { typedOffset: positionTypedOffset } =  nodeMemoryLayout.get('position')!
-const { typedOffset: radiusTypedOffset } =  nodeMemoryLayout.get('radius')!
-const { typedOffset: shapeTypedOffset } =  nodeMemoryLayout.get('shape')!
-const { typedOffset: weightTypedOffset } =  nodeMemoryLayout.get('weight')!
-const { typedOffset: colorTypedOffset } =  nodeMemoryLayout.get('color')!
-const { typedOffset: visibleTypedOffset } =  nodeMemoryLayout.get('visible')!
+const positionTypedOffset = nodeMemoryLayout.get('position')!.typedOffset
+const radiusTypedOffset = nodeMemoryLayout.get('radius')!.typedOffset
+const shapeTypedOffset = nodeMemoryLayout.get('shape')!.typedOffset
+const weightTypedOffset = nodeMemoryLayout.get('weight')!.typedOffset
+const colorTypedOffset = nodeMemoryLayout.get('color')!.typedOffset
+const visibleTypedOffset = nodeMemoryLayout.get('visible')!.typedOffset
 
 /**
  * An implementation of a Node
@@ -26,7 +26,6 @@ const BaseNodeImpl = createReader<Node>(
 )
 
 export class NodeImpl extends BaseNodeImpl implements Node {
-
 	/**
 	 * @inheritDoc
 	 * @see {@link Node.load}
@@ -34,12 +33,12 @@ export class NodeImpl extends BaseNodeImpl implements Node {
 	public load(data: InputNode) {
 		;(this as any).propertyBag = this.store.propertyBags[this.storeId] || {}
 		this.store.propertyBags[this.storeId] = (this as any).propertyBag
-
 		;(this as any).propertyBag.id = data.id
 		;(this as any).propertyBag.group = data.group
 		;(this as any).propertyBag.label = data.label
 
-		this.float32Array[this.wordOffset + radiusTypedOffset] = data.size || data.radius || 0
+		this.float32Array[this.wordOffset + radiusTypedOffset] =
+			data.size || data.radius || 0
 		this.float32Array[this.wordOffset + positionTypedOffset] = data.x || 0
 		this.float32Array[this.wordOffset + positionTypedOffset + 1] = data.y || 0
 		this.float32Array[this.wordOffset + positionTypedOffset + 2] = data.z || 0
@@ -48,7 +47,7 @@ export class NodeImpl extends BaseNodeImpl implements Node {
 		this.uint8Array[this.byteOffset + shapeTypedOffset] = parseShape(data.shape)
 		this.uint8Array[this.byteOffset + visibleTypedOffset] = 1
 	}
-} 
+}
 
 /**
  * Parses a Shape from an unparsed shape value
@@ -63,7 +62,7 @@ export function parseShape(unparsedShape?: Shape | string): Shape {
 			return Shape.Diamond
 		}
 	} else if (
-		unparsedShape === Shape.Square || 
+		unparsedShape === Shape.Square ||
 		unparsedShape === Shape.Diamond ||
 		unparsedShape === Shape.Circle
 	) {
