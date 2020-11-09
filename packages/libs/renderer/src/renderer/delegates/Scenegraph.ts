@@ -335,10 +335,7 @@ export class Scenegraph implements Scene {
 	public rebuildSaturation = (): void => {
 		const nodes = this.config.nodeFilteredIds
 		const allIn = !nodes || nodes.length === 0
-		const nodeMap = (nodes || []).reduce((prev, curr) => {
-			prev[curr] = true
-			return prev
-		}, {} as Record<string, boolean>)
+		const allOut = nodes?.length === this.nodeData.count
 
 		const nodeInSat = this.config.nodeFilteredInSaturation
 		const nodeOutSat = this.config.nodeFilteredOutSaturation
@@ -346,17 +343,33 @@ export class Scenegraph implements Scene {
 		const edgeInSat = this.config.edgeFilteredInSaturation
 		const edgeOutSat = this.config.edgeFilteredOutSaturation
 
-		for (const prim of this.primitives(undefined, true)) {
-			const nodePrim = prim as Node
-			if (prim.type === nodeType) {
-				nodePrim.saturation =
-					allIn || nodeMap[prim.id! || ''] ? nodeInSat : nodeOutSat
-			} else if (prim.type === edgeType) {
-				const edgePrim = prim as Edge
-				const isSourceIn = allIn || !!nodeMap[edgePrim.source!]
-				const isTargetIn = allIn || !!nodeMap[edgePrim.target!]
-				edgePrim.saturation = isSourceIn ? edgeInSat : edgeOutSat
-				edgePrim.saturation2 = isTargetIn ? edgeInSat : edgeOutSat
+		// IMPORTANT: the (prim as <type>) stuff avoids an extra `const node = prim as Node` call
+		// Performance shortcut for everything in / out
+		if (allIn || allOut) {
+			const nodeSat = allIn ? nodeInSat : nodeOutSat
+			const edgeSat = allIn ? edgeInSat : edgeOutSat
+			for (const prim of this.primitives(undefined, true)) {
+				if (prim.type === nodeType) {
+					;(prim as Node).saturation = nodeSat
+				} else if (prim.type === edgeType) {
+					;(prim as Edge).saturation = edgeSat
+					;(prim as Edge).saturation2 = edgeSat
+				}
+			}
+		} else {
+			const nodeMap = (nodes || []).reduce((prev, curr) => {
+				prev[curr] = true
+				return prev
+			}, {} as Record<string, boolean>)
+			for (const prim of this.primitives(undefined, true)) {
+				if (prim.type === nodeType) {
+					(prim as Node).saturation = nodeMap[prim.id! || ''] ? nodeInSat : nodeOutSat
+				} else if (prim.type === edgeType) {
+					;(prim as Edge).saturation = 
+						!!nodeMap[(prim as Edge).source!] ? edgeInSat : edgeOutSat
+					;(prim as Edge).saturation2 = 
+						!!nodeMap[(prim as Edge).target!] ? edgeInSat : edgeOutSat
+				}
 			}
 		}
 
