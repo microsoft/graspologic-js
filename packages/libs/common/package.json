@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/common",
-	"version": "0.5.0-3",
+	"version": "0.4.0",
 	"license": "MIT",
 	"description": "A common set of types and utils used by graspologic",
 	"main": "src/index.ts",
