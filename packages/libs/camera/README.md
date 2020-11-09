@@ -1,5 +1,5 @@
 # @graspologic/camera
 
-Contains datastructures related to the camera within **graspologic-js**.
+Contains utilities related to camera management used in @graspologic.
 
-See the [API documentation](./dist/docs/globals.md) for more info.
+See the [API documentation](./dist/docs/globals.md) or [examples](../../../examples) for additional examples.
