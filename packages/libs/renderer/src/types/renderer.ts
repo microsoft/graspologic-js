@@ -4,7 +4,7 @@
  */
 import { Scene } from './scene'
 import { Node, GraphContainer } from '@graspologic/graph'
-import { HasEvents, RenderConfiguration } from '@graspologic/common'
+import { HasEvents, RenderConfiguration, Maybe, Id } from '@graspologic/common'
 import { Camera } from '@graspologic/camera'
 
 export type InitializeHandler<T> = (context: T) => void
@@ -167,33 +167,33 @@ export interface PositionMap {
 
 /**
  * Provides a component based color for the given node
- * @param group The group of the node
  * @param id The id of the node
+ * @param group The group of the node
  * @returns A color in the form of [r, g, b, a] components
  */
 export type NodeComponentColorizer = (
-	group: string | number | undefined,
-	id: string | number | undefined,
+	id: Maybe<Id>,
+	group: Maybe<Id>
 ) => [number, number, number, number]
 
 /**
  * Provides a color for the given node
- * @param group The group of the node
  * @param id The id of the node
+ * @param group The group of the node
  * @returns A color in the form of 0xbbggrraa
  */
 export type NodeBGRAColorizer = (
-	group: string | number | undefined,
-	id: string | number | undefined,
+	id: Maybe<Id>,
+	group: Maybe<Id>
 ) => number
 
 /**
  * Provides a color for the given node
- * @param group The group of the node
  * @param id The id of the node
+ * @param group The group of the node
  * @returns A color in the form of [r, g, b, a] components or an int color
  */
 export type NodeColorizer = (
-	group: string | number | undefined,
-	id: string | number | undefined,
+	id: Maybe<Id>,
+	group: Maybe<Id>
 ) => [number, number, number, number] | number

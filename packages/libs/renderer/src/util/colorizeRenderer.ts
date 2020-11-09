@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer, NodeColorizer } from '../types'
+import { GraphRenderer, NodeBGRAColorizer, NodeColorizer } from '../types'
 
 const DEFAULT_NAME = 'DEFAULT'
 
@@ -12,12 +12,9 @@ export function correctColor(color: number) {
 
 export function createBGRAColorizer(
 	colorizerFn: NodeColorizer = () => 0xFF0000FF
-) {
-	return (
-		group: number | string | undefined,
-		id: number | string | undefined,
-	) => {
-		const arr = colorizerFn(group, id)
+): NodeBGRAColorizer {
+	return (id, group) => {
+		const arr = colorizerFn(id, group)
 		return typeof arr === 'number' ? arr : componentColorToBGRA(arr)
 	}
 }
@@ -36,7 +33,7 @@ export function colorizeRenderer(
 	let color: number
 	let edgeCount = renderer.graph.edges.count
 	for (const node of renderer.scene.nodes(true)) {
-		color = correctColor(colorizer(node.group, node.id))
+		color = correctColor(colorizer(node.id, node.group))
 		node.color = color
 		if (edgeCount > 0) {
 			nodeColors.set(node.id || DEFAULT_NAME, color)

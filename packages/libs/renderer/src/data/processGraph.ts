@@ -15,7 +15,7 @@ import { GraphContainer, Node, Edge } from '@graspologic/graph'
  */
 export function processGraph(
 	data: GraphContainer,
-	colorizerFn: NodeColorizer | undefined,
+	colorizerFn?: NodeColorizer,
 ): void {
 	const colorizer = createBGRAColorizer(colorizerFn)
 	if (data.nodes.count === 0) {
@@ -41,7 +41,7 @@ function colorizeNodes(
 
 	let node: Node
 	for (node of data.nodes.scan()) {
-		node.color = correctColor(node.color || colorizer(node.group as any, node.id as any))
+		node.color = correctColor(node.color || colorizer(node.id, node.group))
 		maxWeight = Math.max(maxWeight, node.weight)
 		minWeight = Math.min(minWeight, node.weight)
 	}

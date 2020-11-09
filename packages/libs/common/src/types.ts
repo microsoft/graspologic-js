@@ -397,3 +397,13 @@ export interface Renderable {
 	 */
 	bindDataToModel?(force: boolean): void
 }
+
+/**
+ * An id type
+ */
+export type Id = string | number
+
+/**
+ * Type that indicates a type that maybe defined maybe not
+ */
+export type Maybe<T> = T | null | undefined
