@@ -4,11 +4,6 @@
  */
 const lumaGLTools = {}
 lumaGLTools.createGLContext = () => ({
-	canvas: {
-		getBoundingClientRect: () => ({
-			width: 100,
-			height: 100,
-		}),
-	},
+	canvas: document.createElement('canvas'),
 })
 module.exports = lumaGLTools

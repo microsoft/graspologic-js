@@ -11,7 +11,7 @@ import { GraphContainer } from '@graspologic/graph'
  * Creates a new GraphRenderer instance
  * @param nodeCountHint The number of nodes in the graph
  * @param edgeCountHint The number of edges in the graph
- * @param container The graph container to use 
+ * @param container The graph container to use
  * @param drawEdges If true, edges will be drawn
  */
 export function useGraphRenderer(
@@ -28,13 +28,17 @@ export function useGraphRenderer(
 		let newRenderer: WebGLGraphRenderer | undefined
 		if (ref.current) {
 			const current = ref.current
-			newRenderer = WebGLGraphRenderer.createInstance({
-				nodeCountHint,
-				edgeCountHint,
-				drawEdges,
-			}, container)
+			newRenderer = WebGLGraphRenderer.createInstance(
+				{
+					nodeCountHint,
+					edgeCountHint,
+					drawEdges,
+				},
+				container,
+			)
 
 			current.appendChild(newRenderer.view)
+
 			setRenderer(newRenderer)
 
 			return () => {

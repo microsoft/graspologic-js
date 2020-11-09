@@ -18,12 +18,6 @@ export function readTween(
 	storeId: number,
 	tweenAttribute: AttributeName,
 ) {
-	// if (process.env.NODE_ENV !== 'production') {
-	// 	if (tweenAttribute.indexOf('.tween') < 0) {
-	// 		throw new Error(`${tweenAttribute} is not a tween attribute!`)
-	// 	}
-	// }
-
 	const baseTypedOffset = store.getByteOffsetAttr(storeId, tweenAttribute) / 4
 	return [
 		store.float32Array[baseTypedOffset],
@@ -40,18 +34,15 @@ export function readTween(
  * @param tweenAttribute The tween attribute to read
  * @returns The start time of the tween
  */
-// 
+//
 export function readTweenEndTime(
 	store: ArrayStore,
 	storeId: number,
 	tweenAttribute: AttributeName,
 ) {
-	// if (process.env.NODE_ENV !== 'production') {
-	// 	if (tweenAttribute.indexOf('.tween') < 0) {
-	// 		throw new Error(`${tweenAttribute} is not a tween attribute!`)
-	// 	}
-	// }
-
 	const baseTypedOffset = store.getByteOffsetAttr(storeId, tweenAttribute) / 4
-	return store.float32Array[baseTypedOffset] + store.float32Array[baseTypedOffset + 1]
+	return (
+		store.float32Array[baseTypedOffset] +
+		store.float32Array[baseTypedOffset + 1]
+	)
 }

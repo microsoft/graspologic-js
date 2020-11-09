@@ -111,7 +111,7 @@ function stopExecution() {
  */
 function terminateExecution() {
 	if (subscription != null) {
-		subscription.unsubscribe()
+		subscription()
 	}
 	subscription = undefined
 	executor = undefined
@@ -138,7 +138,7 @@ function startExecution({
 		executor.execute().then(data => {
 			// clean up after execution
 			if (subscription) {
-				subscription.unsubscribe()
+				subscription()
 			}
 
 			// clear out execution state
