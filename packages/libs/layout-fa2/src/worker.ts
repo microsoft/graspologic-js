@@ -3,7 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable no-restricted-globals */
-import { Subscription } from 'rxjs'
 import { FA2LayoutExecutor } from './FA2LayoutExecutor'
 import { createInstance } from './factory'
 import { FA2Configuration } from './types'
@@ -13,6 +12,7 @@ import {
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
+import { Disconnect } from '@graspologic/common'
 
 /**
  * The ForceAtlas2 layout worker
@@ -26,7 +26,7 @@ let executor: FA2LayoutExecutor | undefined
 /**
  * The onTick subscription
  */
-let subscription: Subscription | undefined
+let subscription: Disconnect | undefined
 
 self.console.log('fa2 worker bootstrapping')
 
@@ -131,7 +131,7 @@ function startExecution({
 			configuration,
 			self,
 		)
-		subscription = executor.onTick.subscribe(data => {
+		subscription = executor.on('tick', data => {
 			sendMessage(WorkerMessageType.Progress, data)
 		})
 

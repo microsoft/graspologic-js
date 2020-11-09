@@ -45,7 +45,7 @@ export const ForceAtlas2Graph: React.FC<ForceAtlas2GraphProps> = memo(
 			if (!internedData) {
 				return
 			}
-			manager.onProgress.subscribe(() => ref.current?.rebind())
+			manager.on('progress', () => ref.current?.rebind())
 			manager.configure({
 				scalingRatio: scale,
 				slowDown: 1.8,

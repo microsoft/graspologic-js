@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { applyMixins, ClassType, Arguments } from './mixin'
+import { applyMixins, ClassType, SingleArgument } from './mixin'
 
 export type Disconnect = () => void
 
@@ -20,7 +20,7 @@ export interface HasEvents<Events> {
     /**
      * Raises the given event
      */
-    emit<N extends keyof Events>(name: N, ...args: any[]): void
+    emit<N extends keyof Events>(name: N, payload?: SingleArgument<Events[N]>): void
 
     /**
      * Returns true if there are any listeners for the given event
@@ -59,11 +59,11 @@ export class EventEmitter<Events> implements HasEvents<Events> {
     /**
      * Raises the given event
      */
-    public emit<N extends keyof Events>(name: N, ...args: Arguments<Events[N]>) {
+    public emit<N extends keyof Events>(name: N, payload?: SingleArgument<Events[N]>) {
         var listeners = this.listeners[name];
         if (listeners) {
             listeners.forEach((l) => {
-                (l as any).apply(this, args);
+                (l as any).call(this, payload);
             });
         }
     }

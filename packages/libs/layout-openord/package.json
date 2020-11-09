@@ -21,6 +21,7 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
+		"@graspologic/common": "workspace:*",
 		"@graspologic/graph": "workspace:*",
 		"@graspologic/layout-core": "workspace:*",
 		"core-js": "^3.6.5",

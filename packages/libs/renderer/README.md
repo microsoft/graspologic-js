@@ -133,7 +133,6 @@ export default () => {
 	const renderer = createRenderer(GRAPH_DATA, 600, 300)
 	let selectedNodeIds = []
 
-	// rxjs observable
 	renderer.on('vertexClick', id => {
 		console.log('click', id)
 		if (id) {

@@ -3,7 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable no-restricted-globals */
-import { Subscription } from 'rxjs'
 import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
 import { createInstance } from './factory'
 import { OpenOrdConfiguration } from './types'
@@ -13,9 +12,10 @@ import {
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
+import { Disconnect } from '@graspologic/common'
 
 let executor: OpenOrdLayoutExecutor | undefined
-let subscription: Subscription | undefined
+let subscription: Disconnect | undefined
 
 self.console.log('openord worker bootstrapping')
 
@@ -100,7 +100,7 @@ function stopExecution() {
  */
 function terminateExecution() {
 	if (subscription != null) {
-		subscription.unsubscribe()
+		subscription()
 	}
 	subscription = undefined
 	executor = undefined
@@ -120,14 +120,14 @@ function startExecution({
 			configuration,
 			self,
 		)
-		subscription = executor.onTick.subscribe(data => {
+		subscription = executor.on('tick', data => {
 			sendMessage(WorkerMessageType.Progress, data)
 		})
 
 		executor.execute().then(data => {
 			// clean up after execution
 			if (subscription) {
-				subscription.unsubscribe()
+				subscription()
 			}
 
 			// clear out execution state

@@ -46,7 +46,7 @@ export const OpenOrdGraph: React.FC<OpenOrdGraphProps> = memo(({ data }) => {
 		if (!internedData) {
 			return
 		}
-		manager.onProgress.subscribe(() => ref.current?.rebind())
+		manager.on('progress', () => ref.current?.rebind())
 		manager.layout(internedData)
 	}, [manager, internedData])
 

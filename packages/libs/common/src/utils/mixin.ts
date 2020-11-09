@@ -7,6 +7,10 @@ export type Arguments<T> = [T] extends [(...args: infer U) => any]
   ? U
   : [T] extends [void] ? [] : [T]
 
+export type SingleArgument<T> = [T] extends [(arg: infer U) => any]
+    ? U
+    : [T] extends [void] ? [] : [T]
+
 export interface ClassType<T> {
 	new (...args: any[]): T
 }

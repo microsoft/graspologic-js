@@ -49,7 +49,7 @@ export function useLayoutProgress(
 	 * Progress Handler
 	 */
 	useEffect(() => {
-		const subscription = manager.onProgress.subscribe(data => {
+		const subscription = manager.on('progress', data => {
 			const {
 				clock: {
 					phase = 'N/A',
@@ -92,7 +92,7 @@ export function useLayoutProgress(
 				overlapEnergy: overlapEnergy || 0,
 			})
 		})
-		return () => subscription.unsubscribe()
+		return () => subscription()
 	}, [manager, energyHistory, currentPhase, phaseHistory])
 
 	return [

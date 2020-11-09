@@ -2598,10 +2598,10 @@ __metadata:
   resolution: "@graspologic/layout-core@workspace:packages/libs/layout-core"
   dependencies:
     "@essex/scripts": ^11.0.1
+    "@graspologic/common": "workspace:*"
     "@graspologic/graph": "workspace:*"
     "@types/node": ^14.14.2
     npm-run-all: ^4.1.5
-    rxjs: 7.0.0-beta.8
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2615,6 +2615,7 @@ __metadata:
   resolution: "@graspologic/layout-fa2@workspace:packages/libs/layout-fa2"
   dependencies:
     "@essex/scripts": ^11.0.1
+    "@graspologic/common": "workspace:*"
     "@graspologic/graph": "workspace:*"
     "@graspologic/layout-core": "workspace:*"
     "@rollup/plugin-commonjs": ^15.1.0
@@ -2625,7 +2626,6 @@ __metadata:
     npm-run-all: ^4.1.5
     rollup: ^2.32.1
     rollup-plugin-terser: ^7.0.2
-    rxjs: 7.0.0-beta.8
     typedoc: 0.19.2
   peerDependencies:
     "@types/node": "*"
@@ -2639,6 +2639,7 @@ __metadata:
   resolution: "@graspologic/layout-openord@workspace:packages/libs/layout-openord"
   dependencies:
     "@essex/scripts": ^11.0.1
+    "@graspologic/common": "workspace:*"
     "@graspologic/graph": "workspace:*"
     "@graspologic/layout-core": "workspace:*"
     "@graspologic/testdata": "workspace:*"
