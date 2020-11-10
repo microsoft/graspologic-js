@@ -3,7 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect } from 'react'
-import { GraphRenderer, Node, DataboundRenderable } from '@graspologic/renderer'
+import type { DataboundRenderable } from '@graspologic/renderables-base'
+import type { GraphRenderer, Node } from '@graspologic/renderer'
 
 export function useVertexSelectionSynchronization(
 	renderer: GraphRenderer | undefined,
@@ -14,7 +15,7 @@ export function useVertexSelectionSynchronization(
 		if (renderer && renderable) {
 			renderer.awaitKickoff().then(() => {
 				const vertices = Array.from(
-					renderer.scene.getPrimitives(new Set(vertexIds)),
+					renderer.scene.primitives(new Set(vertexIds)),
 				)
 				renderable.setData(vertices as Node[])
 			})

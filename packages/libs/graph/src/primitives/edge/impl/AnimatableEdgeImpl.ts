@@ -2,32 +2,18 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { InputEdge } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
-import { edgeType, edgeMemoryLayout, ADDITIONAL_EDGE_PROPS } from '../layout'
 import { AnimatableEdge, Edge } from '../types'
-import { createReader, MemoryReader } from '@graspologic/memstore'
+import { EdgeImpl } from './EdgeImpl'
+import { MemoryReader } from '@graspologic/memstore'
 
-/**
- * A reflection based edge impl which emits change events
- */
-const BaseImpl = createReader<Edge>(
-	edgeType,
-	edgeMemoryLayout,
-	ADDITIONAL_EDGE_PROPS,
-	(setter, name: string) => {
-		return function (this: MemoryReader, value: unknown) {
-			setter.call(this, value)
-			if (this.store) {
-				this.store.notify(this.storeId, name, value)
-			}
-		}
-	},
-)
+const ALL_ATTRIBUTES = '*'
 
 /**
  * An implementation of an Edge that has animation capabilities
  */
-class AnimatableEdgeImplInternal extends BaseImpl implements AnimatableEdge {
+class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 	/**
 	 * @inheritDoc
 	 * @see {@link AnimatableEdge.animateSourcePosition}
@@ -66,6 +52,30 @@ class AnimatableEdgeImplInternal extends BaseImpl implements AnimatableEdge {
 
 		// Update the end targetPosition
 		;(this as any)['targetPosition'] = position
+	}
+
+	/**
+	 * @inheritDoc
+	 * @see {@link Edge.load}
+	 */
+	public load(
+		data: InputEdge,
+		nodeIndexMap: Map<string, number>,
+		defaultEdgeWeight = 1,
+	) {
+		super.load(data, nodeIndexMap, defaultEdgeWeight)
+		this.handleAttributeUpdated(ALL_ATTRIBUTES, undefined)
+	}
+
+	/**
+	 * Handler for when an attribute is updated
+	 * @param name The name of the attribute
+	 * @param value The value of the attribute
+	 */
+	protected handleAttributeUpdated(name: string, value: unknown): void {
+		if (this.store) {
+			this.store.notify(this.storeId, name, value)
+		}
 	}
 }
 

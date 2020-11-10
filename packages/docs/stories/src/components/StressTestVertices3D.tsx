@@ -36,11 +36,6 @@ export const StressTestVertices3D: React.FC = () => {
 				weight: 10,
 			})
 		}
-		result.edges.push({
-			source: 'node-1',
-			target: 'node-2',
-			weight: 0.5,
-		})
 		return result
 	}, [numNodes])
 

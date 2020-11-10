@@ -8,7 +8,7 @@ import { DEFAULT_CAPACITY } from './defaults'
  * A class for managing id allocation
  */
 export class SlotAllocator {
-	private availableIndices: Record<number, number | undefined> = {}
+	private availableIndices: Map<number, number | undefined> = new Map()
 	private nextAvailableIndex: number | undefined
 
 	private capacity = 0
@@ -43,9 +43,9 @@ export class SlotAllocator {
 
 		this.capacity = capacity
 		for (let i = 0; i < this.capacity - 1; i++) {
-			this.availableIndices[i] = i + 1
+			this.availableIndices.set(i, i + 1)
 		}
-		this.availableIndices[this.capacity - 1] = -1
+		this.availableIndices.set(this.capacity - 1, -1)
 		this.nextAvailableIndex = 0
 	}
 
@@ -62,7 +62,7 @@ export class SlotAllocator {
 		}
 
 		for (let i = this.capacity; i < newCapacity - 1; i++) {
-			this.availableIndices[i] = i + 1
+			this.availableIndices.set(i, i + 1)
 		}
 		this.nextAvailableIndex = this.capacity
 		this.capacity = newCapacity
@@ -84,7 +84,7 @@ export class SlotAllocator {
 		if (index == null || index < 0 || index > this.capacity - 1) {
 			throw new Error(`Invalid index ${index}`)
 		}
-		this.availableIndices[index] = this.nextAvailableIndex
+		this.availableIndices.set(index, this.nextAvailableIndex)
 		this.nextAvailableIndex = index
 	}
 
@@ -99,10 +99,10 @@ export class SlotAllocator {
 		}
 		const freeIndex = this.nextAvailableIndex
 		this.nextAvailableIndex =
-			this.availableIndices[freeIndex]! > 0
-				? this.availableIndices[freeIndex]
+			this.availableIndices.get(freeIndex)! > 0
+				? this.availableIndices.get(freeIndex)
 				: undefined
-		delete this.availableIndices[freeIndex]
+		this.availableIndices.delete(freeIndex)
 		return freeIndex
 	}
 
@@ -110,9 +110,19 @@ export class SlotAllocator {
 	 * Returns an iterator for the used slots
 	 */
 	public *used(): Iterable<number> {
-		for (let i = 0; i < this.capacity; i++) {
-			if (!this.availableIndices[i] && this.nextAvailableIndex !== i) {
+		// Shortcut
+		if (
+			this.availableIndices.size === 0 &&
+			(this.nextAvailableIndex === -1 || this.nextAvailableIndex === undefined)
+		) {
+			for (let i = 0; i < this.capacity; ++i) {
 				yield i
+			}
+		} else {
+			for (let i = 0; i < this.capacity; ++i) {
+				if (!this.availableIndices.has(i) && this.nextAvailableIndex !== i) {
+					yield i
+				}
 			}
 		}
 	}
@@ -122,21 +132,23 @@ export class SlotAllocator {
 	 * @param index The index to check
 	 */
 	public has(index: number) {
-		return index >= 0 && index < this.capacity && !this.availableIndices[index]
+		return (
+			index >= 0 && index < this.capacity && !this.availableIndices.has(index)
+		)
 	}
 
 	/**
 	 * Returns the number of used indices
 	 */
 	public get usedCount() {
-		return this.capacity - Object.keys(this.availableIndices || {}).length
+		return this.capacity - this.availableIndices.size
 	}
 
 	/**
 	 * Destroy's the allocator
 	 */
 	public destroy() {
-		this.availableIndices = {}
+		this.availableIndices = new Map()
 		this.nextAvailableIndex = -1
 	}
 }

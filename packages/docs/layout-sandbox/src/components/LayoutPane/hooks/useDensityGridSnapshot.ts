@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect, useState } from 'react'
-import { animationFrameScheduler } from 'rxjs'
+import { animationFrameScheduler, Observable } from 'rxjs'
 import { throttleTime } from 'rxjs/operators'
 import { LayoutWorkerManager } from '@graspologic/layout-core'
 
@@ -15,10 +15,12 @@ export function useDensityGridSnapshot(manager: LayoutWorkerManager<any, any>) {
 	 */
 	useEffect(
 		function listenToDensityGridChanges() {
-			const subscription = manager.onProgress
+			const subscription = new Observable<any>(observer =>
+				manager.on('progress', val => observer.next(val)),
+			)
 				.pipe(throttleTime(0, animationFrameScheduler))
 				.subscribe(data => {
-					if (data?.densityGrid?.bitmap) {
+					if (data.densityGrid?.bitmap) {
 						setDensityGridSnapshot(data.densityGrid.bitmap!)
 					}
 				})

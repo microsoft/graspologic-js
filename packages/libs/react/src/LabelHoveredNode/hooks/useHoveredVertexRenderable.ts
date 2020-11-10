@@ -4,11 +4,8 @@
  */
 import { useContext, useEffect, useMemo } from 'react'
 import { GraphRendererContext } from '../../GraphView/context'
-import {
-	VertexLabelRenderable,
-	GraphRenderer,
-	UsesWebGL,
-} from '@graspologic/renderer'
+import { VertexLabelRenderable } from '@graspologic/renderables-support'
+import { GraphRenderer, UsesWebGL } from '@graspologic/renderer'
 
 /**
  * Adds a renderable to GraphView which will show a label on nodes as they are hovered over
@@ -27,13 +24,12 @@ export function useHoveredVertexRenderable(
 	useEffect(() => {
 		if (renderer && renderable) {
 			renderer.scene.addRenderable(renderable)
-			const subscription = renderer.onVertexHover.subscribe(hovered => {
+			return renderer.on('vertexHovered', hovered => {
 				renderable.setData(hovered)
 				if (onHover) {
 					onHover(hovered?.id)
 				}
 			})
-			return () => subscription.unsubscribe()
 		}
 	}, [onHover, renderable, renderer])
 

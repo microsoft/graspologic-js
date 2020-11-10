@@ -2,36 +2,39 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Subject, Observable } from 'rxjs'
 import {
 	WorkerMessageType,
 	WorkerMessage,
 	ExecuteMessagePayload,
 } from './types'
+import { EventEmitter } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
+
+export interface LayoutWorkerManagerEvents<TickProgress> {
+	/**
+	 * An even for when the layout progresses
+	 */
+	progress: (progress: TickProgress) => void
+}
 
 /**
  * A manager class for using webworker-based layout execution
  */
-export class LayoutWorkerManager<Configuration, TickProgress> {
+export class LayoutWorkerManager<
+	Configuration,
+	TickProgress
+> extends EventEmitter<LayoutWorkerManagerEvents<TickProgress>> {
 	private _createWorker: () => Worker
 	private _worker?: Worker
 	private _configuration: Partial<Configuration> = {}
-	private _onProgress = new Subject<TickProgress>()
 
 	/**
 	 * Constructor for the LayoutWorkerManager
 	 * @param createWorker A callback for instantiating the worker
 	 */
 	public constructor(createWorker: () => Worker) {
+		super()
 		this._createWorker = createWorker
-	}
-
-	/**
-	 * Returns an observable for observing when layout ticks have occurred
-	 */
-	public get onProgress(): Observable<TickProgress> {
-		return this._onProgress
 	}
 
 	/**
@@ -55,7 +58,7 @@ export class LayoutWorkerManager<Configuration, TickProgress> {
 			this._worker!.onmessage = ev => {
 				const { type, payload } = ev.data as WorkerMessage<any>
 				if (type === WorkerMessageType.Progress) {
-					this._onProgress.next(payload)
+					this.emit('progress', payload)
 				} else if (type === WorkerMessageType.Complete) {
 					this.reset()
 					resolve(payload)

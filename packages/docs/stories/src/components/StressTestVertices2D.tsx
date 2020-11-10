@@ -27,7 +27,7 @@ interface StressTestVertices2DProps {
 export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 	colorizer = DEFAULT_COLORIZER,
 }) => {
-	const [numNodes, setNumNodes] = useState(500_000)
+	const [numNodes, setNumNodes] = useState(2_000_000)
 	const textInput = useRef<HTMLInputElement>(null)
 	const graph = useMemo(() => {
 		console.log(`generate graph with ${numNodes} nodes`)
@@ -45,11 +45,6 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 				weight: 10,
 			})
 		}
-		result.edges.push({
-			source: 'node-1',
-			target: 'node-2',
-			weight: 0.5,
-		})
 		return result
 	}, [numNodes])
 

@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { InputNode } from '../../graph'
 import { Pos3D, Shape, Pos2D } from '../types'
 import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
 
@@ -94,10 +95,9 @@ export interface Node extends MemoryReader {
 
 	/**
 	 * @internal
-	 * The data?
-	 * TODO: Is this even used?
+	 * The node data
 	 */
-	data: any | undefined
+	data: NodeStore | undefined
 
 	/**
 	 * @internal
@@ -167,6 +167,12 @@ export interface Node extends MemoryReader {
 	// #endregion
 
 	// #endregion
+
+	/**
+	 * Lodas the node from the given raw input data
+	 * @param data The raw data for the node
+	 */
+	load(data: InputNode): void
 }
 
 /**

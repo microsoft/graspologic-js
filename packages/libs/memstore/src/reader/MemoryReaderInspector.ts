@@ -240,6 +240,23 @@ export class MemoryReaderInspector {
 	// #region Float32 Vec3
 
 	/**
+	 * Copies the data from the sourceAttribute to targetAttribute
+	 * @param item The item to update
+	 * @param sourceAttribute The source attribute to copy from
+	 * @param targetAttribute The target attribute to copy to
+	 */
+	public copyFloat32Vec3Attr(
+		item: MemoryReader,
+		sourceAttribute: AttributeName,
+		targetAttribute: AttributeName,
+	): Float32Array {
+		const offset = this.getWordOffset(item, sourceAttribute)
+		const subarray = item.float32Array.subarray(offset, offset + 2)
+		item.float32Array.set(subarray, this.getWordOffset(item, targetAttribute))
+		return subarray
+	}
+
+	/**
 	 * Writes __attribute__ for __item__ as a float32[3]
 	 * @param item The item to update
 	 * @param attribute The attribute to update

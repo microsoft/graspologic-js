@@ -2,7 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Node, Position, distanceTo, squareDistanceTo } from '@graspologic/graph'
+import {
+	Node,
+	Position,
+	distanceTo,
+	squareDistanceTo,
+} from '@graspologic/graph'
 
 export const GRID_SIZE = 1000
 export const RADIUS = 10

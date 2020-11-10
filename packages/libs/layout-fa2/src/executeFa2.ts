@@ -22,8 +22,8 @@ export function executeFa2(
 	onTick: OnTickHandler<FA2TickProgress> = () => null,
 ): Promise<void> {
 	const executor = createInstance(graph, configuration, window)
-	const subscription = executor.onTick.subscribe(onTick)
+	const subscription = executor.on('tick', onTick)
 
 	// Execute the Layout
-	return executor.execute().then(() => subscription.unsubscribe())
+	return executor.execute().then(() => subscription())
 }

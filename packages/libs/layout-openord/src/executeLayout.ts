@@ -24,8 +24,8 @@ export function openOrd(
 	globalObject: any = window,
 ): Promise<void> {
 	const oord = createInstance(graph, configuration, globalObject)
-	const subscription = oord.onTick.subscribe(onTick)
+	const subscription = oord.on('tick', onTick)
 
 	// Execute the Layout
-	return oord.execute().then(() => subscription.unsubscribe())
+	return oord.execute().then(() => subscription())
 }

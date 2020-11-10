@@ -40,7 +40,7 @@ export function useDatGui(
 	// Synchronize dat.gui with renderer state
 	useEffect(() => {
 		if (renderer && gui) {
-			renderer.onDirty.subscribe(() => gui.updateDisplay())
+			renderer.on('dirty', () => gui.updateDisplay())
 		}
 	}, [renderer, gui])
 

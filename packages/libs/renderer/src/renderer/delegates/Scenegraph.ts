@@ -2,12 +2,17 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { setParameters } from 'luma.gl'
-import { ScreenQuadRenderable } from '../../renderables/ScreenQuadRenderable'
-import { DataStore, Scene, RenderConfiguration } from '../../types'
-import { Primitive, Renderable, RenderOptions } from '../../types/internal'
-import { Interpolator } from './Interpolator'
-import { Camera } from './camera'
+// This is causing problems downstream for some reason
+// @ts-ignore
+import { setParameters } from '@luma.gl/gltools'
+import { DataStore, Scene, Primitive } from '../../types'
+import { Camera } from '@graspologic/camera'
+import {
+	Renderable,
+	RenderConfiguration,
+	RenderOptions,
+	Interpolator,
+} from '@graspologic/common'
 import {
 	Edge,
 	Node,
@@ -17,6 +22,7 @@ import {
 	NodeStore,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
+import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 
 /**
  * @internal
@@ -28,7 +34,7 @@ export class Scenegraph implements Scene {
 	public _sceneGraphNeedsRedraw = false
 	private destroyed = false
 	private doubleBufferedRenderables: ScreenQuadRenderable
-	private renderables: Renderable[] = []
+	private _renderables: Renderable[] = []
 	private dimensionInterpolator: Interpolator
 
 	// Cache these for quick lookup
@@ -46,7 +52,7 @@ export class Scenegraph implements Scene {
 		private gl: WebGLRenderingContext,
 		private config: RenderConfiguration,
 		private camera: Camera,
-		data: DataStore,
+		private data: DataStore<Primitive>,
 	) {
 		this.doubleBufferedRenderables = new ScreenQuadRenderable(gl)
 		config.onBackgroundColorChanged(() => this.initialize({ gl: this.gl }))
@@ -100,15 +106,19 @@ export class Scenegraph implements Scene {
 				const primitive = primitives[i]
 				if (primitive.type === nodeType) {
 					this.nodeData.receive(primitive as Node)
-				} else {
+				} else if (primitive.type === edgeType) {
 					this.edgeData.receive(primitive as Edge)
+				} else {
+					this.data.retrieve(primitive.type)?.receive(primitive)
 				}
 			}
 		} else {
 			if (primitives.type === nodeType) {
 				this.nodeData.receive(primitives as Node)
-			} else {
+			} else if (primitives.type === edgeType) {
 				this.edgeData.receive(primitives as Edge)
+			} else {
+				this.data.retrieve(primitives.type)?.receive(primitives)
 			}
 		}
 	}
@@ -123,62 +133,85 @@ export class Scenegraph implements Scene {
 				const primitive = primitives[i]
 				if (primitive.type === nodeType) {
 					this.nodeData.remove(primitive.storeId)
-				} else {
+				} else if (primitive.type === edgeType) {
 					this.edgeData.remove(primitive.storeId)
+				} else {
+					this.data.retrieve(primitive.type)?.remove(primitive.storeId)
 				}
 			}
 		} else {
 			if (primitives.type === nodeType) {
 				this.nodeData.remove(primitives.storeId)
-			} else {
+			} else if (primitives.type === edgeType) {
 				this.edgeData.remove(primitives.storeId)
+			} else {
+				this.data.retrieve(primitives.type)?.remove(primitives.storeId)
 			}
 		}
 	}
 
 	public clear() {
 		// Empty the DM
-		this.nodeData.reset()
-		this.edgeData.reset()
+		for (const store of this.data) {
+			store.reset()
+		}
 		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
-	 * Gets the list of edges contained in the scene
+	 * @inheritdoc
+	 * @see {Scene.primities}
 	 */
-	public *primitives(): Iterable<Primitive> {
-		// TODO: PrimitiveStore should be able to return an iterator
-		for (const prim of this.nodes()) {
-			yield prim
+	public *primitives(ids?: Set<string>, scan = false): Iterable<Primitive> {
+		for (const store of this.data) {
+			const iterator = scan ? store.scan() : store
+			for (const prim of iterator) {
+				if (!ids || ids.has(prim.id || '')) {
+					yield prim
+				}
+			}
 		}
-		for (const prim of this.edges()) {
-			yield prim
-		}
 	}
 
 	/**
-	 * Returns the list of nodes in the scene graph
+	 * Gets the list of primitives by the given type
 	 */
-	public nodes(): Iterable<Node> {
-		return this.nodeData
-	}
-
-	/**
-	 * Gets the list of edges contained in the scene graph
-	 */
-	public edges(): Iterable<Edge> {
-		return this.edgeData
-	}
-
-	/**
-	 * Returns the primitive with the given id
-	 */
-	public *getPrimitives<T>(ids: Set<string>): Iterable<Primitive> {
-		for (const prim of this.primitives()) {
-			if (ids.has(prim.id || '')) {
+	public *primitivesByType(type: symbol): Iterable<Primitive> {
+		const data = this.data.retrieve(type)
+		if (data) {
+			for (const prim of data) {
 				yield prim
 			}
 		}
+	}
+
+	/**
+	 * @inheritdoc
+	 * @see {Scene.renderables}
+	 */
+	public *renderables() {
+		for (const renderable of this._renderables) {
+			yield renderable
+		}
+		for (const renderables of this.doubleBufferedRenderables.renderables()) {
+			yield renderables
+		}
+	}
+
+	/**
+	 * @inheritdoc
+	 * @see {Scene.nodes}
+	 */
+	public nodes(scan = false): Iterable<Node> {
+		return scan ? this.nodeData.scan() : this.nodeData
+	}
+
+	/**
+	 * @inheritdoc
+	 * @see {Scene.edges}
+	 */
+	public edges(scan = false): Iterable<Edge> {
+		return scan ? this.edgeData.scan() : this.edgeData
 	}
 
 	/**
@@ -197,7 +230,7 @@ export class Scenegraph implements Scene {
 		if (doubleBuffered) {
 			this.doubleBufferedRenderables.addRenderable(renderable)
 		} else {
-			this.renderables.push(renderable)
+			this._renderables.push(renderable)
 			renderable.resize(this.config.width, this.config.height)
 		}
 		this._sceneGraphNeedsRedraw = true
@@ -209,7 +242,7 @@ export class Scenegraph implements Scene {
 	 */
 	public removeRenderable(renderable: Renderable): void {
 		this.doubleBufferedRenderables.removeRenderable(renderable)
-		this.renderables = this.renderables.filter(r => r !== renderable)
+		this._renderables = this._renderables.filter(r => r !== renderable)
 		this._sceneGraphNeedsRedraw = true
 	}
 
@@ -246,6 +279,8 @@ export class Scenegraph implements Scene {
 		time,
 		weightToPixel,
 	}: any): void {
+		this.updateEngineTime(engineTime)
+
 		if (this.needsRedraw) {
 			const renderOptions = this.createRenderOptions(
 				framebuffer,
@@ -255,6 +290,7 @@ export class Scenegraph implements Scene {
 				time,
 				weightToPixel,
 			)
+
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 			this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height)
 			this.drawRenderables(renderOptions)
@@ -272,7 +308,7 @@ export class Scenegraph implements Scene {
 			this.dimensionInterpolator.current < 1.0 ||
 			this.camera.isMoving ||
 			this.doubleBufferedRenderables.needsRedraw ||
-			this.renderables.some(r => r.needsRedraw)
+			this._renderables.some(r => r.needsRedraw)
 		)
 	}
 
@@ -282,7 +318,7 @@ export class Scenegraph implements Scene {
 	public destroy() {
 		if (!this.destroyed) {
 			this.destroyed = true
-			this.renderables.forEach(r => {
+			this._renderables.forEach(r => {
 				if (r.destroy) {
 					r.destroy()
 				}
@@ -299,11 +335,8 @@ export class Scenegraph implements Scene {
 	 */
 	public rebuildSaturation = (): void => {
 		const nodes = this.config.nodeFilteredIds
-		const allIn = !nodes || nodes.length === 0
-		const nodeMap = (nodes || []).reduce((prev, curr) => {
-			prev[curr] = true
-			return prev
-		}, {} as Record<string, boolean>)
+		const allIn =
+			!nodes || nodes.length === 0 || nodes.length === this.nodeData.count
 
 		const nodeInSat = this.config.nodeFilteredInSaturation
 		const nodeOutSat = this.config.nodeFilteredOutSaturation
@@ -311,17 +344,35 @@ export class Scenegraph implements Scene {
 		const edgeInSat = this.config.edgeFilteredInSaturation
 		const edgeOutSat = this.config.edgeFilteredOutSaturation
 
-		for (const prim of this.primitives()) {
-			const nodePrim = prim as Node
-			if (prim.type === nodeType) {
-				nodePrim.saturation =
-					allIn || nodeMap[prim.id! || ''] ? nodeInSat : nodeOutSat
-			} else if (prim.type === edgeType) {
-				const edgePrim = prim as Edge
-				const isSourceIn = allIn || !!nodeMap[edgePrim.source!]
-				const isTargetIn = allIn || !!nodeMap[edgePrim.target!]
-				edgePrim.saturation = isSourceIn ? edgeInSat : edgeOutSat
-				edgePrim.saturation2 = isTargetIn ? edgeInSat : edgeOutSat
+		// IMPORTANT: the (prim as <type>) stuff avoids an extra `const node = prim as Node` call
+		// Performance shortcut for everything in / out
+		if (allIn) {
+			for (const prim of this.primitives(undefined, true)) {
+				if (prim.type === nodeType) {
+					;(prim as Node).saturation = nodeInSat
+				} else if (prim.type === edgeType) {
+					;(prim as Edge).saturation = edgeInSat
+					;(prim as Edge).saturation2 = edgeInSat
+				}
+			}
+		} else {
+			const nodeMap = (nodes || []).reduce((prev, curr) => {
+				prev[curr] = true
+				return prev
+			}, {} as Record<string, boolean>)
+			for (const prim of this.primitives(undefined, true)) {
+				if (prim.type === nodeType) {
+					;(prim as Node).saturation = nodeMap[prim.id! || '']
+						? nodeInSat
+						: nodeOutSat
+				} else if (prim.type === edgeType) {
+					;(prim as Edge).saturation = !!nodeMap[(prim as Edge).source!]
+						? edgeInSat
+						: edgeOutSat
+					;(prim as Edge).saturation2 = !!nodeMap[(prim as Edge).target!]
+						? edgeInSat
+						: edgeOutSat
+				}
 			}
 		}
 
@@ -342,13 +393,25 @@ export class Scenegraph implements Scene {
 	}
 
 	/**
+	 * Calls the before draw on the renderables
+	 * @param engineTime The current engine time
+	 */
+	private updateEngineTime(engineTime: number): void {
+		for (const renderable of this.renderables()) {
+			if (renderable.updateEngineTime) {
+				renderable.updateEngineTime(engineTime)
+			}
+		}
+	}
+
+	/**
 	 * Draws the renderables
 	 * @param renderOptions The render options
 	 */
 	private drawRenderables(renderOptions: RenderOptions): void {
 		this.doubleBufferedRenderables.update(this.needsRedraw, renderOptions)
 		this.doubleBufferedRenderables.draw()
-		this.renderables.forEach(r => r.draw(renderOptions))
+		this._renderables.forEach(r => r.draw(renderOptions))
 	}
 
 	/**

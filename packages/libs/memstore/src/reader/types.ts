@@ -90,17 +90,6 @@ export type SetterFn<T = any, This = MemoryReader> = (
 ) => void
 
 /**
- * A setter augmenter
- * @param setter The old setter
- * @param name The name of the property
- * @returns The overridden setter
- */
-export type SetterAugmenter<T = any, This = MemoryReader> = (
-	setter: SetterFn<T, This>,
-	name: string,
-) => SetterFn<T>
-
-/**
  * A store which provides a list like functionality for interacting with MemoryReader based items
  */
 export interface ReaderStore<P> extends IdStore, Iterable<P & MemoryReader> {
@@ -134,4 +123,11 @@ export interface ReaderStore<P> extends IdStore, Iterable<P & MemoryReader> {
 		propertyBag?: any,
 		sourceOffset?: number,
 	): void
+
+	/**
+	 * Creates an iterator that efficiently scans through the items contained in this store
+	 *
+	 * _NOTE_ Items returned from this iterator should not be stored, as references are re-used for iteration
+	 */
+	scan(): IterableIterator<P>
 }

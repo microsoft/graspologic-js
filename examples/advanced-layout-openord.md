@@ -36,7 +36,7 @@ export default () => {
 	const layoutManager = new LayoutWorkerManager(() => new Worker(workerUrl))
 
 	// A layout tick was performed
-	layoutManager.onProgress.subscribe(() => {
+	layoutManager.on('progress', () => {
 		// As the layout progresses, tell the graph renderer to rebind to the underlying data
 		renderer.rebind()
 

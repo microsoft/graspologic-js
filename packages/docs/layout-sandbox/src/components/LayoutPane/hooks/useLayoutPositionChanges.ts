@@ -10,7 +10,7 @@ import {
 	RefObject,
 	useMemo,
 } from 'react'
-import { animationFrameScheduler } from 'rxjs'
+import { animationFrameScheduler, Observable } from 'rxjs'
 import { throttleTime } from 'rxjs/operators'
 import { InputGraphContext } from '../../context'
 import { NodeId, Position, GraphContainer } from '@graspologic/graph'
@@ -69,7 +69,9 @@ function usePositionChangeSynchronization(
 	 */
 	useEffect(
 		function listenToPositionChanges() {
-			const subscription = manager.onProgress
+			const subscription = new Observable(observer =>
+				manager.on('progress', val => observer.next(val)),
+			)
 				.pipe(throttleTime(0, animationFrameScheduler))
 				.subscribe(() => updatePositions(positionMap))
 

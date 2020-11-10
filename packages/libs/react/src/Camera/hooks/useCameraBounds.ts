@@ -22,12 +22,11 @@ export function useCameraBounds(
 				renderer.camera.viewBounds(bounds, transitionDuration)
 			}
 
-			const sub = renderer.onLoad.subscribe(() => {
+			return renderer.on('load', () => {
 				if (bounds) {
 					renderer.camera.viewBounds(bounds, transitionDuration)
 				}
 			})
-			return () => sub.unsubscribe()
 		}
 	}, [bounds, renderer, transitionDuration])
 }

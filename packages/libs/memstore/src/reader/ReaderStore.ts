@@ -9,7 +9,8 @@ import { MemoryReaderClass, ReaderStore, MemoryReader } from './types'
  * @inheritdoc
  * @see {@link ReaderStore}
  */
-export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
+export class ReaderStoreImpl<P extends MemoryReader>
+	extends IdStoreImpl
 	implements ReaderStore<P> {
 	private items: P[]
 	private itemClass: MemoryReaderClass<P>
@@ -79,6 +80,23 @@ export class ReaderStoreImpl<P extends MemoryReader> extends IdStoreImpl
 		let idx: number
 		for (idx of this.itemIds()) {
 			yield this.itemAt(idx)
+		}
+	}
+
+	public *scan(): IterableIterator<P> {
+		let idx: number
+		let item: P | undefined
+		if (this.count > 0) {
+			item = this.createConnectedItem(0)
+		}
+		if (item) {
+			for (idx of this.itemIds()) {
+				if (!this.propertyBags[idx]) {
+					this.propertyBags[idx] = {}
+				}
+				item.connect(idx, this)
+				yield item
+			}
 		}
 	}
 

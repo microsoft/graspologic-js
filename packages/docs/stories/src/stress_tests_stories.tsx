@@ -7,6 +7,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { StressTestVertices2D } from './components/StressTestVertices2D'
 import { StressTestVertices3D } from './components/StressTestVertices3D'
+import { componentColorToBGRA } from '@graspologic/renderer'
 
 const COL_RANGE = { range: true, min: 0.0, max: 1.0, step: 0.01 }
 
@@ -18,5 +19,6 @@ storiesOf('Stress Tests', module)
 		const g = number('G', 0, COL_RANGE)
 		const b = number('B', 0, COL_RANGE)
 		const a = number('A', 1, COL_RANGE)
-		return <StressTestVertices2D colorizer={() => [r, g, b, a]} />
+		const color = componentColorToBGRA([r, g, b, a])
+		return <StressTestVertices2D colorizer={() => color} />
 	})

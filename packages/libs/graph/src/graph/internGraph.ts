@@ -3,15 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { randBetween } from '../helpers'
-import {
-	Node,
-	Edge,
-	createNodeStore,
-	createEdgeStore,
-	Shape,
-} from '../primitives'
+import { Node, Edge, createNodeStore, createEdgeStore } from '../primitives'
 import { GraphContainer } from './GraphContainer'
-import { InputGraph, InputEdge, InputNode } from './types'
+import { InputGraph, InputNode } from './types'
 
 /**
  * The set of graph options to intern a pojo graph into a GraphContainer
@@ -64,82 +58,47 @@ export function internGraph(
 		input.edges.length,
 		shareable,
 	)
-	const nodeIdToIndex: Record<string, number> = {}
-	const nodeIndexToId: Record<number, string> = {}
 
-	let i: number
-	let inputNode: InputNode
-	let node: Node
-	let size: number | undefined
-	for (i = 0; i < input.nodes.length; ++i) {
-		inputNode = input.nodes[i]
-		node = graph.nodes.itemAt(i)
+	let i = 0
+	const nodeIdToIndex = new Map<string, number>()
 
-		nodeIdToIndex[inputNode.id] = i
-		nodeIndexToId[i] = inputNode.id
-		node.id = inputNode.id
-		node.group = inputNode.group
+	if (input.nodes.length > 0) {
+		let node: Node
+		let inputNode: InputNode
+		i = 0
+		for (node of graph.nodes.scan()) {
+			if (i >= input.nodes.length) {
+				break
+			}
+			inputNode = input.nodes[i]
 
-		// A default size of 0 is important.  If 0, weight will be used to scale the node
-		size = inputNode.size || inputNode.radius
-		node.size = size != null ? size : 0
-		node.x = inputNode.x || 0
-		node.y = inputNode.y || 0
-		node.z = inputNode.z || 0
-		node.label = inputNode.label
-		node.weight = inputNode.weight || 1
-		node.color = inputNode.color || 0
-		node.shape = parseShape(inputNode.shape)
+			if (input.edges.length > 0) {
+				nodeIdToIndex.set(inputNode.id, i)
+			}
 
-		if (randomize && node.x === 0 && node.y === 0) {
-			node.x = randBetween(randomize[0], randomize[1])
-			node.y = randBetween(randomize[2], randomize[3])
+			node.connect(i, graph.nodes)
+			node.load(inputNode)
+			if (randomize && node.x === 0 && node.y === 0) {
+				node.x = randBetween(randomize[0], randomize[1])
+				node.y = randBetween(randomize[2], randomize[3])
+			}
+			++i
 		}
 	}
 
-	let inputEdge: InputEdge
-	let edge: Edge
-	for (i = 0; i < input.edges.length; ++i) {
-		inputEdge = input.edges[i]
-		edge = graph.edges.itemAt(i)
-
-		edge.source = inputEdge.source
-		edge.target = inputEdge.target
-
-		edge.sourceIndex = nodeIdToIndex[inputEdge.source]
-		edge.targetIndex = nodeIdToIndex[inputEdge.target]
-
-		edge.weight =
-			inputEdge.weight != null ? inputEdge.weight : defaultEdgeWeight
-
-		edge.color = inputEdge.color || inputEdge.sourceColor || 0
-		edge.color2 = inputEdge.color2 || inputEdge.targetColor || 0
+	if (input.edges.length > 0) {
+		let edge: Edge
+		i = 0
+		for (edge of graph.edges.scan()) {
+			if (i >= input.edges.length) {
+				break
+			}
+			edge.connect(i, graph.edges)
+			edge.load(input.edges[i], nodeIdToIndex, defaultEdgeWeight)
+			++i
+		}
 	}
-
-	graph.idMap = nodeIndexToId
 	return graph
-}
-
-/**
- * Parses a Shape from an unparsed shape value
- * @param unparsedShape
- */
-function parseShape(unparsedShape?: Shape | string): Shape {
-	let shape = Shape.Circle
-	if (
-		(typeof unparsedShape === 'number' && unparsedShape === Shape.Diamond) ||
-		unparsedShape === Shape.Square
-	) {
-		shape = unparsedShape as Shape
-	} else if (typeof unparsedShape === 'string') {
-		unparsedShape = unparsedShape.toLocaleLowerCase()
-		if (unparsedShape === 'square') {
-			shape = Shape.Square
-		} else if (unparsedShape === 'diamond') {
-			shape = Shape.Diamond
-		}
-	}
-	return shape
 }
 
 /**

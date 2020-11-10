@@ -22,13 +22,15 @@ import {
  */
 export function createEdgeStore(config?: Partial<EdgeStoreConfig>): EdgeStore {
 	const store: ArrayStore = new ArrayStoreImpl(edgeMemoryLayout, config)
-
-	// if a store is provided, assume the slots are consumed
 	const slotAllocator = new SlotAllocator(
+		// We use the store capacity, cause it does some defaulting
 		store.config.capacity!,
-		Boolean(config?.allocatedOnCreate),
+
+		// If the user explicitly wanted capacity of 0,
+		// ignore the allocatedOnCreate and assume nothing is used
+		config?.capacity === 0 ? false : Boolean(config?.allocatedOnCreate),
 	)
 
-	const Impl = config?.notifications !== false ? AnimatableEdgeImpl : EdgeImpl
+	const Impl = config?.animation !== false ? AnimatableEdgeImpl : EdgeImpl
 	return new ReaderStoreImpl(Impl, store, slotAllocator)
 }

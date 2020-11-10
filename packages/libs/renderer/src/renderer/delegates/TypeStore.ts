@@ -19,8 +19,12 @@ export class GenericTypeStore<T> implements TypeStore<T> {
 		}
 	}
 
-	public retrieve(type: symbol): T | undefined {
-		return this._items.get(type)
+	public types(): Iterable<symbol> {
+		return this._items.keys()
+	}
+
+	public retrieve<P extends T = T>(type: symbol): P | undefined {
+		return this._items.get(type) as P
 	}
 
 	public onRegister(handler: RegisterHandler<T>) {
@@ -44,5 +48,12 @@ export class GenericTypeStore<T> implements TypeStore<T> {
 			})
 			this._items.clear()
 		}
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public [Symbol.iterator](): Iterator<T> {
+		return this._items.values()
 	}
 }

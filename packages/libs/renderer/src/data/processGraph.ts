@@ -2,9 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { NodeComponentColorizer, NodeIntColorizer } from '../types'
-import { createIntColorizer } from '../util/colorizeRenderer'
-import { getCachedColor } from '../util/getColor'
+import { NodeColorizer, NodeBGRAColorizer } from '../types'
+import { createBGRAColorizer, correctColor } from '../util/colorizeRenderer'
 import { GraphContainer, Node, Edge } from '@graspologic/graph'
 
 /**
@@ -16,9 +15,9 @@ import { GraphContainer, Node, Edge } from '@graspologic/graph'
  */
 export function processGraph(
 	data: GraphContainer,
-	colorizerFn: NodeComponentColorizer | undefined,
+	colorizerFn?: NodeColorizer,
 ): void {
-	const colorizer = createIntColorizer(colorizerFn)
+	const colorizer = createBGRAColorizer(colorizerFn)
 	if (data.nodes.count === 0) {
 		return
 	}
@@ -35,17 +34,14 @@ export function processGraph(
  */
 function colorizeNodes(
 	data: GraphContainer,
-	colorizer: NodeIntColorizer,
+	colorizer: NodeBGRAColorizer,
 ): [number, number] {
-	const colorMap = new Map()
 	let maxWeight = Number.MIN_SAFE_INTEGER
 	let minWeight = Number.MAX_SAFE_INTEGER
 
 	let node: Node
-	for (node of data.nodes) {
-		node.color =
-			node.color ||
-			getCachedColor(colorMap, colorizer, node.group as any, node.id as any)
+	for (node of data.nodes.scan()) {
+		node.color = correctColor(node.color || colorizer(node.id, node.group))
 		maxWeight = Math.max(maxWeight, node.weight)
 		minWeight = Math.min(minWeight, node.weight)
 	}
@@ -74,7 +70,7 @@ function normalizeNodeWeights(
 	}
 
 	let node: Node
-	for (node of data.nodes) {
+	for (node of data.nodes.scan()) {
 		node.weight = computeNodeWeight(node.weight || 0)
 	}
 }
@@ -89,7 +85,7 @@ function normalizeEdgeWeights(data: GraphContainer) {
 	let edge: Edge
 	let maxWeight = Number.MIN_SAFE_INTEGER
 	let minWeight = Number.MAX_SAFE_INTEGER
-	for (edge of data.edges) {
+	for (edge of data.edges.scan()) {
 		maxWeight = Math.max(maxWeight, edge.weight!)
 		minWeight = Math.min(minWeight, edge.weight!)
 	}
@@ -104,23 +100,22 @@ function normalizeEdgeWeights(data: GraphContainer) {
 			(value - minEdgeWeight) / edgeWeightDiff
 	}
 
-	let source: Node
-	let target: Node
-	let finalSourceColor = 0
-	let finalTargetColor = 0
-	for (edge of data.edges) {
-		source = data.nodes.itemAt(edge.sourceIndex)
-		target = data.nodes.itemAt(edge.targetIndex)
+	// We're not too worried about this right yet
+	const reusableNode = data.nodes.itemAt(0)
+	for (edge of data.edges.scan()) {
 		edge.trueWeight = edge.weight || 0
 		edge.weight = computeEdgeWeight(edge.weight === undefined ? 1 : edge.weight)
 
-		finalSourceColor = edge.color || source.color || 0
-		finalTargetColor = edge.color2 || edge.color || target.color || 0
+		// Update the node to the source idx
+		reusableNode.connect(edge.sourceIndex, data.nodes)
+		edge.color = correctColor(edge.color || reusableNode.color || 0)
+		edge.sourcePosition = reusableNode.position
 
-		edge.color = ((finalSourceColor ^ 0xff000000) | 0xff000000) >>> 0
-		edge.color2 = ((finalTargetColor ^ 0xff000000) | 0xff000000) >>> 0
-
-		edge.sourcePosition = source.position
-		edge.targetPosition = target.position
+		// Update the node to the target idx
+		reusableNode.connect(edge.targetIndex, data.nodes)
+		edge.color2 = correctColor(
+			edge.color2 || edge.color || reusableNode.color || 0,
+		)
+		edge.targetPosition = reusableNode.position
 	}
 }

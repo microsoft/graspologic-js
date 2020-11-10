@@ -2,9 +2,16 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Subject, Observable, Subscription } from 'rxjs'
 import { TickingClock } from '../clock'
+import { Disconnect, EventEmitter } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
+
+export interface BaseExecutorEvents<Progress> {
+	/**
+	 * A layout tick has occurred occurred
+	 */
+	tick: (progress: Progress) => void
+}
 
 /**
  * @internal
@@ -15,14 +22,13 @@ export abstract class BaseExecutor<
 	Config,
 	Clock extends TickingClock,
 	Progress
-> {
+> extends EventEmitter<BaseExecutorEvents<Progress>> {
 	private _graph: GraphContainer
-	private _onTick = new Subject<Progress>()
 	private _halted = false
 	private _complete = false
 	private _global: any
 	private _configuration: Config
-	private _tickListener: Subscription | undefined
+	private _tickListener: Disconnect | undefined
 	private _clock: Clock
 
 	/**
@@ -38,6 +44,7 @@ export abstract class BaseExecutor<
 		clock: Clock,
 		globalObject: any,
 	) {
+		super()
 		this._clock = clock
 		this._graph = graph
 		this._global = globalObject
@@ -99,13 +106,6 @@ export abstract class BaseExecutor<
 	}
 
 	/**
-	 * Returns an observable for observing when layout ticks have occurred
-	 */
-	public get onTick(): Observable<Progress> {
-		return this._onTick
-	}
-
-	/**
 	 * Configures the executor
 	 * @param config The layout config
 	 */
@@ -133,7 +133,7 @@ export abstract class BaseExecutor<
 
 		return new Promise(resolve => {
 			this.executeStep()
-			this._tickListener = this._onTick.subscribe(() => {
+			this._tickListener = this.on('tick', () => {
 				if (this._complete) {
 					resolve(this.getProgress())
 					this.clearTickListener()
@@ -147,7 +147,7 @@ export abstract class BaseExecutor<
 	 */
 	private clearTickListener() {
 		if (this._tickListener) {
-			this._tickListener.unsubscribe()
+			this._tickListener()
 			this._tickListener = undefined
 		}
 	}
@@ -170,7 +170,7 @@ export abstract class BaseExecutor<
 		}
 
 		// Emit the tick event
-		this._onTick.next(this.getProgress())
+		this.emit('tick', this.getProgress())
 	}
 
 	/**

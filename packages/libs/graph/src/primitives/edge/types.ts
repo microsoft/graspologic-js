@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { InputEdge } from '../../graph'
 import { Pos2D, Pos3D } from '../types'
 import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
 
@@ -88,10 +89,9 @@ export interface Edge extends MemoryReader {
 
 	/**
 	 * @internal
-	 * The data?
-	 * TODO: Is this even used?
+	 * The edge data
 	 */
-	data: any | undefined
+	data: EdgeStore | undefined
 
 	/**
 	 * @internal
@@ -112,6 +112,18 @@ export interface Edge extends MemoryReader {
 	targetIndex: number
 
 	// #endregion
+
+	/**
+	 * Loads the edge from the given raw input data
+	 * @param data The raw data for the edge
+	 * @param nodeIndexMap The index mapping for node ids to indices
+	 * @param defaultEdgeWeight The default edge weight to use
+	 */
+	load(
+		data: InputEdge,
+		nodeIndexMap: Map<string, number>,
+		defaultEdgeWeight?: number,
+	): void
 }
 
 /**
@@ -119,7 +131,7 @@ export interface Edge extends MemoryReader {
  */
 export type EdgeStore = ReaderStore<Edge>
 
-export interface AnimatableEdge {
+export interface AnimatableEdge extends Edge {
 	/**
 	 * Animates the source position to __position__ over __duration__
 	 * @param position The position to animate to

@@ -28,7 +28,7 @@ function createWorker(type) {
 const layoutManager = new LayoutWorkerManager(() => createWorker('fa2'))
 
 // A layout tick was performed
-layoutManager.onProgress.subscribe(() => {
+layoutManager.on('progress', () => {
 	// As the layout progresses, tell the graph renderer to rebind to the underlying data
 	renderer.rebind()
 

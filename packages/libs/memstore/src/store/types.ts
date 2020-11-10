@@ -35,11 +35,11 @@ export interface StoreConfig {
 	allocatedOnCreate?: boolean
 
 	/**
-	 * If true, notification events will be emitted
+	 * If true, items within the store will support animation
 	 *
-	 * @defaultValue false
+	 * @defaultValue true
 	 */
-	notifications?: boolean
+	animation?: boolean
 }
 
 /**

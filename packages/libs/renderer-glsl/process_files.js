@@ -55,6 +55,7 @@ async function processGlslFiles(src, cjsDest, esmDest) {
 
 async function execute() {
 	await createOutputFolders()
+	// eslint-disable-next-line @essex/adjacent-await
 	await Promise.all([
 		processGlslFiles('src/easings', 'dist/cjs/easings', 'dist/esm/easings'),
 		processGlslFiles('src/shaders', 'dist/cjs/shaders', 'dist/esm/shaders'),
