@@ -3,11 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Model } from '@luma.gl/engine'
-import { cssToDevicePixels } from '@luma.gl/gltools'
-import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
-
 // This is causing problems downstream for some reason
 // @ts-ignore
+import { cssToDevicePixels } from '@luma.gl/gltools'
+import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 import createModel from './model'
 import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import {
