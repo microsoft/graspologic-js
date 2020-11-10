@@ -95,10 +95,9 @@ export interface Node extends MemoryReader {
 
 	/**
 	 * @internal
-	 * The data?
-	 * TODO: Is this even used?
+	 * The node data
 	 */
-	data: any | undefined
+	data: NodeStore | undefined
 
 	/**
 	 * @internal

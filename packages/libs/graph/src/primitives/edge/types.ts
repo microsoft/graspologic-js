@@ -89,10 +89,9 @@ export interface Edge extends MemoryReader {
 
 	/**
 	 * @internal
-	 * The data?
-	 * TODO: Is this even used?
+	 * The edge data
 	 */
-	data: any | undefined
+	data: EdgeStore | undefined
 
 	/**
 	 * @internal

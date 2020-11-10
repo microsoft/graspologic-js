@@ -12,9 +12,6 @@ const mountWithRef = (el: JSX.Element, options?: any) => {
 	return mount(<WithRef />, options)
 }
 
-/**
- * TODO: This is skipped because somewhere in a dependency chain we import from @essex-js-toolkit/hooks, which is not published with CommonJS.
- */
 describe('The Graph View', () => {
 	it('can mock luma', () => {
 		// eslint-disable-next-line @typescript-eslint/no-var-requires
