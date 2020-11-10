@@ -40,10 +40,6 @@ function useOpenOrdManagerInstance(
 	}, [algorithm])
 }
 
-function getBlobFromText(text: string): Blob {
-	return new Blob([text], { type: 'text/javascript' })
-}
-
 function useApplyConfiguration(
 	algorithm: LayoutAlgorithm,
 	manager: LayoutWorkerManager<OpenOrdConfiguration, OpenOrdTickProgress>,

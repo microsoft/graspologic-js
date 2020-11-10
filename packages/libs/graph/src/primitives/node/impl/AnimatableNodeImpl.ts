@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Pos3D, Pos2D, ClassType } from '../../types'
-import { AnimatableNode, Node } from '../types'
-import { MemoryReader } from '@graspologic/memstore'
-import { NodeImpl } from './NodeImpl'
 import { InputNode } from '../../../graph'
+import { Pos3D, Pos2D, ClassType } from '../../types'
 import { nodeMemoryLayout } from '../layout'
+import { AnimatableNode, Node } from '../types'
+import { NodeImpl } from './NodeImpl'
+import { MemoryReader } from '@graspologic/memstore'
 
 const ALL_ATTRIBUTES = '*'
 

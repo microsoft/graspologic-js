@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Renderable, RenderOptions } from '@graspologic/common'
 import { DataboundRenderable } from './DataboundRenderable'
+import { Renderable, RenderOptions } from '@graspologic/common'
 
 /**
  * Base class for a renderable that operates on Vertex data

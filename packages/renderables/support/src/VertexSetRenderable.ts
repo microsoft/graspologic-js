@@ -2,13 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import {
-	GL_DEPTH_TEST,
-	GL_FLOAT,
-	GL_TRIANGLE_STRIP,
-	adaptMemoryLayoutToLuma,
-	createIdFactory,
-} from '@graspologic/luma-utils'
 import { Model, Geometry } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
 import {
@@ -16,10 +9,17 @@ import {
 	areColorsEqual,
 	PropertyContainer,
 } from '@graspologic/common'
-import { DataboundRenderable } from '@graspologic/renderables-base'
 
 import { Node } from '@graspologic/graph'
+import {
+	GL_DEPTH_TEST,
+	GL_FLOAT,
+	GL_TRIANGLE_STRIP,
+	adaptMemoryLayoutToLuma,
+	createIdFactory,
+} from '@graspologic/luma-utils'
 import { createLayoutBuilder } from '@graspologic/memstore'
+import { DataboundRenderable } from '@graspologic/renderables-base'
 import highlightFS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.fs.glsl'
 import highlightVS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.vs.glsl'
 

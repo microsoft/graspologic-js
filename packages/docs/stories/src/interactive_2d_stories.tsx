@@ -538,9 +538,6 @@ const NodeLayoutExampleMutable: React.FC<NodeLayoutExampleProps> = ({
 	)
 }
 
-interface NodeLayoutExampleProps {
-	data: InputGraph
-}
 const NodeLayoutExampleImmutable: React.FC<NodeLayoutExampleProps> = ({
 	data,
 }) => {

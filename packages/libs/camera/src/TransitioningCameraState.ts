@@ -3,9 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Vector3, Quaternion } from 'math.gl'
-import { lerp3, slerp } from '@graspologic/luma-utils'
-import { Interpolator, EventEmitter } from '@graspologic/common'
 import { CameraState } from './CameraState'
+import { Interpolator, EventEmitter } from '@graspologic/common'
+import { lerp3, slerp } from '@graspologic/luma-utils'
 
 export interface TransitioningCameraStateEvents {
 	/**

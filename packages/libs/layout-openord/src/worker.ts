@@ -6,13 +6,13 @@
 import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
 import { createInstance } from './factory'
 import { OpenOrdConfiguration } from './types'
+import { Disconnect } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
 import {
 	WorkerMessage,
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
-import { Disconnect } from '@graspologic/common'
 
 let executor: OpenOrdLayoutExecutor | undefined
 let subscription: Disconnect | undefined

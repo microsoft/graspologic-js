@@ -2,6 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { Model, Geometry } from '@luma.gl/engine'
+import { Texture2D } from '@luma.gl/webgl'
+import { RenderOptions, PropertyContainer } from '@graspologic/common'
 import {
 	GL_RGBA,
 	GL_LINEAR,
@@ -13,10 +16,7 @@ import {
 	GL_TRIANGLE_STRIP,
 	createIdFactory,
 } from '@graspologic/luma-utils'
-import { Model, Geometry } from '@luma.gl/engine'
-import { Texture2D } from '@luma.gl/webgl'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import { RenderOptions, PropertyContainer } from '@graspologic/common'
 
 import labelFS from '@graspologic/renderer-glsl/dist/esm/shaders/label.fs.glsl'
 import labelVS from '@graspologic/renderer-glsl/dist/esm/shaders/label.vs.glsl'

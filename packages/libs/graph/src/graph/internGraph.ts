@@ -3,16 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { randBetween } from '../helpers'
-import {
-	Node,
-	Edge,
-	createNodeStore,
-	createEdgeStore,
-	Shape,
-	NodeImpl,
-} from '../primitives'
+import { Node, Edge, createNodeStore, createEdgeStore } from '../primitives'
 import { GraphContainer } from './GraphContainer'
-import { InputGraph, InputEdge, InputNode } from './types'
+import { InputGraph, InputNode } from './types'
 
 /**
  * The set of graph options to intern a pojo graph into a GraphContainer

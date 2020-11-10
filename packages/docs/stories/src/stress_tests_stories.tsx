@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { componentColorToBGRA } from '@graspologic/renderer'
 import { number } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { StressTestVertices2D } from './components/StressTestVertices2D'
 import { StressTestVertices3D } from './components/StressTestVertices3D'
+import { componentColorToBGRA } from '@graspologic/renderer'
 
 const COL_RANGE = { range: true, min: 0.0, max: 1.0, step: 0.01 }
 

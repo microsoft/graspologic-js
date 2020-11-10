@@ -4,8 +4,8 @@
  */
 import { useContext, useEffect, useMemo } from 'react'
 import { GraphRendererContext } from '../../GraphView/context'
-import { GraphRenderer, UsesWebGL, ColorVector } from '@graspologic/renderer'
 import { VertexSetRenderable } from '@graspologic/renderables-support'
+import { GraphRenderer, UsesWebGL, ColorVector } from '@graspologic/renderer'
 
 /**
  * Adds a renderable to GraphView which will highlight nodes as they are hovered over

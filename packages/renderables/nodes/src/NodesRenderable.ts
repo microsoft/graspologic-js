@@ -3,12 +3,21 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Model } from '@luma.gl/engine'
+import { cssToDevicePixels } from '@luma.gl/gltools'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 
 // This is causing problems downstream for some reason
 // @ts-ignore
-import { cssToDevicePixels } from '@luma.gl/gltools'
+import createModel from './model'
 import { readTweenEndTime, restartTween } from '@graspologic/animation'
+import {
+	Bounds3D,
+	RenderOptions,
+	RenderConfiguration,
+	ItemBasedRenderable,
+	BoundedRenderable,
+	EventsMixin,
+} from '@graspologic/common'
 import { NodeStore, Node, nodeType } from '@graspologic/graph'
 import {
 	createIdFactory,
@@ -18,16 +27,7 @@ import {
 	PickingColor,
 } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-import {
-	Bounds3D,
-	RenderOptions,
-	RenderConfiguration,
-	ItemBasedRenderable,
-	BoundedRenderable,
-	EventsMixin,
-} from '@graspologic/common'
 
-import createModel from './model'
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 
 const getNextId = createIdFactory('NodesInstance')

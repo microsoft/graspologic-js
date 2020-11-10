@@ -2,8 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
-import { DirtyableRenderable } from '@graspologic/renderables-base'
+import { Model } from '@luma.gl/engine'
+import { Buffer } from '@luma.gl/webgl'
+
+import createModel from './model'
+import { restartTween, readTween } from '@graspologic/animation'
 import {
 	processMinMaxBounds,
 	Bounds3D,
@@ -12,14 +15,11 @@ import {
 	ItemBasedRenderable,
 	BoundedRenderable,
 } from '@graspologic/common'
-import { Model } from '@luma.gl/engine'
-import { Buffer } from '@luma.gl/webgl'
-
-import createModel from './model'
-import { restartTween, readTween } from '@graspologic/animation'
 import type { EdgeStore, Edge } from '@graspologic/graph'
-import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
 import { edgeType } from '@graspologic/graph'
+import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
+import { DirtyableRenderable } from '@graspologic/renderables-base'
+import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
 
 const getNextId = createIdFactory('EdgesInstance')
 

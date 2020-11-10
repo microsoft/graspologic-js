@@ -25,7 +25,6 @@
 		"@graspologic/graph": "workspace:*",
 		"@graspologic/layout-core": "workspace:*",
 		"core-js": "^3.6.5",
-		"rxjs": "7.0.0-beta.8",
 		"typedoc": "0.19.2"
 	},
 	"devDependencies": {

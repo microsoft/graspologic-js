@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { MemoryLayout } from '../specification'
-import { IdStore, StoreConfig } from '../store'
+import { IdStore } from '../store'
 
 /**
  * An object for interacting with the raw data for an item stored in an ArrayStore

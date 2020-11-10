@@ -659,7 +659,7 @@ export class WebGLGraphRenderer
 		// i.e. type: Node, store: NodeStore, renderable: NodeRenderable
 		for (const renderable of this.scene.renderables()) {
 			const hasData = (renderable as any) as ItemBasedRenderable
-			if (hasData.itemType == type) {
+			if (hasData.itemType === type) {
 				hasData.data = store
 			}
 		}
@@ -694,7 +694,7 @@ export class WebGLGraphRenderer
 		let bounds: Bounds3D | undefined
 		for (const renderable of this.scene.renderables()) {
 			const boundedRenderable = (renderable as any) as BoundedRenderable
-			if (boundedRenderable.computeBounds != undefined) {
+			if (boundedRenderable.computeBounds !== undefined) {
 				const newBounds = boundedRenderable.computeBounds()
 				if (!bounds) {
 					bounds = newBounds

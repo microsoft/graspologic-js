@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { InputEdge } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
 import { AnimatableEdge, Edge } from '../types'
-import { MemoryReader } from '@graspologic/memstore'
 import { EdgeImpl } from './EdgeImpl'
-import { InputEdge } from '../../../graph'
+import { MemoryReader } from '@graspologic/memstore'
 
 const ALL_ATTRIBUTES = '*'
 

@@ -5,9 +5,14 @@
 // This is causing problems downstream for some reason
 // @ts-ignore
 import { setParameters } from '@luma.gl/gltools'
-import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 import { DataStore, Scene, Primitive } from '../../types'
 import { Camera } from '@graspologic/camera'
+import {
+	Renderable,
+	RenderConfiguration,
+	RenderOptions,
+	Interpolator,
+} from '@graspologic/common'
 import {
 	Edge,
 	Node,
@@ -17,12 +22,7 @@ import {
 	NodeStore,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
-import {
-	Renderable,
-	RenderConfiguration,
-	RenderOptions,
-	Interpolator,
-} from '@graspologic/common'
+import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 
 /**
  * @internal
@@ -106,7 +106,7 @@ export class Scenegraph implements Scene {
 				const primitive = primitives[i]
 				if (primitive.type === nodeType) {
 					this.nodeData.receive(primitive as Node)
-				} else if (primitive.type == edgeType) {
+				} else if (primitive.type === edgeType) {
 					this.edgeData.receive(primitive as Edge)
 				} else {
 					this.data.retrieve(primitive.type)?.receive(primitive)
@@ -115,7 +115,7 @@ export class Scenegraph implements Scene {
 		} else {
 			if (primitives.type === nodeType) {
 				this.nodeData.receive(primitives as Node)
-			} else if (primitives.type == edgeType) {
+			} else if (primitives.type === edgeType) {
 				this.edgeData.receive(primitives as Edge)
 			} else {
 				this.data.retrieve(primitives.type)?.receive(primitives)
@@ -133,7 +133,7 @@ export class Scenegraph implements Scene {
 				const primitive = primitives[i]
 				if (primitive.type === nodeType) {
 					this.nodeData.remove(primitive.storeId)
-				} else if (primitive.type == edgeType) {
+				} else if (primitive.type === edgeType) {
 					this.edgeData.remove(primitive.storeId)
 				} else {
 					this.data.retrieve(primitive.type)?.remove(primitive.storeId)
@@ -142,7 +142,7 @@ export class Scenegraph implements Scene {
 		} else {
 			if (primitives.type === nodeType) {
 				this.nodeData.remove(primitives.storeId)
-			} else if (primitives.type == edgeType) {
+			} else if (primitives.type === edgeType) {
 				this.edgeData.remove(primitives.storeId)
 			} else {
 				this.data.retrieve(primitives.type)?.remove(primitives.storeId)
@@ -163,7 +163,6 @@ export class Scenegraph implements Scene {
 	 * @see {Scene.primities}
 	 */
 	public *primitives(ids?: Set<string>, scan = false): Iterable<Primitive> {
-		// TODO: PrimitiveStore should be able to return an iterator
 		for (const store of this.data) {
 			const iterator = scan ? store.scan() : store
 			for (const prim of iterator) {

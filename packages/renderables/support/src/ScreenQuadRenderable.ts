@@ -3,6 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 
+import { Model, Geometry } from '@luma.gl/engine'
+import { Texture2D, Framebuffer } from '@luma.gl/webgl'
+import { Renderable, RenderOptions } from '@graspologic/common'
 import {
 	GL_RGBA,
 	GL_LINEAR,
@@ -19,10 +22,6 @@ import {
 	createIdFactory,
 } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
-
-import { Model, Geometry } from '@luma.gl/engine'
-import { Texture2D, Framebuffer } from '@luma.gl/webgl'
-import { Renderable, RenderOptions } from '@graspologic/common'
 
 import screenQuadFS from '@graspologic/renderer-glsl/dist/esm/shaders/screenQuad.fs.glsl'
 import screenQuadVS from '@graspologic/renderer-glsl/dist/esm/shaders/screenQuad.vs.glsl'

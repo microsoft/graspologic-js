@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { TickingClock } from '../clock'
-import { GraphContainer } from '@graspologic/graph'
 import { Disconnect, EventEmitter } from '@graspologic/common'
+import { GraphContainer } from '@graspologic/graph'
 
 export interface BaseExecutorEvents<Progress> {
 	/**

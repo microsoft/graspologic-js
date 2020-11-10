@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Matrix4, Quaternion, Vector3 } from 'math.gl'
-import { Bounds } from '@graspologic/common'
 import { CameraState } from './CameraState'
+import { Bounds } from '@graspologic/common'
 
 /**
  * @internal

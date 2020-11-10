@@ -3,10 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Matrix4, Quaternion, Vector3 } from 'math.gl'
-import { Bounds, EventEmitter } from '@graspologic/common'
 import { CameraState } from './CameraState'
 import { TransitioningCameraState } from './TransitioningCameraState'
 import { computeState } from './computeState'
+import { Bounds, EventEmitter } from '@graspologic/common'
 
 const DEFAULT_WIDTH = 500
 const DEFAULT_HEIGHT = 500

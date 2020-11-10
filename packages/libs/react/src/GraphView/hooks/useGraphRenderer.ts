@@ -4,8 +4,8 @@
  */
 import * as React from 'react'
 import { useRef, useEffect, useState } from 'react'
-import { WebGLGraphRenderer, GraphRenderer } from '@graspologic/renderer'
 import { GraphContainer } from '@graspologic/graph'
+import { WebGLGraphRenderer, GraphRenderer } from '@graspologic/renderer'
 
 /**
  * Creates a new GraphRenderer instance
@@ -48,7 +48,7 @@ export function useGraphRenderer(
 				}
 			}
 		}
-	}, [nodeCountHint, edgeCountHint, drawEdges])
+	}, [nodeCountHint, edgeCountHint, drawEdges, container])
 
 	return [ref, renderer]
 }

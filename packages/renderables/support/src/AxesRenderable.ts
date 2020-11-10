@@ -4,8 +4,8 @@
  */
 import { Matrix4 } from 'math.gl'
 import { RenderOptions, RenderConfiguration } from '@graspologic/common'
-import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { createEdgeStore } from '@graspologic/graph'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
 
 const AXIS_COLORS = [0xff0000ff, 0xff00ff00, 0xffff0000]
 const X = [0.1, 0, 0]

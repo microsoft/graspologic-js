@@ -5,6 +5,7 @@
 
 import { Model, Geometry } from '@luma.gl/engine'
 import { picking } from '@luma.gl/shadertools'
+import { nodeMemoryLayout } from '@graspologic/graph'
 import {
 	tween,
 	adaptMemoryLayoutToLuma,
@@ -12,7 +13,6 @@ import {
 	GL_FLOAT,
 	GL_TRIANGLES,
 } from '@graspologic/luma-utils'
-import { nodeMemoryLayout } from '@graspologic/graph'
 import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
 
 const GL_TYPE_MAPPINGS = {

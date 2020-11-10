@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { InputNode } from '../../../graph'
 import { Shape } from '../../types'
 import { nodeMemoryLayout, nodeType, ADDITIONAL_NODE_PROPS } from '../layout'
 import { Node } from '../types'
 import { createReader } from '@graspologic/memstore'
-import { InputNode } from '../../../graph'
 
 // Cache some of the attributes for the "load"
 const positionTypedOffset = nodeMemoryLayout.get('position')!.typedOffset

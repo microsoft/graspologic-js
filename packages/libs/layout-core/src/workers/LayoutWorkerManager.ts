@@ -7,8 +7,8 @@ import {
 	WorkerMessage,
 	ExecuteMessagePayload,
 } from './types'
-import { GraphContainer } from '@graspologic/graph'
 import { EventEmitter } from '@graspologic/common'
+import { GraphContainer } from '@graspologic/graph'
 
 export interface LayoutWorkerManagerEvents<TickProgress> {
 	/**

@@ -43,7 +43,7 @@ export interface StoreConfig {
 }
 
 /**
- * A handlernotification attribute has been updated
+ * A handler for when an attribute has been updated
  * @param index The index of the item
  * @param attribute The name of the attribute that was updated, if undefined, all attributes have been changed
  * @param value The new value of the attribute

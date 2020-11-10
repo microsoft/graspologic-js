@@ -6,13 +6,13 @@
 import { FA2LayoutExecutor } from './FA2LayoutExecutor'
 import { createInstance } from './factory'
 import { FA2Configuration } from './types'
+import { Disconnect } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
 import {
 	WorkerMessage,
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
-import { Disconnect } from '@graspologic/common'
 
 /**
  * The ForceAtlas2 layout worker
