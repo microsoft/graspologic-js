@@ -5499,7 +5499,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regenerator-runtime", null],
             ["rollup", "npm:2.32.1"],
             ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:7.0.2"],
-            ["rxjs", "npm:7.0.0-beta.8"],
             ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.19.2"]
           ],
           "packagePeers": [
@@ -5539,7 +5538,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regenerator-runtime", "npm:0.13.7"],
             ["rollup", "npm:2.32.1"],
             ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:7.0.2"],
-            ["rxjs", "npm:7.0.0-beta.8"],
             ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.19.2"]
           ],
           "packagePeers": [
@@ -5573,7 +5571,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-run-all", "npm:4.1.5"],
             ["rollup", "npm:2.32.1"],
             ["rollup-plugin-terser", "virtual:affad77dfc5d3ec3521a8b3fb23b49a0eb61bac53d1a097d796e106a7ce4d2903c4823f455b12f956ff9932905000ffca84816d4760d3f037c4c9cb272a18294#npm:7.0.2"],
-            ["rxjs", "npm:7.0.0-beta.8"],
             ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.19.2"]
           ],
           "linkType": "SOFT",
