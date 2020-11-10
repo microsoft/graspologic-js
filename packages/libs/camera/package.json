@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/camera",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"license": "MIT",
 	"description": "Contains a camera implementation used within @graspologic",
 	"main": "src/index.ts",
