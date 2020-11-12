@@ -303,12 +303,6 @@ export interface RenderOptions {
 
 	/**
 	 * @internal
-	 * The current interpolation percentage for the camera transitioning from 3d to 2d
-	 */
-	interpolation: number
-
-	/**
-	 * @internal
 	 * If true, deselected nodes should be hidden
 	 */
 	hideDeselected: boolean

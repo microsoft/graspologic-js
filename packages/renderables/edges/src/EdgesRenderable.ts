@@ -55,7 +55,9 @@ export class EdgesRenderable
 		const {
 			model: translucentModel,
 			buffer: translucentModelBuffer,
-		} = createModel(gl, getNextId(), edgeVS)
+		} = createModel(gl, getNextId(), edgeVS, {
+			ALPHA_MODE: 1,
+		})
 
 		this.translucentModel = translucentModel
 		this.translucentModelBuffer = translucentModelBuffer

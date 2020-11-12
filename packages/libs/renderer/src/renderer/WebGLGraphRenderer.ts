@@ -37,6 +37,7 @@ import {
 	fastDebounce,
 	ItemBasedRenderable,
 	BoundedRenderable,
+	Interpolator,
 } from '@graspologic/common'
 import {
 	Node,
@@ -90,6 +91,7 @@ export class WebGLGraphRenderer
 	implements GraphRenderer, UsesWebGL {
 	// Observable-pattern handler lists
 	private _hoveredVertex: Node | undefined
+	private dimensionInterpolator: Interpolator
 	private _dataDomain: Bounds3D = DEFAULT_BOUNDS
 
 	// Plugins
@@ -112,6 +114,7 @@ export class WebGLGraphRenderer
 	private _engineTime = 0
 	private _lastRenderTime = -1
 	private _startTime = Date.now()
+	private _forceDraw = false
 
 	private __destroyed = false
 	private animationLoopRunning = false
@@ -176,6 +179,11 @@ export class WebGLGraphRenderer
 			},
 		})
 
+		this.dimensionInterpolator = new Interpolator(config.interpolationTime)
+
+		// Start off in the correct position
+		this.dimensionInterpolator.current = 1
+
 		for (const renderable of scene.renderables()) {
 			if (renderable instanceof NodesRenderable) {
 				this.nodes = renderable
@@ -190,6 +198,13 @@ export class WebGLGraphRenderer
 				this.emit('vertexHovered', node)
 			})
 		}
+
+		config.onInterpolationTimeChanged(
+			value => (this.dimensionInterpolator.interpolationTime = value),
+		)
+		config.onIs3DChanged(() => {
+			this.dimensionInterpolator.reset()
+		})
 
 		this.config.onHideDeselectedChanged(this.makeDirty)
 		this.on('vertexHovered', node => {
@@ -230,7 +245,7 @@ export class WebGLGraphRenderer
 		const camera = new Camera()
 
 		/** set up the scene */
-		const scene = new Scenegraph(gl!, config, camera, store)
+		const scene = new Scenegraph(gl!, config, store)
 
 		// create nodes renderable
 		const nodes = new NodesRenderable(gl!, config)
@@ -471,7 +486,7 @@ export class WebGLGraphRenderer
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
 		if (!this._scene.needsRedraw) {
-			this._scene.makeDirty()
+			this._forceDraw = true
 			this.emit('dirty')
 		}
 	}
@@ -583,6 +598,17 @@ export class WebGLGraphRenderer
 		this._lastRenderTime = Date.now()
 		const time = Date.now() - this._startTime
 		if (this.animationProps) {
+			this.dimensionInterpolator.tick(time)
+			const modelViewMatrix = this.camera
+				.computeViewMatrix(this.config.is3D)
+				.scale([
+					1,
+					1,
+					this.config.is3D
+						? this.dimensionInterpolator.current
+						: 1.0 - this.dimensionInterpolator.current,
+				])
+
 			const props = {
 				startTime: this._startTime,
 				time,
@@ -592,7 +618,15 @@ export class WebGLGraphRenderer
 				useDevicePixels: this.animationProps.useDevicePixels,
 				_mousePosition: this.animationProps._mousePosition,
 				weightToPixel: this.computeWeightToPixel(this._dataDomain),
+				projectionMatrix: this.camera.projection,
+				modelViewMatrix,
+				force:
+					this._forceDraw ||
+					this.camera.isMoving ||
+					this.dimensionInterpolator.current < 1.0,
 			}
+
+			this._forceDraw = false
 
 			this.camera.tick(time)
 

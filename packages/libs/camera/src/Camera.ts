@@ -31,8 +31,8 @@ export class Camera extends EventEmitter<CameraEvents> {
 	private _isUserMoving = false
 	private _projectionSettings = {
 		aspect: 1,
-		near: 0.1,
-		far: 1000,
+		near: 0.001,
+		far: 100000,
 		fov: DEFAULT_FOV,
 	} as any
 
@@ -88,19 +88,7 @@ export class Camera extends EventEmitter<CameraEvents> {
 	 * @param duration How long the transition should take
 	 */
 	public viewBounds(bounds: Bounds, duration = 0) {
-		const newState = computeState(bounds, this.projection)
-
-		// Distance from origin on the z axis
-		const zDist = -newState.position.z
-
-		// Update the projection to make sure the graph is in view based on the bounds
-		Object.assign(this._projectionSettings, {
-			near: zDist / 100,
-			far: zDist * 100,
-		})
-		this.projection = new Matrix4().perspective(this._projectionSettings)
-
-		this.transitionToState(newState, duration)
+		this.transitionToState(computeState(bounds, this.projection), duration)
 	}
 
 	/**

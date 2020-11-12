@@ -99,13 +99,6 @@ export interface Scene {
 	/**
 	 * @internal
 	 *
-	 * Marks the scene as dirty
-	 */
-	makeDirty(): void
-
-	/**
-	 * @internal
-	 *
 	 * Destroys the scene
 	 */
 	destroy(): void
