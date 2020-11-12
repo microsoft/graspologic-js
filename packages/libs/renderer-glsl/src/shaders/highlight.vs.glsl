@@ -11,7 +11,6 @@ attribute float aRadius;
 attribute float aShape;
 
 uniform mat4 uModelView;
-uniform float uWeightScale;
 uniform mat4 uProjection;
 uniform float uMinRadius;
 uniform float uMaxRadius;
@@ -21,11 +20,12 @@ varying vec2 vVertex;
 varying float vRadius;
 varying float vShape;
 varying vec4 vColor;
+uniform vec2 uScreenSize;
 
 void main() {
   float radius_scale = aShape == 3.0 ? SQRT_2 : 1.0;
 
-  vRadius = aRadius > 0.0 ? aRadius * radius_scale : (uMinRadius + aWeight * (uMaxRadius - uMinRadius)) * uWeightScale;
+  vRadius = aRadius > 0.0 ? aRadius * radius_scale : ((uMinRadius + aWeight * (uMaxRadius - uMinRadius)) / uScreenSize.x);
   vShape = aShape;
 
   vec3 rotatedVert = aVertex;

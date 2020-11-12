@@ -21,7 +21,9 @@
 		"lint:fix": "essex lint --docs --fix",
 		"unit_test": "jest --ci --coverage",
 		"prettify": "essex prettify",
-		"storybook": "yarn build:glsl && yarn start:storybook",
+		"start_glsl": "yarn start:glsl",
+		"start_storybook": "yarn start:storybook",
+		"storybook": "run-p start_glsl start_storybook",
 		"build_glsl": "yarn build:glsl",
 		"git_is_clean": "essex git-is-clean",
 		"ci": "npm-run-all -s build_glsl -p build_all bundle_all lint unit_test -s git_is_clean"

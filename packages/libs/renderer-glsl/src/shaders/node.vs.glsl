@@ -27,7 +27,6 @@ uniform mat4 uModelView;
 uniform mat4 uProjection;
 uniform float uMinRadius;
 uniform float uMaxRadius;
-uniform float uWeightScale;
 uniform vec2 uScreenSize;
 uniform highp float uTime;
 
@@ -50,7 +49,7 @@ void main() {
   // because when we calculate our fragment, we scale a square, and then make a circle out of that.
   float radius_scale = aShape == 3.0 ? SQRT_2 : 1.0;
 
-  vRadius = aRadius > 0.0 ? aRadius * radius_scale : (uMinRadius + aWeight * (uMaxRadius - uMinRadius)) * uWeightScale;
+  vRadius = aRadius > 0.0 ? aRadius * radius_scale : ((uMinRadius + aWeight * (uMaxRadius - uMinRadius)) / uScreenSize.x);
   vShape = aShape;
 
   vec3 position = tween_attribute(aPosition_start, aPosition, aPosition_tween, uTime);
@@ -63,15 +62,11 @@ void main() {
 
   vVertex = (aVertex * vRadius).xy;
   gl_Position = uProjection * uModelView * vec4(position + sized, 1.0);
-  vColor = tween_attribute(aColor_start, aColor, aColor_tween, uTime) / 255.0;
 
-  vColor.a = aSaturation;
-  // float f = 1.0 - aSaturation;
-  // float L = (0.3 * vColor.r + 0.6 * vColor.g + 0.1 * vColor.b);
-  // L += (1.0 - L) * 0.5;
-  // vColor.r += f * (L - vColor.r);
-  // vColor.g += f * (L - vColor.g);
-  // vColor.b += f * (L - vColor.b);
+  vColor = vec4(
+    (tween_attribute(aColor_start, aColor, aColor_tween, uTime) / 255.0).rgb,
+    aSaturation
+  );
 
   /* calculate the center of the node with respect to the screen (-1, -1) to (1, 1) */
   vec4 center =  uProjection * uModelView * vec4(position, 1.0);

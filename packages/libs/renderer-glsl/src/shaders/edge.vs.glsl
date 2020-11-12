@@ -7,7 +7,6 @@ attribute vec3 aTargetPosition_start;
 attribute vec3 aTargetPosition;
 attribute vec2 aTargetPosition_tween;
 
-
 attribute float aWeight;
 attribute vec4 aColor;
 attribute vec4 aColor2;
@@ -29,7 +28,7 @@ varying vec2 vEdge;
 varying float vWidth;
 
 vec2 computeWidth(float w) {
-    return vec2(1.0 / uScreenSize.x, 1.0 / uScreenSize.y) * (uMinWidth + (uMaxWidth - uMinWidth) * aWeight) * w * 0.5;
+    return vec2(1.0, 1.0) * (uMinWidth + (uMaxWidth - uMinWidth) * aWeight) * 0.5;
 }
 
 vec2 clipToScreen(vec4 clip, float aspect) {
@@ -52,65 +51,51 @@ vec2 computeOffsetPerspective(vec2 direction, float aspect) {
     return ret;
 }
 
+/**
+ * Computes a normal that is perpendicular to the line formed from the given two points
+ */
+vec2 computeLineNormal(vec3 start, vec3 end) {
+  // moves the line to origin (0, 0)
+  vec2 normal = end.xy - start.xy;
+
+  // rotate the line by 90 degress counter clockwise
+  normal = vec2(normal.y, -normal.x);
+
+  // scale it by the line length to make it a unit length
+  normal /= length(normal);
+
+  return normal;
+}
+
 void main() {
+
+  // Where is node A currently at
   vec3 nodeA = tween_attribute(aSourcePosition_start, aSourcePosition, aSourcePosition_tween, uTime);
+
+  // Where is node B currently at
   vec3 nodeB = tween_attribute(aTargetPosition_start, aTargetPosition, aTargetPosition_tween, uTime);
-  
-  vec4 clipA = uProjection * uModelView * vec4(nodeA, 1.0);
-  vec4 clipB = uProjection * uModelView * vec4(nodeB, 1.0);
-  vec4 diff = clipB - clipA;
-  vec4 position = clipA + diff * aVertex.y;
 
-  float pixelAspect = uScreenSize.x / uScreenSize.y;
-  vec2 screenA = clipToScreen(clipA, pixelAspect);
-  vec2 screenB = clipToScreen(clipB, pixelAspect);
-  vec2 direction = normalize(screenB - screenA);
-  vec2 offset;
+  // Linear interpolate where along the edge the current vertex is
+  vec3 edgePosition = mix(nodeA, nodeB, aVertex.x);
 
-  if (uConstantSize == 1.0) {
-      vec2 width = computeWidth(position.w);
-      offset = computeOffsetConstant(width, direction);
-  } else {
-      offset = computeOffsetPerspective(direction, pixelAspect);
-      offset *= 0.5 + ((position.z / max(uScreenSize.x, uScreenSize.y)) * 0.5);
-  }
+  // Find the normal for the edge (a line perpendicular to the edge)
+  vec2 edgeNormal = computeLineNormal(nodeA, nodeB);
 
-  gl_Position = position + vec4(offset, 0.01, 0.0);
-  vCenter = (position.xy / position.w) * uScreenSize * 0.5 + uScreenSize * 0.5;
-  vEdge = ((position.xy + offset) / position.w) * uScreenSize * 0.5 + uScreenSize * 0.5;
-  vWidth = length(vEdge - vCenter);
+  // The edge width in normalized device coordinates
+  // i.e. a size of 1 will take up half of the screen, cause normalized device coordinates are from -1 to 1
+  float edge_width = 0.01;
+  vec4 test = uProjection * uModelView * vec4(1.0);
 
-  float f;
-  float L;
-  float saturationScale;
+  // project out the edge thickness
+  edgePosition.xy += edgeNormal * (aVertex.y - 0.5) * edge_width;
 
-  vec4 color01 = aColor / 255.0;
-  vec4 color02 = aColor2 / 255.0;
+  // Position the triangle's vertex
+  gl_Position = uProjection * uModelView * vec4(edgePosition, 1.0);
 
-  #ifdef ALPHA_MODE
-  color01.a = aSaturation;
-  color02.a = aSaturation2;
-  saturationScale = 1.0 - max(step(1.0, aSaturation), step(1.0, aSaturation2));
-  #else
-  f = 1.0 - aSaturation;
-  L = (0.3 * color01.r + 0.6 * color01.g + 0.1 * color01.b);
-  L += (1.0 - L) * 0.5;
-  color01.r += f * (L - color01.r);
-  color01.g += f * (L - color01.g);
-  color01.b += f * (L - color01.b);
+  // Scale the node colors to 0 - 1
+  vec4 color1 = vec4(aColor.rgb / 255.0, aSaturation);
+  vec4 color2 = vec4(aColor2.rgb / 255.0, aSaturation2);
 
-  f = 1.0 - aSaturation2;
-  L = (0.3 * color02.r + 0.6 * color02.g + 0.1 * color02.b);
-  L += (1.0 - L) * 0.5;
-  color02.r += f * (L - color02.r);
-  color02.g += f * (L - color02.g);
-  color02.b += f * (L - color02.b);
-  saturationScale = min(step(1.0, aSaturation), step(1.0, aSaturation2));
-
-  #endif
-
-  vColor = color01 * (1.0 - aVertex.y) + color02 * aVertex.y;
-  vColor.a *= uAlpha;
-
-  gl_Position.xyz *= saturationScale;
+  // Linear interpolate the color for the current vertex
+  vColor = mix(color1, color2, aVertex.x);
 }
