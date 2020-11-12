@@ -133,7 +133,7 @@ export interface EdgeStore extends ReaderStore<Edge> {
 	/**
 	 * The current engine time
 	 */
-	engineTime: number
+	engineTime?: number
 }
 
 export interface AnimatableEdge extends Edge {

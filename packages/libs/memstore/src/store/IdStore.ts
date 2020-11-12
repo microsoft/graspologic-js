@@ -231,10 +231,10 @@ export class IdStoreImpl implements IdStore {
 	 * @inheritdoc
 	 * @see {@link IdStore.notify}
 	 */
-	public notify(id: number, attribute?: AttributeName, value?: unknown) {
+	public notify(id: number, attribute?: AttributeName) {
 		for (const handler of this.onUpdateHandlers) {
 			try {
-				handler(id, attribute, value)
+				handler(id, attribute)
 			} catch (e) {
 				console.error('caught error', e)
 			}
