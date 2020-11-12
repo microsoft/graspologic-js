@@ -49,8 +49,7 @@ class AnimationUtilImpl extends MemoryReaderInspector implements AnimationUtil {
 				oldPoint[2],
 			)
 			this.writeFloat32Vec2Attr(item, tweenAttr, duration, time)
-			item.store?.notify(item.storeId, startAttr, oldPoint)
-			item.store?.notify(item.storeId, tweenAttr, [time, duration])
+			item.store?.notify(item.storeId, tweenAttr)
 		} else if (item.layout.has(startAttr)) {
 			this.writeFloat32Vec3Attr(
 				item,
@@ -59,7 +58,7 @@ class AnimationUtilImpl extends MemoryReaderInspector implements AnimationUtil {
 				point[1],
 				point[2] || 0,
 			)
-			item.store?.notify(item.storeId, startAttr, point)
+			item.store?.notify(item.storeId, startAttr)
 		}
 		this.writeFloat32Vec3Attr(
 			item,
@@ -68,7 +67,7 @@ class AnimationUtilImpl extends MemoryReaderInspector implements AnimationUtil {
 			point[1],
 			point[2] || 0,
 		)
-		item.store?.notify(item.storeId, attribute, point)
+		item.store?.notify(item.storeId, attribute)
 	}
 
 	/**
@@ -92,14 +91,14 @@ class AnimationUtilImpl extends MemoryReaderInspector implements AnimationUtil {
 			const oldColor = this.readUint32Attr(item, attribute)
 			this.writeUint32Attr(item, startAttr, oldColor)
 			this.writeFloat32Vec2Attr(item, tweenAttr, duration, this.engineTime())
-			item.store?.notify(item.storeId, startAttr, oldColor)
-			item.store?.notify(item.storeId, tweenAttr, [this.engineTime(), duration])
+			item.store?.notify(item.storeId, startAttr)
+			item.store?.notify(item.storeId, tweenAttr)
 		} else if (item.layout.has(startAttr)) {
-			item.store?.notify(item.storeId, startAttr, color)
+			item.store?.notify(item.storeId, startAttr)
 			this.writeUint32Attr(item, startAttr, color)
 		}
 		this.writeUint32Attr(item, attribute, color)
-		item.store?.notify(item.storeId, attribute, color)
+		item.store?.notify(item.storeId, attribute)
 	}
 }
 

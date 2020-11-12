@@ -51,7 +51,6 @@ export interface StoreConfig {
 export type AttributeUpdatedHandler = (
 	index: number,
 	attribute?: AttributeName,
-	value?: unknown,
 ) => void
 
 /**

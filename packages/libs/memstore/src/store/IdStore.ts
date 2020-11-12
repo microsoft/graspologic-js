@@ -71,9 +71,8 @@ export interface IdStore {
 	 * Notifies the PrimitiveStore of an Attribute change externally
 	 * @param storeId The store id
 	 * @param attribute The attribute that changed
-	 * @param value The optional value, if undefined, all the attributes have changed
 	 */
-	notify(storeId: number, attribute: AttributeName, value?: unknown): void
+	notify(storeId: number, attribute: AttributeName): void
 }
 
 /**

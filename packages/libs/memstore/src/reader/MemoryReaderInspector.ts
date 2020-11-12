@@ -64,7 +64,7 @@ export class MemoryReaderInspector {
 			item.store.propertyBags[item.storeId] = itemProperties
 		}
 		itemProperties[property] = value
-		item.store?.notify(item.storeId, property, value)
+		item.store?.notify(item.storeId, property)
 	}
 
 	// #endregion
@@ -113,7 +113,7 @@ export class MemoryReaderInspector {
 				this.writeFloat32Attr(item, attribute, value)
 			}
 		}
-		item.store?.notify(item.storeId, attribute, value)
+		item.store?.notify(item.storeId, attribute)
 	}
 
 	// #endregion
@@ -144,7 +144,7 @@ export class MemoryReaderInspector {
 		value: string,
 	): void {
 		this.writeProperty(item, attribute, value)
-		item.store?.notify(item.storeId, attribute, value)
+		item.store?.notify(item.storeId, attribute)
 	}
 
 	// #endregion

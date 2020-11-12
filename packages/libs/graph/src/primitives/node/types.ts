@@ -32,7 +32,7 @@ export interface Node extends MemoryReader {
 	weight: number
 
 	/**
-	 * The radius of a node based on. If __radius__ is > 0 it will be used to size the nodes, otherwise __weight__ will be used
+	 * The radius of a node from 0 - 1. If __radius__ is > 0 it will be used to size the nodes, otherwise __weight__ will be used
 	 * @defaultValue 0
 	 */
 	radius: number
@@ -178,7 +178,12 @@ export interface Node extends MemoryReader {
 /**
  * The type representing a NodeStore
  */
-export type NodeStore = ReaderStore<Node>
+export interface NodeStore extends ReaderStore<Node> {
+	/**
+	 * The current engine time
+	 */
+	engineTime?: number
+}
 
 /**
  * The NodeStore configuration options

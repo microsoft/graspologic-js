@@ -129,7 +129,12 @@ export interface Edge extends MemoryReader {
 /**
  * The type for the edge store
  */
-export type EdgeStore = ReaderStore<Edge>
+export interface EdgeStore extends ReaderStore<Edge> {
+	/**
+	 * The current engine time
+	 */
+	engineTime: number
+}
 
 export interface AnimatableEdge extends Edge {
 	/**

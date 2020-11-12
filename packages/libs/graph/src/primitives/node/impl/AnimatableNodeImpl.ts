@@ -5,7 +5,7 @@
 import { InputNode } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
 import { nodeMemoryLayout } from '../layout'
-import { AnimatableNode, Node } from '../types'
+import { AnimatableNode, Node, NodeStore } from '../types'
 import { NodeImpl } from './NodeImpl'
 import { MemoryReader } from '@graspologic/memstore'
 
@@ -13,10 +13,10 @@ const ALL_ATTRIBUTES = '*'
 
 const COLOR_ATTRIBUTE = 'color'
 const COLOR_START_ATTRIBUTE = 'color.start'
-const COLOR_DURATION_ATTRIBUTE = 'color.duration'
+const COLOR_TWEEN_ATTRIBUTE = 'color.tween'
 const POSITION_ATTRIBUTE = 'position'
 const POSITION_START_ATTRIBUTE = 'position.start'
-const POSITION_DURATION_ATTRIBUTE = 'position.duration'
+const POSITION_TWEEN_ATTRIBUTE = 'position.tween'
 
 // For fast lookup
 const positionTypedOffset = nodeMemoryLayout.get('position')!.typedOffset
@@ -47,17 +47,13 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 		this.float32Array[
 			this.wordOffset + positionStartTypedOffset + 2
 		] = this.float32Array[this.wordOffset + positionTypedOffset + 2]
-		this.handleAttributeUpdated(
-			POSITION_START_ATTRIBUTE,
-			this.float32Array.subarray(
-				this.wordOffset + positionStartTypedOffset,
-				this.wordOffset + positionStartTypedOffset + 2,
-			),
-		)
+		this.handleAttributeUpdated(POSITION_START_ATTRIBUTE)
 
-		// Update the duration
+		// Update the tween
 		this.float32Array[this.wordOffset + positionTweenTypedOffset] = duration
-		this.handleAttributeUpdated(POSITION_DURATION_ATTRIBUTE, duration)
+		this.float32Array[this.wordOffset + positionTweenTypedOffset + 1] =
+			(this.store as NodeStore)?.engineTime || 0
+		this.handleAttributeUpdated(POSITION_TWEEN_ATTRIBUTE)
 
 		// Update the end position
 		this.float32Array[this.wordOffset + positionTypedOffset] = position[0] || 0
@@ -65,7 +61,7 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 			position[1] || 0
 		this.float32Array[this.wordOffset + positionTypedOffset + 2] =
 			position[2] || 0
-		this.handleAttributeUpdated(POSITION_ATTRIBUTE, position)
+		this.handleAttributeUpdated(POSITION_ATTRIBUTE)
 	}
 
 	/**
@@ -77,18 +73,17 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 		this.uint32Array[
 			this.wordOffset + colorStartTypedOffset
 		] = this.uint32Array[this.wordOffset + colorTypedOffset]
-		this.handleAttributeUpdated(
-			COLOR_START_ATTRIBUTE,
-			this.uint32Array[this.wordOffset + colorTypedOffset],
-		)
+		this.handleAttributeUpdated(COLOR_START_ATTRIBUTE)
 
-		// Update the duration
+		// Update the tween
 		this.float32Array[this.wordOffset + colorTweenTypedOffset] = duration
-		this.handleAttributeUpdated(COLOR_DURATION_ATTRIBUTE, duration)
+		this.float32Array[this.wordOffset + colorTweenTypedOffset + 1] =
+			(this.store as NodeStore)?.engineTime || 0
+		this.handleAttributeUpdated(COLOR_TWEEN_ATTRIBUTE)
 
 		// Update the end color
 		this.uint32Array[this.wordOffset + colorTypedOffset] = color
-		this.handleAttributeUpdated(COLOR_ATTRIBUTE, color)
+		this.handleAttributeUpdated(COLOR_ATTRIBUTE)
 	}
 
 	/**
@@ -97,7 +92,7 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 	 */
 	public load(data: InputNode) {
 		super.load(data)
-		this.handleAttributeUpdated(ALL_ATTRIBUTES, undefined)
+		this.handleAttributeUpdated(ALL_ATTRIBUTES)
 	}
 
 	/**
@@ -105,9 +100,9 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 	 * @param name The name of the attribute
 	 * @param value The value of the attribute
 	 */
-	protected handleAttributeUpdated(name: string, value: unknown): void {
+	protected handleAttributeUpdated(name: string): void {
 		if (this.store) {
-			this.store.notify(this.storeId, name, value)
+			this.store.notify(this.storeId, name)
 		}
 	}
 }
