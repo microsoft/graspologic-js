@@ -5,7 +5,6 @@
 // This is causing problems downstream for some reason
 // @ts-ignore
 import { setParameters } from '@luma.gl/gltools'
-import { Matrix4 } from 'math.gl'
 import { DataStore, Scene, Primitive } from '../../types'
 import {
 	Renderable,
@@ -73,9 +72,6 @@ export class Scenegraph implements Scene {
 	 * @param height The height of the scene
 	 */
 	public resize(width: number, height: number): void {
-		this.config.width = width
-		this.config.height = height
-
 		this.doubleBufferedRenderables.resize(width, height)
 	}
 
@@ -242,35 +238,14 @@ export class Scenegraph implements Scene {
 	 * Renders the scene
 	 * @param options The render options
 	 */
-	public render({
-		gl,
-		framebuffer,
-		useDevicePixels,
-		_mousePosition,
-		engineTime,
-		time,
-		weightToPixel,
-		modelViewMatrix,
-		projectionMatrix,
-		force,
-	}: any): void {
+	public render(renderOptions: RenderOptions): void {
+		const { engineTime, forceRender } = renderOptions
 		this.updateEngineTime(engineTime)
 
-		if (this.needsRedraw || force) {
-			const renderOptions = this.createRenderOptions(
-				framebuffer,
-				useDevicePixels,
-				_mousePosition,
-				engineTime,
-				time,
-				weightToPixel,
-				modelViewMatrix,
-				projectionMatrix,
-			)
-
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+		if (this.needsRedraw || forceRender) {
+			this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT)
 			this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height)
-			this.drawRenderables(force, renderOptions)
+			this.drawRenderables(forceRender, renderOptions)
 		}
 	}
 
@@ -383,47 +358,5 @@ export class Scenegraph implements Scene {
 		this.doubleBufferedRenderables.update(force, renderOptions)
 		this.doubleBufferedRenderables.draw()
 		this._renderables.forEach(r => r.draw(renderOptions))
-	}
-
-	/**
-	 * Creates the set of render options to be passed to the renderables
-	 * @param framebuffer The frame buffer to draw on
-	 * @param useDevicePixels Whether or not to use device pixels
-	 * @param _mousePosition The current mouse position
-	 * @param engineTime The engine time
-	 * @param time The actual time since the start
-	 * @param weightToPixel The scale of weight to pixel size
-	 * @param modelViewMatrix The model view matrix
-	 * @param projectionMatrix The projection matrix
-	 */
-	private createRenderOptions(
-		framebuffer: any,
-		useDevicePixels: boolean | number,
-		_mousePosition: any,
-		engineTime: number,
-		time: number,
-		weightToPixel: number,
-		modelViewMatrix: Matrix4,
-		projectionMatrix: Matrix4,
-	): RenderOptions {
-		const canvasPixelSize: [number, number] = [
-			this.config.width,
-			this.config.height,
-		]
-		const renderOptions: RenderOptions = {
-			modelViewMatrix,
-			projectionMatrix,
-			hideDeselected: this.config.hideDeselected,
-			minRadius: this.config.nodeMinRadius,
-			maxRadius: this.config.nodeMaxRadius,
-			canvasPixelSize,
-			framebuffer,
-			useDevicePixels,
-			_mousePosition,
-			engineTime,
-			time,
-			weightToPixel,
-		}
-		return renderOptions
 	}
 }

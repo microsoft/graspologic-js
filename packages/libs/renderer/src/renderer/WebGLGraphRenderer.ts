@@ -38,6 +38,7 @@ import {
 	ItemBasedRenderable,
 	BoundedRenderable,
 	Interpolator,
+	RenderOptions,
 } from '@graspologic/common'
 import {
 	Node,
@@ -609,18 +610,20 @@ export class WebGLGraphRenderer
 						: 1.0 - this.dimensionInterpolator.current,
 				])
 
-			const props = {
-				startTime: this._startTime,
+			const props: RenderOptions = {
 				time,
 				engineTime: this._engineTime,
-				gl: this.gl,
 				framebuffer: this.animationProps.framebuffer,
 				useDevicePixels: this.animationProps.useDevicePixels,
 				_mousePosition: this.animationProps._mousePosition,
 				weightToPixel: this.computeWeightToPixel(this._dataDomain),
 				projectionMatrix: this.camera.projection,
 				modelViewMatrix,
-				force:
+				hideDeselected: this.config.hideDeselected,
+				minRadius: this.config.nodeMinRadius,
+				maxRadius: this.config.nodeMaxRadius,
+				canvasPixelSize: [this.config.width, this.config.height],
+				forceRender:
 					this._forceDraw ||
 					this.camera.isMoving ||
 					this.dimensionInterpolator.current < 1.0,

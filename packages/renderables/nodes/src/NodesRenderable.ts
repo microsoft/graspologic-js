@@ -24,6 +24,8 @@ import {
 	encodePickingColor,
 	decodePickingColor,
 	PickingColor,
+	GL_RGBA,
+	GL_UNSIGNED_BYTE,
 } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
 
@@ -66,7 +68,7 @@ export class NodesRenderable
 	 * @param id The id of the renderable
 	 */
 	public constructor(
-		gl: WebGLRenderingContext,
+		private gl: WebGLRenderingContext,
 		protected config: RenderConfiguration,
 		id = getNextId(),
 	) {
@@ -131,7 +133,7 @@ export class NodesRenderable
 	 * Runs the hovered logic to determine what node is being hovered over
 	 * @param param0
 	 */
-	public computeHovered({ gl, framebuffer, _mousePosition }: any): any {
+	public computeHovered({ framebuffer, _mousePosition }: RenderOptions): any {
 		framebuffer.clear({ color: [0, 0, 0, 0], depth: true })
 		// Render picking colors
 		/* eslint-disable camelcase */
@@ -144,7 +146,7 @@ export class NodesRenderable
 			},
 		})
 		this.model.setUniforms({ picking_uActive: 0 })
-		const devicePixels = cssToDevicePixels(gl, _mousePosition)
+		const devicePixels = cssToDevicePixels(this.gl, _mousePosition)
 		const deviceX = devicePixels.x + Math.floor(devicePixels.width / 2)
 		const deviceY = devicePixels.y + Math.floor(devicePixels.height / 2)
 
@@ -153,8 +155,8 @@ export class NodesRenderable
 			sourceY: deviceY,
 			sourceWidth: 1,
 			sourceHeight: 1,
-			sourceFormat: gl.RGBA,
-			sourceType: gl.UNSIGNED_BYTE,
+			sourceFormat: GL_RGBA,
+			sourceType: GL_UNSIGNED_BYTE,
 		})
 
 		if (

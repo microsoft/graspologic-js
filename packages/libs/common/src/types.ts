@@ -360,6 +360,11 @@ export interface RenderOptions {
 	 * The real time
 	 */
 	time: number
+
+	/**
+	 * If true, rendering should be forced
+	 */
+	forceRender: boolean
 }
 
 export interface ItemBasedRenderable {
