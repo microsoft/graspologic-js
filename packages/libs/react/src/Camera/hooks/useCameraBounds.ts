@@ -19,12 +19,12 @@ export function useCameraBounds(
 	useEffect(() => {
 		if (renderer && !renderer.destroyed) {
 			if (bounds) {
-				renderer.camera.viewBounds(bounds, transitionDuration)
+				renderer.camera.fitToView(bounds, transitionDuration)
 			}
 
 			return renderer.on('load', () => {
 				if (bounds) {
-					renderer.camera.viewBounds(bounds, transitionDuration)
+					renderer.camera.fitToView(bounds, transitionDuration)
 				}
 			})
 		}

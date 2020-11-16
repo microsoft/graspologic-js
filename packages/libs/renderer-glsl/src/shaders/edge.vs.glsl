@@ -75,7 +75,7 @@ void main() {
       offset *= 0.5 + ((position.z / max(uScreenSize.x, uScreenSize.y)) * 0.5);
   }
 
-  gl_Position = position + vec4(offset, 0.0001, 0.0);
+  gl_Position = position + vec4(offset, 0.01, 0.0);
   vCenter = (position.xy / position.w) * uScreenSize * 0.5 + uScreenSize * 0.5;
   vEdge = ((position.xy + offset) / position.w) * uScreenSize * 0.5 + uScreenSize * 0.5;
   vWidth = length(vEdge - vCenter);

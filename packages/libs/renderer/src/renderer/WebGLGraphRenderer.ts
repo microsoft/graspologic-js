@@ -493,7 +493,7 @@ export class WebGLGraphRenderer
 	}
 
 	/**
-	 * A wrapper around camera.viewBounds to ensure that the currently loaded graph is in view
+	 * A wrapper around camera.fitToView to ensure that the currently loaded graph is in view
 	 * @param duration The amount of time to take transitioning to the new view
 	 */
 	public zoomToGraph(duration = 0) {
@@ -510,19 +510,19 @@ export class WebGLGraphRenderer
 			...(this.config.is3D ? { z: { ...dataBounds.z } } : {}),
 		}
 
-		this.camera.viewBounds(cameraBounds, duration)
+		this.camera.fitToView(cameraBounds, duration)
 
 		this.makeDirty()
 	}
 
 	/**
-	 * A wrapper around camera.viewBounds to match the viewport
+	 * A wrapper around camera.fitToView to match the viewport
 	 * @param duration The amount of time to take transitioning to the new view
 	 */
 	public zoomToViewport(duration = 0) {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
-		this.camera.viewBounds(
+		this.camera.fitToView(
 			{
 				x: {
 					min: -this.config.width / 2,

@@ -102,13 +102,13 @@ export interface GraphRenderer extends HasEvents<GraphRendererEvents> {
 	makeDirty(): void
 
 	/**
-	 * A wrapper around camera.viewBounds to ensure that the currently loaded graph is in view
+	 * A wrapper around camera.fitToView to ensure that the currently loaded graph is in view
 	 * @param duration The amount of time to take transitioning to the new view
 	 */
 	zoomToGraph(duration?: number): void
 
 	/**
-	 * A wrapper around camera.viewBounds to match the viewport
+	 * A wrapper around camera.fitToView to match the viewport
 	 * @param duration The amount of time to take transitioning to the new view
 	 */
 	zoomToViewport(duration?: number): void
