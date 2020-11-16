@@ -33,12 +33,16 @@ import {
 	DEFAULT_HEIGHT,
 	DEFAULT_CAMERA_MODE,
 	DEFAULT_AUTO_BIND,
+	DEFAULT_BOUNDS,
 } from './defaults'
 import {
 	ColorVector,
 	CameraAdjustmentMode,
 	RenderConfiguration,
 	RenderConfigurationOptions,
+	Bounds3D,
+	Maybe,
+	Bounds,
 } from './types'
 import {
 	PropertyContainer,
@@ -104,6 +108,7 @@ class RenderConfigurationImpl implements RenderConfiguration {
 	)
 	private _width = new PropertyContainer<number>(DEFAULT_WIDTH)
 	private _height = new PropertyContainer<number>(DEFAULT_HEIGHT)
+	private _dataBounds = new PropertyContainer<Maybe<Bounds>>(DEFAULT_BOUNDS)
 
 	// Axis Properties
 	private _cornerAxes = new PropertyContainer(DEFAULT_CORNER_AXES)
@@ -242,6 +247,20 @@ class RenderConfigurationImpl implements RenderConfiguration {
 		handler: PropertyChangeHandler<number>,
 	): Disconnect {
 		return this._edgeAlpha.on('change', handler)
+	}
+
+	public get dataBounds(): Maybe<Bounds> {
+		return this._dataBounds.value
+	}
+
+	public set dataBounds(value: Maybe<Bounds>) {
+		this._dataBounds.value = value
+	}
+
+	public onDataBoundsChanged(
+		handler: PropertyChangeHandler<Maybe<Bounds>>,
+	): Disconnect {
+		return this._dataBounds.on('change', handler)
 	}
 
 	public get edgeAntialias(): boolean {
@@ -579,6 +598,7 @@ class RenderConfigurationImpl implements RenderConfiguration {
 			height,
 			cameraAdjustmentMode,
 			autoBind,
+			dataBounds,
 		} = this
 		return {
 			backgroundColor,
@@ -612,6 +632,7 @@ class RenderConfigurationImpl implements RenderConfiguration {
 			height,
 			cameraAdjustmentMode,
 			autoBind,
+			dataBounds,
 		}
 	}
 

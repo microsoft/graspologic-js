@@ -98,7 +98,6 @@ export class AxesRenderable extends EdgesRenderable {
 				projectionMatrix: this.config.cornerAxes
 					? this.projection!
 					: options.projectionMatrix,
-				interpolation: 0,
 			})
 		}
 	}

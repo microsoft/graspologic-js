@@ -247,6 +247,11 @@ export interface RenderConfigurationOptions {
 	 * If true, when nodes/edges are dynamically changed, the data will automatically be rebound to the renderer
 	 */
 	autoBind: boolean
+
+	/**
+	 * The known bounds of the graph, setting this can speed up rendering
+	 */
+	dataBounds: Maybe<Bounds>
 }
 
 export interface NumberRange {

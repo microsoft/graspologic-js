@@ -93,7 +93,7 @@ export class WebGLGraphRenderer
 	// Observable-pattern handler lists
 	private _hoveredVertex: Node | undefined
 	private dimensionInterpolator: Interpolator
-	private _dataDomain: Bounds3D = DEFAULT_BOUNDS
+	private _dataBounds: Bounds3D = DEFAULT_BOUNDS
 
 	// Plugins
 	private _onInitializeHandlers: Array<
@@ -544,8 +544,8 @@ export class WebGLGraphRenderer
 	public updateWeights() {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
-		this._dataDomain = this.computeBounds() as any
-		return this._dataDomain
+		this._dataBounds = this.computeBounds() as any
+		return this._dataBounds
 	}
 
 	/**
@@ -616,7 +616,7 @@ export class WebGLGraphRenderer
 				framebuffer: this.animationProps.framebuffer,
 				useDevicePixels: this.animationProps.useDevicePixels,
 				_mousePosition: this.animationProps._mousePosition,
-				weightToPixel: this.computeWeightToPixel(this._dataDomain),
+				weightToPixel: this.computeWeightToPixel(this._dataBounds),
 				projectionMatrix: this.camera.projection,
 				modelViewMatrix,
 				hideDeselected: this.config.hideDeselected,
@@ -728,51 +728,58 @@ export class WebGLGraphRenderer
 	 * Computes the world bounds of the items drawn to screen
 	 */
 	private computeBounds(): Bounds3D {
-		let bounds: Bounds3D | undefined
-		for (const renderable of this.scene.renderables()) {
-			const boundedRenderable = (renderable as any) as BoundedRenderable
-			if (boundedRenderable.computeBounds !== undefined) {
-				const newBounds = boundedRenderable.computeBounds()
-				if (!bounds) {
-					bounds = newBounds
-				} else if (newBounds) {
-					// X
-					bounds.x.max = Math.max(
-						newBounds.x.min,
-						newBounds.x.max,
-						bounds.x.max,
-					)
-					bounds.x.min = Math.min(
-						newBounds.x.min,
-						newBounds.x.max,
-						bounds.x.min,
-					)
-					// Y
-					bounds.y.max = Math.max(
-						newBounds.y.min,
-						newBounds.y.max,
-						bounds.y.max,
-					)
-					bounds.y.min = Math.min(
-						newBounds.y.min,
-						newBounds.y.max,
-						bounds.y.min,
-					)
-					// Z
-					bounds.z.max = Math.max(
-						newBounds.z.min,
-						newBounds.z.max,
-						bounds.z.max,
-					)
-					bounds.z.min = Math.min(
-						newBounds.z.min,
-						newBounds.z.max,
-						bounds.z.min,
-					)
+		if (this.config.dataBounds) {
+			return {
+				...this.config.dataBounds,
+				z: this.config.dataBounds.z || DEFAULT_BOUNDS.z,
+			}
+		} else {
+			let bounds: Bounds3D | undefined
+			for (const renderable of this.scene.renderables()) {
+				const boundedRenderable = (renderable as any) as BoundedRenderable
+				if (boundedRenderable.computeBounds !== undefined) {
+					const newBounds = boundedRenderable.computeBounds()
+					if (!bounds) {
+						bounds = newBounds
+					} else if (newBounds) {
+						// X
+						bounds.x.max = Math.max(
+							newBounds.x.min,
+							newBounds.x.max,
+							bounds.x.max,
+						)
+						bounds.x.min = Math.min(
+							newBounds.x.min,
+							newBounds.x.max,
+							bounds.x.min,
+						)
+						// Y
+						bounds.y.max = Math.max(
+							newBounds.y.min,
+							newBounds.y.max,
+							bounds.y.max,
+						)
+						bounds.y.min = Math.min(
+							newBounds.y.min,
+							newBounds.y.max,
+							bounds.y.min,
+						)
+						// Z
+						bounds.z.max = Math.max(
+							newBounds.z.min,
+							newBounds.z.max,
+							bounds.z.max,
+						)
+						bounds.z.min = Math.min(
+							newBounds.z.min,
+							newBounds.z.max,
+							bounds.z.min,
+						)
+					}
 				}
 			}
+			return Object.freeze(bounds || DEFAULT_BOUNDS)
 		}
-		return Object.freeze(bounds || DEFAULT_BOUNDS)
 	}
 
 	/**

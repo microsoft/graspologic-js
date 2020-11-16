@@ -29,12 +29,12 @@ export function computeBounds(graph: GraphContainer): Maybe<Bounds3D> {
 					},
 				}
 			} else {
-				bounds.x.max = Math.max(bounds.x.min, bounds.x.max)
-				bounds.x.min = Math.min(bounds.x.min, bounds.x.max)
-				bounds.y.max = Math.max(bounds.y.min, bounds.y.max)
-				bounds.y.min = Math.min(bounds.y.min, bounds.y.max)
-				bounds.z.max = Math.max(bounds.z.min, bounds.z.max)
-				bounds.z.min = Math.min(bounds.z.min, bounds.z.max)
+				bounds.x.min = Math.min(node.x, bounds.x.min)
+				bounds.x.max = Math.max(node.x, bounds.x.max)
+				bounds.y.min = Math.min(node.y, bounds.y.min)
+				bounds.y.max = Math.max(node.y, bounds.y.max)
+				bounds.z.min = Math.min(node.z, bounds.z.min)
+				bounds.z.max = Math.max(node.z, bounds.z.max)
 			}
 		}
 		return bounds

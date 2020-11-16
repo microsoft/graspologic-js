@@ -26,6 +26,8 @@ import {
 	DEFAULT_INTERPOLATION_TIME,
 	GraphRenderer,
 	DEFAULT_DRAW_EDGES,
+	Maybe,
+	Bounds,
 } from '@graspologic/renderer'
 
 const DEFAULT_STYLE = {
@@ -64,6 +66,11 @@ export interface GraphViewProps {
 	 * The graph dataset
 	 */
 	data: InputGraph | GraphContainer
+
+	/**
+	 * The databounds for the graph
+	 */
+	dataBounds?: Maybe<Bounds>
 
 	/**
 	 * If true, non-selected vertices will be hidden
@@ -150,6 +157,7 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 			nodeCountHint,
 			edgeCountHint,
 			drawEdges = DEFAULT_DRAW_EDGES,
+			dataBounds,
 			onInitialize,
 			onDataLoad,
 			onResize,
@@ -164,6 +172,7 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 			edgeCountHint,
 			drawEdges,
 			graphContainer,
+			dataBounds,
 		)
 		useBindCallbacks({
 			renderer,

@@ -24,6 +24,17 @@ interface StressTestVertices2DProps {
 	colorizer?: NodeComponentColorizer
 }
 
+const BOUNDS = {
+	x: {
+		min: -1500,
+		max: 1500,
+	},
+	y: {
+		min: -1500,
+		max: 1500,
+	},
+}
+
 export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 	colorizer = DEFAULT_COLORIZER,
 }) => {
@@ -53,8 +64,8 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 		const positionMap: PositionMap = {}
 		graph.nodes.forEach(n => {
 			positionMap[n.id] = {
-				x: getRandomArbitrary(-1000, 1000),
-				y: getRandomArbitrary(-1000, 1000),
+				x: getRandomArbitrary(-1500, 1500),
+				y: getRandomArbitrary(-1500, 1500),
 			}
 		})
 		graphRef.current!.changePositions(positionMap, 5000)
@@ -63,6 +74,7 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 	const onLoadGraph = useCallback(() => {
 		setNumNodes(parseInt(textInput.current!.value, 10) || 100)
 	}, [textInput, setNumNodes])
+
 	return (
 		<>
 			<FPSStats />
@@ -76,6 +88,7 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 				<div className="graph-pane-container">
 					<GraphView
 						ref={graphRef}
+						dataBounds={BOUNDS}
 						className="graph-pane"
 						data={graph}
 						colorizer={colorizer}

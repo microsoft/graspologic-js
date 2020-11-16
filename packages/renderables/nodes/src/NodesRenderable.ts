@@ -368,10 +368,7 @@ export class NodesRenderable
 	/**
 	 * Handler for when an attribute for a node is updated
 	 */
-	private handleNodeAttributeUpdated = (
-		storeId: number,
-		attribute?: string,
-	) => {
+	private handleNodeAttributeUpdated = () => {
 		if (this.enabled) {
 			this.needsDataBind = true
 			this.setNeedsRedraw(true)
