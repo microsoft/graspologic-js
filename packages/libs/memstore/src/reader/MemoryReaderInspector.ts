@@ -38,7 +38,7 @@ export class MemoryReaderInspector {
 				throw new Error('unknown attribute: ' + attribute)
 			}
 		}
-		return attr?.typedOffset
+		return attr!.typedOffset
 	}
 
 	public getWordOffset(item: MemoryReader, attribute: AttributeName) {

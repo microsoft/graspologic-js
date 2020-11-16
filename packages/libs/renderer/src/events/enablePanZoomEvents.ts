@@ -39,6 +39,9 @@ export function enablePanZoomEvents(
 	let lastMouseY = 0
 
 	function getUIMuliplier() {
+		// This logic isn't quite correct
+		// Since the multiplier is based on the `z` position of the
+		// camera, then as you zoom in, the amount of zoom will decrease as `z` approaches 0
 		const rect = view.getBoundingClientRect()
 		const position = renderer.camera.position
 		return (

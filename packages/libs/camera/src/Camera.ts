@@ -30,7 +30,7 @@ export class Camera extends EventEmitter<CameraEvents> {
 	private _isUserMoving = false
 	private _projectionSettings = {
 		aspect: 1,
-		near: 0.1,
+		near: 0.01,
 
 		// An infinite far plane
 		far: null,
@@ -103,7 +103,6 @@ export class Camera extends EventEmitter<CameraEvents> {
 			),
 			new Quaternion(),
 		)
-
 		this.transitionToState(newState, duration)
 	}
 
