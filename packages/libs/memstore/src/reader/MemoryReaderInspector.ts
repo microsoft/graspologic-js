@@ -283,7 +283,7 @@ export class MemoryReaderInspector {
 		targetAttribute: AttributeName,
 	): Float32Array {
 		const offset = this.getWordOffset(item, sourceAttribute)
-		const subarray = item.float32Array.subarray(offset, offset + 2)
+		const subarray = item.float32Array.subarray(offset, offset + 3)
 		item.float32Array.set(subarray, this.getWordOffset(item, targetAttribute))
 		return subarray
 	}
@@ -301,7 +301,7 @@ export class MemoryReaderInspector {
 	): Float32Array {
 		const subarray = item.float32Array.subarray(
 			item.wordOffset + sourceTypedOffset,
-			item.wordOffset + sourceTypedOffset + 2,
+			item.wordOffset + sourceTypedOffset + 3,
 		)
 		item.float32Array.set(subarray, item.wordOffset + targetTypedOffset)
 		return subarray
