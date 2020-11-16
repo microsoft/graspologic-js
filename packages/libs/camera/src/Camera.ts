@@ -5,7 +5,7 @@
 import { Matrix4, Quaternion, Vector3 } from 'math.gl'
 import { CameraState } from './CameraState'
 import { TransitioningCameraState } from './TransitioningCameraState'
-import { fitBoundsIntoView } from './computeState'
+import { computeCameraPosition } from './utils'
 import { Bounds, EventEmitter } from '@graspologic/common'
 
 const DEFAULT_WIDTH = 500
@@ -51,7 +51,7 @@ export class Camera extends EventEmitter<CameraEvents> {
 
 		// Make the default view of -1 to 1 in all dimensions
 		const defaultState = new CameraState(
-			fitBoundsIntoView(
+			computeCameraPosition(
 				{
 					x: {
 						min: -1,
@@ -92,7 +92,7 @@ export class Camera extends EventEmitter<CameraEvents> {
 	 */
 	public viewBounds(bounds: Bounds, duration = 0) {
 		// Store this as the optimal position to see everything
-		this._optimalCameraPosition = fitBoundsIntoView(
+		this._optimalCameraPosition = computeCameraPosition(
 			bounds,
 			this._projectionSettings.fov,
 			this._projectionSettings.aspect,
@@ -104,7 +104,6 @@ export class Camera extends EventEmitter<CameraEvents> {
 			new Quaternion(),
 		)
 
-		this.adjustFrustumPlanes(this._optimalCameraPosition, newState.position)
 		this.transitionToState(newState, duration)
 	}
 
@@ -213,9 +212,14 @@ export class Camera extends EventEmitter<CameraEvents> {
 	 * @param time The current time
 	 */
 	public tick(time: number): void {
+		// Was the state still being adjusted before this tick
+		const isStateComplete = this._state.isComplete
+
+		// Let the state know that a tick has occurred
 		this._state.tick(time)
 
-		if (this._optimalCameraPosition) {
+		// If the state has been updated, the adjust the frustum
+		if (!isStateComplete && this._optimalCameraPosition) {
 			this.adjustFrustumPlanes(
 				this._optimalCameraPosition,
 				this._state.current.position,
@@ -259,7 +263,19 @@ export class Camera extends EventEmitter<CameraEvents> {
 				if (!this.isMoving) {
 					this.emit('movingComplete')
 				}
+
+				if (this._optimalCameraPosition) {
+					this.adjustFrustumPlanes(
+						this._optimalCameraPosition,
+						this._state.current.position,
+					)
+				}
 			})
+		} else if (this._optimalCameraPosition) {
+			this.adjustFrustumPlanes(
+				this._optimalCameraPosition,
+				this._state.current.position,
+			)
 		}
 	}
 }

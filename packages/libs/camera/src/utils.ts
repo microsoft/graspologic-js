@@ -11,7 +11,7 @@ import { Bounds } from '@graspologic/common'
  * @param fov The field of view of the camera
  * @param aspect The aspect ratio of the view
  */
-export function fitBoundsIntoView(
+export function computeCameraPosition(
 	bounds: Bounds,
 	fov: number,
 	aspect: number,
