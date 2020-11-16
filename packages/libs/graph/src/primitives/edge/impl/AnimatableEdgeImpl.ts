@@ -4,38 +4,28 @@
  */
 import { InputEdge } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
-import { edgeMemoryLayout } from '../layout'
+import { getTypedOffset } from '../layout'
 import { AnimatableEdge, Edge, EdgeStore } from '../types'
 import { EdgeImpl } from './EdgeImpl'
-import { MemoryReader } from '@graspologic/memstore'
+import { MemoryReader, MemoryReaderInspector } from '@graspologic/memstore'
 
-const ALL_ATTRIBUTES = '*'
+// Cache several frequently accessed names / offsets
+const allAttributes = '*'
+const sourcePositionAttr = 'sourcePosition'
+const sourcePositionStartAttr = 'sourcePosition.start'
+const sourcePositionTweenAttr = 'sourcePosition.tween'
+const targetPositionAttr = 'targetPosition'
+const targetPositionStartAttr = 'targetPosition.start'
+const targetPositionTweenAttr = 'targetPosition.tween'
 
-const SOURCE_POSITION_ATTRIBUTE = 'sourcePosition'
-const SOURCE_POSITION_START_ATTRIBUTE = 'sourcePosition.start'
-const SOURCE_POSITION_TWEEN_ATTRIBUTE = 'sourcePosition.tween'
+const sourcePositionTypedOffset = getTypedOffset(sourcePositionAttr)!
+const sourcePositionStartTypedOffset = getTypedOffset(sourcePositionStartAttr)!
+const sourcePositionTweenTypedOffset = getTypedOffset(sourcePositionTweenAttr)!
+const targetPositionTypedOffset = getTypedOffset(targetPositionAttr)!
+const targetPositionStartTypedOffset = getTypedOffset(targetPositionStartAttr)!
+const targetPositionTweenTypedOffset = getTypedOffset(targetPositionTweenAttr)!
 
-const sourcePositionTypedOffset = edgeMemoryLayout.get('sourcePosition')!
-	.typedOffset
-const sourcePositionStartTypedOffset = edgeMemoryLayout.get(
-	'sourcePosition.start',
-)!.typedOffset
-const sourcePositionTweenTypedOffset = edgeMemoryLayout.get(
-	'sourcePosition.tween',
-)!.typedOffset
-
-const TARGET_POSITION_ATTRIBUTE = 'targetPosition'
-const TARGET_POSITION_START_ATTRIBUTE = 'targetPosition.start'
-const TARGET_POSITION_TWEEN_ATTRIBUTE = 'targetPosition.tween'
-
-const targetPositionTypedOffset = edgeMemoryLayout.get('targetPosition')!
-	.typedOffset
-const targetPositionStartTypedOffset = edgeMemoryLayout.get(
-	'targetPosition.start',
-)!.typedOffset
-const targetPositionTweenTypedOffset = edgeMemoryLayout.get(
-	'targetPosition.tween',
-)!.typedOffset
+const inspector = new MemoryReaderInspector()
 
 /**
  * An implementation of an Edge that has animation capabilities
@@ -50,32 +40,31 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		duration?: number,
 	): void {
 		// Set the start to the old position
-		this.float32Array[
-			this.wordOffset + sourcePositionStartTypedOffset
-		] = this.float32Array[this.wordOffset + sourcePositionTypedOffset]
-		this.float32Array[
-			this.wordOffset + sourcePositionStartTypedOffset + 1
-		] = this.float32Array[this.wordOffset + sourcePositionTypedOffset + 1]
-		this.float32Array[
-			this.wordOffset + sourcePositionStartTypedOffset + 2
-		] = this.float32Array[this.wordOffset + sourcePositionTypedOffset + 2]
-		this.handleAttributeUpdated(SOURCE_POSITION_START_ATTRIBUTE)
+		inspector.copyFloat32Vec3Offset(
+			this,
+			sourcePositionTypedOffset,
+			sourcePositionStartTypedOffset,
+		)
+		this.handleAttributeUpdated(sourcePositionStartAttr)
 
 		// Update the tween
-		this.float32Array[this.wordOffset + sourcePositionTweenTypedOffset] =
-			duration || 0
-		this.float32Array[this.wordOffset + sourcePositionTweenTypedOffset + 1] =
-			(this.store as EdgeStore)?.engineTime || 0
-		this.handleAttributeUpdated(SOURCE_POSITION_TWEEN_ATTRIBUTE)
+		inspector.writeFloat32Vec2Offset(
+			this,
+			sourcePositionTweenTypedOffset,
+			duration || 0,
+			(this.store as EdgeStore)?.engineTime || 0,
+		)
+		this.handleAttributeUpdated(sourcePositionTweenAttr)
 
-		// Update the end position
-		this.float32Array[this.wordOffset + sourcePositionTypedOffset] =
-			position[0] || 0
-		this.float32Array[this.wordOffset + sourcePositionTypedOffset + 1] =
-			position[1] || 0
-		this.float32Array[this.wordOffset + sourcePositionTypedOffset + 2] =
-			position[2] || 0
-		this.handleAttributeUpdated(SOURCE_POSITION_ATTRIBUTE)
+		// Update the end sourcePosition
+		inspector.writeFloat32Vec3Offset(
+			this,
+			sourcePositionTypedOffset,
+			position[0] || 0,
+			position[1] || 0,
+			position[2] || 0,
+		)
+		this.handleAttributeUpdated(sourcePositionAttr)
 	}
 
 	/**
@@ -87,32 +76,31 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		duration?: number,
 	): void {
 		// Set the start to the old position
-		this.float32Array[
-			this.wordOffset + targetPositionStartTypedOffset
-		] = this.float32Array[this.wordOffset + targetPositionTypedOffset]
-		this.float32Array[
-			this.wordOffset + targetPositionStartTypedOffset + 1
-		] = this.float32Array[this.wordOffset + targetPositionTypedOffset + 1]
-		this.float32Array[
-			this.wordOffset + targetPositionStartTypedOffset + 2
-		] = this.float32Array[this.wordOffset + targetPositionTypedOffset + 2]
-		this.handleAttributeUpdated(TARGET_POSITION_START_ATTRIBUTE)
+		inspector.copyFloat32Vec3Offset(
+			this,
+			targetPositionTypedOffset,
+			targetPositionStartTypedOffset,
+		)
+		this.handleAttributeUpdated(targetPositionStartAttr)
 
 		// Update the tween
-		this.float32Array[this.wordOffset + targetPositionTweenTypedOffset] =
-			duration || 0
-		this.float32Array[this.wordOffset + targetPositionTweenTypedOffset + 1] =
-			(this.store as EdgeStore)?.engineTime || 0
-		this.handleAttributeUpdated(TARGET_POSITION_TWEEN_ATTRIBUTE)
+		inspector.writeFloat32Vec2Offset(
+			this,
+			targetPositionTweenTypedOffset,
+			duration || 0,
+			(this.store as EdgeStore)?.engineTime || 0,
+		)
+		this.handleAttributeUpdated(targetPositionTweenAttr)
 
-		// Update the end position
-		this.float32Array[this.wordOffset + targetPositionTypedOffset] =
-			position[0] || 0
-		this.float32Array[this.wordOffset + targetPositionTypedOffset + 1] =
-			position[1] || 0
-		this.float32Array[this.wordOffset + targetPositionTypedOffset + 2] =
-			position[2] || 0
-		this.handleAttributeUpdated(TARGET_POSITION_ATTRIBUTE)
+		// Update the end targetPosition
+		inspector.writeFloat32Vec3Offset(
+			this,
+			targetPositionTypedOffset,
+			position[0] || 0,
+			position[1] || 0,
+			position[2] || 0,
+		)
+		this.handleAttributeUpdated(targetPositionAttr)
 	}
 
 	/**
@@ -125,7 +113,7 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		defaultEdgeWeight = 1,
 	) {
 		super.load(data, nodeIndexMap, defaultEdgeWeight)
-		this.handleAttributeUpdated(ALL_ATTRIBUTES)
+		this.handleAttributeUpdated(allAttributes)
 	}
 
 	/**

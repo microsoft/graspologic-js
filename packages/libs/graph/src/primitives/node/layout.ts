@@ -65,3 +65,10 @@ export const nodeMemoryLayout = createLayoutBuilder()
 	.addUint8('visible', { hint: InterpretationHint.Boolean })
 	.addUint8Vec3('pickingColor')
 	.build()
+
+/**
+ * Gets the typed offset for the given attribute
+ */
+export function getTypedOffset(attribute: string): number | undefined {
+	return nodeMemoryLayout.get(attribute)?.typedOffset
+}

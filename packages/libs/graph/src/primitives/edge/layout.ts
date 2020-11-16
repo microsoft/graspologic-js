@@ -43,3 +43,10 @@ export const edgeMemoryLayout = createLayoutBuilder()
 		components: ['targetPosition.duration', 'targetPosition.startTime'],
 	})
 	.build()
+
+/**
+ * Gets the typed offset for the given attribute
+ */
+export function getTypedOffset(attribute: string): number | undefined {
+	return edgeMemoryLayout.get(attribute)?.typedOffset
+}

@@ -26,6 +26,21 @@ export class MemoryReaderInspector {
 		return item.byteOffset + attr!.offset
 	}
 
+	/**
+	 * Calculates the typed offset for the given attribute
+	 * @param itemIndex The item index of the item
+	 * @param attribute The attribute
+	 */
+	public getTypedOffset(item: MemoryReader, attribute: AttributeName): number {
+		const attr = item.layout.get(attribute)
+		if (process.env.NODE_ENV !== 'production') {
+			if (!attr) {
+				throw new Error('unknown attribute: ' + attribute)
+			}
+		}
+		return attr?.typedOffset
+	}
+
 	public getWordOffset(item: MemoryReader, attribute: AttributeName) {
 		return this.getByteOffset(item, attribute) / FLOAT_BYTE_SIZE
 	}
@@ -235,12 +250,29 @@ export class MemoryReaderInspector {
 		item.float32Array[offset + 1] = y
 	}
 
+	/**
+	 * Writes the float32[2] to the __typedOffset__ of the item
+	 * @param item The item to update
+	 * @param typedOffset The offset into the array to write the float32[2]
+	 * @param x The x component to update
+	 * @param y The y component to update
+	 */
+	public writeFloat32Vec2Offset(
+		item: MemoryReader,
+		typedOffset: number,
+		x: number,
+		y: number,
+	): void {
+		item.float32Array[item.wordOffset + typedOffset] = x
+		item.float32Array[item.wordOffset + typedOffset + 1] = y
+	}
+
 	// #endregion
 
 	// #region Float32 Vec3
 
 	/**
-	 * Copies the data from the sourceAttribute to targetAttribute
+	 * Copies the float32[3] from the sourceAttribute to targetAttribute
 	 * @param item The item to update
 	 * @param sourceAttribute The source attribute to copy from
 	 * @param targetAttribute The target attribute to copy to
@@ -253,6 +285,25 @@ export class MemoryReaderInspector {
 		const offset = this.getWordOffset(item, sourceAttribute)
 		const subarray = item.float32Array.subarray(offset, offset + 2)
 		item.float32Array.set(subarray, this.getWordOffset(item, targetAttribute))
+		return subarray
+	}
+
+	/**
+	 * Copies the float32[2] from sourceTypedOffset to targetTypedOffset
+	 * @param item The item to update
+	 * @param sourceTypedOffset The typed offset for the source attribute
+	 * @param targetTypedOffset typed offset for the target attribute
+	 */
+	public copyFloat32Vec3Offset(
+		item: MemoryReader,
+		sourceTypedOffset: number,
+		targetTypedOffset: number,
+	): Float32Array {
+		const subarray = item.float32Array.subarray(
+			item.wordOffset + sourceTypedOffset,
+			item.wordOffset + sourceTypedOffset + 2,
+		)
+		item.float32Array.set(subarray, item.wordOffset + targetTypedOffset)
 		return subarray
 	}
 
@@ -275,6 +326,26 @@ export class MemoryReaderInspector {
 		item.float32Array[offset] = x
 		item.float32Array[offset + 1] = y
 		item.float32Array[offset + 2] = z
+	}
+
+	/**
+	 * Writes the float32[3] to the __typedOffset__ of the item
+	 * @param item The item to update
+	 * @param typedOffset The offset into the array to write the float32[3]
+	 * @param x The x component to update
+	 * @param y The y component to update
+	 * @param z The z component to update
+	 */
+	public writeFloat32Vec3Offset(
+		item: MemoryReader,
+		typedOffset: number,
+		x: number,
+		y: number,
+		z: number,
+	): void {
+		item.float32Array[item.wordOffset + typedOffset] = x
+		item.float32Array[item.wordOffset + typedOffset + 1] = y
+		item.float32Array[item.wordOffset + typedOffset + 2] = z
 	}
 
 	/**
@@ -472,5 +543,33 @@ export class MemoryReaderInspector {
 		item.uint32Array[this.getWordOffset(item, attribute)] = value
 	}
 
+	/**
+	 * Writes the unit32 at the given __typedOffset__ for the item
+	 * @param item The item to update
+	 * @param typedOffset The offset into the array to write the uint32
+	 * @param value The attribute value
+	 */
+	public writeUint32Offset(
+		item: MemoryReader,
+		typedOffset: number,
+		value: number,
+	): void {
+		item.uint32Array[item.wordOffset + typedOffset] = value
+	}
+
+	/**
+	 * Copies the uint32 from sourceTypedOffset to targetTypedOffset
+	 * @param item The item to update
+	 * @param sourceTypedOffset The typed offset for the source attribute
+	 * @param targetTypedOffset typed offset for the target attribute
+	 */
+	public copyUint32Offset(
+		item: MemoryReader,
+		sourceTypedOffset: number,
+		targetTypedOffset: number,
+	): void {
+		item.uint32Array[item.wordOffset + targetTypedOffset] =
+			item.uint32Array[item.wordOffset + sourceTypedOffset]
+	}
 	// #endregion
 }
