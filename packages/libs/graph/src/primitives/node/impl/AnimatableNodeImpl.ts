@@ -4,7 +4,7 @@
  */
 import { InputNode } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
-import { getTypedOffset } from '../layout'
+import { nodeTypedOffset } from '../layout'
 import { AnimatableNode, Node, NodeStore } from '../types'
 import { NodeImpl } from './NodeImpl'
 import { MemoryReader, MemoryReaderInspector } from '@graspologic/memstore'
@@ -19,12 +19,12 @@ const positionStartAttr = 'position.start'
 const positionTweenAttr = 'position.tween'
 
 // For fast lookup
-const positionTypedOffset = getTypedOffset(positionAttr)!
-const positionStartTypedOffset = getTypedOffset(positionStartAttr)!
-const positionTweenTypedOffset = getTypedOffset(positionTweenAttr)!
-const colorTypedOffset = getTypedOffset(colorAttr)!
-const colorStartTypedOffset = getTypedOffset(colorStartAttr)!
-const colorTweenTypedOffset = getTypedOffset(colorTweenAttr)!
+const positionTypedOffset = nodeTypedOffset(positionAttr)!
+const positionStartTypedOffset = nodeTypedOffset(positionStartAttr)!
+const positionTweenTypedOffset = nodeTypedOffset(positionTweenAttr)!
+const colorTypedOffset = nodeTypedOffset(colorAttr)!
+const colorStartTypedOffset = nodeTypedOffset(colorStartAttr)!
+const colorTweenTypedOffset = nodeTypedOffset(colorTweenAttr)!
 
 const inspector = new MemoryReaderInspector()
 

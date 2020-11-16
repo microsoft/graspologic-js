@@ -47,6 +47,6 @@ export const edgeMemoryLayout = createLayoutBuilder()
 /**
  * Gets the typed offset for the given attribute
  */
-export function getTypedOffset(attribute: string): number | undefined {
+export function edgeTypedOffset(attribute: string): number | undefined {
 	return edgeMemoryLayout.get(attribute)?.typedOffset
 }

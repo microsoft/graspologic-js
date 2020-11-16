@@ -4,7 +4,7 @@
  */
 import { InputEdge } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
-import { getTypedOffset } from '../layout'
+import { edgeTypedOffset } from '../layout'
 import { AnimatableEdge, Edge, EdgeStore } from '../types'
 import { EdgeImpl } from './EdgeImpl'
 import { MemoryReader, MemoryReaderInspector } from '@graspologic/memstore'
@@ -18,12 +18,12 @@ const targetPositionAttr = 'targetPosition'
 const targetPositionStartAttr = 'targetPosition.start'
 const targetPositionTweenAttr = 'targetPosition.tween'
 
-const sourcePositionTypedOffset = getTypedOffset(sourcePositionAttr)!
-const sourcePositionStartTypedOffset = getTypedOffset(sourcePositionStartAttr)!
-const sourcePositionTweenTypedOffset = getTypedOffset(sourcePositionTweenAttr)!
-const targetPositionTypedOffset = getTypedOffset(targetPositionAttr)!
-const targetPositionStartTypedOffset = getTypedOffset(targetPositionStartAttr)!
-const targetPositionTweenTypedOffset = getTypedOffset(targetPositionTweenAttr)!
+const sourcePositionTypedOffset = edgeTypedOffset(sourcePositionAttr)!
+const sourcePositionStartTypedOffset = edgeTypedOffset(sourcePositionStartAttr)!
+const sourcePositionTweenTypedOffset = edgeTypedOffset(sourcePositionTweenAttr)!
+const targetPositionTypedOffset = edgeTypedOffset(targetPositionAttr)!
+const targetPositionStartTypedOffset = edgeTypedOffset(targetPositionStartAttr)!
+const targetPositionTweenTypedOffset = edgeTypedOffset(targetPositionTweenAttr)!
 
 const inspector = new MemoryReaderInspector()
 

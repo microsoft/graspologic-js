@@ -69,6 +69,6 @@ export const nodeMemoryLayout = createLayoutBuilder()
 /**
  * Gets the typed offset for the given attribute
  */
-export function getTypedOffset(attribute: string): number | undefined {
+export function nodeTypedOffset(attribute: string): number | undefined {
 	return nodeMemoryLayout.get(attribute)?.typedOffset
 }
