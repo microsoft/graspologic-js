@@ -8,7 +8,6 @@ import { Model } from '@luma.gl/engine'
 import { cssToDevicePixels } from '@luma.gl/gltools'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 import createModel from './model'
-import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import {
 	Bounds3D,
 	RenderOptions,

@@ -40,7 +40,6 @@ import {
 	CameraAdjustmentMode,
 	RenderConfiguration,
 	RenderConfigurationOptions,
-	Bounds3D,
 	Maybe,
 	Bounds,
 } from './types'
