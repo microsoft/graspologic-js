@@ -3,12 +3,21 @@ releases:
   "@graspologic/camera": minor
   "@graspologic/common": minor
   "@graspologic/graph": minor
+  "@graspologic/layout-core": minor
+  "@graspologic/layout-fa2": minor
+  "@graspologic/layout-openord": minor
+  "@graspologic/layout-sandbox": minor
+  "@graspologic/luma-utils": minor
   "@graspologic/memstore": minor
   "@graspologic/monorepo": minor
   "@graspologic/react": minor
+  "@graspologic/render-controls": minor
+  "@graspologic/render-controls-react": minor
+  "@graspologic/renderables-base": minor
   "@graspologic/renderables-edges": minor
   "@graspologic/renderables-nodes": minor
   "@graspologic/renderables-support": minor
   "@graspologic/renderer": minor
   "@graspologic/renderer-glsl": minor
   "@graspologic/stories": minor
+  "@graspologic/testdata": minor
