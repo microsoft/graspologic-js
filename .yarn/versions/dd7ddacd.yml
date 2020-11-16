@@ -1,0 +1,14 @@
+releases:
+  "@graspologic/animation": minor
+  "@graspologic/camera": minor
+  "@graspologic/common": minor
+  "@graspologic/graph": minor
+  "@graspologic/memstore": minor
+  "@graspologic/monorepo": minor
+  "@graspologic/react": minor
+  "@graspologic/renderables-edges": minor
+  "@graspologic/renderables-nodes": minor
+  "@graspologic/renderables-support": minor
+  "@graspologic/renderer": minor
+  "@graspologic/renderer-glsl": minor
+  "@graspologic/stories": minor
