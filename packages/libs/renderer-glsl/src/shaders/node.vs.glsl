@@ -27,7 +27,6 @@ uniform mat4 uModelView;
 uniform mat4 uProjection;
 uniform float uMinRadius;
 uniform float uMaxRadius;
-uniform float uWeightScale;
 uniform vec2 uScreenSize;
 uniform highp float uTime;
 
@@ -50,7 +49,7 @@ void main() {
   // because when we calculate our fragment, we scale a square, and then make a circle out of that.
   float radius_scale = aShape == 3.0 ? SQRT_2 : 1.0;
 
-  vRadius = aRadius > 0.0 ? aRadius * radius_scale : (uMinRadius + aWeight * (uMaxRadius - uMinRadius)) * uWeightScale;
+  vRadius = aRadius > 0.0 ? aRadius * radius_scale : (uMinRadius + aWeight * (uMaxRadius - uMinRadius));
   vShape = aShape;
 
   vec3 position = tween_attribute(aPosition_start, aPosition, aPosition_tween, uTime);

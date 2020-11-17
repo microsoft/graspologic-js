@@ -215,11 +215,10 @@ export class NodesRenderable
 					uModelView: modelViewMatrix,
 					uProjection: projectionMatrix,
 					uScreenSize: canvasPixelSize,
-					uMinRadius: this.config.nodeMinRadius,
-					uMaxRadius: this.config.nodeMaxRadius,
+					uMinRadius: this.config.nodeMinRadius * weightToPixel,
+					uMaxRadius: this.config.nodeMaxRadius * weightToPixel,
 					uTime: engineTime,
 					uOutline: this.config.nodeOutline ? 1.0 : 0.0,
-					uWeightScale: weightToPixel,
 				},
 				framebuffer,
 			}
