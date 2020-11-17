@@ -6,7 +6,6 @@ import { Model } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
 
 import createModel from './model'
-import { restartTween, readTween } from '@graspologic/animation'
 import {
 	processMinMaxBounds,
 	Bounds3D,
@@ -33,9 +32,7 @@ export class EdgesRenderable
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
 	private readonly translucentModelBuffer: Buffer
-	private tweenUntil = 0
 	private needsDataBind = true
-	private lastEngineTime = 0
 
 	private _data: EdgeStore | undefined
 
@@ -150,7 +147,7 @@ export class EdgesRenderable
 	}
 
 	public updateEngineTime(engineTime: number) {
-		this.lastEngineTime = engineTime
+		this.data!.engineTime = engineTime
 	}
 
 	/**
@@ -194,7 +191,7 @@ export class EdgesRenderable
 				this.translucentModel.draw(drawConfig)
 			}
 		}
-		this.setNeedsRedraw(this.tweenUntil > engineTime)
+		this.setNeedsRedraw(true)
 	}
 
 	/**
@@ -291,55 +288,7 @@ export class EdgesRenderable
 	protected handleEdgeAttributeUpdated = (
 		storeId: number,
 		attribute?: string,
-		value?: any,
 	) => {
-		if (!attribute) {
-			// This makes sure tweening will renderc
-			const posTween = readTween(
-				this.data!.store,
-				storeId,
-				'sourcePosition.tween',
-			)
-			const targetPositionTween = readTween(
-				this.data!.store,
-				storeId,
-				'targetPosition.tween',
-			)
-			this.tweenUntil = Math.max(
-				this.tweenUntil,
-				posTween[0] + posTween[1],
-				targetPositionTween[0] + targetPositionTween[1],
-			)
-		} else {
-			// If it just writes 'duration', update it with the engine time
-			if (attribute === 'sourcePosition.duration') {
-				const engineTime = this.lastEngineTime
-				restartTween(
-					this.data!.store,
-					storeId,
-					'sourcePosition.tween',
-					engineTime,
-				)
-				this.tweenUntil = Math.max(this.tweenUntil, value + engineTime)
-			} else if (attribute === 'targetPosition.duration') {
-				const engineTime = this.lastEngineTime
-				restartTween(
-					this.data!.store,
-					storeId,
-					'targetPosition.tween',
-					engineTime,
-				)
-				this.tweenUntil = Math.max(this.tweenUntil, value + engineTime)
-
-				// If they write the whole tween, then update the tween until
-			} else if (
-				attribute === 'sourcePosition.tween' ||
-				attribute === 'targetPosition.tween'
-			) {
-				this.tweenUntil = Math.max(this.tweenUntil, value[0] + value[1])
-			}
-		}
-
 		this.needsDataBind = true
 		this.setNeedsRedraw(true)
 	}

@@ -19,7 +19,7 @@ export class ReaderStoreImpl<P extends MemoryReader>
 	/**
 	 * Constructor for the ReaderStoreImpl
 	 * @param itemClass The class of the item, used when constructing new items
-	 * @param store The underlying stor eto use
+	 * @param store The underlying store to use
 	 * @param allocator The allocator to use for allocating new ids
 	 */
 	public constructor(

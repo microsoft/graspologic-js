@@ -247,6 +247,11 @@ export interface RenderConfigurationOptions {
 	 * If true, when nodes/edges are dynamically changed, the data will automatically be rebound to the renderer
 	 */
 	autoBind: boolean
+
+	/**
+	 * The known bounds of the graph, setting this can speed up rendering
+	 */
+	dataBounds: Maybe<Bounds>
 }
 
 export interface NumberRange {
@@ -300,12 +305,6 @@ export interface RenderOptions {
 	 * The projection matrix
 	 */
 	projectionMatrix: any /* Matrix4 */
-
-	/**
-	 * @internal
-	 * The current interpolation percentage for the camera transitioning from 3d to 2d
-	 */
-	interpolation: number
 
 	/**
 	 * @internal
@@ -366,6 +365,11 @@ export interface RenderOptions {
 	 * The real time
 	 */
 	time: number
+
+	/**
+	 * If true, rendering should be forced
+	 */
+	forceRender: boolean
 }
 
 export interface ItemBasedRenderable {

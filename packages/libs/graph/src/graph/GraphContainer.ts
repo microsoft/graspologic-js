@@ -22,11 +22,6 @@ export class GraphContainer {
 	private _nodes: NodeStore
 	private _edges: EdgeStore
 
-	/**
-	 * Maps an node index to an id
-	 */
-	private _indexToId: Record<number, string> = {}
-
 	// #region adjacency maps
 	private _originalAdjacency: AdjacencyMap | undefined
 	private _adjacency: AdjacencyMap | undefined

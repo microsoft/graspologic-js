@@ -5,7 +5,12 @@
 import * as React from 'react'
 import { useRef, useEffect, useState } from 'react'
 import { GraphContainer } from '@graspologic/graph'
-import { WebGLGraphRenderer, GraphRenderer } from '@graspologic/renderer'
+import {
+	WebGLGraphRenderer,
+	GraphRenderer,
+	Maybe,
+	Bounds,
+} from '@graspologic/renderer'
 
 /**
  * Creates a new GraphRenderer instance
@@ -19,6 +24,7 @@ export function useGraphRenderer(
 	edgeCountHint?: number,
 	drawEdges?: boolean,
 	container?: GraphContainer,
+	dataBounds?: Maybe<Bounds>,
 ): [React.RefObject<HTMLDivElement>, GraphRenderer | undefined] {
 	const ref = useRef<HTMLDivElement>(null)
 	const [renderer, setRenderer] = useState<GraphRenderer | undefined>(undefined)
@@ -33,6 +39,7 @@ export function useGraphRenderer(
 					nodeCountHint,
 					edgeCountHint,
 					drawEdges,
+					dataBounds,
 				},
 				container,
 			)
@@ -48,7 +55,7 @@ export function useGraphRenderer(
 				}
 			}
 		}
-	}, [nodeCountHint, edgeCountHint, drawEdges, container])
+	}, [nodeCountHint, edgeCountHint, drawEdges, dataBounds, container])
 
 	return [ref, renderer]
 }

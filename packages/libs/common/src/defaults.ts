@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ColorVector, CameraAdjustmentMode } from './types'
+import { ColorVector, CameraAdjustmentMode, Bounds3D } from './types'
 
 // Default color is transparent
 export const DEFAULT_BG_COLOR: ColorVector = [0, 0, 0, 0]
@@ -38,6 +38,7 @@ export const DEFAULT_NODE_COUNT_HINT = 10000
 export const DEFAULT_EDGE_COUNT_HINT = 10000
 export const DEFAULT_WIDTH = 500
 export const DEFAULT_HEIGHT = 500
+export const DEFAULT_BOUNDS: Bounds3D | undefined = undefined
 export const DEFAULT_USE_DEVICE_PIXELS = true as boolean | number
 export const DEFAULT_SCALE_VIEW_ON_INIT = true
 export const DEFAULT_CAMERA_MODE = CameraAdjustmentMode.Graph

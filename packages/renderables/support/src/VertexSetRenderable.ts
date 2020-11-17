@@ -106,9 +106,8 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 				uniforms: {
 					uModelView: modelViewMatrix,
 					uProjection: projectionMatrix,
-					uMinRadius: minRadius,
-					uMaxRadius: maxRadius,
-					uWeightScale: weightToPixel,
+					uMinRadius: minRadius * weightToPixel,
+					uMaxRadius: maxRadius * weightToPixel,
 					uOutline: 1,
 					uColor: this.color.map(c => c * 255),
 				},

@@ -8,7 +8,6 @@ import { Model } from '@luma.gl/engine'
 import { cssToDevicePixels } from '@luma.gl/gltools'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
 import createModel from './model'
-import { readTweenEndTime, restartTween } from '@graspologic/animation'
 import {
 	Bounds3D,
 	RenderOptions,
@@ -24,6 +23,8 @@ import {
 	encodePickingColor,
 	decodePickingColor,
 	PickingColor,
+	GL_RGBA,
+	GL_UNSIGNED_BYTE,
 } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
 
@@ -31,11 +32,6 @@ import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214
-
-const COLOR_TWEEN_ATTRIBUTE_NAME = 'color.tween'
-const POSITION_TWEEN_ATTRIBUTE_NAME = 'position.tween'
-const COLOR_DURATION_ATTRIBUTE_NAME = 'color.duration'
-const POSITION_DURATION_ATTRIBUTE_NAME = 'position.duration'
 
 /**
  * The event interface for the NodesRenderable
@@ -59,10 +55,8 @@ export class NodesRenderable
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
 	private readonly translucentModelBuffer: Buffer
-	private tweenUntil = 0
 	private needsDataBind = true
 	private _data: NodeStore | undefined
-	private lastEngineTime = 0
 
 	private pickingSelectedColor: PickingColor | undefined
 
@@ -73,7 +67,7 @@ export class NodesRenderable
 	 * @param id The id of the renderable
 	 */
 	public constructor(
-		gl: WebGLRenderingContext,
+		private gl: WebGLRenderingContext,
 		protected config: RenderConfiguration,
 		id = getNextId(),
 	) {
@@ -138,7 +132,7 @@ export class NodesRenderable
 	 * Runs the hovered logic to determine what node is being hovered over
 	 * @param param0
 	 */
-	public computeHovered({ gl, framebuffer, _mousePosition }: any): any {
+	public computeHovered({ framebuffer, _mousePosition }: RenderOptions): any {
 		framebuffer.clear({ color: [0, 0, 0, 0], depth: true })
 		// Render picking colors
 		/* eslint-disable camelcase */
@@ -151,7 +145,7 @@ export class NodesRenderable
 			},
 		})
 		this.model.setUniforms({ picking_uActive: 0 })
-		const devicePixels = cssToDevicePixels(gl, _mousePosition)
+		const devicePixels = cssToDevicePixels(this.gl, _mousePosition)
 		const deviceX = devicePixels.x + Math.floor(devicePixels.width / 2)
 		const deviceY = devicePixels.y + Math.floor(devicePixels.height / 2)
 
@@ -160,8 +154,8 @@ export class NodesRenderable
 			sourceY: deviceY,
 			sourceWidth: 1,
 			sourceHeight: 1,
-			sourceFormat: gl.RGBA,
-			sourceType: gl.UNSIGNED_BYTE,
+			sourceFormat: GL_RGBA,
+			sourceType: GL_UNSIGNED_BYTE,
 		})
 
 		if (
@@ -188,7 +182,7 @@ export class NodesRenderable
 	}
 
 	public updateEngineTime(engineTime: number) {
-		this.lastEngineTime = engineTime
+		this.data!.engineTime = engineTime || 0
 	}
 
 	/**
@@ -209,7 +203,7 @@ export class NodesRenderable
 			this.bindDataToModel()
 
 			// Keep looping redraws until tweening is done
-			this.setNeedsRedraw(this.tweenUntil >= engineTime)
+			this.setNeedsRedraw(true)
 
 			const drawConfig = {
 				parameters: {
@@ -221,10 +215,9 @@ export class NodesRenderable
 					uModelView: modelViewMatrix,
 					uProjection: projectionMatrix,
 					uScreenSize: canvasPixelSize,
-					uMinRadius: this.config.nodeMinRadius,
-					uMaxRadius: this.config.nodeMaxRadius,
+					uMinRadius: this.config.nodeMinRadius * weightToPixel,
+					uMaxRadius: this.config.nodeMaxRadius * weightToPixel,
 					uTime: engineTime,
-					uWeightScale: weightToPixel,
 					uOutline: this.config.nodeOutline ? 1.0 : 0.0,
 				},
 				framebuffer,
@@ -332,19 +325,23 @@ export class NodesRenderable
 	 * @param primitive The primitive to add
 	 */
 	protected handleNodeAdded = (nodeOrIndex: number | Node) => {
-		const node =
-			typeof nodeOrIndex === 'number'
-				? this.data!.itemAt(nodeOrIndex)
-				: nodeOrIndex
+		if (this.enabled) {
+			const node =
+				typeof nodeOrIndex === 'number'
+					? this.data!.itemAt(nodeOrIndex)
+					: nodeOrIndex
 
-		// Assign node defaults
-		node.saturation = 1
-		node.visible = true
-
-		const pickingColor = encodePickingColor(node.storeId)
-		node.pickingColor = pickingColor as [number, number, number]
-		this.needsDataBind = true
-		this.setNeedsRedraw(true)
+			// Assign node defaults
+			node.saturation = 1
+			node.visible = true
+			node.pickingColor = encodePickingColor(node.storeId) as [
+				number,
+				number,
+				number,
+			]
+			this.needsDataBind = true
+			this.setNeedsRedraw(true)
+		}
 	}
 
 	/**
@@ -352,66 +349,28 @@ export class NodesRenderable
 	 * @param primitive The primitive to remove
 	 */
 	protected handleNodeRemoved = (nodeOrIndex: number | Node) => {
-		const node =
-			typeof nodeOrIndex === 'number'
-				? this.data!.itemAt(nodeOrIndex)
-				: nodeOrIndex
+		if (this.enabled) {
+			const node =
+				typeof nodeOrIndex === 'number'
+					? this.data!.itemAt(nodeOrIndex)
+					: nodeOrIndex
 
-		// Hide the node
-		node.visible = false
+			// Hide the node
+			node.visible = false
 
-		this.needsDataBind = true
-		this.setNeedsRedraw(true)
+			this.needsDataBind = true
+			this.setNeedsRedraw(true)
+		}
 	}
 
 	/**
 	 * Handler for when an attribute for a node is updated
 	 */
-	private handleNodeAttributeUpdated = (
-		storeId: number,
-		attribute?: string,
-		value?: any,
-	) => {
-		if (!attribute) {
-			// This makes sure tweening will renderc
-			this.tweenUntil = Math.max(
-				this.tweenUntil,
-				readTweenEndTime(
-					this.data!.store,
-					storeId,
-					POSITION_TWEEN_ATTRIBUTE_NAME,
-				),
-				readTweenEndTime(this.data!.store, storeId, COLOR_TWEEN_ATTRIBUTE_NAME),
-			)
-		} else {
-			// If it just writes 'duration', update it with the engine time
-			if (attribute === POSITION_DURATION_ATTRIBUTE_NAME) {
-				const startTime = restartTween(
-					this.data!.store,
-					storeId,
-					POSITION_TWEEN_ATTRIBUTE_NAME,
-					this.lastEngineTime,
-				)
-				this.tweenUntil = Math.max(this.tweenUntil, value + startTime)
-			} else if (attribute === COLOR_DURATION_ATTRIBUTE_NAME) {
-				const startTime = restartTween(
-					this.data!.store,
-					storeId,
-					COLOR_TWEEN_ATTRIBUTE_NAME,
-					this.lastEngineTime,
-				)
-				this.tweenUntil = Math.max(this.tweenUntil, value + startTime)
-
-				// If they write the whole tween, then update the tween until
-			} else if (
-				attribute === POSITION_TWEEN_ATTRIBUTE_NAME ||
-				attribute === COLOR_TWEEN_ATTRIBUTE_NAME
-			) {
-				this.tweenUntil = Math.max(this.tweenUntil, value[0] + value[1])
-			}
+	private handleNodeAttributeUpdated = () => {
+		if (this.enabled) {
+			this.needsDataBind = true
+			this.setNeedsRedraw(true)
 		}
-		this.needsDataBind = true
-		this.setNeedsRedraw(true)
 	}
 
 	/**

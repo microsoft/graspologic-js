@@ -32,11 +32,14 @@ import {
 	RenderConfiguration,
 	RenderConfigurationOptions,
 	Bounds3D,
+	Bounds2D,
 	DEFAULT_WIDTH,
 	DEFAULT_HEIGHT,
 	fastDebounce,
 	ItemBasedRenderable,
 	BoundedRenderable,
+	Interpolator,
+	RenderOptions,
 } from '@graspologic/common'
 import {
 	Node,
@@ -90,7 +93,8 @@ export class WebGLGraphRenderer
 	implements GraphRenderer, UsesWebGL {
 	// Observable-pattern handler lists
 	private _hoveredVertex: Node | undefined
-	private _dataDomain: Bounds3D = DEFAULT_BOUNDS
+	private dimensionInterpolator: Interpolator
+	private _dataBounds: Bounds3D = DEFAULT_BOUNDS
 
 	// Plugins
 	private _onInitializeHandlers: Array<
@@ -112,6 +116,7 @@ export class WebGLGraphRenderer
 	private _engineTime = 0
 	private _lastRenderTime = -1
 	private _startTime = Date.now()
+	private _forceDraw = false
 
 	private __destroyed = false
 	private animationLoopRunning = false
@@ -176,6 +181,11 @@ export class WebGLGraphRenderer
 			},
 		})
 
+		this.dimensionInterpolator = new Interpolator(config.interpolationTime)
+
+		// Start off in the correct position
+		this.dimensionInterpolator.current = 1
+
 		for (const renderable of scene.renderables()) {
 			if (renderable instanceof NodesRenderable) {
 				this.nodes = renderable
@@ -190,6 +200,13 @@ export class WebGLGraphRenderer
 				this.emit('vertexHovered', node)
 			})
 		}
+
+		config.onInterpolationTimeChanged(
+			value => (this.dimensionInterpolator.interpolationTime = value),
+		)
+		config.onIs3DChanged(() => {
+			this.dimensionInterpolator.reset()
+		})
 
 		this.config.onHideDeselectedChanged(this.makeDirty)
 		this.on('vertexHovered', node => {
@@ -230,7 +247,7 @@ export class WebGLGraphRenderer
 		const camera = new Camera()
 
 		/** set up the scene */
-		const scene = new Scenegraph(gl!, config, camera, store)
+		const scene = new Scenegraph(gl!, config, store)
 
 		// create nodes renderable
 		const nodes = new NodesRenderable(gl!, config)
@@ -471,13 +488,13 @@ export class WebGLGraphRenderer
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
 		if (!this._scene.needsRedraw) {
-			this._scene.makeDirty()
+			this._forceDraw = true
 			this.emit('dirty')
 		}
 	}
 
 	/**
-	 * A wrapper around camera.viewBounds to ensure that the currently loaded graph is in view
+	 * A wrapper around camera.fitToView to ensure that the currently loaded graph is in view
 	 * @param duration The amount of time to take transitioning to the new view
 	 */
 	public zoomToGraph(duration = 0) {
@@ -494,19 +511,19 @@ export class WebGLGraphRenderer
 			...(this.config.is3D ? { z: { ...dataBounds.z } } : {}),
 		}
 
-		this.camera.viewBounds(cameraBounds, duration)
+		this.camera.fitToView(cameraBounds, duration)
 
 		this.makeDirty()
 	}
 
 	/**
-	 * A wrapper around camera.viewBounds to match the viewport
+	 * A wrapper around camera.fitToView to match the viewport
 	 * @param duration The amount of time to take transitioning to the new view
 	 */
 	public zoomToViewport(duration = 0) {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
-		this.camera.viewBounds(
+		this.camera.fitToView(
 			{
 				x: {
 					min: -this.config.width / 2,
@@ -528,8 +545,8 @@ export class WebGLGraphRenderer
 	public updateWeights() {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 
-		this._dataDomain = this.computeBounds() as any
-		return this._dataDomain
+		this._dataBounds = this.computeBounds() as any
+		return this._dataBounds
 	}
 
 	/**
@@ -583,16 +600,37 @@ export class WebGLGraphRenderer
 		this._lastRenderTime = Date.now()
 		const time = Date.now() - this._startTime
 		if (this.animationProps) {
-			const props = {
-				startTime: this._startTime,
+			this.dimensionInterpolator.tick(time)
+			const modelViewMatrix = this.camera
+				.computeViewMatrix(this.config.is3D)
+				.scale([
+					1,
+					1,
+					this.config.is3D
+						? this.dimensionInterpolator.current
+						: 1.0 - this.dimensionInterpolator.current,
+				])
+
+			const props: RenderOptions = {
 				time,
 				engineTime: this._engineTime,
-				gl: this.gl,
 				framebuffer: this.animationProps.framebuffer,
 				useDevicePixels: this.animationProps.useDevicePixels,
 				_mousePosition: this.animationProps._mousePosition,
-				weightToPixel: this.computeWeightToPixel(this._dataDomain),
+				weightToPixel: this.computeWeightToPixel(this._dataBounds),
+				projectionMatrix: this.camera.projection,
+				modelViewMatrix,
+				hideDeselected: this.config.hideDeselected,
+				minRadius: this.config.nodeMinRadius,
+				maxRadius: this.config.nodeMaxRadius,
+				canvasPixelSize: [this.config.width, this.config.height],
+				forceRender:
+					this._forceDraw ||
+					this.camera.isMoving ||
+					this.dimensionInterpolator.current < 1.0,
 			}
+
+			this._forceDraw = false
 
 			this.camera.tick(time)
 
@@ -691,60 +729,71 @@ export class WebGLGraphRenderer
 	 * Computes the world bounds of the items drawn to screen
 	 */
 	private computeBounds(): Bounds3D {
-		let bounds: Bounds3D | undefined
-		for (const renderable of this.scene.renderables()) {
-			const boundedRenderable = (renderable as any) as BoundedRenderable
-			if (boundedRenderable.computeBounds !== undefined) {
-				const newBounds = boundedRenderable.computeBounds()
-				if (!bounds) {
-					bounds = newBounds
-				} else if (newBounds) {
-					// X
-					bounds.x.max = Math.max(
-						newBounds.x.min,
-						newBounds.x.max,
-						bounds.x.max,
-					)
-					bounds.x.min = Math.min(
-						newBounds.x.min,
-						newBounds.x.max,
-						bounds.x.min,
-					)
-					// Y
-					bounds.y.max = Math.max(
-						newBounds.y.min,
-						newBounds.y.max,
-						bounds.y.max,
-					)
-					bounds.y.min = Math.min(
-						newBounds.y.min,
-						newBounds.y.max,
-						bounds.y.min,
-					)
-					// Z
-					bounds.z.max = Math.max(
-						newBounds.z.min,
-						newBounds.z.max,
-						bounds.z.max,
-					)
-					bounds.z.min = Math.min(
-						newBounds.z.min,
-						newBounds.z.max,
-						bounds.z.min,
-					)
+		if (this.config.dataBounds) {
+			return {
+				...this.config.dataBounds,
+				z: this.config.dataBounds.z || DEFAULT_BOUNDS.z,
+			}
+		} else {
+			let bounds: Bounds3D | undefined
+			for (const renderable of this.scene.renderables()) {
+				const boundedRenderable = (renderable as any) as BoundedRenderable
+				if (boundedRenderable.computeBounds !== undefined) {
+					const newBounds = boundedRenderable.computeBounds()
+					if (!bounds) {
+						bounds = newBounds
+					} else if (newBounds) {
+						// X
+						bounds.x.max = Math.max(
+							newBounds.x.min,
+							newBounds.x.max,
+							bounds.x.max,
+						)
+						bounds.x.min = Math.min(
+							newBounds.x.min,
+							newBounds.x.max,
+							bounds.x.min,
+						)
+						// Y
+						bounds.y.max = Math.max(
+							newBounds.y.min,
+							newBounds.y.max,
+							bounds.y.max,
+						)
+						bounds.y.min = Math.min(
+							newBounds.y.min,
+							newBounds.y.max,
+							bounds.y.min,
+						)
+						// Z
+						bounds.z.max = Math.max(
+							newBounds.z.min,
+							newBounds.z.max,
+							bounds.z.max,
+						)
+						bounds.z.min = Math.min(
+							newBounds.z.min,
+							newBounds.z.max,
+							bounds.z.min,
+						)
+					}
 				}
 			}
+			return Object.freeze(bounds || DEFAULT_BOUNDS)
 		}
-		return Object.freeze(bounds || DEFAULT_BOUNDS)
 	}
 
 	/**
 	 * Computes the weight (0 -> 1) to pixel scale
 	 */
-	private computeWeightToPixel(bounds: Bounds3D) {
+	private computeWeightToPixel(bounds: Bounds2D) {
 		return (
+			// Scale the weight based on if the graph was fit to the screen
 			Math.max(
+				// Pretend the x axis was stretched to fit the width
 				(bounds.x.max - bounds.x.min) / this.config.width,
+
+				// Pretend the y axis was stretched to fit the width
 				(bounds.y.max - bounds.y.min) / this.config.height,
 			) / 2.0 || 1
 		)

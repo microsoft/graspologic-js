@@ -4,11 +4,28 @@
  */
 import { InputEdge } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
-import { AnimatableEdge, Edge } from '../types'
+import { edgeTypedOffset } from '../layout'
+import { AnimatableEdge, Edge, EdgeStore } from '../types'
 import { EdgeImpl } from './EdgeImpl'
-import { MemoryReader } from '@graspologic/memstore'
+import { MemoryReader, MemoryReaderInspector } from '@graspologic/memstore'
 
-const ALL_ATTRIBUTES = '*'
+// Cache several frequently accessed names / offsets
+const allAttributes = '*'
+const sourcePositionAttr = 'sourcePosition'
+const sourcePositionStartAttr = 'sourcePosition.start'
+const sourcePositionTweenAttr = 'sourcePosition.tween'
+const targetPositionAttr = 'targetPosition'
+const targetPositionStartAttr = 'targetPosition.start'
+const targetPositionTweenAttr = 'targetPosition.tween'
+
+const sourcePositionTypedOffset = edgeTypedOffset(sourcePositionAttr)!
+const sourcePositionStartTypedOffset = edgeTypedOffset(sourcePositionStartAttr)!
+const sourcePositionTweenTypedOffset = edgeTypedOffset(sourcePositionTweenAttr)!
+const targetPositionTypedOffset = edgeTypedOffset(targetPositionAttr)!
+const targetPositionStartTypedOffset = edgeTypedOffset(targetPositionStartAttr)!
+const targetPositionTweenTypedOffset = edgeTypedOffset(targetPositionTweenAttr)!
+
+const inspector = new MemoryReaderInspector()
 
 /**
  * An implementation of an Edge that has animation capabilities
@@ -22,17 +39,32 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		position: Pos3D | Pos2D,
 		duration?: number,
 	): void {
-		// Set the start to the old sourcePosition
-		;(this as any)['sourcePosition.start'] = (this as any)['sourcePosition']
+		// Set the start to the old position
+		inspector.copyFloat32Vec3Offset(
+			this,
+			sourcePositionTypedOffset,
+			sourcePositionStartTypedOffset,
+		)
+		this.handleAttributeUpdated(sourcePositionStartAttr)
 
-		// Update the duration
-		// This triggers an update in the renderer, causing it to animate
-		// We could do, sourcePosition.tween = [duration, -1], but this involves an extra array allocation
-		// that is essentially unnecessary
-		;(this as any)['sourcePosition.duration'] = duration
+		// Update the tween
+		inspector.writeFloat32Vec2Offset(
+			this,
+			sourcePositionTweenTypedOffset,
+			duration || 0,
+			(this.store as EdgeStore)?.engineTime || 0,
+		)
+		this.handleAttributeUpdated(sourcePositionTweenAttr)
 
 		// Update the end sourcePosition
-		;(this as any)['sourcePosition'] = position
+		inspector.writeFloat32Vec3Offset(
+			this,
+			sourcePositionTypedOffset,
+			position[0] || 0,
+			position[1] || 0,
+			position[2] || 0,
+		)
+		this.handleAttributeUpdated(sourcePositionAttr)
 	}
 
 	/**
@@ -43,15 +75,32 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		position: Pos3D | Pos2D,
 		duration?: number,
 	): void {
-		// Set the start to the old targetPosition
-		;(this as any)['targetPosition.start'] = (this as any)['targetPosition']
+		// Set the start to the old position
+		inspector.copyFloat32Vec3Offset(
+			this,
+			targetPositionTypedOffset,
+			targetPositionStartTypedOffset,
+		)
+		this.handleAttributeUpdated(targetPositionStartAttr)
 
-		// Update the duration
-		// This triggers an update in the renderer, causing it to animate
-		;(this as any)['targetPosition.duration'] = duration
+		// Update the tween
+		inspector.writeFloat32Vec2Offset(
+			this,
+			targetPositionTweenTypedOffset,
+			duration || 0,
+			(this.store as EdgeStore)?.engineTime || 0,
+		)
+		this.handleAttributeUpdated(targetPositionTweenAttr)
 
 		// Update the end targetPosition
-		;(this as any)['targetPosition'] = position
+		inspector.writeFloat32Vec3Offset(
+			this,
+			targetPositionTypedOffset,
+			position[0] || 0,
+			position[1] || 0,
+			position[2] || 0,
+		)
+		this.handleAttributeUpdated(targetPositionAttr)
 	}
 
 	/**
@@ -64,17 +113,16 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		defaultEdgeWeight = 1,
 	) {
 		super.load(data, nodeIndexMap, defaultEdgeWeight)
-		this.handleAttributeUpdated(ALL_ATTRIBUTES, undefined)
+		this.handleAttributeUpdated(allAttributes)
 	}
 
 	/**
 	 * Handler for when an attribute is updated
 	 * @param name The name of the attribute
-	 * @param value The value of the attribute
 	 */
-	protected handleAttributeUpdated(name: string, value: unknown): void {
+	protected handleAttributeUpdated(name: string): void {
 		if (this.store) {
-			this.store.notify(this.storeId, name, value)
+			this.store.notify(this.storeId, name)
 		}
 	}
 }

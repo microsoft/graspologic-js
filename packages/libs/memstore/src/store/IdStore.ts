@@ -71,9 +71,8 @@ export interface IdStore {
 	 * Notifies the PrimitiveStore of an Attribute change externally
 	 * @param storeId The store id
 	 * @param attribute The attribute that changed
-	 * @param value The optional value, if undefined, all the attributes have changed
 	 */
-	notify(storeId: number, attribute: AttributeName, value?: unknown): void
+	notify(storeId: number, attribute: AttributeName): void
 }
 
 /**
@@ -232,10 +231,10 @@ export class IdStoreImpl implements IdStore {
 	 * @inheritdoc
 	 * @see {@link IdStore.notify}
 	 */
-	public notify(id: number, attribute?: AttributeName, value?: unknown) {
+	public notify(id: number, attribute?: AttributeName) {
 		for (const handler of this.onUpdateHandlers) {
 			try {
-				handler(id, attribute, value)
+				handler(id, attribute)
 			} catch (e) {
 				console.error('caught error', e)
 			}

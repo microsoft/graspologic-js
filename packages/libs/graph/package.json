@@ -20,6 +20,7 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
+		"@graspologic/common": "workspace:*",
 		"@graspologic/memstore": "workspace:*",
 		"typedoc": "0.19.2"
 	},

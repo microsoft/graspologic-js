@@ -590,7 +590,7 @@ storiesOf('Primitive API', module)
 							onRender={(renderer, renderTimeDelta) => {
 								// We are scaling the real time by 1000
 								// so 1 engineTime === 1000 real time
-								renderer.camera.viewBounds({
+								renderer.camera.fitToView({
 									x: { min: -1, max: 1 },
 									y: { min: -1, max: 1 },
 								})

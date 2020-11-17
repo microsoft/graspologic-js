@@ -40,7 +40,7 @@ export default () => {
 	addStarfield(renderer, nodeCount)
 
 	// Define the initial view bounds of the camera to match the space of our starfield
-	renderer.camera.viewBounds(
+	renderer.camera.fitToView(
 		{
 			x: { min: -1000, max: 1000 },
 			y: { min: -1000, max: 1000 },

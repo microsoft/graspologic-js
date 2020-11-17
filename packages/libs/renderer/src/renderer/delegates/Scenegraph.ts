@@ -6,12 +6,10 @@
 // @ts-ignore
 import { setParameters } from '@luma.gl/gltools'
 import { DataStore, Scene, Primitive } from '../../types'
-import { Camera } from '@graspologic/camera'
 import {
 	Renderable,
 	RenderConfiguration,
 	RenderOptions,
-	Interpolator,
 } from '@graspologic/common'
 import {
 	Edge,
@@ -31,11 +29,9 @@ import { ScreenQuadRenderable } from '@graspologic/renderables-support'
  * rendering the set of renderables and primitives which compose the graph view.
  */
 export class Scenegraph implements Scene {
-	public _sceneGraphNeedsRedraw = false
 	private destroyed = false
 	private doubleBufferedRenderables: ScreenQuadRenderable
 	private _renderables: Renderable[] = []
-	private dimensionInterpolator: Interpolator
 
 	// Cache these for quick lookup
 	private edgeData!: EdgeStore
@@ -51,7 +47,6 @@ export class Scenegraph implements Scene {
 	public constructor(
 		private gl: WebGLRenderingContext,
 		private config: RenderConfiguration,
-		private camera: Camera,
 		private data: DataStore<Primitive>,
 	) {
 		this.doubleBufferedRenderables = new ScreenQuadRenderable(gl)
@@ -61,18 +56,6 @@ export class Scenegraph implements Scene {
 		this.handleStoreUpdated(edgeType, data.retrieve(edgeType)!)
 		this.handleStoreUpdated(nodeType, data.retrieve(nodeType)!)
 
-		this.dimensionInterpolator = new Interpolator(config.interpolationTime)
-
-		// Start off in the correct position
-		this.dimensionInterpolator.current = 1
-
-		config.onInterpolationTimeChanged(
-			value => (this.dimensionInterpolator.interpolationTime = value),
-		)
-		config.onIs3DChanged(() => {
-			this.dimensionInterpolator.reset()
-			this._sceneGraphNeedsRedraw = true
-		})
 		config.onNodeFilteredIdsChanged(this.rebuildSaturation)
 		config.onNodeFilteredInSaturationChanged(this.rebuildSaturation)
 		config.onNodeFilteredOutSaturationChanged(this.rebuildSaturation)
@@ -89,11 +72,7 @@ export class Scenegraph implements Scene {
 	 * @param height The height of the scene
 	 */
 	public resize(width: number, height: number): void {
-		this.config.width = width
-		this.config.height = height
-
 		this.doubleBufferedRenderables.resize(width, height)
-		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
@@ -155,7 +134,6 @@ export class Scenegraph implements Scene {
 		for (const store of this.data) {
 			store.reset()
 		}
-		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
@@ -215,13 +193,6 @@ export class Scenegraph implements Scene {
 	}
 
 	/**
-	 * Marks the scene as dirty
-	 */
-	public makeDirty() {
-		this._sceneGraphNeedsRedraw = true
-	}
-
-	/**
 	 * Adds a renderable object that will be added to the rendering pipeline
 	 * @param renderable The renderable to add
 	 * @param doubleBuffered If the renderable should be double buffered
@@ -233,7 +204,6 @@ export class Scenegraph implements Scene {
 			this._renderables.push(renderable)
 			renderable.resize(this.config.width, this.config.height)
 		}
-		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
@@ -243,7 +213,6 @@ export class Scenegraph implements Scene {
 	public removeRenderable(renderable: Renderable): void {
 		this.doubleBufferedRenderables.removeRenderable(renderable)
 		this._renderables = this._renderables.filter(r => r !== renderable)
-		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
@@ -263,40 +232,21 @@ export class Scenegraph implements Scene {
 			blendEquation: [gl.FUNC_ADD, gl.FUNC_ADD],
 		})
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
-		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
 	 * Renders the scene
 	 * @param options The render options
 	 */
-	public render({
-		gl,
-		framebuffer,
-		useDevicePixels,
-		_mousePosition,
-		engineTime,
-		time,
-		weightToPixel,
-	}: any): void {
+	public render(renderOptions: RenderOptions): void {
+		const { engineTime, forceRender } = renderOptions
 		this.updateEngineTime(engineTime)
 
-		if (this.needsRedraw) {
-			const renderOptions = this.createRenderOptions(
-				framebuffer,
-				useDevicePixels,
-				_mousePosition,
-				engineTime,
-				time,
-				weightToPixel,
-			)
-
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+		if (this.needsRedraw || forceRender) {
+			this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT)
 			this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height)
-			this.drawRenderables(renderOptions)
+			this.drawRenderables(forceRender, renderOptions)
 		}
-
-		this._sceneGraphNeedsRedraw = false
 	}
 
 	/**
@@ -304,9 +254,6 @@ export class Scenegraph implements Scene {
 	 */
 	public get needsRedraw() {
 		return (
-			this._sceneGraphNeedsRedraw ||
-			this.dimensionInterpolator.current < 1.0 ||
-			this.camera.isMoving ||
 			this.doubleBufferedRenderables.needsRedraw ||
 			this._renderables.some(r => r.needsRedraw)
 		)
@@ -375,8 +322,6 @@ export class Scenegraph implements Scene {
 				}
 			}
 		}
-
-		this._sceneGraphNeedsRedraw = true
 	}
 
 	/**
@@ -406,61 +351,12 @@ export class Scenegraph implements Scene {
 
 	/**
 	 * Draws the renderables
+	 * @param force If drawing should be forced
 	 * @param renderOptions The render options
 	 */
-	private drawRenderables(renderOptions: RenderOptions): void {
-		this.doubleBufferedRenderables.update(this.needsRedraw, renderOptions)
+	private drawRenderables(force: boolean, renderOptions: RenderOptions): void {
+		this.doubleBufferedRenderables.update(force, renderOptions)
 		this.doubleBufferedRenderables.draw()
 		this._renderables.forEach(r => r.draw(renderOptions))
-	}
-
-	/**
-	 * Creates the set of render options to be passed to the renderables
-	 * @param canvas The canvas being rendered on
-	 * @param framebuffer The frame buffer to draw on
-	 * @param useDevicePixels Whether or not to use device pixels
-	 * @param _mousePosition The current mouse position
-	 * @param engineTime The engine time
-	 * @param time The actual time since the start
-	 * @param weightToPixel The scale of weight to pixel size
-	 */
-	private createRenderOptions(
-		framebuffer: any,
-		useDevicePixels: boolean | number,
-		_mousePosition: any,
-		engineTime: number,
-		time: number,
-		weightToPixel: number,
-	): RenderOptions {
-		this.dimensionInterpolator.tick(time)
-		const modelViewMatrix = this.camera
-			.computeViewMatrix(this.config.is3D)
-			.scale([
-				1,
-				1,
-				this.config.is3D
-					? this.dimensionInterpolator.current
-					: 1.0 - this.dimensionInterpolator.current,
-			])
-		const canvasPixelSize: [number, number] = [
-			this.config.width,
-			this.config.height,
-		]
-		const renderOptions: RenderOptions = {
-			modelViewMatrix: modelViewMatrix,
-			projectionMatrix: this.camera.projection,
-			interpolation: this.dimensionInterpolator.current,
-			hideDeselected: this.config.hideDeselected,
-			minRadius: this.config.nodeMinRadius,
-			maxRadius: this.config.nodeMaxRadius,
-			canvasPixelSize,
-			framebuffer,
-			useDevicePixels,
-			_mousePosition,
-			engineTime,
-			time,
-			weightToPixel,
-		}
-		return renderOptions
 	}
 }

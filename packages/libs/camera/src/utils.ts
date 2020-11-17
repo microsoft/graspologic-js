@@ -2,22 +2,27 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Matrix4, Quaternion, Vector3 } from 'math.gl'
-import { CameraState } from './CameraState'
+import { Matrix4, Vector3 } from 'math.gl'
 import { Bounds } from '@graspologic/common'
 
 /**
- * @internal
- *
- * Computes a camera state (position & rotation) that will ensure the given bounds is in view
- * @param bounds The bounds to view
- * @param projection The current projection matrix
+ * Computes the position in world space where the camera should be placed to fit the given bounds into view
+ * @param bounds The bounds in world space to view
+ * @param fov The field of view of the camera
+ * @param aspect The aspect ratio of the view
  */
-export function computeState(bounds: Bounds, projection: Matrix4) {
-	const transformed: Matrix4 = (projection.clone().invert() as any).transform([
-		1,
-		1,
-	])
+export function computeCameraPosition(
+	bounds: Bounds,
+	fov: number,
+	aspect: number,
+): Vector3 {
+	const transformed = new Matrix4()
+		.perspective({
+			fov,
+			aspect,
+		})
+		.invert()
+		.transform([1, 1], undefined as any)
 	const scaleX = 1 / (2 * transformed[0])
 	const scaleY = 1 / (2 * transformed[1])
 	const width = bounds.x.max - bounds.x.min
@@ -29,10 +34,5 @@ export function computeState(bounds: Bounds, projection: Matrix4) {
 	const hasZ = !!bounds.z
 
 	minDist += hasZ ? bounds.z!.min + (bounds.z!.max - bounds.z!.min)! : 0
-
-	const newState = new CameraState(
-		new Vector3(-midX, -midY, -minDist),
-		new Quaternion(),
-	)
-	return newState
+	return new Vector3(-midX, -midY, -minDist)
 }

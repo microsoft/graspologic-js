@@ -5,7 +5,7 @@
 import { Matrix4, Quaternion, Vector3 } from 'math.gl'
 import { CameraState } from './CameraState'
 import { TransitioningCameraState } from './TransitioningCameraState'
-import { computeState } from './computeState'
+import { computeCameraPosition } from './utils'
 import { Bounds, EventEmitter } from '@graspologic/common'
 
 const DEFAULT_WIDTH = 500
@@ -26,15 +26,17 @@ export interface CameraEvents {
  * Maintains Camera State for Graph Renderer
  */
 export class Camera extends EventEmitter<CameraEvents> {
-	public projection = new Matrix4()
 	private _fov = DEFAULT_FOV
 	private _isUserMoving = false
 	private _projectionSettings = {
 		aspect: 1,
-		near: 0.1,
-		far: 1000,
+		near: 0.01,
+
+		// An infinite far plane
+		far: null,
 		fov: DEFAULT_FOV,
 	} as any
+	private _projection: Matrix4
 
 	/**
 	 * The current camera state
@@ -47,21 +49,25 @@ export class Camera extends EventEmitter<CameraEvents> {
 	constructor() {
 		super()
 		this._projectionSettings.aspect = DEFAULT_WIDTH / DEFAULT_HEIGHT
-		this.projection = new Matrix4().perspective(this._projectionSettings)
+		this._projection = new Matrix4().perspective(this._projectionSettings)
 
 		// Make the default view of -1 to 1 in all dimensions
-		const defaultState = computeState(
-			{
-				x: {
-					min: -1,
-					max: 1,
+		const defaultState = new CameraState(
+			computeCameraPosition(
+				{
+					x: {
+						min: -1,
+						max: 1,
+					},
+					y: {
+						min: -1,
+						max: 1,
+					},
 				},
-				y: {
-					min: -1,
-					max: 1,
-				},
-			},
-			this.projection,
+				DEFAULT_FOV,
+				1.0,
+			),
+			new Quaternion(),
 		)
 
 		this._state = new TransitioningCameraState(
@@ -79,7 +85,7 @@ export class Camera extends EventEmitter<CameraEvents> {
 	 */
 	public resize(width: number, height: number): void {
 		this._projectionSettings.aspect = width / height
-		this.projection = new Matrix4().perspective(this._projectionSettings)
+		this._projection = new Matrix4().perspective(this._projectionSettings)
 	}
 
 	/**
@@ -87,19 +93,16 @@ export class Camera extends EventEmitter<CameraEvents> {
 	 * @param bounds The bounds of the view
 	 * @param duration How long the transition should take
 	 */
-	public viewBounds(bounds: Bounds, duration = 0) {
-		const newState = computeState(bounds, this.projection)
-
-		// Distance from origin on the z axis
-		const zDist = -newState.position.z
-
-		// Update the projection to make sure the graph is in view based on the bounds
-		Object.assign(this._projectionSettings, {
-			near: zDist / 100,
-			far: zDist * 100,
-		})
-		this.projection = new Matrix4().perspective(this._projectionSettings)
-
+	public fitToView(bounds: Bounds, duration = 0) {
+		// Move the camera to the optimal position
+		const newState = new CameraState(
+			computeCameraPosition(
+				bounds,
+				this._projectionSettings.fov,
+				this._projectionSettings.aspect,
+			),
+			new Quaternion(),
+		)
 		this.transitionToState(newState, duration)
 	}
 
@@ -117,6 +120,13 @@ export class Camera extends EventEmitter<CameraEvents> {
 			),
 			duration,
 		)
+	}
+
+	/**
+	 * Gets the current projection matrix
+	 */
+	public get projection(): Matrix4 {
+		return this._projection
 	}
 
 	/**
@@ -201,6 +211,7 @@ export class Camera extends EventEmitter<CameraEvents> {
 	 * @param time The current time
 	 */
 	public tick(time: number): void {
+		// Let the state know that a tick has occurred
 		this._state.tick(time)
 	}
 
