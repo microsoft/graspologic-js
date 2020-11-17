@@ -32,6 +32,7 @@ import {
 	RenderConfiguration,
 	RenderConfigurationOptions,
 	Bounds3D,
+	Bounds2D,
 	DEFAULT_WIDTH,
 	DEFAULT_HEIGHT,
 	fastDebounce,
@@ -785,10 +786,14 @@ export class WebGLGraphRenderer
 	/**
 	 * Computes the weight (0 -> 1) to pixel scale
 	 */
-	private computeWeightToPixel(bounds: Bounds3D) {
+	private computeWeightToPixel(bounds: Bounds2D) {
 		return (
+			// Scale the weight based on if the graph was fit to the screen
 			Math.max(
+				// Pretend the x axis was stretched to fit the width
 				(bounds.x.max - bounds.x.min) / this.config.width,
+
+				// Pretend the y axis was stretched to fit the width
 				(bounds.y.max - bounds.y.min) / this.config.height,
 			) / 2.0 || 1
 		)
