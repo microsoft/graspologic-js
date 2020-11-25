@@ -3,14 +3,19 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Primitive } from './primitives'
-import { Renderable } from '@graspologic/common'
+import { EventEmitter, Renderable } from '@graspologic/common'
 import { Edge, Node } from '@graspologic/graph'
+
+export interface SceneEvents {
+	'scene:renderableAdded'(renderable: Renderable): void
+	'scene:renderableRemoved'(renderable: Renderable): void
+}
 
 /**
  * Represents a collection of primitives/renderables that are rendered
  * on the graph
  */
-export interface Scene extends Renderable {
+export interface Scene extends Renderable, EventEmitter<SceneEvents> {
 	/**
 	 * Adds the list of primitives to the scene
 	 * @param primitives The list of primitives to add

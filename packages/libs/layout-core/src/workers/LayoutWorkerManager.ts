@@ -7,7 +7,7 @@ import {
 	WorkerMessage,
 	ExecuteMessagePayload,
 } from './types'
-import { EventEmitter } from '@graspologic/common'
+import { EventEmitterImpl } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
 
 export interface LayoutWorkerManagerEvents<TickProgress> {
@@ -23,7 +23,7 @@ export interface LayoutWorkerManagerEvents<TickProgress> {
 export class LayoutWorkerManager<
 	Configuration,
 	TickProgress
-> extends EventEmitter<LayoutWorkerManagerEvents<TickProgress>> {
+> extends EventEmitterImpl<LayoutWorkerManagerEvents<TickProgress>> {
 	private _createWorker: () => Worker
 	private _worker?: Worker
 	private _configuration: Partial<Configuration> = {}

@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { EventEmitter } from './events'
+import { EventEmitterImpl } from './events'
 
 export type PropertyChangeHandler<T> = (newValue: T) => void
 export type PropertyChangeValidator<T> = (newValue: T) => boolean
@@ -20,7 +20,7 @@ export interface PropertyContainerEvents<T> {
  *
  * A class for managing a property that emits an event when it changes
  */
-export class PropertyContainer<T> extends EventEmitter<
+export class PropertyContainer<T> extends EventEmitterImpl<
 	PropertyContainerEvents<T>
 > {
 	private isValid: PropertyChangeValidator<T> = () => true

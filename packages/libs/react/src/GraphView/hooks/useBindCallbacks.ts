@@ -54,7 +54,7 @@ export function useBindCallbacks({ renderer, callbacks = {} }: CallbacksArgs) {
 			// normally, they are only enabled if HandleNodeClicks child component is used
 			// this provides an alternative binding to match the other handlers for consistency
 			const disconnect = enableClickEvents(renderer)
-			const disconnectVertexClick = renderer.on('vertexClick', node => {
+			const disconnectVertexClick = renderer.on('node:click', node => {
 				onNodeClick(node)
 			})
 			return () => {
@@ -66,7 +66,7 @@ export function useBindCallbacks({ renderer, callbacks = {} }: CallbacksArgs) {
 
 	useEffect(() => {
 		if (renderer && onNodeHover) {
-			return renderer.on('vertexHovered', node => {
+			return renderer.on('node:hover', node => {
 				onNodeHover(node)
 			})
 		}

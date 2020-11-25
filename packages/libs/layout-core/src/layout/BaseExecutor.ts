@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { TickingClock } from '../clock'
-import { Disconnect, EventEmitter } from '@graspologic/common'
+import { Disconnect, EventEmitterImpl } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
 
 export interface BaseExecutorEvents<Progress> {
@@ -22,7 +22,7 @@ export abstract class BaseExecutor<
 	Config,
 	Clock extends TickingClock,
 	Progress
-> extends EventEmitter<BaseExecutorEvents<Progress>> {
+> extends EventEmitterImpl<BaseExecutorEvents<Progress>> {
 	private _graph: GraphContainer
 	private _halted = false
 	private _complete = false

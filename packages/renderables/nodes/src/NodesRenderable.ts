@@ -15,6 +15,8 @@ import {
 	ItemBasedRenderable,
 	BoundedRenderable,
 	EventsMixin,
+	UserInteractionType,
+	Maybe,
 } from '@graspologic/common'
 import { NodeStore, Node, nodeType } from '@graspologic/graph'
 import {
@@ -37,7 +39,8 @@ const RENDERER_BACKGROUND_INDEX = 16777214
  * The event interface for the NodesRenderable
  */
 export interface NodesRenderableEvents {
-	nodeHovered(node?: Node): void
+	'node:hover'(node: Node | undefined): void
+	'node:click'(node: Node | undefined): void
 }
 
 // The base nodes renderable class
@@ -133,12 +136,11 @@ export class NodesRenderable
 
 		this.data!.engineTime = engineTime || 0
 
-		// Set the enabled states on the nodes/edges
 		if (
 			!isCameraMoving &&
 			_mousePosition &&
 			// We only need to compute the picking if there is something actually listening to it
-			this.hasListeners('nodeHovered')
+			(this.hasListeners('node:hover') || this.hasListeners('node:click'))
 		) {
 			this.computeHovered(framebuffer, _mousePosition)
 			this.setNeedsRedraw(true)
@@ -165,7 +167,7 @@ export class NodesRenderable
 			engineTime,
 			weightToPixel,
 		} = options
-		if (this.enabled) {
+		if (this.shouldRender(options)) {
 			this.bindDataToModel()
 
 			// Keep looping redraws until tweening is done
@@ -283,6 +285,19 @@ export class NodesRenderable
 	}
 
 	/**
+	 * Handles the given type of user interaction
+	 * @param type The type of user interaction
+	 */
+	public handleUserInteraction(type: UserInteractionType) {
+		if (type === 'click') {
+			this.emit(
+				'node:click',
+				this.getNodeByPickingColor(this.pickingSelectedColor),
+			)
+		}
+	}
+
+	/**
 	 * Handler for when a node is added
 	 * @param primitive The primitive to add
 	 */
@@ -390,20 +405,36 @@ export class NodesRenderable
 				this.pickingSelectedColor,
 			)
 		) {
-			if (pickingSelectedColor !== null) {
-				this.pickingSelectedColor = pickingSelectedColor
-				const idx = decodePickingColor(this.pickingSelectedColor)
-				this.emit(
-					'nodeHovered',
-					idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
-						? this.data?.itemAt(idx)
-						: undefined,
-				)
-			} else {
-				this.pickingSelectedColor = undefined
-				this.emit('nodeHovered', undefined)
-			}
+			this.pickingSelectedColor = pickingSelectedColor || undefined
+			this.emit(
+				'node:hover',
+				this.getNodeByPickingColor(this.pickingSelectedColor),
+			)
 		}
 		return this.pickingSelectedColor
+	}
+
+	/**
+	 * Gets the node with the given picking color
+	 * @param pickingColor The picking color
+	 */
+	private getNodeByPickingColor(
+		pickingColor: Maybe<PickingColor>,
+	): Node | undefined {
+		const idx = pickingColor ? decodePickingColor(pickingColor) : -1
+		return idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
+			? this.data?.itemAt(idx)
+			: undefined
+	}
+
+	/**
+	 * Determines if the renderable should be rendered
+	 * @param options The render options
+	 */
+	private shouldRender({
+		isCameraMoving,
+		config: { drawNodes, hideNodesOnMove },
+	}: RenderOptions) {
+		return this.enabled && drawNodes && (!hideNodesOnMove || !isCameraMoving)
 	}
 }

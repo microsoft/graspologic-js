@@ -373,6 +373,8 @@ export interface BoundedRenderable {
 	computeBounds(): Bounds3D | undefined
 }
 
+export type UserInteractionType = 'click'
+
 export interface Renderable {
 	/**
 	 * Is this renderable enabled
@@ -383,6 +385,12 @@ export interface Renderable {
 	 * Does this renderable require a redraw?
 	 */
 	needsRedraw: boolean
+
+	/**
+	 * Handles the given user interaction
+	 * @param type The user interaction type
+	 */
+	handleUserInteraction?(type: UserInteractionType): void
 
 	/**
 	 * Called before render to prepare the renderable for drawing

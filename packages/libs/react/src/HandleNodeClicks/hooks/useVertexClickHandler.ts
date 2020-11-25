@@ -17,7 +17,7 @@ export function useVertexClickHandler(
 ) {
 	useEffect(() => {
 		if (renderer) {
-			return renderer.on('vertexClick', vertex =>
+			return renderer.on('node:click', vertex =>
 				onVertexClick(vertex && vertex.id),
 			)
 		}

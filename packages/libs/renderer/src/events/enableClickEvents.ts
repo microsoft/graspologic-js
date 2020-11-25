@@ -15,7 +15,7 @@ import { Disconnect } from '@graspologic/common'
 export function enableClickEvents(renderer: GraphRenderer): Disconnect {
 	const eventManager = new EventManager(renderer.view)
 	eventManager.on({
-		click: () => renderer.handleClicked(),
+		click: () => renderer.handleUserInteraction('click'),
 	})
 	return (): void => eventManager.destroy()
 }

@@ -4,7 +4,7 @@
  */
 import { Vector3, Quaternion } from 'math.gl'
 import { CameraState } from './CameraState'
-import { Interpolator, EventEmitter } from '@graspologic/common'
+import { Interpolator, EventEmitterImpl } from '@graspologic/common'
 import { lerp3, slerp } from '@graspologic/luma-utils'
 
 export interface TransitioningCameraStateEvents {
@@ -19,7 +19,7 @@ export interface TransitioningCameraStateEvents {
  *
  * A camera state that transitions between two different camera states
  */
-export class TransitioningCameraState extends EventEmitter<
+export class TransitioningCameraState extends EventEmitterImpl<
 	TransitioningCameraStateEvents
 > {
 	private interpolator?: Interpolator

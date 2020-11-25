@@ -28,7 +28,7 @@ export function useHoveredVertexRenderable(
 			)
 
 			renderer.scene.addRenderable(renderable)
-			return renderer.on('vertexHovered', hovered => {
+			return renderer.on('node:hover', hovered => {
 				renderable.setData(hovered ? [hovered] : [])
 				if (onHover) {
 					onHover(hovered?.id)

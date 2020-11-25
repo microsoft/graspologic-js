@@ -6,7 +6,7 @@ import { Matrix4, Quaternion, Vector3 } from 'math.gl'
 import { CameraState } from './CameraState'
 import { TransitioningCameraState } from './TransitioningCameraState'
 import { computeCameraPosition } from './utils'
-import { Bounds, EventEmitter } from '@graspologic/common'
+import { Bounds, EventEmitterImpl } from '@graspologic/common'
 
 const DEFAULT_WIDTH = 500
 const DEFAULT_HEIGHT = 500
@@ -25,7 +25,7 @@ export interface CameraEvents {
 /**
  * Maintains Camera State for Graph Renderer
  */
-export class Camera extends EventEmitter<CameraEvents> {
+export class Camera extends EventEmitterImpl<CameraEvents> {
 	private _fov = DEFAULT_FOV
 	private _isUserMoving = false
 	private _projectionSettings = {

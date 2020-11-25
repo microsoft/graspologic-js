@@ -4,8 +4,15 @@
  */
 import { Scene } from './scene'
 import { Camera } from '@graspologic/camera'
-import { HasEvents, RenderConfiguration, Maybe, Id } from '@graspologic/common'
+import {
+	EventEmitter,
+	RenderConfiguration,
+	Maybe,
+	Id,
+	UserInteractionType,
+} from '@graspologic/common'
 import { Node, GraphContainer } from '@graspologic/graph'
+import { NodesRenderableEvents } from '@graspologic/renderables-nodes'
 
 export type InitializeHandler<T> = (context: T) => void
 
@@ -19,18 +26,16 @@ export interface UsesWebGL {
 	readonly gl: WebGLRenderingContext
 }
 
-export interface GraphRendererEvents {
+export interface GraphRendererEvents extends NodesRenderableEvents {
 	dirty(): void
 	resize(): void
 	load(): void
-	vertexClick(node: Node | undefined): void
-	vertexHovered(node: Node | undefined): void
 }
 
 /**
  * Renderer for rendering a graph
  */
-export interface GraphRenderer extends HasEvents<GraphRendererEvents> {
+export interface GraphRenderer extends EventEmitter<GraphRendererEvents> {
 	/**
 	 * Gets the camera
 	 */
@@ -62,11 +67,10 @@ export interface GraphRenderer extends HasEvents<GraphRendererEvents> {
 	view: HTMLElement
 
 	/**
-	 * @internal
-	 *
-	 * Lets the renderer know that a node has been clicked
+	 * Handles the given user interaction
+	 * @param type The user interaction type
 	 */
-	handleClicked(): void
+	handleUserInteraction(type: UserInteractionType): void
 
 	/**
 	 * Add an initialization callback

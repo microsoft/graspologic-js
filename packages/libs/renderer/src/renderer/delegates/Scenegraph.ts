@@ -5,8 +5,9 @@
 // This is causing problems downstream for some reason
 // @ts-ignore
 import { setParameters } from '@luma.gl/gltools'
-import { DataStore, Scene, Primitive } from '../../types'
+import { DataStore, Scene, Primitive, SceneEvents } from '../../types'
 import {
+	EventEmitterImpl,
 	Renderable,
 	RenderConfiguration,
 	RenderOptions,
@@ -28,7 +29,7 @@ import { ScreenQuadRenderable } from '@graspologic/renderables-support'
  * Scenegraph for graph rendering. This contains responsibility for owning, mutating, and
  * rendering the set of renderables and primitives which compose the graph view.
  */
-export class Scenegraph implements Scene {
+export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 	private destroyed = false
 	private doubleBufferedRenderables: ScreenQuadRenderable
 	private nonDoubleBufferedRenderables: Renderable[] = []
@@ -49,6 +50,7 @@ export class Scenegraph implements Scene {
 		private config: RenderConfiguration,
 		private data: DataStore<Primitive>,
 	) {
+		super()
 		this.doubleBufferedRenderables = new ScreenQuadRenderable(gl)
 		config.onBackgroundColorChanged(() => this.initialize({ gl: this.gl }))
 
@@ -216,6 +218,7 @@ export class Scenegraph implements Scene {
 			this.nonDoubleBufferedRenderables.push(renderable)
 			renderable.resize(this.config.width, this.config.height)
 		}
+		this.emit('scene:renderableAdded', renderable)
 	}
 
 	/**
@@ -227,6 +230,7 @@ export class Scenegraph implements Scene {
 		this.nonDoubleBufferedRenderables = this.nonDoubleBufferedRenderables.filter(
 			r => r !== renderable,
 		)
+		this.emit('scene:renderableRemoved', renderable)
 	}
 
 	/**

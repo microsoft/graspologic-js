@@ -117,7 +117,7 @@ function createRenderer(data, width, height) {
 	const renderable = new VertexSetRenderable(renderer.gl)
 	renderable.color = [0.5, 0.5, 0.8, 1]
 	renderer.scene.addRenderable(renderable)
-	renderer.on('vertexHovered', hovered => {
+	renderer.on('node:hover', hovered => {
 		renderable.setData(hovered ? [hovered] : [])
 	})
 
@@ -133,7 +133,7 @@ export default () => {
 	const renderer = createRenderer(GRAPH_DATA, 600, 300)
 	let selectedNodeIds = []
 
-	renderer.on('vertexClick', id => {
+	renderer.on('node:click', id => {
 		console.log('click', id)
 		if (id) {
 			if (selectedNodeIds.indexOf(id) === -1) {

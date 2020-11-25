@@ -28,7 +28,6 @@ import { Camera } from '@graspologic/camera'
 import {
 	createConfiguration,
 	CameraAdjustmentMode,
-	EventEmitter,
 	RenderConfiguration,
 	RenderConfigurationOptions,
 	Bounds3D,
@@ -40,6 +39,11 @@ import {
 	BoundedRenderable,
 	Interpolator,
 	RenderOptions,
+	EventEmitterImpl,
+	UserInteractionType,
+	Renderable,
+	EventEmitter,
+	Disconnect,
 } from '@graspologic/common'
 import {
 	Node,
@@ -89,10 +93,9 @@ type AnimationOpts = any
  * A WebGL 2 based graph renderer
  */
 export class WebGLGraphRenderer
-	extends EventEmitter<GraphRendererEvents>
+	extends EventEmitterImpl<GraphRendererEvents>
 	implements GraphRenderer, UsesWebGL {
 	// Observable-pattern handler lists
-	private _hoveredVertex: Node | undefined
 	private dimensionInterpolator: Interpolator
 	private _dataBounds: Bounds3D = DEFAULT_BOUNDS
 
@@ -109,9 +112,6 @@ export class WebGLGraphRenderer
 	private animationProps: AnimationOpts
 	private _scene: Scene
 	private _camera: Camera
-
-	private nodes: NodesRenderable | undefined
-	private edges: EdgesRenderable | undefined
 
 	private _engineTime = 0
 	private _lastRenderTime = -1
@@ -154,6 +154,13 @@ export class WebGLGraphRenderer
 			this.initialized = true
 		})
 
+		for (const renderable of scene.renderables()) {
+			this.handleRenderableAdded(renderable)
+		}
+
+		scene.on('scene:renderableAdded', this.handleRenderableAdded)
+		scene.on('scene:renderableRemoved', this.handleRenderableRemoved)
+
 		this._kickoffDeferred = deferred()
 
 		// Pretend all the data has updated
@@ -186,20 +193,8 @@ export class WebGLGraphRenderer
 		// Start off in the correct position
 		this.dimensionInterpolator.current = 1
 
-		for (const renderable of scene.renderables()) {
-			if (renderable instanceof NodesRenderable) {
-				this.nodes = renderable
-			} else if (renderable instanceof EdgesRenderable) {
-				this.edges = renderable
-			}
-		}
-
-		if (this.nodes) {
-			// Event Wiring
-			this.nodes.on('nodeHovered', (node): void => {
-				this.emit('vertexHovered', node)
-			})
-		}
+		// Pipe all scene events to the renderable
+		scene.pipe(this as any)
 
 		config.onInterpolationTimeChanged(
 			value => (this.dimensionInterpolator.interpolationTime = value),
@@ -209,9 +204,6 @@ export class WebGLGraphRenderer
 		})
 
 		this.config.onHideDeselectedChanged(this.makeDirty)
-		this.on('vertexHovered', node => {
-			this._hoveredVertex = node
-		})
 	}
 
 	/**
@@ -270,10 +262,12 @@ export class WebGLGraphRenderer
 	 *
 	 * Triggers the onVertexClick event
 	 */
-	public handleClicked(): void {
+	public handleUserInteraction(type: UserInteractionType): void {
 		invariant(!this.destroyed, 'renderer is destroyed!')
-		if (this._hoveredVertex) {
-			this.emit('vertexClick', this._hoveredVertex)
+		for (const renderable of this.scene.renderables()) {
+			if (renderable.handleUserInteraction) {
+				renderable.handleUserInteraction(type)
+			}
 		}
 	}
 
@@ -638,19 +632,6 @@ export class WebGLGraphRenderer
 				this.scene.prepare(props)
 			}
 
-			if (this._scene.needsRedraw) {
-				if (this.nodes) {
-					this.nodes.enabled =
-						this.config.drawNodes &&
-						(!this.config.hideNodesOnMove || !this.camera.isMoving)
-				}
-				if (this.edges) {
-					this.edges.enabled =
-						this.config.drawEdges &&
-						(!this.config.hideEdgesOnMove || !this.camera.isMoving)
-				}
-			}
-
 			this.scene.render(props)
 		}
 
@@ -695,6 +676,37 @@ export class WebGLGraphRenderer
 			if (hasData.itemType === type) {
 				hasData.data = store
 			}
+		}
+	}
+
+	/**
+	 * Handles a renderable added to the scene
+	 * @param renderable The renderable that was added
+	 */
+	private handleRenderableAdded = (renderable: Renderable) => {
+		const events = renderable as Partial<EventEmitter<any>>
+		if (events.pipe) {
+			events.pipe(this as any)
+		}
+
+		const itemRenderable = renderable as Partial<ItemBasedRenderable>
+		if (itemRenderable.itemType) {
+			// Update the data on the renderable
+			this.bindDataToRenderable(
+				itemRenderable.itemType,
+				this._data.retrieve(itemRenderable.itemType)!,
+			)
+		}
+	}
+
+	/**
+	 * Handles a renderable removed to the scene
+	 * @param renderable The renderable that was removed
+	 */
+	private handleRenderableRemoved = (renderable: Renderable) => {
+		const events = renderable as Partial<EventEmitter<any>>
+		if (events.unpipe) {
+			events.unpipe(this as any)
 		}
 	}
 

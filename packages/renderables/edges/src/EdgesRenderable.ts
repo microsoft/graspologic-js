@@ -163,7 +163,7 @@ export class EdgesRenderable
 			framebuffer,
 			engineTime,
 		} = options
-		if (this.enabled) {
+		if (this.shouldRender(options)) {
 			this.bindDataToModel()
 
 			const drawConfig = {
@@ -313,5 +313,16 @@ export class EdgesRenderable
 			}
 		}
 		return updated
+	}
+
+	/**
+	 * Determines if the renderable should be rendered
+	 * @param options The render options
+	 */
+	private shouldRender({
+		isCameraMoving,
+		config: { drawEdges, hideEdgesOnMove },
+	}: RenderOptions) {
+		return this.enabled && drawEdges && (!hideEdgesOnMove || !isCameraMoving)
 	}
 }
