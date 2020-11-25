@@ -229,8 +229,7 @@ export class LabelRenderable extends DirtyableRenderable {
 			modelViewMatrix,
 			projectionMatrix,
 			canvasPixelSize,
-			minRadius,
-			maxRadius,
+			config: { nodeMinRadius, nodeMaxRadius },
 		} = options
 		if (this.enabled) {
 			this.model.draw({
@@ -246,8 +245,8 @@ export class LabelRenderable extends DirtyableRenderable {
 					uTexture: this.texture,
 					uScreenSize: canvasPixelSize,
 					uSize: [this.canvas.width, this.canvas.height],
-					uMinRadius: minRadius,
-					uMaxRadius: maxRadius,
+					uMinRadius: nodeMinRadius,
+					uMaxRadius: nodeMaxRadius,
 					uWeight: this.weight,
 				},
 			})

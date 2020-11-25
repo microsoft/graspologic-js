@@ -193,7 +193,13 @@ export class NodesRenderable
 		const {
 			modelViewMatrix,
 			projectionMatrix,
-			hideDeselected,
+			config: {
+				hideDeselected,
+				nodeMinRadius,
+				nodeMaxRadius,
+				nodeOutline,
+				nodeFilteredIds,
+			},
 			framebuffer,
 			canvasPixelSize,
 			engineTime,
@@ -215,19 +221,15 @@ export class NodesRenderable
 					uModelView: modelViewMatrix,
 					uProjection: projectionMatrix,
 					uScreenSize: canvasPixelSize,
-					uMinRadius: this.config.nodeMinRadius * weightToPixel,
-					uMaxRadius: this.config.nodeMaxRadius * weightToPixel,
+					uMinRadius: nodeMinRadius * weightToPixel,
+					uMaxRadius: nodeMaxRadius * weightToPixel,
 					uTime: engineTime,
-					uOutline: this.config.nodeOutline ? 1.0 : 0.0,
+					uOutline: nodeOutline ? 1.0 : 0.0,
 				},
 				framebuffer,
 			}
 			this.model.draw(drawConfig)
-			if (
-				!hideDeselected &&
-				this.config.nodeFilteredIds &&
-				this.config.nodeFilteredIds.length > 0
-			) {
+			if (!hideDeselected && nodeFilteredIds && nodeFilteredIds.length > 0) {
 				drawConfig.parameters.depthMask = false
 				this.translucentModel.draw(drawConfig)
 			}

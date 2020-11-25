@@ -92,8 +92,7 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 		const {
 			modelViewMatrix,
 			projectionMatrix,
-			minRadius,
-			maxRadius,
+			config: { nodeMinRadius, nodeMaxRadius },
 			weightToPixel,
 		} = options
 		if (this.enabled) {
@@ -106,8 +105,8 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 				uniforms: {
 					uModelView: modelViewMatrix,
 					uProjection: projectionMatrix,
-					uMinRadius: minRadius * weightToPixel,
-					uMaxRadius: maxRadius * weightToPixel,
+					uMinRadius: nodeMinRadius * weightToPixel,
+					uMaxRadius: nodeMaxRadius * weightToPixel,
 					uOutline: 1,
 					uColor: this.color.map(c => c * 255),
 				},

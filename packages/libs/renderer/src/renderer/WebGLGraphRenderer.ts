@@ -620,9 +620,8 @@ export class WebGLGraphRenderer
 				weightToPixel: this.computeWeightToPixel(this._dataBounds),
 				projectionMatrix: this.camera.projection,
 				modelViewMatrix,
-				hideDeselected: this.config.hideDeselected,
-				minRadius: this.config.nodeMinRadius,
-				maxRadius: this.config.nodeMaxRadius,
+				config: this.config,
+				isCameraMoving: this.camera.isMoving,
 				canvasPixelSize: [this.config.width, this.config.height],
 				forceRender:
 					this._forceDraw ||

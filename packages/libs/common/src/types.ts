@@ -307,22 +307,14 @@ export interface RenderOptions {
 	projectionMatrix: any /* Matrix4 */
 
 	/**
-	 * @internal
-	 * If true, deselected nodes should be hidden
+	 * True if the camera is currently being moved by the user
 	 */
-	hideDeselected: boolean
+	isCameraMoving: boolean
 
 	/**
-	 * @internal
-	 * The min radius of nodes
+	 * The current render configuration
 	 */
-	minRadius: number
-
-	/**
-	 * @internal
-	 * The max radius of nodes
-	 */
-	maxRadius: number
+	config: RenderConfiguration
 
 	/**
 	 * @internal
