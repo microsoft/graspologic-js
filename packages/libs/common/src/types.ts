@@ -374,17 +374,39 @@ export interface BoundedRenderable {
 }
 
 export interface Renderable {
+	/**
+	 * Is this renderable enabled
+	 */
 	enabled: boolean
+
+	/**
+	 * Does this renderable require a redraw?
+	 */
 	needsRedraw: boolean
 
 	/**
-	 * Updates the current engine time
-	 * @param engineTime The current engine time
+	 * Called before render to prepare the renderable for drawing
+	 * *Note* Will not be called if the renderable is disabled
+	 * @param options The render options
 	 */
-	updateEngineTime?(engineTime: number): void
+	prepare?(options: RenderOptions): void
 
-	draw(options: RenderOptions): void
+	/**
+	 * Renders the renderable
+	 * @param options The render options
+	 */
+	render(options: RenderOptions): void
+
+	/**
+	 * Resizes the renderable
+	 * @param width The new width of the canvas
+	 * @param height The new height of the canvas
+	 */
 	resize(width: number, height: number): void
+
+	/**
+	 * Destroys the renderable
+	 */
 	destroy?(): void
 
 	/**

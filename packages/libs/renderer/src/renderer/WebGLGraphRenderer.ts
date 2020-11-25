@@ -628,20 +628,14 @@ export class WebGLGraphRenderer
 					this.camera.isMoving ||
 					this.dimensionInterpolator.current < 1.0,
 			}
+			this.animationProps.engineTime = props.engineTime
 
 			this._forceDraw = false
 
 			this.camera.tick(time)
 
-			// Set the enabled states on the nodes/edges
-			if (
-				this.nodes &&
-				!this.camera.isMoving &&
-				props._mousePosition &&
-				// We only need to compute the picking if there is something actually listening to it
-				(this.hasListeners('vertexClick') || this.hasListeners('vertexHovered'))
-			) {
-				this.nodes.computeHovered(props)
+			if (this.scene.prepare) {
+				this.scene.prepare(props)
 			}
 
 			if (this._scene.needsRedraw) {
@@ -657,8 +651,7 @@ export class WebGLGraphRenderer
 				}
 			}
 
-			this.animationProps.engineTime = this.engineTime()
-			this._scene.render(props)
+			this.scene.render(props)
 		}
 
 		return delta
@@ -683,7 +676,10 @@ export class WebGLGraphRenderer
 			this.__destroyed = true
 			this.animationLoop.stop()
 			this._data.destroy()
-			this._scene.destroy()
+
+			if (this.scene.destroy) {
+				this.scene.destroy()
+			}
 		}
 	}
 

@@ -3,19 +3,14 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Primitive } from './primitives'
-import { Renderable, RenderOptions } from '@graspologic/common'
+import { Renderable } from '@graspologic/common'
 import { Edge, Node } from '@graspologic/graph'
 
 /**
  * Represents a collection of primitives/renderables that are rendered
  * on the graph
  */
-export interface Scene {
-	/**
-	 * Whether or not the scene needs a redraw
-	 */
-	needsRedraw: boolean
-
+export interface Scene extends Renderable {
 	/**
 	 * Adds the list of primitives to the scene
 	 * @param primitives The list of primitives to add
@@ -74,34 +69,12 @@ export interface Scene {
 	renderables(): Iterable<Renderable>
 
 	/**
-	 * Tells the scene that a resize has occurred
-	 * @param width The width of the scene
-	 * @param height The height of the scene
-	 */
-	resize(width: number, height: number): void
-
-	/**
 	 * @internal
 	 *
 	 * Initializes the scene
 	 * @param props The initialization props
 	 */
 	initialize(props: { gl: WebGLRenderingContext }): void
-
-	/**
-	 * @internal
-	 *
-	 * Renders the scene
-	 * @param options The render options
-	 */
-	render(options: Partial<RenderOptions>): void
-
-	/**
-	 * @internal
-	 *
-	 * Destroys the scene
-	 */
-	destroy(): void
 
 	/**
 	 * @internal

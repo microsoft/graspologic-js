@@ -146,7 +146,7 @@ export class EdgesRenderable
 		return this.config.edgeAntialias
 	}
 
-	public updateEngineTime(engineTime: number) {
+	public prepare({ engineTime }: RenderOptions) {
 		this.data!.engineTime = engineTime
 	}
 
@@ -154,12 +154,12 @@ export class EdgesRenderable
 	 * Draws the EdgeRenderable
 	 * @param options The set of render options
 	 */
-	public draw(options: RenderOptions): void {
+	public render(options: RenderOptions): void {
 		const {
 			modelViewMatrix,
 			projectionMatrix,
 			canvasPixelSize,
-			hideDeselected,
+			config: { hideDeselected },
 			framebuffer,
 			engineTime,
 		} = options

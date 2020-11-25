@@ -31,7 +31,7 @@ import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 export class Scenegraph implements Scene {
 	private destroyed = false
 	private doubleBufferedRenderables: ScreenQuadRenderable
-	private _renderables: Renderable[] = []
+	private nonDoubleBufferedRenderables: Renderable[] = []
 
 	// Cache these for quick lookup
 	private edgeData!: EdgeStore
@@ -62,6 +62,15 @@ export class Scenegraph implements Scene {
 		config.onEdgeFilteredInSaturationChanged(this.rebuildSaturation)
 		config.onEdgeFilteredOutSaturationChanged(this.rebuildSaturation)
 		this.rebuildSaturation()
+	}
+
+	/**
+	 * @inheritdoc
+	 * @see {@link Renderable.enabled}
+	 */
+	public get enabled() {
+		// Can't disable me!
+		return true
 	}
 
 	// #region EventHandlers
@@ -167,12 +176,15 @@ export class Scenegraph implements Scene {
 	 * @inheritdoc
 	 * @see {Scene.renderables}
 	 */
-	public *renderables() {
-		for (const renderable of this._renderables) {
+	public *renderables(): IterableIterator<Renderable> {
+		for (const renderable of this.nonDoubleBufferedRenderables) {
 			yield renderable
 		}
-		for (const renderables of this.doubleBufferedRenderables.renderables()) {
-			yield renderables
+
+		// doubledBufferedRenderables should be transparent to the user
+		// so we just render the renderables within it
+		for (const renderable of this.doubleBufferedRenderables.renderables()) {
+			yield renderable
 		}
 	}
 
@@ -201,7 +213,7 @@ export class Scenegraph implements Scene {
 		if (doubleBuffered) {
 			this.doubleBufferedRenderables.addRenderable(renderable)
 		} else {
-			this._renderables.push(renderable)
+			this.nonDoubleBufferedRenderables.push(renderable)
 			renderable.resize(this.config.width, this.config.height)
 		}
 	}
@@ -212,7 +224,9 @@ export class Scenegraph implements Scene {
 	 */
 	public removeRenderable(renderable: Renderable): void {
 		this.doubleBufferedRenderables.removeRenderable(renderable)
-		this._renderables = this._renderables.filter(r => r !== renderable)
+		this.nonDoubleBufferedRenderables = this.nonDoubleBufferedRenderables.filter(
+			r => r !== renderable,
+		)
 	}
 
 	/**
@@ -235,17 +249,34 @@ export class Scenegraph implements Scene {
 	}
 
 	/**
+	 * @inheritdoc
+	 * @see {@link Renderable.prepare}
+	 */
+	public prepare(renderOptions: RenderOptions) {
+		this.doubleBufferedRenderables.prepare(renderOptions)
+
+		for (const renderable of this.nonDoubleBufferedRenderables) {
+			if (renderable.prepare) {
+				renderable.prepare(renderOptions)
+			}
+		}
+	}
+
+	/**
 	 * Renders the scene
 	 * @param options The render options
 	 */
 	public render(renderOptions: RenderOptions): void {
-		const { engineTime, forceRender } = renderOptions
-		this.updateEngineTime(engineTime)
+		const { forceRender } = renderOptions
 
 		if (this.needsRedraw || forceRender) {
 			this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT)
 			this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height)
-			this.drawRenderables(forceRender, renderOptions)
+			this.doubleBufferedRenderables.render()
+
+			for (const renderable of this.nonDoubleBufferedRenderables) {
+				renderable.render(renderOptions)
+			}
 		}
 	}
 
@@ -255,7 +286,7 @@ export class Scenegraph implements Scene {
 	public get needsRedraw() {
 		return (
 			this.doubleBufferedRenderables.needsRedraw ||
-			this._renderables.some(r => r.needsRedraw)
+			this.nonDoubleBufferedRenderables.some(r => r.needsRedraw)
 		)
 	}
 
@@ -265,7 +296,7 @@ export class Scenegraph implements Scene {
 	public destroy() {
 		if (!this.destroyed) {
 			this.destroyed = true
-			this._renderables.forEach(r => {
+			this.nonDoubleBufferedRenderables.forEach(r => {
 				if (r.destroy) {
 					r.destroy()
 				}
@@ -335,28 +366,5 @@ export class Scenegraph implements Scene {
 		} else {
 			this.edgeData = store
 		}
-	}
-
-	/**
-	 * Calls the before draw on the renderables
-	 * @param engineTime The current engine time
-	 */
-	private updateEngineTime(engineTime: number): void {
-		for (const renderable of this.renderables()) {
-			if (renderable.updateEngineTime) {
-				renderable.updateEngineTime(engineTime)
-			}
-		}
-	}
-
-	/**
-	 * Draws the renderables
-	 * @param force If drawing should be forced
-	 * @param renderOptions The render options
-	 */
-	private drawRenderables(force: boolean, renderOptions: RenderOptions): void {
-		this.doubleBufferedRenderables.update(force, renderOptions)
-		this.doubleBufferedRenderables.draw()
-		this._renderables.forEach(r => r.draw(renderOptions))
 	}
 }

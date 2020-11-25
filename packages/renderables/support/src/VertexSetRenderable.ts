@@ -88,7 +88,7 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 	 * Draws the VertexSetHighlightRenderable
 	 * @param options The render options
 	 */
-	public draw(options: RenderOptions): void {
+	public render(options: RenderOptions): void {
 		const {
 			modelViewMatrix,
 			projectionMatrix,

@@ -80,7 +80,7 @@ export class AxesRenderable extends EdgesRenderable {
 	 * Renders the axes renderable
 	 * @param options The set of render options
 	 */
-	public draw(options: RenderOptions) {
+	public render(options: RenderOptions) {
 		if (this.data && this.config.drawAxes) {
 			const localMatrix = options.modelViewMatrix.clone()
 			if (this.config.cornerAxes) {
@@ -92,7 +92,7 @@ export class AxesRenderable extends EdgesRenderable {
 				localMatrix[5] = SCALE_CENTER_AXES
 				localMatrix[10] = SCALE_CENTER_AXES
 			}
-			super.draw({
+			super.render({
 				...options,
 				modelViewMatrix: localMatrix || options.modelViewMatrix,
 				projectionMatrix: this.config.cornerAxes

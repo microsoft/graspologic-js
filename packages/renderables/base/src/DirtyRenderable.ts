@@ -67,5 +67,5 @@ export class DirtyableRenderable implements Renderable {
 	 * @param options The render options
 	 */
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	public draw(options: RenderOptions): void {}
+	public render(options: RenderOptions): void {}
 }

@@ -35,9 +35,9 @@ export class VertexLabelRenderable extends DataboundRenderable<Node> {
 		}
 	}
 
-	public draw(options: RenderOptions) {
+	public render(options: RenderOptions) {
 		if (this.enabled) {
-			this.renderable.draw(options)
+			this.renderable.render(options)
 		}
 	}
 }

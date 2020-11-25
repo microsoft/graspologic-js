@@ -6,7 +6,7 @@ import { Model } from '@luma.gl/engine'
 // This is causing problems downstream for some reason
 // @ts-ignore
 import { cssToDevicePixels } from '@luma.gl/gltools'
-import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
+import { Buffer, Framebuffer, readPixelsToArray } from '@luma.gl/webgl'
 import createModel from './model'
 import {
 	Bounds3D,
@@ -128,68 +128,28 @@ export class NodesRenderable
 		this._data = value
 	}
 
-	/**
-	 * Runs the hovered logic to determine what node is being hovered over
-	 * @param param0
-	 */
-	public computeHovered({ framebuffer, _mousePosition }: RenderOptions): any {
-		framebuffer.clear({ color: [0, 0, 0, 0], depth: true })
-		// Render picking colors
-		/* eslint-disable camelcase */
-		this.model.setUniforms({ picking_uActive: 1 })
-		this.model.draw({
-			framebuffer,
-			parameters: {
-				depthMask: true,
-				[GL_DEPTH_TEST]: true,
-			},
-		})
-		this.model.setUniforms({ picking_uActive: 0 })
-		const devicePixels = cssToDevicePixels(this.gl, _mousePosition)
-		const deviceX = devicePixels.x + Math.floor(devicePixels.width / 2)
-		const deviceY = devicePixels.y + Math.floor(devicePixels.height / 2)
+	public prepare(options: RenderOptions) {
+		const { engineTime, _mousePosition, isCameraMoving, framebuffer } = options
 
-		const pickingSelectedColor = readPixelsToArray(framebuffer, {
-			sourceX: deviceX,
-			sourceY: deviceY,
-			sourceWidth: 1,
-			sourceHeight: 1,
-			sourceFormat: GL_RGBA,
-			sourceType: GL_UNSIGNED_BYTE,
-		})
-
-		if (
-			!this._comparePickingColors(
-				pickingSelectedColor,
-				this.pickingSelectedColor,
-			)
-		) {
-			if (pickingSelectedColor !== null) {
-				this.pickingSelectedColor = pickingSelectedColor
-				const idx = decodePickingColor(this.pickingSelectedColor)
-				this.emit(
-					'nodeHovered',
-					idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
-						? this.data?.itemAt(idx)
-						: undefined,
-				)
-			} else {
-				this.pickingSelectedColor = undefined
-				this.emit('nodeHovered', undefined)
-			}
-		}
-		return this.pickingSelectedColor
-	}
-
-	public updateEngineTime(engineTime: number) {
 		this.data!.engineTime = engineTime || 0
+
+		// Set the enabled states on the nodes/edges
+		if (
+			!isCameraMoving &&
+			_mousePosition &&
+			// We only need to compute the picking if there is something actually listening to it
+			this.hasListeners('nodeHovered')
+		) {
+			this.computeHovered(framebuffer, _mousePosition)
+			this.setNeedsRedraw(true)
+		}
 	}
 
 	/**
 	 * Draws the NodesRenderable
 	 * @param options The set of render options
 	 */
-	public draw(options: RenderOptions) {
+	public render(options: RenderOptions) {
 		const {
 			modelViewMatrix,
 			projectionMatrix,
@@ -392,5 +352,58 @@ export class NodesRenderable
 			)
 		}
 		return color1 === color2
+	}
+
+	/**
+	 * Runs the hovered logic to determine what node is being hovered over
+	 * @param param0
+	 */
+	private computeHovered(framebuffer: Framebuffer, mousePosition: any): any {
+		framebuffer.clear({ color: [0, 0, 0, 0], depth: true })
+		// Render picking colors
+		/* eslint-disable camelcase */
+		this.model.setUniforms({ picking_uActive: 1 })
+		this.model.draw({
+			framebuffer,
+			parameters: {
+				depthMask: true,
+				[GL_DEPTH_TEST]: true,
+			},
+		})
+		this.model.setUniforms({ picking_uActive: 0 })
+		const devicePixels = cssToDevicePixels(this.gl, mousePosition)
+		const deviceX = devicePixels.x + Math.floor(devicePixels.width / 2)
+		const deviceY = devicePixels.y + Math.floor(devicePixels.height / 2)
+
+		const pickingSelectedColor = readPixelsToArray(framebuffer, {
+			sourceX: deviceX,
+			sourceY: deviceY,
+			sourceWidth: 1,
+			sourceHeight: 1,
+			sourceFormat: GL_RGBA,
+			sourceType: GL_UNSIGNED_BYTE,
+		})
+
+		if (
+			!this._comparePickingColors(
+				pickingSelectedColor,
+				this.pickingSelectedColor,
+			)
+		) {
+			if (pickingSelectedColor !== null) {
+				this.pickingSelectedColor = pickingSelectedColor
+				const idx = decodePickingColor(this.pickingSelectedColor)
+				this.emit(
+					'nodeHovered',
+					idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
+						? this.data?.itemAt(idx)
+						: undefined,
+				)
+			} else {
+				this.pickingSelectedColor = undefined
+				this.emit('nodeHovered', undefined)
+			}
+		}
+		return this.pickingSelectedColor
 	}
 }

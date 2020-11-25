@@ -76,16 +76,25 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 
 	/**
 	 * Updates the screen quad by re-rendering its child renderables
-	 * @param forceRedraw True if the screen quad should be forced to be redrawn
 	 * @param options The render options
 	 */
-	public update(forceRedraw: boolean, options: RenderOptions): void {
-		if (forceRedraw || this.needsRedraw) {
+	public prepare(options: RenderOptions): void {
+		const { forceRender } = options
+		if (forceRender || this.needsRedraw) {
 			const offscreenOptions = { ...options, framebuffer: this.framebuffer }
+			this._renderables.forEach(r => r.prepare && r.prepare(offscreenOptions))
 			this._clearFramebuffer()
-			this._renderables.forEach(r => r.draw(offscreenOptions))
+			this._renderables.forEach(r => r.render(offscreenOptions))
 			this.setNeedsRedraw(true)
 		}
+	}
+
+	/**
+	 * Updates the screen quad by re-rendering its child renderables
+	 */
+	public render(): void {
+		this.model.draw(this.drawArgument)
+		this.setNeedsRedraw(false)
 	}
 
 	/**
@@ -106,14 +115,6 @@ export class ScreenQuadRenderable extends DirtyableRenderable {
 		this.reinit()
 
 		this._renderables.forEach(r => r.resize(width, height))
-	}
-
-	/**
-	 * Draws the screen quad
-	 */
-	public draw(): void {
-		this.model.draw(this.drawArgument)
-		this.setNeedsRedraw(false)
 	}
 
 	/**

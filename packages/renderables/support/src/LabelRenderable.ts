@@ -224,7 +224,7 @@ export class LabelRenderable extends DirtyableRenderable {
 	 * Draws the LabelRenderable
 	 * @param options The render options
 	 */
-	public draw(options: RenderOptions): void {
+	public render(options: RenderOptions): void {
 		const {
 			modelViewMatrix,
 			projectionMatrix,

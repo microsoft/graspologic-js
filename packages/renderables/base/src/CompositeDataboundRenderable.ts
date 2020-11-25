@@ -18,9 +18,18 @@ export abstract class CompositeDataboundRenderable<T>
 	/**
 	 * Draws out this renderable
 	 */
-	public draw(options: RenderOptions): void {
+	public prepare(options: RenderOptions): void {
 		if (this.enabled) {
-			this.renderables.forEach(r => r.draw(options))
+			this.renderables.forEach(r => r.prepare && r.prepare(options))
+		}
+	}
+
+	/**
+	 * Draws out this renderable
+	 */
+	public render(options: RenderOptions): void {
+		if (this.enabled) {
+			this.renderables.forEach(r => r.render(options))
 		}
 	}
 
