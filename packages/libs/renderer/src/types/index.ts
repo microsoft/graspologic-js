@@ -5,4 +5,3 @@
 export * from './data'
 export * from './scene'
 export * from './renderer'
-export * from './primitives'

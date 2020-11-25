@@ -134,7 +134,7 @@ storiesOf('Primitive API', module)
 		return (
 			<WithGraphRenderer
 				onRendererReady={renderer => {
-					renderer.scene.add([n1])
+					renderer.graph.add([n1])
 				}}
 			/>
 		)
@@ -212,7 +212,7 @@ storiesOf('Primitive API', module)
 						cachedRenderer = renderer
 						renderer.config.backgroundColor = [0, 0, 0, 1]
 						renderer.config.interpolationTime = 0
-						renderer.scene.add(nodes)
+						renderer.graph.add(nodes)
 						renderer.onInitialize(() => {
 							enablePanZoomEvents(renderer)
 							renderer.zoomToGraph()
@@ -246,7 +246,7 @@ storiesOf('Primitive API', module)
 			<WithGraphRenderer
 				onRendererReady={renderer => {
 					renderer.onInitialize(() => {
-						renderer.scene.add(nodes)
+						renderer.graph.add(nodes)
 						renderer.updateWeights()
 					})
 				}}
@@ -318,7 +318,7 @@ storiesOf('Primitive API', module)
 		return (
 			<WithGraphRenderer
 				onRendererReady={renderer => {
-					renderer.scene.add(nodes)
+					renderer.graph.add(nodes)
 				}}
 			/>
 		)
@@ -342,7 +342,7 @@ storiesOf('Primitive API', module)
 			<WithGraphRenderer
 				onRendererReady={renderer => {
 					nodes.forEach(newNode => {
-						renderer.scene.add(newNode)
+						renderer.graph.add(newNode)
 					})
 				}}
 				onRender={renderer => {
@@ -379,7 +379,7 @@ storiesOf('Primitive API', module)
 		return (
 			<WithGraphRenderer
 				onRendererReady={renderer => {
-					renderer.scene.add(nodes)
+					renderer.graph.add(nodes)
 
 					renderer.onInitialize(() => {
 						renderer.zoomToGraph()
@@ -410,7 +410,7 @@ storiesOf('Primitive API', module)
 		return (
 			<WithGraphRenderer
 				onRendererReady={renderer => {
-					renderer.scene.add(nodes)
+					renderer.graph.add(nodes)
 				}}
 			/>
 		)
@@ -427,7 +427,7 @@ storiesOf('Primitive API', module)
 			<WithGraphRenderer
 				onRendererReady={renderer => {
 					nodes.forEach(newNode => {
-						renderer.scene.add(newNode)
+						renderer.graph.add(newNode)
 					})
 					n1.animatePosition([200, 200, 0], 2000)
 				}}
@@ -479,7 +479,7 @@ storiesOf('Primitive API', module)
 					}
 					randomize()
 					nodes.forEach(newNode => {
-						renderer.scene.add(newNode)
+						renderer.graph.add(newNode)
 					})
 				}}
 				onDestroy={() => {
@@ -541,7 +541,7 @@ storiesOf('Primitive API', module)
 					}
 					randomize()
 					nodes.forEach(newNode => {
-						renderer.scene.add(newNode)
+						renderer.graph.add(newNode)
 					})
 				}}
 				onDestroy={() => {
@@ -585,7 +585,7 @@ storiesOf('Primitive API', module)
 								n.animatePosition([1, 0, 0], engineTimeScale)
 								n.color = 0xffff0000
 								n.radius = 0.25
-								renderer.scene.add(n)
+								renderer.graph.add(n)
 							}}
 							onRender={(renderer, renderTimeDelta) => {
 								// We are scaling the real time by 1000
@@ -630,7 +630,7 @@ storiesOf('Primitive API', module)
 			console.log(`Construction took ${end - start}ms`)
 
 			start = Date.now()
-			ourRenderer.scene.add(list)
+			ourRenderer.graph.add(list)
 			end = Date.now()
 			console.log(`Adding to scene took ${end - start}ms`)
 
@@ -709,7 +709,7 @@ storiesOf('Primitive API', module)
 					}
 					randomize()
 					nodes.forEach(newNode => {
-						renderer.scene.add(newNode)
+						renderer.graph.add(newNode)
 					})
 				}}
 				onDestroy={() => {

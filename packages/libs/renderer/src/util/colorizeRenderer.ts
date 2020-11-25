@@ -32,7 +32,7 @@ export function colorizeRenderer(
 	const nodeColors = new Map<string, number>()
 	let color: number
 	const edgeCount = renderer.graph.edges.count
-	for (const node of renderer.scene.nodes(true)) {
+	for (const node of renderer.graph.nodes.scan()) {
 		color = correctColor(colorizer(node.id, node.group))
 		node.color = color
 		if (edgeCount > 0) {
@@ -42,7 +42,7 @@ export function colorizeRenderer(
 
 	if (edgeCount > 0) {
 		let nodeColor: number | undefined
-		for (const edge of renderer.scene.edges(true)) {
+		for (const edge of renderer.graph.edges.scan()) {
 			nodeColor = nodeColors.get(edge.source!)
 			if (nodeColor != null) {
 				edge.color = nodeColor

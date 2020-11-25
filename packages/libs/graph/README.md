@@ -25,7 +25,7 @@ node.position = [10, 10, 0]
 node.radius = 10
 
 // Finally, add it to the scene
-renderer.scene.add(node)
+renderer.graph.add(node)
 ```
 
 #### React
@@ -49,7 +49,7 @@ export const MyRenderer: React.FC = () => {
 			node.radius = 10
 
 			// Finally, add it to the scene
-			graphRef.current!.scene.add(node)
+			graphRef.current!.graph.add(node)
 		}
 	}, [graphRef])
 	return (
@@ -75,7 +75,7 @@ edge.sourcePosition = [0, 0, 0]
 edge.targetPosition = [10, 10, 0]
 
 // Add it to the scene
-renderer.scene.add(edge)
+renderer.graph.add(edge)
 ```
 
 #### React
@@ -97,7 +97,7 @@ export const MyRenderer: React.FC = () => {
 			edge.targetPosition = [10, 10, 0]
 
 			// Add it to the scene
-			graphRef.current!.scene.add(edge)
+			graphRef.current!.graph.add(edge)
 		}
 	}, [graphRef])
 	return (
@@ -120,7 +120,7 @@ const renderer = WebGLGraphRenderer.createInstance(/*...*/)
 const edge = new EdgeImpl()
 edge.sourcePosition = [0, 0, 0]
 edge.targetPosition = [10, 10, 0]
-renderer.scene.add(edge)
+renderer.graph.add(edge)
 
 // Animate from the original position to this one over 1000ms
 edge.animateSourcePosition([100, 100, 0], 1000)
@@ -143,7 +143,7 @@ export const MyRenderer: React.FC = () => {
 			const edge = new EdgeImpl()
 			edge.sourcePosition = [0, 0, 0]
 			edge.targetPosition = [10, 10, 0]
-			graphRef.current!.scene.add(edge)
+			graphRef.current!.graph.add(edge)
 
 			// Animate from the original position to this one over 1000ms
 			edge.animateSourcePosition([100, 100, 0], 1000)
@@ -170,7 +170,7 @@ const renderer = WebGLGraphRenderer.createInstance(/*...*/)
 const node = new NodeImpl()
 node.position = [10, 10, 0]
 node.radius = 10
-renderer.scene.add(node)
+renderer.graph.add(node)
 
 // Animate from the original position to this one over 1000ms
 node.animatePosition([100, 100, 0], 1000)
@@ -193,7 +193,7 @@ export const MyRenderer: React.FC = () => {
 			const node = new NodeImpl()
 			node.position = [10, 10, 0]
 			node.radius = 10
-			renderer.scene.add(node)
+			renderer.graph.add(node)
 
 			// Animate from the original position to this one over 1000ms
 			node.animatePosition([100, 100, 0], 1000)

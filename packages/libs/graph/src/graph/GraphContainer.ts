@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { createNodeStore, createEdgeStore } from '../primitives'
-import { EdgeStore } from '../primitives/edge'
-import { NodeStore } from '../primitives/node'
+import { EdgeStore, Edge, edgeType } from '../primitives/edge'
+import { NodeStore, nodeType, Node } from '../primitives/node'
 import { weightedCentroid } from '../space/measure'
 import { Position } from '../space/types'
 import {
@@ -14,6 +14,7 @@ import {
 } from './internGraph'
 import { populateAdjacency } from './populateAdjacency'
 import { NodeIndex, TransportGraph, AdjacencyMap, InputGraph } from './types'
+import { Primitive } from '@graspologic/common'
 
 /**
  * The datastructure which contains all the internal graph data required for the GraphRenderer
@@ -51,6 +52,42 @@ export class GraphContainer {
 	 */
 	public get edges(): EdgeStore {
 		return this._edges
+	}
+
+	/**
+	 * Adds the list of primitives to the scene
+	 * @param primitives The list of primitives to add
+	 */
+	public add(primitives: Primitive | Primitive[]) {
+		if (Array.isArray(primitives)) {
+			for (let i = 0; i < primitives.length; i++) {
+				this.addOne(primitives[i])
+			}
+		} else {
+			this.addOne(primitives)
+		}
+	}
+
+	/**
+	 * Removes the given primitive from the sene
+	 * @param primitive The primitive to remove
+	 */
+	public remove(primitives: Primitive | Primitive[]): void {
+		if (Array.isArray(primitives)) {
+			for (let i = 0; i < primitives.length; i++) {
+				this.removeOne(primitives[i])
+			}
+		} else {
+			this.removeOne(primitives)
+		}
+	}
+
+	/**
+	 * Clears the graph
+	 */
+	public clear(): void {
+		this.edges.reset()
+		this.nodes.reset()
 	}
 
 	/**
@@ -212,5 +249,29 @@ export class GraphContainer {
 			this._adjacency = populateAdjacency(this.nodes, this.edges)
 		}
 		return original ? this._originalAdjacency! : this._adjacency!
+	}
+
+	/**
+	 * Adds a single primitive to the graph
+	 * @param primitive The primitive to add
+	 */
+	private addOne(primitive: Primitive) {
+		if (primitive.type === nodeType) {
+			this.nodes.receive(primitive as Node)
+		} else if (primitive.type === edgeType) {
+			this.edges.receive(primitive as Edge)
+		}
+	}
+
+	/**
+	 * Removes a single primitive from the graph
+	 * @param primitive The primitive to remove
+	 */
+	private removeOne(primitive: Primitive) {
+		if (primitive.type === nodeType) {
+			this.nodes.remove(primitive.storeId)
+		} else if (primitive.type === edgeType) {
+			this.edges.remove(primitive.storeId)
+		}
 	}
 }

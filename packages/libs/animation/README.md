@@ -17,7 +17,7 @@ const utils: AnimationUtil = createAnimationUtil()
  * Randomizes the renderer's nodes/edges positions and colors
  */
 export function randomizeRenderer(renderer: GraphRenderer) {
-	for (const node of renderer.scene.nodes()) {
+	for (const node of renderer.graph.nodes) {
 		const x = Math.random()
 		const y = Math.random()
 		const z = Math.random()
@@ -29,7 +29,7 @@ export function randomizeRenderer(renderer: GraphRenderer) {
 		utils.animateColor(node, 'color', 0xff00bbff, 500)
 	}
 
-	for (const edge of renderer.scene.edges()) {
+	for (const edge of renderer.graph.edges) {
 		const sourceX = Math.random()
 		const sourceY = Math.random()
 		const sourceZ = Math.random()

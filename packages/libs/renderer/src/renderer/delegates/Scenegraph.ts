@@ -5,9 +5,10 @@
 // This is causing problems downstream for some reason
 // @ts-ignore
 import { setParameters } from '@luma.gl/gltools'
-import { DataStore, Scene, Primitive, SceneEvents } from '../../types'
+import { Scene, SceneEvents } from '../../types'
 import {
 	EventEmitterImpl,
+	Maybe,
 	Renderable,
 	RenderConfiguration,
 	RenderOptions,
@@ -17,8 +18,7 @@ import {
 	Node,
 	nodeType,
 	edgeType,
-	EdgeStore,
-	NodeStore,
+	GraphContainer,
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
 import { ScreenQuadRenderable } from '@graspologic/renderables-support'
@@ -33,37 +33,34 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 	private destroyed = false
 	private doubleBufferedRenderables: ScreenQuadRenderable
 	private nonDoubleBufferedRenderables: Renderable[] = []
-
-	// Cache these for quick lookup
-	private edgeData!: EdgeStore
-	private nodeData!: NodeStore
+	private _graph: Maybe<GraphContainer>
 
 	/**
 	 * Constructor for the SceneGraph
 	 * @param gl The gl context
 	 * @param config The render configuration
-	 * @param camera The camera
-	 * @param data The data manager
 	 */
 	public constructor(
 		private gl: WebGLRenderingContext,
 		private config: RenderConfiguration,
-		private data: DataStore<Primitive>,
 	) {
 		super()
 		this.doubleBufferedRenderables = new ScreenQuadRenderable(gl)
 		config.onBackgroundColorChanged(() => this.initialize({ gl: this.gl }))
-
-		data.onRegister(this.handleStoreUpdated)
-		this.handleStoreUpdated(edgeType, data.retrieve(edgeType)!)
-		this.handleStoreUpdated(nodeType, data.retrieve(nodeType)!)
-
 		config.onNodeFilteredIdsChanged(this.rebuildSaturation)
 		config.onNodeFilteredInSaturationChanged(this.rebuildSaturation)
 		config.onNodeFilteredOutSaturationChanged(this.rebuildSaturation)
 		config.onEdgeFilteredInSaturationChanged(this.rebuildSaturation)
 		config.onEdgeFilteredOutSaturationChanged(this.rebuildSaturation)
 		this.rebuildSaturation()
+	}
+
+	public get graph() {
+		return this._graph
+	}
+
+	public set graph(value: Maybe<GraphContainer>) {
+		this._graph = value
 	}
 
 	/**
@@ -87,94 +84,6 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 	}
 
 	/**
-	 * Adds the list of primitives to the scene
-	 * @param primitives The list of primitives to add
-	 */
-	public add(primitives: Primitive | Primitive[]) {
-		if (Array.isArray(primitives)) {
-			for (let i = 0; i < primitives.length; i++) {
-				const primitive = primitives[i]
-				if (primitive.type === nodeType) {
-					this.nodeData.receive(primitive as Node)
-				} else if (primitive.type === edgeType) {
-					this.edgeData.receive(primitive as Edge)
-				} else {
-					this.data.retrieve(primitive.type)?.receive(primitive)
-				}
-			}
-		} else {
-			if (primitives.type === nodeType) {
-				this.nodeData.receive(primitives as Node)
-			} else if (primitives.type === edgeType) {
-				this.edgeData.receive(primitives as Edge)
-			} else {
-				this.data.retrieve(primitives.type)?.receive(primitives)
-			}
-		}
-	}
-
-	/**
-	 * Removes the given primitive from the scene
-	 * @param primitive The primitive to remove
-	 */
-	public remove(primitives: Primitive | Primitive[]) {
-		if (Array.isArray(primitives)) {
-			for (let i = 0; i < primitives.length; i++) {
-				const primitive = primitives[i]
-				if (primitive.type === nodeType) {
-					this.nodeData.remove(primitive.storeId)
-				} else if (primitive.type === edgeType) {
-					this.edgeData.remove(primitive.storeId)
-				} else {
-					this.data.retrieve(primitive.type)?.remove(primitive.storeId)
-				}
-			}
-		} else {
-			if (primitives.type === nodeType) {
-				this.nodeData.remove(primitives.storeId)
-			} else if (primitives.type === edgeType) {
-				this.edgeData.remove(primitives.storeId)
-			} else {
-				this.data.retrieve(primitives.type)?.remove(primitives.storeId)
-			}
-		}
-	}
-
-	public clear() {
-		// Empty the DM
-		for (const store of this.data) {
-			store.reset()
-		}
-	}
-
-	/**
-	 * @inheritdoc
-	 * @see {Scene.primities}
-	 */
-	public *primitives(ids?: Set<string>, scan = false): Iterable<Primitive> {
-		for (const store of this.data) {
-			const iterator = scan ? store.scan() : store
-			for (const prim of iterator) {
-				if (!ids || ids.has(prim.id || '')) {
-					yield prim
-				}
-			}
-		}
-	}
-
-	/**
-	 * Gets the list of primitives by the given type
-	 */
-	public *primitivesByType(type: symbol): Iterable<Primitive> {
-		const data = this.data.retrieve(type)
-		if (data) {
-			for (const prim of data) {
-				yield prim
-			}
-		}
-	}
-
-	/**
 	 * @inheritdoc
 	 * @see {Scene.renderables}
 	 */
@@ -188,22 +97,6 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 		for (const renderable of this.doubleBufferedRenderables.renderables()) {
 			yield renderable
 		}
-	}
-
-	/**
-	 * @inheritdoc
-	 * @see {Scene.nodes}
-	 */
-	public nodes(scan = false): Iterable<Node> {
-		return scan ? this.nodeData.scan() : this.nodeData
-	}
-
-	/**
-	 * @inheritdoc
-	 * @see {Scene.edges}
-	 */
-	public edges(scan = false): Iterable<Edge> {
-		return scan ? this.edgeData.scan() : this.edgeData
 	}
 
 	/**
@@ -316,59 +209,40 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 	 * nodes outside of the map are rendered with low opacity.
 	 */
 	public rebuildSaturation = (): void => {
-		const nodes = this.config.nodeFilteredIds
-		const allIn =
-			!nodes || nodes.length === 0 || nodes.length === this.nodeData.count
+		if (this.graph) {
+			const nodes = this.config.nodeFilteredIds
+			const allIn =
+				!nodes || nodes.length === 0 || nodes.length === this.graph.nodes.count
 
-		const nodeInSat = this.config.nodeFilteredInSaturation
-		const nodeOutSat = this.config.nodeFilteredOutSaturation
+			const nodeInSat = this.config.nodeFilteredInSaturation
+			const nodeOutSat = this.config.nodeFilteredOutSaturation
 
-		const edgeInSat = this.config.edgeFilteredInSaturation
-		const edgeOutSat = this.config.edgeFilteredOutSaturation
+			const edgeInSat = this.config.edgeFilteredInSaturation
+			const edgeOutSat = this.config.edgeFilteredOutSaturation
 
-		// IMPORTANT: the (prim as <type>) stuff avoids an extra `const node = prim as Node` call
-		// Performance shortcut for everything in / out
-		if (allIn) {
-			for (const prim of this.primitives(undefined, true)) {
-				if (prim.type === nodeType) {
-					;(prim as Node).saturation = nodeInSat
-				} else if (prim.type === edgeType) {
-					;(prim as Edge).saturation = edgeInSat
-					;(prim as Edge).saturation2 = edgeInSat
+			// IMPORTANT: the (prim as <type>) stuff avoids an extra `const node = prim as Node` call
+			// Performance shortcut for everything in / out
+			if (allIn) {
+				for (const node of this.graph.nodes.scan()) {
+					node.saturation = nodeInSat
+				}
+				for (const edge of this.graph.edges.scan()) {
+					edge.saturation = edgeInSat
+					edge.saturation2 = edgeInSat
+				}
+			} else {
+				const nodeMap = (nodes || []).reduce((prev, curr) => {
+					prev[curr] = true
+					return prev
+				}, {} as Record<string, boolean>)
+				for (const node of this.graph.nodes.scan()) {
+					node.saturation = nodeMap[node.id! || ''] ? nodeInSat : nodeOutSat
+				}
+				for (const edge of this.graph.edges.scan()) {
+					edge.saturation = !!nodeMap[edge.source!] ? edgeInSat : edgeOutSat
+					edge.saturation2 = !!nodeMap[edge.target!] ? edgeInSat : edgeOutSat
 				}
 			}
-		} else {
-			const nodeMap = (nodes || []).reduce((prev, curr) => {
-				prev[curr] = true
-				return prev
-			}, {} as Record<string, boolean>)
-			for (const prim of this.primitives(undefined, true)) {
-				if (prim.type === nodeType) {
-					;(prim as Node).saturation = nodeMap[prim.id! || '']
-						? nodeInSat
-						: nodeOutSat
-				} else if (prim.type === edgeType) {
-					;(prim as Edge).saturation = !!nodeMap[(prim as Edge).source!]
-						? edgeInSat
-						: edgeOutSat
-					;(prim as Edge).saturation2 = !!nodeMap[(prim as Edge).target!]
-						? edgeInSat
-						: edgeOutSat
-				}
-			}
-		}
-	}
-
-	/**
-	 * Handler when the store has been updated
-	 * @param type The type of store that was updated
-	 * @param store The new store
-	 */
-	private handleStoreUpdated = (type: symbol, store: ReaderStore<any>) => {
-		if (type === nodeType) {
-			this.nodeData = store
-		} else {
-			this.edgeData = store
 		}
 	}
 }

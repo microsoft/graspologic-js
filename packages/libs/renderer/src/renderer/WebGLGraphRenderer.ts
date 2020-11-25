@@ -16,7 +16,6 @@ import {
 	GraphRenderer,
 	UsesWebGL,
 	DataStore,
-	Primitive,
 	GraphRendererEvents,
 } from '../types'
 import {
@@ -43,7 +42,7 @@ import {
 	UserInteractionType,
 	Renderable,
 	EventEmitter,
-	Disconnect,
+	Primitive,
 } from '@graspologic/common'
 import {
 	Node,
@@ -239,7 +238,7 @@ export class WebGLGraphRenderer
 		const camera = new Camera()
 
 		/** set up the scene */
-		const scene = new Scenegraph(gl!, config, store)
+		const scene = new Scenegraph(gl!, config)
 
 		// create nodes renderable
 		const nodes = new NodesRenderable(gl!, config)
@@ -337,6 +336,8 @@ export class WebGLGraphRenderer
 		// normalize weights and color nodes
 		processGraph(data, colorizer)
 
+		this.scene.graph = data
+
 		this._data.register(nodeType, data.nodes)
 		this._data.register(edgeType, data.edges)
 
@@ -386,35 +387,34 @@ export class WebGLGraphRenderer
 
 		// I'm doing (prim as Edge) below, instead of assigning it a variable
 		// as it is no additional memory cost at runtime
-		for (const prim of this.scene.primitives(undefined, true)) {
-			if (prim.type === nodeType) {
-				nodePos = newPositions[prim.id || '']
-				if (nodePos) {
-					position[0] = nodePos.x
-					position[1] = nodePos.y
-					position[2] = nodePos.z || 0
-					animateNodePosition(prim as Node, position)
-				}
-			} else if (prim.type === edgeType) {
-				nodePos = newPositions[(prim as Edge).source!]
-				if (nodePos) {
-					position[0] = nodePos.x
-					position[1] = nodePos.y
-					position[2] = nodePos.z || 0
-					animateSourcePosition(prim as Edge, position)
-				}
-				nodePos = newPositions[(prim as Edge).target!]
-				if (nodePos) {
-					position[0] = nodePos.x
-					position[1] = nodePos.y
-					position[2] = nodePos.z || 0
-					animateTargetPosition(prim as Edge, position)
-				}
+		for (const node of this.graph.nodes.scan()) {
+			nodePos = newPositions[node.id || '']
+			if (nodePos) {
+				position[0] = nodePos.x
+				position[1] = nodePos.y
+				position[2] = nodePos.z || 0
+				animateNodePosition(node as Node, position)
+			}
+		}
+
+		for (const edge of this.graph.edges.scan()) {
+			nodePos = newPositions[edge.source!]
+			if (nodePos) {
+				position[0] = nodePos.x
+				position[1] = nodePos.y
+				position[2] = nodePos.z || 0
+				animateSourcePosition(edge, position)
+			}
+			nodePos = newPositions[edge.target!]
+			if (nodePos) {
+				position[0] = nodePos.x
+				position[1] = nodePos.y
+				position[2] = nodePos.z || 0
+				animateTargetPosition(edge, position)
 			}
 		}
 
 		this.emit('load')
-
 		this.handlePrimitivesChanged()
 	}
 

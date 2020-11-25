@@ -89,10 +89,15 @@ export type SetterFn<T = any, This = MemoryReader> = (
 	value: T,
 ) => void
 
+export type ReaderItem<P> = P &
+	MemoryReader & {
+		id?: string
+	}
+
 /**
  * A store which provides a list like functionality for interacting with MemoryReader based items
  */
-export interface ReaderStore<P> extends IdStore, Iterable<P & MemoryReader> {
+export interface ReaderStore<P> extends IdStore, Iterable<ReaderItem<P>> {
 	/**
 	 * dynamic property storage
 	 */
@@ -102,13 +107,13 @@ export interface ReaderStore<P> extends IdStore, Iterable<P & MemoryReader> {
 	 * Accept an item into the store
 	 * @param primitive The primitive to accept into storage
 	 */
-	receive(primitive: P & MemoryReader): number
+	receive(primitive: ReaderItem<P>): number
 
 	/**
 	 * Get an item at an index
 	 * @param index The item index
 	 */
-	itemAt(index: number): P & MemoryReader
+	itemAt(index: number): ReaderItem<P>
 
 	/**
 	 * Copies data from a store into this store
@@ -129,5 +134,12 @@ export interface ReaderStore<P> extends IdStore, Iterable<P & MemoryReader> {
 	 *
 	 * _NOTE_ Items returned from this iterator should not be stored, as references are re-used for iteration
 	 */
-	scan(): IterableIterator<P>
+	scan(): IterableIterator<ReaderItem<P>>
+
+	/**
+	 * Returns a filtered list of items within this store
+	 * @param ids The ids of the items to retrieve
+	 * @param scan Use scan
+	 */
+	filter(ids: Set<string>, scan?: boolean): IterableIterator<ReaderItem<P>>
 }

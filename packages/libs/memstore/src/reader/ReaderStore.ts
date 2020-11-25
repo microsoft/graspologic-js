@@ -3,7 +3,12 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { IdStoreImpl, ArrayStore, SlotAllocator } from '../store'
-import { MemoryReaderClass, ReaderStore, MemoryReader } from './types'
+import {
+	MemoryReaderClass,
+	ReaderStore,
+	MemoryReader,
+	ReaderItem,
+} from './types'
 
 /**
  * @inheritdoc
@@ -76,14 +81,14 @@ export class ReaderStoreImpl<P extends MemoryReader>
 		return new this.itemClass(this, storeId)
 	}
 
-	public *[Symbol.iterator](): Iterator<P> {
+	public *[Symbol.iterator](): Iterator<ReaderItem<P>> {
 		let idx: number
 		for (idx of this.itemIds()) {
 			yield this.itemAt(idx)
 		}
 	}
 
-	public *scan(): IterableIterator<P> {
+	public *scan(): IterableIterator<ReaderItem<P>> {
 		let idx: number
 		let item: P | undefined
 		if (this.count > 0) {
@@ -95,6 +100,18 @@ export class ReaderStoreImpl<P extends MemoryReader>
 					this.propertyBags[idx] = {}
 				}
 				item.connect(idx, this)
+				yield item
+			}
+		}
+	}
+
+	public *filter(
+		ids: Set<string>,
+		scan = false,
+	): IterableIterator<ReaderItem<P>> {
+		const iterator = scan ? this.scan() : this
+		for (const item of iterator) {
+			if (item.id != null && ids.has(item.id)) {
 				yield item
 			}
 		}
