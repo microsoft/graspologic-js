@@ -45,11 +45,4 @@ export interface Scene extends Renderable, EventEmitter<SceneEvents> {
 	 * @param props The initialization props
 	 */
 	initialize(props: { gl: WebGLRenderingContext }): void
-
-	/**
-	 * @internal
-	 *
-	 * Rebuilds the node/edge saturation
-	 */
-	rebuildSaturation(): void
 }

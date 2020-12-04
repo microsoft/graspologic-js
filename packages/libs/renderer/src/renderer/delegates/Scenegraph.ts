@@ -13,14 +13,7 @@ import {
 	RenderConfiguration,
 	RenderOptions,
 } from '@graspologic/common'
-import {
-	Edge,
-	Node,
-	nodeType,
-	edgeType,
-	GraphContainer,
-} from '@graspologic/graph'
-import { ReaderStore } from '@graspologic/memstore'
+import { GraphContainer } from '@graspologic/graph'
 import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 
 /**
@@ -47,12 +40,6 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 		super()
 		this.doubleBufferedRenderables = new ScreenQuadRenderable(gl)
 		config.onBackgroundColorChanged(() => this.initialize({ gl: this.gl }))
-		config.onNodeFilteredIdsChanged(this.rebuildSaturation)
-		config.onNodeFilteredInSaturationChanged(this.rebuildSaturation)
-		config.onNodeFilteredOutSaturationChanged(this.rebuildSaturation)
-		config.onEdgeFilteredInSaturationChanged(this.rebuildSaturation)
-		config.onEdgeFilteredOutSaturationChanged(this.rebuildSaturation)
-		this.rebuildSaturation()
 	}
 
 	public get graph() {
@@ -61,6 +48,10 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 
 	public set graph(value: Maybe<GraphContainer>) {
 		this._graph = value
+
+		for (const renderable of this.renderables()) {
+			renderable.graph = value
+		}
 	}
 
 	/**
@@ -111,6 +102,7 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 			this.nonDoubleBufferedRenderables.push(renderable)
 			renderable.resize(this.config.width, this.config.height)
 		}
+		renderable.graph = this.graph
 		this.emit('scene:renderableAdded', renderable)
 	}
 
@@ -123,6 +115,7 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 		this.nonDoubleBufferedRenderables = this.nonDoubleBufferedRenderables.filter(
 			r => r !== renderable,
 		)
+		renderable.graph = undefined
 		this.emit('scene:renderableRemoved', renderable)
 	}
 
@@ -199,50 +192,6 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 				}
 			})
 			this.doubleBufferedRenderables.destroy()
-		}
-	}
-
-	/**
-	 * Change the node filter view.
-	 *
-	 * Nodes in the nodeFilteredIds config map are rendered as normal,
-	 * nodes outside of the map are rendered with low opacity.
-	 */
-	public rebuildSaturation = (): void => {
-		if (this.graph) {
-			const nodes = this.config.nodeFilteredIds
-			const allIn =
-				!nodes || nodes.length === 0 || nodes.length === this.graph.nodes.count
-
-			const nodeInSat = this.config.nodeFilteredInSaturation
-			const nodeOutSat = this.config.nodeFilteredOutSaturation
-
-			const edgeInSat = this.config.edgeFilteredInSaturation
-			const edgeOutSat = this.config.edgeFilteredOutSaturation
-
-			// IMPORTANT: the (prim as <type>) stuff avoids an extra `const node = prim as Node` call
-			// Performance shortcut for everything in / out
-			if (allIn) {
-				for (const node of this.graph.nodes.scan()) {
-					node.saturation = nodeInSat
-				}
-				for (const edge of this.graph.edges.scan()) {
-					edge.saturation = edgeInSat
-					edge.saturation2 = edgeInSat
-				}
-			} else {
-				const nodeMap = (nodes || []).reduce((prev, curr) => {
-					prev[curr] = true
-					return prev
-				}, {} as Record<string, boolean>)
-				for (const node of this.graph.nodes.scan()) {
-					node.saturation = nodeMap[node.id! || ''] ? nodeInSat : nodeOutSat
-				}
-				for (const edge of this.graph.edges.scan()) {
-					edge.saturation = !!nodeMap[edge.source!] ? edgeInSat : edgeOutSat
-					edge.saturation2 = !!nodeMap[edge.target!] ? edgeInSat : edgeOutSat
-				}
-			}
 		}
 	}
 }

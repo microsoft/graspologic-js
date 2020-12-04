@@ -24,7 +24,7 @@ function randomizeNodePositions(renderer, animationLength = 1000) {
 	const nodeMap = new Map()
 
 	// Go through all the nodes in the renderer, and add them to our map
-	for (const node of renderer.scene.nodes()) {
+	for (const node of renderer.graph.nodes) {
 		// Store it for our edges
 		nodeMap.set(node.id, node)
 
@@ -39,7 +39,7 @@ function randomizeNodePositions(renderer, animationLength = 1000) {
 	}
 
 	// Update the edges to match the nodes positions
-	for (const edge of renderer.scene.edges()) {
+	for (const edge of renderer.graph.edges) {
 		const sourceNode = nodeMap.get(edge.source)
 		const targetNode = nodeMap.get(edge.target)
 

@@ -53,7 +53,7 @@ export function internGraph(
 		defaultEdgeWeight = DEFAULT_INTERN_GRAPH_OPTIONS.defaultEdgeWeight,
 	}: Partial<InternGraphOptions> = DEFAULT_INTERN_GRAPH_OPTIONS,
 ): GraphContainer {
-	const graph = getEmptyGraphContainer(
+	const graph = GraphContainer.create(
 		input.nodes.length,
 		input.edges.length,
 		shareable,
@@ -99,30 +99,4 @@ export function internGraph(
 		}
 	}
 	return graph
-}
-
-/**
- * Creates an empty graph container
- * @param numNodes The number of nodes to preallocate
- * @param numEdges The number of edges to preallocate
- * @param shareable Whether to use shared-memory
- * @returns An empty graph container
- */
-function getEmptyGraphContainer(
-	numNodes: number,
-	numEdges: number,
-	shareable = true,
-): GraphContainer {
-	return new GraphContainer(
-		createNodeStore({
-			capacity: numNodes,
-			shared: shareable,
-			allocatedOnCreate: true,
-		}),
-		createEdgeStore({
-			capacity: numEdges,
-			shared: shareable,
-			allocatedOnCreate: true,
-		}),
-	)
 }

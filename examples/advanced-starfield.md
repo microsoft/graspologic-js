@@ -23,7 +23,7 @@ function addStarfield(renderer, nodeCount) {
 		return n
 	})
 
-	renderer.scene.add(nodes)
+	renderer.graph.add(nodes)
 }
 
 export default () => {

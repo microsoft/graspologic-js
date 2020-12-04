@@ -12,13 +12,12 @@ import {
 	Bounds3D,
 	RenderOptions,
 	RenderConfiguration,
-	ItemBasedRenderable,
 	BoundedRenderable,
 	EventsMixin,
 	UserInteractionType,
 	Maybe,
 } from '@graspologic/common'
-import { NodeStore, Node, nodeType } from '@graspologic/graph'
+import { Node, nodeType, GraphContainer } from '@graspologic/graph'
 import {
 	createIdFactory,
 	GL_DEPTH_TEST,
@@ -51,15 +50,13 @@ const NodesBase = EventsMixin<NodesRenderableEvents, DirtyableRenderable>(
 /**
  * A renderable that can be added to the GraphRenderer which adds support for rendering nodes
  */
-export class NodesRenderable
-	extends NodesBase
-	implements ItemBasedRenderable, BoundedRenderable {
+export class NodesRenderable extends NodesBase implements BoundedRenderable {
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
 	private readonly translucentModelBuffer: Buffer
 	private needsDataBind = true
-	private _data: NodeStore | undefined
+	private _graph: Maybe<GraphContainer>
 
 	private pickingSelectedColor: PickingColor | undefined
 
@@ -95,6 +92,33 @@ export class NodesRenderable
 		config.onNodeOutlineChanged(this.makeDirtyHandler)
 		config.onDrawNodesChanged(this.makeDirtyHandler)
 		config.onHideNodesOnMoveChanged(this.makeDirtyHandler)
+		config.onNodeFilteredIdsChanged(this.rebuildSaturation)
+		config.onNodeFilteredInSaturationChanged(this.rebuildSaturation)
+		config.onNodeFilteredOutSaturationChanged(this.rebuildSaturation)
+	}
+
+	public get graph() {
+		return this._graph
+	}
+
+	public set graph(value: Maybe<GraphContainer>) {
+		// We attach this here, because in the onChange handler it is fired after the changes happen
+		if (value !== this._graph && value) {
+			this._graph = value
+			if (value) {
+				value.nodes.onAttributeUpdated(this.handleNodeAttributeUpdated)
+				value.nodes.onAddItem(this.handleNodeAdded)
+				value.nodes.onRemoveItem(this.handleNodeRemoved)
+				let node: Node
+				for (node of value.nodes.scan()) {
+					this.handleNodeAdded(node)
+				}
+			}
+			this.rebuildSaturation()
+			this.bindDataToModel(true)
+			this.setNeedsRedraw(true)
+		}
+		this._graph = value
 	}
 
 	/**
@@ -104,46 +128,21 @@ export class NodesRenderable
 		return nodeType
 	}
 
-	/**
-	 * Gets the node data that should be rendered
-	 */
-	public get data(): NodeStore | undefined {
-		return this._data
-	}
-
-	/**
-	 * Sets the node data that should be rendered
-	 */
-	public set data(value: NodeStore | undefined) {
-		// We attach this here, because in the onChange handler it is fired after the changes happen
-		if (value !== this._data && value) {
-			value.onAttributeUpdated(this.handleNodeAttributeUpdated)
-			value.onAddItem(this.handleNodeAdded)
-			value.onRemoveItem(this.handleNodeRemoved)
-			let node: Node
-			for (node of value.scan()) {
-				this.handleNodeAdded(node)
-			}
-
-			this.bindDataToModel(true)
-			this.setNeedsRedraw(true)
-		}
-		this._data = value
-	}
-
 	public prepare(options: RenderOptions) {
 		const { engineTime, _mousePosition, isCameraMoving, framebuffer } = options
 
-		this.data!.engineTime = engineTime || 0
+		if (this.graph) {
+			this.graph.nodes.engineTime = engineTime || 0
 
-		if (
-			!isCameraMoving &&
-			_mousePosition &&
-			// We only need to compute the picking if there is something actually listening to it
-			(this.hasListeners('node:hover') || this.hasListeners('node:click'))
-		) {
-			this.computeHovered(framebuffer, _mousePosition)
-			this.setNeedsRedraw(true)
+			if (
+				!isCameraMoving &&
+				_mousePosition &&
+				// We only need to compute the picking if there is something actually listening to it
+				(this.hasListeners('node:hover') || this.hasListeners('node:click'))
+			) {
+				this.computeHovered(framebuffer, _mousePosition)
+				this.setNeedsRedraw(true)
+			}
 		}
 	}
 
@@ -206,58 +205,60 @@ export class NodesRenderable
 		let hasWeights = false
 		let node: Node
 		let radius = 0
-		for (node of this._data!.scan()) {
-			radius = node.radius || 0
-			if (!radius) {
-				hasWeights = true
-			}
+		if (this.graph) {
+			for (node of this.graph.nodes.scan()) {
+				radius = node.radius || 0
+				if (!radius) {
+					hasWeights = true
+				}
 
-			if (!bounds) {
-				bounds = {
+				if (!bounds) {
+					bounds = {
+						x: {
+							min: node.x - radius,
+							max: node.x + radius,
+						},
+						y: {
+							min: node.y - radius,
+							max: node.y + radius,
+						},
+						z: {
+							min: node.z - radius,
+							max: node.z + radius,
+						},
+					}
+				} else {
+					bounds!.x.min = Math.min(bounds!.x.min, node.x - radius)
+					bounds!.x.max = Math.max(bounds!.x.max, node.x + radius)
+
+					bounds!.y.min = Math.min(bounds!.y.min, node.y - radius)
+					bounds!.y.max = Math.max(bounds!.y.max, node.y + radius)
+
+					bounds!.z.min = Math.min(bounds!.z.min, node.z - radius)
+					bounds!.z.max = Math.max(bounds!.z.max, node.z + radius)
+				}
+			}
+			const scale = hasWeights
+				? this.config.nodeMaxRadius /
+				  Math.min(this.config.width, this.config.height)
+				: 0
+			if (bounds) {
+				const xWeightPadding = ((bounds.x.max - bounds.x.min) * scale) / 2.0
+				const yWeightPadding = ((bounds.y.max - bounds.y.min) * scale) / 2.0
+				return {
 					x: {
-						min: node.x - radius,
-						max: node.x + radius,
+						min: bounds.x.min - xWeightPadding,
+						max: bounds.x.max + xWeightPadding,
 					},
 					y: {
-						min: node.y - radius,
-						max: node.y + radius,
+						min: bounds.y.min - yWeightPadding,
+						max: bounds.y.max + yWeightPadding,
 					},
 					z: {
-						min: node.z - radius,
-						max: node.z + radius,
+						min: bounds.z.min - yWeightPadding,
+						max: bounds.z.max + yWeightPadding,
 					},
 				}
-			} else {
-				bounds!.x.min = Math.min(bounds!.x.min, node.x - radius)
-				bounds!.x.max = Math.max(bounds!.x.max, node.x + radius)
-
-				bounds!.y.min = Math.min(bounds!.y.min, node.y - radius)
-				bounds!.y.max = Math.max(bounds!.y.max, node.y + radius)
-
-				bounds!.z.min = Math.min(bounds!.z.min, node.z - radius)
-				bounds!.z.max = Math.max(bounds!.z.max, node.z + radius)
-			}
-		}
-		const scale = hasWeights
-			? this.config.nodeMaxRadius /
-			  Math.min(this.config.width, this.config.height)
-			: 0
-		if (bounds) {
-			const xWeightPadding = ((bounds.x.max - bounds.x.min) * scale) / 2.0
-			const yWeightPadding = ((bounds.y.max - bounds.y.min) * scale) / 2.0
-			return {
-				x: {
-					min: bounds.x.min - xWeightPadding,
-					max: bounds.x.max + xWeightPadding,
-				},
-				y: {
-					min: bounds.y.min - yWeightPadding,
-					max: bounds.y.max + yWeightPadding,
-				},
-				z: {
-					min: bounds.z.min - yWeightPadding,
-					max: bounds.z.max + yWeightPadding,
-				},
 			}
 		}
 	}
@@ -268,20 +269,47 @@ export class NodesRenderable
 	 */
 	public bindDataToModel(forceAll = false) {
 		let updated = false
-		if (this.data) {
+		if (this.graph) {
 			updated = forceAll || this.needsDataBind
 			if (updated) {
 				this.needsDataBind = false
-				const uint8 = this._data!.store.uint8Array
+				const uint8 = this.graph.nodes!.store.uint8Array
 				this.modelBuffer.setData(uint8)
 				this.translucentModelBuffer.setData(uint8)
 
-				const instanceCount = this._data!.store.count
+				const instanceCount = this.graph.nodes.store.count
 				this.model.setInstanceCount(instanceCount)
 				this.translucentModel.setInstanceCount(instanceCount)
 			}
 		}
 		return updated
+	}
+
+	public rebuildSaturation() {
+		if (this.graph) {
+			const nodes = this.config.nodeFilteredIds
+			const allIn =
+				!nodes || nodes.length === 0 || nodes.length === this.graph.nodes.count
+
+			const nodeInSat = this.config.nodeFilteredInSaturation
+			const nodeOutSat = this.config.nodeFilteredOutSaturation
+
+			// IMPORTANT: the (prim as <type>) stuff avoids an extra `const node = prim as Node` call
+			// Performance shortcut for everything in / out
+			if (allIn) {
+				for (const node of this.graph.nodes.scan()) {
+					node.saturation = nodeInSat
+				}
+			} else {
+				const nodeMap = (nodes || []).reduce((prev, curr) => {
+					prev[curr] = true
+					return prev
+				}, {} as Record<string, boolean>)
+				for (const node of this.graph.nodes.scan()) {
+					node.saturation = nodeMap[node.id! || ''] ? nodeInSat : nodeOutSat
+				}
+			}
+		}
 	}
 
 	/**
@@ -302,10 +330,10 @@ export class NodesRenderable
 	 * @param primitive The primitive to add
 	 */
 	protected handleNodeAdded = (nodeOrIndex: number | Node) => {
-		if (this.enabled) {
+		if (this.enabled && this.graph) {
 			const node =
 				typeof nodeOrIndex === 'number'
-					? this.data!.itemAt(nodeOrIndex)
+					? this.graph.nodes.itemAt(nodeOrIndex)
 					: nodeOrIndex
 
 			// Assign node defaults
@@ -326,10 +354,10 @@ export class NodesRenderable
 	 * @param primitive The primitive to remove
 	 */
 	protected handleNodeRemoved = (nodeOrIndex: number | Node) => {
-		if (this.enabled) {
+		if (this.enabled && this.graph) {
 			const node =
 				typeof nodeOrIndex === 'number'
-					? this.data!.itemAt(nodeOrIndex)
+					? this.graph.nodes.itemAt(nodeOrIndex)
 					: nodeOrIndex
 
 			// Hide the node
@@ -422,8 +450,8 @@ export class NodesRenderable
 		pickingColor: Maybe<PickingColor>,
 	): Node | undefined {
 		const idx = pickingColor ? decodePickingColor(pickingColor) : -1
-		return idx !== RENDERER_BACKGROUND_INDEX && idx >= 0
-			? this.data?.itemAt(idx)
+		return idx !== RENDERER_BACKGROUND_INDEX && idx >= 0 && this.graph
+			? this.graph.nodes.itemAt(idx)
 			: undefined
 	}
 

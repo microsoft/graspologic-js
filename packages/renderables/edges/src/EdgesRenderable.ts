@@ -11,10 +11,10 @@ import {
 	Bounds3D,
 	RenderConfiguration,
 	RenderOptions,
-	ItemBasedRenderable,
 	BoundedRenderable,
+	Maybe,
 } from '@graspologic/common'
-import type { EdgeStore, Edge } from '@graspologic/graph'
+import type { Edge, GraphContainer } from '@graspologic/graph'
 import { edgeType } from '@graspologic/graph'
 import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
@@ -27,14 +27,14 @@ const getNextId = createIdFactory('EdgesInstance')
  */
 export class EdgesRenderable
 	extends DirtyableRenderable
-	implements ItemBasedRenderable, BoundedRenderable {
+	implements BoundedRenderable {
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
 	private readonly translucentModelBuffer: Buffer
 	private needsDataBind = true
 
-	private _data: EdgeStore | undefined
+	private _graph: Maybe<GraphContainer>
 
 	/**
 	 * Constructor for EdgesRenderable
@@ -70,6 +70,11 @@ export class EdgesRenderable
 		config.onEdgeAntialiasChanged(this.makeDirtyHandler)
 		config.onEdgeMinWidthChanged(this.makeDirtyHandler)
 		config.onEdgeMaxWidthChanged(this.makeDirtyHandler)
+		config.onNodeFilteredIdsChanged(this.rebuildSaturation)
+		config.onNodeFilteredInSaturationChanged(this.rebuildSaturation)
+		config.onNodeFilteredOutSaturationChanged(this.rebuildSaturation)
+		config.onEdgeFilteredInSaturationChanged(this.rebuildSaturation)
+		config.onEdgeFilteredOutSaturationChanged(this.rebuildSaturation)
 	}
 
 	/**
@@ -79,29 +84,26 @@ export class EdgesRenderable
 		return edgeType
 	}
 
-	/**
-	 * The edge data that should be rendered
-	 */
-	public get data() {
-		return this._data
+	public get graph() {
+		return this._graph
 	}
 
-	/**
-	 * Sets the edge data to be rendered
-	 */
-	public set data(value: EdgeStore | undefined) {
-		// We attach this here, because in the onChange handler it can be fired after changes happen
-		if (value !== this._data && value) {
-			value.onAttributeUpdated(this.handleEdgeAttributeUpdated)
-			value.onAddItem(this.handleEdgeAdded)
-			value.onRemoveItem(this.handleEdgeRemoved)
-			for (const edge of value.scan()) {
-				this.handleEdgeAdded(edge)
+	public set graph(value: Maybe<GraphContainer>) {
+		// We attach this here, because in the onChange handler it is fired after the changes happen
+		if (value !== this._graph) {
+			this._graph = value
+			if (value) {
+				value.edges.onAddItem(this.handleEdgeAdded)
+				value.edges.onRemoveItem(this.handleEdgeRemoved)
+				value.edges.onAttributeUpdated(this.handleEdgeAttributeUpdated)
+				for (const edge of value.edges.scan()) {
+					this.handleEdgeAdded(edge)
+				}
 			}
+			this.rebuildSaturation()
 			this.bindDataToModel(true)
 			this.setNeedsRedraw(true)
 		}
-		this._data = value
 	}
 
 	/**
@@ -147,7 +149,9 @@ export class EdgesRenderable
 	}
 
 	public prepare({ engineTime }: RenderOptions) {
-		this.data!.engineTime = engineTime
+		if (this.graph) {
+			this.graph.edges.engineTime = engineTime
+		}
 	}
 
 	/**
@@ -201,18 +205,20 @@ export class EdgesRenderable
 		let bounds: Bounds3D | undefined
 		// Below is a little more complicated to allow us to set the initial bounds
 		// to the first primitives bounds, without doing a "first" check each time
-		const iterator = this._data![Symbol.iterator]()
-		if (iterator) {
-			let result = iterator.next()
-			if (result.value) {
-				bounds = this.computeEdgeBounds(result.value)
-			}
-			while (!result.done) {
-				const primBounds = this.computeEdgeBounds(result.value)
+		if (this.graph) {
+			const iterator = this.graph.edges[Symbol.iterator]()
+			if (iterator) {
+				let result = iterator.next()
+				if (result.value) {
+					bounds = this.computeEdgeBounds(result.value)
+				}
+				while (!result.done) {
+					const primBounds = this.computeEdgeBounds(result.value)
 
-				processMinMaxBounds(bounds!, primBounds)
+					processMinMaxBounds(bounds!, primBounds)
 
-				result = iterator.next()
+					result = iterator.next()
+				}
 			}
 		}
 		return bounds
@@ -252,18 +258,20 @@ export class EdgesRenderable
 	 * @param primitive The primitive to add
 	 */
 	protected handleEdgeAdded = (edgeOrIndex: number | Edge) => {
-		const edge =
-			typeof edgeOrIndex === 'number'
-				? this.data!.itemAt(edgeOrIndex)
-				: edgeOrIndex
+		if (this.graph) {
+			const edge =
+				typeof edgeOrIndex === 'number'
+					? this.graph.edges.itemAt(edgeOrIndex)
+					: edgeOrIndex
 
-		// Assign edge defaults
-		edge.saturation = 1
-		edge.saturation2 = 1
-		edge.visible = true
+			// Assign edge defaults
+			edge.saturation = 1
+			edge.saturation2 = 1
+			edge.visible = true
 
-		this.needsDataBind = true
-		this.setNeedsRedraw(true)
+			this.needsDataBind = true
+			this.setNeedsRedraw(true)
+		}
 	}
 
 	/**
@@ -271,15 +279,17 @@ export class EdgesRenderable
 	 * @param primitive The primitive to remove
 	 */
 	protected handleEdgeRemoved = (edgeOrIndex: number | Edge) => {
-		const edge =
-			typeof edgeOrIndex === 'number'
-				? this.data!.itemAt(edgeOrIndex)
-				: edgeOrIndex
+		if (this.graph) {
+			const edge =
+				typeof edgeOrIndex === 'number'
+					? this.graph.edges.itemAt(edgeOrIndex)
+					: edgeOrIndex
 
-		edge.visible = false
+			edge.visible = false
 
-		this.needsDataBind = true
-		this.setNeedsRedraw(true)
+			this.needsDataBind = true
+			this.setNeedsRedraw(true)
+		}
 	}
 
 	/**
@@ -299,20 +309,47 @@ export class EdgesRenderable
 	 */
 	public bindDataToModel(forceAll = false) {
 		let updated = false
-		if (this.data) {
+		if (this.graph) {
 			updated = forceAll || this.needsDataBind
 			if (updated) {
 				this.needsDataBind = false
-				const uint8 = this._data!.store.uint8Array
+				const uint8 = this.graph.edges.store.uint8Array
 				this.modelBuffer.setData(uint8)
 				this.translucentModelBuffer.setData(uint8)
 
-				const instanceCount = this._data!.count
+				const instanceCount = this.graph.edges.count
 				this.model.setInstanceCount(instanceCount)
 				this.translucentModel.setInstanceCount(instanceCount)
 			}
 		}
 		return updated
+	}
+
+	private rebuildSaturation() {
+		if (this.graph) {
+			const nodes = this.config.nodeFilteredIds
+			const allIn =
+				!nodes || nodes.length === 0 || nodes.length === this.graph.nodes.count
+
+			const edgeInSat = this.config.edgeFilteredInSaturation
+			const edgeOutSat = this.config.edgeFilteredOutSaturation
+
+			if (allIn) {
+				for (const edge of this.graph.edges.scan()) {
+					edge.saturation = edgeInSat
+					edge.saturation2 = edgeInSat
+				}
+			} else {
+				const nodeMap = (nodes || []).reduce((prev, curr) => {
+					prev[curr] = true
+					return prev
+				}, {} as Record<string, boolean>)
+				for (const edge of this.graph.edges.scan()) {
+					edge.saturation = !!nodeMap[edge.source!] ? edgeInSat : edgeOutSat
+					edge.saturation2 = !!nodeMap[edge.target!] ? edgeInSat : edgeOutSat
+				}
+			}
+		}
 	}
 
 	/**

@@ -4,7 +4,7 @@
  */
 import { Matrix4 } from 'math.gl'
 import { RenderOptions, RenderConfiguration } from '@graspologic/common'
-import { createEdgeStore } from '@graspologic/graph'
+import { createEdgeStore, GraphContainer } from '@graspologic/graph'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 
 const AXIS_COLORS = [0xff0000ff, 0xff00ff00, 0xffff0000]
@@ -81,7 +81,7 @@ export class AxesRenderable extends EdgesRenderable {
 	 * @param options The set of render options
 	 */
 	public render(options: RenderOptions) {
-		if (this.data && this.config.drawAxes) {
+		if (this.graph && this.config.drawAxes) {
 			const localMatrix = options.modelViewMatrix.clone()
 			if (this.config.cornerAxes) {
 				localMatrix[12] = OFFSET_X * this.width
@@ -108,14 +108,15 @@ export class AxesRenderable extends EdgesRenderable {
 	private generateEdges() {
 		const screenSize = Math.min(this.width, this.height)
 		const axisCount = this.config.is3D ? 3 : 2
-		const edgesBuffer = createEdgeStore({ capacity: axisCount })
-		this.data = edgesBuffer
+		this.graph = GraphContainer.create(0, axisCount, false)
 		this.projection = new Matrix4().ortho({
 			left: -0.5 * this.width,
 			right: 0.5 * this.width,
 			bottom: -0.5 * this.height,
 			top: 0.5 * this.height,
 		} as any)
+
+		const edgesBuffer = this.graph.edges
 
 		for (let i = 0; i < axisCount; i++) {
 			const storeId = edgesBuffer.add()

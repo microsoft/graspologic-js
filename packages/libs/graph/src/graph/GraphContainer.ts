@@ -104,6 +104,32 @@ export class GraphContainer {
 	}
 
 	/**
+	 * Creates an empty graph container
+	 * @param numNodes The number of nodes to preallocate
+	 * @param numEdges The number of edges to preallocate
+	 * @param shareable Whether to use shared-memory
+	 * @returns An empty graph container
+	 */
+	public static create(
+		numNodes: number,
+		numEdges: number,
+		shareable = true,
+	): GraphContainer {
+		return new GraphContainer(
+			createNodeStore({
+				capacity: numNodes,
+				shared: shareable,
+				allocatedOnCreate: true,
+			}),
+			createEdgeStore({
+				capacity: numEdges,
+				shared: shareable,
+				allocatedOnCreate: true,
+			}),
+		)
+	}
+
+	/**
 	 * @internal
 	 * Serializes the GraphContainer instance
 	 * @returns The serialized version of the GraphContainer
@@ -233,6 +259,14 @@ export class GraphContainer {
 		}
 		delete fromList[to]
 		delete toList[from]
+	}
+
+	/**
+	 * Destroys this graph container
+	 */
+	public destroy() {
+		this.nodes.destroy()
+		this.edges.destroy()
 	}
 
 	/**

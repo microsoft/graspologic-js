@@ -57,7 +57,7 @@ function randomizeGraph(renderer, nodeCount) {
 		node.radius = 0.1
 		nodes.push(node)
 	}
-	renderer.scene.add(nodes)
+	renderer.graph.add(nodes)
 
 	const edges = []
 	// Create an edge between every node
@@ -77,7 +77,7 @@ function randomizeGraph(renderer, nodeCount) {
 		edges.push(edge)
 	}
 
-	renderer.scene.add(edges)
+	renderer.graph.add(edges)
 }
 export default () => {
 	// Use your renderer reference

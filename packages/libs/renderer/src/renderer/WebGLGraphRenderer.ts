@@ -34,7 +34,6 @@ import {
 	DEFAULT_WIDTH,
 	DEFAULT_HEIGHT,
 	fastDebounce,
-	ItemBasedRenderable,
 	BoundedRenderable,
 	Interpolator,
 	RenderOptions,
@@ -43,6 +42,8 @@ import {
 	Renderable,
 	EventEmitter,
 	Primitive,
+	DEFAULT_NODE_COUNT_HINT,
+	DEFAULT_EDGE_COUNT_HINT,
 } from '@graspologic/common'
 import {
 	Node,
@@ -122,7 +123,7 @@ export class WebGLGraphRenderer
 
 	/** Returns the current engine time for animation tweening */
 	public engineTime = () => this._engineTime
-	private _data: DataStore<Primitive>
+	private _graph: GraphContainer
 
 	// #region construction
 
@@ -136,13 +137,12 @@ export class WebGLGraphRenderer
 	private constructor(
 		public gl: WebGL2RenderingContext,
 		public config: RenderConfiguration,
-		data: DataStore<Primitive>,
+		graph: GraphContainer,
 		scene: Scene,
 		camera: Camera,
 	) {
 		super()
-		this._data = data
-		data.onRegister(this.handleStoreUpdated)
+		this._graph = graph
 
 		this._scene = scene
 		this._camera = camera
@@ -161,11 +161,6 @@ export class WebGLGraphRenderer
 		scene.on('scene:renderableRemoved', this.handleRenderableRemoved)
 
 		this._kickoffDeferred = deferred()
-
-		// Pretend all the data has updated
-		for (const dataType of data.types()) {
-			this.handleStoreUpdated(dataType, data.retrieve(dataType)!)
-		}
 
 		// We set up the animation loop here, even though
 		// we might not fully use it to render loop, because it does a lot of useful things
@@ -203,6 +198,8 @@ export class WebGLGraphRenderer
 		})
 
 		this.config.onHideDeselectedChanged(this.makeDirty)
+
+		scene.graph = graph
 	}
 
 	/**
@@ -222,17 +219,22 @@ export class WebGLGraphRenderer
 				webgl1: false,
 			})
 		}
-		const store = data
-			? createDataStoreFromContainer(data)
-			: createDataStore(
-					options.nodeCountHint,
-					options.edgeCountHint,
-					options.autoBind,
-			  )
 
 		if (data) {
 			processGraph(data, undefined)
 		}
+
+		data =
+			data ||
+			GraphContainer.create(
+				options.nodeCountHint != null
+					? options.nodeCountHint
+					: DEFAULT_NODE_COUNT_HINT,
+				options.edgeCountHint != null
+					? options.edgeCountHint
+					: DEFAULT_EDGE_COUNT_HINT,
+				true,
+			)
 
 		const config = createConfiguration(options)
 		const camera = new Camera()
@@ -249,7 +251,7 @@ export class WebGLGraphRenderer
 		scene.addRenderable(edges, true)
 		scene.addRenderable(nodes, true)
 
-		return new WebGLGraphRenderer(gl!, config, store, scene, camera)
+		return new WebGLGraphRenderer(gl!, config, data, scene, camera)
 	}
 
 	// #endregion
@@ -274,10 +276,7 @@ export class WebGLGraphRenderer
 	 * Returns the underlying graph structure
 	 */
 	public get graph(): GraphContainer {
-		return new GraphContainer(
-			this._data.retrieve<NodeStore>(nodeType)!,
-			this._data.retrieve<EdgeStore>(edgeType)!,
-		)
+		return this._graph
 	}
 
 	/**
@@ -338,14 +337,6 @@ export class WebGLGraphRenderer
 
 		this.scene.graph = data
 
-		this._data.register(nodeType, data.nodes)
-		this._data.register(edgeType, data.edges)
-
-		for (const dataType of this._data.types()) {
-			this.bindDataToRenderable(dataType, this._data.retrieve(dataType)!)
-		}
-
-		this.scene.rebuildSaturation()
 		this.emit('load')
 	}
 
@@ -656,25 +647,10 @@ export class WebGLGraphRenderer
 		if (!this.destroyed) {
 			this.__destroyed = true
 			this.animationLoop.stop()
-			this._data.destroy()
+			this.graph.destroy()
 
 			if (this.scene.destroy) {
 				this.scene.destroy()
-			}
-		}
-	}
-
-	/**
-	 * Binds the given data to the renderable which supports it
-	 * @param type The type of data
-	 * @param store The data store
-	 */
-	private bindDataToRenderable(type: symbol, store: ReaderStore<any>) {
-		// i.e. type: Node, store: NodeStore, renderable: NodeRenderable
-		for (const renderable of this.scene.renderables()) {
-			const hasData = (renderable as any) as ItemBasedRenderable
-			if (hasData.itemType === type) {
-				hasData.data = store
 			}
 		}
 	}
@@ -688,15 +664,6 @@ export class WebGLGraphRenderer
 		if (events.pipe) {
 			events.pipe(this as any)
 		}
-
-		const itemRenderable = renderable as Partial<ItemBasedRenderable>
-		if (itemRenderable.itemType) {
-			// Update the data on the renderable
-			this.bindDataToRenderable(
-				itemRenderable.itemType,
-				this._data.retrieve(itemRenderable.itemType)!,
-			)
-		}
 	}
 
 	/**
@@ -708,19 +675,6 @@ export class WebGLGraphRenderer
 		if (events.unpipe) {
 			events.unpipe(this as any)
 		}
-	}
-
-	/**
-	 * Handler when the store has been updated
-	 * @param type The type of store that was updated
-	 * @param store The new store
-	 */
-	private handleStoreUpdated = (type: symbol, store: ReaderStore<any>) => {
-		// Update the data on the renderable
-		this.bindDataToRenderable(type, store)
-
-		// Listen for changes to the data
-		store.onAddItem(fastDebounce(this.handlePrimitivesChanged, 100))
 	}
 
 	/**

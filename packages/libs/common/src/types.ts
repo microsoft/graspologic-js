@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { PropertyChangeHandler, Disconnect } from './utils'
 import { MemoryReader } from '@graspologic/memstore'
+import { PropertyChangeHandler, Disconnect } from './utils'
 
 /**
  * A basic graphical primitive object
@@ -370,11 +370,6 @@ export interface RenderOptions {
 	forceRender: boolean
 }
 
-export interface ItemBasedRenderable {
-	itemType: symbol
-	data: any
-}
-
 export interface BoundedRenderable {
 	computeBounds(): Bounds3D | undefined
 }
@@ -382,6 +377,8 @@ export interface BoundedRenderable {
 export type UserInteractionType = 'click'
 
 export interface Renderable {
+	graph?: any /* GraphContainer */
+
 	/**
 	 * Is this renderable enabled
 	 */
