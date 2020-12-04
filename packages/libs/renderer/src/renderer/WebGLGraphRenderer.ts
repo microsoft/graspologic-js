@@ -15,14 +15,9 @@ import {
 	InitializeHandler,
 	GraphRenderer,
 	UsesWebGL,
-	DataStore,
 	GraphRendererEvents,
 } from '../types'
-import {
-	Scenegraph,
-	createDataStore,
-	createDataStoreFromContainer,
-} from './delegates'
+import { Scenegraph } from './delegates'
 import { Camera } from '@graspologic/camera'
 import {
 	createConfiguration,
@@ -33,7 +28,6 @@ import {
 	Bounds2D,
 	DEFAULT_WIDTH,
 	DEFAULT_HEIGHT,
-	fastDebounce,
 	BoundedRenderable,
 	Interpolator,
 	RenderOptions,
@@ -48,16 +42,11 @@ import {
 import {
 	Node,
 	Edge,
-	nodeType,
-	edgeType,
 	GraphContainer,
-	NodeStore,
-	EdgeStore,
 	AnimatableNode,
 	AnimatableEdge,
 	Pos3D,
 } from '@graspologic/graph'
-import { ReaderStore } from '@graspologic/memstore'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 

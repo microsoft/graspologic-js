@@ -5,7 +5,7 @@
 import { Matrix4 } from 'math.gl'
 import { RenderOptions, RenderConfiguration } from '@graspologic/common'
 import { createEdgeStore, GraphContainer } from '@graspologic/graph'
-import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { EdgesRenderableBase } from '@graspologic/renderables-edges'
 
 const AXIS_COLORS = [0xff0000ff, 0xff00ff00, 0xffff0000]
 const X = [0.1, 0, 0]
@@ -20,7 +20,7 @@ const SCALE_CENTER_AXES = 3
 /**
  * A renderable that can be added to a GraphRenderer to render a set of Axes on the graph
  */
-export class AxesRenderable extends EdgesRenderable {
+export class AxesRenderable extends EdgesRenderableBase {
 	private projection?: Matrix4
 
 	/**
@@ -28,8 +28,11 @@ export class AxesRenderable extends EdgesRenderable {
 	 * @param gl The gl context to render the axes to
 	 * @param config The render configuration
 	 */
-	public constructor(gl: WebGLRenderingContext, config: RenderConfiguration) {
-		super(gl, config)
+	public constructor(
+		gl: WebGLRenderingContext,
+		protected config: RenderConfiguration,
+	) {
+		super(gl)
 		config.onCornerAxesChanged(this.makeDirtyHandler)
 		config.onDrawAxesChanged(this.makeDirtyHandler)
 		config.onIs3DChanged(() => this.generateEdges())
@@ -81,7 +84,7 @@ export class AxesRenderable extends EdgesRenderable {
 	 * @param options The set of render options
 	 */
 	public render(options: RenderOptions) {
-		if (this.graph && this.config.drawAxes) {
+		if (this.data && this.config.drawAxes) {
 			const localMatrix = options.modelViewMatrix.clone()
 			if (this.config.cornerAxes) {
 				localMatrix[12] = OFFSET_X * this.width
@@ -108,15 +111,15 @@ export class AxesRenderable extends EdgesRenderable {
 	private generateEdges() {
 		const screenSize = Math.min(this.width, this.height)
 		const axisCount = this.config.is3D ? 3 : 2
-		this.graph = GraphContainer.create(0, axisCount, false)
+		const edgesBuffer = createEdgeStore({
+			capacity: axisCount,
+		})
 		this.projection = new Matrix4().ortho({
 			left: -0.5 * this.width,
 			right: 0.5 * this.width,
 			bottom: -0.5 * this.height,
 			top: 0.5 * this.height,
 		} as any)
-
-		const edgesBuffer = this.graph.edges
 
 		for (let i = 0; i < axisCount; i++) {
 			const storeId = edgesBuffer.add()
@@ -131,5 +134,7 @@ export class AxesRenderable extends EdgesRenderable {
 			newEdge.color = AXIS_COLORS[i]
 			newEdge.color2 = AXIS_COLORS[i]
 		}
+
+		this.setData(edgesBuffer)
 	}
 }
