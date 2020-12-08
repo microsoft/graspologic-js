@@ -2638,6 +2638,7 @@ __metadata:
   resolution: "@graspologic/common@workspace:packages/libs/common"
   dependencies:
     "@essex/scripts": ^12.0.0
+    "@graspologic/memstore": "workspace:*"
     "@types/node": ^14.14.2
     glob: ^7.1.6
     npm-run-all: ^4.1.5

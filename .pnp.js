@@ -119,7 +119,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@graspologic/layout-openord", ["virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/layout-openord", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/layout-openord", "workspace:packages/libs/layout-openord"]],
       ["@graspologic/layout-sandbox", ["workspace:packages/docs/layout-sandbox"]],
       ["@graspologic/luma-utils", ["workspace:packages/libs/luma-utils"]],
-      ["@graspologic/memstore", ["virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore", "workspace:packages/libs/memstore"]],
+      ["@graspologic/memstore", ["virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore", "workspace:packages/libs/memstore"]],
       ["@graspologic/monorepo", ["workspace:."]],
       ["@graspologic/react", ["virtual:446d2d17393b1f551590430d4763b9870b32de9462bad3144f0d4a25288017b2d5ecb7a65fc809150a9f7751d065cafb4b6745689686110b8d021bb164a68178#workspace:packages/libs/react", "virtual:46cf9551d99a7f0bd4a993c86498d342485c7d33390cfd02ee500bd252f56d8d29b9e73a9df0cba038583efd39c6f399750836c170a1c150503fa5513d459f3e#workspace:packages/libs/react", "virtual:59c63b6b4200103440b7e3d422f3bbbe2e668a006c95a07825b038829325711a8a6c6a7bdf2bf7860a2a29f32010dd0ce8061feeb987290afbc7587fcd70e6da#workspace:packages/libs/react", "virtual:be3f82757a5dd0b57fb9209c31284269de85ef1ca9928bdd0c7c17003b2b1ef320955fd4713392027e7897ff706fba2caf88d46d53037881feeee90fb419df62#workspace:packages/libs/react", "virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/react", "virtual:e76c7f3b38062d2157368f18930edfb7f1723f6253d9c3cd67ed43b607d5fe79bffeff0c203401d96cc6ec454000f2b9db26064c8255509f7fedbe2649d29150#workspace:packages/libs/react", "workspace:packages/libs/react"]],
       ["@graspologic/render-controls", ["virtual:cc27f6c13a9ed1e695c3bcc17ac5b908c2f4c179a9ed7353d12cbc7963ccb678ecdd991b140f255d3a4cdf96bdd0f694b2994ef2e29171424cd4d407bb123583#workspace:packages/libs/controls", "virtual:f9c060e00f7a16a53ad703c575d9a5a999ccb8694d7e3fddd699ba89a620d334dccd5fe206e450c703b0dad4cc176f04165f73abda86bb494d781ef5eef81b00#workspace:packages/libs/controls", "workspace:packages/libs/controls"]],
@@ -5039,7 +5039,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/animation", "workspace:packages/libs/animation"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@types/node", "npm:14.14.2"],
             ["npm-run-all", "npm:4.1.5"],
             ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.19.2"]
@@ -5126,6 +5126,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/common", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/common"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
+            ["@graspologic/memstore", "virtual:8b4c3022e0b6f989254f52e98567657cc8befee2a18fc7b1fee15c2b46f741ac901c2bbbabc84811e26eae975fbf2872d660d8b6501f59e5712bcecbdb0ae555#workspace:packages/libs/memstore"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -5150,6 +5151,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/common", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/common"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
+            ["@graspologic/memstore", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/memstore"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -5174,6 +5176,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/common", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/common"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -5198,6 +5201,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@graspologic/common", "workspace:packages/libs/common"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@types/node", "npm:14.14.2"],
             ["glob", "npm:7.1.6"],
             ["npm-run-all", "npm:4.1.5"]
@@ -5238,7 +5242,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/graph", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/graph"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
             ["@graspologic/common", "virtual:d4150357781f2a2eacf289dcfd0161e23cee12fdb0794910882ad33de1fa3983ebd123ecd8d8566b1ed37e9a663903869d8265e3af95837c0ba7d0e30634be9c#workspace:packages/libs/common"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
             ["@types/regenerator-runtime", null],
@@ -5289,7 +5293,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/graph", "workspace:packages/libs/graph"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
             ["@graspologic/common", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/common"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@types/node", "npm:14.14.2"],
             ["npm-run-all", "npm:4.1.5"],
             ["typedoc", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:0.19.2"]
@@ -5634,7 +5638,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/luma-utils", "workspace:packages/libs/luma-utils"],
             ["@essex-js-toolkit/toolbox", "virtual:e6337cb98a93bde5c643f061194dbc7c08eceb16c68c3a02a32a079951110e6d307a37ddff095a498f43f88b2e0816e6b90117f7012c2904d8a3c45bf6db1676#npm:1.1.3"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@luma.gl/gltools", "npm:8.3.1"],
             ["@luma.gl/webgl", "npm:8.3.1"],
@@ -5647,10 +5651,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@graspologic/memstore", [
-        ["virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore", {
-          "packageLocation": "./.yarn/$$virtual/@graspologic-memstore-virtual-993e73269d/1/packages/libs/memstore/",
+        ["virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore", {
+          "packageLocation": "./.yarn/$$virtual/@graspologic-memstore-virtual-3afeefd44f/1/packages/libs/memstore/",
           "packageDependencies": [
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@essex/scripts", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#npm:12.0.0"],
             ["@types/core-js", null],
             ["@types/node", "npm:14.14.2"],
@@ -6333,7 +6337,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/common", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/common"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@graspologic/luma-utils", "workspace:packages/libs/luma-utils"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@graspologic/renderables-base", "workspace:packages/renderables/base"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@luma.gl/engine", "npm:8.3.1"],
@@ -6438,7 +6442,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/common", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/common"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@graspologic/luma-utils", "workspace:packages/libs/luma-utils"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@graspologic/renderables-base", "workspace:packages/renderables/base"],
             ["@graspologic/renderer-glsl", "workspace:packages/libs/renderer-glsl"],
             ["@luma.gl/engine", "npm:8.3.1"],
@@ -6550,7 +6554,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/common", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/common"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@graspologic/luma-utils", "workspace:packages/libs/luma-utils"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@graspologic/renderables-base", "workspace:packages/renderables/base"],
             ["@graspologic/renderables-edges", "virtual:03ba159261e6e526eb9d139c9c1b0d80afd85ec5aa08dd9985b64d018c733775b55fd36f74752e7929c16a5f5f257618d805f29a07e20e0e120b9a6520d0a62f#workspace:packages/renderables/edges"],
             ["@graspologic/renderables-nodes", "virtual:03ba159261e6e526eb9d139c9c1b0d80afd85ec5aa08dd9985b64d018c733775b55fd36f74752e7929c16a5f5f257618d805f29a07e20e0e120b9a6520d0a62f#workspace:packages/renderables/nodes"],
@@ -6668,7 +6672,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/common", "virtual:b2c197d794d6438b60016f0f801ca844b878c2bc5a71cbba662ffe1a5e11f2d2efa08d0ad6c41eb1996bf558a878c0418f692e714863e59dcae7806edbf74bdd#workspace:packages/libs/common"],
             ["@graspologic/graph", "virtual:5919d45d897042fc148f5382fbed6c7940048a84e95b4928dcde363efd6e89d455bced2a3b960d777917d91e6ced8f62970fafe16a496d96101c68620a956c25#workspace:packages/libs/graph"],
             ["@graspologic/luma-utils", "workspace:packages/libs/luma-utils"],
-            ["@graspologic/memstore", "virtual:3961d3c38a5d6372f137d183c0d77cd8d45201c814a598f7f6a96287ed7baac47543b399d538f7cfb1c2c598448dc8aec7762de17d415c0d0e7cf0fa9af5b121#workspace:packages/libs/memstore"],
+            ["@graspologic/memstore", "virtual:0d8c0ab72a9bb0ff6fafbb2c4be120a6252411051ea3ff19d1059670c3471af33a7cb28b90367e8b6b534a2e8fb3591b2b6789effe2db5b87b63929215a0d79c#workspace:packages/libs/memstore"],
             ["@graspologic/renderables-base", "workspace:packages/renderables/base"],
             ["@graspologic/renderables-edges", "virtual:03ba159261e6e526eb9d139c9c1b0d80afd85ec5aa08dd9985b64d018c733775b55fd36f74752e7929c16a5f5f257618d805f29a07e20e0e120b9a6520d0a62f#workspace:packages/renderables/edges"],
             ["@graspologic/renderables-nodes", "virtual:03ba159261e6e526eb9d139c9c1b0d80afd85ec5aa08dd9985b64d018c733775b55fd36f74752e7929c16a5f5f257618d805f29a07e20e0e120b9a6520d0a62f#workspace:packages/renderables/nodes"],
