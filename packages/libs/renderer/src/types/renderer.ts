@@ -11,8 +11,8 @@ import {
 	Id,
 	UserInteractionType,
 } from '@graspologic/common'
-import { Node, GraphContainer } from '@graspologic/graph'
-import { NodesRenderableEvents } from '@graspologic/renderables-nodes'
+import { GraphContainer } from '@graspologic/graph'
+import type { NodesRenderableEvents } from '@graspologic/renderables-nodes'
 
 export type InitializeHandler<T> = (context: T) => void
 

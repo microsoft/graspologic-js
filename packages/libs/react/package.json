@@ -25,6 +25,8 @@
 		"@essex-js-toolkit/hooks": "^1.1.3",
 		"@graspologic/graph": "workspace:*",
 		"@graspologic/renderables-base": "workspace:*",
+		"@graspologic/renderables-edges": "workspace:*",
+		"@graspologic/renderables-nodes": "workspace:*",
 		"@graspologic/renderables-support": "workspace:*",
 		"@graspologic/renderer": "workspace:*",
 		"math.gl": "^3.2.2",

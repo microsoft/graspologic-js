@@ -95,7 +95,7 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 			config: { nodeMinRadius, nodeMaxRadius },
 			weightToPixel,
 		} = options
-		if (this.enabled) {
+		if (this.enabled && this.data) {
 			this.model.draw({
 				parameters: {
 					depthMask: false,

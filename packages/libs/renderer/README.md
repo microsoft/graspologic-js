@@ -9,6 +9,8 @@ React bindings are also available [here](../react/README.md).
 ```js
 import { WebGLGraphRenderer } from '@graspologic/renderer'
 import { GraphContainer } from '@graspologic/graph'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { NodesRenderable } from '@graspologic/renderables-nodes'
 
 // Simple graph dataset
 const GRAPH_DATA = {
@@ -56,6 +58,15 @@ function createRenderer(data, width, height) {
 		// All edges are completely opaque
 		edgeAlpha: 1,
 	})
+
+	// create nodes renderable
+	const nodes = new NodesRenderable(gl!, config)
+
+	// create edges renderable
+	const edges = new EdgesRenderable(gl!, config)
+
+	renderer.scene.addRenderable(edges, true)
+	renderer.scene.addRenderable(nodes, true)
 
 	// Load the dataset
 	renderer.load(GraphContainer.intern(data))

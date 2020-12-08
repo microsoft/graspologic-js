@@ -24,12 +24,9 @@ testData.nodes.forEach((n: any) => (n.z = Math.random() * 100 - 50))
 storiesOf('Simple 3D Examples', module)
 	.add('simple 3d view', () => (
 		<div className="graph-pane-container">
-			<GraphView
-				className="graph-pane"
-				colorizer={colorizer}
-				data={testData}
-				is3D={true}
-			>
+			<GraphView className="graph-pane" data={testData} is3D={true}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<Camera interactive />
 			</GraphView>
 		</div>
@@ -38,12 +35,9 @@ storiesOf('Simple 3D Examples', module)
 		const is3D = boolean('Is 3D', true)
 		return (
 			<div className="graph-pane-container">
-				<GraphView
-					className="graph-pane"
-					colorizer={colorizer}
-					data={testData}
-					is3D={is3D}
-				>
+				<GraphView className="graph-pane" data={testData} is3D={is3D}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 				</GraphView>
 			</div>
@@ -53,7 +47,6 @@ storiesOf('Simple 3D Examples', module)
 		<div className="graph-pane-container">
 			<GraphView
 				className="graph-pane"
-				colorizer={colorizer}
 				is3D={true}
 				data={{
 					nodes: [
@@ -113,7 +106,7 @@ storiesOf('Simple 3D Examples', module)
 					],
 				}}
 			>
-				<Nodes minRadius={1.0} maxRadius={100.0} />
+				<Nodes color={colorizer} minRadius={1.0} maxRadius={100.0} />
 				<Edges minWidth={1.0} maxWidth={10.0} />
 				<HighlightHoveredNode />
 				<Camera interactive />

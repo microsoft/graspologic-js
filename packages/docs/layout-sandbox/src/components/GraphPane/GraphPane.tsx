@@ -24,8 +24,8 @@ export const GraphPane: React.FC<GraphPaneProps> = memo(({ graphViewRef }) => {
 	return (
 		<div>
 			<Container>
-				<GraphViewStyled data={input} ref={graphViewRef} colorizer={colorizer}>
-					<Nodes minRadius={0.25} maxRadius={5} />
+				<GraphViewStyled data={input} ref={graphViewRef}>
+					<Nodes minRadius={0.25} maxRadius={5} color={colorizer} />
 					<Edges alpha={0.05} />
 					<Camera />
 					<SettingsPane>

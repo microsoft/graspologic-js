@@ -2877,6 +2877,8 @@ __metadata:
     "@essex/scripts": ^12.0.0
     "@graspologic/graph": "workspace:*"
     "@graspologic/renderables-base": "workspace:*"
+    "@graspologic/renderables-edges": "workspace:*"
+    "@graspologic/renderables-nodes": "workspace:*"
     "@graspologic/renderables-support": "workspace:*"
     "@graspologic/renderer": "workspace:*"
     "@types/enzyme": ^3.10.7
@@ -3073,8 +3075,6 @@ __metadata:
     "@graspologic/graph": "workspace:*"
     "@graspologic/luma-utils": "workspace:*"
     "@graspologic/memstore": "workspace:*"
-    "@graspologic/renderables-base": "workspace:*"
-    "@graspologic/renderables-edges": "workspace:*"
     "@graspologic/renderables-nodes": "workspace:*"
     "@graspologic/renderables-support": "workspace:*"
     "@graspologic/renderer-glsl": "workspace:*"
@@ -3110,6 +3110,8 @@ __metadata:
     "@graspologic/layout-openord": "workspace:*"
     "@graspologic/react": "workspace:*"
     "@graspologic/render-controls-react": "workspace:*"
+    "@graspologic/renderables-edges": "workspace:*"
+    "@graspologic/renderables-nodes": "workspace:*"
     "@graspologic/renderer": "workspace:*"
     "@graspologic/testdata": "workspace:*"
     "@storybook/addon-a11y": ^6.0.28

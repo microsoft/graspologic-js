@@ -39,8 +39,6 @@ import {
 	Disconnect,
 } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
-import { EdgesRenderable } from '@graspologic/renderables-edges'
-import { NodesRenderable } from '@graspologic/renderables-nodes'
 
 // typings are messed up for this
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -226,15 +224,6 @@ export class WebGLGraphRenderer
 
 		/** set up the scene */
 		const scene = new Scenegraph(gl!, config)
-
-		// create nodes renderable
-		const nodes = new NodesRenderable(gl!, config)
-
-		// create edges renderable
-		const edges = new EdgesRenderable(gl!, config)
-
-		scene.addRenderable(edges, true)
-		scene.addRenderable(nodes, true)
 
 		return new WebGLGraphRenderer(gl!, config, data, scene, camera)
 	}

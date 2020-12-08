@@ -83,7 +83,7 @@ renderer.graph.add(edge)
 ```jsx
 import React, { useEffect, useRef } from 'react'
 import { EdgeImpl } from '@graspologic/graph'
-import { GraphView } from '@graspologic/react'
+import { GraphView, Nodes, Edges } from '@graspologic/react'
 import { GraphRenderer } from '@graspologic/renderer'
 export const MyRenderer: React.FC = () => {
 	const graphRef = useRef<GraphRenderer>(null)
@@ -101,7 +101,10 @@ export const MyRenderer: React.FC = () => {
 		}
 	}, [graphRef])
 	return (
-		<GraphView ref={graphRef} data={{ nodes: [], edges: [] }}/>
+		<GraphView ref={graphRef} data={{ nodes: [], edges: [] }}>
+			<Nodes />
+			<Edges />
+		</GraphView>
 	)
 }
 ```
@@ -150,7 +153,10 @@ export const MyRenderer: React.FC = () => {
 		}
 	}, [graphRef])
 	return (
-		<GraphView ref={graphRef} data={{ nodes: [], edges: [] }}/>
+		<GraphView ref={graphRef} data={{ nodes: [], edges: [] }}>
+			<Nodes />
+			<Edges />
+		</GraphView>
 	)
 }
 ```
@@ -199,7 +205,12 @@ export const MyRenderer: React.FC = () => {
 			node.animatePosition([100, 100, 0], 1000)
 		}
 	}, [graphRef])
-	return <GraphView ref={graphRef} data={{ nodes: [], edges: [] }} />
+	return (
+		<GraphView ref={graphRef} data={{ nodes: [], edges: [] }}>
+			<Nodes />
+			<Edges />
+		</GraphView>
+	)
 }
 ```
 

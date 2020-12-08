@@ -6,7 +6,7 @@ Contains the react bindings for the **graspologic-js** renderer.
 
 ```jsx
 import React from 'react'
-import { GraphView, Edges } from '@graspologic/react'
+import { GraphView, Edges, Nodes } from '@graspologic/react'
 
 // Simple graph dataset
 const GRAPH_DATA = {
@@ -45,7 +45,7 @@ const GRAPH_DATA = {
 export default () => {
 	return (
 		<GraphView style={{ width: 200, height: 200 }} data={GRAPH_DATA}>
-			{/* Not necessary, but allows you to customize how edges are laid out */}
+			<Nodes />
 			<Edges minWidth={5} maxWidth={5} alpha={1} />
 		</GraphView>
 	)

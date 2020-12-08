@@ -5,66 +5,52 @@
 import * as React from 'react'
 import { memo, useContext, useEffect } from 'react'
 import { GraphRendererContext } from '../GraphView'
+import { useBindCallbacks } from './hooks/useBindCallbacks'
+import { useColorizer } from './hooks/useColorizer'
 import {
-	DEFAULT_NODE_MIN_RADIUS,
-	DEFAULT_NODE_MAX_RADIUS,
-	DEFAULT_NODE_OUTLINE,
-	DEFAULT_HIDE_NODES_ON_MOVE,
-	DEFAULT_DRAW_NODES,
-	DEFAULT_NODE_FILTERED_OUT_SATURATION,
-	DEFAULT_NODE_FILTERED_IN_SATURATION,
-} from '@graspologic/renderer'
+	useConfiguration,
+	NodeRendererConfiguration,
+} from './hooks/useConfiguration'
+import { useNodesRenderable } from './hooks/useNodesRenderable'
+import { useSizer, NodeSizer } from './hooks/useSizer'
+import { useWeighter, NodeWeighter } from './hooks/useWeighter'
+import { Node } from '@graspologic/graph'
+import { NodeColorizer } from '@graspologic/renderer'
 
 /**
  * The set of properties for the Nodes component
  */
-export interface NodesProps {
+export interface NodesProps extends NodeRendererConfiguration {
 	/**
-	 * The minimum radius of nodes, based on nodes _weight_ property
-	 * @defaultValue [[DEFAULT_NODE_MIN_RADIUS]]
+	 * Is the nodes rendering disabled
 	 */
-	minRadius?: number
+	disabled?: boolean
 
 	/**
-	 * The minimum radius of nodes, based on nodes _weight_ property
-	 * @defaultValue [[DEFAULT_NODE_MAX_RADIUS]]
+	 * A colorization function to use for vertex coloring. `vertex.group` is applied against the
+	 * colorization function to generate a categorical color.
 	 */
-	maxRadius?: number
+	color?: NodeColorizer
 
 	/**
-	 * If true, nodes will be drawn with an outline
-	 * @defaultValue [[DEFAULT_NODE_OUTLINE]]
+	 * A sizing function used for sizing nodes
 	 */
-	outline?: boolean
+	radius?: NodeSizer
 
 	/**
-	 * If true, nodes will be hidden when the user is panning/zooming
-	 * @defaultValue [[DEFAULT_HIDE_NODES_ON_MOVE]]
+	 * A weighting function used when weighting nodes
 	 */
-	hideOnMove?: boolean
+	weight?: NodeWeighter
 
 	/**
-	 * If true, nodes will be rendered
-	 * @defaultValue [[DEFAULT_DRAW_NODES]]
+	 * Callback that fires when a node is clicked
 	 */
-	shown?: boolean
+	onNodeClick?: (node?: Node) => void
 
 	/**
-	 * The set of _filtered_ node ids
+	 * Callback that fires when a node is hovered (and again when unhovered)
 	 */
-	filteredIds?: string[]
-
-	/**
-	 * The saturation of nodes which are _not in_ the filtered set
-	 * @defaultValue [[DEFAULT_NODE_FILTERED_OUT_SATURATION]]
-	 */
-	filteredOutSaturation?: number
-
-	/**
-	 * The saturation of nodes which are _in_ the filtered set
-	 * @defaultValue [[DEFAULT_NODE_FILTERED_IN_SATURATION]]
-	 */
-	filteredInSaturation?: number
+	onNodeHover?: (node?: Node) => void
 }
 
 /**
@@ -72,64 +58,30 @@ export interface NodesProps {
  */
 export const Nodes: React.FC<NodesProps> = memo(
 	({
-		minRadius = DEFAULT_NODE_MIN_RADIUS,
-		maxRadius = DEFAULT_NODE_MAX_RADIUS,
-		outline = DEFAULT_NODE_OUTLINE,
-		hideOnMove = DEFAULT_HIDE_NODES_ON_MOVE,
-		shown = DEFAULT_DRAW_NODES,
-		filteredIds,
-		filteredOutSaturation = DEFAULT_NODE_FILTERED_OUT_SATURATION,
-		filteredInSaturation = DEFAULT_NODE_FILTERED_IN_SATURATION,
+		color,
+		radius,
+		weight,
+		onNodeClick,
+		onNodeHover,
+		disabled,
+		...configProps
 	}) => {
 		const renderer = useContext(GraphRendererContext)
+		const nodesRenderable = useNodesRenderable(renderer)
+		useConfiguration(renderer, configProps)
+		useColorizer(renderer, color)
+		useSizer(renderer, radius)
+		useWeighter(renderer, weight)
+		useBindCallbacks(renderer, {
+			onNodeClick,
+			onNodeHover,
+		})
 
 		useEffect(() => {
-			if (renderer && minRadius != null) {
-				renderer.config.nodeMinRadius = minRadius
+			if (nodesRenderable) {
+				nodesRenderable.enabled = !disabled
 			}
-		}, [renderer, minRadius])
-
-		useEffect(() => {
-			if (renderer && maxRadius != null) {
-				renderer.config.nodeMaxRadius = maxRadius
-			}
-		}, [renderer, maxRadius])
-
-		useEffect(() => {
-			if (renderer) {
-				renderer.config.nodeOutline = outline
-			}
-		}, [renderer, outline])
-
-		useEffect(() => {
-			if (renderer) {
-				renderer.config.hideNodesOnMove = hideOnMove
-			}
-		}, [renderer, hideOnMove])
-
-		useEffect(() => {
-			if (renderer) {
-				renderer.config.drawNodes = shown
-			}
-		}, [renderer, shown])
-
-		useEffect(() => {
-			if (renderer) {
-				renderer.config.nodeFilteredIds = filteredIds
-			}
-		}, [renderer, filteredIds])
-
-		useEffect(() => {
-			if (renderer) {
-				renderer.config.nodeFilteredInSaturation = filteredInSaturation
-			}
-		}, [renderer, filteredInSaturation])
-
-		useEffect(() => {
-			if (renderer) {
-				renderer.config.nodeFilteredOutSaturation = filteredOutSaturation
-			}
-		}, [renderer, filteredOutSaturation])
+		}, [disabled, nodesRenderable])
 
 		return null
 	},

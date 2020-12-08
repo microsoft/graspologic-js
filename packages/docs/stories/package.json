@@ -26,6 +26,8 @@
 		"@graspologic/layout-openord": "workspace:*",
 		"@graspologic/react": "workspace:*",
 		"@graspologic/render-controls-react": "workspace:*",
+		"@graspologic/renderables-edges": "workspace:*",
+		"@graspologic/renderables-nodes": "workspace:*",
 		"@graspologic/renderer": "workspace:*",
 		"@graspologic/testdata": "workspace:*",
 		"@thematic/core": "^0.9.0",

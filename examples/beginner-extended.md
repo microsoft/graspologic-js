@@ -48,7 +48,7 @@ export default	() => {
 	)
 
 	return (
-		<GraphView style={{ width: 600, height: 300 }} data={data} colorizer={categoricalColorizer}>
+		<GraphView style={{ width: 600, height: 300 }} data={data}>
 			{ /* Displays a set of Axes on the graph */}
 			<Axes />
 
@@ -68,7 +68,7 @@ export default	() => {
 			<Edges minWidth={5} maxWidth={5} alpha={1}/>
 
 			{ /* Controls rendering of nodes */ }
-			<Nodes minRadius={5} maxRadius={5} />
+			<Nodes minRadius={5} maxRadius={5} color={categoricalColorizer} />
 
 			{/* Adds a settings pane that allows the user to configure the graph renderer on the fly */}
 			<SettingsPane>
@@ -97,6 +97,8 @@ import {
 } from '@graspologic/renderer'
 import { GraphContainer } from '@graspologic/graph'
 import { exampleData, utils } from 'docs'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { NodesRenderable } from '@graspologic/renderables-nodes'
 
 function createRenderer(data, width, height) {
 	// Create a renderer and add it to the container
@@ -115,6 +117,15 @@ function createRenderer(data, width, height) {
 		nodeMinRadius: 5,
 		nodeMaxRadius: 5,
 	})
+
+	// create nodes renderable
+	const nodes = new NodesRenderable(gl!, config)
+
+	// create edges renderable
+	const edges = new EdgesRenderable(gl!, config)
+
+	renderer.scene.addRenderable(edges, true)
+	renderer.scene.addRenderable(nodes, true)
 
 	// A function which takes a "group" property from a node and returns a color
 	const categoricalColorizer = utils.createColorizer()

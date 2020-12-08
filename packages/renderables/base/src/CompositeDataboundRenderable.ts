@@ -19,7 +19,7 @@ export abstract class CompositeDataboundRenderable<T>
 	 * Draws out this renderable
 	 */
 	public prepare(options: RenderOptions): void {
-		if (this.enabled) {
+		if (this.enabled && this.data) {
 			this.renderables.forEach(r => r.prepare && r.prepare(options))
 		}
 	}
@@ -28,7 +28,7 @@ export abstract class CompositeDataboundRenderable<T>
 	 * Draws out this renderable
 	 */
 	public render(options: RenderOptions): void {
-		if (this.enabled) {
+		if (this.enabled && this.data) {
 			this.renderables.forEach(r => r.render(options))
 		}
 	}
@@ -37,6 +37,8 @@ export abstract class CompositeDataboundRenderable<T>
 	 * Determines if this renderable needs to be redrawn
 	 */
 	public get needsRedraw() {
-		return this.enabled && this.renderables.some(r => r.needsRedraw)
+		return (
+			this.enabled && !!this.data && this.renderables.some(r => r.needsRedraw)
+		)
 	}
 }

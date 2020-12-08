@@ -8,9 +8,7 @@ import { memo, useMemo, useEffect, useRef } from 'react'
 import * as React from 'react'
 import colorizer from '../data/categoricalColorizer'
 import { GraphContainer, InputGraph } from '@graspologic/graph'
-import {
-	LayoutWorkerManager,
-} from '@graspologic/layout-core'
+import { LayoutWorkerManager } from '@graspologic/layout-core'
 import {
 	OpenOrdConfiguration,
 	OpenOrdTickProgress,
@@ -52,14 +50,9 @@ export const OpenOrdGraph: React.FC<OpenOrdGraphProps> = memo(({ data }) => {
 
 	return internedData ? (
 		<div className="graph-pane-container">
-			<GraphView
-				className="graph-pane"
-				colorizer={colorizer}
-				data={internedData}
-				ref={ref}
-				drawEdges={false}
-			>
+			<GraphView className="graph-pane" data={internedData} ref={ref}>
 				<Axes />
+				<Nodes color={colorizer} />
 				<Camera interactive />
 				<HighlightHoveredNode />
 				<Nodes minRadius={1} maxRadius={5} />

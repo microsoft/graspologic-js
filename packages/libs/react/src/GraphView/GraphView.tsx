@@ -8,7 +8,6 @@ import { SizedToParent } from '../SizedToParent'
 import { GraphRendererContext } from './context'
 import { use3DMode } from './hooks/use3DMode'
 import { useBindCallbacks } from './hooks/useBindCallbacks'
-import { useGraphColorizer } from './hooks/useGraphColorizer'
 import { useGraphContainer } from './hooks/useGraphContainer'
 import { useGraphHideDeselected } from './hooks/useGraphHideDeselected'
 import { useGraphImperativeApi } from './hooks/useGraphImperativeApi'
@@ -16,16 +15,14 @@ import { useGraphInterpolationTime } from './hooks/useGraphInterpolationTime'
 import { useGraphRenderKickoff } from './hooks/useGraphRenderKickoff'
 import { useGraphRenderer } from './hooks/useGraphRenderer'
 import { useGraphRendererBackgroundColor } from './hooks/useGraphRendererBackgroundColor'
-import { InputGraph, GraphContainer, Node } from '@graspologic/graph'
+import { InputGraph, GraphContainer } from '@graspologic/graph'
 import {
-	NodeColorizer,
 	ColorVector,
 	DEFAULT_BG_COLOR,
 	DEFAULT_HIDE_DESELECTED,
 	DEFAULT_IS_3D,
 	DEFAULT_INTERPOLATION_TIME,
 	GraphRenderer,
-	DEFAULT_DRAW_EDGES,
 	Maybe,
 	Bounds,
 } from '@graspologic/renderer'
@@ -55,12 +52,6 @@ export interface GraphViewProps {
 	 * The background color to use in the graph view
 	 */
 	backgroundColor?: ColorVector
-
-	/**
-	 * A colorization function to use for vertex coloring. `vertex.group` is applied against the
-	 * colorization function to generate a categorical color.
-	 */
-	colorizer?: NodeColorizer
 
 	/**
 	 * The graph dataset
@@ -103,12 +94,6 @@ export interface GraphViewProps {
 	edgeCountHint?: number
 
 	/**
-	 * A boolean indicating whether or not to draw the edges
-	 * @defaultValue [[DEFAULT_DRAW_EDGES]]
-	 */
-	drawEdges?: boolean
-
-	/**
 	 * A ref to the underlying GraphRenderer
 	 */
 	ref?: React.Ref<GraphRenderer>
@@ -127,16 +112,6 @@ export interface GraphViewProps {
 	 * Callback to be notified when the graph renderer has been resized.
 	 */
 	onResize?: () => void
-
-	/**
-	 * Callback that fires when a node is clicked
-	 */
-	onNodeClick?: (node?: Node) => void
-
-	/**
-	 * Callback that fires when a node is hovered (and again when unhovered)
-	 */
-	onNodeHover?: (node?: Node) => void
 }
 
 const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
@@ -149,20 +124,16 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 			className,
 			children,
 			data,
-			colorizer,
 			backgroundColor = DEFAULT_BG_COLOR,
 			hideDeselected = DEFAULT_HIDE_DESELECTED,
 			is3D = DEFAULT_IS_3D,
 			interpolationTime = DEFAULT_INTERPOLATION_TIME,
 			nodeCountHint,
 			edgeCountHint,
-			drawEdges = DEFAULT_DRAW_EDGES,
 			dataBounds,
 			onInitialize,
 			onDataLoad,
 			onResize,
-			onNodeClick,
-			onNodeHover,
 		},
 		ref,
 	) => {
@@ -170,7 +141,6 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 		const [renderRef, renderer] = useGraphRenderer(
 			nodeCountHint,
 			edgeCountHint,
-			drawEdges,
 			graphContainer,
 			dataBounds,
 		)
@@ -180,8 +150,6 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 				onInitialize,
 				onLoad: onDataLoad,
 				onResize,
-				onNodeClick,
-				onNodeHover,
 			},
 		})
 		useGraphRendererBackgroundColor(renderer, backgroundColor)
@@ -190,7 +158,6 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 		useGraphImperativeApi(renderer, ref)
 		use3DMode(renderer, is3D)
 		useGraphRenderKickoff(renderer)
-		useGraphColorizer(renderer, colorizer)
 		const finalStyle = useMemo(
 			() => ({
 				...DEFAULT_STYLE,

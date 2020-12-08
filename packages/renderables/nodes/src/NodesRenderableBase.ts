@@ -256,7 +256,7 @@ export class NodesRenderableBase extends NodesBase {
 	 * Handler for when an attribute for a node is updated
 	 */
 	private handleNodeAttributeUpdated = () => {
-		if (this.enabled) {
+		if (this.enabled && this.data) {
 			this.needsDataBind = true
 			this.setNeedsRedraw(true)
 		}

@@ -71,12 +71,11 @@ export const StressTestVertices3D: React.FC = () => {
 						ref={graphRef}
 						className="graph-pane"
 						data={graph}
-						colorizer={colorizer}
 						is3D={true}
 						nodeCountHint={numNodes}
 					>
 						<Camera interactive />
-						<Nodes minRadius={0.1} maxRadius={1.0} />
+						<Nodes color={colorizer} minRadius={0.1} maxRadius={1.0} />
 						<HighlightHoveredNode />
 					</GraphView>
 				</div>

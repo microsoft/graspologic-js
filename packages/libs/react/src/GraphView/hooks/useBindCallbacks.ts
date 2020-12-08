@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect, useCallback } from 'react'
-import { GraphRenderer, Node, enableClickEvents } from '@graspologic/renderer'
+import { GraphRenderer } from '@graspologic/renderer'
 
 interface CallbacksArgs {
 	renderer?: GraphRenderer
@@ -11,8 +11,6 @@ interface CallbacksArgs {
 		onInitialize?: (renderer: GraphRenderer) => void
 		onLoad?: () => void
 		onResize?: () => void
-		onNodeClick?: (node?: Node) => void
-		onNodeHover?: (node?: Node) => void
 	}
 }
 
@@ -22,7 +20,7 @@ interface CallbacksArgs {
  * @param onInitialize
  */
 export function useBindCallbacks({ renderer, callbacks = {} }: CallbacksArgs) {
-	const { onInitialize, onLoad, onResize, onNodeClick, onNodeHover } = callbacks
+	const { onInitialize, onLoad, onResize } = callbacks
 
 	const handleInitialize = useCallback(() => {
 		if (onInitialize && renderer) {
@@ -47,28 +45,4 @@ export function useBindCallbacks({ renderer, callbacks = {} }: CallbacksArgs) {
 			return renderer.on('resize', () => onResize())
 		}
 	}, [renderer, onResize])
-
-	useEffect(() => {
-		if (renderer && onNodeClick) {
-			// click events need to be explicitly turned on when handlers are present
-			// normally, they are only enabled if HandleNodeClicks child component is used
-			// this provides an alternative binding to match the other handlers for consistency
-			const disconnect = enableClickEvents(renderer)
-			const disconnectVertexClick = renderer.on('node:click', node => {
-				onNodeClick(node)
-			})
-			return () => {
-				disconnect()
-				disconnectVertexClick()
-			}
-		}
-	}, [renderer, onNodeClick])
-
-	useEffect(() => {
-		if (renderer && onNodeHover) {
-			return renderer.on('node:hover', node => {
-				onNodeHover(node)
-			})
-		}
-	}, [renderer, onNodeHover])
 }

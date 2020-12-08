@@ -14,7 +14,7 @@ import {
  * @param renderer The graph renderer
  * @param colorizerFn The colorize function
  */
-export function useGraphColorizer(
+export function useColorizer(
 	renderer: GraphRenderer | undefined,
 	colorizerFn?: NodeColorizer,
 ) {

@@ -8,6 +8,8 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { getRandomArbitrary, getRandomInt } from './utils'
 import { NodeImpl, EdgeImpl, AnimatableNodeImpl } from '@graspologic/graph'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { NodesRenderable } from '@graspologic/renderables-nodes'
 import {
 	WebGLGraphRenderer,
 	GraphRenderer,
@@ -46,7 +48,7 @@ const WithGraphRenderer = ({
 	// Create the Renderer Instance when the ref changes
 	useEffect(() => {
 		let rafId: any
-		let newRenderer: GraphRenderer | undefined
+		let newRenderer: WebGLGraphRenderer | undefined
 		let destroyed = false
 		const { current } = renderRef
 		if (current) {
@@ -57,6 +59,16 @@ const WithGraphRenderer = ({
 				height,
 				cameraAdjustmentMode,
 			})
+
+			// create nodes renderable
+			const nodes = new NodesRenderable(newRenderer.gl!, newRenderer.config)
+
+			// create edges renderable
+			const edges = new EdgesRenderable(newRenderer.gl!, newRenderer.config)
+
+			newRenderer.scene.addRenderable(edges, true)
+			newRenderer.scene.addRenderable(nodes, true)
+
 			current.append(newRenderer.view)
 			setRenderer(newRenderer)
 

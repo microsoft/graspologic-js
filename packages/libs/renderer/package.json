@@ -29,8 +29,6 @@
 		"@graspologic/graph": "workspace:*",
 		"@graspologic/luma-utils": "workspace:*",
 		"@graspologic/memstore": "workspace:*",
-		"@graspologic/renderables-base": "workspace:*",
-		"@graspologic/renderables-edges": "workspace:*",
 		"@graspologic/renderables-nodes": "workspace:*",
 		"@graspologic/renderables-support": "workspace:*",
 		"@graspologic/renderer-glsl": "workspace:*",

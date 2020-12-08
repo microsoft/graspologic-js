@@ -42,7 +42,7 @@ Add the GraphView component to your app
 
 ```js
 import React, { useMemo } from 'react'
-import { GraphView } from '@graspologic/react'
+import { GraphView, Nodes, Edges } from '@graspologic/react'
 export default () => {
 	const data = useMemo(
 		() => ({
@@ -52,7 +52,12 @@ export default () => {
 		}),
 		[],
 	)
-	return <GraphView style={{ width: '100%', height: '100%' }} data={data} />
+	return (
+		<GraphView style={{ width: '100%', height: '100%' }} data={data}>
+			<Nodes />
+			<Edges />
+		</GraphView>
+	)
 }
 ```
 
@@ -67,13 +72,23 @@ npm install @graspologic/renderer
 ```js
 import { WebGLGraphRenderer } from '@graspologic/renderer'
 import { GraphContainer } from '@graspologic/graph'
-
+import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { NodesRenderable } from '@graspologic/renderables-nodes'
 function createRenderer(width, height) {
 	// Create a renderer and add it to the container
 	const renderer = WebGLGraphRenderer.createInstance({
 		width,
 		height,
 	})
+
+	// create nodes renderable
+	const nodes = new NodesRenderable(gl!, config)
+
+	// create edges renderable
+	const edges = new EdgesRenderable(gl!, config)
+
+	renderer.scene.addRenderable(edges, true)
+	renderer.scene.addRenderable(nodes, true)
 
 	// Load the dataset
 	renderer.load(

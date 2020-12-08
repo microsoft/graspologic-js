@@ -36,7 +36,7 @@ export class VertexLabelRenderable extends DataboundRenderable<Node> {
 	}
 
 	public render(options: RenderOptions) {
-		if (this.enabled) {
+		if (this.enabled && this.data) {
 			this.renderable.render(options)
 		}
 	}

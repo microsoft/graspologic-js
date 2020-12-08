@@ -13,6 +13,8 @@ import {
 	HighlightHoveredNode,
 	HandleNodeClicks,
 	NodeSetHighlight,
+	Nodes,
+	Edges,
 } from '@graspologic/react'
 import {
 	SettingsPane,
@@ -44,8 +46,10 @@ export const FullyInteractiveGraph: React.FC<FullyInteractiveGraphProps> = memo(
 
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={data}>
+				<GraphView className="graph-pane" data={data}>
 					<Axes />
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 					<HighlightHoveredNode />
 					<HandleNodeClicks onClick={handleVertexClick} />

@@ -12,13 +12,6 @@ export abstract class DataboundRenderable<T> extends DirtyableRenderable {
 	protected data: T | undefined
 
 	/**
-	 * Determines whether this renderable is enabled
-	 */
-	public get enabled(): boolean {
-		return this.data != null
-	}
-
-	/**
 	 * Get the related vertex
 	 */
 	public getData(): T | undefined {

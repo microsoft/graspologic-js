@@ -13,7 +13,7 @@ First off, we need to get a reference to the graph renderer that we are dynamica
 
 ```js previewHeight=0
 import React, { useState, useEffect } from 'react'
-import { GraphView } from '@graspologic/react'
+import { GraphView, Nodes, Edges } from '@graspologic/react'
 
 export default () => {
 	const [renderer, setRenderer] = useState(null)
@@ -22,7 +22,12 @@ export default () => {
 			// We have our renderer reference here
 		}
 	}, [renderer])
-	return <GraphView ref={setRenderer} data={null}></GraphView>
+	return (
+		<GraphView ref={setRenderer} data={null}>
+			<Nodes />
+			<Edges />
+		</GraphView>
+	)
 }
 ```
 

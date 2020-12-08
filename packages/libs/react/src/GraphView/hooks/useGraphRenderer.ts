@@ -22,7 +22,6 @@ import {
 export function useGraphRenderer(
 	nodeCountHint?: number,
 	edgeCountHint?: number,
-	drawEdges?: boolean,
 	container?: GraphContainer,
 	dataBounds?: Maybe<Bounds>,
 ): [React.RefObject<HTMLDivElement>, GraphRenderer | undefined] {
@@ -38,7 +37,6 @@ export function useGraphRenderer(
 				{
 					nodeCountHint,
 					edgeCountHint,
-					drawEdges,
 					dataBounds,
 				},
 				container,
@@ -55,7 +53,7 @@ export function useGraphRenderer(
 				}
 			}
 		}
-	}, [nodeCountHint, edgeCountHint, drawEdges, dataBounds, container])
+	}, [nodeCountHint, edgeCountHint, dataBounds, container])
 
 	return [ref, renderer]
 }

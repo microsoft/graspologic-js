@@ -33,14 +33,16 @@ const testData = processGraphJson(
 storiesOf('Simple 2D Examples', module)
 	.add('without extensions', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData} />
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes color={colorizer} />
+				<Edges />
+			</GraphView>
 		</div>
 	))
 	.add('with heterogenous node sizes', () => (
 		<div className="graph-pane-container">
 			<GraphView
 				className="graph-pane"
-				colorizer={colorizer}
 				data={{
 					nodes: [
 						{
@@ -95,7 +97,7 @@ storiesOf('Simple 2D Examples', module)
 					],
 				}}
 			>
-				<Nodes minRadius={1.0} maxRadius={100.0} />
+				<Nodes color={colorizer} minRadius={1.0} maxRadius={100.0} />
 				<Edges minWidth={1.0} maxWidth={10.0} />
 				<HighlightHoveredNode />
 			</GraphView>
@@ -103,51 +105,68 @@ storiesOf('Simple 2D Examples', module)
 	))
 	.add('with Axes extension', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<Axes />
 			</GraphView>
 		</div>
 	))
 	.add('with vertex onClick handler', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<HandleNodeClicks onClick={action('clicked vertex')} />
 			</GraphView>
 		</div>
 	))
 	.add('with pan/zoom behavior', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<Camera interactive />
 			</GraphView>
 		</div>
 	))
 	.add('with hover-highlight behavior', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<HighlightHoveredNode />
 			</GraphView>
 		</div>
 	))
 	.add('with static highlight', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<NodeSetHighlight vertexIds={testData.nodes.map((n: any) => n.id)} />
 			</GraphView>
 		</div>
 	))
 	.add('with static filter', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
-				<Nodes filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']} />
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes
+					color={colorizer}
+					filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']}
+				/>
+				<Edges />
 				<HighlightHoveredNode />
 			</GraphView>
 		</div>
 	))
 	.add('with embedded controls', () => (
 		<div className="graph-pane-container">
-			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
-				<Nodes filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']} />
+			<GraphView className="graph-pane" data={testData}>
+				<Nodes
+					color={colorizer}
+					filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']}
+				/>
 				<SettingsPane>
 					<DisplaySettings />
 					<NodeSettings />
@@ -160,7 +179,6 @@ storiesOf('Simple 2D Examples', module)
 		<div className="graph-pane-container">
 			<GraphView
 				className="graph-pane"
-				colorizer={colorizer}
 				data={{
 					nodes: [
 						{
@@ -191,6 +209,8 @@ storiesOf('Simple 2D Examples', module)
 					edges: [],
 				}}
 			>
+				<Nodes color={colorizer} />
+				<Edges />
 				<Camera interactive />
 				<HighlightHoveredNode />
 			</GraphView>

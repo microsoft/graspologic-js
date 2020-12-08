@@ -9,7 +9,7 @@ These examples show how to instantiate a basic graph renderer instance
 
 ```js edit=true previewHeight=200
 import React from 'react'
-import { GraphView, Edges } from '@graspologic/react'
+import { GraphView, Edges, Nodes } from '@graspologic/react'
 
 // Simple graph dataset
 const GRAPH_DATA = {
@@ -48,7 +48,7 @@ const GRAPH_DATA = {
 export default () => {
 	return (
 		<GraphView style={{ width: 200, height: 200 }} data={GRAPH_DATA}>
-			{/* Not necessary, but allows you to customize how edges are laid out */}
+			<Nodes />
 			<Edges minWidth={5} maxWidth={5} alpha={1} />
 		</GraphView>
 	)
@@ -60,6 +60,8 @@ export default () => {
 ```js edit=true previewHeight=200
 import { WebGLGraphRenderer } from '@graspologic/renderer'
 import { GraphContainer } from '@graspologic/graph'
+import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { NodesRenderable } from '@graspologic/renderables-nodes'
 
 // Simple graph dataset
 const GRAPH_DATA = {
@@ -107,6 +109,15 @@ function createRenderer(data, width, height) {
 		// All edges are completely opaque
 		edgeAlpha: 1,
 	})
+
+	// create nodes renderable
+	const nodes = new NodesRenderable(gl!, config)
+
+	// create edges renderable
+	const edges = new EdgesRenderable(gl!, config)
+
+	renderer.scene.addRenderable(edges, true)
+	renderer.scene.addRenderable(nodes, true)
 
 	// Load the dataset
 	renderer.load(GraphContainer.intern(data))

@@ -159,23 +159,24 @@ storiesOf('Interactive 2D Examples', module)
 			<div className="graph-pane-container">
 				<GraphView
 					className="graph-pane"
-					colorizer={colorizer}
 					data={testData}
 					backgroundColor={[r, g, b, a]}
 				>
 					<Camera interactive />
 					<HighlightHoveredNode />
 					<HandleNodeClicks onClick={action('click')} />
-					<Nodes
-						minRadius={minRadius}
-						maxRadius={maxRadius}
-						outline={outline}
-						hideOnMove={hideNodesOnMove}
-						shown={drawNodes}
-						filteredIds={vertset}
-						filteredOutSaturation={nodeMinSat}
-						filteredInSaturation={nodeMaxSat}
-					/>
+					{drawNodes && (
+						<Nodes
+							color={colorizer}
+							minRadius={minRadius}
+							maxRadius={maxRadius}
+							noOutline={!outline}
+							hideOnMove={hideNodesOnMove}
+							filteredIds={vertset}
+							filteredOutSaturation={nodeMinSat}
+							filteredInSaturation={nodeMaxSat}
+						/>
+					)}
 					<Edges
 						hideOnMove={hideEdgesOnMove}
 						shown={drawEdges}
@@ -201,7 +202,9 @@ storiesOf('Interactive 2D Examples', module)
 		const a = number('A', DEFAULT_HOVER_HIGHLIGHT_COLOR[3], COL_RANGE)
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 					<HighlightHoveredNode color={[r, g, b, a]} />
 					<HandleNodeClicks onClick={action('click')} />
@@ -216,11 +219,9 @@ storiesOf('Interactive 2D Examples', module)
 		const a = number('A', 1, COL_RANGE)
 		return (
 			<div className="graph-pane-container">
-				<GraphView
-					className="graph-pane"
-					colorizer={(): ColorVector => [r, g, b, a]}
-					data={testData}
-				>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={(): ColorVector => [r, g, b, a]} />
+					<Edges />
 					<Camera interactive />
 					<HighlightHoveredNode color={[r, g, b, a]} />
 					<HandleNodeClicks onClick={action('click')} />
@@ -231,7 +232,9 @@ storiesOf('Interactive 2D Examples', module)
 	.add('can show hover node label', () => {
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 					<LabelHoveredNode />
 					<HandleNodeClicks onClick={action('click')} />
@@ -242,7 +245,9 @@ storiesOf('Interactive 2D Examples', module)
 	.add('can show node hover label and highlight', () => {
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 					<HighlightHoveredNode />
 					<LabelHoveredNode />
@@ -258,7 +263,9 @@ storiesOf('Interactive 2D Examples', module)
 		const a = number('A', DEFAULT_HOVER_HIGHLIGHT_COLOR[3], COL_RANGE)
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 					<NodeSetHighlight color={[r, g, b, a]} vertexIds={HIGHLIGHT_IDS} />
 					<HandleNodeClicks onClick={action('click')} />
@@ -269,7 +276,9 @@ storiesOf('Interactive 2D Examples', module)
 	.add('can show node set label', () => {
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 					<NodeSetLabel vertexIds={HIGHLIGHT_IDS} />
 					<HandleNodeClicks onClick={action('click')} />
@@ -280,7 +289,9 @@ storiesOf('Interactive 2D Examples', module)
 	.add('can show node set label and highlight', () => {
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 					<NodeSetLabel vertexIds={HIGHLIGHT_IDS} />
 					<NodeSetHighlight vertexIds={HIGHLIGHT_IDS} />
@@ -293,7 +304,9 @@ storiesOf('Interactive 2D Examples', module)
 		const zoom = number('Zoom', ZOOM_RANGE.min, ZOOM_RANGE)
 		return (
 			<div className="graph-pane-container">
-				<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
+				<GraphView className="graph-pane" data={testData}>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive zoom={zoom} />
 				</GraphView>
 			</div>
@@ -323,10 +336,11 @@ storiesOf('Interactive 2D Examples', module)
 			<div className="graph-pane-container">
 				<GraphView
 					className="graph-pane"
-					colorizer={colorizer}
 					data={testData}
 					style={{ width, height }}
 				>
+					<Nodes color={colorizer} />
+					<Edges />
 					<Camera interactive />
 				</GraphView>
 			</div>
@@ -371,6 +385,8 @@ storiesOf('Interactive 2D Examples', module)
 					}}
 					className="graph-pane"
 				>
+					<Nodes />
+					<Edges />
 					<Camera interactive />
 					<NodeSetLabel vertexIds={nodes.map(n => n.id)} />
 					<Camera
@@ -422,7 +438,6 @@ storiesOf('Interactive 2D Examples', module)
 					<GraphView
 						style={{ width, height }}
 						// className="graph-pane"
-						colorizer={colorizer}
 						data={{
 							nodes: [
 								{
@@ -445,7 +460,8 @@ storiesOf('Interactive 2D Examples', module)
 							edges: [],
 						}}
 					>
-						<Nodes minRadius={5} maxRadius={10} />
+						<Nodes color={colorizer} minRadius={5} maxRadius={10} />
+						<Edges />
 						<Camera interactive />
 						<HighlightHoveredNode />
 					</GraphView>
@@ -501,9 +517,15 @@ storiesOf('Interactive 2D Examples', module)
 						onInitialize={handleInitialize}
 						onDataLoad={handleDataLoaded}
 						onResize={handleResize}
-						onNodeClick={handleNodeClick}
-						onNodeHover={handleNodeHover}
-					/>
+					>
+						<Nodes
+							onNodeClick={handleNodeClick}
+							onNodeHover={handleNodeHover}
+							minRadius={5}
+							maxRadius={10}
+						/>
+						<Edges />
+					</GraphView>
 				</div>
 			</>
 		)
@@ -530,12 +552,9 @@ const NodeLayoutExampleMutable: React.FC<NodeLayoutExampleProps> = ({
 	return (
 		<>
 			<button onClick={handleLayout}>Random Layout</button>
-			<GraphView
-				ref={graphRef}
-				className="graph-pane"
-				colorizer={colorizer}
-				data={testData}
-			>
+			<GraphView ref={graphRef} className="graph-pane" data={testData}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<Camera interactive />
 				<HighlightHoveredNode />
 			</GraphView>
@@ -565,7 +584,9 @@ const NodeLayoutExampleImmutable: React.FC<NodeLayoutExampleProps> = ({
 	return (
 		<>
 			<button onClick={handleLayout}>Random Layout</button>
-			<GraphView className="graph-pane" colorizer={colorizer} data={finalData}>
+			<GraphView className="graph-pane" data={finalData}>
+				<Nodes color={colorizer} />
+				<Edges />
 				<Camera interactive />
 				<HighlightHoveredNode />
 			</GraphView>
