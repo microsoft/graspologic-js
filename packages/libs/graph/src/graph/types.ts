@@ -64,3 +64,8 @@ export interface InputEdge {
  * A mapping between every node to the nodes it's connected to
  */
 export type AdjacencyMap = Map<NodeIndex, Record<NodeIndex, EdgeWeight>>
+
+/**
+ * A mapping between a key and a position object
+ */
+export type PositionMap = Record<string, { x: number; y: number; z?: number }>

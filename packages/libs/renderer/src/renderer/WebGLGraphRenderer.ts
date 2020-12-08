@@ -11,7 +11,6 @@ import { processGraph } from '../data'
 import {
 	NodeComponentColorizer,
 	Scene,
-	PositionMap,
 	InitializeHandler,
 	GraphRenderer,
 	UsesWebGL,
@@ -35,18 +34,11 @@ import {
 	UserInteractionType,
 	Renderable,
 	EventEmitter,
-	Primitive,
 	DEFAULT_NODE_COUNT_HINT,
 	DEFAULT_EDGE_COUNT_HINT,
+	Disconnect,
 } from '@graspologic/common'
-import {
-	Node,
-	Edge,
-	GraphContainer,
-	AnimatableNode,
-	AnimatableEdge,
-	Pos3D,
-} from '@graspologic/graph'
+import { GraphContainer } from '@graspologic/graph'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 
@@ -109,10 +101,12 @@ export class WebGLGraphRenderer
 
 	private __destroyed = false
 	private animationLoopRunning = false
+	private primitivesDirty = false
 
 	/** Returns the current engine time for animation tweening */
 	public engineTime = () => this._engineTime
 	private _graph: GraphContainer
+	private graphListeners: Disconnect[] = []
 
 	// #region construction
 
@@ -132,6 +126,8 @@ export class WebGLGraphRenderer
 	) {
 		super()
 		this._graph = graph
+
+		this.subscribeToGraphEvents()
 
 		this._scene = scene
 		this._camera = camera
@@ -324,78 +320,13 @@ export class WebGLGraphRenderer
 		// normalize weights and color nodes
 		processGraph(data, colorizer)
 
+		this._graph = data
+
+		this.subscribeToGraphEvents()
+
 		this.scene.graph = data
 
 		this.emit('load')
-	}
-
-	/**
-	 * Changes the position of the given nodes
-	 * @deprecated since the nodestore shares memory with the renderer, this should no longer be necessary
-	 * @param newPositions The new positions of the nodes
-	 * @param duration The optional duration for how long the transition should take
-	 */
-	public changePositions(newPositions: PositionMap, duration = 0): void {
-		invariant(!this.destroyed, 'renderer is destroyed!')
-
-		const nodesSupportAnim = this.graph.nodes.store.config.animation !== false
-		const edgesSupportAnim = this.graph.edges.store.config.animation !== false
-		let nodePos: { x: number; y: number; z?: number }
-		const animateNodePosition = nodesSupportAnim
-			? (prim: Primitive, newPos: Pos3D) => {
-					;(prim as AnimatableNode).animatePosition(newPos, duration)
-			  }
-			: (prim: Node, newPos: Pos3D) => {
-					prim.position = newPos
-			  }
-		const animateSourcePosition = edgesSupportAnim
-			? (prim: Edge, newPos: Pos3D) => {
-					;(prim as AnimatableEdge).animateSourcePosition(newPos, duration)
-			  }
-			: (prim: Edge, newPos: Pos3D) => {
-					prim.sourcePosition = newPos
-			  }
-		const animateTargetPosition = edgesSupportAnim
-			? (prim: Edge, newPos: Pos3D) => {
-					;(prim as AnimatableEdge).animateTargetPosition(newPos, duration)
-			  }
-			: (prim: Edge, newPos: Pos3D) => {
-					prim.targetPosition = newPos
-			  }
-
-		const position: [number, number, number] = [0, 0, 0]
-
-		// I'm doing (prim as Edge) below, instead of assigning it a variable
-		// as it is no additional memory cost at runtime
-		for (const node of this.graph.nodes.scan()) {
-			nodePos = newPositions[node.id || '']
-			if (nodePos) {
-				position[0] = nodePos.x
-				position[1] = nodePos.y
-				position[2] = nodePos.z || 0
-				animateNodePosition(node as Node, position)
-			}
-		}
-
-		for (const edge of this.graph.edges.scan()) {
-			nodePos = newPositions[edge.source!]
-			if (nodePos) {
-				position[0] = nodePos.x
-				position[1] = nodePos.y
-				position[2] = nodePos.z || 0
-				animateSourcePosition(edge, position)
-			}
-			nodePos = newPositions[edge.target!]
-			if (nodePos) {
-				position[0] = nodePos.x
-				position[1] = nodePos.y
-				position[2] = nodePos.z || 0
-				animateTargetPosition(edge, position)
-			}
-		}
-
-		this.emit('load')
-		this.handlePrimitivesChanged()
 	}
 
 	/**
@@ -575,37 +506,18 @@ export class WebGLGraphRenderer
 		const time = Date.now() - this._startTime
 		if (this.animationProps) {
 			this.dimensionInterpolator.tick(time)
-			const modelViewMatrix = this.camera
-				.computeViewMatrix(this.config.is3D)
-				.scale([
-					1,
-					1,
-					this.config.is3D
-						? this.dimensionInterpolator.current
-						: 1.0 - this.dimensionInterpolator.current,
-				])
-
-			const props: RenderOptions = {
-				time,
-				engineTime: this._engineTime,
-				framebuffer: this.animationProps.framebuffer,
-				useDevicePixels: this.animationProps.useDevicePixels,
-				_mousePosition: this.animationProps._mousePosition,
-				weightToPixel: this.computeWeightToPixel(this._dataBounds),
-				projectionMatrix: this.camera.projection,
-				modelViewMatrix,
-				config: this.config,
-				isCameraMoving: this.camera.isMoving,
-				canvasPixelSize: [this.config.width, this.config.height],
-				forceRender:
-					this._forceDraw ||
-					this.camera.isMoving ||
-					this.dimensionInterpolator.current < 1.0,
-			}
+			const props = this.buildRenderOptions(time)
 			this.animationProps.engineTime = props.engineTime
 
-			this._forceDraw = false
+			if (
+				this.primitivesDirty &&
+				this.config.cameraAdjustmentMode === CameraAdjustmentMode.Graph
+			) {
+				this.zoomToGraph()
+			}
 
+			this._forceDraw = false
+			this.primitivesDirty = false
 			this.camera.tick(time)
 
 			if (this.scene.prepare) {
@@ -669,11 +581,7 @@ export class WebGLGraphRenderer
 	/**
 	 * Handler for when the graphical primitives has changed somehow
 	 */
-	private handlePrimitivesChanged = () => {
-		if (this.config.cameraAdjustmentMode === CameraAdjustmentMode.Graph) {
-			this.zoomToGraph()
-		}
-	}
+	private handlePrimitivesChanged = () => (this.primitivesDirty = true)
 
 	/**
 	 * Computes the world bounds of the items drawn to screen
@@ -734,6 +642,39 @@ export class WebGLGraphRenderer
 	}
 
 	/**
+	 * Builds the current render options
+	 */
+	private buildRenderOptions(currentTime: number): RenderOptions {
+		const modelViewMatrix = this.camera
+			.computeViewMatrix(this.config.is3D)
+			.scale([
+				1,
+				1,
+				this.config.is3D
+					? this.dimensionInterpolator.current
+					: 1.0 - this.dimensionInterpolator.current,
+			])
+
+		return {
+			time: currentTime,
+			engineTime: this._engineTime,
+			framebuffer: this.animationProps.framebuffer,
+			useDevicePixels: this.animationProps.useDevicePixels,
+			_mousePosition: this.animationProps._mousePosition,
+			weightToPixel: this.computeWeightToPixel(this._dataBounds),
+			projectionMatrix: this.camera.projection,
+			modelViewMatrix,
+			config: this.config,
+			isCameraMoving: this.camera.isMoving,
+			canvasPixelSize: [this.config.width, this.config.height],
+			forceRender:
+				this._forceDraw ||
+				this.camera.isMoving ||
+				this.dimensionInterpolator.current < 1.0,
+		}
+	}
+
+	/**
 	 * Computes the weight (0 -> 1) to pixel scale
 	 */
 	private computeWeightToPixel(bounds: Bounds2D) {
@@ -746,6 +687,34 @@ export class WebGLGraphRenderer
 				// Pretend the y axis was stretched to fit the width
 				(bounds.y.max - bounds.y.min) / this.config.height,
 			) / 2.0 || 1
+		)
+	}
+
+	/**
+	 * Subscribes to the graph events
+	 * @param graph The graph to subscribe to
+	 */
+	private disconnectGraphEvents() {
+		for (const disconnect of this.graphListeners) {
+			disconnect()
+		}
+		this.graphListeners = []
+	}
+
+	/**
+	 * Subscribes to the graph events
+	 */
+	private subscribeToGraphEvents() {
+		this.disconnectGraphEvents()
+
+		this.graphListeners.push(
+			this.graph.nodes.onAddItem(this.handlePrimitivesChanged),
+		)
+		this.graphListeners.push(
+			this.graph.nodes.onAttributeUpdated(this.handlePrimitivesChanged),
+		)
+		this.graphListeners.push(
+			this.graph.nodes.onRemoveItem(this.handlePrimitivesChanged),
 		)
 	}
 }

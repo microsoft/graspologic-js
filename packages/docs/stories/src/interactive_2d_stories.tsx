@@ -10,7 +10,13 @@ import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
 import colorizer from './data/categoricalColorizer'
 import processGraphJson from './data/processGraphJson'
 import { getRandomArbitrary } from './utils'
-import { InputGraph, InputNode, Node } from '@graspologic/graph'
+import {
+	InputGraph,
+	InputNode,
+	Node,
+	PositionMap,
+	changePositions,
+} from '@graspologic/graph'
 import {
 	Axes,
 	GraphView,
@@ -24,7 +30,6 @@ import {
 	Camera,
 } from '@graspologic/react'
 import {
-	PositionMap,
 	DEFAULT_NODE_FILTERED_OUT_SATURATION,
 	DEFAULT_NODE_FILTERED_IN_SATURATION,
 	DEFAULT_NODE_MIN_RADIUS,
@@ -520,7 +525,7 @@ const NodeLayoutExampleMutable: React.FC<NodeLayoutExampleProps> = ({
 				y: getRandomArbitrary(-1000, 1000),
 			}
 		}
-		graphRef.current!.changePositions(positionMap, 1000)
+		changePositions(graphRef.current!.graph, positionMap, 1000)
 	}, [data])
 	return (
 		<>

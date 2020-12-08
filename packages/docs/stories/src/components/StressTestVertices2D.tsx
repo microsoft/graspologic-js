@@ -6,18 +6,14 @@
 import React, { useState, useCallback, useMemo, useRef } from 'react'
 import DEFAULT_COLORIZER from '../data/categoricalColorizer'
 import { getRandomArbitrary, getRandomInt } from '../utils'
-import { InputGraph } from '@graspologic/graph'
+import { InputGraph, changePositions, PositionMap } from '@graspologic/graph'
 import {
 	GraphView,
 	Camera,
 	Nodes,
 	HighlightHoveredNode,
 } from '@graspologic/react'
-import {
-	PositionMap,
-	NodeComponentColorizer,
-	GraphRenderer,
-} from '@graspologic/renderer'
+import { NodeComponentColorizer, GraphRenderer } from '@graspologic/renderer'
 const FPSStats = require('react-fps-stats').default
 
 interface StressTestVertices2DProps {
@@ -68,7 +64,7 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 				y: getRandomArbitrary(-1500, 1500),
 			}
 		})
-		graphRef.current!.changePositions(positionMap, 5000)
+		changePositions(graphRef.current!.graph, positionMap, 5000)
 	}, [graph])
 
 	const onLoadGraph = useCallback(() => {

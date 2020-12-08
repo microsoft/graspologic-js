@@ -42,10 +42,16 @@ export class Scenegraph extends EventEmitterImpl<SceneEvents> implements Scene {
 		config.onBackgroundColorChanged(() => this.initialize({ gl: this.gl }))
 	}
 
+	/**
+	 * Getter for the graph being rendered
+	 */
 	public get graph() {
 		return this._graph
 	}
 
+	/**
+	 * Setter for the graph being rendered
+	 */
 	public set graph(value: Maybe<GraphContainer>) {
 		this._graph = value
 

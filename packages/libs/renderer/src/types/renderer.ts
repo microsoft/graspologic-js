@@ -87,13 +87,6 @@ export interface GraphRenderer extends EventEmitter<GraphRendererEvents> {
 	load(data: GraphContainer, colorizer?: NodeComponentColorizer): void
 
 	/**
-	 * Changes the position of the given nodes
-	 * @param newPositions The new positions of the nodes
-	 * @param duration The optional duration for how long the transition should take
-	 */
-	changePositions(newPositions: PositionMap, duration?: number): void
-
-	/**
 	 * Resizes the renderer
 	 * @param width The width of the canvas
 	 * @param height The height of the canvas
@@ -160,13 +153,6 @@ export interface GraphRenderer extends EventEmitter<GraphRendererEvents> {
 export enum VisualDimensions {
 	TwoD = '2D',
 	ThreeD = '3D',
-}
-
-/**
- * A mapping between a key and a position object
- */
-export interface PositionMap {
-	[key: string]: { x: number; y: number; z?: number }
 }
 
 /**

@@ -13,9 +13,15 @@ import {
 import { animationFrameScheduler, Observable } from 'rxjs'
 import { throttleTime } from 'rxjs/operators'
 import { InputGraphContext } from '../../context'
-import { NodeId, Position, GraphContainer } from '@graspologic/graph'
+import {
+	NodeId,
+	Position,
+	GraphContainer,
+	changePositions,
+	PositionMap,
+} from '@graspologic/graph'
 import { LayoutWorkerManager } from '@graspologic/layout-core'
-import { PositionMap, GraphRenderer } from '@graspologic/renderer'
+import { GraphRenderer } from '@graspologic/renderer'
 
 export function useLayoutPositionChanges(
 	api: RefObject<GraphRenderer>,
@@ -52,7 +58,7 @@ function usePositionChangeCallback(
 		(positions: Record<NodeId, Position>) => {
 			if (api.current) {
 				console.log('set positions', positions)
-				api.current.changePositions(positions)
+				changePositions(api.current.graph, positions)
 			}
 		},
 		[api],

@@ -6,14 +6,14 @@
 import React, { useState, useCallback, useMemo, useRef } from 'react'
 import colorizer from '../data/categoricalColorizer'
 import { getRandomArbitrary, getRandomInt } from '../utils'
-import { InputGraph } from '@graspologic/graph'
+import { InputGraph, PositionMap, changePositions } from '@graspologic/graph'
 import {
 	GraphView,
 	Camera,
 	Nodes,
 	HighlightHoveredNode,
 } from '@graspologic/react'
-import { PositionMap, GraphRenderer } from '@graspologic/renderer'
+import { GraphRenderer } from '@graspologic/renderer'
 const FPSStats = require('react-fps-stats').default
 
 export const StressTestVertices3D: React.FC = () => {
@@ -53,7 +53,7 @@ export const StressTestVertices3D: React.FC = () => {
 				z: getRandomArbitrary(-1000, 1000),
 			}
 		})
-		graphRef.current!.changePositions(positionMap, 5000)
+		changePositions(graphRef.current!.graph, positionMap, 5000)
 	}, [graph])
 
 	return (

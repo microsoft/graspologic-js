@@ -4,3 +4,4 @@
  */
 export * from './GraphContainer'
 export * from './types'
+export * from './utils'

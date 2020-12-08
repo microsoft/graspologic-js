@@ -51,7 +51,6 @@ describe('The Graph View', () => {
 			/>,
 		)
 		expect(apiRef!).toBeDefined()
-		expect(typeof apiRef!.changePositions).toEqual('function')
 		expect(apiRef!.config).toBeDefined()
 	})
 })
