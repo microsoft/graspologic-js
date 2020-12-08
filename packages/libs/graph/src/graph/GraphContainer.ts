@@ -105,26 +105,26 @@ export class GraphContainer {
 
 	/**
 	 * Creates an empty graph container
-	 * @param numNodes The number of nodes to preallocate
-	 * @param numEdges The number of edges to preallocate
+	 * @param numNodes The number of nodes to preallocate to, defaults to 10000
+	 * @param numEdges The number of edges to preallocate to, defaults to 10000
 	 * @param shareable Whether to use shared-memory
 	 * @returns An empty graph container
 	 */
 	public static create(
-		numNodes: number,
-		numEdges: number,
+		numNodes: number | undefined,
+		numEdges: number | undefined,
 		shareable = true,
 	): GraphContainer {
 		return new GraphContainer(
 			createNodeStore({
 				capacity: numNodes,
 				shared: shareable,
-				allocatedOnCreate: true,
+				allocatedOnCreate: numNodes != null,
 			}),
 			createEdgeStore({
 				capacity: numEdges,
 				shared: shareable,
-				allocatedOnCreate: true,
+				allocatedOnCreate: numEdges != null,
 			}),
 		)
 	}

@@ -7,7 +7,7 @@ import { storiesOf } from '@storybook/react'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { getRandomArbitrary, getRandomInt } from './utils'
-import { NodeImpl, EdgeImpl, AnimatableNodeImpl } from '@graspologic/graph'
+import { NodeImpl, EdgeImpl, AnimatableNodeImpl, GraphContainer } from '@graspologic/graph'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 import {
@@ -24,8 +24,8 @@ interface WithGraphRendererProps {
 	onRender?: (renderer: GraphRenderer, renderTimeDelta: number) => number | void
 	onRendererReady?: (renderer: GraphRenderer) => void
 	onDestroy?: (renderer: GraphRenderer) => void
-	nodeCountHint?: number
-	edgeCountHint?: number
+	numNodes?: number
+	numEdges?: number
 	dependencies?: any[]
 	width?: number
 	height?: number
@@ -36,8 +36,8 @@ const WithGraphRenderer = ({
 	onRendererReady,
 	width = 500,
 	height = 500,
-	nodeCountHint,
-	edgeCountHint,
+	numNodes,
+	numEdges,
 	onDestroy,
 	dependencies = [],
 	cameraAdjustmentMode = CameraAdjustmentMode.Viewport,
@@ -52,9 +52,8 @@ const WithGraphRenderer = ({
 		let destroyed = false
 		const { current } = renderRef
 		if (current) {
-			newRenderer = WebGLGraphRenderer.createInstance({
-				nodeCountHint,
-				edgeCountHint,
+			const graph = GraphContainer.create(numNodes, numEdges, true)
+			newRenderer = WebGLGraphRenderer.createInstance(graph, {
 				width,
 				height,
 				cameraAdjustmentMode,
@@ -118,9 +117,9 @@ const WithGraphRenderer = ({
 		}
 	}, [
 		cameraAdjustmentMode,
-		edgeCountHint,
+		numEdges,
 		height,
-		nodeCountHint,
+		numNodes,
 		onDestroy,
 		onRender,
 		onRendererReady,
@@ -658,7 +657,7 @@ storiesOf('Primitive API', module)
 			<>
 				<button onClick={runTest}>Run Test</button>
 				<WithGraphRenderer
-					nodeCountHint={count}
+					numNodes={count}
 					height={50}
 					onRendererReady={renderer => {
 						ourRenderer = renderer

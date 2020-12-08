@@ -14,15 +14,11 @@ import {
 
 /**
  * Creates a new GraphRenderer instance
- * @param nodeCountHint The number of nodes in the graph
- * @param edgeCountHint The number of edges in the graph
  * @param container The graph container to use
  * @param drawEdges If true, edges will be drawn
  */
 export function useGraphRenderer(
-	nodeCountHint?: number,
-	edgeCountHint?: number,
-	container?: GraphContainer,
+	container: GraphContainer | undefined,
 	dataBounds?: Maybe<Bounds>,
 ): [React.RefObject<HTMLDivElement>, GraphRenderer | undefined] {
 	const ref = useRef<HTMLDivElement>(null)
@@ -31,15 +27,13 @@ export function useGraphRenderer(
 	// Create the Renderer Instance when the ref changes
 	useEffect(() => {
 		let newRenderer: WebGLGraphRenderer | undefined
-		if (ref.current) {
+		if (ref.current && container) {
 			const current = ref.current
 			newRenderer = WebGLGraphRenderer.createInstance(
-				{
-					nodeCountHint,
-					edgeCountHint,
-					dataBounds,
-				},
 				container,
+				{
+					dataBounds,
+				}
 			)
 
 			current.appendChild(newRenderer.view)
@@ -53,7 +47,7 @@ export function useGraphRenderer(
 				}
 			}
 		}
-	}, [nodeCountHint, edgeCountHint, dataBounds, container])
+	}, [dataBounds, container])
 
 	return [ref, renderer]
 }

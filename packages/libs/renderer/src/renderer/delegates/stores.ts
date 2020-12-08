@@ -15,23 +15,23 @@ import { ReaderStore } from '@graspologic/memstore'
 
 /**
  * Constructs a generic data store with node and edge stores
- * @param nodeCountHint The number of nodes
- * @param edgeCountHint The number of edges
+ * @param numNodes The number of nodes
+ * @param numEdges The number of edges
  * @param animation If the stores should emit update animation
  * @returns A datastore containing node and edge stores
  */
 export function createDataStore(
-	nodeCountHint: number | undefined,
-	edgeCountHint: number | undefined,
+	numNodes: number | undefined,
+	numEdges: number | undefined,
 	animation = true,
 ): DataStore {
 	const result = new GenericTypeStore<ReaderStore<any>>()
 	const nodeStore = createNodeStore({
-		capacity: nodeCountHint,
+		capacity: numNodes,
 		animation,
 	})
 	const edgeStore = createEdgeStore({
-		capacity: edgeCountHint,
+		capacity: numEdges,
 		animation,
 	})
 	result.register(nodeType, nodeStore)

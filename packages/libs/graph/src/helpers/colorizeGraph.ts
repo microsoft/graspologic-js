@@ -2,7 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer, NodeBGRAColorizer, NodeColorizer } from '../types'
+import { GraphContainer } from '../graph'
+import { NodeBGRAColorizer, NodeColorizer } from './types'
+
 
 const DEFAULT_NAME = 'DEFAULT'
 
@@ -20,19 +22,19 @@ export function createBGRAColorizer(
 }
 
 /**
- * Applies a colorizer function to the graph renderer
- * @param renderer The renderer to colorize
- * @param colorizerFn The function to use to color the renderer
+ * Applies a colorizer function to the graph
+ * @param graph The graph to colorize
+ * @param colorizerFn The function to use to color the graph
  */
-export function colorizeRenderer(
-	renderer: GraphRenderer,
+export function colorizeGraph(
+	graph: GraphContainer,
 	colorizerFn?: NodeColorizer,
 ) {
 	const colorizer = createBGRAColorizer(colorizerFn)
 	const nodeColors = new Map<string, number>()
 	let color: number
-	const edgeCount = renderer.graph.edges.count
-	for (const node of renderer.graph.nodes.scan()) {
+	const edgeCount = graph.edges.count
+	for (const node of graph.nodes.scan()) {
 		color = correctColor(colorizer(node.id, node.group))
 		node.color = color
 		if (edgeCount > 0) {
@@ -42,7 +44,7 @@ export function colorizeRenderer(
 
 	if (edgeCount > 0) {
 		let nodeColor: number | undefined
-		for (const edge of renderer.graph.edges.scan()) {
+		for (const edge of graph.edges.scan()) {
 			nodeColor = nodeColors.get(edge.source!)
 			if (nodeColor != null) {
 				edge.color = nodeColor

@@ -14,8 +14,7 @@ import {
 import { useNodesRenderable } from './hooks/useNodesRenderable'
 import { useSizer, NodeSizer } from './hooks/useSizer'
 import { useWeighter, NodeWeighter } from './hooks/useWeighter'
-import { Node } from '@graspologic/graph'
-import { NodeColorizer } from '@graspologic/renderer'
+import { Node, NodeColorizer } from '@graspologic/graph'
 
 /**
  * The set of properties for the Nodes component

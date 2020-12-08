@@ -7,8 +7,6 @@ import { Camera } from '@graspologic/camera'
 import {
 	EventEmitter,
 	RenderConfiguration,
-	Maybe,
-	Id,
 	UserInteractionType,
 } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
@@ -82,9 +80,8 @@ export interface GraphRenderer extends EventEmitter<GraphRendererEvents> {
 	/**
 	 * Loads the given graph into the renderer
 	 * @param data The graph to load
-	 * @param colorizer The colorizer function which determines the color of a node
 	 */
-	load(data: GraphContainer, colorizer?: NodeComponentColorizer): void
+	load(data: GraphContainer): void
 
 	/**
 	 * Resizes the renderer
@@ -154,33 +151,3 @@ export enum VisualDimensions {
 	TwoD = '2D',
 	ThreeD = '3D',
 }
-
-/**
- * Provides a component based color for the given node
- * @param id The id of the node
- * @param group The group of the node
- * @returns A color in the form of [r, g, b, a] components
- */
-export type NodeComponentColorizer = (
-	id: Maybe<Id>,
-	group: Maybe<Id>,
-) => [number, number, number, number]
-
-/**
- * Provides a color for the given node
- * @param id The id of the node
- * @param group The group of the node
- * @returns A color in the form of 0xbbggrraa
- */
-export type NodeBGRAColorizer = (id: Maybe<Id>, group: Maybe<Id>) => number
-
-/**
- * Provides a color for the given node
- * @param id The id of the node
- * @param group The group of the node
- * @returns A color in the form of [r, g, b, a] components or an int color
- */
-export type NodeColorizer = (
-	id: Maybe<Id>,
-	group: Maybe<Id>,
-) => [number, number, number, number] | number

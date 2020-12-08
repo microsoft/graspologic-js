@@ -99,12 +99,6 @@ class RenderConfigurationImpl implements RenderConfiguration {
 	private _nodeFilteredIds = new PropertyContainer<string[] | undefined>(
 		undefined,
 	)
-	private _nodeCountHint = new PropertyContainer<number>(
-		DEFAULT_NODE_COUNT_HINT,
-	)
-	private _edgeCountHint = new PropertyContainer<number>(
-		DEFAULT_EDGE_COUNT_HINT,
-	)
 	private _width = new PropertyContainer<number>(DEFAULT_WIDTH)
 	private _height = new PropertyContainer<number>(DEFAULT_HEIGHT)
 	private _dataBounds = new PropertyContainer<Maybe<Bounds>>(DEFAULT_BOUNDS)
@@ -498,34 +492,6 @@ class RenderConfigurationImpl implements RenderConfiguration {
 		return this._nodeFilteredIds.on('change', handler)
 	}
 
-	public get nodeCountHint(): number {
-		return this._nodeCountHint.value
-	}
-
-	public set nodeCountHint(value: number) {
-		this._nodeCountHint.value = value
-	}
-
-	public onNodeCountHintChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect {
-		return this._nodeCountHint.on('change', handler)
-	}
-
-	public get edgeCountHint(): number {
-		return this._edgeCountHint.value
-	}
-
-	public set edgeCountHint(value: number) {
-		this._edgeCountHint.value = value
-	}
-
-	public onEdgeCountHintChanged(
-		handler: PropertyChangeHandler<number>,
-	): Disconnect {
-		return this._edgeCountHint.on('change', handler)
-	}
-
 	public get width(): number {
 		return this._width.value
 	}
@@ -591,8 +557,6 @@ class RenderConfigurationImpl implements RenderConfiguration {
 			nodeMaxRadius,
 			nodeMinRadius,
 			nodeOutline,
-			nodeCountHint,
-			edgeCountHint,
 			width,
 			height,
 			cameraAdjustmentMode,
@@ -625,8 +589,6 @@ class RenderConfigurationImpl implements RenderConfiguration {
 			nodeMaxRadius,
 			nodeMinRadius,
 			nodeOutline,
-			nodeCountHint,
-			edgeCountHint,
 			width,
 			height,
 			cameraAdjustmentMode,

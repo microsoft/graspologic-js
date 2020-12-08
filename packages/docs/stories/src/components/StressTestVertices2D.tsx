@@ -87,7 +87,6 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 						dataBounds={BOUNDS}
 						className="graph-pane"
 						data={graph}
-						nodeCountHint={numNodes}
 					>
 						<Camera interactive />
 						<Nodes color={colorizer} minRadius={0.1} maxRadius={1.0} />

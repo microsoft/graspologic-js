@@ -82,8 +82,6 @@ export interface RenderConfiguration extends RenderConfigurationOptions {
 	onNodeFilteredIdsChanged(
 		handler: PropertyChangeHandler<string[] | undefined>,
 	): Disconnect
-	onNodeCountHintChanged(handler: PropertyChangeHandler<number>): Disconnect
-	onEdgeCountHintChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onWidthChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onHeightChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onCameraAdjustmentModeChanged(
@@ -221,18 +219,6 @@ export interface RenderConfigurationOptions {
 	 * If true, nodes will be drawn with an outline
 	 */
 	nodeOutline: boolean
-
-	/**
-	 * Provides a hint to the renderer about how many nodes are expected
-	 * so data buffers can be preallocated with the optimal size, default = 10000
-	 */
-	nodeCountHint: number
-
-	/**
-	 * Provides a hint to the renderer about how many edges are expected
-	 * so data buffers can be preallocated with the optimal size, default = 10000
-	 */
-	edgeCountHint: number
 
 	/**
 	 * The width of the canvas, default = 500

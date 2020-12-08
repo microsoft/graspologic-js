@@ -82,18 +82,6 @@ export interface GraphViewProps {
 	interpolationTime?: number
 
 	/**
-	 * A hint indicating the number of nodes that are expected
-	 * @defaultValue 10000
-	 */
-	nodeCountHint?: number
-
-	/**
-	 * A hint indicating the number of edges that are expected
-	 * @defaultValue 10000
-	 */
-	edgeCountHint?: number
-
-	/**
 	 * A ref to the underlying GraphRenderer
 	 */
 	ref?: React.Ref<GraphRenderer>
@@ -128,8 +116,6 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 			hideDeselected = DEFAULT_HIDE_DESELECTED,
 			is3D = DEFAULT_IS_3D,
 			interpolationTime = DEFAULT_INTERPOLATION_TIME,
-			nodeCountHint,
-			edgeCountHint,
 			dataBounds,
 			onInitialize,
 			onDataLoad,
@@ -139,8 +125,6 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 	) => {
 		const graphContainer = useGraphContainer(data)
 		const [renderRef, renderer] = useGraphRenderer(
-			nodeCountHint,
-			edgeCountHint,
 			graphContainer,
 			dataBounds,
 		)

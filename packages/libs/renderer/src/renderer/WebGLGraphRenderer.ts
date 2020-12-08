@@ -7,9 +7,7 @@ import { AnimationLoop } from '@luma.gl/engine'
 // This is causing problems downstream for some reason
 // @ts-ignore
 import { createGLContext } from '@luma.gl/gltools'
-import { processGraph } from '../data'
 import {
-	NodeComponentColorizer,
 	Scene,
 	InitializeHandler,
 	GraphRenderer,
@@ -34,8 +32,6 @@ import {
 	UserInteractionType,
 	Renderable,
 	EventEmitter,
-	DEFAULT_NODE_COUNT_HINT,
-	DEFAULT_EDGE_COUNT_HINT,
 	Disconnect,
 } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
@@ -190,8 +186,8 @@ export class WebGLGraphRenderer
 	 * @param options The options for the render configuration
 	 */
 	public static createInstance(
+		data: GraphContainer,
 		options: Partial<RenderConfigurationOptions> = {},
-		data?: GraphContainer,
 		gl?: WebGL2RenderingContext,
 	): WebGLGraphRenderer {
 		if (!gl) {
@@ -202,22 +198,6 @@ export class WebGLGraphRenderer
 				webgl1: false,
 			})
 		}
-
-		if (data) {
-			processGraph(data, undefined)
-		}
-
-		data =
-			data ||
-			GraphContainer.create(
-				options.nodeCountHint != null
-					? options.nodeCountHint
-					: DEFAULT_NODE_COUNT_HINT,
-				options.edgeCountHint != null
-					? options.edgeCountHint
-					: DEFAULT_EDGE_COUNT_HINT,
-				true,
-			)
 
 		const config = createConfiguration(options)
 		const camera = new Camera()
@@ -301,13 +281,9 @@ export class WebGLGraphRenderer
 	/**
 	 * Loads the given graph into the renderer
 	 * @param data The graph to load
-	 * @param colorizer The colorizer function which determines the color of a node
 	 */
-	public load(data: GraphContainer, colorizer?: NodeComponentColorizer): void {
+	public load(data: GraphContainer): void {
 		invariant(!this.destroyed, 'renderer is destroyed!')
-
-		// normalize weights and color nodes
-		processGraph(data, colorizer)
 
 		this._graph = data
 
@@ -539,8 +515,8 @@ export class WebGLGraphRenderer
 			this.animationLoop.stop()
 			this.graph.destroy()
 
-			if (this.scene.destroy) {
-				this.scene.destroy()
+			if (this._scene.destroy) {
+				this._scene.destroy()
 			}
 		}
 	}

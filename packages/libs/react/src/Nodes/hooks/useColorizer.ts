@@ -3,11 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect } from 'react'
-import {
-	GraphRenderer,
-	NodeColorizer,
-	colorizeRenderer,
-} from '@graspologic/renderer'
+import { colorizeGraph, NodeColorizer } from '@graspologic/graph'
+import { GraphRenderer } from '@graspologic/renderer'
 
 /**
  * This hook will apply colors to the edges/nodes of __renderer__ using the __colorizerFn__
@@ -20,7 +17,7 @@ export function useColorizer(
 ) {
 	useEffect(() => {
 		if (renderer && !renderer.destroyed && colorizerFn) {
-			colorizeRenderer(renderer, colorizerFn)
+			colorizeGraph(renderer.graph, colorizerFn)
 		}
 	}, [colorizerFn, renderer])
 }

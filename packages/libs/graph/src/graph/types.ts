@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { Id, Maybe } from '@graspologic/common'
 import { Shape } from '../primitives'
 
 export type NodeId = string
