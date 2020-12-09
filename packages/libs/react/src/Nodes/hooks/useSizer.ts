@@ -3,9 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect } from 'react'
-import { GraphRenderer, Node } from '@graspologic/renderer'
-
-export type NodeSizer = (node: Node) => number
+import { NodeSizer, sizeGraph } from '@graspologic/graph'
+import { GraphRenderer } from '@graspologic/renderer'
 
 /**
  * This hook will apply sizes to the edges/nodes of __renderer__ using the __sizerFn__
@@ -18,9 +17,7 @@ export function useSizer(
 ) {
 	useEffect(() => {
 		if (renderer && !renderer.destroyed && sizerFn) {
-			for (const node of renderer.graph.nodes) {
-				node.radius = sizerFn(node)
-			}
+			sizeGraph(renderer.graph, sizerFn)
 		}
 	}, [sizerFn, renderer])
 }

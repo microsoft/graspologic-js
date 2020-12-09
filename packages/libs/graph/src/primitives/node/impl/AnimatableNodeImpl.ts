@@ -37,6 +37,24 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 	 * @see {@link AnimatableNode.animatePosition}
 	 */
 	public animatePosition(position: Pos3D | Pos2D, duration = 0): void {
+		this.animatePositionComponents(
+			position[0],
+			position[1],
+			position[2],
+			duration,
+		)
+	}
+
+	/**
+	 * @inheritDoc
+	 * @see {@link AnimatableNode.animatePositionComponents}
+	 */
+	public animatePositionComponents(
+		x: number,
+		y: number,
+		z = 0,
+		duration = 0,
+	): void {
 		// Set the start to the old position
 		inspector.copyFloat32Vec3Offset(
 			this,
@@ -58,9 +76,9 @@ class AnimatableNodeImplInternal extends NodeImpl implements AnimatableNode {
 		inspector.writeFloat32Vec3Offset(
 			this,
 			positionTypedOffset,
-			position[0] || 0,
-			position[1] || 0,
-			position[2] || 0,
+			x || 0,
+			y || 0,
+			z || 0,
 		)
 		this.handleAttributeUpdated(positionAttr)
 	}

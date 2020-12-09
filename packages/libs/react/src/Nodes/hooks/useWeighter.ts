@@ -3,9 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect } from 'react'
-import { GraphRenderer, Node } from '@graspologic/renderer'
-
-export type NodeWeighter = (node: Node) => number
+import { weightGraph, NodeWeighter } from '@graspologic/graph'
+import { GraphRenderer } from '@graspologic/renderer'
 
 /**
  * This hook will apply weights to the edges/nodes of __renderer__ using the __weightFn__
@@ -18,9 +17,7 @@ export function useWeighter(
 ) {
 	useEffect(() => {
 		if (renderer && !renderer.destroyed && weightFn) {
-			for (const node of renderer.graph.nodes) {
-				node.weight = weightFn(node)
-			}
+			weightGraph(renderer.graph, weightFn)
 		}
 	}, [weightFn, renderer])
 }

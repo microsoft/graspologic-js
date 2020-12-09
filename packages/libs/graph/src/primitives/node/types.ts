@@ -95,12 +95,6 @@ export interface Node extends MemoryReader {
 
 	/**
 	 * @internal
-	 * The node data
-	 */
-	data: NodeStore | undefined
-
-	/**
-	 * @internal
 	 * Whether or not the node position is fixed, and shouldn't be moved
 	 */
 	fixed: boolean
@@ -200,6 +194,20 @@ export interface AnimatableNode extends Node {
 	 * @param duration The duration to animate over
 	 */
 	animatePosition(position: Pos3D | Pos2D, duration?: number): void
+
+	/**
+	 * Animates the node to the given position over the duration
+	 * @param x The x component
+	 * @param y The y component
+	 * @param z The z component
+	 * @param duration The duration to animate over
+	 */
+	animatePositionComponents(
+		x: number,
+		y: number,
+		z?: number,
+		duration?: number,
+	): void
 
 	/**
 	 * Animates the node to the given color over the duration

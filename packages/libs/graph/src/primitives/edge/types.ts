@@ -89,12 +89,6 @@ export interface Edge extends MemoryReader {
 
 	/**
 	 * @internal
-	 * The edge data
-	 */
-	data: EdgeStore | undefined
-
-	/**
-	 * @internal
 	 * The original weight
 	 */
 	trueWeight: number
@@ -145,11 +139,39 @@ export interface AnimatableEdge extends Edge {
 	animateSourcePosition(position: Pos3D | Pos2D, duration?: number): void
 
 	/**
+	 * Animates the source position to __position__ over __duration__
+	 * @param x The x component
+	 * @param y The y component
+	 * @param z The z component
+	 * @param duration The duration to animate over
+	 */
+	animateSourcePositionComponents(
+		x: number,
+		y: number,
+		z?: number,
+		duration?: number,
+	): void
+
+	/**
 	 * Animates the target position to __position__ over __duration__
 	 * @param position The position to animate to
 	 * @param duration The duration to animate over
 	 */
 	animateTargetPosition(position: Pos3D | Pos2D, duration?: number): void
+
+	/**
+	 * Animates the source position to __position__ over __duration__
+	 * @param x The x component
+	 * @param y The y component
+	 * @param z The z component
+	 * @param duration The duration to animate over
+	 */
+	animateTargetPositionComponents(
+		x: number,
+		y: number,
+		z?: number,
+		duration?: number,
+	): void
 }
 
 /**

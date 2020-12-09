@@ -7,7 +7,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { StressTestVertices2D } from './components/StressTestVertices2D'
 import { StressTestVertices3D } from './components/StressTestVertices3D'
-import { componentColorToBGRA } from '@graspologic/renderer'
+import { componentColorToBGRA } from '@graspologic/graph'
 
 const COL_RANGE = { range: true, min: 0.0, max: 1.0, step: 0.01 }
 

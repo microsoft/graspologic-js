@@ -6,14 +6,18 @@
 import React, { useState, useCallback, useMemo, useRef } from 'react'
 import DEFAULT_COLORIZER from '../data/categoricalColorizer'
 import { getRandomArbitrary, getRandomInt } from '../utils'
-import { InputGraph, changePositions, PositionMap } from '@graspologic/graph'
+import {
+	InputGraph,
+	NodePositioner,
+	NodeComponentColorizer,
+} from '@graspologic/graph'
 import {
 	GraphView,
 	Camera,
 	Nodes,
 	HighlightHoveredNode,
 } from '@graspologic/react'
-import { NodeComponentColorizer, GraphRenderer } from '@graspologic/renderer'
+import { GraphRenderer } from '@graspologic/renderer'
 const FPSStats = require('react-fps-stats').default
 
 interface StressTestVertices2DProps {
@@ -56,16 +60,14 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 	}, [numNodes])
 
 	const graphRef = useRef<GraphRenderer>(null)
+	const [positioner, setPositioner] = useState<NodePositioner | undefined>()
 	const handleLayout = useCallback(() => {
-		const positionMap: PositionMap = {}
-		graph.nodes.forEach(n => {
-			positionMap[n.id] = {
-				x: getRandomArbitrary(-1500, 1500),
-				y: getRandomArbitrary(-1500, 1500),
-			}
+		setPositioner({
+			duration: 5000,
+			x: () => getRandomArbitrary(-1500, 1500),
+			y: () => getRandomArbitrary(-1500, 1500),
 		})
-		changePositions(graphRef.current!.graph, positionMap, 5000)
-	}, [graph])
+	}, [setPositioner])
 
 	const onLoadGraph = useCallback(() => {
 		setNumNodes(parseInt(textInput.current!.value, 10) || 100)
@@ -89,7 +91,12 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 						data={graph}
 					>
 						<Camera interactive />
-						<Nodes color={colorizer} minRadius={0.1} maxRadius={1.0} />
+						<Nodes
+							position={positioner}
+							color={colorizer}
+							minRadius={0.1}
+							maxRadius={1.0}
+						/>
 						<HighlightHoveredNode />
 					</GraphView>
 				</div>

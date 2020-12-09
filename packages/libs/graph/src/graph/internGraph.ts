@@ -2,7 +2,16 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { randBetween, createBGRAColorizer, correctColor, NodeColorizer } from '../helpers'
+import {
+	randBetween,
+	createBGRAColorizer,
+	correctColor,
+	NodeColorizer,
+	NodeSizer,
+	NodeWeighter,
+	NodePositioner,
+	positionNode,
+} from '../helpers'
 import { Node, Edge } from '../primitives'
 import { GraphContainer } from './GraphContainer'
 import { InputGraph, InputNode } from './types'
@@ -30,6 +39,21 @@ export interface InternGraphOptions {
 	colorizer: NodeColorizer | undefined
 
 	/**
+	 * A sizing function to size each node
+	 */
+	sizer: NodeSizer | undefined
+
+	/**
+	 * A weighting function to weight each node
+	 */
+	weighter: NodeWeighter | undefined
+
+	/**
+	 * A position function to position each node
+	 */
+	positioner: NodePositioner | undefined
+
+	/**
 	 * The default value to use when edge weights are not present.
 	 *
 	 * @defaultValue 1
@@ -43,9 +67,12 @@ export interface InternGraphOptions {
 	normalizeWeights: boolean
 }
 
-export const DEFAULT_INTERN_GRAPH_OPTIONS = Object.freeze({
+export const DEFAULT_INTERN_GRAPH_OPTIONS: InternGraphOptions = Object.freeze({
 	randomize: undefined,
 	colorizer: undefined,
+	positioner: undefined,
+	sizer: undefined,
+	weighter: undefined,
 	defaultEdgeWeight: 1,
 	normalizeWeights: true,
 	shareable: true,
@@ -68,10 +95,8 @@ export function internGraph(
 		input.edges.length,
 		options.shareable,
 	)
-
 	const nodeIdToIndex = processNodes(input, graph, options)
 	processEdges(input, nodeIdToIndex, graph, options)
-
 	return graph
 }
 
@@ -82,13 +107,20 @@ export function internGraph(
  * @param options The inter graph options
  */
 function processNodes(
-	input: InputGraph, 
-	output: GraphContainer, {
+	input: InputGraph,
+	output: GraphContainer,
+	{
+		sizer = DEFAULT_INTERN_GRAPH_OPTIONS.sizer,
+		weighter = DEFAULT_INTERN_GRAPH_OPTIONS.weighter,
 		colorizer: optionalColorizer = DEFAULT_INTERN_GRAPH_OPTIONS.colorizer,
 		randomize = DEFAULT_INTERN_GRAPH_OPTIONS.randomize,
 		normalizeWeights = DEFAULT_INTERN_GRAPH_OPTIONS.normalizeWeights,
-	}: Partial<InternGraphOptions>): Map<string, number> {
-	const colorizer = optionalColorizer ? createBGRAColorizer(optionalColorizer) : undefined
+		positioner = DEFAULT_INTERN_GRAPH_OPTIONS.positioner,
+	}: Partial<InternGraphOptions>,
+): Map<string, number> {
+	const colorizer = optionalColorizer
+		? createBGRAColorizer(optionalColorizer)
+		: undefined
 
 	let i = 0
 	const nodeIdToIndex = new Map<string, number>()
@@ -111,6 +143,19 @@ function processNodes(
 
 			node.connect(i, output.nodes)
 			node.load(inputNode)
+
+			if (sizer) {
+				node.size = sizer(node.id, node.group)
+			}
+
+			if (weighter) {
+				node.weight = weighter(node.id, node.group)
+			}
+
+			if (positioner) {
+				positionNode(node, positioner)
+			}
+
 			if (randomize && node.x === 0 && node.y === 0) {
 				node.x = randBetween(randomize[0], randomize[1])
 				node.y = randBetween(randomize[2], randomize[3])
@@ -141,18 +186,20 @@ function processNodes(
  * @param options The inter graph options
  */
 function processEdges(
-	input: InputGraph, 
+	input: InputGraph,
 	nodeIdToIndex: Map<string, number>,
-	output: GraphContainer, {
+	output: GraphContainer,
+	{
 		defaultEdgeWeight = DEFAULT_INTERN_GRAPH_OPTIONS.defaultEdgeWeight,
 		normalizeWeights = DEFAULT_INTERN_GRAPH_OPTIONS.normalizeWeights,
-	}: Partial<InternGraphOptions>) {
+	}: Partial<InternGraphOptions>,
+) {
 	let maxWeight = Number.MIN_SAFE_INTEGER
 	let minWeight = Number.MAX_SAFE_INTEGER
 	if (input.edges.length > 0) {
 		let edge: Edge
 		let i = 0
-		
+
 		// We're not too worried about this right yet
 		const reusableNode = output.nodes.itemAt(0)
 		for (edge of output.edges.scan()) {
@@ -164,7 +211,7 @@ function processEdges(
 
 			// Load data into the output edge
 			edge.load(input.edges[i], nodeIdToIndex, defaultEdgeWeight)
-			
+
 			// Update colors and positions for the edges based on the nodes in the graph
 			reusableNode.connect(edge.sourceIndex, output.nodes)
 			edge.color = correctColor(edge.color || reusableNode.color || 0)
@@ -189,7 +236,7 @@ function processEdges(
 		normalizeEdgeWeights(output, minWeight, maxWeight)
 	}
 }
- 
+
 /**
  * Normalizes the nodes weights using the __minWeight__ and __maxWeight__
  * @param data The graph data
@@ -226,7 +273,7 @@ function normalizeNodeWeights(
 function normalizeEdgeWeights(
 	data: GraphContainer,
 	minWeight: number,
-	maxWeight: number
+	maxWeight: number,
 ) {
 	const edgeWeightDiff = maxWeight - minWeight
 	let computeEdgeWeight

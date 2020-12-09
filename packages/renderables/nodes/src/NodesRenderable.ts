@@ -56,6 +56,7 @@ export class NodesRenderable
 	public set graph(value: Maybe<GraphContainer>) {
 		this._graph = value
 		this.setData(value?.nodes)
+		this.rebuildSaturation()
 	}
 
 	/**
@@ -127,7 +128,7 @@ export class NodesRenderable
 	/**
 	 * Rebuilds the node saturation
 	 */
-	public rebuildSaturation() {
+	public rebuildSaturation = () => {
 		if (this.graph) {
 			const nodes = this.config.nodeFilteredIds
 			const allIn =

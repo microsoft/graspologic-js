@@ -104,6 +104,7 @@ export class EdgesRenderable
 	public set graph(value: Maybe<GraphContainer>) {
 		this._graph = value
 		this.setData(value?.edges)
+		this.rebuildSaturation()
 	}
 
 	/**
@@ -164,7 +165,7 @@ export class EdgesRenderable
 	/**
 	 * Rebuilds the edge saturation
 	 */
-	public rebuildSaturation() {
+	public rebuildSaturation = () => {
 		if (this.graph) {
 			const nodes = this.config.nodeFilteredIds
 			const allIn =

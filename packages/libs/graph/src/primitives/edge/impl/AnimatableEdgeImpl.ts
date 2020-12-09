@@ -39,6 +39,24 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		position: Pos3D | Pos2D,
 		duration?: number,
 	): void {
+		this.animateSourcePositionComponents(
+			position[0],
+			position[1],
+			position[2],
+			duration,
+		)
+	}
+
+	/**
+	 * @inheritDoc
+	 * @see {@link AnimatableEdge.animateSourcePositionComponents}
+	 */
+	public animateSourcePositionComponents(
+		x: number,
+		y: number,
+		z = 0,
+		duration?: number,
+	): void {
 		// Set the start to the old position
 		inspector.copyFloat32Vec3Offset(
 			this,
@@ -60,9 +78,9 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		inspector.writeFloat32Vec3Offset(
 			this,
 			sourcePositionTypedOffset,
-			position[0] || 0,
-			position[1] || 0,
-			position[2] || 0,
+			x || 0,
+			y || 0,
+			z || 0,
 		)
 		this.handleAttributeUpdated(sourcePositionAttr)
 	}
@@ -73,6 +91,24 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 	 */
 	public animateTargetPosition(
 		position: Pos3D | Pos2D,
+		duration?: number,
+	): void {
+		this.animateTargetPositionComponents(
+			position[0],
+			position[1],
+			position[2],
+			duration,
+		)
+	}
+
+	/**
+	 * @inheritDoc
+	 * @see {@link AnimatableEdge.animateTargetPosition}
+	 */
+	public animateTargetPositionComponents(
+		x: number,
+		y: number,
+		z = 0,
 		duration?: number,
 	): void {
 		// Set the start to the old position
@@ -96,9 +132,9 @@ class AnimatableEdgeImplInternal extends EdgeImpl implements AnimatableEdge {
 		inspector.writeFloat32Vec3Offset(
 			this,
 			targetPositionTypedOffset,
-			position[0] || 0,
-			position[1] || 0,
-			position[2] || 0,
+			x || 0,
+			y || 0,
+			z || 0,
 		)
 		this.handleAttributeUpdated(targetPositionAttr)
 	}

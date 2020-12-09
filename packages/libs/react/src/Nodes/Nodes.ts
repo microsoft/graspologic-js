@@ -12,9 +12,16 @@ import {
 	NodeRendererConfiguration,
 } from './hooks/useConfiguration'
 import { useNodesRenderable } from './hooks/useNodesRenderable'
-import { useSizer, NodeSizer } from './hooks/useSizer'
-import { useWeighter, NodeWeighter } from './hooks/useWeighter'
-import { Node, NodeColorizer } from '@graspologic/graph'
+import { usePositioner } from './hooks/usePositioner'
+import { useSizer } from './hooks/useSizer'
+import { useWeighter } from './hooks/useWeighter'
+import {
+	Node,
+	NodeColorizer,
+	NodeSizer,
+	NodeWeighter,
+	NodePositioner,
+} from '@graspologic/graph'
 
 /**
  * The set of properties for the Nodes component
@@ -34,12 +41,23 @@ export interface NodesProps extends NodeRendererConfiguration {
 	/**
 	 * A sizing function used for sizing nodes
 	 */
+	size?: NodeSizer
+
+	/**
+	 * A sizing function used for sizing nodes
+	 * @alias for __size__
+	 */
 	radius?: NodeSizer
 
 	/**
 	 * A weighting function used when weighting nodes
 	 */
 	weight?: NodeWeighter
+
+	/**
+	 * A positioning function used for positioning nodes
+	 */
+	position?: NodePositioner
 
 	/**
 	 * Callback that fires when a node is clicked
@@ -59,7 +77,9 @@ export const Nodes: React.FC<NodesProps> = memo(
 	({
 		color,
 		radius,
+		size,
 		weight,
+		position,
 		onNodeClick,
 		onNodeHover,
 		disabled,
@@ -69,8 +89,9 @@ export const Nodes: React.FC<NodesProps> = memo(
 		const nodesRenderable = useNodesRenderable(renderer)
 		useConfiguration(renderer, configProps)
 		useColorizer(renderer, color)
-		useSizer(renderer, radius)
+		useSizer(renderer, size || radius)
 		useWeighter(renderer, weight)
+		usePositioner(renderer, position)
 		useBindCallbacks(renderer, {
 			onNodeClick,
 			onNodeHover,

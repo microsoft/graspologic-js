@@ -52,7 +52,10 @@ import {
 	DEFAULT_BG_COLOR,
 	GraphRenderer,
 	ColorVector,
+	Maybe,
+	Id,
 } from '@graspologic/renderer'
+import { useMemo } from '@storybook/addons'
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	require('@graspologic/testdata/data/testGraph.json'),
@@ -467,6 +470,75 @@ storiesOf('Interactive 2D Examples', module)
 					</GraphView>
 				</div>
 			</div>
+		)
+	})
+	.add('can use a custom sizing function', () => {
+		const size = number('Max size', 100, {
+			min: 1,
+			max: 100,
+			step: 1,
+			range: true,
+		})
+		const sizer = useCallback(
+			(id: Maybe<Id>) => {
+				return 1 + Math.random() * size
+			},
+			[size],
+		)
+		return (
+			<GraphView style={{ width: 500, height: 500 }} data={testData}>
+				<Nodes color={colorizer} size={sizer} />
+				<Edges />
+				<Camera interactive />
+				<HighlightHoveredNode />
+			</GraphView>
+		)
+	})
+	.add('can use a custom weighting function', () => {
+		const weight = number('Max weight', 100, {
+			min: 1,
+			max: 100,
+			step: 1,
+			range: true,
+		})
+		const weighter = useCallback((id: Maybe<Id>) => {
+			return Math.random()
+		}, [])
+		return (
+			<GraphView style={{ width: 500, height: 500 }} data={testData}>
+				<Nodes
+					color={colorizer}
+					weight={weighter}
+					minRadius={1}
+					maxRadius={weight}
+				/>
+				<Edges />
+				<Camera interactive />
+				<HighlightHoveredNode />
+			</GraphView>
+		)
+	})
+	.add('can use a custom positioning function', () => {
+		const position = useMemo(() => {
+			return {
+				x() {
+					return Math.random() * 100
+				},
+				y() {
+					return Math.random() * 100
+				},
+				z() {
+					return Math.random() * 100
+				},
+			}
+		}, [])
+		return (
+			<GraphView style={{ width: 500, height: 500 }} data={testData}>
+				<Nodes color={colorizer} position={position} />
+				<Edges />
+				<Camera interactive />
+				<HighlightHoveredNode />
+			</GraphView>
 		)
 	})
 	.add('event bindings', () => {

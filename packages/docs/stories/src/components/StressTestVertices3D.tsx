@@ -6,18 +6,17 @@
 import React, { useState, useCallback, useMemo, useRef } from 'react'
 import colorizer from '../data/categoricalColorizer'
 import { getRandomArbitrary, getRandomInt } from '../utils'
-import { InputGraph, PositionMap, changePositions } from '@graspologic/graph'
+import { InputGraph, NodePositioner } from '@graspologic/graph'
 import {
 	GraphView,
 	Camera,
 	Nodes,
 	HighlightHoveredNode,
 } from '@graspologic/react'
-import { GraphRenderer } from '@graspologic/renderer'
 const FPSStats = require('react-fps-stats').default
 
 export const StressTestVertices3D: React.FC = () => {
-	const [numNodes, setNumNodes] = useState(500_000)
+	const [numNodes, setNumNodes] = useState(2_000_000)
 	const textInput = useRef<HTMLInputElement>(null)
 	const graph = useMemo(() => {
 		console.log(`generate graph with ${numNodes} nodes`)
@@ -43,19 +42,15 @@ export const StressTestVertices3D: React.FC = () => {
 		setNumNodes(textInput.current!.valueAsNumber)
 	}, [textInput, setNumNodes])
 
-	const graphRef = useRef<GraphRenderer>(null)
+	const [positioner, setPositioner] = useState<NodePositioner | undefined>()
 	const handleLayout = useCallback(() => {
-		const positionMap: PositionMap = {}
-		graph.nodes.forEach(n => {
-			positionMap[n.id] = {
-				x: getRandomArbitrary(-1000, 1000),
-				y: getRandomArbitrary(-1000, 1000),
-				z: getRandomArbitrary(-1000, 1000),
-			}
+		setPositioner({
+			duration: 5000,
+			x: () => getRandomArbitrary(-1500, 1500),
+			y: () => getRandomArbitrary(-1500, 1500),
+			z: () => getRandomArbitrary(-1500, 1500),
 		})
-		changePositions(graphRef.current!.graph, positionMap, 5000)
-	}, [graph])
-
+	}, [setPositioner])
 	return (
 		<>
 			<FPSStats />
@@ -67,14 +62,14 @@ export const StressTestVertices3D: React.FC = () => {
 					<button onClick={handleLayout}>Random Layout</button>
 				</div>
 				<div className="graph-pane-container">
-					<GraphView
-						ref={graphRef}
-						className="graph-pane"
-						data={graph}
-						is3D={true}
-					>
+					<GraphView className="graph-pane" data={graph} is3D={true}>
 						<Camera interactive />
-						<Nodes color={colorizer} minRadius={0.1} maxRadius={1.0} />
+						<Nodes
+							position={positioner}
+							color={colorizer}
+							minRadius={0.1}
+							maxRadius={1.0}
+						/>
 						<HighlightHoveredNode />
 					</GraphView>
 				</div>

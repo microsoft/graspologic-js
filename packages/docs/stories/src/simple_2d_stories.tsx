@@ -151,10 +151,7 @@ storiesOf('Simple 2D Examples', module)
 	.add('with static filter', () => (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" data={testData}>
-				<Nodes
-					color={colorizer}
-					filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']}
-				/>
+				<Nodes color={colorizer} filteredIds={['0_384', '0_428', '0_454']} />
 				<Edges />
 				<HighlightHoveredNode />
 			</GraphView>
@@ -163,10 +160,7 @@ storiesOf('Simple 2D Examples', module)
 	.add('with embedded controls', () => (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" data={testData}>
-				<Nodes
-					color={colorizer}
-					filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']}
-				/>
+				<Nodes color={colorizer} filteredIds={['0_384', '0_428', '0_454']} />
 				<SettingsPane>
 					<DisplaySettings />
 					<NodeSettings />
