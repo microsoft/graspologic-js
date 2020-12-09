@@ -84,9 +84,9 @@ export function internGraph(
 function processNodes(
 	input: InputGraph, 
 	output: GraphContainer, {
-		colorizer: optionalColorizer,
-		randomize,
-		normalizeWeights,
+		colorizer: optionalColorizer = DEFAULT_INTERN_GRAPH_OPTIONS.colorizer,
+		randomize = DEFAULT_INTERN_GRAPH_OPTIONS.randomize,
+		normalizeWeights = DEFAULT_INTERN_GRAPH_OPTIONS.normalizeWeights,
 	}: Partial<InternGraphOptions>): Map<string, number> {
 	const colorizer = optionalColorizer ? createBGRAColorizer(optionalColorizer) : undefined
 
@@ -144,8 +144,8 @@ function processEdges(
 	input: InputGraph, 
 	nodeIdToIndex: Map<string, number>,
 	output: GraphContainer, {
-		defaultEdgeWeight,
-		normalizeWeights,
+		defaultEdgeWeight = DEFAULT_INTERN_GRAPH_OPTIONS.defaultEdgeWeight,
+		normalizeWeights = DEFAULT_INTERN_GRAPH_OPTIONS.normalizeWeights,
 	}: Partial<InternGraphOptions>) {
 	let maxWeight = Number.MIN_SAFE_INTEGER
 	let minWeight = Number.MAX_SAFE_INTEGER

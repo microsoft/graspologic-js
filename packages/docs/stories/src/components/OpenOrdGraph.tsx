@@ -78,7 +78,6 @@ function useInternedGraphData(data: InputGraph) {
 			data
 				? GraphContainer.intern(data, {
 						shareable: true,
-						normalizeWeights: false,
 						randomize: [-1000, 1000, -1000, 1000],
 				  })
 				: undefined,
