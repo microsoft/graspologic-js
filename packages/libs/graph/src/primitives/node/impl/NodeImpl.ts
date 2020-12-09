@@ -37,15 +37,20 @@ export class NodeImpl extends BaseNodeImpl implements Node {
 		;(this as any).propertyBag.group = data.group
 		;(this as any).propertyBag.label = data.label
 
-		this.float32Array[this.wordOffset + radiusTypedOffset] =
+		this.data.float32Array[this.wordOffset + radiusTypedOffset] =
 			data.size || data.radius || 0
-		this.float32Array[this.wordOffset + positionTypedOffset] = data.x || 0
-		this.float32Array[this.wordOffset + positionTypedOffset + 1] = data.y || 0
-		this.float32Array[this.wordOffset + positionTypedOffset + 2] = data.z || 0
-		this.float32Array[this.wordOffset + weightTypedOffset] = data.weight || 1
-		this.uint32Array[this.wordOffset + colorTypedOffset] = data.color || 0
-		this.uint8Array[this.byteOffset + shapeTypedOffset] = parseShape(data.shape)
-		this.uint8Array[this.byteOffset + visibleTypedOffset] = 1
+		this.data.float32Array[this.wordOffset + positionTypedOffset] = data.x || 0
+		this.data.float32Array[this.wordOffset + positionTypedOffset + 1] =
+			data.y || 0
+		this.data.float32Array[this.wordOffset + positionTypedOffset + 2] =
+			data.z || 0
+		this.data.float32Array[this.wordOffset + weightTypedOffset] =
+			data.weight || 1
+		this.data.uint32Array[this.wordOffset + colorTypedOffset] = data.color || 0
+		this.data.uint8Array[this.byteOffset + shapeTypedOffset] = parseShape(
+			data.shape,
+		)
+		this.data.uint8Array[this.byteOffset + visibleTypedOffset] = 1
 	}
 }
 

@@ -75,29 +75,27 @@ import { GraphContainer } from '@graspologic/graph'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 function createRenderer(width, height) {
+	const graph =
+		GraphContainer.intern({
+			// Pass in your data here
+			nodes: [],
+			edges: [],
+		})
+
 	// Create a renderer and add it to the container
-	const renderer = WebGLGraphRenderer.createInstance({
+	const renderer = WebGLGraphRenderer.createInstance(graph, {
 		width,
 		height,
 	})
 
 	// create nodes renderable
-	const nodes = new NodesRenderable(gl!, config)
+	const nodes = new NodesRenderable(renderer.gl!, renderer.config)
 
 	// create edges renderable
-	const edges = new EdgesRenderable(gl!, config)
+	const edges = new EdgesRenderable(renderer.gl!, renderer.config)
 
 	renderer.scene.addRenderable(edges, true)
 	renderer.scene.addRenderable(nodes, true)
-
-	// Load the dataset
-	renderer.load(
-		GraphContainer.intern({
-			// Pass in your data here
-			nodes: [],
-			edges: [],
-		}),
-	)
 
 	// Start rendering
 	renderer.start()

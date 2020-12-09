@@ -14,7 +14,7 @@ export const edgeType = Symbol('@graspologic::edge')
  *
  * The additional edge props
  */
-export const ADDITIONAL_EDGE_PROPS = ['id', 'source', 'target', 'data']
+export const ADDITIONAL_EDGE_PROPS = ['id', 'source', 'target']
 
 /**
  * @internal

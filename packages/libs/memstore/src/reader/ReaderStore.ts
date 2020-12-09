@@ -48,7 +48,7 @@ export class ReaderStoreImpl<P extends MemoryReader>
 	 */
 	public receive(primitive: P) {
 		const storeId = this.add(false)
-		this.slurp(storeId, primitive.buffer, primitive.byteOffset)
+		this.slurp(storeId, primitive.data.buffer, primitive.byteOffset)
 		primitive.connect(storeId, this)
 		this.fireAddHandlers(storeId)
 		return storeId

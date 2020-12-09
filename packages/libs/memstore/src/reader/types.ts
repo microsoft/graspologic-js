@@ -5,6 +5,28 @@
 import { MemoryLayout } from '../specification'
 import { IdStore } from '../store'
 
+export interface MemoryReaderData {
+	/**
+	 * The low-level buffer access to the memory
+	 */
+	readonly buffer: ArrayBuffer
+
+	/**
+	 * The low-level Uint8Array view access to the memory
+	 */
+	readonly uint8Array: Uint8Array
+
+	/**
+	 * The low-level Float32Array view access to the memory
+	 */
+	readonly float32Array: Float32Array
+
+	/**
+	 * The low-level Uint32Array view access to the memory
+	 */
+	readonly uint32Array: Uint32Array
+}
+
 /**
  * An object for interacting with the raw data for an item stored in an ArrayStore
  */
@@ -25,24 +47,9 @@ export interface MemoryReader {
 	readonly store: ReaderStore<any>
 
 	/**
-	 * The low-level buffer access to the memory
+	 * The underlying data structures
 	 */
-	readonly buffer: ArrayBuffer
-
-	/**
-	 * The low-level Uint8Array view access to the memory
-	 */
-	readonly uint8Array: Uint8Array
-
-	/**
-	 * The low-level Float32Array view access to the memory
-	 */
-	readonly float32Array: Float32Array
-
-	/**
-	 * The low-level Uint32Array view access to the memory
-	 */
-	readonly uint32Array: Uint32Array
+	readonly data: MemoryReaderData
 
 	/**
 	 * The id of the item in the store

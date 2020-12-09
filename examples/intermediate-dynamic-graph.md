@@ -50,7 +50,7 @@ import { utils } from 'docs'
  */
 function randomizeGraph(renderer, nodeCount) {
 	// Remove all the existing nodes/edges
-	renderer.scene.clear()
+	renderer.graph.clear()
 
 	const nodes = []
 	for (let i = 0; i < nodeCount; i++) {

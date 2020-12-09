@@ -101,8 +101,17 @@ import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 
 function createRenderer(data, width, height) {
+	const graph = GraphContainer.intern(data)
+
+	// A function which takes a "group" property from a node and returns a color
+	const categoricalColorizer = utils.createColorizer()
+
+	for (const node in graph.nodes) {
+		node.color = categoricalColorizer(node)
+	}
+
 	// Create a renderer and add it to the container
-	const renderer = WebGLGraphRenderer.createInstance({
+	const renderer = WebGLGraphRenderer.createInstance(graph, {
 		width,
 		height,
 
@@ -119,19 +128,13 @@ function createRenderer(data, width, height) {
 	})
 
 	// create nodes renderable
-	const nodes = new NodesRenderable(gl!, config)
+	const nodes = new NodesRenderable(renderer.gl!, renderer.config)
 
 	// create edges renderable
-	const edges = new EdgesRenderable(gl!, config)
+	const edges = new EdgesRenderable(renderer.gl!, renderer.config)
 
 	renderer.scene.addRenderable(edges, true)
 	renderer.scene.addRenderable(nodes, true)
-
-	// A function which takes a "group" property from a node and returns a color
-	const categoricalColorizer = utils.createColorizer()
-
-	// Load the dataset
-	renderer.load(GraphContainer.intern(data), categoricalColorizer)
 
 	// Enable the click events
 	enableClickEvents(renderer)

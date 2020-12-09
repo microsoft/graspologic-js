@@ -98,7 +98,7 @@ export class GraphContainer {
 	 */
 	public static intern(
 		inputGraph: InputGraph,
-		options: InternGraphOptions = DEFAULT_INTERN_GRAPH_OPTIONS,
+		options: Partial<InternGraphOptions> = DEFAULT_INTERN_GRAPH_OPTIONS,
 	): GraphContainer {
 		return internGraph(inputGraph, options)
 	}

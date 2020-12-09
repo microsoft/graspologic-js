@@ -97,8 +97,10 @@ const GRAPH_DATA = {
 }
 
 function createRenderer(data, width, height) {
+	const graph = GraphContainer.intern(data)
+
 	// Create a renderer and add it to the container
-	const renderer = WebGLGraphRenderer.createInstance({
+	const renderer = WebGLGraphRenderer.createInstance(graph, {
 		width,
 		height,
 
@@ -111,16 +113,13 @@ function createRenderer(data, width, height) {
 	})
 
 	// create nodes renderable
-	const nodes = new NodesRenderable(gl!, config)
+	const nodes = new NodesRenderable(renderer.gl!, renderer.config)
 
 	// create edges renderable
-	const edges = new EdgesRenderable(gl!, config)
+	const edges = new EdgesRenderable(renderer.gl!, renderer.config)
 
 	renderer.scene.addRenderable(edges, true)
 	renderer.scene.addRenderable(nodes, true)
-
-	// Load the dataset
-	renderer.load(GraphContainer.intern(data))
 
 	// Start rendering
 	renderer.start()

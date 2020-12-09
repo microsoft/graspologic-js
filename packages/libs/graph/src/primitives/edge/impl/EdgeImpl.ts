@@ -39,17 +39,17 @@ export class EdgeImpl extends BaseEdgeImpl {
 		;(this as any).propertyBag.source = data.source
 		;(this as any).propertyBag.target = data.target
 
-		this.uint32Array[
+		this.data.uint32Array[
 			this.wordOffset + sourceIndexTypedOffset
 		] = nodeIndexMap.get(data.source)!
-		this.uint32Array[
+		this.data.uint32Array[
 			this.wordOffset + targetIndexTypedOffset
 		] = nodeIndexMap.get(data.target)!
-		this.float32Array[this.wordOffset + weightTypedOffset] =
+		this.data.float32Array[this.wordOffset + weightTypedOffset] =
 			data.weight != null ? data.weight : defaultEdgeWeight
-		this.uint32Array[this.wordOffset + colorTypedOffset] =
+		this.data.uint32Array[this.wordOffset + colorTypedOffset] =
 			data.color || data.sourceColor || 0
-		this.uint32Array[this.wordOffset + color2TypedOffset] =
+		this.data.uint32Array[this.wordOffset + color2TypedOffset] =
 			data.color2 || data.targetColor || 0
 	}
 }

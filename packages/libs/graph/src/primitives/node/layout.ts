@@ -23,7 +23,6 @@ export const ADDITIONAL_NODE_PROPS: PropertySpecification[] = [
 	'id',
 	'group',
 	'label',
-	'data',
 	{ name: 'mass', ephemeral: true, initialValue: 0 },
 	{ name: 'dx', ephemeral: true, initialValue: 0 },
 	{ name: 'dy', ephemeral: true, initialValue: 0 },

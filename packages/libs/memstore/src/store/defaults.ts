@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-export const DEFAULT_CAPACITY = 10000
+export const DEFAULT_CAPACITY = 10
 
 /**
  * The default shared value of our stores

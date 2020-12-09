@@ -14,6 +14,7 @@ import {
 	ReaderStore,
 	SetterFn,
 	GetterFn,
+	MemoryReaderData,
 } from './types'
 
 /**
@@ -38,16 +39,15 @@ export function createReader<P>(
 	class Impl implements MemoryReader {
 		/** the store this item belongs to */
 		public store!: ReaderStore<any>
+
 		/**
 		 * A flag to indicate that this item's buffer is waiting to be copied to a store.
 		 * This should be idempotent across connect() invocatinos
 		 */
 		protected isFlushNeeded: boolean
-		// cached array aliases
-		public uint8Array!: Uint8Array
-		public float32Array!: Float32Array
-		public uint32Array!: Uint32Array
 		protected propertyBag!: any
+
+		public data!: MemoryReaderData
 
 		// item data
 		public storeId = -1
@@ -67,9 +67,12 @@ export function createReader<P>(
 			if (autobuffer) {
 				this.isFlushNeeded = true
 				const buffer = new ArrayBuffer(layout.stride)
-				this.uint8Array = new Uint8Array(buffer)
-				this.uint32Array = new Uint32Array(buffer)
-				this.float32Array = new Float32Array(buffer)
+				this.data = {
+					buffer,
+					uint8Array: new Uint8Array(buffer),
+					uint32Array: new Uint32Array(buffer),
+					float32Array: new Float32Array(buffer),
+				}
 				this.propertyBag = {}
 			} else {
 				this.isFlushNeeded = false
@@ -106,14 +109,6 @@ export function createReader<P>(
 
 		/**
 		 * @inheritdoc
-		 * @see {@link MemoryReader.buffer}
-		 */
-		public get buffer(): ArrayBuffer {
-			return this.uint8Array.buffer
-		}
-
-		/**
-		 * @inheritdoc
 		 * @see {@link MemoryReader.connect}
 		 */
 		public connect(storeId: number, store: ReaderStore<any>) {
@@ -124,7 +119,7 @@ export function createReader<P>(
 
 				// flush this items buffer out if we're waiting for a store connection
 				if (this.isFlushNeeded) {
-					store.slurp(storeId, this.uint8Array.buffer, this.propertyBag)
+					store.slurp(storeId, this.data.uint8Array.buffer, this.propertyBag)
 					this.isFlushNeeded = false
 				}
 
@@ -136,9 +131,7 @@ export function createReader<P>(
 			// It's possible that the store doesn't change, but the underlying arrays do
 			// copy array aliases
 			this.store = store
-			this.uint32Array = store.store.uint32Array
-			this.float32Array = store.store.float32Array
-			this.uint8Array = store.store.uint8Array
+			this.data = store.store
 		}
 
 		/**
@@ -169,10 +162,10 @@ export function createReader<P>(
 				// Singular Float Values
 				//
 				getter = function (this: Impl): number {
-					return this.float32Array[this.wordOffset + typedOffset]
+					return this.data.float32Array[this.wordOffset + typedOffset]
 				}
 				setter = function (this: Impl, value: number) {
-					this.float32Array[this.wordOffset + typedOffset] = value || 0
+					this.data.float32Array[this.wordOffset + typedOffset] = value || 0
 					this.handleAttributeUpdated(name)
 				}
 			} else if (size === 2) {
@@ -181,13 +174,14 @@ export function createReader<P>(
 				//
 				getter = function (this: Impl): [number, number] {
 					return [
-						this.float32Array[this.wordOffset + typedOffset],
-						this.float32Array[this.wordOffset + typedOffset + 1],
+						this.data.float32Array[this.wordOffset + typedOffset],
+						this.data.float32Array[this.wordOffset + typedOffset + 1],
 					]
 				}
 				setter = function (this: Impl, value: [number, number]) {
-					this.float32Array[this.wordOffset + typedOffset] = value[0] || 0
-					this.float32Array[this.wordOffset + typedOffset + 1] = value[1] || 0
+					this.data.float32Array[this.wordOffset + typedOffset] = value[0] || 0
+					this.data.float32Array[this.wordOffset + typedOffset + 1] =
+						value[1] || 0
 					this.handleAttributeUpdated(name)
 				}
 			} else if (size === 3) {
@@ -196,15 +190,17 @@ export function createReader<P>(
 				//
 				getter = function (this: Impl): [number, number, number] {
 					return [
-						this.float32Array[this.wordOffset + typedOffset],
-						this.float32Array[this.wordOffset + typedOffset + 1],
-						this.float32Array[this.wordOffset + typedOffset + 2],
+						this.data.float32Array[this.wordOffset + typedOffset],
+						this.data.float32Array[this.wordOffset + typedOffset + 1],
+						this.data.float32Array[this.wordOffset + typedOffset + 2],
 					]
 				}
 				setter = function (this: Impl, value: [number, number, number]) {
-					this.float32Array[this.wordOffset + typedOffset] = value[0] || 0
-					this.float32Array[this.wordOffset + typedOffset + 1] = value[1] || 0
-					this.float32Array[this.wordOffset + typedOffset + 2] = value[2] || 0
+					this.data.float32Array[this.wordOffset + typedOffset] = value[0] || 0
+					this.data.float32Array[this.wordOffset + typedOffset + 1] =
+						value[1] || 0
+					this.data.float32Array[this.wordOffset + typedOffset + 2] =
+						value[2] || 0
 					this.handleAttributeUpdated(name)
 				}
 			}
@@ -215,10 +211,10 @@ export function createReader<P>(
 					// Single Byte Boolean
 					//
 					getter = function (this: Impl): boolean {
-						return this.uint8Array[this.byteOffset + typedOffset] > 0
+						return this.data.uint8Array[this.byteOffset + typedOffset] > 0
 					}
 					setter = function (this: Impl, value: boolean) {
-						this.uint8Array[this.byteOffset + typedOffset] = value ? 1 : 0
+						this.data.uint8Array[this.byteOffset + typedOffset] = value ? 1 : 0
 						this.handleAttributeUpdated(name)
 					}
 				} else {
@@ -226,10 +222,10 @@ export function createReader<P>(
 					// Single Byte Number
 					//
 					getter = function (this: Impl): number {
-						return this.uint8Array[this.byteOffset + typedOffset]
+						return this.data.uint8Array[this.byteOffset + typedOffset]
 					}
 					setter = function (this: Impl, value: number) {
-						this.uint8Array[this.byteOffset + typedOffset] = value
+						this.data.uint8Array[this.byteOffset + typedOffset] = value
 						this.handleAttributeUpdated(name)
 					}
 				}
@@ -239,13 +235,14 @@ export function createReader<P>(
 				//
 				getter = function (this: Impl): [number, number] {
 					return [
-						this.uint8Array[this.byteOffset + typedOffset],
-						this.uint8Array[this.byteOffset + typedOffset + 1],
+						this.data.uint8Array[this.byteOffset + typedOffset],
+						this.data.uint8Array[this.byteOffset + typedOffset + 1],
 					]
 				}
 				setter = function (this: Impl, value: [number, number]) {
-					this.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
-					this.uint8Array[this.byteOffset + typedOffset + 1] = value[1] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset + 1] =
+						value[1] || 0
 					this.handleAttributeUpdated(name)
 				}
 			} else if (size === 3) {
@@ -254,15 +251,17 @@ export function createReader<P>(
 				//
 				getter = function (this: Impl) {
 					return [
-						this.uint8Array[this.byteOffset + typedOffset],
-						this.uint8Array[this.byteOffset + typedOffset + 1],
-						this.uint8Array[this.byteOffset + typedOffset + 2],
+						this.data.uint8Array[this.byteOffset + typedOffset],
+						this.data.uint8Array[this.byteOffset + typedOffset + 1],
+						this.data.uint8Array[this.byteOffset + typedOffset + 2],
 					]
 				}
 				setter = function (this: Impl, value: [number, number, number]) {
-					this.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
-					this.uint8Array[this.byteOffset + typedOffset + 1] = value[1] || 0
-					this.uint8Array[this.byteOffset + typedOffset + 2] = value[2] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset + 1] =
+						value[1] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset + 2] =
+						value[2] || 0
 					this.handleAttributeUpdated(name)
 				}
 			} else if (size === 4) {
@@ -271,20 +270,23 @@ export function createReader<P>(
 				//
 				getter = function (this: Impl) {
 					return [
-						this.uint8Array[this.byteOffset + typedOffset],
-						this.uint8Array[this.byteOffset + typedOffset + 1],
-						this.uint8Array[this.byteOffset + typedOffset + 2],
-						this.uint8Array[this.byteOffset + typedOffset + 3],
+						this.data.uint8Array[this.byteOffset + typedOffset],
+						this.data.uint8Array[this.byteOffset + typedOffset + 1],
+						this.data.uint8Array[this.byteOffset + typedOffset + 2],
+						this.data.uint8Array[this.byteOffset + typedOffset + 3],
 					]
 				}
 				setter = function (
 					this: Impl,
 					value: [number, number, number, number],
 				) {
-					this.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
-					this.uint8Array[this.byteOffset + typedOffset + 1] = value[1] || 0
-					this.uint8Array[this.byteOffset + typedOffset + 2] = value[2] || 0
-					this.uint8Array[this.byteOffset + typedOffset + 3] = value[3] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset] = value[0] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset + 1] =
+						value[1] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset + 2] =
+						value[2] || 0
+					this.data.uint8Array[this.byteOffset + typedOffset + 3] =
+						value[3] || 0
 					this.handleAttributeUpdated(name)
 				}
 			}
@@ -294,10 +296,10 @@ export function createReader<P>(
 				// Uint32 Single Values
 				//
 				getter = function (this: Impl) {
-					return this.uint32Array[this.wordOffset + typedOffset]
+					return this.data.uint32Array[this.wordOffset + typedOffset]
 				}
 				setter = function (this: Impl, value: number) {
-					this.uint32Array[this.wordOffset + typedOffset] = value || 0
+					this.data.uint32Array[this.wordOffset + typedOffset] = value || 0
 					this.handleAttributeUpdated(name)
 				}
 			}

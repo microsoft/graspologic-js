@@ -198,7 +198,7 @@ export class MemoryReaderInspector {
 	 * @param attribute The attribute to read
 	 */
 	public readFloat32Attr(item: MemoryReader, attribute: AttributeName) {
-		return item.float32Array[this.getWordOffset(item, attribute)]
+		return item.data.float32Array[this.getWordOffset(item, attribute)]
 	}
 
 	/**
@@ -212,7 +212,7 @@ export class MemoryReaderInspector {
 		attribute: AttributeName,
 		value: number,
 	) {
-		item.float32Array[this.getWordOffset(item, attribute)] = value
+		item.data.float32Array[this.getWordOffset(item, attribute)] = value
 	}
 
 	// #endregion
@@ -229,7 +229,7 @@ export class MemoryReaderInspector {
 		attribute: AttributeName,
 	): [number, number] {
 		const offset = this.getWordOffset(item, attribute)
-		return [item.float32Array[offset], item.float32Array[offset + 1]]
+		return [item.data.float32Array[offset], item.data.float32Array[offset + 1]]
 	}
 
 	/**
@@ -246,8 +246,8 @@ export class MemoryReaderInspector {
 		y: number,
 	): void {
 		const offset = this.getWordOffset(item, attribute)
-		item.float32Array[offset] = x
-		item.float32Array[offset + 1] = y
+		item.data.float32Array[offset] = x
+		item.data.float32Array[offset + 1] = y
 	}
 
 	/**
@@ -263,8 +263,8 @@ export class MemoryReaderInspector {
 		x: number,
 		y: number,
 	): void {
-		item.float32Array[item.wordOffset + typedOffset] = x
-		item.float32Array[item.wordOffset + typedOffset + 1] = y
+		item.data.float32Array[item.wordOffset + typedOffset] = x
+		item.data.float32Array[item.wordOffset + typedOffset + 1] = y
 	}
 
 	// #endregion
@@ -283,8 +283,11 @@ export class MemoryReaderInspector {
 		targetAttribute: AttributeName,
 	): Float32Array {
 		const offset = this.getWordOffset(item, sourceAttribute)
-		const subarray = item.float32Array.subarray(offset, offset + 3)
-		item.float32Array.set(subarray, this.getWordOffset(item, targetAttribute))
+		const subarray = item.data.float32Array.subarray(offset, offset + 3)
+		item.data.float32Array.set(
+			subarray,
+			this.getWordOffset(item, targetAttribute),
+		)
 		return subarray
 	}
 
@@ -299,11 +302,11 @@ export class MemoryReaderInspector {
 		sourceTypedOffset: number,
 		targetTypedOffset: number,
 	): Float32Array {
-		const subarray = item.float32Array.subarray(
+		const subarray = item.data.float32Array.subarray(
 			item.wordOffset + sourceTypedOffset,
 			item.wordOffset + sourceTypedOffset + 3,
 		)
-		item.float32Array.set(subarray, item.wordOffset + targetTypedOffset)
+		item.data.float32Array.set(subarray, item.wordOffset + targetTypedOffset)
 		return subarray
 	}
 
@@ -323,9 +326,9 @@ export class MemoryReaderInspector {
 		z: number,
 	): void {
 		const offset = this.getWordOffset(item, attribute)
-		item.float32Array[offset] = x
-		item.float32Array[offset + 1] = y
-		item.float32Array[offset + 2] = z
+		item.data.float32Array[offset] = x
+		item.data.float32Array[offset + 1] = y
+		item.data.float32Array[offset + 2] = z
 	}
 
 	/**
@@ -343,9 +346,9 @@ export class MemoryReaderInspector {
 		y: number,
 		z: number,
 	): void {
-		item.float32Array[item.wordOffset + typedOffset] = x
-		item.float32Array[item.wordOffset + typedOffset + 1] = y
-		item.float32Array[item.wordOffset + typedOffset + 2] = z
+		item.data.float32Array[item.wordOffset + typedOffset] = x
+		item.data.float32Array[item.wordOffset + typedOffset + 1] = y
+		item.data.float32Array[item.wordOffset + typedOffset + 2] = z
 	}
 
 	/**
@@ -359,9 +362,9 @@ export class MemoryReaderInspector {
 	): [number, number, number] {
 		const offset = this.getWordOffset(item, attribute)
 		return [
-			item.float32Array[offset],
-			item.float32Array[offset + 1],
-			item.float32Array[offset + 2],
+			item.data.float32Array[offset],
+			item.data.float32Array[offset + 1],
+			item.data.float32Array[offset + 2],
 		]
 	}
 
@@ -375,7 +378,7 @@ export class MemoryReaderInspector {
 	 * @param attribute The attribute to read
 	 */
 	public readUint8Attr(item: MemoryReader, attribute: AttributeName): number {
-		return item.uint8Array[this.getByteOffset(item, attribute)]
+		return item.data.uint8Array[this.getByteOffset(item, attribute)]
 	}
 
 	/**
@@ -389,7 +392,7 @@ export class MemoryReaderInspector {
 		attribute: AttributeName,
 		value: number,
 	): void {
-		item.uint8Array[this.getByteOffset(item, attribute)] = value
+		item.data.uint8Array[this.getByteOffset(item, attribute)] = value
 	}
 
 	// #endregion
@@ -406,7 +409,7 @@ export class MemoryReaderInspector {
 		attribute: AttributeName,
 	): [number, number] {
 		const offset = this.getByteOffset(item, attribute)
-		return [item.uint8Array[offset], item.uint8Array[offset + 1]]
+		return [item.data.uint8Array[offset], item.data.uint8Array[offset + 1]]
 	}
 
 	/**
@@ -424,8 +427,8 @@ export class MemoryReaderInspector {
 		y: number,
 	): void {
 		const offset = this.getByteOffset(item, attribute)
-		item.uint8Array[offset] = x
-		item.uint8Array[offset + 1] = y
+		item.data.uint8Array[offset] = x
+		item.data.uint8Array[offset + 1] = y
 	}
 
 	// #endregion
@@ -443,9 +446,9 @@ export class MemoryReaderInspector {
 	): [number, number, number] | undefined {
 		const offset = this.getByteOffset(item, attribute)
 		return [
-			item.uint8Array[offset],
-			item.uint8Array[offset + 1],
-			item.uint8Array[offset + 2],
+			item.data.uint8Array[offset],
+			item.data.uint8Array[offset + 1],
+			item.data.uint8Array[offset + 2],
 		]
 	}
 
@@ -465,9 +468,9 @@ export class MemoryReaderInspector {
 		z: number,
 	): void {
 		const offset = this.getByteOffset(item, attribute)
-		item.uint8Array[offset] = x
-		item.uint8Array[offset + 1] = y
-		item.uint8Array[offset + 2] = z
+		item.data.uint8Array[offset] = x
+		item.data.uint8Array[offset + 1] = y
+		item.data.uint8Array[offset + 2] = z
 	}
 
 	// #endregion
@@ -485,10 +488,10 @@ export class MemoryReaderInspector {
 	): [number, number, number, number] | undefined {
 		const offset = this.getByteOffset(item, attribute)
 		return [
-			item.uint8Array[offset],
-			item.uint8Array[offset + 1],
-			item.uint8Array[offset + 2],
-			item.uint8Array[offset + 3],
+			item.data.uint8Array[offset],
+			item.data.uint8Array[offset + 1],
+			item.data.uint8Array[offset + 2],
+			item.data.uint8Array[offset + 3],
 		]
 	}
 
@@ -510,10 +513,10 @@ export class MemoryReaderInspector {
 		zz: number,
 	): void {
 		const offset = this.getByteOffset(item, attribute)
-		item.uint8Array[offset] = x
-		item.uint8Array[offset + 1] = y
-		item.uint8Array[offset + 2] = z
-		item.uint8Array[offset + 3] = zz
+		item.data.uint8Array[offset] = x
+		item.data.uint8Array[offset + 1] = y
+		item.data.uint8Array[offset + 2] = z
+		item.data.uint8Array[offset + 3] = zz
 	}
 
 	// #endregion
@@ -526,7 +529,7 @@ export class MemoryReaderInspector {
 	 * @param attribute The attribute to read
 	 */
 	public readUint32Attr(item: MemoryReader, attribute: AttributeName): number {
-		return item.uint32Array[this.getWordOffset(item, attribute)]
+		return item.data.uint32Array[this.getWordOffset(item, attribute)]
 	}
 
 	/**
@@ -540,7 +543,7 @@ export class MemoryReaderInspector {
 		attribute: AttributeName,
 		value: number,
 	): void {
-		item.uint32Array[this.getWordOffset(item, attribute)] = value
+		item.data.uint32Array[this.getWordOffset(item, attribute)] = value
 	}
 
 	/**
@@ -554,7 +557,7 @@ export class MemoryReaderInspector {
 		typedOffset: number,
 		value: number,
 	): void {
-		item.uint32Array[item.wordOffset + typedOffset] = value
+		item.data.uint32Array[item.wordOffset + typedOffset] = value
 	}
 
 	/**
@@ -568,8 +571,8 @@ export class MemoryReaderInspector {
 		sourceTypedOffset: number,
 		targetTypedOffset: number,
 	): void {
-		item.uint32Array[item.wordOffset + targetTypedOffset] =
-			item.uint32Array[item.wordOffset + sourceTypedOffset]
+		item.data.uint32Array[item.wordOffset + targetTypedOffset] =
+			item.data.uint32Array[item.wordOffset + sourceTypedOffset]
 	}
 	// #endregion
 }
