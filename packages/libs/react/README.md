@@ -97,7 +97,7 @@ export default	() => {
 			{ /* Displays a set of Axes on the graph */}
 			<Axes />
 
-			{ /* Enables controlling of certain aspects of the camera */}
+			{ /* Enables pan/zooming and controlling of certain aspects of the camera */}
 			<Camera />
 
 			{ /* Enables highlighting of the node that is being hovered over */}
