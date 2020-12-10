@@ -166,8 +166,15 @@ export function positionNode(node: Node, positionFn: NodePositioner) {
  * @param colorFn The color function to use
  */
 export function colorNode(node: Node, colorFn: NodeBGRAColorizer) {
-	// Is it a AnimatableNodeOperation
-	if ((colorFn as Partial<AnimatableNodeOperation<number>>).value) {
+	// IMPORTANT! No variable caching here, cause this function gets called a lot
+	// and that can cause a lot of GC pressure
+
+	// Is the color function just a basic function, then call it
+	if (typeof colorFn === 'function') {
+		node.color = correctColor(node.color || colorFn(node.id, node.group))
+
+		// Other wise, its probably an animatablenodeoperation, check if it has a value prop
+	} else if ((colorFn as any).value) {
 		// Does the node support animation
 		if ((node as Partial<AnimatableNode>).animateColor) {
 			// Animate it
@@ -191,11 +198,6 @@ export function colorNode(node: Node, colorFn: NodeBGRAColorizer) {
 					),
 			)
 		}
-	} else {
-		// Its a basic function, so set the color
-		node.color = correctColor(
-			node.color || (colorFn as NodeOperation<number>)(node.id, node.group),
-		)
 	}
 }
 
@@ -217,15 +219,17 @@ export function createBGRAColorizer(
 	const duration =
 		(colorizerFn as Partial<AnimatableNodeOperation<any>>).duration || 0
 
-	// Is the colorizer function a AnimatableNodeOperation, if so call the value function, otherwise invoke the colorizer fn
-	const baseColorizer = (colorizerFn as Partial<AnimatableNodeOperation<any>>)
-		? (colorizerFn as AnimatableNodeOperation<any>).value
-		: (colorizerFn as NodeOperation<any>)
+	// Is the colorizer is a function, then use that
+	// otherwise grab the value function
+	const baseColorizer =
+		typeof colorizerFn === 'function'
+			? (colorizerFn as NodeOperation<any>)
+			: (colorizerFn as Partial<AnimatableNodeOperation<any>>).value
 
 	return {
 		duration,
 		value(id, group) {
-			const arr = baseColorizer(id, group)
+			const arr = baseColorizer!(id, group)
 			return typeof arr === 'number' ? arr : componentColorToBGRA(arr)
 		},
 	}
