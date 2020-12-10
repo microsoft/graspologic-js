@@ -488,8 +488,8 @@ storiesOf('Interactive 2D Examples', module)
 		const weighter = useCallback(
 			(id: Maybe<Id>) => {
 				return Math.random()
-				// eslint-disable-next-line react-hooks/exhaustive-deps
 			},
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			[weight],
 		)
 		return (
@@ -515,8 +515,8 @@ storiesOf('Interactive 2D Examples', module)
 		const weighter = useCallback(
 			(id: Maybe<Id>) => {
 				return Math.random()
-				// eslint-disable-next-line react-hooks/exhaustive-deps
 			},
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			[weight],
 		)
 		return (
