@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 
-import { Id, Maybe } from '@graspologic/common'
+import { ColorVector, Id, Maybe } from '@graspologic/common'
 
 /**
  * Represents an operation that occurs on a given edge
@@ -21,12 +21,31 @@ export type EdgeOperation<T> = (id: Maybe<Id>) => T
 export type NodeOperation<T> = (id: Maybe<Id>, group: Maybe<Id>) => T
 
 /**
+ * Represents an operation that is animatable
+ */
+export type AnimatableNodeOperation<T> = {
+	/**
+	 * The duration of the operation
+	 */
+	duration?: number
+
+	/**
+	 * Gets the value for the given node
+	 * @param id The id of the node
+	 * @param group The group of the node
+	 */
+	value: NodeOperation<T>
+}
+
+/**
  * Provides a color for the given node
  * @param id The id of the node
  * @param group The group of the node
  * @returns A color in the form of 0xbbggrraa
  */
-export type NodeBGRAColorizer = NodeOperation<number>
+export type NodeBGRAColorizer =
+	| NodeOperation<number>
+	| AnimatableNodeOperation<number>
 
 /**
  * Provides a component based color for the given node
@@ -34,9 +53,9 @@ export type NodeBGRAColorizer = NodeOperation<number>
  * @param group The group of the node
  * @returns A color in the form of [r, g, b, a] components
  */
-export type NodeComponentColorizer = NodeOperation<
-	[number, number, number, number]
->
+export type NodeComponentColorizer =
+	| NodeOperation<ColorVector>
+	| AnimatableNodeOperation<ColorVector>
 
 /**
  * Provides a color for the given node
@@ -81,7 +100,7 @@ export type NodePositioner = {
 	/**
 	 * Duration of the position transitions from the old positions to the new ones
 	 */
-	duration: number | undefined
+	duration?: number
 
 	/**
 	 * The x coordinate of a node

@@ -518,6 +518,7 @@ storiesOf('Interactive 2D Examples', module)
 	.add('can use a custom positioning function', () => {
 		const position = useMemo(() => {
 			return {
+				duration: 5000,
 				x() {
 					return Math.random() * 100
 				},
@@ -532,6 +533,28 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<GraphView style={{ width: 500, height: 500 }} data={testData}>
 				<Nodes color={colorizer} position={position} />
+				<Edges />
+				<HighlightHoveredNode />
+			</GraphView>
+		)
+	})
+	.add('can use a custom colorizing function with duration', () => {
+		const color = useMemo(() => {
+			return {
+				duration: 5000,
+				value() {
+					return [
+						Math.random() * 255,
+						Math.random() * 255,
+						Math.random() * 255,
+						255,
+					] as ColorVector
+				},
+			}
+		}, [])
+		return (
+			<GraphView style={{ width: 500, height: 500 }} data={testData}>
+				<Nodes color={color} />
 				<Edges />
 				<HighlightHoveredNode />
 			</GraphView>

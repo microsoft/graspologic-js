@@ -11,6 +11,7 @@ import {
 	NodeWeighter,
 	NodePositioner,
 	positionNode,
+	colorNode,
 } from '../helpers'
 import { Node, Edge } from '../primitives'
 import { GraphContainer } from './GraphContainer'
@@ -168,7 +169,7 @@ function processNodes(
 			}
 
 			if (colorizer) {
-				node.color = correctColor(node.color || colorizer(node.id, node.group))
+				colorNode(node, colorizer)
 			}
 		}
 	}

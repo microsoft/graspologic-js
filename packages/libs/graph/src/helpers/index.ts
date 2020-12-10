@@ -4,6 +4,5 @@
  */
 export * from './rand'
 export * from './computeBounds'
-export * from './colorizeGraph'
 export * from './types'
 export * from './processGraph'
