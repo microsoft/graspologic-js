@@ -3,11 +3,11 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect } from 'react'
-import { Node, enableClickEvents, GraphRenderer } from '@graspologic/renderer'
+import { GraphRenderer, Id, Maybe, Node } from '@graspologic/renderer'
 
 interface CallbacksArgs {
-	onNodeClick?: (node?: Node) => void
-	onNodeHover?: (node?: Node) => void
+	onNodeClick?: (id: Maybe<Id>, node: Maybe<Node>) => void
+	onNodeHover?: (id: Maybe<Id>, node: Maybe<Node>) => void
 }
 
 /**
@@ -22,23 +22,14 @@ export function useBindCallbacks(
 	const { onNodeClick, onNodeHover } = callbacks
 
 	useEffect(() => {
-		if (renderer && (onNodeHover || onNodeClick)) {
-			// click events need to be explicitly turned on when handlers are present
-			// normally, they are only enabled if HandleNodeClicks child component is used
-			// this provides an alternative binding to match the other handlers for consistency
-			return enableClickEvents(renderer)
-		}
-	}, [renderer, onNodeClick, onNodeHover])
-
-	useEffect(() => {
 		if (renderer && onNodeClick) {
-			return renderer.on('node:click', onNodeClick)
+			return renderer.on('node:click', node => onNodeClick(node?.id, node))
 		}
 	}, [renderer, onNodeClick])
 
 	useEffect(() => {
 		if (renderer && onNodeHover) {
-			return renderer.on('node:hover', onNodeHover)
+			return renderer.on('node:hover', node => onNodeHover(node?.id, node))
 		}
 	}, [renderer, onNodeHover])
 }

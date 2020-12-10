@@ -7,6 +7,7 @@ import { AnimationLoop } from '@luma.gl/engine'
 // This is causing problems downstream for some reason
 // @ts-ignore
 import { createGLContext } from '@luma.gl/gltools'
+import { enableClickEvents } from '../events'
 import {
 	Scene,
 	InitializeHandler,
@@ -205,7 +206,13 @@ export class WebGLGraphRenderer
 		/** set up the scene */
 		const scene = new Scenegraph(gl!, config)
 
-		return new WebGLGraphRenderer(gl!, config, data, scene, camera)
+		const renderer = new WebGLGraphRenderer(gl!, config, data, scene, camera)
+
+		// Enable the click events
+		const clickHandler = enableClickEvents(renderer)
+		renderer.on('destroy', clickHandler)
+
+		return renderer
 	}
 
 	// #endregion
@@ -518,6 +525,8 @@ export class WebGLGraphRenderer
 			if (this._scene.destroy) {
 				this._scene.destroy()
 			}
+
+			this.emit('destroy')
 		}
 	}
 

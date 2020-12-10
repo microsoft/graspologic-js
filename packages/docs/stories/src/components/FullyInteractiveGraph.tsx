@@ -11,7 +11,6 @@ import {
 	GraphView,
 	Camera,
 	HighlightHoveredNode,
-	HandleNodeClicks,
 	NodeSetHighlight,
 	Nodes,
 	Edges,
@@ -48,11 +47,10 @@ export const FullyInteractiveGraph: React.FC<FullyInteractiveGraphProps> = memo(
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={data}>
 					<Axes />
-					<Nodes color={colorizer} />
+					<Nodes onNodeClick={handleVertexClick} color={colorizer} />
 					<Edges />
 					<Camera interactive />
 					<HighlightHoveredNode />
-					<HandleNodeClicks onClick={handleVertexClick} />
 					<NodeSetHighlight vertexIds={vertexIds} />
 					<SettingsPane>
 						<DisplaySettings />

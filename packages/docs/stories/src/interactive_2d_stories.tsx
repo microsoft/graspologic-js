@@ -4,6 +4,7 @@
  */
 import { action } from '@storybook/addon-actions'
 import { number, boolean, withKnobs } from '@storybook/addon-knobs'
+import { useEffect, useMemo } from '@storybook/addons'
 import { storiesOf } from '@storybook/react'
 import React, { useCallback, useRef, useState } from 'react'
 import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
@@ -22,7 +23,6 @@ import {
 	GraphView,
 	LabelHoveredNode,
 	HighlightHoveredNode,
-	HandleNodeClicks,
 	NodeSetHighlight,
 	NodeSetLabel,
 	Nodes,
@@ -54,8 +54,8 @@ import {
 	ColorVector,
 	Maybe,
 	Id,
+	Bounds2D,
 } from '@graspologic/renderer'
-import { useMemo } from '@storybook/addons'
 const testData = processGraphJson(
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	require('@graspologic/testdata/data/testGraph.json'),
@@ -165,12 +165,11 @@ storiesOf('Interactive 2D Examples', module)
 					data={testData}
 					backgroundColor={[r, g, b, a]}
 				>
-					<Camera interactive />
 					<HighlightHoveredNode />
-					<HandleNodeClicks onClick={action('click')} />
 					{drawNodes && (
 						<Nodes
 							color={colorizer}
+							onNodeClick={action('click')}
 							minRadius={minRadius}
 							maxRadius={maxRadius}
 							noOutline={!outline}
@@ -182,7 +181,7 @@ storiesOf('Interactive 2D Examples', module)
 					)}
 					<Edges
 						hideOnMove={hideEdgesOnMove}
-						shown={drawEdges}
+						disabled={!drawEdges}
 						constantWidth={constantWidth}
 						depthWrite={depthWrite}
 						antialias={antialias}
@@ -206,11 +205,9 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={testData}>
-					<Nodes color={colorizer} />
+					<Nodes onNodeClick={action('click')} color={colorizer} />
 					<Edges />
-					<Camera interactive />
 					<HighlightHoveredNode color={[r, g, b, a]} />
-					<HandleNodeClicks onClick={action('click')} />
 				</GraphView>
 			</div>
 		)
@@ -223,11 +220,12 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={testData}>
-					<Nodes color={(): ColorVector => [r, g, b, a]} />
+					<Nodes
+						onNodeClick={action('click')}
+						color={(): ColorVector => [r, g, b, a]}
+					/>
 					<Edges />
-					<Camera interactive />
 					<HighlightHoveredNode color={[r, g, b, a]} />
-					<HandleNodeClicks onClick={action('click')} />
 				</GraphView>
 			</div>
 		)
@@ -236,11 +234,9 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={testData}>
-					<Nodes color={colorizer} />
+					<Nodes onNodeClick={action('click')} color={colorizer} />
 					<Edges />
-					<Camera interactive />
 					<LabelHoveredNode />
-					<HandleNodeClicks onClick={action('click')} />
 				</GraphView>
 			</div>
 		)
@@ -249,12 +245,10 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={testData}>
-					<Nodes color={colorizer} />
+					<Nodes onNodeClick={action('click')} color={colorizer} />
 					<Edges />
-					<Camera interactive />
 					<HighlightHoveredNode />
 					<LabelHoveredNode />
-					<HandleNodeClicks onClick={action('click')} />
 				</GraphView>
 			</div>
 		)
@@ -267,11 +261,9 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={testData}>
-					<Nodes color={colorizer} />
+					<Nodes onNodeClick={action('click')} color={colorizer} />
 					<Edges />
-					<Camera interactive />
 					<NodeSetHighlight color={[r, g, b, a]} vertexIds={HIGHLIGHT_IDS} />
-					<HandleNodeClicks onClick={action('click')} />
 				</GraphView>
 			</div>
 		)
@@ -280,11 +272,9 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={testData}>
-					<Nodes color={colorizer} />
+					<Nodes onNodeClick={action('click')} color={colorizer} />
 					<Edges />
-					<Camera interactive />
 					<NodeSetLabel vertexIds={HIGHLIGHT_IDS} />
-					<HandleNodeClicks onClick={action('click')} />
 				</GraphView>
 			</div>
 		)
@@ -293,12 +283,10 @@ storiesOf('Interactive 2D Examples', module)
 		return (
 			<div className="graph-pane-container">
 				<GraphView className="graph-pane" data={testData}>
-					<Nodes color={colorizer} />
+					<Nodes onNodeClick={action('click')} color={colorizer} />
 					<Edges />
-					<Camera interactive />
 					<NodeSetLabel vertexIds={HIGHLIGHT_IDS} />
 					<NodeSetHighlight vertexIds={HIGHLIGHT_IDS} />
-					<HandleNodeClicks onClick={action('click')} />
 				</GraphView>
 			</div>
 		)
@@ -310,7 +298,7 @@ storiesOf('Interactive 2D Examples', module)
 				<GraphView className="graph-pane" data={testData}>
 					<Nodes color={colorizer} />
 					<Edges />
-					<Camera interactive zoom={zoom} />
+					<Camera zoom={zoom} />
 				</GraphView>
 			</div>
 		)
@@ -344,7 +332,6 @@ storiesOf('Interactive 2D Examples', module)
 				>
 					<Nodes color={colorizer} />
 					<Edges />
-					<Camera interactive />
 				</GraphView>
 			</div>
 		)
@@ -390,7 +377,6 @@ storiesOf('Interactive 2D Examples', module)
 				>
 					<Nodes />
 					<Edges />
-					<Camera interactive />
 					<NodeSetLabel vertexIds={nodes.map(n => n.id)} />
 					<Camera
 						bounds={{
@@ -465,7 +451,6 @@ storiesOf('Interactive 2D Examples', module)
 					>
 						<Nodes color={colorizer} minRadius={5} maxRadius={10} />
 						<Edges />
-						<Camera interactive />
 						<HighlightHoveredNode />
 					</GraphView>
 				</div>
@@ -489,7 +474,6 @@ storiesOf('Interactive 2D Examples', module)
 			<GraphView style={{ width: 500, height: 500 }} data={testData}>
 				<Nodes color={colorizer} size={sizer} />
 				<Edges />
-				<Camera interactive />
 				<HighlightHoveredNode />
 			</GraphView>
 		)
@@ -513,7 +497,6 @@ storiesOf('Interactive 2D Examples', module)
 					maxRadius={weight}
 				/>
 				<Edges />
-				<Camera interactive />
 				<HighlightHoveredNode />
 			</GraphView>
 		)
@@ -536,8 +519,71 @@ storiesOf('Interactive 2D Examples', module)
 			<GraphView style={{ width: 500, height: 500 }} data={testData}>
 				<Nodes color={colorizer} position={position} />
 				<Edges />
-				<Camera interactive />
 				<HighlightHoveredNode />
+			</GraphView>
+		)
+	})
+	.add('camera event bindings', () => {
+		const handleMoveComplete = action(`Camera moved`)
+		const cameraTransitionLength = number('transition length', 2000, {
+			min: 100,
+			max: 10000,
+			step: 100,
+			range: true,
+		})
+
+		const width = number('width', 500, {
+			min: 100,
+			max: 1000,
+			step: 100,
+			range: true,
+		})
+		const height = number('height', 500, {
+			min: 100,
+			max: 1000,
+			step: 100,
+			range: true,
+		})
+
+		const [cameraBounds, setCameraBounds] = useState<Bounds2D>({
+			x: { min: -500, max: 500 },
+			y: { min: -500, max: 500 },
+		})
+
+		useEffect(() => {
+			let done = false
+			const loop = () => {
+				if (!done) {
+					setCameraBounds({
+						x: {
+							min: -getRandomArbitrary(0, 500),
+							max: getRandomArbitrary(0, 500),
+						},
+						y: {
+							min: -getRandomArbitrary(0, 500),
+							max: getRandomArbitrary(0, 500),
+						},
+					})
+					setTimeout(loop, cameraTransitionLength + 100)
+				}
+			}
+			loop()
+			return () => (done = true)
+		}, [cameraTransitionLength, setCameraBounds])
+
+		return (
+			<GraphView
+				style={{ width, height }}
+				className="graph-pane"
+				data={testData}
+			>
+				<Camera
+					bounds={cameraBounds}
+					transitionDuration={cameraTransitionLength}
+					onMoveComplete={handleMoveComplete}
+				/>
+				<Nodes color={colorizer} minRadius={5} maxRadius={10} />
+				<Edges />
 			</GraphView>
 		)
 	})
@@ -591,6 +637,7 @@ storiesOf('Interactive 2D Examples', module)
 						onResize={handleResize}
 					>
 						<Nodes
+							color={colorizer}
 							onNodeClick={handleNodeClick}
 							onNodeHover={handleNodeHover}
 							minRadius={5}
@@ -627,7 +674,6 @@ const NodeLayoutExampleMutable: React.FC<NodeLayoutExampleProps> = ({
 			<GraphView ref={graphRef} className="graph-pane" data={testData}>
 				<Nodes color={colorizer} />
 				<Edges />
-				<Camera interactive />
 				<HighlightHoveredNode />
 			</GraphView>
 		</>
@@ -659,7 +705,6 @@ const NodeLayoutExampleImmutable: React.FC<NodeLayoutExampleProps> = ({
 			<GraphView className="graph-pane" data={finalData}>
 				<Nodes color={colorizer} />
 				<Edges />
-				<Camera interactive />
 				<HighlightHoveredNode />
 			</GraphView>
 		</>

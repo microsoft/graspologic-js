@@ -13,7 +13,6 @@ import {
 	GraphView,
 	Camera,
 	HighlightHoveredNode,
-	HandleNodeClicks,
 	NodeSetHighlight,
 	Nodes,
 	Edges,
@@ -115,9 +114,8 @@ storiesOf('Simple 2D Examples', module)
 	.add('with vertex onClick handler', () => (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" data={testData}>
-				<Nodes color={colorizer} />
+				<Nodes onNodeClick={action('clicked vertex')} color={colorizer} />
 				<Edges />
-				<HandleNodeClicks onClick={action('clicked vertex')} />
 			</GraphView>
 		</div>
 	))

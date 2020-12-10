@@ -28,6 +28,7 @@ export interface GraphRendererEvents extends NodesRenderableEvents {
 	dirty(): void
 	resize(): void
 	load(): void
+	destroy(): void
 }
 
 /**

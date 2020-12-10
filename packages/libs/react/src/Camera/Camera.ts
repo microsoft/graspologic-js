@@ -5,6 +5,7 @@
 import * as React from 'react'
 import { memo, useContext } from 'react'
 import { GraphRendererContext } from '../GraphView/context'
+import { useBindCallbacks, CameraEvents } from './hooks/useBindCallbacks'
 import { useCameraAdjustmentMode } from './hooks/useCameraAdjustmentMode'
 import { useCameraBounds } from './hooks/useCameraBounds'
 import { usePanZoomBehavior } from './hooks/usePanZoomBehavior'
@@ -14,7 +15,7 @@ import { Bounds, CameraAdjustmentMode } from '@graspologic/renderer'
 /**
  * The properties for the Camera component
  */
-export interface CameraProps {
+export interface CameraProps extends CameraEvents {
 	/**
 	 * Optional: The declarative z value of the camera. Zoomed out = -1000, Zoomed in = 0
 	 * @defaultValue 0
@@ -23,9 +24,9 @@ export interface CameraProps {
 
 	/**
 	 * Can user's adjust the camera manually
-	 * @defaultValue true
+	 * @defaultValue false
 	 */
-	interactive?: boolean
+	nonInteractive?: boolean
 
 	/**
 	 * The bounds to view with the camera
@@ -60,15 +61,19 @@ export const Camera: React.FC<CameraProps> = memo(
 		transitionDuration,
 		zoom,
 		mode = CameraAdjustmentMode.Graph,
-		interactive = true,
+		nonInteractive = false,
 		doubleClickZoom = true,
+		onMoveComplete,
 	}) => {
 		const renderer = useContext(GraphRendererContext)
 		// Override mode if bounds is passed in
 		useCameraAdjustmentMode(renderer, bounds ? CameraAdjustmentMode.None : mode)
 		useCameraBounds(renderer, bounds, transitionDuration)
-		usePanZoomBehavior(renderer, interactive, doubleClickZoom)
+		usePanZoomBehavior(renderer, !nonInteractive, doubleClickZoom)
 		useZoomSynchronization(renderer, zoom)
+		useBindCallbacks(renderer, {
+			onMoveComplete,
+		})
 		return null
 	},
 )

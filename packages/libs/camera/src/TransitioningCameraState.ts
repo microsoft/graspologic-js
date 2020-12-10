@@ -82,6 +82,11 @@ export class TransitioningCameraState extends EventEmitterImpl<
 				this.end.rotation,
 				this.interpolator.current,
 			)
+
+			// If this interpolator is now complete after this tick
+			if (this.interpolator.isComplete) {
+				this.emit('complete')
+			}
 		}
 	}
 

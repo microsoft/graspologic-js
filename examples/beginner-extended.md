@@ -14,7 +14,6 @@ import {
 	GraphView,
 	Camera,
 	HighlightHoveredNode,
-	HandleNodeClicks,
 	NodeSetHighlight,
 	Edges,
 	Nodes,
@@ -58,9 +57,6 @@ export default	() => {
 			{ /* Enables highlighting of the node that is being hovered over */}
 			<HighlightHoveredNode />
 
-			{ /* Enables handling of node click events */}
-			<HandleNodeClicks onClick={handleVertexClick} />
-
 			{/* Highlights the given set of node ids */}
 			<NodeSetHighlight vertexIds={nodeIds} />
 
@@ -68,7 +64,7 @@ export default	() => {
 			<Edges minWidth={5} maxWidth={5} alpha={1}/>
 
 			{ /* Controls rendering of nodes */ }
-			<Nodes minRadius={5} maxRadius={5} color={categoricalColorizer} />
+			<Nodes onNodeClick={handleVertexClick} minRadius={5} maxRadius={5} color={categoricalColorizer} />
 
 			{/* Adds a settings pane that allows the user to configure the graph renderer on the fly */}
 			<SettingsPane>
@@ -90,11 +86,7 @@ export default	() => {
 ## Standalone
 
 ```js edit=true previewHeight=300
-import {
-	WebGLGraphRenderer,
-	enableClickEvents,
-	VertexSetRenderable,
-} from '@graspologic/renderer'
+import { WebGLGraphRenderer, VertexSetRenderable } from '@graspologic/renderer'
 import { GraphContainer } from '@graspologic/graph'
 import { exampleData, utils } from 'docs'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
@@ -135,9 +127,6 @@ function createRenderer(data, width, height) {
 
 	renderer.scene.addRenderable(edges, true)
 	renderer.scene.addRenderable(nodes, true)
-
-	// Enable the click events
-	enableClickEvents(renderer)
 
 	// Add a renderer that highlights hovered nodes
 	const renderable = new VertexSetRenderable(renderer.gl)

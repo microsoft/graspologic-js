@@ -61,7 +61,6 @@ import {
 	GraphView,
 	Camera,
 	HighlightHoveredNode,
-	HandleNodeClicks,
 	NodeSetHighlight,
 	Edges,
 	Nodes,
@@ -104,9 +103,6 @@ export default	() => {
 			{ /* Enables highlighting of the node that is being hovered over */}
 			<HighlightHoveredNode />
 
-			{ /* Enables handling of node click events */}
-			<HandleNodeClicks onClick={handleVertexClick} />
-
 			{/* Highlights the given set of node ids */}
 			<NodeSetHighlight vertexIds={nodeIds} />
 
@@ -114,7 +110,7 @@ export default	() => {
 			<Edges minWidth={5} maxWidth={5} alpha={1}/>
 
 			{ /* Controls rendering of nodes */ }
-			<Nodes minRadius={5} maxRadius={5} />
+			<Nodes onNodeClick={handleVertexClick} minRadius={5} maxRadius={5} />
 
 			{/* Adds a settings pane that allows the user to configure the graph renderer on the fly */}
 			<SettingsPane>

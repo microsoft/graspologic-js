@@ -22,6 +22,7 @@ import {
 	NodeWeighter,
 	NodePositioner,
 } from '@graspologic/graph'
+import { Id, Maybe } from '@graspologic/renderer'
 
 /**
  * The set of properties for the Nodes component
@@ -62,12 +63,12 @@ export interface NodesProps extends NodeRendererConfiguration {
 	/**
 	 * Callback that fires when a node is clicked
 	 */
-	onNodeClick?: (node?: Node) => void
+	onNodeClick?: (id: Maybe<Id>, node: Maybe<Node>) => void
 
 	/**
 	 * Callback that fires when a node is hovered (and again when unhovered)
 	 */
-	onNodeHover?: (node?: Node) => void
+	onNodeHover?: (id: Maybe<Id>, node: Maybe<Node>) => void
 }
 
 /**

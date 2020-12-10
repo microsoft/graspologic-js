@@ -88,11 +88,7 @@ export default () => {
 ## Extended Usage
 
 ```js
-import {
-	WebGLGraphRenderer,
-	enableClickEvents,
-	VertexSetRenderable,
-} from '@graspologic/renderer'
+import { WebGLGraphRenderer, VertexSetRenderable } from '@graspologic/renderer'
 import { GraphContainer } from '@graspologic/graph'
 import { exampleData, utils } from 'docs'
 
@@ -101,9 +97,9 @@ function createRenderer(data, width, height) {
 
 	// A function which takes a "group" property from a node and returns a color
 	const categoricalColorizer = utils.createColorizer()
-	
+
 	for (const node in graph.nodes) {
-		node.color = categoricalColorizer(node)	
+		node.color = categoricalColorizer(node)
 	}
 
 	// Create a renderer and add it to the container
@@ -122,9 +118,6 @@ function createRenderer(data, width, height) {
 		nodeMinRadius: 5,
 		nodeMaxRadius: 5,
 	})
-
-	// Enable the click events
-	enableClickEvents(renderer)
 
 	// Add a renderer that highlights hovered nodes
 	const renderable = new VertexSetRenderable(renderer.gl)
