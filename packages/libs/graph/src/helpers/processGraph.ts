@@ -4,7 +4,7 @@
  */
 import { GraphContainer } from '../graph'
 import { AnimatableEdge, AnimatableNode, Edge, Node } from '../primitives'
-import { NodeSizer, NodeWeighter, NodePositioner } from './types'
+import { NodeSizer, NodeWeighter, EdgeWeighter, NodePositioner } from './types'
 
 /**
  * Applies a sizing function to the graph
@@ -22,12 +22,22 @@ export function sizeGraph(graph: GraphContainer, sizeFn?: NodeSizer) {
 /**
  * Applies a weight function to the graph
  * @param graph The graph to weight
- * @param weightFn The function to use to weight the graph
+ * @param nodeWeightFn The function to use to weight the nodes in the graph
+ * @param edgeWeightFn The function to use to weight the edges in the graph
  */
-export function weightGraph(graph: GraphContainer, weightFn?: NodeWeighter) {
-	if (weightFn) {
+export function weightGraph(
+	graph: GraphContainer,
+	nodeWeightFn?: NodeWeighter,
+	edgeWeightFn?: EdgeWeighter,
+) {
+	if (nodeWeightFn) {
 		for (const node of graph.nodes.scan()) {
-			node.weight = weightFn(node.id, node.group)
+			node.weight = nodeWeightFn(node.id, node.group)
+		}
+	}
+	if (edgeWeightFn) {
+		for (const edge of graph.edges.scan()) {
+			edge.trueWeight = edge.weight = edgeWeightFn(edge.id)
 		}
 	}
 }

@@ -6,6 +6,13 @@
 import { Id, Maybe } from '@graspologic/common'
 
 /**
+ * Represents an operation that occurs on a given edge
+ * @param id The id of the edge
+ * @returns The operation result
+ */
+export type EdgeOperation<T> = (id: Maybe<Id>) => T
+
+/**
  * Represents an operation that occurs on a given node
  * @param id The id of the node
  * @param group The group of the node
@@ -57,6 +64,15 @@ export type NodeSizer = NodeOperation<number>
  * The screen size of the node is determined by the nodeMinRadius and nodeMaxRadius config settings which are in pixels.
  */
 export type NodeWeighter = NodeOperation<number>
+
+/**
+ * A function which provides a __weight__ for a edge (from 0 - 1)
+ * @param id The id of the edge
+ * @param group The group of the edge
+ * @returns A number representing the weight of a edge from 0 - 1.
+ * The screen size of the edge is determined by the edgeMinRadius and edgeMaxRadius config settings which are in pixels.
+ */
+export type EdgeWeighter = EdgeOperation<number>
 
 /**
  * An object which provides individual components of a nodes position

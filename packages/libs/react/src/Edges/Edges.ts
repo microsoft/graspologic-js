@@ -10,6 +10,8 @@ import {
 	useConfiguration,
 } from './hooks/useConfiguration'
 import { useEdgesRenderable } from './hooks/useEdgesRenderable'
+import { useWeighter } from './hooks/useWeighter'
+import { EdgeWeighter } from '@graspologic/graph'
 
 /**
  * The set of properties for the Edges component
@@ -20,20 +22,28 @@ export interface EdgesProps extends EdgeRendererConfiguration {
 	 * @defaultValue true
 	 */
 	disabled?: boolean
+
+	/**
+	 * The weight to apply to edges
+	 */
+	weight?: EdgeWeighter
 }
 
 /**
  * Configures the edge rendering for a GraphView
  */
-export const Edges: React.FC<EdgesProps> = memo(({ disabled, ...config }) => {
-	const renderer = useContext(GraphRendererContext)
-	const edgesRenderable = useEdgesRenderable(renderer)
-	useConfiguration(renderer, config)
-	useEffect(() => {
-		if (edgesRenderable) {
-			edgesRenderable.enabled = !disabled
-		}
-	}, [disabled, edgesRenderable])
-	return null
-})
+export const Edges: React.FC<EdgesProps> = memo(
+	({ disabled, weight, ...config }) => {
+		const renderer = useContext(GraphRendererContext)
+		const edgesRenderable = useEdgesRenderable(renderer)
+		useConfiguration(renderer, config)
+		useWeighter(renderer, weight)
+		useEffect(() => {
+			if (edgesRenderable) {
+				edgesRenderable.enabled = !disabled
+			}
+		}, [disabled, edgesRenderable])
+		return null
+	},
+)
 Edges.displayName = 'Edges'
