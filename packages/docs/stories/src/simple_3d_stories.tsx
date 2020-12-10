@@ -27,7 +27,7 @@ storiesOf('Simple 3D Examples', module)
 			<GraphView className="graph-pane" data={testData} is3D={true}>
 				<Nodes color={colorizer} />
 				<Edges />
-				<Camera interactive />
+				<Camera />
 			</GraphView>
 		</div>
 	))
@@ -38,7 +38,7 @@ storiesOf('Simple 3D Examples', module)
 				<GraphView className="graph-pane" data={testData} is3D={is3D}>
 					<Nodes color={colorizer} />
 					<Edges />
-					<Camera interactive />
+					<Camera />
 				</GraphView>
 			</div>
 		)
@@ -109,7 +109,7 @@ storiesOf('Simple 3D Examples', module)
 				<Nodes color={colorizer} minRadius={1.0} maxRadius={100.0} />
 				<Edges minWidth={1.0} maxWidth={10.0} />
 				<HighlightHoveredNode />
-				<Camera interactive />
+				<Camera />
 			</GraphView>
 		</div>
 	))

@@ -52,7 +52,7 @@ export default	() => {
 			<Axes />
 
 			{ /* Enables controlling of certain aspects of the camera */}
-			<Camera interactive />
+			<Camera />
 
 			{ /* Enables highlighting of the node that is being hovered over */}
 			<HighlightHoveredNode />

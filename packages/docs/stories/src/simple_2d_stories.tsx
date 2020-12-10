@@ -124,7 +124,7 @@ storiesOf('Simple 2D Examples', module)
 			<GraphView className="graph-pane" data={testData}>
 				<Nodes color={colorizer} />
 				<Edges />
-				<Camera interactive />
+				<Camera />
 			</GraphView>
 		</div>
 	))
@@ -203,7 +203,7 @@ storiesOf('Simple 2D Examples', module)
 			>
 				<Nodes color={colorizer} />
 				<Edges />
-				<Camera interactive />
+				<Camera />
 				<HighlightHoveredNode />
 			</GraphView>
 		</div>

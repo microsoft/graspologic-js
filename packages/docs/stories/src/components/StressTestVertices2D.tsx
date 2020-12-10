@@ -90,7 +90,7 @@ export const StressTestVertices2D: React.FC<StressTestVertices2DProps> = ({
 						className="graph-pane"
 						data={graph}
 					>
-						<Camera interactive />
+						<Camera />
 						<Nodes
 							position={positioner}
 							color={colorizer}

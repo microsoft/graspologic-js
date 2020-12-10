@@ -62,7 +62,7 @@ export const ForceAtlas2Graph: React.FC<ForceAtlas2GraphProps> = memo(
 				<GraphView className="graph-pane" data={internedData} ref={ref}>
 					<Axes />
 					<Nodes color={colorizer} />
-					<Camera interactive />
+					<Camera />
 					<HighlightHoveredNode />
 					<Nodes color={colorizer} minRadius={1} maxRadius={5} />
 					<SettingsPane>

@@ -49,7 +49,7 @@ export const FullyInteractiveGraph: React.FC<FullyInteractiveGraphProps> = memo(
 					<Axes />
 					<Nodes onNodeClick={handleVertexClick} color={colorizer} />
 					<Edges />
-					<Camera interactive />
+					<Camera />
 					<HighlightHoveredNode />
 					<NodeSetHighlight vertexIds={vertexIds} />
 					<SettingsPane>

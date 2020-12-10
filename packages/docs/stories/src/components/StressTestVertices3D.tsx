@@ -63,7 +63,7 @@ export const StressTestVertices3D: React.FC = () => {
 				</div>
 				<div className="graph-pane-container">
 					<GraphView className="graph-pane" data={graph} is3D={true}>
-						<Camera interactive />
+						<Camera />
 						<Nodes
 							position={positioner}
 							color={colorizer}

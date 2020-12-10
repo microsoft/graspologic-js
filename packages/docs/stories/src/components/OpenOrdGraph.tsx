@@ -53,7 +53,7 @@ export const OpenOrdGraph: React.FC<OpenOrdGraphProps> = memo(({ data }) => {
 			<GraphView className="graph-pane" data={internedData} ref={ref}>
 				<Axes />
 				<Nodes color={colorizer} />
-				<Camera interactive />
+				<Camera />
 				<HighlightHoveredNode />
 				<Nodes minRadius={1} maxRadius={5} />
 				<SettingsPane>
