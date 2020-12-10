@@ -479,26 +479,20 @@ storiesOf('Interactive 2D Examples', module)
 		)
 	})
 	.add('can use a custom weighting function for nodes', () => {
-		const weight = number('Max weight', 100, {
-			min: 1,
-			max: 100,
-			step: 1,
+		const weight = number('Max weight', 1, {
+			min: 0,
+			max: 1,
+			step: 0.1,
 			range: true,
 		})
-		const weighter = useCallback(
-			(id: Maybe<Id>) => {
-				return Math.random()
-			},
-			// eslint-disable-next-line react-hooks/exhaustive-deps
-			[weight],
-		)
+		const weighter = useCallback(() => Math.random() * weight, [weight])
 		return (
 			<GraphView style={{ width: 500, height: 500 }} data={testData}>
 				<Nodes
 					color={colorizer}
 					weight={weighter}
 					minRadius={1}
-					maxRadius={weight}
+					maxRadius={10}
 				/>
 				<Edges />
 				<HighlightHoveredNode />
@@ -506,23 +500,17 @@ storiesOf('Interactive 2D Examples', module)
 		)
 	})
 	.add('can use a custom weighting function for edges', () => {
-		const weight = number('Max weight', 100, {
-			min: 1,
-			max: 100,
-			step: 1,
+		const weight = number('Max weight', 1, {
+			min: 0,
+			max: 1,
+			step: 0.1,
 			range: true,
 		})
-		const weighter = useCallback(
-			(id: Maybe<Id>) => {
-				return Math.random()
-			},
-			// eslint-disable-next-line react-hooks/exhaustive-deps
-			[weight],
-		)
+		const weighter = useCallback(() => Math.random() * weight, [weight])
 		return (
 			<GraphView style={{ width: 500, height: 500 }} data={testData}>
 				<Nodes color={colorizer} minRadius={2} maxRadius={2} />
-				<Edges weight={weighter} minWidth={1} maxWidth={weight} />
+				<Edges weight={weighter} minWidth={1} maxWidth={10} />
 				<HighlightHoveredNode />
 			</GraphView>
 		)
