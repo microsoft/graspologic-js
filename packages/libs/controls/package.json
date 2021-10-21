@@ -3,6 +3,11 @@
 	"version": "0.6.0",
 	"description": "dat.gui controls for adjusting graph-view rendering",
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/libs/controls"
+	},
 	"contributors": [
 		"David Tittsworth (datittsw@microsoft.com)",
 		"Nathan Evans (naevans@microsoft.com)"

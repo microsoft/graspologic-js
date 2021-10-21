@@ -3,6 +3,11 @@
 	"version": "0.6.0",
 	"description": "Graph data visualization core renderer",
 	"main": "src/index.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/libs/renderer"
+	},
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
 		"module": "dist/esm/index.js",

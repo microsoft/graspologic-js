@@ -3,6 +3,11 @@
 	"version": "0.6.0",
 	"license": "MIT",
 	"description": "A common set of types and utils used by graspologic",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/libs/common"
+	},
 	"main": "src/index.ts",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
