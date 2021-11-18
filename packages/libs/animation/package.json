@@ -3,6 +3,11 @@
 	"version": "0.6.0",
 	"description": "Graphical primitives",
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/libs/animation"
+	},
 	"contributors": [
 		"David Tittsworth (datittsw@microsoft.com)"
 	],

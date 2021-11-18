@@ -3,6 +3,11 @@
 	"main": "src/index.ts",
 	"description": "A set of support renderables within graspologic",
 	"version": "0.6.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/renderables/support"
+	},
 	"license": "MIT",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",

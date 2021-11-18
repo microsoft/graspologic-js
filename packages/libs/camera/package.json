@@ -3,6 +3,11 @@
 	"version": "0.6.0",
 	"license": "MIT",
 	"description": "Contains a camera implementation used within @graspologic",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/libs/camera"
+	},
 	"main": "src/index.ts",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
