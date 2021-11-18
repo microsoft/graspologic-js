@@ -1,5 +1,4 @@
 .yarn/
-.pnp.js
+.pnp.*
 yarn.lock
 
-packages/authoring/create-vac-component/assets/
