@@ -18,7 +18,7 @@ export class CameraState {
 	/**
 	 * Creates a copy of this CameraState
 	 */
-	public clone(): CameraState {
+	public clone = (): CameraState => {
 		return new CameraState(this.position.clone(), this.rotation.clone())
 	}
 }

@@ -6,6 +6,8 @@ import { EventEmitter } from './events'
 
 export type PropertyChangeHandler<T> = (newValue: T) => void
 export type PropertyChangeValidator<T> = (newValue: T) => boolean
+export type AreEqualFn<T> = (a: T, b: T) => boolean
+export const identity = <T>(a, b) => a === (b as AreEqualFn<T>)
 
 export interface PropertyContainerEvents<T> {
 	/**
@@ -24,17 +26,15 @@ export class PropertyContainer<T> extends EventEmitter<
 	PropertyContainerEvents<T>
 > {
 	private isValid: PropertyChangeValidator<T> = () => true
-
+	private areEqual: AreEqualFn<T>
 	/**
 	 * Constructor
 	 * @param _value The current value
 	 * @param areEqual An equality function
 	 */
-	public constructor(
-		private _value: T,
-		private areEqual = (a: T, b: T): boolean => a === b,
-	) {
+	public constructor(private _value: T, areEqual: AreEqualFn<T> = identity) {
 		super()
+		this.areEqual = areEqual
 	}
 
 	/**
