@@ -1,2 +1,21 @@
+releases:
+  "@graspologic/camera": patch
+  "@graspologic/common": patch
+  "@graspologic/graph": patch
+  "@graspologic/layout-core": patch
+  "@graspologic/layout-fa2": patch
+  "@graspologic/layout-openord": patch
+  "@graspologic/layout-sandbox": patch
+  "@graspologic/react": patch
+  "@graspologic/render-controls": patch
+  "@graspologic/render-controls-react": patch
+  "@graspologic/renderables-base": patch
+  "@graspologic/renderables-edges": patch
+  "@graspologic/renderables-nodes": patch
+  "@graspologic/renderables-support": patch
+  "@graspologic/renderer": patch
+  "@graspologic/testdata": patch
+
 declined:
   - "@graspologic/monorepo"
+  - "@graspologic/stories"
