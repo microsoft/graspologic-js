@@ -1,0 +1,240 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@graspologic/renderer</title>
+	<meta name="description" content="Documentation for @graspologic/renderer">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@graspologic/renderer</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>@graspologic/renderer</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#graspologicrenderer" id="graspologicrenderer" style="color: inherit; text-decoration: none;">
+					<h1>@graspologic/renderer</h1>
+				</a>
+				<p>Contains the <strong>graspologic-js</strong> graph renderer.</p>
+				<p>React bindings are also available <a href="../react/README.md">here</a>.</p>
+				<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
+					<h2>Basic Usage</h2>
+				</a>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { WebGLGraphRenderer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@graspologic/renderer&#x27;</span>
+<span class="hljs-keyword">import</span> { GraphContainer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@graspologic/graph&#x27;</span>
+
+<span class="hljs-comment">// Simple graph dataset</span>
+<span class="hljs-keyword">const</span> GRAPH_DATA = {
+    <span class="hljs-attr">nodes</span>: [
+        {
+            <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;A&#x27;</span>,
+            <span class="hljs-attr">x</span>: -<span class="hljs-number">10</span>,
+            <span class="hljs-attr">y</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">z</span>: <span class="hljs-number">0</span>,
+            <span class="hljs-attr">radius</span>: <span class="hljs-number">5</span>,
+
+            <span class="hljs-comment">// Format 0xBBGGRR</span>
+            <span class="hljs-attr">color</span>: <span class="hljs-number">0x00ff00</span>,
+        },
+        {
+            <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;B&#x27;</span>,
+            <span class="hljs-attr">x</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">y</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">z</span>: <span class="hljs-number">0</span>,
+            <span class="hljs-attr">radius</span>: <span class="hljs-number">5</span>,
+
+            <span class="hljs-comment">// Format 0xBBGGRR</span>
+            <span class="hljs-attr">color</span>: <span class="hljs-number">0xff0000</span>,
+        },
+    ],
+    <span class="hljs-attr">edges</span>: [
+        {
+            <span class="hljs-attr">source</span>: <span class="hljs-string">&#x27;A&#x27;</span>,
+            <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;B&#x27;</span>,
+            <span class="hljs-attr">weight</span>: <span class="hljs-number">1</span>,
+        },
+    ],
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRenderer</span>(<span class="hljs-params">data, width, height</span>) </span>{
+    <span class="hljs-comment">// Create a renderer and add it to the container</span>
+    <span class="hljs-keyword">const</span> renderer = WebGLGraphRenderer.createInstance({
+        width,
+        height,
+
+        <span class="hljs-comment">// Set the min/max width of the edges to be a constant width</span>
+        <span class="hljs-attr">edgeMinWidth</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">edgeMaxWidth</span>: <span class="hljs-number">5</span>,
+
+        <span class="hljs-comment">// All edges are completely opaque</span>
+        <span class="hljs-attr">edgeAlpha</span>: <span class="hljs-number">1</span>,
+    })
+
+    <span class="hljs-comment">// Load the dataset</span>
+    renderer.load(GraphContainer.intern(data))
+
+    <span class="hljs-comment">// Start rendering</span>
+    renderer.start()
+
+    <span class="hljs-keyword">return</span> renderer
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
+    <span class="hljs-comment">// Create the renderer</span>
+    <span class="hljs-keyword">const</span> renderer = createRenderer(GRAPH_DATA, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)
+
+    <span class="hljs-comment">// Return the renderer&#x27;s canvas to the docs site, so it can be viewed</span>
+    <span class="hljs-keyword">return</span> renderer.view
+}</code></pre>
+				<a href="#extended-usage" id="extended-usage" style="color: inherit; text-decoration: none;">
+					<h2>Extended Usage</h2>
+				</a>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {
+    WebGLGraphRenderer,
+    enableClickEvents,
+    VertexSetRenderable,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@graspologic/renderer&#x27;</span>
+<span class="hljs-keyword">import</span> { GraphContainer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@graspologic/graph&#x27;</span>
+<span class="hljs-keyword">import</span> { exampleData, utils } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;docs&#x27;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRenderer</span>(<span class="hljs-params">data, width, height</span>) </span>{
+    <span class="hljs-comment">// Create a renderer and add it to the container</span>
+    <span class="hljs-keyword">const</span> renderer = WebGLGraphRenderer.createInstance({
+        width,
+        height,
+
+        <span class="hljs-comment">// Set the min/max width of the edges to be a constant width</span>
+        <span class="hljs-attr">edgeMinWidth</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">edgeMaxWidth</span>: <span class="hljs-number">5</span>,
+
+        <span class="hljs-comment">// All edges are completely opaque</span>
+        <span class="hljs-attr">edgeAlpha</span>: <span class="hljs-number">1</span>,
+
+        <span class="hljs-comment">// Control the sizing of the nodes</span>
+        <span class="hljs-attr">nodeMinRadius</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">nodeMaxRadius</span>: <span class="hljs-number">5</span>,
+    })
+
+    <span class="hljs-comment">// A function which takes a &quot;group&quot; property from a node and returns a color</span>
+    <span class="hljs-keyword">const</span> categoricalColorizer = utils.createColorizer()
+
+    <span class="hljs-comment">// Load the dataset</span>
+    renderer.load(GraphContainer.intern(data), categoricalColorizer)
+
+    <span class="hljs-comment">// Enable the click events</span>
+    enableClickEvents(renderer)
+
+    <span class="hljs-comment">// Add a renderer that highlights hovered nodes</span>
+    <span class="hljs-keyword">const</span> renderable = <span class="hljs-keyword">new</span> VertexSetRenderable(renderer.gl)
+    renderable.color = [<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1</span>]
+    renderer.scene.addRenderable(renderable)
+    renderer.on(<span class="hljs-string">&#x27;vertexHovered&#x27;</span>, <span class="hljs-function"><span class="hljs-params">hovered</span> =&gt;</span> {
+        renderable.setData(hovered ? [hovered] : [])
+    })
+
+    <span class="hljs-comment">// Start rendering</span>
+    renderer.start()
+
+    <span class="hljs-keyword">return</span> renderer
+}
+
+<span class="hljs-keyword">const</span> GRAPH_DATA = exampleData.smallGraph()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
+    <span class="hljs-comment">// Create the renderer</span>
+    <span class="hljs-keyword">const</span> renderer = createRenderer(GRAPH_DATA, <span class="hljs-number">600</span>, <span class="hljs-number">300</span>)
+    <span class="hljs-keyword">let</span> selectedNodeIds = []
+
+    renderer.on(<span class="hljs-string">&#x27;vertexClick&#x27;</span>, <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;click&#x27;</span>, id)
+        <span class="hljs-keyword">if</span> (id) {
+            <span class="hljs-keyword">if</span> (selectedNodeIds.indexOf(id) === -<span class="hljs-number">1</span>) {
+                selectedNodeIds = [...selectedNodeIds, id]
+            } <span class="hljs-keyword">else</span> {
+                selectedNodeIds = selectedNodeIds.filter(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v !== id)
+            }
+        }
+    })
+
+    <span class="hljs-comment">// Return the renderer&#x27;s canvas to the docs site, so it can be viewed</span>
+    <span class="hljs-keyword">return</span> renderer.view
+}</code></pre>
+				<p>See the <a href="./dist/docs/globals.md">API documentation</a> or <a href="../../../examples">examples</a> for additional examples.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+const DEFAULT_SETTINGS = {
+    alphaRange: [0, 1],
+    minWidthRange: [0.1, 50],
+    maxWidthRange: [0.1, 50],
+};
+/**
+ * @internal
+ *
+ * Attaches the "Edge" settings to the given dat.gui instance for the given graph renderer
+ * @param gui The GUI instance
+ * @param renderer The graph renderer
+ */
+export function attachEdgeSettings(gui, renderer, { alphaRange = DEFAULT_SETTINGS.alphaRange, minWidthRange = DEFAULT_SETTINGS.minWidthRange, maxWidthRange = DEFAULT_SETTINGS.maxWidthRange, } = {}) {
+    const folder = gui.addFolder('Edges');
+    folder.add(renderer.config, 'drawEdges').name('Draw Edges');
+    folder.add(renderer.config, 'hideEdgesOnMove').name('Hide Edges Move');
+    folder.add(renderer.config, 'edgeConstantWidth').name('Constant Edge Width');
+    folder.add(renderer.config, 'edgeDepthWrite').name('Depth Write');
+    folder.add(renderer.config, 'edgeAntialias').name('Edge Antialias');
+    folder
+        .add(renderer.config, 'edgeAlpha', alphaRange[0], alphaRange[1])
+        .name('Edge Alpha');
+    folder
+        .add(renderer.config, 'edgeMinWidth', minWidthRange[0], minWidthRange[1])
+        .name('Edges Min Width');
+    folder
+        .add(renderer.config, 'edgeMaxWidth', maxWidthRange[0], maxWidthRange[1])
+        .name('Edges Max Width');
+    return () => gui.removeFolder(folder);
+}

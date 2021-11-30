@@ -1,0 +1,92 @@
+import { Bounds3D, RenderConfiguration, RenderOptions, ItemBasedRenderable, BoundedRenderable } from '@graspologic/common';
+import type { EdgeStore, Edge } from '@graspologic/graph';
+import { DirtyableRenderable } from '@graspologic/renderables-base';
+/**
+ * A renderable that can be added to the GraphRenderer which adds support for rendering edges
+ */
+export declare class EdgesRenderable extends DirtyableRenderable implements ItemBasedRenderable, BoundedRenderable {
+    protected config: RenderConfiguration;
+    private readonly model;
+    private readonly modelBuffer;
+    private readonly translucentModel;
+    private readonly translucentModelBuffer;
+    private needsDataBind;
+    private _data;
+    /**
+     * Constructor for EdgesRenderable
+     * @param gl The gl context the edges should be rendered to
+     * @param config The render configuration
+     * @param id The id of the renderable
+     */
+    constructor(gl: WebGLRenderingContext, config: RenderConfiguration, id?: any);
+    /**
+     * Gets the data type associated with this renderable
+     */
+    get itemType(): symbol;
+    /**
+     * The edge data that should be rendered
+     */
+    get data(): EdgeStore | undefined;
+    /**
+     * Sets the edge data to be rendered
+     */
+    set data(value: EdgeStore | undefined);
+    /**
+     * Returns true if edges behind other edges should not be rendered
+     */
+    protected get edgeDepthWrite(): boolean;
+    /**
+     * Returns true if the edges should be rendered using a constant width
+     */
+    protected get edgeConstantWidth(): boolean;
+    /**
+     * Returns the min edge with
+     */
+    protected get edgeMinWidth(): number;
+    /**
+     * Returns the max edge with
+     */
+    protected get edgeMaxWidth(): number;
+    /**
+     * Returns the alpha used for the edges
+     */
+    protected get edgeAlpha(): number;
+    /**
+     * Returns true if edges should be anti-aliased
+     */
+    protected get edgeAntialias(): boolean;
+    updateEngineTime(engineTime: number): void;
+    /**
+     * Draws the EdgeRenderable
+     * @param options The set of render options
+     */
+    draw(options: RenderOptions): void;
+    /**
+     * Computes the bounds of the edges
+     */
+    computeBounds(): Bounds3D | undefined;
+    /**
+     * Computes the given edges bounds
+     * @param edge The edge to compute the bounds for
+     */
+    private computeEdgeBounds;
+    /**
+     * Handler for when a node is added
+     * @param primitive The primitive to add
+     */
+    protected handleEdgeAdded: (edgeOrIndex: number | Edge) => void;
+    /**
+     * Removes a primitive from the scene
+     * @param primitive The primitive to remove
+     */
+    protected handleEdgeRemoved: (edgeOrIndex: number | Edge) => void;
+    /**
+     * Handles when an edges attribute is updated
+     */
+    protected handleEdgeAttributeUpdated: (storeId: number, attribute?: string | undefined) => void;
+    /**
+     * Binds the data in our databuffer to the model
+     * @param forceAll Force all the attributes to return
+     */
+    bindDataToModel(forceAll?: boolean): boolean;
+}

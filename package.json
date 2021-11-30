@@ -86,10 +86,7 @@
 		"react-is": "16.13.1"
 	},
 	"workspaces": [
-		"packages/*/*"
+		"packages/*"
 	],
-	"dependencies": {
-		"@yarnpkg/pnpify": "^3.1.1-rc.6"
-	},
 	"packageManager": "yarn@3.1.0"
 }

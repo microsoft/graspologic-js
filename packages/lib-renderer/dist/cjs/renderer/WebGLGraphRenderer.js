@@ -1,0 +1,712 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.WebGLGraphRenderer = void 0;
+
+var _toolbox = require("@essex-js-toolkit/toolbox");
+
+var _engine = require("@luma.gl/engine");
+
+var _gltools = require("@luma.gl/gltools");
+
+var _data = require("../data");
+
+var _delegates = require("./delegates");
+
+var _camera = require("@graspologic/camera");
+
+var _common = require("@graspologic/common");
+
+var _graph = require("@graspologic/graph");
+
+var _renderablesEdges = require("@graspologic/renderables-edges");
+
+var _renderablesNodes = require("@graspologic/renderables-nodes");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// typings are messed up for this
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const invariant = require('invariant');
+/**
+ * Default world bounds, a 2 x 2 x 2 cube centered on 0, 0, 0
+ */
+
+
+const DEFAULT_BOUNDS = Object.freeze({
+  x: {
+    min: -1,
+    max: 1
+  },
+  y: {
+    min: -1,
+    max: 1
+  },
+  z: {
+    min: -1,
+    max: 1
+  }
+});
+/**
+ * A WebGL 2 based graph renderer
+ */
+
+class WebGLGraphRenderer extends _common.EventEmitter {
+  // Observable-pattern handler lists
+  // Plugins
+  // Logic Delegates
+
+  /** Returns the current engine time for animation tweening */
+  // #region construction
+
+  /**
+   * Constructor for WebGLGraphRenderer
+   * @param gl The webgl context
+   * @param config The render configuration
+   * @param data The data to render
+   * @param scene The scene object
+   */
+  constructor(gl, config, data, scene, camera) {
+    super();
+
+    _defineProperty(this, "gl", void 0);
+
+    _defineProperty(this, "config", void 0);
+
+    _defineProperty(this, "_hoveredVertex", void 0);
+
+    _defineProperty(this, "dimensionInterpolator", void 0);
+
+    _defineProperty(this, "_dataBounds", DEFAULT_BOUNDS);
+
+    _defineProperty(this, "_onInitializeHandlers", []);
+
+    _defineProperty(this, "_kickoffDeferred", void 0);
+
+    _defineProperty(this, "kickoff", false);
+
+    _defineProperty(this, "initialized", false);
+
+    _defineProperty(this, "animationLoop", void 0);
+
+    _defineProperty(this, "animationProps", void 0);
+
+    _defineProperty(this, "_scene", void 0);
+
+    _defineProperty(this, "_camera", void 0);
+
+    _defineProperty(this, "nodes", void 0);
+
+    _defineProperty(this, "edges", void 0);
+
+    _defineProperty(this, "_engineTime", 0);
+
+    _defineProperty(this, "_lastRenderTime", -1);
+
+    _defineProperty(this, "_startTime", Date.now());
+
+    _defineProperty(this, "_forceDraw", false);
+
+    _defineProperty(this, "__destroyed", false);
+
+    _defineProperty(this, "animationLoopRunning", false);
+
+    _defineProperty(this, "engineTime", () => this._engineTime);
+
+    _defineProperty(this, "_data", void 0);
+
+    _defineProperty(this, "makeDirty", () => {
+      invariant(!this.destroyed, 'renderer is destroyed!');
+
+      if (!this._scene.needsRedraw) {
+        this._forceDraw = true;
+        this.emit('dirty');
+      }
+    });
+
+    _defineProperty(this, "handleStoreUpdated", (type, store) => {
+      // Update the data on the renderable
+      this.bindDataToRenderable(type, store); // Listen for changes to the data
+
+      store.onAddItem((0, _common.fastDebounce)(this.handlePrimitivesChanged, 100));
+    });
+
+    _defineProperty(this, "handlePrimitivesChanged", () => {
+      if (this.config.cameraAdjustmentMode === _common.CameraAdjustmentMode.Graph) {
+        this.zoomToGraph();
+      }
+    });
+
+    this.gl = gl;
+    this.config = config;
+    this._data = data;
+    data.onRegister(this.handleStoreUpdated);
+    this._scene = scene;
+    this._camera = camera;
+    this.onInitialize(opts => {
+      this.resize(config.width, config.height);
+      this.scene.initialize(opts);
+      this.initialized = true;
+    });
+    this._kickoffDeferred = (0, _toolbox.deferred)(); // Pretend all the data has updated
+
+    for (const dataType of data.types()) {
+      this.handleStoreUpdated(dataType, data.retrieve(dataType));
+    } // We set up the animation loop here, even though
+    // we might not fully use it to render loop, because it does a lot of useful things
+    // i.e. sets up the framebuffer and resizing framebuffer/canvas, mouse position
+
+
+    this.animationLoop = new _engine.AnimationLoop({
+      gl,
+      canvas: gl.canvas,
+      useDevicePixels: true,
+      createFramebuffer: true,
+      onInitialize: animationProps => {
+        this.animationProps = animationProps;
+
+        this._onInitializeHandlers.forEach(h => h(animationProps));
+      },
+      onRender: animationProps => {
+        this.animationProps = animationProps;
+
+        if (this.animationLoopRunning) {
+          this.render();
+        }
+      }
+    });
+    this.dimensionInterpolator = new _common.Interpolator(config.interpolationTime); // Start off in the correct position
+
+    this.dimensionInterpolator.current = 1;
+
+    for (const renderable of scene.renderables()) {
+      if (renderable instanceof _renderablesNodes.NodesRenderable) {
+        this.nodes = renderable;
+      } else if (renderable instanceof _renderablesEdges.EdgesRenderable) {
+        this.edges = renderable;
+      }
+    }
+
+    if (this.nodes) {
+      // Event Wiring
+      this.nodes.on('nodeHovered', node => {
+        this.emit('vertexHovered', node);
+      });
+    }
+
+    config.onInterpolationTimeChanged(value => this.dimensionInterpolator.interpolationTime = value);
+    config.onIs3DChanged(() => {
+      this.dimensionInterpolator.reset();
+    });
+    this.config.onHideDeselectedChanged(this.makeDirty);
+    this.on('vertexHovered', node => {
+      this._hoveredVertex = node;
+    });
+  }
+  /**
+   * Creates a new instance of the GraphRenderer
+   * @param options The options for the render configuration
+   */
+
+
+  static createInstance(options = {}, data, gl) {
+    if (!gl) {
+      const canvas = document.createElement('canvas');
+      gl = (0, _gltools.createGLContext)({
+        canvas,
+        webgl2: true,
+        webgl1: false
+      });
+    }
+
+    const store = data ? (0, _delegates.createDataStoreFromContainer)(data) : (0, _delegates.createDataStore)(options.nodeCountHint, options.edgeCountHint, options.autoBind);
+
+    if (data) {
+      (0, _data.processGraph)(data, undefined);
+    }
+
+    const config = (0, _common.createConfiguration)(options);
+    const camera = new _camera.Camera();
+    /** set up the scene */
+
+    const scene = new _delegates.Scenegraph(gl, config, store); // create nodes renderable
+
+    const nodes = new _renderablesNodes.NodesRenderable(gl, config); // create edges renderable
+
+    const edges = new _renderablesEdges.EdgesRenderable(gl, config);
+    scene.addRenderable(edges, true);
+    scene.addRenderable(nodes, true);
+    return new WebGLGraphRenderer(gl, config, store, scene, camera);
+  } // #endregion
+  // #region event handling
+
+  /**
+   * @internal
+   *
+   * Triggers the onVertexClick event
+   */
+
+
+  handleClicked() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+
+    if (this._hoveredVertex) {
+      this.emit('vertexClick', this._hoveredVertex);
+    }
+  }
+  /**
+   * Returns the underlying graph structure
+   */
+
+
+  get graph() {
+    return new _graph.GraphContainer(this._data.retrieve(_graph.nodeType), this._data.retrieve(_graph.edgeType));
+  }
+  /**
+   * Gets whether or not the renderere is destroyed
+   */
+
+
+  get destroyed() {
+    return this.__destroyed;
+  }
+  /**
+   * Gets the camera
+   */
+
+
+  get camera() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    return this._camera;
+  }
+  /**
+   * Add an initialization callback
+   */
+
+
+  onInitialize(initializeHandler) {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+
+    if (this.initialized) {
+      initializeHandler(this.animationProps);
+    } else {
+      this._onInitializeHandlers.push(initializeHandler);
+    }
+  }
+  /**
+   * Gets the scene, on which nodes and edges can be added
+   */
+
+
+  get scene() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    return this._scene;
+  }
+  /**
+   * Returns the canvas behind the graph renderer
+   */
+
+
+  get view() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    return this.gl.canvas;
+  } // #endregion
+
+  /**
+   * Loads the given graph into the renderer
+   * @param data The graph to load
+   * @param colorizer The colorizer function which determines the color of a node
+   */
+
+
+  load(data, colorizer) {
+    invariant(!this.destroyed, 'renderer is destroyed!'); // normalize weights and color nodes
+
+    (0, _data.processGraph)(data, colorizer);
+
+    this._data.register(_graph.nodeType, data.nodes);
+
+    this._data.register(_graph.edgeType, data.edges);
+
+    for (const dataType of this._data.types()) {
+      this.bindDataToRenderable(dataType, this._data.retrieve(dataType));
+    }
+
+    this.scene.rebuildSaturation();
+    this.emit('load');
+  }
+  /**
+   * Changes the position of the given nodes
+   * @deprecated since the nodestore shares memory with the renderer, this should no longer be necessary
+   * @param newPositions The new positions of the nodes
+   * @param duration The optional duration for how long the transition should take
+   */
+
+
+  changePositions(newPositions, duration = 0) {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    const nodesSupportAnim = this.graph.nodes.store.config.animation !== false;
+    const edgesSupportAnim = this.graph.edges.store.config.animation !== false;
+    let nodePos;
+    const animateNodePosition = nodesSupportAnim ? (prim, newPos) => {
+      ;
+      prim.animatePosition(newPos, duration);
+    } : (prim, newPos) => {
+      prim.position = newPos;
+    };
+    const animateSourcePosition = edgesSupportAnim ? (prim, newPos) => {
+      ;
+      prim.animateSourcePosition(newPos, duration);
+    } : (prim, newPos) => {
+      prim.sourcePosition = newPos;
+    };
+    const animateTargetPosition = edgesSupportAnim ? (prim, newPos) => {
+      ;
+      prim.animateTargetPosition(newPos, duration);
+    } : (prim, newPos) => {
+      prim.targetPosition = newPos;
+    };
+    const position = [0, 0, 0]; // I'm doing (prim as Edge) below, instead of assigning it a variable
+    // as it is no additional memory cost at runtime
+
+    for (const prim of this.scene.primitives(undefined, true)) {
+      if (prim.type === _graph.nodeType) {
+        nodePos = newPositions[prim.id || ''];
+
+        if (nodePos) {
+          position[0] = nodePos.x;
+          position[1] = nodePos.y;
+          position[2] = nodePos.z || 0;
+          animateNodePosition(prim, position);
+        }
+      } else if (prim.type === _graph.edgeType) {
+        nodePos = newPositions[prim.source];
+
+        if (nodePos) {
+          position[0] = nodePos.x;
+          position[1] = nodePos.y;
+          position[2] = nodePos.z || 0;
+          animateSourcePosition(prim, position);
+        }
+
+        nodePos = newPositions[prim.target];
+
+        if (nodePos) {
+          position[0] = nodePos.x;
+          position[1] = nodePos.y;
+          position[2] = nodePos.z || 0;
+          animateTargetPosition(prim, position);
+        }
+      }
+    }
+
+    this.emit('load');
+    this.handlePrimitivesChanged();
+  }
+  /**
+   * Resizes the renderer
+   * @param width The width of the canvas
+   * @param height The height of the canvas
+   */
+
+
+  resize(width, height) {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    width = width || _common.DEFAULT_WIDTH;
+    height = height || _common.DEFAULT_HEIGHT;
+    this.config.width = width;
+    this.config.height = height;
+    const pixelRatio = typeof window !== 'undefined' && window.devicePixelRatio || 1;
+    const canvas = this.view;
+    canvas.width = width * pixelRatio;
+    canvas.height = height * pixelRatio;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    this.camera.resize(width, height);
+
+    this._scene.resize(width, height);
+
+    this.updateWeights();
+    this.emit('resize');
+
+    if (this.config.cameraAdjustmentMode === _common.CameraAdjustmentMode.Viewport) {
+      this.zoomToViewport();
+    } else if (this.config.cameraAdjustmentMode === _common.CameraAdjustmentMode.Graph) {
+      this.zoomToGraph();
+    }
+  }
+  /**
+   * @internal
+   *
+   * Forces the renderables to rebind to their data
+   */
+
+
+  rebind() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+
+    for (const renderable of this.scene.renderables()) {
+      if (renderable.bindDataToModel) {
+        renderable.bindDataToModel(true);
+      }
+    }
+
+    this.makeDirty();
+  }
+  /**
+   * Makes the graph renderer "dirty", so on the next render it will repaint itself
+   */
+
+
+  /**
+   * A wrapper around camera.fitToView to ensure that the currently loaded graph is in view
+   * @param duration The amount of time to take transitioning to the new view
+   */
+  zoomToGraph(duration = 0) {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    const dataBounds = this.updateWeights();
+
+    const cameraBounds = _objectSpread({
+      x: _objectSpread({}, dataBounds.x),
+      y: _objectSpread({}, dataBounds.y)
+    }, this.config.is3D ? {
+      z: _objectSpread({}, dataBounds.z)
+    } : {});
+
+    this.camera.fitToView(cameraBounds, duration);
+    this.makeDirty();
+  }
+  /**
+   * A wrapper around camera.fitToView to match the viewport
+   * @param duration The amount of time to take transitioning to the new view
+   */
+
+
+  zoomToViewport(duration = 0) {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    this.camera.fitToView({
+      x: {
+        min: -this.config.width / 2,
+        max: this.config.width / 2
+      },
+      y: {
+        min: -this.config.height / 2,
+        max: this.config.height / 2
+      }
+    }, duration);
+    this.makeDirty();
+  }
+  /**
+   * Updates the weights in the graph
+   */
+
+
+  updateWeights() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    this._dataBounds = this.computeBounds();
+    return this._dataBounds;
+  }
+  /**
+   * Starts the animation loop
+   */
+
+
+  start() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    this.animationLoopRunning = true;
+    this.animationLoop.start();
+  }
+  /**
+   * Stops the animation loop
+   */
+
+
+  stop() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    this.animationLoopRunning = false;
+    this.animationLoop.stop();
+  }
+  /**
+   * Renders the graph
+   * @param delta The optional *engine time* diff since the last render, changing this will speed up or slow down animations
+   * @returns The delta, either computed or the parameter passed to the function
+   */
+
+
+  render(delta) {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+
+    if (!this.view.parentElement) {
+      console.log('Graph Renderer is not in the document, yet it is still rendering, destroyed?: ', +this.destroyed);
+    }
+
+    if (this._lastRenderTime === -1) {
+      this._lastRenderTime = Date.now();
+    }
+
+    if (!this.kickoff) {
+      this.animationLoop.start();
+
+      this._kickoffDeferred.resolve();
+
+      this.kickoff = true;
+    } // Increment the engine time by the amount of physical time that has elapsed
+
+
+    delta = delta !== undefined ? delta : Date.now() - this._lastRenderTime;
+    this._engineTime += delta;
+    this._lastRenderTime = Date.now();
+
+    const time = Date.now() - this._startTime;
+
+    if (this.animationProps) {
+      this.dimensionInterpolator.tick(time);
+      const modelViewMatrix = this.camera.computeViewMatrix(this.config.is3D).scale([1, 1, this.config.is3D ? this.dimensionInterpolator.current : 1.0 - this.dimensionInterpolator.current]);
+      const props = {
+        time,
+        engineTime: this._engineTime,
+        framebuffer: this.animationProps.framebuffer,
+        useDevicePixels: this.animationProps.useDevicePixels,
+        _mousePosition: this.animationProps._mousePosition,
+        weightToPixel: this.computeWeightToPixel(this._dataBounds),
+        projectionMatrix: this.camera.projection,
+        modelViewMatrix,
+        hideDeselected: this.config.hideDeselected,
+        minRadius: this.config.nodeMinRadius,
+        maxRadius: this.config.nodeMaxRadius,
+        canvasPixelSize: [this.config.width, this.config.height],
+        forceRender: this._forceDraw || this.camera.isMoving || this.dimensionInterpolator.current < 1.0
+      };
+      this._forceDraw = false;
+      this.camera.tick(time); // Set the enabled states on the nodes/edges
+
+      if (this.nodes && !this.camera.isMoving && props._mousePosition && ( // We only need to compute the picking if there is something actually listening to it
+      this.hasListeners('vertexClick') || this.hasListeners('vertexHovered'))) {
+        this.nodes.computeHovered(props);
+      }
+
+      if (this._scene.needsRedraw) {
+        if (this.nodes) {
+          this.nodes.enabled = this.config.drawNodes && (!this.config.hideNodesOnMove || !this.camera.isMoving);
+        }
+
+        if (this.edges) {
+          this.edges.enabled = this.config.drawEdges && (!this.config.hideEdgesOnMove || !this.camera.isMoving);
+        }
+      }
+
+      this.animationProps.engineTime = this.engineTime();
+
+      this._scene.render(props);
+    }
+
+    return delta;
+  }
+  /**
+   * Returns a promise that is resolved before the first render
+   */
+
+
+  awaitKickoff() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+    return this._kickoffDeferred.promise;
+  }
+  /**
+   * Destroy's the graph renderer
+   */
+
+
+  destroy() {
+    invariant(!this.destroyed, 'renderer is destroyed!');
+
+    if (!this.destroyed) {
+      this.__destroyed = true;
+      this.animationLoop.stop();
+
+      this._data.destroy();
+
+      this._scene.destroy();
+    }
+  }
+  /**
+   * Binds the given data to the renderable which supports it
+   * @param type The type of data
+   * @param store The data store
+   */
+
+
+  bindDataToRenderable(type, store) {
+    // i.e. type: Node, store: NodeStore, renderable: NodeRenderable
+    for (const renderable of this.scene.renderables()) {
+      const hasData = renderable;
+
+      if (hasData.itemType === type) {
+        hasData.data = store;
+      }
+    }
+  }
+  /**
+   * Handler when the store has been updated
+   * @param type The type of store that was updated
+   * @param store The new store
+   */
+
+
+  /**
+   * Computes the world bounds of the items drawn to screen
+   */
+  computeBounds() {
+    if (this.config.dataBounds) {
+      return _objectSpread(_objectSpread({}, this.config.dataBounds), {}, {
+        z: this.config.dataBounds.z || DEFAULT_BOUNDS.z
+      });
+    } else {
+      let bounds;
+
+      for (const renderable of this.scene.renderables()) {
+        const boundedRenderable = renderable;
+
+        if (boundedRenderable.computeBounds !== undefined) {
+          const newBounds = boundedRenderable.computeBounds();
+
+          if (!bounds) {
+            bounds = newBounds;
+          } else if (newBounds) {
+            // X
+            bounds.x.max = Math.max(newBounds.x.min, newBounds.x.max, bounds.x.max);
+            bounds.x.min = Math.min(newBounds.x.min, newBounds.x.max, bounds.x.min); // Y
+
+            bounds.y.max = Math.max(newBounds.y.min, newBounds.y.max, bounds.y.max);
+            bounds.y.min = Math.min(newBounds.y.min, newBounds.y.max, bounds.y.min); // Z
+
+            bounds.z.max = Math.max(newBounds.z.min, newBounds.z.max, bounds.z.max);
+            bounds.z.min = Math.min(newBounds.z.min, newBounds.z.max, bounds.z.min);
+          }
+        }
+      }
+
+      return Object.freeze(bounds || DEFAULT_BOUNDS);
+    }
+  }
+  /**
+   * Computes the weight (0 -> 1) to pixel scale
+   */
+
+
+  computeWeightToPixel(bounds) {
+    return (// Scale the weight based on if the graph was fit to the screen
+      Math.max( // Pretend the x axis was stretched to fit the width
+      (bounds.x.max - bounds.x.min) / this.config.width, // Pretend the y axis was stretched to fit the width
+      (bounds.y.max - bounds.y.min) / this.config.height) / 2.0 || 1
+    );
+  }
+
+}
+
+exports.WebGLGraphRenderer = WebGLGraphRenderer;
