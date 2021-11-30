@@ -24,11 +24,11 @@
 		"build:glsl": "yarn build"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^12.0.0",
-		"@types/fs-extra": "^9.0.2",
-		"@types/glob": "^7",
-		"chokidar": "^3.4.3",
-		"fs-extra": "^9.0.1",
-		"glob": "^7.1.6"
+		"@essex/scripts": "^18.2.1",
+		"@types/fs-extra": "^9.0.13",
+		"@types/glob": "^7.2.0",
+		"chokidar": "^3.5.2",
+		"fs-extra": "^9.1.0",
+		"glob": "^7.2.0"
 	}
 }
