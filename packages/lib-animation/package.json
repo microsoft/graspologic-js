@@ -19,7 +19,7 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"bundle_types": "node ../../../scripts/bundleTypes",
+		"bundle_types": "node ../../scripts/bundleTypes",
 		"build_lib": "essex build",
 		"build": "run-s build_lib bundle_types",
 		"clean": "essex clean dist lib",

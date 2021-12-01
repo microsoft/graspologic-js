@@ -19,7 +19,7 @@
 	],
 	"scripts": {
 		"clean": "essex clean lib dist",
-		"bundle_types": "node ../../../scripts/bundleTypes",
+		"bundle_types": "node ../../scripts/bundleTypes",
 		"bundle_lib": "rollup -c rollup.config.js",
 		"build_lib": "essex build",
 		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",

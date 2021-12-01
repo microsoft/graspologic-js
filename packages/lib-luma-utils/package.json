@@ -20,7 +20,7 @@
 	],
 	"scripts": {
 		"clean": "essex clean lib dist",
-		"bundle_types": "node ../../../scripts/bundleTypes",
+		"bundle_types": "node ../../scripts/bundleTypes",
 		"build_lib": "essex build",
 		"build": "run-s build_lib bundle_types",
 		"start": "essex watch"

@@ -1,10 +1,10 @@
 # NodeJS Outputs
-node_modules
-packages/*/*/lib/
-packages/*/*/dist/
-packages/*/*/build/
-packages/*/*/storybook-static/
-packages/*/*/site/
+node_modules/
+lib/
+dist/
+build/
+storybook-static/
+site/
 
 # Misc
 *.log
