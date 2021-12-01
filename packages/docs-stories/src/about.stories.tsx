@@ -3,13 +3,13 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-anonymous-default-export */
-import * as React from 'react'
+import { FC } from 'react'
 
 const ReactMarkdown = require('react-markdown')
 const readmeText = require('../../../README.md').default
 const pkg = require('../../../package.json')
 
-function About() {
+const About: FC = function About() {
 	return (
 		<div style={{ padding: 20 }}>
 			<h1>{pkg.name}</h1>
