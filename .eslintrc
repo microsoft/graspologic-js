@@ -10,6 +10,9 @@
 		"@typescript-eslint/ban-ts-ignore": 0,
 		"@typescript-eslint/ban-ts-comment": 0,
 
+		// this is handled by prettier. interferes with `;(this as any).x()`
+		"@typescript-eslint/no-extra-semi": 0,
+
 		// TODO: this should probably be re-enabled before publication
 		// This rule is disabled because we are using TypeScript for props validation, not prop-types
 		"react/prop-types": 0,
