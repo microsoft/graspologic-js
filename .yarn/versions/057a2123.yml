@@ -1,4 +1,5 @@
 releases:
+  "@graspologic/animation": patch
   "@graspologic/camera": patch
   "@graspologic/common": patch
   "@graspologic/graph": patch
@@ -6,6 +7,9 @@ releases:
   "@graspologic/layout-fa2": patch
   "@graspologic/layout-openord": patch
   "@graspologic/layout-sandbox": patch
+  "@graspologic/luma-utils": patch
+  "@graspologic/memstore": patch
+  "@graspologic/monorepo": patch
   "@graspologic/react": patch
   "@graspologic/render-controls": patch
   "@graspologic/render-controls-react": patch
@@ -14,8 +18,6 @@ releases:
   "@graspologic/renderables-nodes": patch
   "@graspologic/renderables-support": patch
   "@graspologic/renderer": patch
+  "@graspologic/renderer-glsl": patch
+  "@graspologic/stories": patch
   "@graspologic/testdata": patch
-
-declined:
-  - "@graspologic/monorepo"
-  - "@graspologic/stories"
