@@ -3159,6 +3159,7 @@ __metadata:
     "@types/node": ^16.11.11
     "@types/react": ^17.0.37
     "@types/react-dom": ^17.0.11
+    core-js: ^3.19.2
     enzyme: ^3.11.0
     math.gl: ^3.2.2
     npm-run-all: ^4.1.5
