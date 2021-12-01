@@ -3,9 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-anonymous-default-export */
-import { FC } from 'react'
+import React, { FC } from 'react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-const ReactMarkdown = require('react-markdown')
+const ReactMarkdown = require('react-markdown').default
 const readmeText = require('../../../README.md').default
 const pkg = require('../../../package.json')
 
@@ -17,7 +18,7 @@ const About: FC = function About() {
 			<h3>{pkg.repository}</h3>
 
 			<div style={{ border: '1px solid grey', padding: 20 }}>
-				<ReactMarkdown source={readmeText} />
+				<ReactMarkdown>{readmeText}</ReactMarkdown>
 			</div>
 		</div>
 	)
@@ -26,6 +27,6 @@ const About: FC = function About() {
 export default {
 	title: 'About Graspologic.js',
 	component: About,
-}
+} as ComponentMeta<typeof About>
 
-export const Main = () => <About />
+export const Main: ComponentStory<typeof About> = () => <About />
