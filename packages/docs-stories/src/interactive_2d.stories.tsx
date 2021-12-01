@@ -153,23 +153,28 @@ CanChangeRenderProperties.args = {
 	axesInCorner: DEFAULT_CORNER_AXES,
 	nodeOutline: DEFAULT_NODE_OUTLINE,
 }
-// TODO: controls doesn't appear to expose an increment property-
-// for controls in range 0-1, maybe we should expose 0-100 and map to a 0-1 float
-// in the component
 CanChangeRenderProperties.argTypes = {
-	r: { control: { type: 'range', min: 0, max: 1 } },
-	g: { control: { type: 'range', min: 0, max: 1 } },
-	b: { control: { type: 'range', min: 0, max: 1 } },
-	a: { control: { type: 'range', min: 0, max: 1 } },
-	nodeMinRadius: { control: { type: 'range', min: 0.1, max: 10 } },
-	nodeMaxRadius: { control: { type: 'range', min: 0.1, max: 10 } },
-	nodeMinSaturation: { control: { type: 'range', min: 0, max: 1.0 } },
-	nodeMaxSaturation: { control: { type: 'range', min: 0, max: 1.0 } },
+	r: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	g: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	b: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	a: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	nodeMinRadius: { control: { type: 'range', min: 0.1, max: 10, step: 0.1 } },
+	nodeMaxRadius: { control: { type: 'range', min: 0.1, max: 10, step: 0.1 } },
+	nodeMinSaturation: {
+		control: { type: 'range', min: 0, max: 1.0, step: 0.1 },
+	},
+	nodeMaxSaturation: {
+		control: { type: 'range', min: 0, max: 1.0, step: 0.1 },
+	},
 	edgeMinWidth: { control: { type: 'range', min: 1.0, max: 10 } },
 	edgeMaxWidth: { control: { type: 'range', min: 1.0, max: 10 } },
-	edgeAlpha: { control: { type: 'range', min: 0, max: 1.0 } },
-	edgeMinSaturation: { control: { type: 'range', min: 0, max: 1.0 } },
-	edgeMaxSaturation: { control: { type: 'range', min: 0, max: 1.0 } },
+	edgeAlpha: { control: { type: 'range', min: 0, max: 1.0, step: 0.1 } },
+	edgeMinSaturation: {
+		control: { type: 'range', min: 0, max: 1.0, step: 0.1 },
+	},
+	edgeMaxSaturation: {
+		control: { type: 'range', min: 0, max: 1.0, step: 0.1 },
+	},
 }
 
 export const FullyInteractive: ComponentStory<null> = () => (
@@ -199,10 +204,10 @@ CanChangeHoverHighlightColor.args = {
 	a: DEFAULT_HOVER_HIGHLIGHT_COLOR[3],
 }
 CanChangeHoverHighlightColor.argTypes = {
-	r: { control: { type: 'range', min: 0, max: 1 } },
-	g: { control: { type: 'range', min: 0, max: 1 } },
-	b: { control: { type: 'range', min: 0, max: 1 } },
-	a: { control: { type: 'range', min: 0, max: 1 } },
+	r: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	g: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	b: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	a: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
 }
 
 export const CanChangeColorizerWithoutReloadingData: ComponentStory<null> = ({
@@ -232,10 +237,10 @@ CanChangeHoverHighlightColor.args = {
 	a: 1,
 }
 CanChangeHoverHighlightColor.argTypes = {
-	r: { control: { type: 'range', min: 0, max: 1 } },
-	g: { control: { type: 'range', min: 0, max: 1 } },
-	b: { control: { type: 'range', min: 0, max: 1 } },
-	a: { control: { type: 'range', min: 0, max: 1 } },
+	r: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	g: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	b: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	a: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
 }
 
 export const CanShowHoverNodeLabel: ComponentStory<null> = () => {
@@ -286,10 +291,10 @@ CanChangeHoverHighlightColor.args = {
 	a: DEFAULT_HOVER_HIGHLIGHT_COLOR[3],
 }
 CanChangeHoverHighlightColor.argTypes = {
-	r: { control: { type: 'range', min: 0, max: 1 } },
-	g: { control: { type: 'range', min: 0, max: 1 } },
-	b: { control: { type: 'range', min: 0, max: 1 } },
-	a: { control: { type: 'range', min: 0, max: 1 } },
+	r: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	g: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	b: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+	a: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
 }
 
 export const CanShowNodeSetLabel: ComponentStory<null> = () => {
