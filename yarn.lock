@@ -3409,10 +3409,11 @@ __metadata:
     react-fps-stats: ^0.1.4
     react-markdown: ^7.1.1
     regenerator-runtime: ^0.13.9
-    source-map-loader: ^1.1.3
+    source-map-loader: ^3.0.0
     typedoc: 0.22.10
     typescript: ^4.5.2
     webpack: ^5.64.4
+    webpack-glsl-loader: ^1.0.1
     worker-loader: ^3.0.8
   languageName: unknown
   linkType: soft
@@ -12517,6 +12518,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fs@npm:0.0.2":
+  version: 0.0.2
+  resolution: "fs@npm:0.0.2"
+  checksum: 3880da7d419d5a87d7127a9931ab533875a186ad0cd9bfd3334aa3fabe4f8bbfd3fedfb7c14a248a01181eaaea37e4141e6ff9f798eb48d04d7009f6b8008308
+  languageName: node
+  linkType: hard
+
 fsevents@^1.2.7:
   version: 1.2.13
   resolution: "fsevents@npm:1.2.13"
@@ -18477,6 +18485,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"path@npm:^0.11.14":
+  version: 0.11.14
+  resolution: "path@npm:0.11.14"
+  checksum: ba41aad7bd1f30e5bc4dd6b93c862173b8165371e32c4d79013afb744289d681b2b8960a4b307680aaab27276ab2457b23148da892792d76a0b572f2aae0e5b3
+  languageName: node
+  linkType: hard
+
 "pbkdf2@npm:^3.0.3":
   version: 3.1.1
   resolution: "pbkdf2@npm:3.1.1"
@@ -21096,6 +21111,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"source-map-js@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "source-map-js@npm:0.6.2"
+  checksum: 9c8151a29e00fd8d3ba87709fdf9a9ce48313d653f4a29a39b4ae53d346ac79e005de624796ff42eff55cbaf26d2e87f4466001ca87831d400d818c5cf146a0e
+  languageName: node
+  linkType: hard
+
 "source-map-js@npm:^1.0.1":
   version: 1.0.1
   resolution: "source-map-js@npm:1.0.1"
@@ -21103,19 +21125,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"source-map-loader@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "source-map-loader@npm:1.1.3"
+"source-map-loader@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "source-map-loader@npm:3.0.0"
   dependencies:
     abab: ^2.0.5
     iconv-lite: ^0.6.2
-    loader-utils: ^2.0.0
-    schema-utils: ^3.0.0
-    source-map: ^0.6.1
-    whatwg-mimetype: ^2.3.0
+    source-map-js: ^0.6.2
   peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 0ca16a1458f206e12925f242ce52913b5f35de657d2ec17fd60ab3de7fa85b72b6707951b7a18899bdf05679d679a8b9edeb660c557aafa66453886d6907e3ec
+    webpack: ^5.0.0
+  checksum: c4459cef5a43917ca1c7ad53b106ba715d545daae1ace259c867c36b2b2443c3b9eebe8630cac8f193760db39965c22d1b44d8f69e9910b88c8aca1c836757b5
   languageName: node
   linkType: hard
 
@@ -23754,6 +23773,16 @@ fsevents@^1.2.7:
   peerDependencies:
     webpack: ^2.0.0 || ^3.0.0 || ^4.0.0
   checksum: 91d853596ddb81b6c4673e03f55ab18f7f652ef7a278533623910d53b59df1c661b7f2cb2ef859eabc5fd615daa5be3f9f4c00a59ab33192b93f1be7c8908ace
+  languageName: node
+  linkType: hard
+
+"webpack-glsl-loader@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "webpack-glsl-loader@npm:1.0.1"
+  dependencies:
+    fs: 0.0.2
+    path: ^0.11.14
+  checksum: 71bf17235104b9aecfe0062e7be3d196580f37d7b43cdd89d490ee0d0386e1867688ca807646de6ebbeaa04ab6182e702601c906445268e05be57447297b672a
   languageName: node
   linkType: hard
 

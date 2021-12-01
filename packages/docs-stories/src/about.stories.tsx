@@ -6,8 +6,8 @@
 import * as React from 'react'
 
 const ReactMarkdown = require('react-markdown')
-const readmeText = require('../../../../README.md').default
-const pkg = require('../../../../package.json')
+const readmeText = require('../../../README.md').default
+const pkg = require('../../../package.json')
 
 function About() {
 	return (
@@ -27,3 +27,5 @@ export default {
 	title: 'About Graspologic.js',
 	component: About,
 }
+
+export const Main = () => <About />
