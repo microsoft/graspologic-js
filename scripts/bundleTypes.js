@@ -9,5 +9,5 @@ const pkg = require(join(process.cwd(), './package.json'))
 dts.bundle({
 	name: pkg.name,
 	out: 'bundle.d.ts',
-	main: 'lib/index.d.ts',
+	main: 'dist/types/index.d.ts',
 })
