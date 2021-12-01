@@ -2,23 +2,35 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// import { number } from '@storybook/addon-knobs'
-// import { storiesOf } from '@storybook/react'
-// import React from 'react'
-// import { StressTestVertices2D } from './components/StressTestVertices2D'
-// import { StressTestVertices3D } from './components/StressTestVertices3D'
-// import { componentColorToBGRA } from '@graspologic/renderer'
+import { componentColorToBGRA } from '@graspologic/renderer'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { StressTestVertices2D } from './components/StressTestVertices2D'
+import { StressTestVertices3D } from './components/StressTestVertices3D'
 
-// const COL_RANGE = { range: true, min: 0.0, max: 1.0, step: 0.01 }
+export default {
+	title: 'Stress Tests',
+} as ComponentMeta<null>
 
-// storiesOf('Stress Tests', module)
-// 	.add('2D view with dynamic vertex count', () => <StressTestVertices2D />)
-// 	.add('3D view with dynamic vertex count', () => <StressTestVertices3D />)
-// 	.add('2D view with colorizer', () => {
-// 		const r = number('R', 1, COL_RANGE)
-// 		const g = number('G', 0, COL_RANGE)
-// 		const b = number('B', 0, COL_RANGE)
-// 		const a = number('A', 1, COL_RANGE)
-// 		const color = componentColorToBGRA([r, g, b, a])
-// 		return <StressTestVertices2D colorizer={() => color} />
-// 	})
+export const StressTest2D: ComponentStory<null> = () => <StressTestVertices2D />
+export const StressTest3D: ComponentStory<null> = () => <StressTestVertices3D />
+export const StressTest2DWithColorizer: ComponentStory<null> = ({
+	r,
+	g,
+	b,
+	a,
+}) => {
+	const color = componentColorToBGRA([r, g, b, a])
+	return <StressTestVertices2D colorizer={() => color} />
+}
+StressTest2DWithColorizer.args = {
+	r: 1,
+	g: 0,
+	b: 0,
+	a: 1,
+}
+StressTest2DWithColorizer.argTypes = {
+	r: { component: { type: 'range', min: 0, max: 1, step: 0.01 } },
+	g: { component: { type: 'range', min: 0, max: 1, step: 0.01 } },
+	b: { component: { type: 'range', min: 0, max: 1, step: 0.01 } },
+	a: { component: { type: 'range', min: 0, max: 1, step: 0.01 } },
+}
