@@ -2,13 +2,13 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { EventEmitter } from '@graspologic/common'
+import { GraphContainer } from '@graspologic/graph'
 import {
 	WorkerMessageType,
 	WorkerMessage,
 	ExecuteMessagePayload,
 } from './types'
-import { EventEmitter } from '@graspologic/common'
-import { GraphContainer } from '@graspologic/graph'
 
 export interface LayoutWorkerManagerEvents<TickProgress> {
 	/**
@@ -22,7 +22,7 @@ export interface LayoutWorkerManagerEvents<TickProgress> {
  */
 export class LayoutWorkerManager<
 	Configuration,
-	TickProgress
+	TickProgress,
 > extends EventEmitter<LayoutWorkerManagerEvents<TickProgress>> {
 	private _createWorker: () => Worker
 	private _worker?: Worker

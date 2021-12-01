@@ -5,9 +5,6 @@
 
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import * as React from 'react'
-import { memo, useMemo, useEffect, useRef } from 'react'
-import colorizer from '../data/categoricalColorizer'
 import { GraphContainer, InputGraph } from '@graspologic/graph'
 import { LayoutWorkerManager } from '@graspologic/layout-core'
 import { FA2Configuration, FA2TickProgress } from '@graspologic/layout-fa2'
@@ -24,6 +21,9 @@ import {
 	NodeSettings,
 } from '@graspologic/render-controls-react'
 import { GraphRenderer } from '@graspologic/renderer'
+import { memo, useMemo, useEffect, useRef } from 'react'
+import * as React from 'react'
+import colorizer from '../data/categoricalColorizer'
 
 // Worker content
 function getWorker() {

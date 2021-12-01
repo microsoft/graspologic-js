@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { GraphRenderer } from '@graspologic/renderer'
 import { mount } from 'enzyme'
 import * as React from 'react'
 import { GraphView } from '../GraphView'
-import { GraphRenderer } from '@graspologic/renderer'
 
 const mountWithRef = (el: JSX.Element, options?: any) => {
 	const WithRef = (): JSX.Element => el
@@ -16,7 +16,7 @@ describe('The Graph View', () => {
 	it('can mock luma', () => {
 		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const luma = require('@luma.gl/engine')
-		expect(luma.mock).toEqual(true)
+		expect(luma.mock).toBe(true)
 	})
 
 	// eslint-disable-next-line jest/expect-expect
@@ -51,7 +51,7 @@ describe('The Graph View', () => {
 			/>,
 		)
 		expect(apiRef!).toBeDefined()
-		expect(typeof apiRef!.changePositions).toEqual('function')
+		expect(typeof apiRef!.changePositions).toBe('function')
 		expect(apiRef!.config).toBeDefined()
 	})
 })

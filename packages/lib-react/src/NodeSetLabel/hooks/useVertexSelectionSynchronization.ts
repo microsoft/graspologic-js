@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useEffect } from 'react'
 import type { DataboundRenderable } from '@graspologic/renderables-base'
 import type { GraphRenderer, Node } from '@graspologic/renderer'
+import { useEffect } from 'react'
 
 export function useVertexSelectionSynchronization(
 	renderer: GraphRenderer | undefined,

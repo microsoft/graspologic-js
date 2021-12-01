@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useEffect } from 'react'
 import { GraphRenderer, Bounds } from '@graspologic/renderer'
+import { useEffect } from 'react'
 
 /**
  * Updates the renderer's camera to use __bounds__ as it's bounds

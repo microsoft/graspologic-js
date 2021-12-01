@@ -20,7 +20,7 @@ describe('ArrayStore', () => {
 		})
 		expect(store).toBeDefined()
 		expect(store.dataView.byteLength).toEqual(store.bytesPerItem * 2)
-		expect(store.count).toEqual(2)
+		expect(store.count).toBe(2)
 	})
 
 	it('can be destroyed', () => {
@@ -30,7 +30,7 @@ describe('ArrayStore', () => {
 		expect(store).toBeDefined()
 		expect(store.dataView.byteLength).toEqual(store.bytesPerItem * 2)
 		store.destroy()
-		expect(store.dataView.byteLength).toEqual(0)
+		expect(store.dataView.byteLength).toBe(0)
 	})
 
 	it('throws on invalid item data indices', () => {
@@ -46,10 +46,10 @@ describe('ArrayStore', () => {
 			capacity: 2,
 		})
 		let offset = store.getByteOffset(1)
-		expect(offset).toEqual(12 /* x + y + bool + padding */)
+		expect(offset).toBe(12 /* x + y + bool + padding */)
 
 		offset = store.getByteOffsetAttr(1, 'x')
-		expect(offset).toEqual(12)
+		expect(offset).toBe(12)
 
 		offset = store.getByteOffsetAttr(1, 'y')
 		expect(offset).toEqual(12 + 4)

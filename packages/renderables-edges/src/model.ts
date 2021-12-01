@@ -2,7 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Model, Geometry } from '@luma.gl/engine'
 
 import { edgeMemoryLayout } from '@graspologic/graph'
 import {
@@ -13,6 +12,7 @@ import {
 	GL_TRIANGLE_STRIP,
 } from '@graspologic/luma-utils'
 import edgeFS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.fs.glsl'
+import { Model, Geometry } from '@luma.gl/engine'
 
 const GL_TYPE_MAPPINGS = {
 	color: uint32ColorTypeMapping,

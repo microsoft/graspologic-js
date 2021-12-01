@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { LayoutWorkerManager } from '@graspologic/layout-core'
 import { useEffect, useState } from 'react'
 import { animationFrameScheduler, Observable } from 'rxjs'
 import { throttleTime } from 'rxjs/operators'
-import { LayoutWorkerManager } from '@graspologic/layout-core'
 
 export function useDensityGridSnapshot(manager: LayoutWorkerManager<any, any>) {
 	const [densityGridSnapshot, setDensityGridSnapshot] = useState<number[][]>([])

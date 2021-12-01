@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { VertexLabelRenderable } from './VertexLabelRenderable'
 import { Node } from '@graspologic/graph'
 import { CompositeDataboundRenderable } from '@graspologic/renderables-base'
+import { VertexLabelRenderable } from './VertexLabelRenderable'
 
 /**
  * A renderable that can be added to a GraphRenderer for rendering labels for a set of nodes

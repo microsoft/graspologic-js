@@ -3,9 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 // @ts-ignore
+import { Disconnect } from '@graspologic/common'
 import { EventManager } from 'mjolnir.js'
 import { GraphRenderer } from '../types'
-import { Disconnect } from '@graspologic/common'
 
 /**
  * Enables click events on the given graph renderer

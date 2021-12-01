@@ -30,12 +30,12 @@ describe('IdStore', () => {
 
 		ids = [...store.itemIds()]
 		expect(ids).toHaveLength(3)
-		expect(ids[0]).toEqual(0)
-		expect(ids[1]).toEqual(1)
-		expect(ids[2]).toEqual(2)
-		expect(id1).toEqual(0)
-		expect(id2).toEqual(1)
-		expect(id3).toEqual(2)
+		expect(ids[0]).toBe(0)
+		expect(ids[1]).toBe(1)
+		expect(ids[2]).toBe(2)
+		expect(id1).toBe(0)
+		expect(id2).toBe(1)
+		expect(id3).toBe(2)
 	})
 
 	it('should fire add event when an item is added', () => {

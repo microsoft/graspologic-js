@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { GraphContainer } from '@graspologic/graph'
 import { AnnealingClock } from './AnnealingClock'
 import { DensityGrid } from './DensityGrid'
 import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
 import { OpenOrdConfiguration, DEFAULT_CONFIGURATION } from './types'
-import { GraphContainer } from '@graspologic/graph'
 
 /**
  * @internal

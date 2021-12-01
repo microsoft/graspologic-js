@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { AnimationUtil } from './types'
 import {
 	AttributeName,
 	MemoryReader,
 	MemoryReaderInspector,
 } from '@graspologic/memstore'
+import { AnimationUtil } from './types'
 
 /**
  * Provides an implementation of AnimationUtil

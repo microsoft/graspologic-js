@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Vector3, Quaternion } from 'math.gl'
-import { CameraState } from './CameraState'
 import { Interpolator, EventEmitter } from '@graspologic/common'
 import { lerp3, slerp } from '@graspologic/luma-utils'
+import { Vector3, Quaternion } from 'math.gl'
+import { CameraState } from './CameraState'
 
 export interface TransitioningCameraStateEvents {
 	/**
@@ -19,9 +19,7 @@ export interface TransitioningCameraStateEvents {
  *
  * A camera state that transitions between two different camera states
  */
-export class TransitioningCameraState extends EventEmitter<
-	TransitioningCameraStateEvents
-> {
+export class TransitioningCameraState extends EventEmitter<TransitioningCameraStateEvents> {
 	private interpolator?: Interpolator
 
 	/**

@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useEffect } from 'react'
 import {
 	enablePanZoomEvents,
 	GraphRenderer,
 	Disconnect,
 } from '@graspologic/renderer'
+import { useEffect } from 'react'
 
 /**
  * Enables pan-zoom behavior on __renderer__ of __interactive__ is true

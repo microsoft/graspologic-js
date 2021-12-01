@@ -21,15 +21,15 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/common": "workspace:*",
-		"@graspologic/graph": "workspace:*",
-		"@graspologic/layout-core": "workspace:*",
+		"@graspologic/common": "workspace:packages/lib-common",
+		"@graspologic/graph": "workspace:packages/lib-graph",
+		"@graspologic/layout-core": "workspace:packages/layout-core",
 		"core-js": "^3.19.2",
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^18.2.1",
-		"@graspologic/testdata": "workspace:*",
+		"@graspologic/testdata": "workspace:packages/lib-testdata",
 		"@rollup/plugin-commonjs": "^15.1.0",
 		"@rollup/plugin-node-resolve": "^9.0.0",
 		"@rollup/plugin-replace": "^2.3.3",

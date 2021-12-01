@@ -2,8 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import * as React from 'react'
-import { useRef, useEffect, useState } from 'react'
 import { GraphContainer } from '@graspologic/graph'
 import {
 	WebGLGraphRenderer,
@@ -11,6 +9,8 @@ import {
 	Maybe,
 	Bounds,
 } from '@graspologic/renderer'
+import * as React from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 /**
  * Creates a new GraphRenderer instance

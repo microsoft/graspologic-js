@@ -2,6 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { GraphContainer, randBetween, Node, Edge } from '@graspologic/graph'
+import { BaseExecutor, CountdownClock } from '@graspologic/layout-core'
 import { iterate } from './forces'
 import {
 	DEFAULT_CONFIGURATION,
@@ -9,8 +11,6 @@ import {
 	FA2TickProgress,
 	ForceMetrics,
 } from './types'
-import { GraphContainer, randBetween, Node, Edge } from '@graspologic/graph'
-import { BaseExecutor, CountdownClock } from '@graspologic/layout-core'
 
 /**
  * @internal

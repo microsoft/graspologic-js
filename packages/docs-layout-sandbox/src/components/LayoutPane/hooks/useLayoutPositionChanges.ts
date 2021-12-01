@@ -2,6 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { NodeId, Position, GraphContainer } from '@graspologic/graph'
+import { LayoutWorkerManager } from '@graspologic/layout-core'
+import { PositionMap, GraphRenderer } from '@graspologic/renderer'
 import {
 	useCallback,
 	useEffect,
@@ -13,9 +16,6 @@ import {
 import { animationFrameScheduler, Observable } from 'rxjs'
 import { throttleTime } from 'rxjs/operators'
 import { InputGraphContext } from '../../context'
-import { NodeId, Position, GraphContainer } from '@graspologic/graph'
-import { LayoutWorkerManager } from '@graspologic/layout-core'
-import { PositionMap, GraphRenderer } from '@graspologic/renderer'
 
 export function useLayoutPositionChanges(
 	api: RefObject<GraphRenderer>,

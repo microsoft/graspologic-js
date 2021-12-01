@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { NodeImpl, Position } from '@graspologic/graph'
 import chalk from 'chalk'
 import { interpolateOranges as getColor } from 'd3-scale-chromatic'
 import { DensityGrid, FALLOFF, DIAMETER, GRID_SIZE } from '../DensityGrid'
-import { NodeImpl, Position } from '@graspologic/graph'
 
 describe('DensityGrid', () => {
 	it('can be constructed', () => {
@@ -31,27 +31,27 @@ describe('DensityGrid', () => {
 		node2.y = 10
 		node2.size = 5
 
-		expect(grid.checksum).toEqual(0)
-		expect(grid.size).toEqual(0)
+		expect(grid.checksum).toBe(0)
+		expect(grid.size).toBe(0)
 
 		// Empty DG should have to density
-		expect(grid.getDensity(node1, nodePos)).toEqual(0)
+		expect(grid.getDensity(node1, nodePos)).toBe(0)
 
 		grid.add(node1)
 		expect(grid.checksum).toBeGreaterThan(0)
-		expect(grid.size).toEqual(1)
+		expect(grid.size).toBe(1)
 		grid.initialLoad = false
 
 		// Density at location should be 1.0 for other nodes
-		expect(grid.getDensity(node1, nodePos)).toEqual(0.0)
-		expect(grid.getDensity(node2, nodePos)).toEqual(1.0)
+		expect(grid.getDensity(node1, nodePos)).toBe(0.0)
+		expect(grid.getDensity(node2, nodePos)).toBe(1.0)
 
 		// remove the node - should clear backing bitmap
 		grid.subtract(node1)
 
 		// IEEE floats are imprecise
 		expect(grid.checksum).toBeCloseTo(0)
-		expect(grid.size).toEqual(0)
+		expect(grid.size).toBe(0)
 	})
 
 	it('can compute overlap', () => {
@@ -72,7 +72,7 @@ describe('DensityGrid', () => {
 		grid.add(node2)
 
 		// Density at location should be 1.0 for other nodes
-		expect(grid.getOverlap(node1, node1)).toEqual(1)
+		expect(grid.getOverlap(node1, node1)).toBe(1)
 	})
 })
 

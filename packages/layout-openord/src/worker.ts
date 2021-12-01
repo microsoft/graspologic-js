@@ -3,9 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable no-restricted-globals */
-import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
-import { createInstance } from './factory'
-import { OpenOrdConfiguration } from './types'
 import { Disconnect } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
 import {
@@ -13,6 +10,9 @@ import {
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
+import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
+import { createInstance } from './factory'
+import { OpenOrdConfiguration } from './types'
 
 let executor: OpenOrdLayoutExecutor | undefined
 let subscription: Disconnect | undefined

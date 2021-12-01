@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { openOrd } from '../executeLayout'
 import { GraphContainer } from '@graspologic/graph'
 import { lesMisGraph } from '@graspologic/testdata'
+import { openOrd } from '../executeLayout'
 
 // eslint-disable-next-line jest/no-disabled-tests
 describe.skip('OpenOrd Layout', () => {

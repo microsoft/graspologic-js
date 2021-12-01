@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useEffect } from 'react'
 import { ColorVector, GraphRenderer } from '@graspologic/renderer'
+import { useEffect } from 'react'
 
 /**
  * Updates the background color of __renderer__ to __backgroundColor__

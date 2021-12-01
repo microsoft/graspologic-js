@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { DEFAULT_DRAW_AXES, DEFAULT_CORNER_AXES } from '@graspologic/renderer'
 import * as React from 'react'
 import { memo, useContext, useEffect } from 'react'
 import { GraphRendererContext } from '../GraphView/context'
 import { useAxesRenderable } from './hooks/useAxesRenderable'
-import { DEFAULT_DRAW_AXES, DEFAULT_CORNER_AXES } from '@graspologic/renderer'
 
 /**
  * The properties for the Axes component

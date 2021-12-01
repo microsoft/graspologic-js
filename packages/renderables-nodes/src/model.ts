@@ -3,8 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 
-import { Model, Geometry } from '@luma.gl/engine'
-import { picking } from '@luma.gl/shadertools'
 import { nodeMemoryLayout } from '@graspologic/graph'
 import {
 	tween,
@@ -14,6 +12,8 @@ import {
 	GL_TRIANGLES,
 } from '@graspologic/luma-utils'
 import nodeFS from '@graspologic/renderer-glsl/dist/esm/shaders/node.fs.glsl'
+import { Model, Geometry } from '@luma.gl/engine'
+import { picking } from '@luma.gl/shadertools'
 
 const GL_TYPE_MAPPINGS = {
 	color: uint32ColorTypeMapping,

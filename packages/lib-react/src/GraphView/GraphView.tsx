@@ -2,6 +2,19 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { InputGraph, GraphContainer, Node } from '@graspologic/graph'
+import {
+	NodeColorizer,
+	ColorVector,
+	DEFAULT_BG_COLOR,
+	DEFAULT_HIDE_DESELECTED,
+	DEFAULT_IS_3D,
+	DEFAULT_INTERPOLATION_TIME,
+	GraphRenderer,
+	DEFAULT_DRAW_EDGES,
+	Maybe,
+	Bounds,
+} from '@graspologic/renderer'
 import * as React from 'react'
 import { memo, forwardRef, useCallback, useMemo } from 'react'
 import { SizedToParent } from '../SizedToParent'
@@ -16,19 +29,6 @@ import { useGraphInterpolationTime } from './hooks/useGraphInterpolationTime'
 import { useGraphRenderKickoff } from './hooks/useGraphRenderKickoff'
 import { useGraphRenderer } from './hooks/useGraphRenderer'
 import { useGraphRendererBackgroundColor } from './hooks/useGraphRendererBackgroundColor'
-import { InputGraph, GraphContainer, Node } from '@graspologic/graph'
-import {
-	NodeColorizer,
-	ColorVector,
-	DEFAULT_BG_COLOR,
-	DEFAULT_HIDE_DESELECTED,
-	DEFAULT_IS_3D,
-	DEFAULT_INTERPOLATION_TIME,
-	GraphRenderer,
-	DEFAULT_DRAW_EDGES,
-	Maybe,
-	Bounds,
-} from '@graspologic/renderer'
 
 const DEFAULT_STYLE = {
 	width: 500,

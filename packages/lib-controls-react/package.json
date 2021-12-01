@@ -6,7 +6,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/microsoft/graspologic-js.git",
-		"directory": "packages/libs/controls-react"
+		"directory": "packages/lib-controls-react"
 	},
 	"contributors": [
 		"David Tittsworth (datittsw@microsoft.com)",
@@ -27,9 +27,9 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/react": "workspace:*",
-		"@graspologic/render-controls": "workspace:*",
-		"@graspologic/renderer": "workspace:*",
+		"@graspologic/react": "workspace:packages/lib-react",
+		"@graspologic/render-controls": "workspace:packages/lib-controls",
+		"@graspologic/renderer": "workspace:packages/lib-renderer",
 		"dat.gui": "^0.7.7",
 		"typedoc": "0.22.10"
 	},

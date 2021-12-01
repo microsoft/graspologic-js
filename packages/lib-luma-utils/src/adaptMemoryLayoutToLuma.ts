@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { MemoryLayout, AttributeType } from '@graspologic/memstore'
 import { Buffer } from '@luma.gl/webgl'
 import { GL_UNSIGNED_BYTE, GL_FLOAT, GL_UNSIGNED_INT } from './glConstants'
-import { MemoryLayout, AttributeType } from '@graspologic/memstore'
 
 /**
  * Returns the appropriate GL type representing the given Attribute Type

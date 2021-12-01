@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useEffect } from 'react'
 import { GraphRenderer, CameraAdjustmentMode } from '@graspologic/renderer'
+import { useEffect } from 'react'
 
 /**
  * Updates __renderer__ to use __mode__ as it's CameraAdjustmentMode

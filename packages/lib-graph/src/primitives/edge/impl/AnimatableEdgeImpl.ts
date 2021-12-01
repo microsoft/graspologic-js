@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { MemoryReader, MemoryReaderInspector } from '@graspologic/memstore'
 import { InputEdge } from '../../../graph'
 import { Pos3D, Pos2D, ClassType } from '../../types'
 import { edgeTypedOffset } from '../layout'
 import { AnimatableEdge, Edge, EdgeStore } from '../types'
 import { EdgeImpl } from './EdgeImpl'
-import { MemoryReader, MemoryReaderInspector } from '@graspologic/memstore'
 
 // Cache several frequently accessed names / offsets
 const allAttributes = '*'

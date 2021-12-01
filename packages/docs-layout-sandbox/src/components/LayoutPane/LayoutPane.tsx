@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { GraphRenderer } from '@graspologic/renderer'
 import React, { memo, useRef, useMemo, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { LayoutAlgorithm } from '../../types'
@@ -13,7 +14,6 @@ import { useDensityGridSnapshot } from './hooks/useDensityGridSnapshot'
 import { useLayoutManager } from './hooks/useLayoutManager'
 import { useLayoutPositionChanges } from './hooks/useLayoutPositionChanges'
 import { useLayoutProgress } from './hooks/useLayoutProgress'
-import { GraphRenderer } from '@graspologic/renderer'
 
 export interface LayoutPaneProps {
 	iterative: boolean
@@ -36,18 +36,15 @@ export const LayoutPane: React.FC<LayoutPaneProps> = memo(
 			energyHistory,
 			phaseHistory,
 		] = useLayoutProgress(manager, run)
-		const [
-			handleOnStart,
-			handleOnStop,
-			handleOnResume,
-			isRunning,
-		] = useLayoutPositionChanges(graphViewRef, manager)
+		const [handleOnStart, handleOnStop, handleOnResume, isRunning] =
+			useLayoutPositionChanges(graphViewRef, manager)
 		const densityGridSnapshot = useDensityGridSnapshot(manager)
 		const [zero, setZero] = useState(false)
 		const [logScale, setLogScale] = useState(true)
-		const onSave = useCallback(() => console.log('save off ', energyHistory), [
-			energyHistory,
-		])
+		const onSave = useCallback(
+			() => console.log('save off ', energyHistory),
+			[energyHistory],
+		)
 		const onStart = useCallback(() => {
 			setRun(run + 1)
 			handleOnStart()
@@ -63,14 +60,14 @@ export const LayoutPane: React.FC<LayoutPaneProps> = memo(
 					onResume={handleOnResume}
 					percentComplete={percentComplete}
 					phasePercentComplete={phasePercentComplete}
-					status={useMemo(() => (isRunning ? progressLabel : 'Idle'), [
-						isRunning,
-						progressLabel,
-					])}
-					phaseStatus={useMemo(() => (isRunning ? phaseProgressLabel : ''), [
-						isRunning,
-						phaseProgressLabel,
-					])}
+					status={useMemo(
+						() => (isRunning ? progressLabel : 'Idle'),
+						[isRunning, progressLabel],
+					)}
+					phaseStatus={useMemo(
+						() => (isRunning ? phaseProgressLabel : ''),
+						[isRunning, phaseProgressLabel],
+					)}
 					zero={zero}
 					onZeroChanged={setZero}
 					logScale={logScale}

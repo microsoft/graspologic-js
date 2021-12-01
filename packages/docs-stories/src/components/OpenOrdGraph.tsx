@@ -4,13 +4,8 @@
  */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { memo, useMemo, useEffect, useRef } from 'react'
-import * as React from 'react'
-import colorizer from '../data/categoricalColorizer'
 import { GraphContainer, InputGraph } from '@graspologic/graph'
-import {
-	LayoutWorkerManager,
-} from '@graspologic/layout-core'
+import { LayoutWorkerManager } from '@graspologic/layout-core'
 import {
 	OpenOrdConfiguration,
 	OpenOrdTickProgress,
@@ -28,6 +23,9 @@ import {
 	NodeSettings,
 } from '@graspologic/render-controls-react'
 import { GraphRenderer } from '@graspologic/renderer'
+import * as React from 'react'
+import { memo, useMemo, useEffect, useRef } from 'react'
+import colorizer from '../data/categoricalColorizer'
 
 // Worker content
 function getWorker() {

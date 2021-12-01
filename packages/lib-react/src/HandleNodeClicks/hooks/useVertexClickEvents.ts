@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useEffect } from 'react'
 import {
 	Disconnect,
 	GraphRenderer,
 	enableClickEvents,
 } from '@graspologic/renderer'
+import { useEffect } from 'react'
 
 /**
  * Enables vertex click events on __renderer__

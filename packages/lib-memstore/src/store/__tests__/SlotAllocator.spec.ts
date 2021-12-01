@@ -12,7 +12,7 @@ describe('SlotAllocator', () => {
 	it('can start out with ids consumed', () => {
 		const a = new SlotAllocator(3, true)
 		const used = [...a.used()]
-		expect(a.hasFreeSpace).toEqual(false)
+		expect(a.hasFreeSpace).toBe(false)
 		expect(used).toHaveLength(3)
 	})
 
@@ -20,14 +20,14 @@ describe('SlotAllocator', () => {
 		const a = createInstance(1)
 
 		// Initial state pre-allocation
-		expect(a.hasFreeSpace).toEqual(true)
+		expect(a.hasFreeSpace).toBe(true)
 		let used = [...a.used()]
 		expect(used).toHaveLength(0)
 
 		const index = a.alloc()
 		used = [...a.used()]
-		expect(index).toEqual(0)
-		expect(a.hasFreeSpace).toEqual(false)
+		expect(index).toBe(0)
+		expect(a.hasFreeSpace).toBe(false)
 		expect(used).toHaveLength(1)
 		expect(() => a.alloc()).toThrow()
 	})
@@ -36,26 +36,26 @@ describe('SlotAllocator', () => {
 		const a = createInstance(3)
 
 		// Initial state pre-allocation
-		expect(a.hasFreeSpace).toEqual(true)
+		expect(a.hasFreeSpace).toBe(true)
 		let used = [...a.used()]
 		expect(used).toHaveLength(0)
 
 		let index = a.alloc()
 		used = [...a.used()]
-		expect(index).toEqual(0)
+		expect(index).toBe(0)
 		expect(used).toHaveLength(1)
 
 		index = a.alloc()
 		used = [...a.used()]
-		expect(index).toEqual(1)
+		expect(index).toBe(1)
 		expect(used).toHaveLength(2)
 
 		index = a.alloc()
 		used = [...a.used()]
-		expect(index).toEqual(2)
+		expect(index).toBe(2)
 		expect(used).toHaveLength(3)
 
-		expect(a.hasFreeSpace).toEqual(false)
+		expect(a.hasFreeSpace).toBe(false)
 		expect(() => a.alloc()).toThrow()
 	})
 

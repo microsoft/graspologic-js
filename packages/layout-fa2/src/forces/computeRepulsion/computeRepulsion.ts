@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { NodeStore } from '@graspologic/graph'
 import { FA2Configuration } from '../../types'
 import { computeRepulsionBarnesHut } from './computeRepulsionBarnesHut'
 import { computeRepulsionUnoptimized } from './computeRepulsionUnoptimized'
-import { NodeStore } from '@graspologic/graph'
 
 /**
  * @internal

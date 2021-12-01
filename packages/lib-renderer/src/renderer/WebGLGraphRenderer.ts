@@ -3,27 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
-import { AnimationLoop } from '@luma.gl/engine'
 // This is causing problems downstream for some reason
 // @ts-ignore
-import { createGLContext } from '@luma.gl/gltools'
-import { processGraph } from '../data'
-import {
-	NodeComponentColorizer,
-	Scene,
-	PositionMap,
-	InitializeHandler,
-	GraphRenderer,
-	UsesWebGL,
-	DataStore,
-	Primitive,
-	GraphRendererEvents,
-} from '../types'
-import {
-	Scenegraph,
-	createDataStore,
-	createDataStoreFromContainer,
-} from './delegates'
 import { Camera } from '@graspologic/camera'
 import {
 	createConfiguration,
@@ -56,6 +37,25 @@ import {
 import { ReaderStore } from '@graspologic/memstore'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
+import { AnimationLoop } from '@luma.gl/engine'
+import { createGLContext } from '@luma.gl/gltools'
+import { processGraph } from '../data'
+import {
+	NodeComponentColorizer,
+	Scene,
+	PositionMap,
+	InitializeHandler,
+	GraphRenderer,
+	UsesWebGL,
+	DataStore,
+	Primitive,
+	GraphRendererEvents,
+} from '../types'
+import {
+	Scenegraph,
+	createDataStore,
+	createDataStoreFromContainer,
+} from './delegates'
 
 // typings are messed up for this
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -90,7 +90,8 @@ type AnimationOpts = any
  */
 export class WebGLGraphRenderer
 	extends EventEmitter<GraphRendererEvents>
-	implements GraphRenderer, UsesWebGL {
+	implements GraphRenderer, UsesWebGL
+{
 	// Observable-pattern handler lists
 	private _hoveredVertex: Node | undefined
 	private dimensionInterpolator: Interpolator
@@ -696,7 +697,7 @@ export class WebGLGraphRenderer
 	private bindDataToRenderable(type: symbol, store: ReaderStore<any>) {
 		// i.e. type: Node, store: NodeStore, renderable: NodeRenderable
 		for (const renderable of this.scene.renderables()) {
-			const hasData = (renderable as any) as ItemBasedRenderable
+			const hasData = renderable as any as ItemBasedRenderable
 			if (hasData.itemType === type) {
 				hasData.data = store
 			}
@@ -737,7 +738,7 @@ export class WebGLGraphRenderer
 		} else {
 			let bounds: Bounds3D | undefined
 			for (const renderable of this.scene.renderables()) {
-				const boundedRenderable = (renderable as any) as BoundedRenderable
+				const boundedRenderable = renderable as any as BoundedRenderable
 				if (boundedRenderable.computeBounds !== undefined) {
 					const newBounds = boundedRenderable.computeBounds()
 					if (!bounds) {

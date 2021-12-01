@@ -11,13 +11,13 @@ describe('Annealing Clock', () => {
 		expect(clock).toBeDefined()
 		expect(clock.isComplete).toBeFalsy()
 		expect(clock.phase).toEqual(AnnealingPhase.Initial)
-		expect(clock.iteration).toEqual(0)
-		expect(clock.phaseIteration).toEqual(0)
-		expect(clock.targetPhaseIterations).toEqual(1)
+		expect(clock.iteration).toBe(0)
+		expect(clock.phaseIteration).toBe(0)
+		expect(clock.targetPhaseIterations).toBe(1)
 
 		clock.tick()
-		expect(clock.iteration).toEqual(1)
-		expect(clock.phaseIteration).toEqual(0)
+		expect(clock.iteration).toBe(1)
+		expect(clock.phaseIteration).toBe(0)
 		expect(clock.phase).toEqual(AnnealingPhase.Liquid)
 
 		for (let i = 0; i < 199; i++) {

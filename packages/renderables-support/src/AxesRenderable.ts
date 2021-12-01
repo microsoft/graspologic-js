@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Matrix4 } from 'math.gl'
 import { RenderOptions, RenderConfiguration } from '@graspologic/common'
 import { createEdgeStore } from '@graspologic/graph'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
+import { Matrix4 } from 'math.gl'
 
 const AXIS_COLORS = [0xff0000ff, 0xff00ff00, 0xffff0000]
 const X = [0.1, 0, 0]

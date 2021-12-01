@@ -4,6 +4,9 @@
  */
 import { ChartingProvider } from '@chart-parts/react'
 import { Renderer } from '@chart-parts/react-svg-renderer'
+import { FA2Configuration } from '@graspologic/layout-fa2'
+import { OpenOrdConfiguration } from '@graspologic/layout-openord'
+import { testGraph } from '@graspologic/testdata'
 import React, { memo, useState, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import styled, { createGlobalStyle } from 'styled-components'
@@ -13,9 +16,6 @@ import {
 	OpenOrdConfigurationContext,
 	FA2ConfigurationContext,
 } from './context'
-import { FA2Configuration } from '@graspologic/layout-fa2'
-import { OpenOrdConfiguration } from '@graspologic/layout-openord'
-import { testGraph } from '@graspologic/testdata'
 
 const svgRenderer = new Renderer()
 

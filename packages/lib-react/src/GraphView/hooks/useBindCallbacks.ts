@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useEffect, useCallback } from 'react'
 import { GraphRenderer, Node, enableClickEvents } from '@graspologic/renderer'
+import { useEffect, useCallback } from 'react'
 
 interface CallbacksArgs {
 	renderer?: GraphRenderer

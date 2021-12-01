@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer } from '../graph'
 import { Bounds3D, Maybe } from '@graspologic/common'
+import { GraphContainer } from '../graph'
 
 /**
  * Computes the bounds of the given graph

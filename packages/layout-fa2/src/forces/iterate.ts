@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { Node, NodeStore, EdgeStore } from '@graspologic/graph'
 import { FA2Configuration, ForceMetrics } from '../types'
 import { applyForces } from './applyForces'
 import { computeAttraction } from './computeAttraction'
 import { computeGravity } from './computeGravity'
 import { computeRepulsion } from './computeRepulsion'
-import { Node, NodeStore, EdgeStore } from '@graspologic/graph'
 
 /**
  * @internal

@@ -106,5 +106,5 @@ export function EventsMixin<Events, TBase>(Base: ClassType<TBase>) {
 		} = {}
 	}
 	applyMixins(EventImpl, [EventEmitter])
-	return (EventImpl as any) as ClassType<TBase & EventEmitter<Events>>
+	return EventImpl as any as ClassType<TBase & EventEmitter<Events>>
 }

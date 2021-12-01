@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GUI } from 'dat.gui'
 import { GraphRenderer } from '@graspologic/renderer'
+import { GUI } from 'dat.gui'
 
 export interface NodeSettingsConfig {
 	minRadiusRange: [number, number]

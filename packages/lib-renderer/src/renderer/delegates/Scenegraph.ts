@@ -4,8 +4,6 @@
  */
 // This is causing problems downstream for some reason
 // @ts-ignore
-import { setParameters } from '@luma.gl/gltools'
-import { DataStore, Scene, Primitive } from '../../types'
 import {
 	Renderable,
 	RenderConfiguration,
@@ -21,6 +19,8 @@ import {
 } from '@graspologic/graph'
 import { ReaderStore } from '@graspologic/memstore'
 import { ScreenQuadRenderable } from '@graspologic/renderables-support'
+import { setParameters } from '@luma.gl/gltools'
+import { DataStore, Scene, Primitive } from '../../types'
 
 /**
  * @internal

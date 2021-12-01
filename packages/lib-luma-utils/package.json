@@ -6,7 +6,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/microsoft/graspologic-js.git",
-		"directory": "packages/libs/luma-utils"
+		"directory": "packages/lib-luma-utils"
 	},
 	"license": "MIT",
 	"publishConfig": {
@@ -27,8 +27,8 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/toolbox": "^1.1.5",
-		"@graspologic/memstore": "workspace:*",
-		"@graspologic/renderer-glsl": "workspace:*",
+		"@graspologic/memstore": "workspace:packages/lib-memstore",
+		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
 		"@luma.gl/gltools": "^8.3.1",
 		"@luma.gl/webgl": "^8.3.1",
 		"math.gl": "^3.2.2"

@@ -2,12 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Model } from '@luma.gl/engine'
 // This is causing problems downstream for some reason
 // @ts-ignore
-import { cssToDevicePixels } from '@luma.gl/gltools'
-import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
-import createModel from './model'
 import {
 	Bounds3D,
 	RenderOptions,
@@ -29,6 +25,10 @@ import {
 import { DirtyableRenderable } from '@graspologic/renderables-base'
 
 import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
+import { Model } from '@luma.gl/engine'
+import { cssToDevicePixels } from '@luma.gl/gltools'
+import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
+import createModel from './model'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214
@@ -50,7 +50,8 @@ const NodesBase = EventsMixin<NodesRenderableEvents, DirtyableRenderable>(
  */
 export class NodesRenderable
 	extends NodesBase
-	implements ItemBasedRenderable, BoundedRenderable {
+	implements ItemBasedRenderable, BoundedRenderable
+{
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
@@ -77,12 +78,10 @@ export class NodesRenderable
 		this.model = model
 		this.modelBuffer = buffer
 
-		const {
-			model: translucentModel,
-			buffer: translucentModelBuffer,
-		} = createModel(gl, getNextId(), nodeVS, {
-			ALPHA_MODE: 1,
-		})
+		const { model: translucentModel, buffer: translucentModelBuffer } =
+			createModel(gl, getNextId(), nodeVS, {
+				ALPHA_MODE: 1,
+			})
 
 		this.translucentModel = translucentModel
 		this.translucentModelBuffer = translucentModelBuffer

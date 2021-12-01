@@ -2,15 +2,16 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { DataboundRenderable } from './DataboundRenderable'
 import { Renderable, RenderOptions } from '@graspologic/common'
+import { DataboundRenderable } from './DataboundRenderable'
 
 /**
  * Base class for a renderable that operates on Vertex data
  */
 export abstract class CompositeDataboundRenderable<T>
 	extends DataboundRenderable<T>
-	implements DataboundRenderable<T> {
+	implements DataboundRenderable<T>
+{
 	protected constructor(protected renderables: Renderable[]) {
 		super()
 	}

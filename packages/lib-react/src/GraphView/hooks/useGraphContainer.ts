@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useMemo } from 'react'
 import { InputGraph, GraphContainer } from '@graspologic/graph'
+import { useMemo } from 'react'
 
 /**
  * Converts __data__ to a GraphContainer

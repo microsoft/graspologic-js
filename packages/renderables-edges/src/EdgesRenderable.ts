@@ -2,10 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Model } from '@luma.gl/engine'
-import { Buffer } from '@luma.gl/webgl'
 
-import createModel from './model'
 import {
 	processMinMaxBounds,
 	Bounds3D,
@@ -19,6 +16,9 @@ import { edgeType } from '@graspologic/graph'
 import { createIdFactory, GL_DEPTH_TEST } from '@graspologic/luma-utils'
 import { DirtyableRenderable } from '@graspologic/renderables-base'
 import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
+import { Model } from '@luma.gl/engine'
+import { Buffer } from '@luma.gl/webgl'
+import createModel from './model'
 
 const getNextId = createIdFactory('EdgesInstance')
 
@@ -27,7 +27,8 @@ const getNextId = createIdFactory('EdgesInstance')
  */
 export class EdgesRenderable
 	extends DirtyableRenderable
-	implements ItemBasedRenderable, BoundedRenderable {
+	implements ItemBasedRenderable, BoundedRenderable
+{
 	private readonly model: Model
 	private readonly modelBuffer: Buffer
 	private readonly translucentModel: Model
@@ -52,12 +53,10 @@ export class EdgesRenderable
 		this.model = model
 		this.modelBuffer = buffer
 
-		const {
-			model: translucentModel,
-			buffer: translucentModelBuffer,
-		} = createModel(gl, getNextId(), edgeVS, {
-			ALPHA_MODE: 1,
-		})
+		const { model: translucentModel, buffer: translucentModelBuffer } =
+			createModel(gl, getNextId(), edgeVS, {
+				ALPHA_MODE: 1,
+			})
 
 		this.translucentModel = translucentModel
 		this.translucentModelBuffer = translucentModelBuffer

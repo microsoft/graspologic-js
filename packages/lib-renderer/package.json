@@ -6,7 +6,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/microsoft/graspologic-js.git",
-		"directory": "packages/libs/renderer"
+		"directory": "packages/lib-renderer"
 	},
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
@@ -28,17 +28,17 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/toolbox": "^1.1.5",
-		"@graspologic/animation": "workspace:*",
-		"@graspologic/camera": "workspace:*",
-		"@graspologic/common": "workspace:*",
-		"@graspologic/graph": "workspace:*",
-		"@graspologic/luma-utils": "workspace:*",
-		"@graspologic/memstore": "workspace:*",
-		"@graspologic/renderables-base": "workspace:*",
-		"@graspologic/renderables-edges": "workspace:*",
-		"@graspologic/renderables-nodes": "workspace:*",
-		"@graspologic/renderables-support": "workspace:*",
-		"@graspologic/renderer-glsl": "workspace:*",
+		"@graspologic/animation": "workspace:packages/lib-animation",
+		"@graspologic/camera": "workspace:packages/lib-camera",
+		"@graspologic/common": "workspace:packages/lib-common",
+		"@graspologic/graph": "workspace:packages/lib-graph",
+		"@graspologic/luma-utils": "workspace:packages/lib-luma-utils",
+		"@graspologic/memstore": "workspace:packages/lib-memstore",
+		"@graspologic/renderables-base": "workspace:packages/renderables-base",
+		"@graspologic/renderables-edges": "workspace:packages/renderables-edges",
+		"@graspologic/renderables-nodes": "workspace:packages/renderables-nodes",
+		"@graspologic/renderables-support": "workspace:packages/renderables-support",
+		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
 		"@luma.gl/constants": "^8.3.1",
 		"@luma.gl/engine": "^8.3.1",
 		"@luma.gl/gltools": "^8.3.1",

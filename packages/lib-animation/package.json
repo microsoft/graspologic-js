@@ -6,7 +6,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/microsoft/graspologic-js.git",
-		"directory": "packages/libs/animation"
+		"directory": "packages/lib-animation"
 	},
 	"contributors": [
 		"David Tittsworth (datittsw@microsoft.com)"
@@ -26,7 +26,7 @@
 		"start": "essex watch"
 	},
 	"dependencies": {
-		"@graspologic/memstore": "workspace:*",
+		"@graspologic/memstore": "workspace:packages/lib-memstore",
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {

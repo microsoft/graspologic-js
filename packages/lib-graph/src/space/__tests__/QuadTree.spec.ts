@@ -19,10 +19,10 @@ describe('The QuadTree Data Structure', () => {
 		const qt = new QuadTree([node])
 
 		// node swings mass & center
-		expect(qt.mass).toEqual(3)
-		expect(qt.cx).toEqual(7)
-		expect(qt.cy).toEqual(7)
-		expect(qt.isLeaf).toEqual(true)
+		expect(qt.mass).toBe(3)
+		expect(qt.cx).toBe(7)
+		expect(qt.cy).toBe(7)
+		expect(qt.isLeaf).toBe(true)
 	})
 
 	it('can add two nodes', () => {
@@ -37,12 +37,12 @@ describe('The QuadTree Data Structure', () => {
 		const qt = new QuadTree([n1, n2])
 
 		// node swings mass & center
-		expect(qt.mass).toEqual(5)
-		expect(qt.cx).toEqual(5)
-		expect(qt.cy).toEqual(5)
-		expect(qt.isLeaf).toEqual(false)
-		expect(qt.neChild!.mass).toEqual(3)
-		expect(qt.swChild!.mass).toEqual(2)
+		expect(qt.mass).toBe(5)
+		expect(qt.cx).toBe(5)
+		expect(qt.cy).toBe(5)
+		expect(qt.isLeaf).toBe(false)
+		expect(qt.neChild!.mass).toBe(3)
+		expect(qt.swChild!.mass).toBe(2)
 	})
 
 	it('can add two nodes at the same point', () => {
@@ -57,10 +57,10 @@ describe('The QuadTree Data Structure', () => {
 		const qt = new QuadTree([n1, n2])
 
 		// node swings mass & center
-		expect(qt.mass).toEqual(5)
+		expect(qt.mass).toBe(5)
 		expect(qt.cx).toBeCloseTo(2, 0.1)
 		expect(qt.cy).toBeCloseTo(2, 0.1)
-		expect(qt.isLeaf).toEqual(false)
+		expect(qt.isLeaf).toBe(false)
 		expect(qt.depth).toBeLessThan(15)
 	})
 })

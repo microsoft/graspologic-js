@@ -2,8 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Model, Geometry } from '@luma.gl/engine'
-import { Buffer } from '@luma.gl/webgl'
 import {
 	RenderOptions,
 	areColorsEqual,
@@ -22,6 +20,8 @@ import { createLayoutBuilder } from '@graspologic/memstore'
 import { DataboundRenderable } from '@graspologic/renderables-base'
 import highlightFS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.fs.glsl'
 import highlightVS from '@graspologic/renderer-glsl/dist/esm/shaders/highlight.vs.glsl'
+import { Model, Geometry } from '@luma.gl/engine'
+import { Buffer } from '@luma.gl/webgl'
 
 // We have no equivalent in the typings
 const getNextId = createIdFactory('VertexHighlight')

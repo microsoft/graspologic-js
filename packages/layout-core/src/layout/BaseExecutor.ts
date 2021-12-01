@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { TickingClock } from '../clock'
 import { Disconnect, EventEmitter } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
+import { TickingClock } from '../clock'
 
 export interface BaseExecutorEvents<Progress> {
 	/**
@@ -21,7 +21,7 @@ export interface BaseExecutorEvents<Progress> {
 export abstract class BaseExecutor<
 	Config,
 	Clock extends TickingClock,
-	Progress
+	Progress,
 > extends EventEmitter<BaseExecutorEvents<Progress>> {
 	private _graph: GraphContainer
 	private _halted = false

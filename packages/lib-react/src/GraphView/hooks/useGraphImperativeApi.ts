@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { useImperativeHandle } from 'react'
 import { GraphRenderer } from '@graspologic/renderer'
+import { useImperativeHandle } from 'react'
 
 /**
  * Assigns a GraphRenderer imperative api for __renderer__ to __ref__

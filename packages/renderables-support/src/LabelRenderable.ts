@@ -2,8 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Model, Geometry } from '@luma.gl/engine'
-import { Texture2D } from '@luma.gl/webgl'
 import { RenderOptions, PropertyContainer } from '@graspologic/common'
 import {
 	GL_RGBA,
@@ -20,6 +18,8 @@ import { DirtyableRenderable } from '@graspologic/renderables-base'
 
 import labelFS from '@graspologic/renderer-glsl/dist/esm/shaders/label.fs.glsl'
 import labelVS from '@graspologic/renderer-glsl/dist/esm/shaders/label.vs.glsl'
+import { Model, Geometry } from '@luma.gl/engine'
+import { Texture2D } from '@luma.gl/webgl'
 
 // We have no equivalent in the typings
 const getNextId = createIdFactory('LabelInstance')

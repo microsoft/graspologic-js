@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { GraphRendererContext } from '@graspologic/react'
 import * as dat from 'dat.gui'
 import { useMemo, useEffect, useRef, useContext } from 'react'
-import { GraphRendererContext } from '@graspologic/react'
 
 /**
  * @internal

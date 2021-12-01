@@ -2,14 +2,14 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { capitalize } from 'lodash'
-import { useEffect, useState } from 'react'
-import { EnergyHistoryItem, PhaseHistoryItem } from '../../../types'
 import { LayoutWorkerManager } from '@graspologic/layout-core'
 import {
 	AnnealingPhase,
 	getAnnealingPhaseString,
 } from '@graspologic/layout-openord'
+import { capitalize } from 'lodash'
+import { useEffect, useState } from 'react'
+import { EnergyHistoryItem, PhaseHistoryItem } from '../../../types'
 
 export function useLayoutProgress(
 	manager: LayoutWorkerManager<any, any>,

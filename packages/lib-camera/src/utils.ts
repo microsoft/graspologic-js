@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Matrix4, Vector3 } from 'math.gl'
 import { Bounds } from '@graspologic/common'
+import { Matrix4, Vector3 } from 'math.gl'
 
 /**
  * Computes the position in world space where the camera should be placed to fit the given bounds into view

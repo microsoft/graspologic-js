@@ -2,6 +2,15 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import {
+	GraphContainer,
+	Position,
+	squareDistanceTo,
+	NodeIndex,
+	randBetween,
+	Node,
+} from '@graspologic/graph'
+import { BaseExecutor } from '@graspologic/layout-core'
 import { AnnealingClock } from './AnnealingClock'
 import { DensityGrid } from './DensityGrid'
 import { jumpTowards, jumpRandom } from './jumps'
@@ -14,15 +23,6 @@ import {
 	AnnealingPhase,
 	DEFAULT_CONFIGURATION,
 } from './types'
-import {
-	GraphContainer,
-	Position,
-	squareDistanceTo,
-	NodeIndex,
-	randBetween,
-	Node,
-} from '@graspologic/graph'
-import { BaseExecutor } from '@graspologic/layout-core'
 
 /**
  * @internal

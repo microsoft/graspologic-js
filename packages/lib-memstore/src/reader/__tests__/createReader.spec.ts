@@ -48,14 +48,14 @@ describe('createReader', () => {
 
 		const inst = store.itemAt(0)
 		inst.sourcePosition = [1, 2]
-		expect(inst.x).toEqual(1)
-		expect(inst.y).toEqual(2)
+		expect(inst.x).toBe(1)
+		expect(inst.y).toBe(2)
 
 		inst.colorInt = 0xff807a78
-		expect(inst.a).toEqual(255)
-		expect(inst.r).toEqual(128)
-		expect(inst.g).toEqual(122)
-		expect(inst.b).toEqual(120)
-		expect(inst.colorInt).toEqual(0xff807a78)
+		expect(inst.a).toBe(255)
+		expect(inst.r).toBe(128)
+		expect(inst.g).toBe(122)
+		expect(inst.b).toBe(120)
+		expect(inst.colorInt).toBe(0xff807a78)
 	})
 })

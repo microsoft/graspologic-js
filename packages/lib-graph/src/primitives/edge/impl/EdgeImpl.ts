@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { createReader, MemoryReader } from '@graspologic/memstore'
 import { InputEdge } from '../../../graph'
 import { ClassType } from '../../types'
 import { edgeType, edgeMemoryLayout, ADDITIONAL_EDGE_PROPS } from '../layout'
 import { Edge } from '../types'
-import { createReader, MemoryReader } from '@graspologic/memstore'
 
 // Cache some of the attributes for the "load"
 const sourceIndexTypedOffset = edgeMemoryLayout.get('sourceIndex')!.typedOffset
@@ -39,12 +39,10 @@ export class EdgeImpl extends BaseEdgeImpl {
 		;(this as any).propertyBag.source = data.source
 		;(this as any).propertyBag.target = data.target
 
-		this.uint32Array[
-			this.wordOffset + sourceIndexTypedOffset
-		] = nodeIndexMap.get(data.source)!
-		this.uint32Array[
-			this.wordOffset + targetIndexTypedOffset
-		] = nodeIndexMap.get(data.target)!
+		this.uint32Array[this.wordOffset + sourceIndexTypedOffset] =
+			nodeIndexMap.get(data.source)!
+		this.uint32Array[this.wordOffset + targetIndexTypedOffset] =
+			nodeIndexMap.get(data.target)!
 		this.float32Array[this.wordOffset + weightTypedOffset] =
 			data.weight != null ? data.weight : defaultEdgeWeight
 		this.uint32Array[this.wordOffset + colorTypedOffset] =

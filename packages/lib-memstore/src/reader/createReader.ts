@@ -329,5 +329,5 @@ export function createReader<P>(
 			})
 		}
 	})
-	return (Impl as any) as MemoryReaderClass<P>
+	return Impl as any as MemoryReaderClass<P>
 }

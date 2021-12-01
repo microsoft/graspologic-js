@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { GraphRenderer } from '@graspologic/renderer'
 import { useEffect } from 'react'
 import { VertexClickHandler } from '../types'
-import { GraphRenderer } from '@graspologic/renderer'
 
 /**
  * Subscribes to vertex click events on __renderer__
