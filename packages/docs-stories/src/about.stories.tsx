@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-anonymous-default-export */
-import React, { FC } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React, { FC } from 'react'
 
 const ReactMarkdown = require('react-markdown').default
 const readmeText = require('../../../README.md').default

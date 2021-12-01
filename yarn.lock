@@ -3413,7 +3413,6 @@ __metadata:
     typedoc: 0.22.10
     typescript: ^4.5.2
     webpack: ^4
-    webpack-glsl-loader: ^1.0.1
     worker-loader: ^3.0.8
   languageName: unknown
   linkType: soft
@@ -12643,13 +12642,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs@npm:0.0.2":
-  version: 0.0.2
-  resolution: "fs@npm:0.0.2"
-  checksum: 3880da7d419d5a87d7127a9931ab533875a186ad0cd9bfd3334aa3fabe4f8bbfd3fedfb7c14a248a01181eaaea37e4141e6ff9f798eb48d04d7009f6b8008308
-  languageName: node
-  linkType: hard
-
 fsevents@^1.2.7:
   version: 1.2.13
   resolution: "fsevents@npm:1.2.13"
@@ -18601,13 +18593,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"path@npm:^0.11.14":
-  version: 0.11.14
-  resolution: "path@npm:0.11.14"
-  checksum: ba41aad7bd1f30e5bc4dd6b93c862173b8165371e32c4d79013afb744289d681b2b8960a4b307680aaab27276ab2457b23148da892792d76a0b572f2aae0e5b3
-  languageName: node
-  linkType: hard
-
 "pbkdf2@npm:^3.0.3":
   version: 3.1.1
   resolution: "pbkdf2@npm:3.1.1"
@@ -23869,16 +23854,6 @@ fsevents@^1.2.7:
   peerDependencies:
     webpack: ^2.0.0 || ^3.0.0 || ^4.0.0
   checksum: 91d853596ddb81b6c4673e03f55ab18f7f652ef7a278533623910d53b59df1c661b7f2cb2ef859eabc5fd615daa5be3f9f4c00a59ab33192b93f1be7c8908ace
-  languageName: node
-  linkType: hard
-
-"webpack-glsl-loader@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "webpack-glsl-loader@npm:1.0.1"
-  dependencies:
-    fs: 0.0.2
-    path: ^0.11.14
-  checksum: 71bf17235104b9aecfe0062e7be3d196580f37d7b43cdd89d490ee0d0386e1867688ca807646de6ebbeaa04ab6182e702601c906445268e05be57447297b672a
   languageName: node
   linkType: hard
 
