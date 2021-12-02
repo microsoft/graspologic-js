@@ -29,9 +29,9 @@
 		"@essex-js-toolkit/toolbox": "^1.1.5",
 		"@graspologic/memstore": "workspace:packages/lib-memstore",
 		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
-		"@luma.gl/gltools": "^8.3.1",
-		"@luma.gl/webgl": "^8.3.1",
-		"math.gl": "^3.2.2"
+		"@luma.gl/gltools": "^8.5.10",
+		"@luma.gl/webgl": "^8.5.10",
+		"math.gl": "^3.5.6"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^18.2.1",

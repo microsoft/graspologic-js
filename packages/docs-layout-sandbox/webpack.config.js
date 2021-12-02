@@ -8,4 +8,10 @@ const webpackConfig = configure({
 	pnp: true,
 })
 
+// hack until invalid config is removed
+webpackConfig.devServer.client = {}
+webpackConfig.devServer.client.logging = 'error'
+delete webpackConfig.devServer.clientLogLevel
+delete webpackConfig.devServer.stats
+
 module.exports = webpackConfig

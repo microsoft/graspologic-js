@@ -75,7 +75,6 @@ export default function createModel(
 			...getShaders(vs, defines),
 			id,
 			isInstanced: true,
-			shaderCache: null,
 			geometry,
 			attributes,
 		}),

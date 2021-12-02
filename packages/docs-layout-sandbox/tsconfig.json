@@ -4,6 +4,7 @@
 		"outDir": "lib",
 		"declaration": false,
 		"incremental": true,
+		"jsx": "react-jsx",
 		"tsBuildInfoFile": "dist/.tsbuildinfo",
 		"allowSyntheticDefaultImports": true
 	},

@@ -6,16 +6,15 @@
 	"private": true,
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"scripts": {
-		"bundle": "essex bundle --webpack",
+		"bundle": "webpack",
 		"clean": "essex clean build",
-		"start": "essex serve",
+		"start": "webpack-dev-server",
 		"start:layouts": "yarn start"
 	},
 	"browserslist": [
 		"last 2 Chrome versions"
 	],
 	"dependencies": {
-		"@babel/polyfill": "^7.12.1",
 		"@chart-parts/interfaces": "^0.1.3",
 		"@chart-parts/react": "^0.1.3",
 		"@chart-parts/react-svg-renderer": "^0.1.3",
@@ -42,8 +41,12 @@
 		"use-pan-and-zoom": "^0.6.2"
 	},
 	"devDependencies": {
+		"@babel/preset-env": "^7.16.4",
+		"@babel/preset-react": "^7.16.0",
+		"@babel/preset-typescript": "^7.16.0",
 		"@essex/scripts": "^18.2.1",
 		"@essex/webpack-config": "^18.1.1",
+		"@types/babel__preset-env": "^7",
 		"@types/d3-scale": "^2.2.6",
 		"@types/d3-scale-chromatic": "^1.5.1",
 		"@types/lodash": "^4.14.177",
@@ -52,8 +55,11 @@
 		"@types/react-dom": "^17.0.11",
 		"@types/react-helmet": "^6.1.4",
 		"@types/styled-components": "^5.1.16",
+		"@types/webpack-dev-server": "^4",
 		"styled-components": "^5.3.3",
 		"webpack": "5.64.4",
+		"webpack-cli": "^4.9.1",
+		"webpack-dev-server": "^4.6.0",
 		"worker-loader": "^3.0.8"
 	},
 	"peerDependencies": {

@@ -75,7 +75,6 @@ export default function createModel(
 			...getShaders(vs, defines),
 			id,
 			isInstanced: true,
-			shaderCache: null,
 			geometry: new Geometry({
 				drawMode: GL_TRIANGLES,
 				vertexCount: 6,

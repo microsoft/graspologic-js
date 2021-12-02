@@ -36,9 +36,9 @@
 		"@graspologic/memstore": "workspace:packages/lib-memstore",
 		"@graspologic/renderables-base": "workspace:packages/renderables-base",
 		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
-		"@luma.gl/engine": "^8.3.1",
-		"@luma.gl/gltools": "^8.3.1",
-		"@luma.gl/webgl": "^8.3.1"
+		"@luma.gl/engine": "^8.5.10",
+		"@luma.gl/gltools": "^8.5.10",
+		"@luma.gl/webgl": "^8.5.10"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^18.2.1",

@@ -38,11 +38,11 @@
 		"@graspologic/renderables-edges": "workspace:packages/renderables-edges",
 		"@graspologic/renderables-nodes": "workspace:packages/renderables-nodes",
 		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
-		"@luma.gl/engine": "^8.3.1",
-		"@luma.gl/gltools": "^8.3.1",
-		"@luma.gl/shadertools": "^8.3.1",
-		"@luma.gl/webgl": "^8.3.1",
-		"math.gl": "^3.2.2"
+		"@luma.gl/engine": "^8.5.10",
+		"@luma.gl/gltools": "^8.5.10",
+		"@luma.gl/shadertools": "^8.5.10",
+		"@luma.gl/webgl": "^8.5.10",
+		"math.gl": "^3.5.6"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^18.2.1",

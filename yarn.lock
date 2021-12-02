@@ -1845,16 +1845,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/polyfill@npm:^7.12.1":
-  version: 7.12.1
-  resolution: "@babel/polyfill@npm:7.12.1"
-  dependencies:
-    core-js: ^2.6.5
-    regenerator-runtime: ^0.13.4
-  checksum: 3f59a9d85a41b390b044a1be13e11ae6d8efbfcf4e07217964585c7cef337b828eecfc5e164083227189146d2b6efc1affae8f59c831438eb40b848ab6fe5f39
-  languageName: node
-  linkType: hard
-
 "@babel/preset-env@npm:^7.12.11, @babel/preset-env@npm:^7.16.4":
   version: 7.16.4
   resolution: "@babel/preset-env@npm:7.16.4"
@@ -2030,7 +2020,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.0, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.16.3":
+"@babel/runtime@npm:^7.12.0, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.0, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.16.3":
   version: 7.16.3
   resolution: "@babel/runtime@npm:7.16.3"
   dependencies:
@@ -2268,6 +2258,13 @@ __metadata:
   bin:
     watch: cli.js
   checksum: 88f395ca0af2f3c0665b8ce7bb29e83647ec5d141e8735712aeeee4117081555436712966b6957aa1c461f6f826a4d23b0034e379c443a10e919f81c8748bf29
+  languageName: node
+  linkType: hard
+
+"@discoveryjs/json-ext@npm:^0.5.0":
+  version: 0.5.6
+  resolution: "@discoveryjs/json-ext@npm:0.5.6"
+  checksum: e97df618511fb202dffa2eb0d23e17dfb02943a70e5bc38f6b9603ad1cb1d6b525aa2b07ff9fb00b041abe425b341146ddd9e487f1e35ddadc8c6b8c56358ae0
   languageName: node
   linkType: hard
 
@@ -2900,8 +2897,8 @@ __metadata:
     "@graspologic/luma-utils": "workspace:packages/lib-luma-utils"
     "@types/node": ^16.11.11
     glob: ^7.2.0
-    math.gl: ^3.2.2
-    mjolnir.js: ^2.4.1
+    math.gl: ^3.5.6
+    mjolnir.js: ^2.6.0
     npm-run-all: ^4.1.5
   peerDependencies:
     "@types/node": "*"
@@ -3017,7 +3014,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/layout-sandbox@workspace:packages/docs-layout-sandbox"
   dependencies:
-    "@babel/polyfill": ^7.12.1
+    "@babel/preset-env": ^7.16.4
+    "@babel/preset-react": ^7.16.0
+    "@babel/preset-typescript": ^7.16.0
     "@chart-parts/interfaces": ^0.1.3
     "@chart-parts/react": ^0.1.3
     "@chart-parts/react-svg-renderer": ^0.1.3
@@ -3033,6 +3032,7 @@ __metadata:
     "@graspologic/renderer": "workspace:packages/lib-renderer"
     "@graspologic/testdata": "workspace:packages/lib-testdata"
     "@thematic/core": ^0.9.0
+    "@types/babel__preset-env": ^7
     "@types/d3-scale": ^2.2.6
     "@types/d3-scale-chromatic": ^1.5.1
     "@types/lodash": ^4.14.177
@@ -3041,6 +3041,7 @@ __metadata:
     "@types/react-dom": ^17.0.11
     "@types/react-helmet": ^6.1.4
     "@types/styled-components": ^5.1.16
+    "@types/webpack-dev-server": ^4
     "@uifabric/icons": ^7.6.2
     d3-scale: ^3.2.2
     d3-scale-chromatic: ^1.5.0
@@ -3054,6 +3055,8 @@ __metadata:
     typedoc: 0.22.10
     use-pan-and-zoom: ^0.6.2
     webpack: 5.64.4
+    webpack-cli: ^4.9.1
+    webpack-dev-server: ^4.6.0
     worker-loader: ^3.0.8
   peerDependencies:
     core-js: ^3.6.5
@@ -3069,11 +3072,11 @@ __metadata:
     "@essex/scripts": ^18.2.1
     "@graspologic/memstore": "workspace:packages/lib-memstore"
     "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/gltools": ^8.3.1
-    "@luma.gl/webgl": ^8.3.1
+    "@luma.gl/gltools": ^8.5.10
+    "@luma.gl/webgl": ^8.5.10
     "@types/node": ^16.11.11
     glob: ^7.2.0
-    math.gl: ^3.2.2
+    math.gl: ^3.5.6
     npm-run-all: ^4.1.5
   languageName: unknown
   linkType: soft
@@ -3161,7 +3164,7 @@ __metadata:
     "@types/react-dom": ^17.0.11
     core-js: ^3.19.2
     enzyme: ^3.11.0
-    math.gl: ^3.2.2
+    math.gl: ^3.5.6
     npm-run-all: ^4.1.5
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -3247,9 +3250,9 @@ __metadata:
     "@graspologic/memstore": "workspace:packages/lib-memstore"
     "@graspologic/renderables-base": "workspace:packages/renderables-base"
     "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/engine": ^8.3.1
-    "@luma.gl/gltools": ^8.3.1
-    "@luma.gl/webgl": ^8.3.1
+    "@luma.gl/engine": ^8.5.10
+    "@luma.gl/gltools": ^8.5.10
+    "@luma.gl/webgl": ^8.5.10
     "@types/node": ^16.11.11
     "@types/webpack-bundle-analyzer": ^4.4.1
     glob: ^7.2.0
@@ -3276,14 +3279,15 @@ __metadata:
     "@graspologic/memstore": "workspace:packages/lib-memstore"
     "@graspologic/renderables-base": "workspace:packages/renderables-base"
     "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/engine": ^8.3.1
-    "@luma.gl/gltools": ^8.3.1
-    "@luma.gl/shadertools": ^8.3.1
-    "@luma.gl/webgl": ^8.3.1
+    "@luma.gl/engine": ^8.5.10
+    "@luma.gl/gltools": ^8.5.10
+    "@luma.gl/shadertools": ^8.5.10
+    "@luma.gl/webgl": ^8.5.10
     "@types/node": ^16.11.11
     "@types/webpack-bundle-analyzer": ^4.4.1
     glob: ^7.2.0
     npm-run-all: ^4.1.5
+    typescript: ^4.5.2
     webpack-bundle-analyzer: ^4.5.0
   peerDependencies:
     "@types/node": "*"
@@ -3308,14 +3312,14 @@ __metadata:
     "@graspologic/renderables-edges": "workspace:packages/renderables-edges"
     "@graspologic/renderables-nodes": "workspace:packages/renderables-nodes"
     "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/engine": ^8.3.1
-    "@luma.gl/gltools": ^8.3.1
-    "@luma.gl/shadertools": ^8.3.1
-    "@luma.gl/webgl": ^8.3.1
+    "@luma.gl/engine": ^8.5.10
+    "@luma.gl/gltools": ^8.5.10
+    "@luma.gl/shadertools": ^8.5.10
+    "@luma.gl/webgl": ^8.5.10
     "@types/node": ^16.11.11
     "@types/webpack-bundle-analyzer": ^4.4.1
     glob: ^7.2.0
-    math.gl: ^3.2.2
+    math.gl: ^3.5.6
     npm-run-all: ^4.1.5
     webpack-bundle-analyzer: ^4.5.0
   peerDependencies:
@@ -3355,15 +3359,15 @@ __metadata:
     "@graspologic/renderables-nodes": "workspace:packages/renderables-nodes"
     "@graspologic/renderables-support": "workspace:packages/renderables-support"
     "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/constants": ^8.3.1
-    "@luma.gl/engine": ^8.3.1
-    "@luma.gl/gltools": ^8.3.1
-    "@luma.gl/webgl": ^8.3.1
+    "@luma.gl/constants": ^8.5.10
+    "@luma.gl/engine": ^8.5.10
+    "@luma.gl/gltools": ^8.5.10
+    "@luma.gl/webgl": ^8.5.10
     "@types/node": ^16.11.11
     glob: ^7.2.0
     invariant: ^2.2.4
-    math.gl: ^3.2.2
-    mjolnir.js: ^2.4.1
+    math.gl: ^3.5.6
+    mjolnir.js: ^2.6.0
     npm-run-all: ^4.1.5
     typedoc: 0.22.10
   peerDependencies:
@@ -3702,68 +3706,68 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@luma.gl/constants@npm:8.3.1, @luma.gl/constants@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@luma.gl/constants@npm:8.3.1"
-  checksum: 56833e93a10d0593546b453fac223e662b25336f98fa964114ae233508326cbe155ab8c5ea45c19d0119417ac5965ae96557d099b9d621cc1e5fe2007e22a831
+"@luma.gl/constants@npm:8.5.10, @luma.gl/constants@npm:^8.5.10":
+  version: 8.5.10
+  resolution: "@luma.gl/constants@npm:8.5.10"
+  checksum: ee3d44646d8dabc3b4c2a83574e0ddd68731b79ebb1b509412d2dce056d556b5625c5199ca46892dccc684812626b734d574fbaab5f20ab6b237d285f334eb5e
   languageName: node
   linkType: hard
 
-"@luma.gl/engine@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@luma.gl/engine@npm:8.3.1"
+"@luma.gl/engine@npm:^8.5.10":
+  version: 8.5.10
+  resolution: "@luma.gl/engine@npm:8.5.10"
   dependencies:
     "@babel/runtime": ^7.0.0
-    "@luma.gl/constants": 8.3.1
-    "@luma.gl/gltools": 8.3.1
-    "@luma.gl/shadertools": 8.3.1
-    "@luma.gl/webgl": 8.3.1
-    math.gl: ^3.3.0
-    probe.gl: ^3.2.1
-  checksum: 79aac80b1ece7a88f8e3f077b42b253ea40d3c7c40999138d84e75fba1c463bef5e38a3dcb7605cbd080013013206e6faebb3dbeedf73db25f56e4ec7ac73980
+    "@luma.gl/constants": 8.5.10
+    "@luma.gl/gltools": 8.5.10
+    "@luma.gl/shadertools": 8.5.10
+    "@luma.gl/webgl": 8.5.10
+    "@math.gl/core": ^3.5.0
+    probe.gl: ^3.4.0
+  checksum: 882625aabb0c300a903a8491609a9c01e6b7e3bf3be4c4c3c246b876d237f03c3731cb5183852086e7fbbd3af79a2a84bdc4867913bea060c55d2cede5beefda
   languageName: node
   linkType: hard
 
-"@luma.gl/gltools@npm:8.3.1, @luma.gl/gltools@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@luma.gl/gltools@npm:8.3.1"
+"@luma.gl/gltools@npm:8.5.10, @luma.gl/gltools@npm:^8.5.10":
+  version: 8.5.10
+  resolution: "@luma.gl/gltools@npm:8.5.10"
   dependencies:
     "@babel/runtime": ^7.0.0
-    "@luma.gl/constants": 8.3.1
-    probe.gl: ^3.2.1
-  checksum: a16deeb035d880afea0cda2519122af6ff61cbbfde61e375472cbaaa2e5eba0ee1443c7741ce160db4709374e3b04cee238ec490ffa95c84db4ab60179db03a9
+    "@luma.gl/constants": 8.5.10
+    probe.gl: ^3.4.0
+  checksum: 6f79c1208bfea6d4f54ba95ac1a9b605befef6cc544725293c33f39810ae88e470d4171ada77f943cb354329445c78528bdff269304931834c7c6edc95de60f2
   languageName: node
   linkType: hard
 
-"@luma.gl/shadertools@npm:8.3.1, @luma.gl/shadertools@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@luma.gl/shadertools@npm:8.3.1"
+"@luma.gl/shadertools@npm:8.5.10, @luma.gl/shadertools@npm:^8.5.10":
+  version: 8.5.10
+  resolution: "@luma.gl/shadertools@npm:8.5.10"
   dependencies:
     "@babel/runtime": ^7.0.0
-    math.gl: ^3.3.0
-  checksum: c678d87fd27eae09da90eba386287e0d19836ffe73e2a3c8e89cbace96347e7188d14103bf022f86640071cc52994df48cd7052fe7916ceda228f63c9fe54757
+    "@math.gl/core": ^3.5.0
+  checksum: adca6e15e36618cfdedb0469e15b640be7cb384d3da356c263c3a128a7a067dc492a8d8a4ca840e1bd76396edf34b91b9c1f96dcbf8ce355cd3dabee6b0e7288
   languageName: node
   linkType: hard
 
-"@luma.gl/webgl@npm:8.3.1, @luma.gl/webgl@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@luma.gl/webgl@npm:8.3.1"
+"@luma.gl/webgl@npm:8.5.10, @luma.gl/webgl@npm:^8.5.10":
+  version: 8.5.10
+  resolution: "@luma.gl/webgl@npm:8.5.10"
   dependencies:
     "@babel/runtime": ^7.0.0
-    "@luma.gl/constants": 8.3.1
-    "@luma.gl/gltools": 8.3.1
-    probe.gl: ^3.2.1
-  checksum: be4a1f60cf869ad385e1a51191b3968c5451f5cbf657a8ff3789008d9d6e926b85528ee4e35184b04a89478a3b54c95d9a6240c101328ceb42ef30cd2b2627f8
+    "@luma.gl/constants": 8.5.10
+    "@luma.gl/gltools": 8.5.10
+    probe.gl: ^3.4.0
+  checksum: d8b611543d66ea311a0b01214e4b6fed126f16fcd80da922468482efe06e5503920eada9b9135709fabfd9646ad2298a8f5594c02a1e94fd220776934088244d
   languageName: node
   linkType: hard
 
-"@math.gl/core@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@math.gl/core@npm:3.3.0"
+"@math.gl/core@npm:3.5.6, @math.gl/core@npm:^3.5.0":
+  version: 3.5.6
+  resolution: "@math.gl/core@npm:3.5.6"
   dependencies:
-    "@babel/runtime": ^7.0.0
-    gl-matrix: ^3.0.0
-  checksum: f9cf80e15206655ff362a3392b934dba16203bb48baa4a55010ac8f4f34033ae3d3692ecfa38e55e6b7fee0f814fdca31097e2bec7c3db501e2ce6ec8987417a
+    "@babel/runtime": ^7.12.0
+    gl-matrix: ~3.3.0
+  checksum: 1ec5a8e5060e11152dd573cff291289ebc65e80221a33700236ec5167be3616301e53bfb33046e1e062ac022c63b1cd202d449827b70833b00b47fbc1f9fadc5
   languageName: node
   linkType: hard
 
@@ -3941,12 +3945,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@probe.gl/stats@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@probe.gl/stats@npm:3.3.0"
+"@probe.gl/stats@npm:3.4.1":
+  version: 3.4.1
+  resolution: "@probe.gl/stats@npm:3.4.1"
   dependencies:
     "@babel/runtime": ^7.0.0
-  checksum: e5be36ddda0016238a314b36e94b4a5f1b5d5bd6f2a778fa6ce2d6b08ab04277a02459a6b99d135c35a13245e5164321565834b538e3f5d8614155df446262dc
+  checksum: 0750121f5080cf9dadff55b440bfc6e00b9abc7dbc9e46977806ecc8cf7e65d07f43c5bf47209bcb9148e6a88ed19a0e45b46e5735ecde11baf77e5dd8670a83
   languageName: node
   linkType: hard
 
@@ -5256,6 +5260,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/babel__preset-env@npm:^7":
+  version: 7.9.2
+  resolution: "@types/babel__preset-env@npm:7.9.2"
+  checksum: a905ed92a3f602384966153e74a94790425e98af54e392a7fcfb5c5ded2f2a58c49a9fa64a0cb506fbffb8169ad25b56ea87983c812a4fb880f0716668c8c085
+  languageName: node
+  linkType: hard
+
 "@types/babel__template@npm:*":
   version: 7.0.3
   resolution: "@types/babel__template@npm:7.0.3"
@@ -5905,12 +5916,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:16.9.8":
-  version: 16.9.8
-  resolution: "@types/react-dom@npm:16.9.8"
+"@types/react-dom@npm:17.0.11":
+  version: 17.0.11
+  resolution: "@types/react-dom@npm:17.0.11"
   dependencies:
     "@types/react": "*"
-  checksum: eef9f4ef0c297dd621fc4ab9aa7100ad7d7ccb4a1b8ec04170779b131aa9ea50d76a9ee9cd052cba6ef8389da7e8e8ab718e29fb6662a37d74862794a42094ec
+  checksum: 4d5730dffbef86c887cecad7e3cecda424ce6a64d0b5441c63b5b015d48219868660a2bb1aa15e897e565ad8867fa6b885d4358b04e1c4e589ba4c07c3fda55c
   languageName: node
   linkType: hard
 
@@ -5932,13 +5943,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:16.9.53":
-  version: 16.9.53
-  resolution: "@types/react@npm:16.9.53"
+"@types/react@npm:17.0.37":
+  version: 17.0.37
+  resolution: "@types/react@npm:17.0.37"
   dependencies:
     "@types/prop-types": "*"
+    "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 858b53f1b9c09a8eb65826c9bef0d61cfab8befb968745777fe18a1b32eb707ffaa70fdb6c1a5697251a530dfe5b0b926e5d7a033fddcb6952bc67291eb175a8
+  checksum: e68b0d59aa69577fc6a6d654b25d5d8408625498f4c483f160b557fac21e840f6e8807cbde93e9f039949b6d624a019b1990d18499c1d65aecf3605c25e30242
   languageName: node
   linkType: hard
 
@@ -5955,6 +5967,13 @@ __metadata:
   version: 0.12.1
   resolution: "@types/retry@npm:0.12.1"
   checksum: 5f46b2556053655f78262bb33040dc58417c900457cc63ff37d6c35349814471453ef511af0cec76a540c601296cd2b22f64bab1ab649c0dacc0223765ba876c
+  languageName: node
+  linkType: hard
+
+"@types/scheduler@npm:*":
+  version: 0.16.2
+  resolution: "@types/scheduler@npm:0.16.2"
+  checksum: b6b4dcfeae6deba2e06a70941860fb1435730576d3689225a421280b7742318d1548b3d22c1f66ab68e414f346a9542f29240bc955b6332c5b11e561077583bc
   languageName: node
   linkType: hard
 
@@ -6124,7 +6143,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webpack-dev-server@npm:^4.5.0":
+"@types/webpack-dev-server@npm:^4, @types/webpack-dev-server@npm:^4.5.0":
   version: 4.5.0
   resolution: "@types/webpack-dev-server@npm:4.5.0"
   dependencies:
@@ -6749,6 +6768,39 @@ __metadata:
     "@webassemblyjs/wast-parser": 1.9.0
     "@xtuc/long": 4.2.2
   checksum: 3d1e1b2e84745a963f69acd1c02425b321dd2e608e11dabc467cae0c9a808962bc769ec9afc46fbcea7188cc1e47d72370da762d258f716fb367cb1a7865c54b
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/configtest@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@webpack-cli/configtest@npm:1.1.0"
+  peerDependencies:
+    webpack: 4.x.x || 5.x.x
+    webpack-cli: 4.x.x
+  checksum: 69e7816b5b5d8589d5fc14af591d63831ff6ea2ca2d498c2d8bc354faaef9aeb282f70ad13df2fc5c3726be0f88c3dbc7facc37f3ab5a8cad44f562081792b28
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/info@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@webpack-cli/info@npm:1.4.0"
+  dependencies:
+    envinfo: ^7.7.3
+  peerDependencies:
+    webpack-cli: 4.x.x
+  checksum: 6385b1e2c511d0136fa53fcff5ecdc00ce7590d01648b437089e6d9c7b1866da8c6e850c41a7c52d3eb3ae23a31f3f40e1cead77ea2046ee6eb6b23a4124f4a9
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/serve@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@webpack-cli/serve@npm:1.6.0"
+  peerDependencies:
+    webpack-cli: 4.x.x
+  peerDependenciesMeta:
+    webpack-dev-server:
+      optional: true
+  checksum: 050a930b63653ae0002e135cc9b0810483dd0857acd8e7ae2f41011f48f8856a150dd60c787105597ef8814541031779be1dc015ef637d70a7524d373cbbf346
   languageName: node
   linkType: hard
 
@@ -9201,7 +9253,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colorette@npm:^2.0.10, colorette@npm:^2.0.16":
+"colorette@npm:^2.0.10, colorette@npm:^2.0.14, colorette@npm:^2.0.16":
   version: 2.0.16
   resolution: "colorette@npm:2.0.16"
   checksum: cd55596a3a2d1071c1a28eee7fd8a5387593ff1bd10a3e8d0a6221499311fe34a9f2b9272d77c391e0e003dcdc8934fb2f8d106e7ef1f7516f8060c901d41a27
@@ -9259,7 +9311,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^7.2.0":
+"commander@npm:^7.0.0, commander@npm:^7.2.0":
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 53501cbeee61d5157546c0bef0fedb6cdfc763a882136284bed9a07225f09a14b82d2a84e7637edfd1a679fb35ed9502fd58ef1d091e6287f60d790147f68ddc
@@ -9515,13 +9567,6 @@ __metadata:
   version: 3.19.1
   resolution: "core-js-pure@npm:3.19.1"
   checksum: b6d593ce2ac9da1adf8da3efc0b9cca8cc969d7d758c511db877a41d92216dbdf7a2341f89c07516bf0da1ce8b994e103f604ab37ca31379a35512c05d291804
-  languageName: node
-  linkType: hard
-
-"core-js@npm:^2.6.5":
-  version: 2.6.11
-  resolution: "core-js@npm:2.6.11"
-  checksum: 6944011e7aa2d86dae6c42fbb15c94bf20b7499c4f5ebd5e5d11bdde7101d3724788afacc8ab93fbacb2c881d634ef9ee783e1cf724cfbaaf501e882abda957f
   languageName: node
   linkType: hard
 
@@ -10943,6 +10988,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"envinfo@npm:^7.7.3":
+  version: 7.8.1
+  resolution: "envinfo@npm:7.8.1"
+  bin:
+    envinfo: dist/cli.js
+  checksum: de736c98d6311c78523628ff127af138451b162e57af5293c1b984ca821d0aeb9c849537d2fde0434011bed33f6bca5310ca2aab8a51a3f28fc719e89045d648
+  languageName: node
+  linkType: hard
+
 "enzyme-adapter-react-16@npm:^1.15.6":
   version: 1.15.6
   resolution: "enzyme-adapter-react-16@npm:1.15.6"
@@ -11914,6 +11968,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fastest-levenshtein@npm:^1.0.12":
+  version: 1.0.12
+  resolution: "fastest-levenshtein@npm:1.0.12"
+  checksum: e1a013698dd1d302c7a78150130c7d50bb678c2c2f8839842a796d66cc7cdf50ea6b3d7ca930b0c8e7e8c2cd84fea8ab831023b382f7aab6922c318c1451beab
+  languageName: node
+  linkType: hard
+
 "fastq@npm:^1.6.0":
   version: 1.8.0
   resolution: "fastq@npm:1.8.0"
@@ -12742,7 +12803,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"gl-matrix@npm:^3.0.0":
+"gl-matrix@npm:~3.3.0":
   version: 3.3.0
   resolution: "gl-matrix@npm:3.3.0"
   checksum: 4a1b475d2f726ccb6ad1727e8553d391fba613cfc9eded2fc9d2c2d9dc44e457b4f04a0a640ca18d949927c4444df67ff8498997d25f7cf542a84125cfc9c87a
@@ -16317,12 +16378,12 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"math.gl@npm:^3.2.2, math.gl@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "math.gl@npm:3.3.0"
+"math.gl@npm:^3.5.6":
+  version: 3.5.6
+  resolution: "math.gl@npm:3.5.6"
   dependencies:
-    "@math.gl/core": 3.3.0
-  checksum: 7f2f72b8dfe62d5b58ca97cdb8612f6525eb53120b3e69737f3a71506a0817c697aefeef894989c6fc809312f30a40382f07c98b14c6b5ec9606ab993e852adb
+    "@math.gl/core": 3.5.6
+  checksum: ac1e18b412be04b6f01fe0817c9bf0fdca52671e5113953878743cff08b80f18ecb85b87d251cf43d905e6160010fd47431b6b4bc7326ad7199fe5915d5bb85f
   languageName: node
   linkType: hard
 
@@ -17030,13 +17091,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"mjolnir.js@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "mjolnir.js@npm:2.4.1"
+"mjolnir.js@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "mjolnir.js@npm:2.6.0"
   dependencies:
     "@babel/runtime": ^7.0.0
     hammerjs: ^2.0.8
-  checksum: 3f692a434a501e80268d0d0cd8980307e447585956682f7adbc20f8eff76547a6cb69fe96ac23f9adb4ec940fd506ac7d6e8e28eed4cadf31afb04d260bfd52c
+  checksum: 6b2ff2df8bfcb0d7f41b2ab5202f9284dbdd1080761cdb3ae7b8af21cb43c8ff7590db32753d926b358c12cab08d6a71e58d45e8cb5ef1f80309664c2ff51cd9
   languageName: node
   linkType: hard
 
@@ -18902,13 +18963,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"probe.gl@npm:^3.2.1":
-  version: 3.3.0
-  resolution: "probe.gl@npm:3.3.0"
+"probe.gl@npm:^3.4.0":
+  version: 3.4.1
+  resolution: "probe.gl@npm:3.4.1"
   dependencies:
     "@babel/runtime": ^7.0.0
-    "@probe.gl/stats": 3.3.0
-  checksum: 8e73bb8bbcd5e3f11a897fc4a1df976755f8afc580282c31109e0ab6acc0ced59b5aa04f95e127ce999acf329606c0ea87416a3d17382ea3494187495bf5f098
+    "@probe.gl/stats": 3.4.1
+  checksum: 9c78fdd583d8ccb6c8b98b6986f37211c2a86de77135e368f4172384dc37ba9872b8e909f31025c72f7cb5db46923bdd31a42d0a8ed994f5ecc240fadb3fb9b7
   languageName: node
   linkType: hard
 
@@ -19320,17 +19381,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-dom@npm:16.14.0":
-  version: 16.14.0
-  resolution: "react-dom@npm:16.14.0"
+"react-dom@npm:17.0.2":
+  version: 17.0.2
+  resolution: "react-dom@npm:17.0.2"
   dependencies:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
-    prop-types: ^15.6.2
-    scheduler: ^0.19.1
+    scheduler: ^0.20.2
   peerDependencies:
-    react: ^16.14.0
-  checksum: 5a5c49da0f106b2655a69f96c622c347febcd10532db391c262b26aec225b235357d9da1834103457683482ab1b229af7a50f6927a6b70e53150275e31785544
+    react: 17.0.2
+  checksum: 1c1eaa3bca7c7228d24b70932e3d7c99e70d1d04e13bb0843bbf321582bc25d7961d6b8a6978a58a598af2af496d1cedcfb1bf65f6b0960a0a8161cb8dab743c
   languageName: node
   linkType: hard
 
@@ -19428,10 +19488,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-is@npm:16.13.1":
-  version: 16.13.1
-  resolution: "react-is@npm:16.13.1"
-  checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+"react-is@npm:17.0.2":
+  version: 17.0.2
+  resolution: "react-is@npm:17.0.2"
+  checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
   languageName: node
   linkType: hard
 
@@ -19581,14 +19641,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react@npm:16.14.0":
-  version: 16.14.0
-  resolution: "react@npm:16.14.0"
+"react@npm:17.0.2":
+  version: 17.0.2
+  resolution: "react@npm:17.0.2"
   dependencies:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
-    prop-types: ^15.6.2
-  checksum: 8484f3ecb13414526f2a7412190575fc134da785c02695eb92bb6028c930bfe1c238d7be2a125088fec663cc7cda0a3623373c46807cf2c281f49c34b79881ac
+  checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
   languageName: node
   linkType: hard
 
@@ -19717,6 +19776,15 @@ fsevents@^1.2.7:
   dependencies:
     resolve: ^1.1.6
   checksum: fe76bf9c21875ac16e235defedd7cbd34f333c02a92546142b7911a0f7c7059d2e16f441fe6fb9ae203f459c05a31b2bcf26202896d89e390eda7514d5d2702b
+  languageName: node
+  linkType: hard
+
+"rechoir@npm:^0.7.0":
+  version: 0.7.1
+  resolution: "rechoir@npm:0.7.1"
+  dependencies:
+    resolve: ^1.9.0
+  checksum: 2a04aab4e28c05fcd6ee6768446bc8b859d8f108e71fc7f5bcbc5ef25e53330ce2c11d10f82a24591a2df4c49c4f61feabe1fd11f844c66feedd4cd7bb61146a
   languageName: node
   linkType: hard
 
@@ -20187,7 +20255,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0":
+"resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0, resolve@npm:^1.9.0":
   version: 1.20.0
   resolution: "resolve@npm:1.20.0"
   dependencies:
@@ -20217,7 +20285,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>":
+"resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.9.0#~builtin<compat/resolve>":
   version: 1.20.0
   resolution: "resolve@patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=07638b"
   dependencies:
@@ -20503,6 +20571,16 @@ fsevents@^1.2.7:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: 73e185a59e2ff5aa3609f5b9cb97ddd376f89e1610579d29939d952411ca6eb7a24907a4ea4556569dacb931467a1a4a56d94fe809ef713aa76748642cd96a6c
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.20.2":
+  version: 0.20.2
+  resolution: "scheduler@npm:0.20.2"
+  dependencies:
+    loose-envify: ^1.1.0
+    object-assign: ^4.1.1
+  checksum: c4b35cf967c8f0d3e65753252d0f260271f81a81e427241295c5a7b783abf4ea9e905f22f815ab66676f5313be0a25f47be582254db8f9241b259213e999b8fc
   languageName: node
   linkType: hard
 
@@ -23616,6 +23694,39 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"webpack-cli@npm:^4.9.1":
+  version: 4.9.1
+  resolution: "webpack-cli@npm:4.9.1"
+  dependencies:
+    "@discoveryjs/json-ext": ^0.5.0
+    "@webpack-cli/configtest": ^1.1.0
+    "@webpack-cli/info": ^1.4.0
+    "@webpack-cli/serve": ^1.6.0
+    colorette: ^2.0.14
+    commander: ^7.0.0
+    execa: ^5.0.0
+    fastest-levenshtein: ^1.0.12
+    import-local: ^3.0.2
+    interpret: ^2.2.0
+    rechoir: ^0.7.0
+    webpack-merge: ^5.7.3
+  peerDependencies:
+    webpack: 4.x.x || 5.x.x
+  peerDependenciesMeta:
+    "@webpack-cli/generators":
+      optional: true
+    "@webpack-cli/migrate":
+      optional: true
+    webpack-bundle-analyzer:
+      optional: true
+    webpack-dev-server:
+      optional: true
+  bin:
+    webpack-cli: bin/cli.js
+  checksum: 2aff0349c15e54d616e1fd6dc1f59be16ec1a630f652f948c0b4b108776d1889446e3498e83d9d514bf1b28c5125a8b87c4aeb5dceb41b593ba90765af673c4f
+  languageName: node
+  linkType: hard
+
 "webpack-dev-middleware@npm:^3.7.3":
   version: 3.7.3
   resolution: "webpack-dev-middleware@npm:3.7.3"
@@ -23714,6 +23825,16 @@ fsevents@^1.2.7:
     ansi-colors: ^3.0.0
     uuid: ^3.3.2
   checksum: 4757179310995e20633ec2d77a8c1ac11e4135c84745f57148692f8195f1c0f8ec122c77d0dc16fc484b7d301df6674f36c9fc6b1ff06b5cf142abaaf5d24f4f
+  languageName: node
+  linkType: hard
+
+"webpack-merge@npm:^5.7.3":
+  version: 5.8.0
+  resolution: "webpack-merge@npm:5.8.0"
+  dependencies:
+    clone-deep: ^4.0.1
+    wildcard: ^2.0.0
+  checksum: 88786ab91013f1bd2a683834ff381be81c245a4b0f63304a5103e90f6653f44dab496a0768287f8531761f8ad957d1f9f3ccb2cb55df0de1bd9ee343e079da26
   languageName: node
   linkType: hard
 
@@ -23956,6 +24077,13 @@ fsevents@^1.2.7:
   dependencies:
     string-width: ^4.0.0
   checksum: 03db6c9d0af9329c37d74378ff1d91972b12553c7d72a6f4e8525fe61563fa7adb0b9d6e8d546b7e059688712ea874edd5ded475999abdeedf708de9849310e0
+  languageName: node
+  linkType: hard
+
+"wildcard@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "wildcard@npm:2.0.0"
+  checksum: 1f4fe4c03dfc492777c60f795bbba597ac78794f1b650d68f398fbee9adb765367c516ebd4220889b6a81e9626e7228bbe0d66237abb311573c2ee1f4902a5ad
   languageName: node
   linkType: hard
 

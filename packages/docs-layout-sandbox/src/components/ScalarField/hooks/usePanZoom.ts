@@ -3,13 +3,40 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useEffect, Ref, useMemo } from 'react'
-// @ts-ignore
 import usePanZoomEvents from 'use-pan-and-zoom'
 
 export function usePanZoom(
 	ref: Ref<HTMLCanvasElement>,
 	ctx: CanvasRenderingContext2D | null,
-) {
+): [
+	(
+		| {
+				onTouchStart: (event: React.TouchEvent) => void
+				onTouchMove: (event: React.TouchEvent) => void
+				onTouchEnd: (event: React.TouchEvent) => void
+				onTouchCancel: (event: React.TouchEvent) => void
+				onMouseDown: (event: React.MouseEvent) => void
+				onMouseMove: (event: React.MouseEvent) => void
+				onMouseUp: () => void
+				onMouseLeave: () => void
+				onClickCapture: (event: React.MouseEvent) => void
+		  }
+		| {
+				onTouchStart?: undefined
+				onTouchMove?: undefined
+				onTouchEnd?: undefined
+				onTouchCancel?: undefined
+				onMouseDown?: undefined
+				onMouseMove?: undefined
+				onMouseUp?: undefined
+				onMouseLeave?: undefined
+				onClickCapture?: undefined
+		  }
+	),
+	number,
+	number,
+	number,
+] {
 	const panZoomConfig = useMemo(
 		() => ({
 			container: ref,

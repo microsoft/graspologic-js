@@ -2,8 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// This is causing problems downstream for some reason
-// @ts-ignore
 import {
 	Renderable,
 	RenderConfiguration,

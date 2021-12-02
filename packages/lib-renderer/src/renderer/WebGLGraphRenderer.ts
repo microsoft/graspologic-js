@@ -3,8 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
-// This is causing problems downstream for some reason
-// @ts-ignore
 import { Camera } from '@graspologic/camera'
 import {
 	createConfiguration,
@@ -38,6 +36,7 @@ import { ReaderStore } from '@graspologic/memstore'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 import { AnimationLoop } from '@luma.gl/engine'
+import { AnimationProps } from '@luma.gl/engine/src/lib/animation-loop'
 import { createGLContext } from '@luma.gl/gltools'
 import { processGraph } from '../data'
 import {
@@ -107,7 +106,7 @@ export class WebGLGraphRenderer
 
 	// Logic Delegates
 	private animationLoop: AnimationLoop
-	private animationProps: AnimationOpts
+	private animationProps: AnimationProps | undefined
 	private _scene: Scene
 	private _camera: Camera
 
@@ -167,12 +166,12 @@ export class WebGLGraphRenderer
 		// i.e. sets up the framebuffer and resizing framebuffer/canvas, mouse position
 		this.animationLoop = new AnimationLoop({
 			gl,
-			canvas: gl.canvas,
 			useDevicePixels: true,
 			createFramebuffer: true,
-			onInitialize: (animationProps: AnimationOpts) => {
+			onInitialize: (animationProps: AnimationProps) => {
 				this.animationProps = animationProps
 				this._onInitializeHandlers.forEach(h => h(animationProps))
+				return animationProps
 			},
 			onRender: (animationProps: AnimationOpts) => {
 				this.animationProps = animationProps
@@ -230,7 +229,7 @@ export class WebGLGraphRenderer
 				canvas,
 				webgl2: true,
 				webgl1: false,
-			})
+			}) as WebGL2RenderingContext
 		}
 		const store = data
 			? createDataStoreFromContainer(data)
@@ -309,7 +308,7 @@ export class WebGLGraphRenderer
 	public onInitialize<T>(initializeHandler: InitializeHandler<T>): void {
 		invariant(!this.destroyed, 'renderer is destroyed!')
 		if (this.initialized) {
-			initializeHandler(this.animationProps)
+			initializeHandler(this.animationProps as unknown as T)
 		} else {
 			this._onInitializeHandlers.push(initializeHandler)
 		}

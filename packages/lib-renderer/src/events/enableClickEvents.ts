@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-// @ts-ignore
 import { Disconnect } from '@graspologic/common'
+// @ts-ignore
 import { EventManager } from 'mjolnir.js'
 import { GraphRenderer } from '../types'
 

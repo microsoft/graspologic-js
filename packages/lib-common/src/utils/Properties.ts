@@ -7,7 +7,7 @@ import { EventEmitter } from './events'
 export type PropertyChangeHandler<T> = (newValue: T) => void
 export type PropertyChangeValidator<T> = (newValue: T) => boolean
 export type AreEqualFn<T> = (a: T, b: T) => boolean
-export const identity = <T>(a, b) => a === (b as AreEqualFn<T>)
+export const identity = <T>(a: T, b: T): boolean => a === b
 
 export interface PropertyContainerEvents<T> {
 	/**

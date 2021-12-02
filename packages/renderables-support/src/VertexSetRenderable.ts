@@ -188,7 +188,6 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 				...this._getShaders(),
 				id,
 				isInstanced: true,
-				shaderCache: null,
 				geometry: new Geometry({
 					drawMode: GL_TRIANGLE_STRIP,
 					vertexCount: 4,

@@ -2784,7 +2784,6 @@ Creates the model used for rendering the vertex body
   ...this.\_getShaders(),
   id,
   isInstanced: true,
-  shaderCache: null,
   geometry: new Geometry({
   drawMode: GL.TRIANGLE_STRIP,
   vertexCount: 4,

@@ -29,8 +29,8 @@
 	"dependencies": {
 		"@graspologic/common": "workspace:packages/lib-common",
 		"@graspologic/luma-utils": "workspace:packages/lib-luma-utils",
-		"math.gl": "^3.2.2",
-		"mjolnir.js": "^2.4.1"
+		"math.gl": "^3.5.6",
+		"mjolnir.js": "^2.6.0"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^18.2.1",
