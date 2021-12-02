@@ -30,6 +30,6 @@ jobs:
       - run: 'yarn build:'
       - run: 'yarn bundle:'
       - run: 'yarn lint:'
-      - run: 'yarn tests:'
+      - run: 'yarn test:'
       - run: yarn unit:test
       - run: yarn git_is_clean
