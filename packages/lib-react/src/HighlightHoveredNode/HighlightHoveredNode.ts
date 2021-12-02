@@ -6,7 +6,6 @@ import {
 	ColorVector,
 	DEFAULT_HOVER_HIGHLIGHT_COLOR,
 } from '@graspologic/renderer'
-import * as React from 'react'
 import { memo, useEffect } from 'react'
 import { useHoveredVertexRenderable } from './hooks/useHoveredVertexRenderable'
 

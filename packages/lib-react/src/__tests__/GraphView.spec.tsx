@@ -4,7 +4,6 @@
  */
 import { GraphRenderer } from '@graspologic/renderer'
 import { mount } from 'enzyme'
-import * as React from 'react'
 import { GraphView } from '../GraphView'
 
 const mountWithRef = (el: JSX.Element, options?: any) => {

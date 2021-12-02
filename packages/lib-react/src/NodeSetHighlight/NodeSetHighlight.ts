@@ -6,7 +6,6 @@ import {
 	ColorVector,
 	DEFAULT_HOVER_HIGHLIGHT_COLOR,
 } from '@graspologic/renderer'
-import * as React from 'react'
 import { memo, useContext, useEffect } from 'react'
 import { GraphRendererContext } from '../GraphView'
 import { useVertexSelectionSynchronization } from './hooks/useVertexSelectionSynchronization'

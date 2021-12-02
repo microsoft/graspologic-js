@@ -9,7 +9,6 @@ import {
 	Maybe,
 	Bounds,
 } from '@graspologic/renderer'
-import * as React from 'react'
 import { useRef, useEffect, useState } from 'react'
 
 /**

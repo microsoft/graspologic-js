@@ -22,7 +22,6 @@ import {
 } from '@graspologic/render-controls-react'
 import { GraphRenderer } from '@graspologic/renderer'
 import { memo, useMemo, useEffect, useRef } from 'react'
-import * as React from 'react'
 import colorizer from '../data/categoricalColorizer'
 
 // Worker content

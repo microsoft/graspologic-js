@@ -12,7 +12,11 @@ export default {
 } as ComponentMeta<null>
 
 export const StressTest2D: ComponentStory<null> = () => <StressTestVertices2D />
+StressTest2D.storyName = 'Stress Test 2D'
+
 export const StressTest3D: ComponentStory<null> = () => <StressTestVertices3D />
+StressTest3D.storyName = 'Stress Test 3D'
+
 export const StressTest2DWithColorizer: ComponentStory<null> = ({
 	r,
 	g,
@@ -22,6 +26,7 @@ export const StressTest2DWithColorizer: ComponentStory<null> = ({
 	const color = componentColorToBGRA([r, g, b, a])
 	return <StressTestVertices2D colorizer={() => color} />
 }
+StressTest2DWithColorizer.storyName = 'Stress Test 2D With Colorizer'
 StressTest2DWithColorizer.args = {
 	r: 1,
 	g: 0,

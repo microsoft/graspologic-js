@@ -20,8 +20,7 @@ import {
 	EdgeSettings,
 } from '@graspologic/render-controls-react'
 import { action } from '@storybook/addon-actions'
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import colorizer from './data/categoricalColorizer'
 import processGraphJson from './data/processGraphJson'
 
@@ -30,13 +29,23 @@ const testData = processGraphJson(
 	require('@graspologic/testdata/data/testGraph.json'),
 )
 
-storiesOf('Simple 2D Examples', module)
-	.add('without extensions', () => (
+export default {
+	title: 'Simple 2D Examples',
+	component: GraphView,
+} as ComponentMeta<typeof GraphView>
+
+export const WithoutExtensions: ComponentStory<typeof GraphView> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData} />
 		</div>
-	))
-	.add('with heterogenous node sizes', () => (
+	)
+}
+
+export const WithHeterogeneousNodeSizes: ComponentStory<
+	typeof GraphView
+> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView
 				className="graph-pane"
@@ -100,51 +109,78 @@ storiesOf('Simple 2D Examples', module)
 				<HighlightHoveredNode />
 			</GraphView>
 		</div>
-	))
-	.add('with Axes extension', () => (
+	)
+}
+
+export const WithAxesExtension: ComponentStory<typeof GraphView> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
 				<Axes />
 			</GraphView>
 		</div>
-	))
-	.add('with vertex onClick handler', () => (
+	)
+}
+
+export const WithVertexOnClickHandler: ComponentStory<
+	typeof GraphView
+> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
 				<HandleNodeClicks onClick={action('clicked vertex')} />
 			</GraphView>
 		</div>
-	))
-	.add('with pan/zoom behavior', () => (
+	)
+}
+WithVertexOnClickHandler.storyName = 'With Vertex onClick Handler'
+
+export const WithPanZoomBehavior: ComponentStory<typeof GraphView> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
 				<Camera interactive />
 			</GraphView>
 		</div>
-	))
-	.add('with hover-highlight behavior', () => (
+	)
+}
+WithPanZoomBehavior.storyName = 'With Pan/Zoom Behavior'
+
+export const WithHoverHighlightBehavior: ComponentStory<
+	typeof GraphView
+> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
 				<HighlightHoveredNode />
 			</GraphView>
 		</div>
-	))
-	.add('with static highlight', () => (
+	)
+}
+
+export const WithStaticHighlight: ComponentStory<typeof GraphView> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
 				<NodeSetHighlight vertexIds={testData.nodes.map((n: any) => n.id)} />
 			</GraphView>
 		</div>
-	))
-	.add('with static filter', () => (
+	)
+}
+
+export const WithStaticFilter: ComponentStory<typeof GraphView> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
 				<Nodes filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']} />
 				<HighlightHoveredNode />
 			</GraphView>
 		</div>
-	))
-	.add('with embedded controls', () => (
+	)
+}
+
+export const WithEmbeddedControls: ComponentStory<typeof GraphView> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
 				<Nodes filteredIds={['YBR112C', 'YGR058W', 'YOL020W', 'YOL063C']} />
@@ -155,8 +191,11 @@ storiesOf('Simple 2D Examples', module)
 				</SettingsPane>
 			</GraphView>
 		</div>
-	))
-	.add('with different node shapes', () => (
+	)
+}
+
+export const WithDifferentNodeShapes: ComponentStory<typeof GraphView> = () => {
+	return (
 		<div className="graph-pane-container">
 			<GraphView
 				className="graph-pane"
@@ -195,4 +234,5 @@ storiesOf('Simple 2D Examples', module)
 				<HighlightHoveredNode />
 			</GraphView>
 		</div>
-	))
+	)
+}

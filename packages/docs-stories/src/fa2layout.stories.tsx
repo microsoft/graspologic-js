@@ -3,7 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import * as React from 'react'
 import { ForceAtlas2Graph } from './components/ForceAtlas2Graph'
 import processGraphJson from './data/processGraphJson'
 

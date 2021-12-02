@@ -3,7 +3,6 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Bounds, CameraAdjustmentMode } from '@graspologic/renderer'
-import * as React from 'react'
 import { memo, useContext } from 'react'
 import { GraphRendererContext } from '../GraphView/context'
 import { useCameraAdjustmentMode } from './hooks/useCameraAdjustmentMode'

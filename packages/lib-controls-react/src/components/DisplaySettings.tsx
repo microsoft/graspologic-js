@@ -4,7 +4,6 @@
  */
 import { GraphRendererContext } from '@graspologic/react'
 import { attachDisplaySettings } from '@graspologic/render-controls'
-import * as React from 'react'
 import { memo, useContext, useEffect } from 'react'
 import { DatGuiContext } from '../context'
 

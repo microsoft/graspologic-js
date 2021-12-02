@@ -10,7 +10,6 @@ import {
 	Edges,
 } from '@graspologic/react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import * as React from 'react'
 import colorizer from './data/categoricalColorizer'
 import processGraphJson from './data/processGraphJson'
 
@@ -39,6 +38,7 @@ export const Simple3DView: ComponentStory<null> = () => {
 		</div>
 	)
 }
+Simple3DView.storyName = 'Simple 3D View'
 
 export const Toggle2DAnd3D: ComponentStory<null> = ({ is3D }) => {
 	return (
@@ -54,6 +54,7 @@ export const Toggle2DAnd3D: ComponentStory<null> = ({ is3D }) => {
 		</div>
 	)
 }
+Toggle2DAnd3D.storyName = 'Toggle 2D and 3D'
 Toggle2DAnd3D.args = {
 	is3D: true,
 }

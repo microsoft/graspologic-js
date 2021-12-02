@@ -14,7 +14,6 @@ import {
 	DEFAULT_EDGE_FILTERED_OUT_SATURATION,
 	DEFAULT_EDGE_FILTERED_IN_SATURATION,
 } from '@graspologic/renderer'
-import * as React from 'react'
 import { memo, useContext, useEffect } from 'react'
 import { GraphRendererContext } from '../GraphView'
 

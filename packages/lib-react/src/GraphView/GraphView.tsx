@@ -15,7 +15,6 @@ import {
 	Maybe,
 	Bounds,
 } from '@graspologic/renderer'
-import * as React from 'react'
 import { memo, forwardRef, useCallback, useMemo } from 'react'
 import { SizedToParent } from '../SizedToParent'
 import { GraphRendererContext } from './context'

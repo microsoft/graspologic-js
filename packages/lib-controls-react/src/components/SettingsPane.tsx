@@ -2,7 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import * as React from 'react'
 import { memo } from 'react'
 import { DatGuiContext } from '../context'
 import { useDatGui } from '../hooks/useDatGui'

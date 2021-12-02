@@ -23,7 +23,6 @@ import {
 	NodeSettings,
 } from '@graspologic/render-controls-react'
 import { GraphRenderer } from '@graspologic/renderer'
-import * as React from 'react'
 import { memo, useMemo, useEffect, useRef } from 'react'
 import colorizer from '../data/categoricalColorizer'
 
