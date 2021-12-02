@@ -26,7 +26,8 @@
 		"start_storybook": "yarn start:storybook",
 		"build_glsl": "yarn build:glsl",
 		"git_is_clean": "essex git-is-clean",
-		"ci": "npm-run-all -s build_glsl -p build: bundle: lint: test: unit:test -s git_is_clean"
+		"ci": "npm-run-all -s build_glsl -p build: bundle: lint: test: unit:test -s git_is_clean",
+		"update_sdks:": "yarn dlx @yarnpkg/sdks vscode"
 	},
 	"engines": {
 		"node": ">= 12"
@@ -63,7 +64,7 @@
 		"eslint-plugin-react": "^7.27.1",
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"husky": "^4.3.8",
-		"jest": "^27.4.2",
+		"jest": "^27.4.3",
 		"jest-webgl-canvas-mock": "^0.2.3",
 		"lint-staged": "^12.1.2",
 		"npm-run-all": "^4.1.5",
