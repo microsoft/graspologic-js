@@ -1,0 +1,25 @@
+{
+	"name": "@graspologic/testdata",
+	"version": "0.6.0",
+	"license": "MIT",
+	"private": true,
+	"main": "src/index.ts",
+	"publishConfig": {
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
+		"types": "dist/types/index.d.ts"
+	},
+	"scripts": {
+		"build": "essex build",
+		"clean": "essex clean",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@graspologic/graph": "workspace:packages/lib-graph",
+		"typedoc": "0.22.10"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^18.2.1",
+		"@types/node": "^16.11.11"
+	}
+}

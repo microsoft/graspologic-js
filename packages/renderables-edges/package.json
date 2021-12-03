@@ -1,0 +1,56 @@
+{
+	"name": "@graspologic/renderables-edges",
+	"main": "src/index.ts",
+	"description": "The edge renderer contained within graspologic",
+	"version": "0.6.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/renderables/edges"
+	},
+	"license": "MIT",
+	"publishConfig": {
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
+		"types": "dist/types/index.d.ts"
+	},
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)"
+	],
+	"scripts": {
+		"clean": "essex clean lib dist",
+		"bundle_types": "node ../../scripts/bundleTypes",
+		"build_lib": "essex build",
+		"build": "run-s build_lib bundle_types",
+		"build_renderables": "yarn build",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@essex-js-toolkit/toolbox": "^1.1.5",
+		"@essex/webpack-config": "^18.1.1",
+		"@graspologic/animation": "workspace:packages/lib-animation",
+		"@graspologic/common": "workspace:packages/lib-common",
+		"@graspologic/graph": "workspace:packages/lib-graph",
+		"@graspologic/luma-utils": "workspace:packages/lib-luma-utils",
+		"@graspologic/memstore": "workspace:packages/lib-memstore",
+		"@graspologic/renderables-base": "workspace:packages/renderables-base",
+		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
+		"@luma.gl/engine": "^8.5.10",
+		"@luma.gl/gltools": "^8.5.10",
+		"@luma.gl/webgl": "^8.5.10"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^18.2.1",
+		"@types/node": "^16.11.11",
+		"@types/webpack-bundle-analyzer": "^4.4.1",
+		"glob": "^7.2.0",
+		"npm-run-all": "^4.1.5",
+		"webpack-bundle-analyzer": "^4.5.0"
+	},
+	"peerDependencies": {
+		"@types/node": "*",
+		"core-js": "^3.6.5",
+		"regenerator-runtime": "^0.13.7"
+	}
+}

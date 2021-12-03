@@ -1,0 +1,10 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "lib",
+		"incremental": true,
+		"noImplicitAny": false,
+		"tsBuildInfoFile": "dist/.tsbuildinfo"
+	},
+	"files": ["src/index.ts"]
+}

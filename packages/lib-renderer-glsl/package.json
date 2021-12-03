@@ -1,0 +1,34 @@
+{
+	"name": "@graspologic/renderer-glsl",
+	"version": "0.6.0",
+	"description": "Graph data visualization core renderer (GLSL Code)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/lib-renderer-glsl"
+	},
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.ts",
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)",
+		"Nathan Evans (naevans@microsoft.com)"
+	],
+	"scripts": {
+		"build": "node scripts/build",
+		"start": "node scripts/start",
+		"clean": "essex clean dist lib",
+		"start:glsl": "yarn start",
+		"build:glsl": "yarn build"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^18.2.1",
+		"@types/fs-extra": "^9.0.13",
+		"@types/glob": "^7.2.0",
+		"chokidar": "^3.5.2",
+		"fs-extra": "^9.1.0",
+		"glob": "^7.2.0"
+	}
+}

@@ -1,0 +1,63 @@
+{
+	"name": "@graspologic/stories",
+	"version": "0.6.0",
+	"license": "MIT",
+	"private": true,
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)",
+		"Nathan Evans (naevans@microsoft.com)"
+	],
+	"scripts": {
+		"clean": "essex clean storybook-static",
+		"bundle": "build-storybook",
+		"start:storybook": "yarn start",
+		"start": "start-storybook -p 6006"
+	},
+	"browserslist": [
+		"last 2 Chrome versions"
+	],
+	"dependencies": {
+		"@graspologic/graph": "workspace:packages/lib-graph",
+		"@graspologic/layout-core": "workspace:packages/layout-core",
+		"@graspologic/layout-fa2": "workspace:packages/layout-fa2",
+		"@graspologic/layout-openord": "workspace:packages/layout-openord",
+		"@graspologic/react": "workspace:packages/lib-react",
+		"@graspologic/render-controls-react": "workspace:packages/lib-controls-react",
+		"@graspologic/renderer": "workspace:packages/lib-renderer",
+		"@graspologic/testdata": "workspace:packages/lib-testdata",
+		"@thematic/core": "^0.9.0",
+		"core-js": "^3.19.2",
+		"prop-types": "^15.7.2",
+		"react": "^17.0.2",
+		"react-docgen-typescript": "^2.2.1",
+		"react-dom": "^17.0.2",
+		"react-markdown": "^7.1.1",
+		"regenerator-runtime": "^0.13.9",
+		"typedoc": "0.22.10"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.16.0",
+		"@babel/preset-env": "^7.16.4",
+		"@babel/preset-react": "^7.16.0",
+		"@babel/preset-typescript": "^7.16.0",
+		"@essex/scripts": "^18.2.1",
+		"@mdx-js/react": "^1.6.22",
+		"@storybook/addon-a11y": "^6.4.4",
+		"@storybook/addon-actions": "^6.4.4",
+		"@storybook/addon-essentials": "^6.4.4",
+		"@storybook/addons": "^6.4.4",
+		"@storybook/client-api": "^6.4.4",
+		"@storybook/core": "^6.4.4",
+		"@storybook/core-events": "^6.4.4",
+		"@storybook/react": "^6.4.4",
+		"@types/node": "^16.11.11",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-fps-stats": "^0.1.4",
+		"react-markdown": "^7.1.1",
+		"typescript": "^4.5.2",
+		"webpack": "^4.46.0",
+		"worker-loader": "^3.0.8"
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"name": "@graspologic/animation",
+	"version": "0.6.0",
+	"description": "Graphical primitives",
+	"author": "Chris Trevino (chtrevin@microsoft.com)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/microsoft/graspologic-js.git",
+		"directory": "packages/lib-animation"
+	},
+	"contributors": [
+		"David Tittsworth (datittsw@microsoft.com)"
+	],
+	"main": "src/index.ts",
+	"publishConfig": {
+		"main": "dist/cjs/index.js",
+		"module": "dist/esm/index.js",
+		"types": "dist/types/index.d.ts"
+	},
+	"license": "MIT",
+	"scripts": {
+		"bundle_types": "node ../../scripts/bundleTypes",
+		"build_lib": "essex build",
+		"build": "run-s build_lib bundle_types",
+		"clean": "essex clean dist lib",
+		"start": "essex watch"
+	},
+	"dependencies": {
+		"@graspologic/memstore": "workspace:packages/lib-memstore",
+		"typedoc": "0.22.10"
+	},
+	"devDependencies": {
+		"@essex/scripts": "^18.2.1",
+		"@types/node": "^16.11.11",
+		"npm-run-all": "^4.1.5"
+	},
+	"peerDependencies": {
+		"@types/node": "*",
+		"core-js": "^3.6.5",
+		"regenerator-runtime": "^0.13.7"
+	},
+	"browserslist": [
+		"last 2 Chrome versions"
+	]
+}

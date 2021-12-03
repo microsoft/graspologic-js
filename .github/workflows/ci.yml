@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x, 16.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -26,13 +26,10 @@ jobs:
       - run: yarn
         name: Install Dependencies
 
-      - run: yarn ci
-        name: Execute Tests
-        env:
-          CI: true
-
-      #- if: ${{ github.event_name == 'push' && matrix.node-version == '12.x' }}
-      #  run: pnpm release -- --tag "beta.${{ github.run_number }}" --git-checks false
-      #  name: Publish to npm
-      #  env:
-      #    NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: yarn build_glsl
+      - run: 'yarn build:'
+      - run: 'yarn bundle:'
+      - run: 'yarn lint:'
+      - run: 'yarn test:'
+      - run: yarn unit:test
+      - run: yarn git_is_clean

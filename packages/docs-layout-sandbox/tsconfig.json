@@ -1,0 +1,12 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "lib",
+		"declaration": false,
+		"incremental": true,
+		"jsx": "react-jsx",
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
+		"allowSyntheticDefaultImports": true
+	},
+	"files": ["src/index.ts"]
+}

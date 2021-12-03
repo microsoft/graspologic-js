@@ -1,5 +1,6 @@
 {
 	"extends": ["@essex/eslint-config/release"],
+	"parser": "@typescript-eslint/parser",
 	"globals": {
 		"self": "writable"
 	},
@@ -8,6 +9,9 @@
 		// rollup is using requires these to exist as import() statements.
 		"@typescript-eslint/ban-ts-ignore": 0,
 		"@typescript-eslint/ban-ts-comment": 0,
+
+		// this is handled by prettier. interferes with `;(this as any).x()`
+		"@typescript-eslint/no-extra-semi": 0,
 
 		// TODO: this should probably be re-enabled before publication
 		// This rule is disabled because we are using TypeScript for props validation, not prop-types
