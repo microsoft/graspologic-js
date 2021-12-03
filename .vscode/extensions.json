@@ -1,7 +1,8 @@
 {
-  "recommendations": [
-    "arcanis.vscode-zipfs",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
-  ]
+	"recommendations": [
+		"arcanis.vscode-zipfs",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"slevesque.shader"
+	]
 }
