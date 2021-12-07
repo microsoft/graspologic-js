@@ -1,0 +1,9 @@
+releases:
+  "@graspologic/camera": minor
+  "@graspologic/layout-sandbox": minor
+  "@graspologic/monorepo": minor
+  "@graspologic/react": minor
+  "@graspologic/render-controls": minor
+  "@graspologic/render-controls-react": minor
+  "@graspologic/renderer": minor
+  "@graspologic/stories": minor
