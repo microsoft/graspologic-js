@@ -2,11 +2,13 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { CameraState } from '@graspologic/camera'
 import { Bounds, CameraAdjustmentMode } from '@graspologic/renderer'
 import { memo, useContext } from 'react'
 import { GraphRendererContext } from '../GraphView/context'
 import { useCameraAdjustmentMode } from './hooks/useCameraAdjustmentMode'
 import { useCameraBounds } from './hooks/useCameraBounds'
+import { useCameraStateSynchronization } from './hooks/useCameraStateSynchronization'
 import { usePanZoomBehavior } from './hooks/usePanZoomBehavior'
 import { useZoomSynchronization } from './hooks/useZoomSynchronization'
 
@@ -48,6 +50,16 @@ export interface CameraProps {
 	 * @defaultValue true
 	 */
 	doubleClickZoom?: boolean
+
+	/**
+	 * The camera state to inject
+	 */
+	state?: CameraState
+
+	/**
+	 * An optional state change handler to receive updates when the camera state changes
+	 */
+	onStateChange?: (state: CameraState) => void
 }
 
 /**
@@ -58,7 +70,9 @@ export const Camera: React.FC<CameraProps> = memo(
 		bounds,
 		transitionDuration,
 		zoom,
+		state,
 		mode = CameraAdjustmentMode.Graph,
+		onStateChange,
 		interactive = true,
 		doubleClickZoom = true,
 	}) => {
@@ -68,6 +82,7 @@ export const Camera: React.FC<CameraProps> = memo(
 		useCameraBounds(renderer, bounds, transitionDuration)
 		usePanZoomBehavior(renderer, interactive, doubleClickZoom)
 		useZoomSynchronization(renderer, zoom)
+		useCameraStateSynchronization(renderer, state, onStateChange)
 		return null
 	},
 )

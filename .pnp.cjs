@@ -111,7 +111,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)|$))$)",
     "fallbackExclusionList": [
       ["@graspologic/animation", ["virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/lib-animation", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/lib-animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation", "workspace:packages/lib-animation"]],
-      ["@graspologic/camera", ["virtual:590636abf83751483915a5e55c078af82be84157aeb7bfdbbbfa11d55828cd8a9fda8dc9603d74ed24c29ed389a54d17290f1fad8ea7f5998165df78fad4e4e5#workspace:packages/lib-camera", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-camera", "virtual:d3b785df96ae0b496609d0e642041a75320ed1d38aa3b8511301cd7814da9b1537497aefebfe49f0d29ed48c45120751c970f2d8f928e3f5598faa3dd1674c92#workspace:packages/lib-camera", "workspace:packages/lib-camera"]],
+      ["@graspologic/camera", ["virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera", "workspace:packages/lib-camera"]],
       ["@graspologic/common", ["virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-common", "virtual:90eaa96b4bc0dcdc65331049d3b129752c851fb7515e68679d124e3f26eb9891e752a51c3d5ac373be539c2d31cbcada64a0723534a03e7e577720933b01e89c#workspace:packages/lib-common", "virtual:aef48b62ec311ee1ba968beb48a43b7a7ccde1024da228b750e0f3f8cc4cacc41a5b15fa7fc31c0a7b4bcb5ef339a562f53b9f40b581cba79a87e144cb052b09#workspace:packages/lib-common", "workspace:packages/lib-common"]],
       ["@graspologic/graph", ["virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-graph", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#workspace:packages/lib-graph", "workspace:packages/lib-graph"]],
       ["@graspologic/layout-core", ["virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/layout-core", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/layout-core", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#workspace:packages/layout-core", "workspace:packages/layout-core"]],
@@ -6898,32 +6898,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@graspologic/camera", [
-        ["virtual:590636abf83751483915a5e55c078af82be84157aeb7bfdbbbfa11d55828cd8a9fda8dc9603d74ed24c29ed389a54d17290f1fad8ea7f5998165df78fad4e4e5#workspace:packages/lib-camera", {
-          "packageLocation": "./.yarn/__virtual__/@graspologic-camera-virtual-0049f62320/1/packages/lib-camera/",
-          "packageDependencies": [
-            ["@graspologic/camera", "virtual:590636abf83751483915a5e55c078af82be84157aeb7bfdbbbfa11d55828cd8a9fda8dc9603d74ed24c29ed389a54d17290f1fad8ea7f5998165df78fad4e4e5#workspace:packages/lib-camera"],
-            ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:18.2.1"],
-            ["@graspologic/common", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-common"],
-            ["@graspologic/luma-utils", "workspace:packages/lib-luma-utils"],
-            ["@types/core-js", null],
-            ["@types/node", "npm:16.11.11"],
-            ["@types/regenerator-runtime", null],
-            ["core-js", "npm:3.19.2"],
-            ["glob", "npm:7.2.0"],
-            ["math.gl", "npm:3.5.6"],
-            ["mjolnir.js", "npm:2.6.0"],
-            ["npm-run-all", "npm:4.1.5"],
-            ["regenerator-runtime", null]
-          ],
-          "packagePeers": [
-            "@types/core-js",
-            "@types/node",
-            "@types/regenerator-runtime",
-            "core-js",
-            "regenerator-runtime"
-          ],
-          "linkType": "SOFT",
-        }],
         ["virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-camera", {
           "packageLocation": "./.yarn/__virtual__/@graspologic-camera-virtual-2456b25144/1/packages/lib-camera/",
           "packageDependencies": [
@@ -6950,10 +6924,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:d3b785df96ae0b496609d0e642041a75320ed1d38aa3b8511301cd7814da9b1537497aefebfe49f0d29ed48c45120751c970f2d8f928e3f5598faa3dd1674c92#workspace:packages/lib-camera", {
-          "packageLocation": "./.yarn/__virtual__/@graspologic-camera-virtual-c03f64148a/1/packages/lib-camera/",
+        ["virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera", {
+          "packageLocation": "./.yarn/__virtual__/@graspologic-camera-virtual-11e0fb1d5b/1/packages/lib-camera/",
           "packageDependencies": [
-            ["@graspologic/camera", "virtual:d3b785df96ae0b496609d0e642041a75320ed1d38aa3b8511301cd7814da9b1537497aefebfe49f0d29ed48c45120751c970f2d8f928e3f5598faa3dd1674c92#workspace:packages/lib-camera"],
+            ["@graspologic/camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera"],
             ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:18.2.1"],
             ["@graspologic/common", "virtual:90eaa96b4bc0dcdc65331049d3b129752c851fb7515e68679d124e3f26eb9891e752a51c3d5ac373be539c2d31cbcada64a0723534a03e7e577720933b01e89c#workspace:packages/lib-common"],
             ["@graspologic/luma-utils", "workspace:packages/lib-luma-utils"],
@@ -6966,6 +6940,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mjolnir.js", "npm:2.6.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["regenerator-runtime", "npm:0.13.9"]
+          ],
+          "packagePeers": [
+            "@types/core-js",
+            "@types/node",
+            "@types/regenerator-runtime",
+            "core-js",
+            "regenerator-runtime"
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera", {
+          "packageLocation": "./.yarn/__virtual__/@graspologic-camera-virtual-7a19ad7db3/1/packages/lib-camera/",
+          "packageDependencies": [
+            ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],
+            ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:18.2.1"],
+            ["@graspologic/common", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-common"],
+            ["@graspologic/luma-utils", "workspace:packages/lib-luma-utils"],
+            ["@types/core-js", null],
+            ["@types/node", "npm:16.11.11"],
+            ["@types/regenerator-runtime", null],
+            ["core-js", "npm:3.19.2"],
+            ["glob", "npm:7.2.0"],
+            ["math.gl", "npm:3.5.6"],
+            ["mjolnir.js", "npm:2.6.0"],
+            ["npm-run-all", "npm:4.1.5"],
+            ["regenerator-runtime", null]
           ],
           "packagePeers": [
             "@types/core-js",
@@ -7617,6 +7617,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/react", "virtual:0e3bb03dc36cb033b39dea1045f1b4dc004958025bf3355758d45886ec639773ed103e15a04a93c73cc66cf6dbc5b8fd0f76b8797e57abf841f6481fda53366d#workspace:packages/lib-react"],
             ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],
             ["@essex/scripts", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#npm:18.2.1"],
+            ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],
             ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],
             ["@graspologic/renderables-base", "workspace:packages/renderables-base"],
             ["@graspologic/renderables-support", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/renderables-support"],
@@ -7650,6 +7651,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/react", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-react"],
             ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],
             ["@essex/scripts", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#npm:18.2.1"],
+            ["@graspologic/camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera"],
             ["@graspologic/graph", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-graph"],
             ["@graspologic/renderables-base", "workspace:packages/renderables-base"],
             ["@graspologic/renderables-support", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/renderables-support"],
@@ -7686,6 +7688,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/react", "virtual:6b41e6dd2e7172905a1a9564145904073e39ee86c2fdf9fe0a937e58a4c5fb46a2ed29022b38258ac7be97af4dea5f4aa8cf20da3a4a70f33de002431ba38254#workspace:packages/lib-react"],
             ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],
             ["@essex/scripts", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#npm:18.2.1"],
+            ["@graspologic/camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera"],
             ["@graspologic/graph", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-graph"],
             ["@graspologic/renderables-base", "workspace:packages/renderables-base"],
             ["@graspologic/renderables-support", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/renderables-support"],
@@ -7720,6 +7723,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/react", "virtual:a19137132dc751af333e868c25af3f351d6be8ac576cdbc7bb60f53266f7e9b5bc404fac766d3142882e113b6c499ffb95b10451efd99e53150858c06661e8ef#workspace:packages/lib-react"],
             ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],
             ["@essex/scripts", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#npm:18.2.1"],
+            ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],
             ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],
             ["@graspologic/renderables-base", "workspace:packages/renderables-base"],
             ["@graspologic/renderables-support", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/renderables-support"],
@@ -7755,6 +7759,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/react", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#workspace:packages/lib-react"],
             ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],
             ["@essex/scripts", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#npm:18.2.1"],
+            ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],
             ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],
             ["@graspologic/renderables-base", "workspace:packages/renderables-base"],
             ["@graspologic/renderables-support", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/renderables-support"],
@@ -7792,6 +7797,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/react", "workspace:packages/lib-react"],
             ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],
             ["@essex/scripts", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#npm:18.2.1"],
+            ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],
             ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],
             ["@graspologic/renderables-base", "workspace:packages/renderables-base"],
             ["@graspologic/renderables-support", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/renderables-support"],
@@ -8421,7 +8427,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@essex-js-toolkit/toolbox", "npm:1.1.5"],
             ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:18.2.1"],
             ["@graspologic/animation", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/lib-animation"],
-            ["@graspologic/camera", "virtual:d3b785df96ae0b496609d0e642041a75320ed1d38aa3b8511301cd7814da9b1537497aefebfe49f0d29ed48c45120751c970f2d8f928e3f5598faa3dd1674c92#workspace:packages/lib-camera"],
+            ["@graspologic/camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera"],
             ["@graspologic/common", "virtual:90eaa96b4bc0dcdc65331049d3b129752c851fb7515e68679d124e3f26eb9891e752a51c3d5ac373be539c2d31cbcada64a0723534a03e7e577720933b01e89c#workspace:packages/lib-common"],
             ["@graspologic/graph", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-graph"],
             ["@graspologic/luma-utils", "workspace:packages/lib-luma-utils"],
@@ -8505,7 +8511,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@essex-js-toolkit/toolbox", "npm:1.1.5"],
             ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:18.2.1"],
             ["@graspologic/animation", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/lib-animation"],
-            ["@graspologic/camera", "virtual:590636abf83751483915a5e55c078af82be84157aeb7bfdbbbfa11d55828cd8a9fda8dc9603d74ed24c29ed389a54d17290f1fad8ea7f5998165df78fad4e4e5#workspace:packages/lib-camera"],
+            ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],
             ["@graspologic/common", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-common"],
             ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],
             ["@graspologic/luma-utils", "workspace:packages/lib-luma-utils"],

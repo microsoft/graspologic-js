@@ -122,6 +122,10 @@ export class Camera extends EventEmitter<CameraEvents> {
 		)
 	}
 
+	public get state(): CameraState {
+		return this._state.current
+	}
+
 	/**
 	 * Gets the current projection matrix
 	 */
@@ -220,7 +224,7 @@ export class Camera extends EventEmitter<CameraEvents> {
 	 * @param state The state to transition to
 	 * @param duration The duration to take
 	 */
-	private transitionToState(newState: CameraState, duration: number): void {
+	public transitionToState(newState: CameraState, duration: number): void {
 		this._state = new TransitioningCameraState(
 			this._state.current.clone(),
 			newState,

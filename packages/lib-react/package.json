@@ -28,6 +28,7 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/hooks": "^1.1.5",
+		"@graspologic/camera": "workspace:packages/lib-camera",
 		"@graspologic/graph": "workspace:packages/lib-graph",
 		"@graspologic/renderables-base": "workspace:packages/renderables-base",
 		"@graspologic/renderables-support": "workspace:packages/renderables-support",
