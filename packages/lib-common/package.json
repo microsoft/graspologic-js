@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/common",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"license": "MIT",
 	"description": "A common set of types and utils used by graspologic",
 	"repository": {

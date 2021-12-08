@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/renderer-glsl",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"description": "Graph data visualization core renderer (GLSL Code)",
 	"license": "MIT",
 	"repository": {

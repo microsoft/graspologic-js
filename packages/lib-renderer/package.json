@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/renderer",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"description": "Graph data visualization core renderer",
 	"main": "src/index.ts",
 	"repository": {

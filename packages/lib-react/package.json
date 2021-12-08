@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/react",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"description": "Graph Dataviz for React",
 	"main": "src/index.ts",
 	"repository": {

@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/render-controls",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"description": "dat.gui controls for adjusting graph-view rendering",
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"repository": {

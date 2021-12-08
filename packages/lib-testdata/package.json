@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/testdata",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"license": "MIT",
 	"private": true,
 	"main": "src/index.ts",

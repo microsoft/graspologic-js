@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/camera",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"license": "MIT",
 	"description": "Contains a camera implementation used within @graspologic",
 	"repository": {
