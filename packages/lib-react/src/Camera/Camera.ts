@@ -12,6 +12,8 @@ import { useCameraStateSynchronization } from './hooks/useCameraStateSynchroniza
 import { usePanZoomBehavior } from './hooks/usePanZoomBehavior'
 import { useZoomSynchronization } from './hooks/useZoomSynchronization'
 
+export { CameraState } from '@graspologic/camera'
+
 /**
  * The properties for the Camera component
  */

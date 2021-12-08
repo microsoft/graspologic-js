@@ -14,6 +14,7 @@ export function useCameraStateSynchronization(
 	useEffect(
 		function injectCameraState() {
 			if (renderer && state) {
+				renderer.onInitialize(() => renderer.camera.transitionToState(state, 0))
 				renderer.camera.transitionToState(state, 0)
 			}
 		},

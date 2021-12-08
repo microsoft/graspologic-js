@@ -7640,6 +7640,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderer", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-renderer"],
             ["@types/core-js", null],
             ["@types/enzyme", "npm:3.10.10"],
+            ["@types/math.gl", null],
             ["@types/node", "npm:16.11.12"],
             ["@types/react", "npm:17.0.37"],
             ["@types/react-dom", "npm:17.0.11"],
@@ -7655,6 +7656,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "packagePeers": [
             "@types/core-js",
+            "@types/math.gl",
             "@types/node",
             "@types/regenerator-runtime",
             "regenerator-runtime"
@@ -7674,6 +7676,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderer", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-renderer"],
             ["@types/core-js", null],
             ["@types/enzyme", "npm:3.10.10"],
+            ["@types/math.gl", null],
             ["@types/node", "npm:16.11.12"],
             ["@types/react", "npm:17.0.37"],
             ["@types/react-dom", "npm:17.0.11"],
@@ -7689,9 +7692,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "packagePeers": [
             "@types/core-js",
+            "@types/math.gl",
             "@types/node",
             "@types/regenerator-runtime",
             "core-js",
+            "math.gl",
             "react-dom",
             "react",
             "regenerator-runtime"
@@ -7711,6 +7716,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderer", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-renderer"],
             ["@types/core-js", null],
             ["@types/enzyme", "npm:3.10.10"],
+            ["@types/math.gl", null],
             ["@types/node", "npm:16.11.12"],
             ["@types/react", "npm:17.0.37"],
             ["@types/react-dom", "npm:17.0.11"],
@@ -7726,6 +7732,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "packagePeers": [
             "@types/core-js",
+            "@types/math.gl",
             "@types/node",
             "@types/regenerator-runtime",
             "core-js",
@@ -7746,6 +7753,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderer", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-renderer"],
             ["@types/core-js", null],
             ["@types/enzyme", "npm:3.10.10"],
+            ["@types/math.gl", null],
             ["@types/node", "npm:16.11.12"],
             ["@types/react", "npm:17.0.37"],
             ["@types/react-dom", "npm:17.0.11"],
@@ -7761,6 +7769,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "packagePeers": [
             "@types/core-js",
+            "@types/math.gl",
             "@types/node",
             "@types/regenerator-runtime",
             "react-dom",
@@ -7782,6 +7791,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graspologic/renderer", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-renderer"],
             ["@types/core-js", null],
             ["@types/enzyme", "npm:3.10.10"],
+            ["@types/math.gl", null],
             ["@types/node", "npm:16.11.12"],
             ["@types/react", "npm:17.0.37"],
             ["@types/react-dom", "npm:17.0.11"],
@@ -7797,6 +7807,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "packagePeers": [
             "@types/core-js",
+            "@types/math.gl",
             "@types/node",
             "@types/react-dom",
             "@types/react",
@@ -8639,6 +8650,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@thematic/core", "npm:0.9.0"],
             ["@types/node", "npm:16.11.12"],
             ["core-js", "npm:3.19.3"],
+            ["math.gl", "npm:3.5.6"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:17.0.2"],
             ["react-docgen-typescript", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#npm:2.2.1"],

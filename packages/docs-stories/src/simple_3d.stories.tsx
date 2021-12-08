@@ -8,8 +8,10 @@ import {
 	HighlightHoveredNode,
 	Nodes,
 	Edges,
+	CameraState,
 } from '@graspologic/react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Vector3, Quaternion } from 'math.gl'
 import colorizer from './data/categoricalColorizer'
 import processGraphJson from './data/processGraphJson'
 
@@ -132,3 +134,38 @@ export const WithHeterogeneousNodeSizes: ComponentStory<null> = () => {
 		</div>
 	)
 }
+
+/* eslint-disable @typescript-eslint/no-loss-of-precision */
+export const WithControlledCameraState: ComponentStory<null> = () => {
+	function handleStateChange(state: CameraState) {
+		console.log('state change', state)
+	}
+	// this camera state was captured during an interactive session
+	const cameraState = new CameraState(
+		new Vector3(20.782791137695312, -13.470687866210938, -761.5890435522898),
+		new Quaternion(
+			-0.3178074916936009,
+			-0.6497423406634564,
+			0.030100329580571322,
+			0.6898748141016212,
+		),
+	)
+	return (
+		<div className="graph-pane-container">
+			<GraphView
+				className="graph-pane"
+				colorizer={colorizer}
+				data={testData}
+				is3D={true}
+				interpolationTime={0}
+			>
+				<Camera
+					interactive
+					onStateChange={handleStateChange}
+					state={cameraState}
+				/>
+			</GraphView>
+		</div>
+	)
+}
+/* eslint-enable @typescript-eslint/no-loss-of-precision */
