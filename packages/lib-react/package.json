@@ -28,6 +28,7 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/hooks": "^1.1.5",
+		"@graspologic/camera": "workspace:packages/lib-camera",
 		"@graspologic/graph": "workspace:packages/lib-graph",
 		"@graspologic/renderables-base": "workspace:packages/renderables-base",
 		"@graspologic/renderables-support": "workspace:packages/renderables-support",
@@ -38,10 +39,10 @@
 	"devDependencies": {
 		"@essex/scripts": "^18.2.1",
 		"@types/enzyme": "^3.10.10",
-		"@types/node": "^16.11.11",
+		"@types/node": "^16.11.12",
 		"@types/react": "^17.0.37",
 		"@types/react-dom": "^17.0.11",
-		"core-js": "^3.19.2",
+		"core-js": "^3.19.3",
 		"enzyme": "^3.11.0",
 		"npm-run-all": "^4.1.5",
 		"react": "^17.0.2",
@@ -52,6 +53,7 @@
 		"@types/react": "*",
 		"@types/react-dom": "*",
 		"core-js": "^3.6.5",
+		"math.gl": ">= 3.5.6",
 		"react": ">= 17",
 		"react-dom": ">= 17",
 		"regenerator-runtime": "^0.13.7"

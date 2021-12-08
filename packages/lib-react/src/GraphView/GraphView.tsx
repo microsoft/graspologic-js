@@ -198,7 +198,7 @@ const GraphViewRaw: React.FC<GraphViewProps> = forwardRef<
 			[style],
 		)
 		const handleResize = useCallback(
-			({ width, height }) => {
+			function handleGraphResize({ width, height }) {
 				if (renderer) {
 					renderer.resize(width, height)
 				}

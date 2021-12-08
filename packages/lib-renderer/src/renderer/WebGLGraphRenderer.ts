@@ -148,11 +148,7 @@ export class WebGLGraphRenderer
 		this._scene = scene
 		this._camera = camera
 
-		this.onInitialize((opts: GLOpts) => {
-			this.resize(config.width, config.height)
-			this.scene.initialize(opts)
-			this.initialized = true
-		})
+		this.onInitialize(this._initialize.bind(this))
 
 		this._kickoffDeferred = deferred()
 
@@ -212,6 +208,12 @@ export class WebGLGraphRenderer
 		this.on('vertexHovered', node => {
 			this._hoveredVertex = node
 		})
+	}
+
+	private _initialize(opts: GLOpts) {
+		this.resize(this.config.width, this.config.height)
+		this.scene.initialize(opts)
+		this.initialized = true
 	}
 
 	/**
