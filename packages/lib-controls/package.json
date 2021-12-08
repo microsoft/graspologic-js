@@ -16,7 +16,8 @@
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
 		"module": "dist/esm/index.js",
-		"types": "dist/types/index.d.ts"
+		"types": "dist/types/index.d.ts",
+		"access": "public"
 	},
 	"license": "MIT",
 	"scripts": {

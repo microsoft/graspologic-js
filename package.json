@@ -17,7 +17,7 @@
 		"bundle:": "yarn workspaces foreach -pv run bundle",
 		"start:": "yarn workspaces foreach -piv run start",
 		"test:": "yarn workspaces foreach -piv run test",
-		"release:": "yarn workspaces foreach -piv run npm publish --tolerate-republish --access public",
+		"release:": "yarn workspaces foreach -piv npm publish --tolerate-republish",
 		"lint:": "essex lint",
 		"lint:fix": "essex lint --fix",
 		"unit:test": "jest --ci --coverage",
