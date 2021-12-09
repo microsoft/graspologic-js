@@ -1,6 +1,6 @@
 {
 	"name": "@graspologic/render-controls-react",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"description": "React-components for dat.gui controls for adjusting graph-view rendering",
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"repository": {
@@ -16,7 +16,8 @@
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
 		"module": "dist/esm/index.js",
-		"types": "dist/types/index.d.ts"
+		"types": "dist/types/index.d.ts",
+		"access": "public"
 	},
 	"license": "MIT",
 	"scripts": {

@@ -1,12 +1,15 @@
 {
 	"name": "@graspologic/renderer-glsl",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"description": "Graph data visualization core renderer (GLSL Code)",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/microsoft/graspologic-js.git",
 		"directory": "packages/lib-renderer-glsl"
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"main": "dist/cjs/index.js",
 	"module": "dist/esm/index.js",

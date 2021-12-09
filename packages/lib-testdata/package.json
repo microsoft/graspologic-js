@@ -1,13 +1,14 @@
 {
 	"name": "@graspologic/testdata",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"license": "MIT",
 	"private": true,
 	"main": "src/index.ts",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
 		"module": "dist/esm/index.js",
-		"types": "dist/types/index.d.ts"
+		"types": "dist/types/index.d.ts",
+		"access": "public"
 	},
 	"scripts": {
 		"build": "essex build",
