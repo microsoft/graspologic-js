@@ -1,5 +1,0 @@
-{
-	"hooks": {
-		"pre-commit": "yarn essex pre-commit"
-	}
-}
