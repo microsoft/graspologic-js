@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ColorVector, CameraAdjustmentMode, Bounds3D } from './types'
+import { type ColorVector, CameraAdjustmentMode, type Bounds3D } from './types.js'
 
 // Default color is transparent
 export const DEFAULT_BG_COLOR: ColorVector = [0, 0, 0, 0]

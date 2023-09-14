@@ -34,22 +34,23 @@ import {
 	DEFAULT_CAMERA_MODE,
 	DEFAULT_AUTO_BIND,
 	DEFAULT_BOUNDS,
-} from './defaults'
-import {
+} from './defaults.js'
+import type {
 	ColorVector,
 	CameraAdjustmentMode,
 	RenderConfiguration,
 	RenderConfigurationOptions,
 	Maybe,
 	Bounds,
-} from './types'
-import {
-	PropertyContainer,
+} from './types.js'
+import type {
 	PropertyChangeHandler,
 	PropertyChangeValidator,
-	areColorsEqual,
-	Disconnect,
-} from './utils'
+	Disconnect} from './utils/index.js';
+import {
+	PropertyContainer,
+	areColorsEqual
+} from './utils/index.js'
 
 // TODO: These need to be documented
 

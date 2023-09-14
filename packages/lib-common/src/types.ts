@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { PropertyChangeHandler, Disconnect } from './utils'
+import type { PropertyChangeHandler, Disconnect } from './utils/index.js'
 
 /*!
  * Copyright (c) Microsoft. All rights reserved.

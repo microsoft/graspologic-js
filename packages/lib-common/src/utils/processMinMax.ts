@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Bounds3D } from '../types'
+import type { Bounds3D } from '../types.js'
 
 /**
  * Updates the given bounds based on the new x, y, z values

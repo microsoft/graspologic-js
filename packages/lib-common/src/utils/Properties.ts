@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { EventEmitter } from './events'
+import { EventEmitter } from './events.js'
 
 export type PropertyChangeHandler<T> = (newValue: T) => void
 export type PropertyChangeValidator<T> = (newValue: T) => boolean

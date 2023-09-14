@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { applyMixins, ClassType, SingleArgument } from './mixin'
+import type { ClassType, SingleArgument } from './mixin.js';
+import { applyMixins } from './mixin.js'
 
 export type Disconnect = () => void
 
