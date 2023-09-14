@@ -13,14 +13,16 @@
 	"scripts": {
 		"build": "essex build",
 		"clean": "essex clean",
-		"start": "essex watch"
+		"start": "essex watch",
+		"fix": "essex fix --strict",
+		"check": "essex check --strict"
 	},
 	"dependencies": {
 		"@graspologic/graph": "workspace:packages/lib-graph",
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^18.2.1",
+		"@essex/scripts": "^26.0.0",
 		"@types/node": "^16.11.12"
 	}
 }

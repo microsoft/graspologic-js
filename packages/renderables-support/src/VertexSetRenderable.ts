@@ -173,7 +173,7 @@ export class VertexSetRenderable extends DataboundRenderable<Node[]> {
 	 * @param id The id of the model
 	 */
 	private _createModel(gl: WebGLRenderingContext, id: string) {
-		// prettier-ignore
+		// rome-ignore
 		const positions = [
 			-1, -1, 0,
 			 1, -1, 0,

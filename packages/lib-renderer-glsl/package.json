@@ -24,10 +24,13 @@
 		"start": "node scripts/start",
 		"clean": "essex clean dist lib",
 		"start:glsl": "yarn start",
-		"build:glsl": "yarn build"
+		"build:glsl": "yarn build",
+		"fix": "essex fix --strict",
+		"check": "essex check --strict",
+		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^18.2.1",
+		"@essex/scripts": "^26.0.0",
 		"@types/fs-extra": "^9.0.13",
 		"@types/glob": "^7.2.0",
 		"chokidar": "^3.5.2",

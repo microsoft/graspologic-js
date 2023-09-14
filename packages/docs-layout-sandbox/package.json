@@ -9,7 +9,9 @@
 		"bundle": "webpack",
 		"clean": "essex clean build",
 		"start": "webpack-dev-server",
-		"start:layouts": "yarn start"
+		"start:layouts": "yarn start",
+		"fix": "essex fix --strict",
+		"check": "essex check --strict"
 	},
 	"browserslist": [
 		"last 2 Chrome versions"
@@ -44,8 +46,8 @@
 		"@babel/preset-env": "^7.16.4",
 		"@babel/preset-react": "^7.16.0",
 		"@babel/preset-typescript": "^7.16.0",
-		"@essex/scripts": "^18.2.1",
-		"@essex/webpack-config": "^18.1.1",
+		"@essex/scripts": "^26.0.0",
+		"@essex/webpack-config": "^22.0.1",
 		"@types/babel__preset-env": "^7.9.2",
 		"@types/d3-scale": "^2.2.6",
 		"@types/d3-scale-chromatic": "^1.5.1",

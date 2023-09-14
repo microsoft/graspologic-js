@@ -12,7 +12,9 @@
 		"clean": "essex clean storybook-static",
 		"bundle": "build-storybook",
 		"start:storybook": "yarn start",
-		"start": "start-storybook -p 6006"
+		"start": "start-storybook -p 6006",
+		"fix": "essex fix --strict",
+		"check": "essex check --strict"
 	},
 	"browserslist": [
 		"last 2 Chrome versions"
@@ -42,7 +44,7 @@
 		"@babel/preset-env": "^7.16.4",
 		"@babel/preset-react": "^7.16.0",
 		"@babel/preset-typescript": "^7.16.0",
-		"@essex/scripts": "^18.2.1",
+		"@essex/scripts": "^26.0.0",
 		"@mdx-js/react": "^1.6.22",
 		"@storybook/addon-a11y": "^6.4.8",
 		"@storybook/addon-actions": "^6.4.8",

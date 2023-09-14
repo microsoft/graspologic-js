@@ -2,9 +2,9 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"arcanis.vscode-zipfs",
-		"esbenp.prettier-vscode",
 		"dbaeumer.vscode-eslint",
-		"slevesque.shader"
+		"slevesque.shader",
+		"rome.rome"
 	],
 
 	// Set *default* container specific settings.json values on container create.

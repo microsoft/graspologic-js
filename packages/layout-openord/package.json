@@ -19,7 +19,10 @@
 		"bundle_lib": "rollup -c rollup.config.js",
 		"build_lib": "essex build",
 		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
-		"start": "essex watch"
+		"start": "essex watch",
+		"fix": "essex fix --strict",
+		"check": "essex check --strict",
+		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"dependencies": {
 		"@graspologic/common": "workspace:packages/lib-common",
@@ -29,7 +32,7 @@
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^18.2.1",
+		"@essex/scripts": "^26.0.0",
 		"@graspologic/testdata": "workspace:packages/lib-testdata",
 		"@rollup/plugin-commonjs": "^15.1.0",
 		"@rollup/plugin-node-resolve": "^9.0.0",

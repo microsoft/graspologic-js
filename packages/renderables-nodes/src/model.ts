@@ -53,7 +53,7 @@ export default function createModel(
 	vs: string,
 	defines: any = {},
 ) {
-	// prettier-ignore
+	// rome-ignore
 	const positions = [
 		-1, -1, 0,
 		 1, -1, 0,

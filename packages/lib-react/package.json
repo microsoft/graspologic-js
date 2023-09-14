@@ -25,7 +25,10 @@
 		"build_lib": "essex build",
 		"build": "run-s build_lib bundle_types",
 		"clean": "essex clean dist lib",
-		"start": "essex watch"
+		"start": "essex watch",
+		"fix": "essex fix --strict",
+		"check": "essex check --strict",
+		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"dependencies": {
 		"@essex-js-toolkit/hooks": "^1.1.5",
@@ -38,7 +41,7 @@
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^18.2.1",
+		"@essex/scripts": "^26.0.0",
 		"@types/enzyme": "^3.10.10",
 		"@types/node": "^16.11.12",
 		"@types/react": "^17.0.37",
