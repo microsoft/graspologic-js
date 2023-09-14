@@ -18,6 +18,7 @@ coverage/
 performance/
 test-report.xml
 report*.json
+.turbo
 
 # https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored
 .yarn/*
