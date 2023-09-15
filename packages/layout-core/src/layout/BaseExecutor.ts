@@ -2,9 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Disconnect, EventEmitter } from '@graspologic/common'
-import { GraphContainer } from '@graspologic/graph'
-import { TickingClock } from '../clock'
+import type { Disconnect} from '@graspologic/common';
+import { EventEmitter } from '@graspologic/common'
+import type { GraphContainer } from '@graspologic/graph'
+import type { TickingClock } from '../clock/index.js'
 
 export interface BaseExecutorEvents<Progress> {
 	/**
@@ -155,7 +156,7 @@ export abstract class BaseExecutor<
 	/**
 	 * Executes one step of the layout algorithm
 	 */
-	private executeStep() {
+	private executeStep = () => {
 		this.performUnitOfWork()
 
 		// Advance the annealing clock

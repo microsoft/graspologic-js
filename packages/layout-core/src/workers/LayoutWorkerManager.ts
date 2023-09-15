@@ -3,12 +3,13 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { EventEmitter } from '@graspologic/common'
-import { GraphContainer } from '@graspologic/graph'
-import {
-	WorkerMessageType,
+import type { GraphContainer } from '@graspologic/graph'
+import type {
 	WorkerMessage,
-	ExecuteMessagePayload,
-} from './types'
+	ExecuteMessagePayload} from './types.js';
+import {
+	WorkerMessageType
+} from './types.js'
 
 export interface LayoutWorkerManagerEvents<TickProgress> {
 	/**
