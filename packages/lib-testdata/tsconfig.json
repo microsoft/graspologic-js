@@ -9,5 +9,5 @@
 		"allowSyntheticDefaultImports": true,
 		"tsBuildInfoFile": "lib/.tsbuildinfo"
 	},
-	"files": ["src/index.ts"]
+	"include": ["src"]
 }

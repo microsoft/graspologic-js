@@ -2,22 +2,21 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { InputGraph } from '@graspologic/graph'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const testGraphData = require('../data/testGraph.json')
+import type { InputGraph } from '@graspologic/graph'
 
 /**
  * Returns an InputGraph of the test dataset
  * @param includePositions If true, node position info will be included
  */
-export function testGraph(includePositions = false): InputGraph {
+export async function testGraph(includePositions = false): Promise<InputGraph> {
 	const graph: InputGraph = {
 		nodes: [],
 		edges: [],
 	}
 
-	testGraphData.graph.nodes.forEach((n: any) => {
+	const data = await import('../data/testGraph.json')
+
+	data.graph.nodes.forEach((n: any) => {
 		const size = n.size || n.weight
 		const node = {
 			id: n.id,
@@ -33,12 +32,12 @@ export function testGraph(includePositions = false): InputGraph {
 		graph.nodes.push(node)
 	})
 
-	testGraphData.graph.edges.forEach((e: any) => {
+	data.graph.edges.forEach((e: any) => {
 		graph.edges.push({
 			source: e.source,
 			target: e.target,
 			weight: e.weight,
 		})
 	})
-	return graph
+	return data as any as InputGraph
 }

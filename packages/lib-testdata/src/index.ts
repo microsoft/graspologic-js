@@ -2,5 +2,5 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-export * from './lesmis'
-export * from './testGraph'
+export * from './lesmis.js'
+export * from './testGraph.js'
