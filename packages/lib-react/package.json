@@ -8,11 +8,15 @@
 		"url": "https://github.com/microsoft/graspologic-js.git",
 		"directory": "packages/lib-react"
 	},
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"license": "MIT",
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
@@ -21,9 +25,7 @@
 		"Nathan Evans (naevans@microsoft.com)"
 	],
 	"scripts": {
-		"bundle_types": "node ../../scripts/bundleTypes",
-		"build_lib": "essex build",
-		"build": "run-s build_lib bundle_types",
+		"build": "essex build --mode dual",
 		"clean": "essex clean dist lib",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
@@ -32,11 +34,11 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/hooks": "^4.0.3",
-		"@graspologic/camera": "workspace:packages/lib-camera",
-		"@graspologic/graph": "workspace:packages/lib-graph",
-		"@graspologic/renderables-base": "workspace:packages/renderables-base",
-		"@graspologic/renderables-support": "workspace:packages/renderables-support",
-		"@graspologic/renderer": "workspace:packages/lib-renderer",
+		"@graspologic/camera": "workspace:^",
+		"@graspologic/graph": "workspace:^",
+		"@graspologic/renderables-base": "workspace:^",
+		"@graspologic/renderables-support": "workspace:^",
+		"@graspologic/renderer": "workspace:^",
 		"math.gl": "^3.5.6",
 		"typedoc": "0.22.10"
 	},

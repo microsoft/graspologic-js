@@ -3,10 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { createReader } from '@graspologic/memstore'
-import { InputNode } from '../../../graph'
-import { Shape } from '../../types'
-import { nodeMemoryLayout, nodeType, ADDITIONAL_NODE_PROPS } from '../layout'
-import { Node } from '../types'
+import { InputNode } from '../../../graph/index.js'
+import { Shape } from '../../types.js'
+import { nodeMemoryLayout, nodeType, ADDITIONAL_NODE_PROPS } from '../layout.js'
+import { Node } from '../types.js'
 
 // Cache some of the attributes for the "load"
 const positionTypedOffset = nodeMemoryLayout.get('position')!.typedOffset

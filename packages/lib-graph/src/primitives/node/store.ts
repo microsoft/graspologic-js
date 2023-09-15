@@ -9,8 +9,8 @@ import {
 	ReaderStoreImpl,
 	MemoryReader,
 } from '@graspologic/memstore'
-import { NodeImpl, AnimatableNodeImpl } from './impl'
-import { nodeMemoryLayout } from './layout'
+import { NodeImpl, AnimatableNodeImpl } from './impl/index.js'
+import { nodeMemoryLayout } from './layout.js'
 import { NodeStoreConfig, NodeStore, Node } from './types'
 
 /**

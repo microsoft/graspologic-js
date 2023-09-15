@@ -8,20 +8,22 @@
 		"url": "https://github.com/microsoft/graspologic-js.git",
 		"directory": "packages/layout-core"
 	},
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"contributors": [
 		"David Tittsworth (datittsw@microsoft.com)"
 	],
 	"scripts": {
-		"bundle_types": "node ../../scripts/bundleTypes",
-		"build_lib": "essex build",
-		"build": "run-s build_lib bundle_types",
+		"build": "essex build --mode dual",
 		"clean": "essex clean lib dist",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
@@ -29,8 +31,8 @@
 		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"dependencies": {
-		"@graspologic/common": "workspace:packages/lib-common",
-		"@graspologic/graph": "workspace:packages/lib-graph",
+		"@graspologic/common": "workspace:^",
+		"@graspologic/graph": "workspace:^",
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {

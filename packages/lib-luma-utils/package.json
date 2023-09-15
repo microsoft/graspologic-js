@@ -9,11 +9,15 @@
 		"directory": "packages/lib-luma-utils"
 	},
 	"license": "MIT",
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"contributors": [
@@ -21,9 +25,7 @@
 	],
 	"scripts": {
 		"clean": "essex clean lib dist",
-		"bundle_types": "node ../../scripts/bundleTypes",
-		"build_lib": "essex build",
-		"build": "run-s build_lib bundle_types",
+		"build": "essex build --mode dual",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
 		"check": "essex check --strict",
@@ -31,10 +33,10 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/toolbox": "^3.0.1",
-		"@graspologic/memstore": "workspace:packages/lib-memstore",
-		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
-		"@luma.gl/gltools": "^8.5.10",
-		"@luma.gl/webgl": "^8.5.10",
+		"@graspologic/memstore": "workspace:^",
+		"@graspologic/renderer-glsl": "workspace:^",
+		"@luma.gl/gltools": "^8.5.21",
+		"@luma.gl/webgl": "^8.5.21",
 		"math.gl": "^3.5.6"
 	},
 	"devDependencies": {

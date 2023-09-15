@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { randBetween } from '../helpers'
-import { Node, Edge, createNodeStore, createEdgeStore } from '../primitives'
-import { GraphContainer } from './GraphContainer'
-import { InputGraph, InputNode } from './types'
+import { randBetween } from '../helpers/index.js'
+import { Node, Edge, createNodeStore, createEdgeStore } from '../primitives/index.js'
+import { GraphContainer } from './GraphContainer.js'
+import { InputGraph, InputNode } from './types.js'
 
 /**
  * The set of graph options to intern a pojo graph into a GraphContainer

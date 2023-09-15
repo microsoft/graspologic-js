@@ -2,5 +2,5 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-export * from './rand'
-export * from './computeBounds'
+export * from './rand.js'
+export * from './computeBounds.js'

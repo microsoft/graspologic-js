@@ -8,9 +8,9 @@ import {
 	ArrayStore,
 	ReaderStoreImpl,
 } from '@graspologic/memstore'
-import { EdgeImpl, AnimatableEdgeImpl } from './impl'
-import { edgeMemoryLayout } from './layout'
-import { EdgeStore, EdgeStoreConfig } from './types'
+import { EdgeImpl, AnimatableEdgeImpl } from './impl/index.js'
+import { edgeMemoryLayout } from './layout.js'
+import { EdgeStore, EdgeStoreConfig } from './types.js'
 
 /**
  * @internal

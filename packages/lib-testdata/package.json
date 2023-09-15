@@ -4,21 +4,25 @@
 	"license": "MIT",
 	"private": true,
 	"main": "src/index.ts",
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"scripts": {
-		"build": "essex build",
+		"build": "essex build --mode dual",
 		"clean": "essex clean",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
 		"check": "essex check --strict"
 	},
 	"dependencies": {
-		"@graspologic/graph": "workspace:packages/lib-graph",
+		"@graspologic/graph": "workspace:^",
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {

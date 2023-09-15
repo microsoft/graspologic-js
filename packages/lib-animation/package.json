@@ -12,17 +12,19 @@
 		"David Tittsworth (datittsw@microsoft.com)"
 	],
 	"main": "src/index.ts",
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"license": "MIT",
 	"scripts": {
-		"bundle_types": "node ../../scripts/bundleTypes",
-		"build_lib": "essex build",
-		"build": "run-s build_lib bundle_types",
+		"build": "essex build --mode dual",
 		"clean": "essex clean dist lib",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
@@ -30,7 +32,7 @@
 		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"dependencies": {
-		"@graspologic/memstore": "workspace:packages/lib-memstore",
+		"@graspologic/memstore": "workspace:^",
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {

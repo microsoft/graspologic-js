@@ -2,18 +2,18 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { createNodeStore, createEdgeStore } from '../primitives'
-import { EdgeStore } from '../primitives/edge'
-import { NodeStore } from '../primitives/node'
-import { weightedCentroid } from '../space/measure'
-import { Position } from '../space/types'
+import { createNodeStore, createEdgeStore } from '../primitives/index.js'
+import { EdgeStore } from '../primitives/edge/index.js'
+import { NodeStore } from '../primitives/node/index.js'
+import { weightedCentroid } from '../space/measure.js'
+import { Position } from '../space/types.js'
 import {
 	internGraph,
 	InternGraphOptions,
 	DEFAULT_INTERN_GRAPH_OPTIONS,
-} from './internGraph'
-import { populateAdjacency } from './populateAdjacency'
-import { NodeIndex, TransportGraph, AdjacencyMap, InputGraph } from './types'
+} from './internGraph.js'
+import { populateAdjacency } from './populateAdjacency.js'
+import { NodeIndex, TransportGraph, AdjacencyMap, InputGraph } from './types.js'
 
 /**
  * The datastructure which contains all the internal graph data required for the GraphRenderer

@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
-import { InputEdge } from '../../graph'
-import { Pos2D, Pos3D } from '../types'
+import { InputEdge } from '../../graph/index.js'
+import { Pos2D, Pos3D } from '../types.js'
 
 /**
  * An interface representing an edge

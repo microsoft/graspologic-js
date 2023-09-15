@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { Bounds3D, Maybe } from '@graspologic/common'
-import { GraphContainer } from '../graph'
+import { GraphContainer } from '../graph/index.js'
 
 /**
  * Computes the bounds of the given graph

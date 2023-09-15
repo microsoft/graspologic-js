@@ -8,11 +8,15 @@
 		"url": "https://github.com/microsoft/graspologic-js.git",
 		"directory": "packages/layout-fa2"
 	},
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"contributors": [
@@ -20,19 +24,18 @@
 	],
 	"scripts": {
 		"clean": "essex clean lib dist",
-		"bundle_types": "node ../../scripts/bundleTypes",
 		"bundle_lib": "rollup -c rollup.config.js",
-		"build_lib": "essex build",
-		"build": "npm-run-all -s build_lib -p bundle_lib bundle_types",
+		"build_lib": "essex build --mode dual",
+		"build": "npm-run-all -s build_lib -p bundle_lib",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
 		"check": "essex check --strict",
 		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"dependencies": {
-		"@graspologic/common": "workspace:packages/lib-common",
-		"@graspologic/graph": "workspace:packages/lib-graph",
-		"@graspologic/layout-core": "workspace:packages/layout-core",
+		"@graspologic/common": "workspace:^",
+		"@graspologic/graph": "workspace:^",
+		"@graspologic/layout-core": "workspace:^",
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {

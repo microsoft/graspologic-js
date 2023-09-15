@@ -9,11 +9,15 @@
 		"directory": "packages/renderables/edges"
 	},
 	"license": "MIT",
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"author": "Chris Trevino (chtrevin@microsoft.com)",
 	"contributors": [
@@ -21,9 +25,7 @@
 	],
 	"scripts": {
 		"clean": "essex clean lib dist",
-		"bundle_types": "node ../../scripts/bundleTypes",
-		"build_lib": "essex build",
-		"build": "run-s build_lib bundle_types",
+		"build": "essex build --mode dual",
 		"build_renderables": "yarn build",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
@@ -33,16 +35,16 @@
 	"dependencies": {
 		"@essex-js-toolkit/toolbox": "^3.0.1",
 		"@essex/webpack-config": "^22.0.1",
-		"@graspologic/animation": "workspace:packages/lib-animation",
-		"@graspologic/common": "workspace:packages/lib-common",
-		"@graspologic/graph": "workspace:packages/lib-graph",
-		"@graspologic/luma-utils": "workspace:packages/lib-luma-utils",
-		"@graspologic/memstore": "workspace:packages/lib-memstore",
-		"@graspologic/renderables-base": "workspace:packages/renderables-base",
-		"@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl",
-		"@luma.gl/engine": "^8.5.10",
-		"@luma.gl/gltools": "^8.5.10",
-		"@luma.gl/webgl": "^8.5.10"
+		"@graspologic/animation": "workspace:^",
+		"@graspologic/common": "workspace:^",
+		"@graspologic/graph": "workspace:^",
+		"@graspologic/luma-utils": "workspace:^",
+		"@graspologic/memstore": "workspace:^",
+		"@graspologic/renderables-base": "workspace:^",
+		"@graspologic/renderer-glsl": "workspace:^",
+		"@luma.gl/engine": "^8.5.21",
+		"@luma.gl/gltools": "^8.5.21",
+		"@luma.gl/webgl": "^8.5.21"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^26.0.0",

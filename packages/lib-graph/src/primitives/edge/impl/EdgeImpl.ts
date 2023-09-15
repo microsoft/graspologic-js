@@ -3,10 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { createReader, MemoryReader } from '@graspologic/memstore'
-import { InputEdge } from '../../../graph'
-import { ClassType } from '../../types'
-import { edgeType, edgeMemoryLayout, ADDITIONAL_EDGE_PROPS } from '../layout'
-import { Edge } from '../types'
+import { InputEdge } from '../../../graph/index.js'
+import { ClassType } from '../../types.js'
+import { edgeType, edgeMemoryLayout, ADDITIONAL_EDGE_PROPS } from '../layout.js'
+import { Edge } from '../types.js'
 
 // Cache some of the attributes for the "load"
 const sourceIndexTypedOffset = edgeMemoryLayout.get('sourceIndex')!.typedOffset

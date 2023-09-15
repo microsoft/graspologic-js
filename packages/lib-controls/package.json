@@ -13,17 +13,19 @@
 		"Nathan Evans (naevans@microsoft.com)"
 	],
 	"main": "src/index.ts",
+	"access": "public",
 	"publishConfig": {
 		"main": "dist/cjs/index.js",
-		"module": "dist/esm/index.js",
 		"types": "dist/types/index.d.ts",
-		"access": "public"
+		"exports": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js",
+			"types": "./dist/types/index.d.ts"
+		}
 	},
 	"license": "MIT",
 	"scripts": {
-		"bundle_types": "node ../../scripts/bundleTypes",
-		"build_lib": "essex build",
-		"build": "run-s build_lib bundle_types",
+		"build": "essex build --mode dual",
 		"clean": "essex clean lib dist",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
@@ -31,11 +33,13 @@
 		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"dependencies": {
-		"@graspologic/react": "workspace:packages/lib-react",
-		"@graspologic/renderer": "workspace:packages/lib-renderer",
+		"@graspologic/react": "workspace:^",
+		"@graspologic/renderer": "workspace:^",
 		"@types/dat.gui": "^0.7.7",
+		"add": "^2.0.6",
 		"dat.gui": "^0.7.7",
-		"typedoc": "0.22.10"
+		"typedoc": "0.22.10",
+		"yarn": "^1.22.19"
 	},
 	"devDependencies": {
 		"@essex/scripts": "^26.0.0",

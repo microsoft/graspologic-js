@@ -2615,12 +2615,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graspologic/animation@workspace:packages/lib-animation":
+"@graspologic/animation@workspace:^, @graspologic/animation@workspace:packages/lib-animation":
   version: 0.0.0-use.local
   resolution: "@graspologic/animation@workspace:packages/lib-animation"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/memstore": "workspace:packages/lib-memstore"
+    "@graspologic/memstore": "workspace:^"
     "@types/node": "npm:^20.6.0"
     npm-run-all: "npm:^4.1.5"
     typedoc: "npm:0.22.10"
@@ -2631,13 +2631,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/camera@workspace:packages/lib-camera":
+"@graspologic/camera@workspace:^, @graspologic/camera@workspace:packages/lib-camera":
   version: 0.0.0-use.local
   resolution: "@graspologic/camera@workspace:packages/lib-camera"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/luma-utils": "workspace:packages/lib-luma-utils"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/luma-utils": "workspace:^"
     "@types/node": "npm:^20.6.0"
     glob: "npm:^7.2.0"
     math.gl: "npm:^3.5.6"
@@ -2650,7 +2650,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/common@workspace:packages/lib-common":
+"@graspologic/common@workspace:^, @graspologic/common@workspace:packages/lib-common":
   version: 0.0.0-use.local
   resolution: "@graspologic/common@workspace:packages/lib-common"
   dependencies:
@@ -2666,13 +2666,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/graph@workspace:packages/lib-graph":
+"@graspologic/graph@workspace:^, @graspologic/graph@workspace:packages/lib-graph":
   version: 0.0.0-use.local
   resolution: "@graspologic/graph@workspace:packages/lib-graph"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/memstore": "workspace:packages/lib-memstore"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/memstore": "workspace:^"
     "@types/node": "npm:^20.6.0"
     npm-run-all: "npm:^4.1.5"
     typedoc: "npm:0.22.10"
@@ -2683,13 +2683,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/layout-core@workspace:packages/layout-core":
+"@graspologic/layout-core@workspace:^, @graspologic/layout-core@workspace:packages/layout-core":
   version: 0.0.0-use.local
   resolution: "@graspologic/layout-core@workspace:packages/layout-core"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/graph": "workspace:packages/lib-graph"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/graph": "workspace:^"
     "@types/node": "npm:^20.6.0"
     npm-run-all: "npm:^4.1.5"
     typedoc: "npm:0.22.10"
@@ -2700,14 +2700,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/layout-fa2@workspace:packages/layout-fa2":
+"@graspologic/layout-fa2@workspace:^, @graspologic/layout-fa2@workspace:packages/layout-fa2":
   version: 0.0.0-use.local
   resolution: "@graspologic/layout-fa2@workspace:packages/layout-fa2"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/layout-core": "workspace:packages/layout-core"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/layout-core": "workspace:^"
     "@rollup/plugin-commonjs": "npm:^15.1.0"
     "@rollup/plugin-node-resolve": "npm:^9.0.0"
     "@rollup/plugin-replace": "npm:^2.3.3"
@@ -2724,15 +2724,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/layout-openord@workspace:packages/layout-openord":
+"@graspologic/layout-openord@workspace:^, @graspologic/layout-openord@workspace:packages/layout-openord":
   version: 0.0.0-use.local
   resolution: "@graspologic/layout-openord@workspace:packages/layout-openord"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/layout-core": "workspace:packages/layout-core"
-    "@graspologic/testdata": "workspace:packages/lib-testdata"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/layout-core": "workspace:^"
+    "@graspologic/testdata": "workspace:^"
     "@rollup/plugin-commonjs": "npm:^15.1.0"
     "@rollup/plugin-node-resolve": "npm:^9.0.0"
     "@rollup/plugin-replace": "npm:^2.3.3"
@@ -2767,14 +2767,14 @@ __metadata:
     "@chart-parts/transform": "npm:^0.1.3"
     "@essex/scripts": "npm:^26.0.0"
     "@essex/webpack-config": "npm:^22.0.1"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/layout-core": "workspace:packages/layout-core"
-    "@graspologic/layout-fa2": "workspace:packages/layout-fa2"
-    "@graspologic/layout-openord": "workspace:packages/layout-openord"
-    "@graspologic/react": "workspace:packages/lib-react"
-    "@graspologic/render-controls-react": "workspace:packages/lib-controls-react"
-    "@graspologic/renderer": "workspace:packages/lib-renderer"
-    "@graspologic/testdata": "workspace:packages/lib-testdata"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/layout-core": "workspace:^"
+    "@graspologic/layout-fa2": "workspace:^"
+    "@graspologic/layout-openord": "workspace:^"
+    "@graspologic/react": "workspace:^"
+    "@graspologic/render-controls-react": "workspace:^"
+    "@graspologic/renderer": "workspace:^"
+    "@graspologic/testdata": "workspace:^"
     "@thematic/core": "npm:^0.9.0"
     "@types/babel__preset-env": "npm:^7.9.2"
     "@types/d3-scale": "npm:^2.2.6"
@@ -2808,16 +2808,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/luma-utils@workspace:packages/lib-luma-utils":
+"@graspologic/luma-utils@workspace:^, @graspologic/luma-utils@workspace:packages/lib-luma-utils":
   version: 0.0.0-use.local
   resolution: "@graspologic/luma-utils@workspace:packages/lib-luma-utils"
   dependencies:
     "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/memstore": "workspace:packages/lib-memstore"
-    "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/gltools": "npm:^8.5.10"
-    "@luma.gl/webgl": "npm:^8.5.10"
+    "@graspologic/memstore": "workspace:^"
+    "@graspologic/renderer-glsl": "workspace:^"
+    "@luma.gl/gltools": "npm:^8.5.21"
+    "@luma.gl/webgl": "npm:^8.5.21"
     "@types/node": "npm:^20.6.0"
     glob: "npm:^7.2.0"
     math.gl: "npm:^3.5.6"
@@ -2825,7 +2825,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/memstore@workspace:packages/lib-memstore":
+"@graspologic/memstore@workspace:^, @graspologic/memstore@workspace:packages/lib-memstore":
   version: 0.0.0-use.local
   resolution: "@graspologic/memstore@workspace:packages/lib-memstore"
   dependencies:
@@ -2864,7 +2864,6 @@ __metadata:
     "@wojtekmaj/enzyme-adapter-react-17": "npm:^0.6.5"
     applicationinsights: "npm:^1.8.10"
     colors: "npm:^1.4.0"
-    dts-bundle: "npm:^0.7.3"
     enzyme: "npm:^3.11.0"
     eslint: "npm:^8.49.0"
     eslint-import-resolver-node: "npm:^0.3.9"
@@ -2889,17 +2888,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/react@workspace:packages/lib-react":
+"@graspologic/react@workspace:^, @graspologic/react@workspace:packages/lib-react":
   version: 0.0.0-use.local
   resolution: "@graspologic/react@workspace:packages/lib-react"
   dependencies:
     "@essex-js-toolkit/hooks": "npm:^4.0.3"
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/camera": "workspace:packages/lib-camera"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/renderables-base": "workspace:packages/renderables-base"
-    "@graspologic/renderables-support": "workspace:packages/renderables-support"
-    "@graspologic/renderer": "workspace:packages/lib-renderer"
+    "@graspologic/camera": "workspace:^"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/renderables-base": "workspace:^"
+    "@graspologic/renderables-support": "workspace:^"
+    "@graspologic/renderer": "workspace:^"
     "@types/enzyme": "npm:^3.10.10"
     "@types/node": "npm:^20.6.0"
     "@types/react": "npm:^18.2.21"
@@ -2923,14 +2922,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/render-controls-react@workspace:packages/lib-controls-react":
+"@graspologic/render-controls-react@workspace:^, @graspologic/render-controls-react@workspace:packages/lib-controls-react":
   version: 0.0.0-use.local
   resolution: "@graspologic/render-controls-react@workspace:packages/lib-controls-react"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/react": "workspace:packages/lib-react"
-    "@graspologic/render-controls": "workspace:packages/lib-controls"
-    "@graspologic/renderer": "workspace:packages/lib-renderer"
+    "@graspologic/react": "workspace:^"
+    "@graspologic/render-controls": "workspace:^"
+    "@graspologic/renderer": "workspace:^"
     "@types/dat.gui": "npm:^0.7.7"
     "@types/node": "npm:^20.6.0"
     dat.gui: "npm:^0.7.7"
@@ -2948,18 +2947,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/render-controls@workspace:packages/lib-controls":
+"@graspologic/render-controls@workspace:^, @graspologic/render-controls@workspace:packages/lib-controls":
   version: 0.0.0-use.local
   resolution: "@graspologic/render-controls@workspace:packages/lib-controls"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/react": "workspace:packages/lib-react"
-    "@graspologic/renderer": "workspace:packages/lib-renderer"
+    "@graspologic/react": "workspace:^"
+    "@graspologic/renderer": "workspace:^"
     "@types/dat.gui": "npm:^0.7.7"
     "@types/node": "npm:^20.6.0"
+    add: "npm:^2.0.6"
     dat.gui: "npm:^0.7.7"
     npm-run-all: "npm:^4.1.5"
     typedoc: "npm:0.22.10"
+    yarn: "npm:^1.22.19"
   peerDependencies:
     "@types/node": "*"
     core-js: ^3.6.5
@@ -2967,35 +2968,35 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderables-base@workspace:packages/renderables-base":
+"@graspologic/renderables-base@workspace:^, @graspologic/renderables-base@workspace:packages/renderables-base":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-base@workspace:packages/renderables-base"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/common": "workspace:packages/lib-common"
+    "@graspologic/common": "workspace:^"
     "@types/node": "npm:^20.6.0"
     glob: "npm:^7.2.0"
     npm-run-all: "npm:^4.1.5"
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderables-edges@workspace:packages/renderables-edges":
+"@graspologic/renderables-edges@workspace:^, @graspologic/renderables-edges@workspace:packages/renderables-edges":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-edges@workspace:packages/renderables-edges"
   dependencies:
     "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@essex/webpack-config": "npm:^22.0.1"
-    "@graspologic/animation": "workspace:packages/lib-animation"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/luma-utils": "workspace:packages/lib-luma-utils"
-    "@graspologic/memstore": "workspace:packages/lib-memstore"
-    "@graspologic/renderables-base": "workspace:packages/renderables-base"
-    "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/engine": "npm:^8.5.10"
-    "@luma.gl/gltools": "npm:^8.5.10"
-    "@luma.gl/webgl": "npm:^8.5.10"
+    "@graspologic/animation": "workspace:^"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/luma-utils": "workspace:^"
+    "@graspologic/memstore": "workspace:^"
+    "@graspologic/renderables-base": "workspace:^"
+    "@graspologic/renderer-glsl": "workspace:^"
+    "@luma.gl/engine": "npm:^8.5.21"
+    "@luma.gl/gltools": "npm:^8.5.21"
+    "@luma.gl/webgl": "npm:^8.5.21"
     "@types/node": "npm:^20.6.0"
     "@types/webpack-bundle-analyzer": "npm:^4.4.1"
     glob: "npm:^7.2.0"
@@ -3008,24 +3009,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderables-nodes@workspace:packages/renderables-nodes":
+"@graspologic/renderables-nodes@workspace:^, @graspologic/renderables-nodes@workspace:packages/renderables-nodes":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-nodes@workspace:packages/renderables-nodes"
   dependencies:
     "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@essex/webpack-config": "npm:^22.0.1"
-    "@graspologic/animation": "workspace:packages/lib-animation"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/luma-utils": "workspace:packages/lib-luma-utils"
-    "@graspologic/memstore": "workspace:packages/lib-memstore"
-    "@graspologic/renderables-base": "workspace:packages/renderables-base"
-    "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/engine": "npm:^8.5.10"
-    "@luma.gl/gltools": "npm:^8.5.10"
-    "@luma.gl/shadertools": "npm:^8.5.10"
-    "@luma.gl/webgl": "npm:^8.5.10"
+    "@graspologic/animation": "workspace:^"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/luma-utils": "workspace:^"
+    "@graspologic/memstore": "workspace:^"
+    "@graspologic/renderables-base": "workspace:^"
+    "@graspologic/renderer-glsl": "workspace:^"
+    "@luma.gl/engine": "npm:^8.5.21"
+    "@luma.gl/gltools": "npm:^8.5.21"
+    "@luma.gl/shadertools": "npm:^8.5.21"
+    "@luma.gl/webgl": "npm:^8.5.21"
     "@types/node": "npm:^20.6.0"
     "@types/webpack-bundle-analyzer": "npm:^4.4.1"
     glob: "npm:^7.2.0"
@@ -3039,26 +3040,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderables-support@workspace:packages/renderables-support":
+"@graspologic/renderables-support@workspace:^, @graspologic/renderables-support@workspace:packages/renderables-support":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-support@workspace:packages/renderables-support"
   dependencies:
     "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@essex/webpack-config": "npm:^22.0.1"
-    "@graspologic/animation": "workspace:packages/lib-animation"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/luma-utils": "workspace:packages/lib-luma-utils"
-    "@graspologic/memstore": "workspace:packages/lib-memstore"
-    "@graspologic/renderables-base": "workspace:packages/renderables-base"
-    "@graspologic/renderables-edges": "workspace:packages/renderables-edges"
-    "@graspologic/renderables-nodes": "workspace:packages/renderables-nodes"
-    "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/engine": "npm:^8.5.10"
-    "@luma.gl/gltools": "npm:^8.5.10"
-    "@luma.gl/shadertools": "npm:^8.5.10"
-    "@luma.gl/webgl": "npm:^8.5.10"
+    "@graspologic/animation": "workspace:^"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/luma-utils": "workspace:^"
+    "@graspologic/memstore": "workspace:^"
+    "@graspologic/renderables-base": "workspace:^"
+    "@graspologic/renderables-edges": "workspace:^"
+    "@graspologic/renderables-nodes": "workspace:^"
+    "@graspologic/renderer-glsl": "workspace:^"
+    "@luma.gl/engine": "npm:^8.5.21"
+    "@luma.gl/gltools": "npm:^8.5.21"
+    "@luma.gl/shadertools": "npm:^8.5.21"
+    "@luma.gl/webgl": "npm:^8.5.21"
     "@types/node": "npm:^20.6.0"
     "@types/webpack-bundle-analyzer": "npm:^4.4.1"
     glob: "npm:^7.2.0"
@@ -3072,7 +3073,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderer-glsl@workspace:packages/lib-renderer-glsl":
+"@graspologic/renderer-glsl@workspace:^, @graspologic/renderer-glsl@workspace:packages/lib-renderer-glsl":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderer-glsl@workspace:packages/lib-renderer-glsl"
   dependencies:
@@ -3085,27 +3086,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/renderer@workspace:packages/lib-renderer":
+"@graspologic/renderer@workspace:^, @graspologic/renderer@workspace:packages/lib-renderer":
   version: 0.0.0-use.local
   resolution: "@graspologic/renderer@workspace:packages/lib-renderer"
   dependencies:
     "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/animation": "workspace:packages/lib-animation"
-    "@graspologic/camera": "workspace:packages/lib-camera"
-    "@graspologic/common": "workspace:packages/lib-common"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/luma-utils": "workspace:packages/lib-luma-utils"
-    "@graspologic/memstore": "workspace:packages/lib-memstore"
-    "@graspologic/renderables-base": "workspace:packages/renderables-base"
-    "@graspologic/renderables-edges": "workspace:packages/renderables-edges"
-    "@graspologic/renderables-nodes": "workspace:packages/renderables-nodes"
-    "@graspologic/renderables-support": "workspace:packages/renderables-support"
-    "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
-    "@luma.gl/constants": "npm:^8.5.10"
-    "@luma.gl/engine": "npm:^8.5.10"
-    "@luma.gl/gltools": "npm:^8.5.10"
-    "@luma.gl/webgl": "npm:^8.5.10"
+    "@graspologic/animation": "workspace:^"
+    "@graspologic/camera": "workspace:^"
+    "@graspologic/common": "workspace:^"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/luma-utils": "workspace:^"
+    "@graspologic/memstore": "workspace:^"
+    "@graspologic/renderables-base": "workspace:^"
+    "@graspologic/renderables-edges": "workspace:^"
+    "@graspologic/renderables-nodes": "workspace:^"
+    "@graspologic/renderables-support": "workspace:^"
+    "@graspologic/renderer-glsl": "workspace:^"
+    "@luma.gl/constants": "npm:^8.5.21"
+    "@luma.gl/engine": "npm:^8.5.21"
+    "@luma.gl/gltools": "npm:^8.5.21"
+    "@luma.gl/webgl": "npm:^8.5.21"
     "@types/node": "npm:^20.6.0"
     glob: "npm:^7.2.0"
     invariant: "npm:^2.2.4"
@@ -3129,14 +3130,14 @@ __metadata:
     "@babel/preset-react": "npm:^7.16.0"
     "@babel/preset-typescript": "npm:^7.16.0"
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/graph": "workspace:packages/lib-graph"
-    "@graspologic/layout-core": "workspace:packages/layout-core"
-    "@graspologic/layout-fa2": "workspace:packages/layout-fa2"
-    "@graspologic/layout-openord": "workspace:packages/layout-openord"
-    "@graspologic/react": "workspace:packages/lib-react"
-    "@graspologic/render-controls-react": "workspace:packages/lib-controls-react"
-    "@graspologic/renderer": "workspace:packages/lib-renderer"
-    "@graspologic/testdata": "workspace:packages/lib-testdata"
+    "@graspologic/graph": "workspace:^"
+    "@graspologic/layout-core": "workspace:^"
+    "@graspologic/layout-fa2": "workspace:^"
+    "@graspologic/layout-openord": "workspace:^"
+    "@graspologic/react": "workspace:^"
+    "@graspologic/render-controls-react": "workspace:^"
+    "@graspologic/renderer": "workspace:^"
+    "@graspologic/testdata": "workspace:^"
     "@mdx-js/react": "npm:^1.6.22"
     "@storybook/addon-a11y": "npm:^6.4.8"
     "@storybook/addon-actions": "npm:^6.4.8"
@@ -3164,12 +3165,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graspologic/testdata@workspace:packages/lib-testdata":
+"@graspologic/testdata@workspace:^, @graspologic/testdata@workspace:packages/lib-testdata":
   version: 0.0.0-use.local
   resolution: "@graspologic/testdata@workspace:packages/lib-testdata"
   dependencies:
     "@essex/scripts": "npm:^26.0.0"
-    "@graspologic/graph": "workspace:packages/lib-graph"
+    "@graspologic/graph": "workspace:^"
     "@types/node": "npm:^20.6.0"
     typedoc: "npm:0.22.10"
   languageName: unknown
@@ -3594,58 +3595,63 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@luma.gl/constants@npm:8.5.10, @luma.gl/constants@npm:^8.5.10":
-  version: 8.5.10
-  resolution: "@luma.gl/constants@npm:8.5.10"
-  checksum: e03371b511b3ea1fb87cada6569c17f5a8cc75128d04939f7908a0823382c1427b2c3a79192a11cb19d44ee6f5d648d2c9e487e0c271960ea49b4222d8a6aaaa
+"@luma.gl/constants@npm:8.5.21, @luma.gl/constants@npm:^8.5.21":
+  version: 8.5.21
+  resolution: "@luma.gl/constants@npm:8.5.21"
+  checksum: c549e799282ee439cad63275449e93e97d7fa718b79a3b5c208aea91acbcab197b9f7e0d661c859103bb4503da1056eec7eabc5d95c304859f05b62fc6639b12
   languageName: node
   linkType: hard
 
-"@luma.gl/engine@npm:^8.5.10":
-  version: 8.5.10
-  resolution: "@luma.gl/engine@npm:8.5.10"
+"@luma.gl/engine@npm:^8.5.21":
+  version: 8.5.21
+  resolution: "@luma.gl/engine@npm:8.5.21"
   dependencies:
     "@babel/runtime": "npm:^7.0.0"
-    "@luma.gl/constants": "npm:8.5.10"
-    "@luma.gl/gltools": "npm:8.5.10"
-    "@luma.gl/shadertools": "npm:8.5.10"
-    "@luma.gl/webgl": "npm:8.5.10"
+    "@luma.gl/constants": "npm:8.5.21"
+    "@luma.gl/gltools": "npm:8.5.21"
+    "@luma.gl/shadertools": "npm:8.5.21"
+    "@luma.gl/webgl": "npm:8.5.21"
     "@math.gl/core": "npm:^3.5.0"
-    probe.gl: "npm:^3.4.0"
-  checksum: bf65a709607839a5f2cdccb246af35cb8e4452556153346d2a280c16d5fd012d3a9bd2e140cff3432a8da355e1126c7d01ae4a9d9d10a2cde3034679d2f2f6d6
+    "@probe.gl/env": "npm:^3.5.0"
+    "@probe.gl/stats": "npm:^3.5.0"
+    "@types/offscreencanvas": "npm:^2019.7.0"
+  checksum: 96e48b6a59386db341ea6c015b73eb8930cf34ef34e2c035bab99fe6ae640de2299439c7c7def0f097d8dddd3a505f5b6f52f024ab08c63ccfb2de91f8bf1811
   languageName: node
   linkType: hard
 
-"@luma.gl/gltools@npm:8.5.10, @luma.gl/gltools@npm:^8.5.10":
-  version: 8.5.10
-  resolution: "@luma.gl/gltools@npm:8.5.10"
+"@luma.gl/gltools@npm:8.5.21, @luma.gl/gltools@npm:^8.5.21":
+  version: 8.5.21
+  resolution: "@luma.gl/gltools@npm:8.5.21"
   dependencies:
     "@babel/runtime": "npm:^7.0.0"
-    "@luma.gl/constants": "npm:8.5.10"
-    probe.gl: "npm:^3.4.0"
-  checksum: 28b3bb74ac20a1051324659d6f79a9e2d5bed2221cda532c7a4cc27e49c9d81b537fc147b81f0b03c71857e8814b0a7b4beba8934b4fafbbc711675c3e46690c
+    "@luma.gl/constants": "npm:8.5.21"
+    "@probe.gl/env": "npm:^3.5.0"
+    "@probe.gl/log": "npm:^3.5.0"
+    "@types/offscreencanvas": "npm:^2019.7.0"
+  checksum: 6e77ea4c412256da95312b2d14f70c314b9a07a5ce52870c3f37244871272f72e30cfe2400286795e5a96154461c9f58533a6f7781d2ad1ac4b2889225dd5b94
   languageName: node
   linkType: hard
 
-"@luma.gl/shadertools@npm:8.5.10, @luma.gl/shadertools@npm:^8.5.10":
-  version: 8.5.10
-  resolution: "@luma.gl/shadertools@npm:8.5.10"
+"@luma.gl/shadertools@npm:8.5.21, @luma.gl/shadertools@npm:^8.5.21":
+  version: 8.5.21
+  resolution: "@luma.gl/shadertools@npm:8.5.21"
   dependencies:
     "@babel/runtime": "npm:^7.0.0"
     "@math.gl/core": "npm:^3.5.0"
-  checksum: 6a111724a0e773663ce572f193ad835a52a372f7064253274716344f2dd1f40f769047b83627af4f5b3b508d918ab3d6a0542ad4c9e71ca48d7df4fe17eccff5
+  checksum: 1b8e1270482ea6b322b904866c294fbd59401a15bb1b423eba4bb6ec7c7b057ecd8d02ed935d3e56e93ad68a57d406c044a731117823fa30805881aa19abf78f
   languageName: node
   linkType: hard
 
-"@luma.gl/webgl@npm:8.5.10, @luma.gl/webgl@npm:^8.5.10":
-  version: 8.5.10
-  resolution: "@luma.gl/webgl@npm:8.5.10"
+"@luma.gl/webgl@npm:8.5.21, @luma.gl/webgl@npm:^8.5.21":
+  version: 8.5.21
+  resolution: "@luma.gl/webgl@npm:8.5.21"
   dependencies:
     "@babel/runtime": "npm:^7.0.0"
-    "@luma.gl/constants": "npm:8.5.10"
-    "@luma.gl/gltools": "npm:8.5.10"
-    probe.gl: "npm:^3.4.0"
-  checksum: e52ef330ab1407a682d630f34b97ce49bbe80122659de5d3856b029be61e5ec4258aac0ff5698f14868554e691731ea2f1ec59262df30fa83018af5f6c0277d0
+    "@luma.gl/constants": "npm:8.5.21"
+    "@luma.gl/gltools": "npm:8.5.21"
+    "@probe.gl/env": "npm:^3.5.0"
+    "@probe.gl/stats": "npm:^3.5.0"
+  checksum: e0787665e6378821d8f6cc1e0b4a3a13305d80282e069ffd83af51a3e8b3f9d0bb0b39f992f2837aadcb53752e3eca44b764e2d73e62c2dfbeb9b9775113295a
   languageName: node
   linkType: hard
 
@@ -3963,12 +3969,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@probe.gl/stats@npm:3.4.1":
-  version: 3.4.1
-  resolution: "@probe.gl/stats@npm:3.4.1"
+"@probe.gl/env@npm:3.6.0, @probe.gl/env@npm:^3.5.0":
+  version: 3.6.0
+  resolution: "@probe.gl/env@npm:3.6.0"
   dependencies:
     "@babel/runtime": "npm:^7.0.0"
-  checksum: 8d82d802526c3343eb027934dda0946b08aafded3b71d433ed694b9c3551a2d3418b657c6931d831ea1f37201cc1ee5608997dd556f1131940a5305d04cf3504
+  checksum: 7bdf889a12265387fb33f226eb53dc8250dad0ceaa55dfdcf965013c5c8bf0c0c439ccf43abd45c1260130232271d51858cbef5465321f576dd39dd2b755eb9b
+  languageName: node
+  linkType: hard
+
+"@probe.gl/log@npm:^3.5.0":
+  version: 3.6.0
+  resolution: "@probe.gl/log@npm:3.6.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.0.0"
+    "@probe.gl/env": "npm:3.6.0"
+  checksum: 2f0603fa00b3fff66886faf8ce3b0698e754a2a988e6fe3fb8e63c033dfb3a1afd63d5c9b8298d82dea66a3e9cba6667a4a7852b4c2e2c069ca720650959fc47
+  languageName: node
+  linkType: hard
+
+"@probe.gl/stats@npm:^3.5.0":
+  version: 3.6.0
+  resolution: "@probe.gl/stats@npm:3.6.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.0.0"
+  checksum: c54a32a9db3f47fa7e6e8f78589a34bd33e3f91f4d73030b4b07fe22facc31aa4eceaa586942e12927aa0c11b7a85db8a16c39f6da561801128da46770fdcd99
   languageName: node
   linkType: hard
 
@@ -5781,13 +5806,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/detect-indent@npm:0.1.30":
-  version: 0.1.30
-  resolution: "@types/detect-indent@npm:0.1.30"
-  checksum: 878caf846815243e7b41c9b4cfbbfcf63c88ebf5cbe2ad5017eb1c214ec3fd43b17cf0cdf139a679d80814f3ce2b87f41a0f56c29b88331af26da55aa9be0fc5
-  languageName: node
-  linkType: hard
-
 "@types/enzyme@npm:^3.10.10":
   version: 3.10.10
   resolution: "@types/enzyme@npm:3.10.10"
@@ -5932,16 +5950,6 @@ __metadata:
     "@types/minimatch": "npm:*"
     "@types/node": "npm:*"
   checksum: 6ae717fedfdfdad25f3d5a568323926c64f52ef35897bcac8aca8e19bc50c0bd84630bbd063e5d52078b2137d8e7d3c26eabebd1a2f03ff350fff8a91e79fc19
-  languageName: node
-  linkType: hard
-
-"@types/glob@npm:5.0.30":
-  version: 5.0.30
-  resolution: "@types/glob@npm:5.0.30"
-  dependencies:
-    "@types/minimatch": "npm:*"
-    "@types/node": "npm:*"
-  checksum: a1fbd72795f66a0ac367deb912885c37e8a8fe81cc1456f33e50925236f2056058493b5120c48c8724510ea24133b16f1c67e2a4c5bdb870aa499baea1557eb8
   languageName: node
   linkType: hard
 
@@ -6187,13 +6195,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mkdirp@npm:0.3.29":
-  version: 0.3.29
-  resolution: "@types/mkdirp@npm:0.3.29"
-  checksum: c65b8ab561c5bd4343f6843aaf0b78252fe0f18074e76fe6e5f67d7fe5d730441cc654506b30da144eddd6cadd645aaf6332a4c799162527ff116241da1777c2
-  languageName: node
-  linkType: hard
-
 "@types/ms@npm:*":
   version: 0.7.31
   resolution: "@types/ms@npm:0.7.31"
@@ -6232,13 +6233,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:8.0.0":
-  version: 8.0.0
-  resolution: "@types/node@npm:8.0.0"
-  checksum: 138ee937e2e55bcda3c2d98f7061587f052f99d4e952193c93d4660b0d884daaaa67d6ce368dba7f40dff70a59ecc40679ce1cc74838ab923a338b03fcfbf457
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:^14.0.10, @types/node@npm:^14.0.13":
   version: 14.18.0
   resolution: "@types/node@npm:14.18.0"
@@ -6271,6 +6265,13 @@ __metadata:
   version: 4.1.3
   resolution: "@types/npmlog@npm:4.1.3"
   checksum: bf04854965ecea594a69f134eaec845f5bd044eee686e79f24865891dee7d8b376bf48dbdeb89632175bc368a8e9925800dd37e54546954e991b3c1b8df2bd2e
+  languageName: node
+  linkType: hard
+
+"@types/offscreencanvas@npm:^2019.7.0":
+  version: 2019.7.1
+  resolution: "@types/offscreencanvas@npm:2019.7.1"
+  checksum: 6835c06310ec6f39bdd10f66207c74e6dc522848bd4e4168e08590db4830b7a9c42f3151cb30dd75fda27acf6de80f44f45918d873caa67b74b71cf25477e309
   languageName: node
   linkType: hard
 
@@ -7677,6 +7678,13 @@ __metadata:
   bin:
     acorn: bin/acorn
   checksum: 522310c20fdc3c271caed3caf0f06c51d61cb42267279566edd1d58e83dbc12eebdafaab666a0f0be1b7ad04af9c6bc2a6f478690a9e6391c3c8b165ada917dd
+  languageName: node
+  linkType: hard
+
+"add@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "add@npm:2.0.6"
+  checksum: 1d2c0780a660edfc161b7784a846865b28dcd8514cc6042c8e283298f379cd3b150412b67a12603a4ac885912f05759f3e2993c27219f85d1face316ffc0b175
   languageName: node
   linkType: hard
 
@@ -9839,7 +9847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:2, commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:^2.9.0":
+"commander@npm:2, commander@npm:^2.19.0, commander@npm:^2.20.0":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: 90c5b6898610cd075984c58c4f88418a4fb44af08c1b1415e9854c03171bec31b336b7f3e4cefe33de994b3f12b03c5e2d638da4316df83593b9e82554e7e95b
@@ -10968,18 +10976,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-indent@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "detect-indent@npm:0.2.0"
-  dependencies:
-    get-stdin: "npm:^0.1.0"
-    minimist: "npm:^0.1.0"
-  bin:
-    detect-indent: cli.js
-  checksum: 9c151282ff8be08e0176fa6b83bf4ab492363757f1b374e6fc7b1f1c8844f92c3ca1b8bba86972d745d60987cdfa7c6152f731f30028e5b084083888881094c9
-  languageName: node
-  linkType: hard
-
 "detect-newline@npm:^3.0.0":
   version: 3.1.0
   resolution: "detect-newline@npm:3.1.0"
@@ -11226,24 +11222,6 @@ __metadata:
   peerDependencies:
     react: ">=16.12.0"
   checksum: 1990781fdcdecfccf4d33eb9a8adc7243b34faf386e977d7adef2d23c000acf0e60650801c7b85da353fc7e6589cdfb43ca77578f7d1d149480004ce0807d608
-  languageName: node
-  linkType: hard
-
-"dts-bundle@npm:^0.7.3":
-  version: 0.7.3
-  resolution: "dts-bundle@npm:0.7.3"
-  dependencies:
-    "@types/detect-indent": "npm:0.1.30"
-    "@types/glob": "npm:5.0.30"
-    "@types/mkdirp": "npm:0.3.29"
-    "@types/node": "npm:8.0.0"
-    commander: "npm:^2.9.0"
-    detect-indent: "npm:^0.2.0"
-    glob: "npm:^6.0.4"
-    mkdirp: "npm:^0.5.0"
-  bin:
-    dts-bundle: ./lib/dts-bundle.js
-  checksum: b2acb4d3b4b8deae7ff247d15c9c924fe76521b5b124ec14e434a5db771176c48635066656edd6b99d9be64af1a975c943eb423de37baef84913ef708d38ced7
   languageName: node
   linkType: hard
 
@@ -13300,13 +13278,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-stdin@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "get-stdin@npm:0.1.0"
-  checksum: e37fa95f71ade6a94d3d984ddd7741b88303201f8c880594328c1a61559a9e243e8c71f9ee80f2f53045ad286f854e16f0caba3d48336fb45ff814aac1f90e19
-  languageName: node
-  linkType: hard
-
 "get-stream@npm:^3.0.0":
   version: 3.0.0
   resolution: "get-stream@npm:3.0.0"
@@ -13462,19 +13433,6 @@ __metadata:
     once: "npm:^1.3.0"
     path-is-absolute: "npm:^1.0.0"
   checksum: 4a1f2401329d94b5c25c6ac16276aceccc52b865bd9b2b9198da21fc937d021bfd87463ae44de9a9e4794894a49bc619ebaf7e5b12182bcf97e2ceb68ae116d7
-  languageName: node
-  linkType: hard
-
-"glob@npm:^6.0.4":
-  version: 6.0.4
-  resolution: "glob@npm:6.0.4"
-  dependencies:
-    inflight: "npm:^1.0.4"
-    inherits: "npm:2"
-    minimatch: "npm:2 || 3"
-    once: "npm:^1.3.0"
-    path-is-absolute: "npm:^1.0.0"
-  checksum: b8fec415f772983ffbf7823c2c87aedd50aacf4f8db1868a11535db1023cf5180c9dd7487ce08f85bd64ed5cfd4268cea1a1c61c2772523d7d6194177d6d53a8
   languageName: node
   linkType: hard
 
@@ -17523,13 +17481,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "minimist@npm:0.1.0"
-  checksum: aab6ebdc749ba5f4a48af69b4db083f9bb91627f43780048d6cc54cec2157d9e897f354ae2d908b8513272e58791029043ad8a70d595b82e4090e9fc1e565b10
-  languageName: node
-  linkType: hard
-
 "minimist@npm:^1.1.1, minimist@npm:^1.2.0, minimist@npm:^1.2.3, minimist@npm:^1.2.5":
   version: 1.2.5
   resolution: "minimist@npm:1.2.5"
@@ -17659,7 +17610,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdirp@npm:^0.5.0, mkdirp@npm:^0.5.1, mkdirp@npm:^0.5.3":
+"mkdirp@npm:^0.5.1, mkdirp@npm:^0.5.3":
   version: 0.5.5
   resolution: "mkdirp@npm:0.5.5"
   dependencies:
@@ -19323,16 +19274,6 @@ __metadata:
   version: 1.25.0
   resolution: "prismjs@npm:1.25.0"
   checksum: 3dcbf086c77fd48c5692d87ff9f9c41c8eca6c1ac8010d24ae21cd4cc94d8807a0a06b5aa506891c95f1e240aa76f068c47c4565198a8b28672d5853b020e1b8
-  languageName: node
-  linkType: hard
-
-"probe.gl@npm:^3.4.0":
-  version: 3.4.1
-  resolution: "probe.gl@npm:3.4.1"
-  dependencies:
-    "@babel/runtime": "npm:^7.0.0"
-    "@probe.gl/stats": "npm:3.4.1"
-  checksum: b8109baa116ed8869761c108b8fc04f6e94e0c8c5ddf44539622cbbffa2d4d994037f890f8438c14765c95387486f9d419ae27c81dd9169b4b4e30dd9ea22a47
   languageName: node
   linkType: hard
 
@@ -24861,6 +24802,16 @@ __metadata:
     y18n: "npm:^5.0.5"
     yargs-parser: "npm:^21.1.1"
   checksum: abb3e37678d6e38ea85485ed86ebe0d1e3464c640d7d9069805ea0da12f69d5a32df8e5625e370f9c96dd1c2dc088ab2d0a4dd32af18222ef3c4224a19471576
+  languageName: node
+  linkType: hard
+
+"yarn@npm:^1.22.19":
+  version: 1.22.19
+  resolution: "yarn@npm:1.22.19"
+  bin:
+    yarn: bin/yarn.js
+    yarnpkg: bin/yarn.js
+  checksum: b3929d0a482291a87f6eb1459a9caf9cf6e2fe6d5267f83e44a150337a8c241bd69a62694d99eca14fb878a864c518247fc1522c4fa6d40a97db449af70d1760
   languageName: node
   linkType: hard
 

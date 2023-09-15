@@ -3,11 +3,11 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { MemoryReader, MemoryReaderInspector } from '@graspologic/memstore'
-import { InputEdge } from '../../../graph'
-import { Pos3D, Pos2D, ClassType } from '../../types'
-import { edgeTypedOffset } from '../layout'
-import { AnimatableEdge, Edge, EdgeStore } from '../types'
-import { EdgeImpl } from './EdgeImpl'
+import { InputEdge } from '../../../graph/index.js'
+import { Pos3D, Pos2D, ClassType } from '../../types.js'
+import { edgeTypedOffset } from '../layout.js'
+import { AnimatableEdge, Edge, EdgeStore } from '../types.js'
+import { EdgeImpl } from './EdgeImpl.js'
 
 // Cache several frequently accessed names / offsets
 const allAttributes = '*'

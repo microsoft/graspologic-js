@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { jiggle } from '../helpers'
-import { Node } from '../primitives'
+import { jiggle } from '../helpers/index.js'
+import { Node } from '../primitives/index.js'
 
 /**
  * @internal

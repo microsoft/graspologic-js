@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
-import { InputNode } from '../../graph'
-import { Pos3D, Shape, Pos2D } from '../types'
+import { InputNode } from '../../graph/index.js'
+import { Pos3D, Shape, Pos2D } from '../types.js'
 
 /**
  * An interface representing a node
