@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { MemoryReader, AttributeName } from '@graspologic/memstore'
+import type { MemoryReader, AttributeName } from '@graspologic/memstore'
 
 /**
  * A utility for animating various properties of items
