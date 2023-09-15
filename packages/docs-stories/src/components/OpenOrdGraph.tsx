@@ -4,9 +4,10 @@
  */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { GraphContainer, InputGraph } from '@graspologic/graph'
+import type { InputGraph } from '@graspologic/graph';
+import { GraphContainer } from '@graspologic/graph'
 import { LayoutWorkerManager } from '@graspologic/layout-core'
-import {
+import type {
 	OpenOrdConfiguration,
 	OpenOrdTickProgress,
 } from '@graspologic/layout-openord'
@@ -22,7 +23,7 @@ import {
 	DisplaySettings,
 	NodeSettings,
 } from '@graspologic/render-controls-react'
-import { GraphRenderer } from '@graspologic/renderer'
+import type { GraphRenderer } from '@graspologic/renderer'
 import { memo, useMemo, useEffect, useRef } from 'react'
 import colorizer from '../data/categoricalColorizer'
 
@@ -44,7 +45,7 @@ export const OpenOrdGraph: React.FC<OpenOrdGraphProps> = memo(({ data }) => {
 			return
 		}
 		manager.on('progress', () => ref.current?.rebind())
-		manager.layout(internedData)
+		manager.layout(internedData).catch(console.error)
 	}, [manager, internedData])
 
 	return internedData ? (

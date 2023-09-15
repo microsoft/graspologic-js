@@ -20,7 +20,7 @@ import {
 	EdgeSettings,
 } from '@graspologic/render-controls-react'
 import { action } from '@storybook/addon-actions'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import colorizer from './data/categoricalColorizer'
 import processGraphJson from './data/processGraphJson'
 
@@ -32,9 +32,9 @@ const testData = processGraphJson(
 export default {
 	title: 'Simple 2D Examples',
 	component: GraphView,
-} as ComponentMeta<typeof GraphView>
+} as Meta<typeof GraphView>
 
-export const WithoutExtensions: ComponentStory<typeof GraphView> = () => {
+export const WithoutExtensions: StoryFn<typeof GraphView> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData} />
@@ -42,7 +42,7 @@ export const WithoutExtensions: ComponentStory<typeof GraphView> = () => {
 	)
 }
 
-export const WithHeterogeneousNodeSizes: ComponentStory<
+export const WithHeterogeneousNodeSizes: StoryFn<
 	typeof GraphView
 > = () => {
 	return (
@@ -112,7 +112,7 @@ export const WithHeterogeneousNodeSizes: ComponentStory<
 	)
 }
 
-export const WithAxesExtension: ComponentStory<typeof GraphView> = () => {
+export const WithAxesExtension: StoryFn<typeof GraphView> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -122,7 +122,7 @@ export const WithAxesExtension: ComponentStory<typeof GraphView> = () => {
 	)
 }
 
-export const WithVertexOnClickHandler: ComponentStory<
+export const WithVertexOnClickHandler: StoryFn<
 	typeof GraphView
 > = () => {
 	return (
@@ -135,7 +135,7 @@ export const WithVertexOnClickHandler: ComponentStory<
 }
 WithVertexOnClickHandler.storyName = 'With Vertex onClick Handler'
 
-export const WithPanZoomBehavior: ComponentStory<typeof GraphView> = () => {
+export const WithPanZoomBehavior: StoryFn<typeof GraphView> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -146,7 +146,7 @@ export const WithPanZoomBehavior: ComponentStory<typeof GraphView> = () => {
 }
 WithPanZoomBehavior.storyName = 'With Pan/Zoom Behavior'
 
-export const WithHoverHighlightBehavior: ComponentStory<
+export const WithHoverHighlightBehavior: StoryFn<
 	typeof GraphView
 > = () => {
 	return (
@@ -158,7 +158,7 @@ export const WithHoverHighlightBehavior: ComponentStory<
 	)
 }
 
-export const WithStaticHighlight: ComponentStory<typeof GraphView> = () => {
+export const WithStaticHighlight: StoryFn<typeof GraphView> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -168,7 +168,7 @@ export const WithStaticHighlight: ComponentStory<typeof GraphView> = () => {
 	)
 }
 
-export const WithStaticFilter: ComponentStory<typeof GraphView> = () => {
+export const WithStaticFilter: StoryFn<typeof GraphView> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -179,7 +179,7 @@ export const WithStaticFilter: ComponentStory<typeof GraphView> = () => {
 	)
 }
 
-export const WithEmbeddedControls: ComponentStory<typeof GraphView> = () => {
+export const WithEmbeddedControls: StoryFn<typeof GraphView> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -194,7 +194,7 @@ export const WithEmbeddedControls: ComponentStory<typeof GraphView> = () => {
 	)
 }
 
-export const WithDifferentNodeShapes: ComponentStory<typeof GraphView> = () => {
+export const WithDifferentNodeShapes: StoryFn<typeof GraphView> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView

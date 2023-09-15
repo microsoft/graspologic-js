@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { OpenOrdGraph } from './components/OpenOrdGraph'
 import processGraphJson from './data/processGraphJson'
 
@@ -22,12 +22,12 @@ const noPosTestData = {
 export default {
 	title: 'OpenORD Layout',
 	component: null,
-} as ComponentMeta<typeof OpenOrdGraph>
+} as Meta<typeof OpenOrdGraph>
 
-export const OpenOrd: ComponentStory<typeof OpenOrdGraph> = () => (
+export const OpenOrd: StoryFn<typeof OpenOrdGraph> = () => (
 	<OpenOrdGraph data={testData} />
 )
 
-export const OpenOrdRandom: ComponentStory<typeof OpenOrdGraph> = () => (
+export const OpenOrdRandom: StoryFn<typeof OpenOrdGraph> = () => (
 	<OpenOrdGraph data={noPosTestData} />
 )

@@ -10,7 +10,7 @@ import {
 	Edges,
 	CameraState,
 } from '@graspologic/react'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { Vector3, Quaternion } from 'math.gl'
 import colorizer from './data/categoricalColorizer'
 import processGraphJson from './data/processGraphJson'
@@ -24,9 +24,9 @@ testData.nodes.forEach((n: any) => (n.z = Math.random() * 100 - 50))
 export default {
 	title: 'Simple 3D Examples',
 	component: null,
-} as ComponentMeta<null>
+} as Meta<null>
 
-export const Simple3DView: ComponentStory<null> = () => {
+export const Simple3DView: StoryFn<null> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView
@@ -42,7 +42,7 @@ export const Simple3DView: ComponentStory<null> = () => {
 }
 Simple3DView.storyName = 'Simple 3D View'
 
-export const Toggle2DAnd3D: ComponentStory<null> = ({ is3D }) => {
+export const Toggle2DAnd3D: StoryFn<null> = ({ is3D }) => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView
@@ -61,7 +61,7 @@ Toggle2DAnd3D.args = {
 	is3D: true,
 }
 
-export const WithHeterogeneousNodeSizes: ComponentStory<null> = () => {
+export const WithHeterogeneousNodeSizes: StoryFn<null> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView
@@ -136,7 +136,7 @@ export const WithHeterogeneousNodeSizes: ComponentStory<null> = () => {
 }
 
 /* eslint-disable @typescript-eslint/no-loss-of-precision */
-export const WithControlledCameraState: ComponentStory<null> = () => {
+export const WithControlledCameraState: StoryFn<null> = () => {
 	function handleStateChange(state: CameraState) {
 		console.log('state change', state)
 	}

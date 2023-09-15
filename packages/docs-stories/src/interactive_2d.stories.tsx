@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { InputGraph, InputNode, Node } from '@graspologic/graph'
+import type { InputGraph, InputNode, Node } from '@graspologic/graph'
 import {
 	Axes,
 	GraphView,
@@ -15,8 +15,11 @@ import {
 	Edges,
 	Camera,
 } from '@graspologic/react'
-import {
+import type {
 	PositionMap,
+	GraphRenderer,
+	ColorVector} from '@graspologic/renderer';
+import {
 	DEFAULT_NODE_FILTERED_OUT_SATURATION,
 	DEFAULT_NODE_FILTERED_IN_SATURATION,
 	DEFAULT_NODE_MIN_RADIUS,
@@ -36,12 +39,10 @@ import {
 	DEFAULT_HOVER_HIGHLIGHT_COLOR,
 	DEFAULT_HIDE_NODES_ON_MOVE,
 	DEFAULT_DRAW_NODES,
-	DEFAULT_BG_COLOR,
-	GraphRenderer,
-	ColorVector,
+	DEFAULT_BG_COLOR
 } from '@graspologic/renderer'
 import { action } from '@storybook/addon-actions'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { useCallback, useRef, useState } from 'react'
 import { FullyInteractiveGraph } from './components/FullyInteractiveGraph'
 import colorizer from './data/categoricalColorizer'
@@ -57,9 +58,9 @@ const HIGHLIGHT_IDS = ['3_344', '0_249', '5_534', '5_552']
 
 export default {
 	title: 'Interactive 2D Stories',
-} as ComponentMeta<null>
+} as Meta<null>
 
-export const CanChangeRenderProperties: ComponentStory<null> = ({
+export const CanChangeRenderProperties: StoryFn<null> = ({
 	r,
 	g,
 	b,
@@ -177,11 +178,11 @@ CanChangeRenderProperties.argTypes = {
 	},
 }
 
-export const FullyInteractive: ComponentStory<null> = () => (
+export const FullyInteractive: StoryFn<null> = () => (
 	<FullyInteractiveGraph data={testData} />
 )
 
-export const CanChangeHoverHighlightColor: ComponentStory<null> = ({
+export const CanChangeHoverHighlightColor: StoryFn<null> = ({
 	r,
 	g,
 	b,
@@ -210,7 +211,7 @@ CanChangeHoverHighlightColor.argTypes = {
 	a: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
 }
 
-export const CanChangeColorizerWithoutReloadingData: ComponentStory<null> = ({
+export const CanChangeColorizerWithoutReloadingData: StoryFn<null> = ({
 	r,
 	g,
 	b,
@@ -243,7 +244,7 @@ CanChangeHoverHighlightColor.argTypes = {
 	a: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
 }
 
-export const CanShowHoverNodeLabel: ComponentStory<null> = () => {
+export const CanShowHoverNodeLabel: StoryFn<null> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -255,7 +256,7 @@ export const CanShowHoverNodeLabel: ComponentStory<null> = () => {
 	)
 }
 
-export const CanShowNodeHoverLabelAndHighlight: ComponentStory<null> = () => {
+export const CanShowNodeHoverLabelAndHighlight: StoryFn<null> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -268,7 +269,7 @@ export const CanShowNodeHoverLabelAndHighlight: ComponentStory<null> = () => {
 	)
 }
 
-export const CanChangeHighlightSetColor: ComponentStory<null> = ({
+export const CanChangeHighlightSetColor: StoryFn<null> = ({
 	r,
 	g,
 	b,
@@ -297,7 +298,7 @@ CanChangeHoverHighlightColor.argTypes = {
 	a: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
 }
 
-export const CanShowNodeSetLabel: ComponentStory<null> = () => {
+export const CanShowNodeSetLabel: StoryFn<null> = () => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -322,7 +323,7 @@ export const CanShowNodeSetLabelAndHighlight = () => {
 	)
 }
 
-export const CanChangeZoom: ComponentStory<null> = ({ zoom }) => {
+export const CanChangeZoom: StoryFn<null> = ({ zoom }) => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView className="graph-pane" colorizer={colorizer} data={testData}>
@@ -338,19 +339,19 @@ CanChangeZoom.argTypes = {
 	zoom: { control: { type: 'range', min: -1500, max: 10 } },
 }
 
-export const CanChangeNodeLayoutByUsingNewDataStructure: ComponentStory<
+export const CanChangeNodeLayoutByUsingNewDataStructure: StoryFn<
 	null
 > = () => {
 	return <NodeLayoutExampleImmutable data={testData} />
 }
 
-export const CanChangeNodeLayoutByUsingTheChangePositionsAPI: ComponentStory<
+export const CanChangeNodeLayoutByUsingTheChangePositionsAPI: StoryFn<
 	null
 > = () => {
 	return <NodeLayoutExampleMutable data={testData} />
 }
 
-export const CanResize: ComponentStory<null> = ({ width, height }) => {
+export const CanResize: StoryFn<null> = ({ width, height }) => {
 	return (
 		<div className="graph-pane-container">
 			<GraphView
@@ -373,7 +374,7 @@ CanResize.argTypes = {
 	max: { control: { type: 'range', min: 100, max: 3000 } },
 }
 
-export const CanChangeCameraBounds: ComponentStory<null> = ({
+export const CanChangeCameraBounds: StoryFn<null> = ({
 	minX,
 	width,
 	minY,
@@ -434,7 +435,7 @@ CanChangeCameraBounds.args = {
 	transitionDuration: 500,
 }
 
-export const WithCorrectSizedWeights: ComponentStory<null> = ({
+export const WithCorrectSizedWeights: StoryFn<null> = ({
 	width,
 	height,
 }) => {
@@ -509,7 +510,7 @@ WithCorrectSizedWeights.args = {
 	height: 300,
 }
 
-export const EventBindings: ComponentStory<null> = ({ width, height }) => {
+export const EventBindings: StoryFn<null> = ({ width, height }) => {
 	const handleInitialize = useCallback((context: GraphRenderer) => {
 		console.log('Initialized', context)
 	}, [])

@@ -3,21 +3,21 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { componentColorToBGRA } from '@graspologic/renderer'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { StoryFn, Meta } from '@storybook/react'
 import { StressTestVertices2D } from './components/StressTestVertices2D'
 import { StressTestVertices3D } from './components/StressTestVertices3D'
 
 export default {
 	title: 'Stress Tests',
-} as ComponentMeta<null>
+} as Meta<null>
 
-export const StressTest2D: ComponentStory<null> = () => <StressTestVertices2D />
+export const StressTest2D: StoryFn<null> = () => <StressTestVertices2D />
 StressTest2D.storyName = 'Stress Test 2D'
 
-export const StressTest3D: ComponentStory<null> = () => <StressTestVertices3D />
+export const StressTest3D: StoryFn<null> = () => <StressTestVertices3D />
 StressTest3D.storyName = 'Stress Test 3D'
 
-export const StressTest2DWithColorizer: ComponentStory<null> = ({
+export const StressTest2DWithColorizer: StoryFn<null> = ({
 	r,
 	g,
 	b,

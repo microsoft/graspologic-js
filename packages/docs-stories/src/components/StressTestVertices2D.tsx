@@ -3,14 +3,14 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { InputGraph } from '@graspologic/graph'
+import type { InputGraph } from '@graspologic/graph'
 import {
 	GraphView,
 	Camera,
 	Nodes,
 	HighlightHoveredNode,
 } from '@graspologic/react'
-import {
+import type {
 	PositionMap,
 	NodeComponentColorizer,
 	GraphRenderer,

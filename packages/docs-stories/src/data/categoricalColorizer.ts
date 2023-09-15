@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ColorVector, NodeComponentColorizer } from '@graspologic/renderer'
+import type { ColorVector, NodeComponentColorizer } from '@graspologic/renderer'
 import { load } from '@thematic/core'
 
 const theme = load()

@@ -4,13 +4,14 @@
  */
 // import { number, withKnobs, boolean, radios } from '@storybook/addon-knobs'
 import { NodeImpl, EdgeImpl, AnimatableNodeImpl } from '@graspologic/graph'
+import type {
+	GraphRenderer} from '@graspologic/renderer';
 import {
 	WebGLGraphRenderer,
-	GraphRenderer,
 	CameraAdjustmentMode,
 	enablePanZoomEvents,
 } from '@graspologic/renderer'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import React, { useEffect, useRef, useState } from 'react'
 import { getRandomArbitrary, getRandomInt } from './utils'
 
@@ -125,9 +126,9 @@ const WithGraphRenderer = ({
 export default {
 	title: 'Primitive API',
 	component: WithGraphRenderer,
-} as ComponentMeta<typeof WithGraphRenderer>
+} as Meta<typeof WithGraphRenderer>
 
-export const SingleNode: ComponentStory<typeof WithGraphRenderer> = () => {
+export const SingleNode: StoryFn<typeof WithGraphRenderer> = () => {
 	const n1 = new NodeImpl()
 	n1.id = 'A'
 	n1.position = [0, 0, 0]
@@ -142,7 +143,7 @@ export const SingleNode: ComponentStory<typeof WithGraphRenderer> = () => {
 	)
 }
 
-export const LayoutTest: ComponentStory<typeof WithGraphRenderer> = ({
+export const LayoutTest: StoryFn<typeof WithGraphRenderer> = ({
 	offsetX,
 	offsetY,
 	shapeRadio,
@@ -218,7 +219,7 @@ LayoutTest.argTypes = {
 	shapeRadio: { component: { type: 'radio' }, options: ['1', '2', '3'] },
 }
 
-export const StaticNodes: ComponentStory<typeof WithGraphRenderer> = () => {
+export const StaticNodes: StoryFn<typeof WithGraphRenderer> = () => {
 	const n1 = node()
 	n1.id = 'BLUE'
 	n1.position = [0, 0, 0]
@@ -250,7 +251,7 @@ export const StaticNodes: ComponentStory<typeof WithGraphRenderer> = () => {
 	)
 }
 
-export const HexColors: ComponentStory<typeof WithGraphRenderer> = () => {
+export const HexColors: StoryFn<typeof WithGraphRenderer> = () => {
 	const n1 = node()
 	n1.id = 'GREEN'
 	n1.position = [0, 150, 0]
@@ -321,7 +322,7 @@ export const HexColors: ComponentStory<typeof WithGraphRenderer> = () => {
 	)
 }
 
-export const DynamicNodes: ComponentStory<typeof WithGraphRenderer> = ({
+export const DynamicNodes: StoryFn<typeof WithGraphRenderer> = ({
 	nodeCount,
 	randomizeLayout,
 }) => {
@@ -359,7 +360,7 @@ DynamicNodes.argTypes = {
 	nodeCount: { component: { type: 'range', min: 10, max: 10000 } },
 }
 
-export const ZoomToExtents: ComponentStory<typeof WithGraphRenderer> = ({
+export const ZoomToExtents: StoryFn<typeof WithGraphRenderer> = ({
 	nodeCount,
 	randomizeLayout,
 }) => {
@@ -402,7 +403,7 @@ ZoomToExtents.argTypes = {
 	nodeCount: { component: { type: 'range', min: 10, max: 10000 } },
 }
 
-export const SingleNodePositionAnimation: ComponentStory<
+export const SingleNodePositionAnimation: StoryFn<
 	typeof WithGraphRenderer
 > = () => {
 	const n1 = node()
@@ -424,7 +425,7 @@ export const SingleNodePositionAnimation: ComponentStory<
 	)
 }
 
-export const SingleNodePositionAnimationWithInitialDuration: ComponentStory<
+export const SingleNodePositionAnimationWithInitialDuration: StoryFn<
 	typeof WithGraphRenderer
 > = () => {
 	const n1 = node()
@@ -445,7 +446,7 @@ export const SingleNodePositionAnimationWithInitialDuration: ComponentStory<
 	)
 }
 
-export const MultipleNodePositionTweening: ComponentStory<
+export const MultipleNodePositionTweening: StoryFn<
 	typeof WithGraphRenderer
 > = ({ nodeCount, tweenDuration }) => {
 	function randComp() {
@@ -502,7 +503,7 @@ MultipleNodePositionTweening.argTypes = {
 	tweenDuration: { component: { type: 'range', min: 100, max: 100000 } },
 }
 
-export const MultipleNodeColorTweening: ComponentStory<
+export const MultipleNodeColorTweening: StoryFn<
 	typeof WithGraphRenderer
 > = ({ nodeCount, tweenDuration }) => {
 	function randComp() {
@@ -562,7 +563,7 @@ MultipleNodeColorTweening.argTypes = {
 	tweenDuration: { component: { type: 'range', min: 100, max: 100000 } },
 }
 
-export const EngineTime: ComponentStory<typeof WithGraphRenderer> = () => {
+export const EngineTime: StoryFn<typeof WithGraphRenderer> = () => {
 	let timeout: unknown
 	const examples = [
 		{
@@ -619,7 +620,7 @@ export const EngineTime: ComponentStory<typeof WithGraphRenderer> = () => {
 	)
 }
 
-export const UpdatePerformance: ComponentStory<
+export const UpdatePerformance: StoryFn<
 	typeof WithGraphRenderer
 > = () => {
 	const count = 2000000
@@ -664,7 +665,7 @@ export const UpdatePerformance: ComponentStory<
 	)
 }
 
-export const Starfield: ComponentStory<typeof WithGraphRenderer> = ({
+export const Starfield: StoryFn<typeof WithGraphRenderer> = ({
 	nodeCount,
 	speed,
 }) => {

@@ -3,14 +3,14 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { InputGraph } from '@graspologic/graph'
+import type { InputGraph } from '@graspologic/graph'
 import {
 	GraphView,
 	Camera,
 	Nodes,
 	HighlightHoveredNode,
 } from '@graspologic/react'
-import { PositionMap, GraphRenderer } from '@graspologic/renderer'
+import type { PositionMap, GraphRenderer } from '@graspologic/renderer'
 import React, { useState, useCallback, useMemo, useRef } from 'react'
 import colorizer from '../data/categoricalColorizer'
 import { getRandomArbitrary, getRandomInt } from '../utils'

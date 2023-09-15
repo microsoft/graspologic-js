@@ -1,9 +1,17 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
+export * from '@essex/storybook-config/preview'
+
 export const parameters = {
-	actions: { argTypesRegex: '^on[A-Z].*' },
-	controls: {
-		matchers: {
-			color: /(background|color)$/i,
-			date: /Date$/,
+	docs: {
+		components: {
+			a: ({ children, ...args }) => (
+				<a style={{ color: 'red' }} {...args}>
+					{children}
+				</a>
+			),
 		},
 	},
 }

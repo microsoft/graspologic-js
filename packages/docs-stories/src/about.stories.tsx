@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-anonymous-default-export */
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import React, { FC } from 'react'
+import type { Meta, StoryFn } from '@storybook/react'
+import type { FC } from 'react'
 
 const ReactMarkdown = require('react-markdown').default
 const readmeText = require('../../../README.md').default
@@ -27,6 +27,6 @@ const About: FC = function About() {
 export default {
 	title: 'About Graspologic.js',
 	component: About,
-} as ComponentMeta<typeof About>
+} as Meta<typeof About>
 
-export const Main: ComponentStory<typeof About> = () => <About />
+export const Main: StoryFn<typeof About> = () => <About />
