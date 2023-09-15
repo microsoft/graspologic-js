@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 
-import { Renderable, RenderOptions } from '@graspologic/common'
+import type { Renderable, RenderOptions } from '@graspologic/common'
 import {
 	GL_RGBA,
 	GL_LINEAR,

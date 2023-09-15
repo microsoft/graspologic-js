@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { RenderOptions, RenderConfiguration } from '@graspologic/common'
+import type { RenderOptions, RenderConfiguration } from '@graspologic/common'
 import { createEdgeStore } from '@graspologic/graph'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { Matrix4 } from 'math.gl'

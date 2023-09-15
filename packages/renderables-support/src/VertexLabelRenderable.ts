@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { RenderOptions } from '@graspologic/common'
-import { Node } from '@graspologic/graph'
+import type { RenderOptions } from '@graspologic/common'
+import type { Node } from '@graspologic/graph'
 import { DataboundRenderable } from '@graspologic/renderables-base'
-import { LabelRenderable } from './LabelRenderable'
+import { LabelRenderable } from './LabelRenderable.js'
 
 /**
  * A renderable that can be added to a GraphRenderer for rendering labels for a single node

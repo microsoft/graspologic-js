@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { RenderOptions, PropertyContainer } from '@graspologic/common'
+import type { RenderOptions} from '@graspologic/common';
+import { PropertyContainer } from '@graspologic/common'
 import {
 	GL_RGBA,
 	GL_LINEAR,
