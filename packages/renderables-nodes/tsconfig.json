@@ -4,6 +4,7 @@
 		"outDir": "lib",
 		"incremental": true,
 		"noImplicitAny": false,
+		"skipLibCheck": true,
 		"tsBuildInfoFile": "dist/.tsbuildinfo"
 	},
 	"include": ["src"]

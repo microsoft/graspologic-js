@@ -26,7 +26,7 @@ import nodeVS from '@graspologic/renderer-glsl/dist/esm/shaders/node.vs.glsl'
 import { Model } from '@luma.gl/engine'
 import { cssToDevicePixels } from '@luma.gl/gltools'
 import { Buffer, readPixelsToArray } from '@luma.gl/webgl'
-import createModel from './model'
+import createModel from './model.js'
 
 const getNextId = createIdFactory('NodesInstance')
 const RENDERER_BACKGROUND_INDEX = 16777214
