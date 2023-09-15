@@ -18,7 +18,7 @@ import { DirtyableRenderable } from '@graspologic/renderables-base'
 import edgeVS from '@graspologic/renderer-glsl/dist/esm/shaders/edge.vs.glsl'
 import { Model } from '@luma.gl/engine'
 import { Buffer } from '@luma.gl/webgl'
-import createModel from './model'
+import createModel from './model.js'
 
 const getNextId = createIdFactory('EdgesInstance')
 
