@@ -20,6 +20,13 @@
 		"@typescript-eslint/no-non-null-assertion": 0,
 		"@typescript-eslint/ban-types": 0,
 		"@typescript-eslint/no-non-null-asserted-optional-chain": 0,
-		"@typescript-eslint/explicit-module-boundary-types": 0
+		"@typescript-eslint/explicit-module-boundary-types": 0,
+
+		/* TODO: type-aware rules, re-enable? */
+		"@typescript-eslint/no-unsafe-call": "off",
+		"@typescript-eslint/no-unsafe-member-access": "off",
+		"@typescript-eslint/no-unsafe-assignment": "off",
+		"@typescript-eslint/no-unsafe-argument": "off",
+		"@typescript-eslint/no-unsafe-return": "off"
 	}
 }
