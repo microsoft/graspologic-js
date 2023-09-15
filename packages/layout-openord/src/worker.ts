@@ -10,9 +10,9 @@ import {
 	WorkerMessageType,
 	ExecuteMessagePayload,
 } from '@graspologic/layout-core'
-import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
-import { createInstance } from './factory'
-import { OpenOrdConfiguration } from './types'
+import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor.js'
+import { createInstance } from './factory.js'
+import { OpenOrdConfiguration } from './types.js'
 
 let executor: OpenOrdLayoutExecutor | undefined
 let subscription: Disconnect | undefined
@@ -139,7 +139,7 @@ function startExecution({
 		})
 	} catch (err) {
 		self.console.log('caught error', err)
-		self.postMessage(WorkerMessageType.Error, err)
+		sendMessage(WorkerMessageType.Error, err)
 	}
 }
 

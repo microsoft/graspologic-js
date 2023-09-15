@@ -3,10 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { GraphContainer } from '@graspologic/graph'
-import { AnnealingClock } from './AnnealingClock'
-import { DensityGrid } from './DensityGrid'
-import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor'
-import { OpenOrdConfiguration, DEFAULT_CONFIGURATION } from './types'
+import { AnnealingClock } from './AnnealingClock.js'
+import { DensityGrid } from './DensityGrid.js'
+import { OpenOrdLayoutExecutor } from './OpenOrdLayoutExecutor.js'
+import { OpenOrdConfiguration, DEFAULT_CONFIGURATION } from './types.js'
 
 /**
  * @internal

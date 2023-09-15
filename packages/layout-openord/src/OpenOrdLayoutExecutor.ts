@@ -11,10 +11,10 @@ import {
 	Node,
 } from '@graspologic/graph'
 import { BaseExecutor } from '@graspologic/layout-core'
-import { AnnealingClock } from './AnnealingClock'
-import { DensityGrid } from './DensityGrid'
-import { jumpTowards, jumpRandom } from './jumps'
-import { sampleBitmap } from './sampleBitmap'
+import { AnnealingClock } from './AnnealingClock.js'
+import { DensityGrid } from './DensityGrid.js'
+import { jumpTowards, jumpRandom } from './jumps.js'
+import { sampleBitmap } from './sampleBitmap.js'
 import {
 	NodeUpdate,
 	NodeUpdateKind,
@@ -22,7 +22,7 @@ import {
 	OpenOrdConfiguration,
 	AnnealingPhase,
 	DEFAULT_CONFIGURATION,
-} from './types'
+} from './types.js'
 
 /**
  * @internal

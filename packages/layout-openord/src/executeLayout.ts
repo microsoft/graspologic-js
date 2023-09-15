@@ -4,8 +4,8 @@
  */
 import { GraphContainer } from '@graspologic/graph'
 import { OnTickHandler } from '@graspologic/layout-core'
-import { createInstance } from './factory'
-import { OpenOrdConfiguration, OpenOrdTickProgress } from './types'
+import { createInstance } from './factory.js'
+import { OpenOrdConfiguration, OpenOrdTickProgress } from './types.js'
 
 /**
  * @internal

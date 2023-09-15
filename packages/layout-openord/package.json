@@ -20,7 +20,7 @@
 	"scripts": {
 		"clean": "essex clean lib dist",
 		"bundle_lib": "rollup -c rollup.config.js",
-		"build_lib": "essex build --mode dual",
+		"build_lib": "essex build --mode dual --skipExportCheck",
 		"build": "npm-run-all -s build_lib -p bundle_lib",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
