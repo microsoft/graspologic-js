@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { DEFAULT_CAPACITY } from './defaults'
+import { DEFAULT_CAPACITY } from './defaults.js'
 
 /**
  * A class for managing id allocation

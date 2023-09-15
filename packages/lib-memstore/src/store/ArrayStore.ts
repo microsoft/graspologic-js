@@ -2,10 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { MemoryLayout } from '../specification'
-import { DEFAULT_SHARED, DEFAULT_CAPACITY } from './defaults'
-import { Detach } from './types'
-import { StoreConfig } from '.'
+import type { MemoryLayout } from '../specification/index.js'
+import { DEFAULT_SHARED, DEFAULT_CAPACITY } from './defaults.js'
+import type { Detach , StoreConfig } from './types.js'
 
 const DEFAULT_OPTIONS: StoreConfig = {
 	shared: DEFAULT_SHARED,
@@ -364,7 +363,7 @@ export class ArrayStoreImpl implements ArrayStore {
 	public slurp(targetIdx: number, sourceBuffer: ArrayBuffer, sourceOffset = 0) {
 		if (process.env.NODE_ENV !== 'production') {
 			if (!sourceBuffer) {
-				throw new Error(`Invalid store ${sourceBuffer}`)
+				throw new Error('invalid source buffer')
 			}
 		}
 

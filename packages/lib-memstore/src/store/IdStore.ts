@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { AttributeName } from '../specification'
-import { ArrayStore } from './ArrayStore'
-import { SlotAllocator } from './SlotAllocator'
-import { AttributeUpdatedHandler, AddRemoveItemHandler, Detach } from './types'
+import type { AttributeName } from '../specification/index.js'
+import type { ArrayStore } from './ArrayStore.js'
+import type { SlotAllocator } from './SlotAllocator.js'
+import type { AttributeUpdatedHandler, AddRemoveItemHandler, Detach } from './types.js'
 
 /**
  * A store which stores ids

@@ -2,8 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { IdStoreImpl, ArrayStore, SlotAllocator } from '../store'
-import { MemoryReaderClass, ReaderStore, MemoryReader } from './types'
+import type { ArrayStore} from '../store/index.js';
+import { IdStoreImpl, SlotAllocator } from '../store/index.js'
+import type { MemoryReaderClass, ReaderStore, MemoryReader } from './types.js'
 
 /**
  * @inheritdoc

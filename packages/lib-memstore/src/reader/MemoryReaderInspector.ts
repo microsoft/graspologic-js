@@ -2,8 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { AttributeName, AttributeType } from '../specification'
-import { MemoryReader } from './types'
+import type { AttributeName} from '../specification/index.js';
+import { AttributeType } from '../specification/index.js'
+import type { MemoryReader } from './types.js'
 
 const FLOAT_BYTE_SIZE = Float32Array.BYTES_PER_ELEMENT
 

@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { MemoryLayout } from '../specification'
-import { IdStore } from '../store'
+import type { MemoryLayout } from '../specification/index.js'
+import type { IdStore } from '../store/index.js'
 
 /**
  * An object for interacting with the raw data for an item stored in an ArrayStore

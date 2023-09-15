@@ -2,10 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { getAttributeTypeByteSize } from './AttributeType'
-import {
+import { getAttributeTypeByteSize } from './AttributeType.js'
+import type {
 	AttributeName,
-	AttributeType,
 	AttributeSpecification,
 	MemoryLayout,
 	LayoutBuilder,
@@ -14,8 +13,10 @@ import {
 	Vec3AttributeOptions,
 	Vec4AttributeOptions,
 	AttributeAlias,
-	InterpretationHint,
-} from './types'
+	InterpretationHint} from './types.js';
+import {
+	AttributeType
+} from './types.js'
 
 export const SpacerAttributeName = '__SPACER__'
 

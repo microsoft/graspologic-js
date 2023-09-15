@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ReaderStoreImpl, MemoryReader, createReader } from '..'
+import type { MemoryReader} from '..';
+import { ReaderStoreImpl, createReader } from '..'
 import { createLayoutBuilder, AttributeType } from '../../specification'
 import { ArrayStoreImpl, SlotAllocator } from '../../store'
 

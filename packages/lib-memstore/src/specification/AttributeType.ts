@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { AttributeType } from './types'
+import { AttributeType } from './types.js'
 
 /**
  * @internal

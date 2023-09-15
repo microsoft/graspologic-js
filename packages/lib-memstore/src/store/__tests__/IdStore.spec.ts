@@ -4,7 +4,8 @@
  */
 import { createLayoutBuilder } from '../../specification'
 import { ArrayStoreImpl } from '../ArrayStore'
-import { IdStore, IdStoreImpl } from '../IdStore'
+import type { IdStore} from '../IdStore';
+import { IdStoreImpl } from '../IdStore'
 import { SlotAllocator } from '../SlotAllocator'
 
 describe('IdStore', () => {

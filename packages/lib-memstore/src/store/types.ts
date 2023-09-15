@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { AttributeName } from '../specification'
+import type { AttributeName } from '../specification/index.js'
 
 /**
  * The configuration for the ArrayStore

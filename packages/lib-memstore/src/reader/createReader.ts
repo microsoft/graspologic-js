@@ -2,19 +2,20 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import type {
+	MemoryLayout} from '../specification/index.js';
 import {
-	MemoryLayout,
 	SpacerAttributeName,
 	AttributeType,
 	InterpretationHint,
-} from '../specification'
-import {
+} from '../specification/index.js'
+import type {
 	MemoryReaderClass,
 	MemoryReader,
 	ReaderStore,
 	SetterFn,
 	GetterFn,
-} from './types'
+} from './types.js'
 
 /**
  * Describes a property
