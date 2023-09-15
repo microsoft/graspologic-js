@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Edge, Node, NodeStore, EdgeStore } from '@graspologic/graph'
-import { FA2Configuration } from '../types'
+import type { Edge, Node, NodeStore, EdgeStore } from '@graspologic/graph'
+import type { FA2Configuration } from '../types.js'
 
 /**
  * @internal
@@ -47,7 +47,7 @@ export function computeAttraction(
 
 		// Compute necessary values
 		w = edge.weight
-		ewc = Math.pow(w, config.edgeWeightInfluence)
+		ewc = w ** config.edgeWeightInfluence
 		xDist = source.x - target.x
 		yDist = source.y - target.y
 

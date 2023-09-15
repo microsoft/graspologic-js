@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer } from '@graspologic/graph'
-import { OnTickHandler } from '@graspologic/layout-core'
-import { createInstance } from './factory'
-import { FA2Configuration, FA2TickProgress } from './types'
+import type { GraphContainer } from '@graspologic/graph'
+import type { OnTickHandler } from '@graspologic/layout-core'
+import { createInstance } from './factory.js'
+import type { FA2Configuration, FA2TickProgress } from './types.js'
 
 /**
  * @internal

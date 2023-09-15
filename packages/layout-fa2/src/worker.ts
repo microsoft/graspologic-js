@@ -3,16 +3,17 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 /* eslint-disable no-restricted-globals */
-import { Disconnect } from '@graspologic/common'
+import type { Disconnect } from '@graspologic/common'
 import { GraphContainer } from '@graspologic/graph'
-import {
+import type {
 	WorkerMessage,
-	WorkerMessageType,
-	ExecuteMessagePayload,
+	ExecuteMessagePayload} from '@graspologic/layout-core';
+import {
+	WorkerMessageType
 } from '@graspologic/layout-core'
-import { FA2LayoutExecutor } from './FA2LayoutExecutor'
-import { createInstance } from './factory'
-import { FA2Configuration } from './types'
+import type { FA2LayoutExecutor } from './FA2LayoutExecutor.js'
+import { createInstance } from './factory.js'
+import type { FA2Configuration } from './types.js'
 
 /**
  * The ForceAtlas2 layout worker
@@ -86,7 +87,7 @@ function haltExecution() {
 function resumeExecution() {
 	if (executor != null) {
 		if (!executor.isHalted && !executor.isComplete) {
-			executor.execute()
+			executor.execute().catch(console.error)
 		} else {
 			self.console.log('executor is not in a resumable state')
 		}
@@ -147,10 +148,10 @@ function startExecution({
 
 			// emit completion event
 			sendMessage(WorkerMessageType.Complete, data)
-		})
+		}).catch(console.error)
 	} catch (err) {
 		self.console.log('caught error', err)
-		self.postMessage(WorkerMessageType.Error, err)
+		sendMessage(WorkerMessageType.Error, err)
 	}
 }
 

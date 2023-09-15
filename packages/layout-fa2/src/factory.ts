@@ -2,10 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer } from '@graspologic/graph'
+import type { GraphContainer } from '@graspologic/graph'
 import { CountdownClock } from '@graspologic/layout-core'
-import { FA2LayoutExecutor } from './FA2LayoutExecutor'
-import { FA2Configuration, DEFAULT_CONFIGURATION } from './types'
+import { FA2LayoutExecutor } from './FA2LayoutExecutor.js'
+import type { FA2Configuration} from './types.js';
+import { DEFAULT_CONFIGURATION } from './types.js'
 
 /**
  * @internal

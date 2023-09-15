@@ -2,15 +2,18 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer, randBetween, Node, Edge } from '@graspologic/graph'
-import { BaseExecutor, CountdownClock } from '@graspologic/layout-core'
-import { iterate } from './forces'
-import {
-	DEFAULT_CONFIGURATION,
+import type { GraphContainer, Node, Edge } from '@graspologic/graph';
+import { randBetween } from '@graspologic/graph'
+import type { CountdownClock } from '@graspologic/layout-core';
+import { BaseExecutor } from '@graspologic/layout-core'
+import { iterate } from './forces/index.js'
+import type {
 	FA2Configuration,
 	FA2TickProgress,
-	ForceMetrics,
-} from './types'
+	ForceMetrics} from './types.js';
+import {
+	DEFAULT_CONFIGURATION
+} from './types.js'
 
 /**
  * @internal

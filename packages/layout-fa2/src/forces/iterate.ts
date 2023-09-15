@@ -2,12 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Node, NodeStore, EdgeStore } from '@graspologic/graph'
-import { FA2Configuration, ForceMetrics } from '../types'
-import { applyForces } from './applyForces'
-import { computeAttraction } from './computeAttraction'
-import { computeGravity } from './computeGravity'
-import { computeRepulsion } from './computeRepulsion'
+import type { Node, NodeStore, EdgeStore } from '@graspologic/graph'
+import type { FA2Configuration, ForceMetrics } from '../types.js'
+import { applyForces } from './applyForces.js'
+import { computeAttraction } from './computeAttraction.js'
+import { computeGravity } from './computeGravity.js'
+import { computeRepulsion } from './computeRepulsion/index.js'
 
 /**
  * @internal

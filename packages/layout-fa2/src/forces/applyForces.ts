@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Node, NodeStore } from '@graspologic/graph'
-import { FA2Configuration, ForceMetrics } from '../types'
+import type { Node, NodeStore } from '@graspologic/graph'
+import type { FA2Configuration, ForceMetrics } from '../types.js'
 
 /**
  * @internal
@@ -24,7 +24,10 @@ export function applyForces(
 	gravity: number,
 	attraction: number,
 ): ForceMetrics {
-	let force, swinging, traction, nodespeed
+	let force
+	let swinging
+	let traction
+	let nodespeed
 	let totalTension = 0
 	let totalSwing = 0
 	let totalTraction = 0
