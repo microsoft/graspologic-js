@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { DirtyableRenderable } from './DirtyRenderable'
+import { DirtyableRenderable } from './DirtyRenderable.js'
 
 /**
  * Base class for a vertex renderable

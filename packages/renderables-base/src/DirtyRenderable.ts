@@ -2,9 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import {
+import type {
 	Renderable,
-	RenderOptions,
+	RenderOptions} from '@graspologic/common';
+import {
 	DEFAULT_HEIGHT,
 	DEFAULT_WIDTH,
 } from '@graspologic/common'
