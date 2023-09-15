@@ -58,7 +58,7 @@ export interface RenderConfiguration extends RenderConfigurationOptions {
 	onDrawAxesChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onInterpolationTimeChanged(handler: PropertyChangeHandler<number>): Disconnect
 	onHoverHighlightColorChanged(
-		handler: PropertyChangeHandler<number[]>,
+		handler: PropertyChangeHandler<number[]|undefined>,
 	): Disconnect
 	onIs3DChanged(handler: PropertyChangeHandler<boolean>): Disconnect
 	onEdgeFilteredOutSaturationChanged(

@@ -1,6 +1,5 @@
 {
-	"extends": ["@essex/eslint-config/rome"],
-	"parser": "@typescript-eslint/parser",
+	"extends": "@essex/eslint-config/rome",
 	"globals": {
 		"self": "writable"
 	},

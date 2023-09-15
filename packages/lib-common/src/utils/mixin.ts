@@ -3,6 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 
+/* eslint-disable  @typescript-eslint/no-unsafe-argument */
+
 // https://github.com/andywer/typed-emitter/blob/178536737cf6923a01224c46c29d777de7a5c8ac/index.d.ts#L1-L3 - MIT
 export type Arguments<T> = [T] extends [(...args: infer U) => any]
 	? U

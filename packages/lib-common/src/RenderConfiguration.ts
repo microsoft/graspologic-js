@@ -406,9 +406,9 @@ class RenderConfigurationImpl implements RenderConfiguration {
 	}
 
 	public onHoverHighlightColorChanged(
-		handler: PropertyChangeHandler<number[]>,
+		handler: PropertyChangeHandler<number[]|undefined>,
 	): Disconnect {
-		return this._hoverHighlightColor.on('change', handler as any)
+		return this._hoverHighlightColor.on('change', handler)
 	}
 
 	public get is3D(): boolean {
@@ -642,7 +642,9 @@ class RenderConfigurationImpl implements RenderConfiguration {
 	 */
 	public load(options?: Partial<RenderConfigurationOptions>) {
 		Object.keys(options || {}).forEach(key => {
-			;(this as any)[key] = (options as any)[key]
+			const thisAny = this as any
+			const optsAny = options as any
+			thisAny[key] = optsAny[key]
 		})
 	}
 }
