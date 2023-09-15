@@ -36,10 +36,10 @@
 		"node": ">= 12"
 	},
 	"devDependencies": {
-		"@essex/eslint-config": "^21.0.1",
-		"@essex/eslint-plugin": "^21.0.1",
-		"@essex/jest-config": "^22.0.0",
-		"@essex/scripts": "^26.0.0",
+		"@essex/eslint-config": "^22.0.0",
+		"@essex/eslint-plugin": "^22.0.0",
+		"@essex/jest-config": "^22.1.0",
+		"@essex/scripts": "^26.0.1",
 		"@types/enzyme": "^3.10.10",
 		"@types/invariant": "^2.2.35",
 		"@types/jest": "^29.5.5",

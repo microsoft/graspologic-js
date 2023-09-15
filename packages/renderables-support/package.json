@@ -34,7 +34,7 @@
 	},
 	"dependencies": {
 		"@essex-js-toolkit/toolbox": "^3.0.1",
-		"@essex/webpack-config": "^22.0.1",
+		"@essex/webpack-config": "^22.0.2",
 		"@graspologic/animation": "workspace:^",
 		"@graspologic/common": "workspace:^",
 		"@graspologic/graph": "workspace:^",
@@ -51,7 +51,7 @@
 		"math.gl": "^3.6.3"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^26.0.0",
+		"@essex/scripts": "^26.0.1",
 		"@types/node": "^20.6.1",
 		"@types/webpack-bundle-analyzer": "^4.4.1",
 		"glob": "^10.3.4",

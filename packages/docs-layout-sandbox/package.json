@@ -43,8 +43,8 @@
 		"use-pan-and-zoom": "^0.6.2"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^26.0.0",
-		"@essex/webpack-config": "^22.0.1",
+		"@essex/scripts": "^26.0.1",
+		"@essex/webpack-config": "^22.0.2",
 		"@types/d3-scale": "^2.2.6",
 		"@types/d3-scale-chromatic": "^1.5.1",
 		"@types/lodash": "^4.14.198",
@@ -52,7 +52,6 @@
 		"@types/react": "^18.2.21",
 		"@types/react-dom": "^18.2.7",
 		"@types/react-helmet": "^6.1.4",
-		"@types/webpack-dev-server": "^4.5.0",
 		"styled-components": "^6.0.8",
 		"webpack": "5.88.2",
 		"webpack-cli": "^5.1.4",

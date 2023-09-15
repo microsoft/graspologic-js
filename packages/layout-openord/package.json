@@ -35,7 +35,7 @@
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^26.0.0",
+		"@essex/scripts": "^26.0.1",
 		"@graspologic/testdata": "workspace:^",
 		"@rollup/plugin-commonjs": "^15.1.0",
 		"@rollup/plugin-node-resolve": "^9.0.0",

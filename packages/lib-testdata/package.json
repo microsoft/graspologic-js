@@ -26,7 +26,7 @@
 		"typedoc": "0.22.10"
 	},
 	"devDependencies": {
-		"@essex/scripts": "^26.0.0",
+		"@essex/scripts": "^26.0.1",
 		"@types/node": "^20.6.1"
 	}
 }
