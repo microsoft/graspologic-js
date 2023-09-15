@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { jiggle } from '../helpers/index.js'
-import { Node } from '../primitives/index.js'
+import type { Node } from '../primitives/index.js'
 
 /**
  * @internal

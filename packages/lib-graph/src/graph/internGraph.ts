@@ -3,9 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { randBetween } from '../helpers/index.js'
-import { Node, Edge, createNodeStore, createEdgeStore } from '../primitives/index.js'
+import type { Node, Edge} from '../primitives/index.js';
+import { createNodeStore, createEdgeStore } from '../primitives/index.js'
 import { GraphContainer } from './GraphContainer.js'
-import { InputGraph, InputNode } from './types.js'
+import type { InputGraph, InputNode } from './types.js'
 
 /**
  * The set of graph options to intern a pojo graph into a GraphContainer

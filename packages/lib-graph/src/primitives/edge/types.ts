@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
-import { InputEdge } from '../../graph/index.js'
-import { Pos2D, Pos3D } from '../types.js'
+import type { MemoryReader, ReaderStore, StoreConfig } from '@graspologic/memstore'
+import type { InputEdge } from '../../graph/index.js'
+import type { Pos2D, Pos3D } from '../types.js'
 
 /**
  * An interface representing an edge

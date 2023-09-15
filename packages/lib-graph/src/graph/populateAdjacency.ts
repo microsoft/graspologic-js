@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Node, Edge, NodeStore, EdgeStore } from '../primitives/index.js'
-import { NodeIndex, EdgeWeight, AdjacencyMap } from './types.js'
+import type { Node, Edge, NodeStore, EdgeStore } from '../primitives/index.js'
+import type { NodeIndex, EdgeWeight, AdjacencyMap } from './types.js'
 
 /**
  * @internal

@@ -4,6 +4,7 @@
 		"self": "writable"
 	},
 	"rules": {
+		"@essex/extensions": "off",
 		// This rule has been disabled because the raw-loader plugin that
 		// rollup is using requires these to exist as import() statements.
 		"@typescript-eslint/ban-ts-ignore": 0,

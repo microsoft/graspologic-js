@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Shape } from '../primitives/index.js'
+import type { Shape } from '../primitives/index.js'
 
 export type NodeId = string
 export type NodeIndex = number

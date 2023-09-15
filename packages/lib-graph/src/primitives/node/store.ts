@@ -2,16 +2,17 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import {
+import type {
 	ArrayStore,
+	MemoryReader} from '@graspologic/memstore';
+import {
 	ArrayStoreImpl,
 	SlotAllocator,
-	ReaderStoreImpl,
-	MemoryReader,
+	ReaderStoreImpl
 } from '@graspologic/memstore'
 import { NodeImpl, AnimatableNodeImpl } from './impl/index.js'
 import { nodeMemoryLayout } from './layout.js'
-import { NodeStoreConfig, NodeStore, Node } from './types'
+import type { NodeStoreConfig, NodeStore, Node } from './types.js'
 
 /**
  * @internal

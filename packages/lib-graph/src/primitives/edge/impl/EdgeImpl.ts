@@ -2,11 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { createReader, MemoryReader } from '@graspologic/memstore'
-import { InputEdge } from '../../../graph/index.js'
-import { ClassType } from '../../types.js'
+import type { MemoryReader } from '@graspologic/memstore';
+import { createReader } from '@graspologic/memstore'
+import type { InputEdge } from '../../../graph/index.js'
+import type { ClassType } from '../../types.js'
 import { edgeType, edgeMemoryLayout, ADDITIONAL_EDGE_PROPS } from '../layout.js'
-import { Edge } from '../types.js'
+import type { Edge } from '../types.js'
 
 // Cache some of the attributes for the "load"
 const sourceIndexTypedOffset = edgeMemoryLayout.get('sourceIndex')!.typedOffset
