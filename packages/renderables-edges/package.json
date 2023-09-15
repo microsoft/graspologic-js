@@ -31,7 +31,7 @@
 		"release": "yarn npm publish --tolerate-republish --access public"
 	},
 	"dependencies": {
-		"@essex-js-toolkit/toolbox": "^1.1.5",
+		"@essex-js-toolkit/toolbox": "^3.0.1",
 		"@essex/webpack-config": "^22.0.1",
 		"@graspologic/animation": "workspace:packages/lib-animation",
 		"@graspologic/common": "workspace:packages/lib-common",

@@ -2313,28 +2313,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@essex-js-toolkit/hooks@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "@essex-js-toolkit/hooks@npm:1.1.5"
+"@essex-js-toolkit/hooks@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "@essex-js-toolkit/hooks@npm:4.0.3"
   dependencies:
-    "@essex-js-toolkit/toolbox": "npm:^1.1.4"
-    resize-observer-polyfill: "npm:^1.5.1"
+    "@essex-js-toolkit/toolbox": "npm:3.0.1"
+    lodash-es: "npm:^4.17.21"
   peerDependencies:
     "@types/node": "*"
     "@types/react": "*"
     "@types/react-dom": "*"
-    core-js: "*"
     react: ">=16.8.0"
-  checksum: d2b7d4449b4855edf8b8b2f331b5491fe6597b55131e7627d52b01160cdd9c7f5be38de9f0f7dbc4c4c33d9b78aa914be5b77c60a7f4d8530c3af4e33f9ab70f
+  checksum: f4b0fcaa25dd6cb84db085cdc5516a0b949edef9d4e855e67e729c0ea26b29b1ac8eb27f2d9d20e7e7f7c3aee813012f5428213a8daa1cc8e0c5c6c04f392706
   languageName: node
   linkType: hard
 
-"@essex-js-toolkit/toolbox@npm:^1.1.4, @essex-js-toolkit/toolbox@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "@essex-js-toolkit/toolbox@npm:1.1.5"
-  dependencies:
-    core-js: "npm:^3.14.0"
-  checksum: a2f52e5f82cf723e1376ee3532d3125dd192701321c378023def84b52670fdd322162530964519497b654c0ad3c162138149f7416c8652c83c8286193903625b
+"@essex-js-toolkit/toolbox@npm:3.0.1, @essex-js-toolkit/toolbox@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@essex-js-toolkit/toolbox@npm:3.0.1"
+  checksum: 1fcb68c6b09a5a88cc89c1ac9b3c94527cdcb9067540000dd41ae69ba76e3818d826b8494fc5381159004fbacafeb20d375d0495768d48070c293bdbad9f37ac
   languageName: node
   linkType: hard
 
@@ -2814,7 +2811,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/luma-utils@workspace:packages/lib-luma-utils"
   dependencies:
-    "@essex-js-toolkit/toolbox": "npm:^1.1.5"
+    "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@graspologic/memstore": "workspace:packages/lib-memstore"
     "@graspologic/renderer-glsl": "workspace:packages/lib-renderer-glsl"
@@ -2885,7 +2882,7 @@ __metadata:
     rollup: "npm:^2.60.2"
     rome: "npm:^12.1.3"
     shx: "npm:^0.3.3"
-    turbo: "npm:^1.10.13"
+    turbo: "npm:^1.10.14"
     typedoc-plugin-markdown: "npm:^3.11.7"
     typescript: "npm:5.2.2"
   languageName: unknown
@@ -2895,7 +2892,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/react@workspace:packages/lib-react"
   dependencies:
-    "@essex-js-toolkit/hooks": "npm:^1.1.5"
+    "@essex-js-toolkit/hooks": "npm:^4.0.3"
     "@essex/scripts": "npm:^26.0.0"
     "@graspologic/camera": "workspace:packages/lib-camera"
     "@graspologic/graph": "workspace:packages/lib-graph"
@@ -2985,7 +2982,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-edges@workspace:packages/renderables-edges"
   dependencies:
-    "@essex-js-toolkit/toolbox": "npm:^1.1.5"
+    "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@essex/webpack-config": "npm:^22.0.1"
     "@graspologic/animation": "workspace:packages/lib-animation"
@@ -3014,7 +3011,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-nodes@workspace:packages/renderables-nodes"
   dependencies:
-    "@essex-js-toolkit/toolbox": "npm:^1.1.5"
+    "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@essex/webpack-config": "npm:^22.0.1"
     "@graspologic/animation": "workspace:packages/lib-animation"
@@ -3045,7 +3042,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderables-support@workspace:packages/renderables-support"
   dependencies:
-    "@essex-js-toolkit/toolbox": "npm:^1.1.5"
+    "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@essex/webpack-config": "npm:^22.0.1"
     "@graspologic/animation": "workspace:packages/lib-animation"
@@ -3091,7 +3088,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graspologic/renderer@workspace:packages/lib-renderer"
   dependencies:
-    "@essex-js-toolkit/toolbox": "npm:^1.1.5"
+    "@essex-js-toolkit/toolbox": "npm:^3.0.1"
     "@essex/scripts": "npm:^26.0.0"
     "@graspologic/animation": "workspace:packages/lib-animation"
     "@graspologic/camera": "workspace:packages/lib-camera"
@@ -10117,7 +10114,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.0.4, core-js@npm:^3.14.0, core-js@npm:^3.19.3, core-js@npm:^3.6.5, core-js@npm:^3.8.2":
+"core-js@npm:^3.0.4, core-js@npm:^3.19.3, core-js@npm:^3.6.5, core-js@npm:^3.8.2":
   version: 3.19.3
   resolution: "core-js@npm:3.19.3"
   checksum: fde6072366a1c5caa4894a68097918e9460addee6b5178f00fd85f85e0de35760d01932fa9ca7da60ef3c17c40ebdeed54873f8ad63298803cb31ee2a625862f
@@ -16563,6 +16560,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 03f39878ea1e42b3199bd3f478150ab723f93cc8730ad86fec1f2804f4a07c6e30deaac73cad53a88e9c3db33348bb8ceeb274552390e7a75d7849021c02df43
+  languageName: node
+  linkType: hard
+
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -20502,13 +20506,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resize-observer-polyfill@npm:^1.5.1":
-  version: 1.5.1
-  resolution: "resize-observer-polyfill@npm:1.5.1"
-  checksum: e10ee50cd6cf558001de5c6fb03fee15debd011c2f694564b71f81742eef03fb30d6c2596d1d5bf946d9991cb692fcef529b7bd2e4057041377ecc9636c753ce
-  languageName: node
-  linkType: hard
-
 "resolve-alpn@npm:^1.0.0":
   version: 1.2.1
   resolution: "resolve-alpn@npm:1.2.1"
@@ -23002,58 +22999,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.10.13":
-  version: 1.10.13
-  resolution: "turbo-darwin-64@npm:1.10.13"
+"turbo-darwin-64@npm:1.10.14":
+  version: 1.10.14
+  resolution: "turbo-darwin-64@npm:1.10.14"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.10.13":
-  version: 1.10.13
-  resolution: "turbo-darwin-arm64@npm:1.10.13"
+"turbo-darwin-arm64@npm:1.10.14":
+  version: 1.10.14
+  resolution: "turbo-darwin-arm64@npm:1.10.14"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.10.13":
-  version: 1.10.13
-  resolution: "turbo-linux-64@npm:1.10.13"
+"turbo-linux-64@npm:1.10.14":
+  version: 1.10.14
+  resolution: "turbo-linux-64@npm:1.10.14"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.10.13":
-  version: 1.10.13
-  resolution: "turbo-linux-arm64@npm:1.10.13"
+"turbo-linux-arm64@npm:1.10.14":
+  version: 1.10.14
+  resolution: "turbo-linux-arm64@npm:1.10.14"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.10.13":
-  version: 1.10.13
-  resolution: "turbo-windows-64@npm:1.10.13"
+"turbo-windows-64@npm:1.10.14":
+  version: 1.10.14
+  resolution: "turbo-windows-64@npm:1.10.14"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:1.10.13":
-  version: 1.10.13
-  resolution: "turbo-windows-arm64@npm:1.10.13"
+"turbo-windows-arm64@npm:1.10.14":
+  version: 1.10.14
+  resolution: "turbo-windows-arm64@npm:1.10.14"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.10.13":
-  version: 1.10.13
-  resolution: "turbo@npm:1.10.13"
+"turbo@npm:^1.10.14":
+  version: 1.10.14
+  resolution: "turbo@npm:1.10.14"
   dependencies:
-    turbo-darwin-64: "npm:1.10.13"
-    turbo-darwin-arm64: "npm:1.10.13"
-    turbo-linux-64: "npm:1.10.13"
-    turbo-linux-arm64: "npm:1.10.13"
-    turbo-windows-64: "npm:1.10.13"
-    turbo-windows-arm64: "npm:1.10.13"
+    turbo-darwin-64: "npm:1.10.14"
+    turbo-darwin-arm64: "npm:1.10.14"
+    turbo-linux-64: "npm:1.10.14"
+    turbo-linux-arm64: "npm:1.10.14"
+    turbo-windows-64: "npm:1.10.14"
+    turbo-windows-arm64: "npm:1.10.14"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -23069,7 +23066,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 6e968034392ce137d3cd70ada9a2c84318a9be6a0011b35f21ec230906e91278a6a3cdee22176edcf2b2a27df06f833606793d4c760da7d3f88994bf42f8db66
+  checksum: ce7bc2cb8b5f61ca241bb0d91a470b3bf965e1bf9ccc9efb36939e6d9ebdec9fbaf45ed3dc541018344b5a4be3aa810ac0b673bf5f281a8698d359d06f65c9a3
   languageName: node
   linkType: hard
 

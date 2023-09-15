@@ -168,7 +168,7 @@ const RAW_RUNTIME_STATE =
           ["rollup", "npm:2.60.2"],\
           ["rome", "npm:12.1.3"],\
           ["shx", "npm:0.3.3"],\
-          ["turbo", "npm:1.10.13"],\
+          ["turbo", "npm:1.10.14"],\
           ["typedoc-plugin-markdown", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:3.11.7"],\
           ["typescript", "patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
         ],\
@@ -5382,43 +5382,38 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@essex-js-toolkit/hooks", [\
-      ["npm:1.1.5", {\
-        "packageLocation": "./.yarn/cache/@essex-js-toolkit-hooks-npm-1.1.5-81e3e0df00-d2b7d4449b.zip/node_modules/@essex-js-toolkit/hooks/",\
+      ["npm:4.0.3", {\
+        "packageLocation": "./.yarn/cache/@essex-js-toolkit-hooks-npm-4.0.3-27a7143692-f4b0fcaa25.zip/node_modules/@essex-js-toolkit/hooks/",\
         "packageDependencies": [\
-          ["@essex-js-toolkit/hooks", "npm:1.1.5"]\
+          ["@essex-js-toolkit/hooks", "npm:4.0.3"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5", {\
-        "packageLocation": "./.yarn/__virtual__/@essex-js-toolkit-hooks-virtual-ef36722c9a/0/cache/@essex-js-toolkit-hooks-npm-1.1.5-81e3e0df00-d2b7d4449b.zip/node_modules/@essex-js-toolkit/hooks/",\
+      ["virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@essex-js-toolkit-hooks-virtual-9991f894c8/0/cache/@essex-js-toolkit-hooks-npm-4.0.3-27a7143692-f4b0fcaa25.zip/node_modules/@essex-js-toolkit/hooks/",\
         "packageDependencies": [\
-          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
-          ["@types/core-js", null],\
+          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@types/node", "npm:20.6.0"],\
           ["@types/react", "npm:17.0.37"],\
           ["@types/react-dom", "npm:17.0.11"],\
-          ["core-js", "npm:3.19.3"],\
-          ["react", "npm:17.0.2"],\
-          ["resize-observer-polyfill", "npm:1.5.1"]\
+          ["lodash-es", "npm:4.17.21"],\
+          ["react", "npm:17.0.2"]\
         ],\
         "packagePeers": [\
-          "@types/core-js",\
           "@types/node",\
           "@types/react-dom",\
           "@types/react",\
-          "core-js",\
           "react"\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@essex-js-toolkit/toolbox", [\
-      ["npm:1.1.5", {\
-        "packageLocation": "./.yarn/cache/@essex-js-toolkit-toolbox-npm-1.1.5-de4e5eb29d-a2f52e5f82.zip/node_modules/@essex-js-toolkit/toolbox/",\
+      ["npm:3.0.1", {\
+        "packageLocation": "./.yarn/cache/@essex-js-toolkit-toolbox-npm-3.0.1-c3c0ba1acd-1fcb68c6b0.zip/node_modules/@essex-js-toolkit/toolbox/",\
         "packageDependencies": [\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
-          ["core-js", "npm:3.19.3"]\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7149,7 +7144,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/lib-luma-utils/",\
         "packageDependencies": [\
           ["@graspologic/luma-utils", "workspace:packages/lib-luma-utils"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@graspologic/memstore", "virtual:aef48b62ec311ee1ba968beb48a43b7a7ccde1024da228b750e0f3f8cc4cacc41a5b15fa7fc31c0a7b4bcb5ef339a562f53b9f40b581cba79a87e144cb052b09#workspace:packages/lib-memstore"],\
           ["@graspologic/renderer-glsl", "workspace:packages/lib-renderer-glsl"],\
@@ -7265,7 +7260,7 @@ const RAW_RUNTIME_STATE =
           ["rollup", "npm:2.60.2"],\
           ["rome", "npm:12.1.3"],\
           ["shx", "npm:0.3.3"],\
-          ["turbo", "npm:1.10.13"],\
+          ["turbo", "npm:1.10.14"],\
           ["typedoc-plugin-markdown", "virtual:84d0d1531d07f498dcbaebcf531d14821fd216be8095e4b93b0332f3b4cc9980c7044b2877d6c6b015eda2676f3cc6fadb585551fb5b710f4afa97c20f55d819#npm:3.11.7"],\
           ["typescript", "patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
         ],\
@@ -7277,7 +7272,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-react-virtual-d40f19cefd/1/packages/lib-react/",\
         "packageDependencies": [\
           ["@graspologic/react", "virtual:0e3bb03dc36cb033b39dea1045f1b4dc004958025bf3355758d45886ec639773ed103e15a04a93c73cc66cf6dbc5b8fd0f76b8797e57abf841f6481fda53366d#workspace:packages/lib-react"],\
-          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],\
+          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3"],\
           ["@essex/scripts", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:26.0.0"],\
           ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],\
           ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],\
@@ -7313,7 +7308,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-react-virtual-b42a5e75ad/1/packages/lib-react/",\
         "packageDependencies": [\
           ["@graspologic/react", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-react"],\
-          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],\
+          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3"],\
           ["@essex/scripts", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#npm:26.0.0"],\
           ["@graspologic/camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera"],\
           ["@graspologic/graph", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-graph"],\
@@ -7353,7 +7348,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-react-virtual-3b8b024250/1/packages/lib-react/",\
         "packageDependencies": [\
           ["@graspologic/react", "virtual:6b41e6dd2e7172905a1a9564145904073e39ee86c2fdf9fe0a937e58a4c5fb46a2ed29022b38258ac7be97af4dea5f4aa8cf20da3a4a70f33de002431ba38254#workspace:packages/lib-react"],\
-          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],\
+          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3"],\
           ["@essex/scripts", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:26.0.0"],\
           ["@graspologic/camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera"],\
           ["@graspologic/graph", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-graph"],\
@@ -7390,7 +7385,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-react-virtual-cf3f9e8aee/1/packages/lib-react/",\
         "packageDependencies": [\
           ["@graspologic/react", "virtual:a19137132dc751af333e868c25af3f351d6be8ac576cdbc7bb60f53266f7e9b5bc404fac766d3142882e113b6c499ffb95b10451efd99e53150858c06661e8ef#workspace:packages/lib-react"],\
-          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],\
+          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3"],\
           ["@essex/scripts", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#npm:26.0.0"],\
           ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],\
           ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],\
@@ -7428,7 +7423,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-react-virtual-ccd45d989c/1/packages/lib-react/",\
         "packageDependencies": [\
           ["@graspologic/react", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#workspace:packages/lib-react"],\
-          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],\
+          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3"],\
           ["@essex/scripts", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:26.0.0"],\
           ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],\
           ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],\
@@ -7468,7 +7463,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/lib-react/",\
         "packageDependencies": [\
           ["@graspologic/react", "workspace:packages/lib-react"],\
-          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:1.1.5"],\
+          ["@essex-js-toolkit/hooks", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:4.0.3"],\
           ["@essex/scripts", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#npm:26.0.0"],\
           ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],\
           ["@graspologic/graph", "virtual:03dadf39ee572c16937fdb75af0c83d6a380a5816168152319b3788ac9fa4c6a20baf16589af443772ad43ea1597472b3949a6a4ef216ada9273efe838a5f542#workspace:packages/lib-graph"],\
@@ -7668,7 +7663,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-edges-virtual-b0eca245cd/1/packages/renderables-edges/",\
         "packageDependencies": [\
           ["@graspologic/renderables-edges", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/renderables-edges"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/lib-animation"],\
@@ -7704,7 +7699,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-edges-virtual-140210c8c9/1/packages/renderables-edges/",\
         "packageDependencies": [\
           ["@graspologic/renderables-edges", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/renderables-edges"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/lib-animation"],\
@@ -7740,7 +7735,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-edges-virtual-60a54055cc/1/packages/renderables-edges/",\
         "packageDependencies": [\
           ["@graspologic/renderables-edges", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/renderables-edges"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
@@ -7776,7 +7771,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/renderables-edges/",\
         "packageDependencies": [\
           ["@graspologic/renderables-edges", "workspace:packages/renderables-edges"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
@@ -7803,7 +7798,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-nodes-virtual-df30d4d238/1/packages/renderables-nodes/",\
         "packageDependencies": [\
           ["@graspologic/renderables-nodes", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/renderables-nodes"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:df30d4d2385b68b266315a8fe6a9506782b03f3032f6065f2845d889296a01aaf44654a65d3c79a9107fc566a85c956a2e74effe1e77652fb5f3bc5baf9aa019#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/lib-animation"],\
@@ -7841,7 +7836,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-nodes-virtual-fb0a02e8fb/1/packages/renderables-nodes/",\
         "packageDependencies": [\
           ["@graspologic/renderables-nodes", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/renderables-nodes"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:df30d4d2385b68b266315a8fe6a9506782b03f3032f6065f2845d889296a01aaf44654a65d3c79a9107fc566a85c956a2e74effe1e77652fb5f3bc5baf9aa019#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/lib-animation"],\
@@ -7879,7 +7874,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-nodes-virtual-b1a97d6799/1/packages/renderables-nodes/",\
         "packageDependencies": [\
           ["@graspologic/renderables-nodes", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/renderables-nodes"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:df30d4d2385b68b266315a8fe6a9506782b03f3032f6065f2845d889296a01aaf44654a65d3c79a9107fc566a85c956a2e74effe1e77652fb5f3bc5baf9aa019#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
@@ -7917,7 +7912,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/renderables-nodes/",\
         "packageDependencies": [\
           ["@graspologic/renderables-nodes", "workspace:packages/renderables-nodes"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:df30d4d2385b68b266315a8fe6a9506782b03f3032f6065f2845d889296a01aaf44654a65d3c79a9107fc566a85c956a2e74effe1e77652fb5f3bc5baf9aa019#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
@@ -7946,7 +7941,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-support-virtual-431b7355a7/1/packages/renderables-support/",\
         "packageDependencies": [\
           ["@graspologic/renderables-support", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/renderables-support"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
@@ -7986,7 +7981,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-support-virtual-74c1ae6476/1/packages/renderables-support/",\
         "packageDependencies": [\
           ["@graspologic/renderables-support", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/renderables-support"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/lib-animation"],\
@@ -8026,7 +8021,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderables-support-virtual-65a980fbaf/1/packages/renderables-support/",\
         "packageDependencies": [\
           ["@graspologic/renderables-support", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/renderables-support"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/lib-animation"],\
@@ -8066,7 +8061,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/renderables-support/",\
         "packageDependencies": [\
           ["@graspologic/renderables-support", "workspace:packages/renderables-support"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@essex/webpack-config", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#npm:22.0.1"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
@@ -8097,7 +8092,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderer-virtual-d3b785df96/1/packages/lib-renderer/",\
         "packageDependencies": [\
           ["@graspologic/renderer", "virtual:30fd3754b4aa54f54992648633419c892a09b918e4777b82e898ef7351ca3699f5a6e12cebd3febe36769c532558da43845446c891368bea17f63bce3b2c5f10#workspace:packages/lib-renderer"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@graspologic/animation", "virtual:74c1ae6476d78683a8bbf3119f8b880cde770e0b6c604f6d2ed4b2418fb4e0b25e549a1a314aab8405da4a60b2167857015006f9e89c25ecda7f55e7c754c0a1#workspace:packages/lib-animation"],\
           ["@graspologic/camera", "virtual:b42a5e75ad5dc3631cdca6955ad3bf2c4bc800b4762ff1a4d29af41cdc87e25f0d536fecf5e0c71a48ff5e274332a3ed71cf24f4900f0361b1a477ad94218258#workspace:packages/lib-camera"],\
@@ -8139,7 +8134,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderer-virtual-7d460e9ad0/1/packages/lib-renderer/",\
         "packageDependencies": [\
           ["@graspologic/renderer", "virtual:b83b797b136b861db7486121e27c9d04583d6517949846188915137adfd718a7f121b89cb319dc3f5060dab8960fafdac8a4f028984be07e2665949f51becbc6#workspace:packages/lib-renderer"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
           ["@graspologic/camera", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-camera"],\
@@ -8181,7 +8176,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@graspologic-renderer-virtual-590636abf8/1/packages/lib-renderer/",\
         "packageDependencies": [\
           ["@graspologic/renderer", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-renderer"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@graspologic/animation", "virtual:65a980fbaf2affd2d7b672298d18d72dc45fdeff7da8d9fc0b366ac5952c90454072eaae267da45af4ab2f8a3b354929d240d6bed8e43dfe7aa797e7b10b16e9#workspace:packages/lib-animation"],\
           ["@graspologic/camera", "virtual:ccd45d989c008cb441e1381359cfeb9ef645b6c66ae2780f4bd4fb5ba1373828cbc43256b8e725f3204ce2748eabc6cb486582721ee3fe247af257e45f01e16d#workspace:packages/lib-camera"],\
@@ -8223,7 +8218,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/lib-renderer/",\
         "packageDependencies": [\
           ["@graspologic/renderer", "workspace:packages/lib-renderer"],\
-          ["@essex-js-toolkit/toolbox", "npm:1.1.5"],\
+          ["@essex-js-toolkit/toolbox", "npm:3.0.1"],\
           ["@essex/scripts", "virtual:e2a9fcd07ede29a99ec71efb189b6a402471ec0f5f5d1f28fbf03e8e059032899aa63431f90d1252ddfb8968b95a70651285eefc02e3d11e107bb73d3ab74c1f#npm:26.0.0"],\
           ["@graspologic/animation", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-animation"],\
           ["@graspologic/camera", "virtual:7d460e9ad05971abf72379ae62bf8fb1d6c2c591f05a5ca5a79931548716e197df30413eef8d3ad3aa63feb92e1225e46da28c5f2483ccb7e53f194d9d619f8e#workspace:packages/lib-camera"],\
@@ -25663,6 +25658,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["lodash-es", [\
+      ["npm:4.17.21", {\
+        "packageLocation": "./.yarn/cache/lodash-es-npm-4.17.21-b45832dfce-03f39878ea.zip/node_modules/lodash-es/",\
+        "packageDependencies": [\
+          ["lodash-es", "npm:4.17.21"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["lodash.debounce", [\
       ["npm:4.0.8", {\
         "packageLocation": "./.yarn/cache/lodash.debounce-npm-4.0.8-f1d6e09799-cd0b281978.zip/node_modules/lodash.debounce/",\
@@ -30449,15 +30453,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["resize-observer-polyfill", [\
-      ["npm:1.5.1", {\
-        "packageLocation": "./.yarn/cache/resize-observer-polyfill-npm-1.5.1-603120e8a0-e10ee50cd6.zip/node_modules/resize-observer-polyfill/",\
-        "packageDependencies": [\
-          ["resize-observer-polyfill", "npm:1.5.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["resolve", [\
       ["patch:resolve@npm%3A1.17.0#optional!builtin<compat/resolve>::version=1.17.0&hash=c3c19d", {\
         "packageLocation": "./.yarn/cache/resolve-patch-a9574b134c-02e87fe923.zip/node_modules/resolve/",\
@@ -33342,70 +33337,70 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["turbo", [\
-      ["npm:1.10.13", {\
-        "packageLocation": "./.yarn/cache/turbo-npm-1.10.13-b30518d7d0-6e96803439.zip/node_modules/turbo/",\
+      ["npm:1.10.14", {\
+        "packageLocation": "./.yarn/cache/turbo-npm-1.10.14-579e7a017f-ce7bc2cb8b.zip/node_modules/turbo/",\
         "packageDependencies": [\
-          ["turbo", "npm:1.10.13"],\
-          ["turbo-darwin-64", "npm:1.10.13"],\
-          ["turbo-darwin-arm64", "npm:1.10.13"],\
-          ["turbo-linux-64", "npm:1.10.13"],\
-          ["turbo-linux-arm64", "npm:1.10.13"],\
-          ["turbo-windows-64", "npm:1.10.13"],\
-          ["turbo-windows-arm64", "npm:1.10.13"]\
+          ["turbo", "npm:1.10.14"],\
+          ["turbo-darwin-64", "npm:1.10.14"],\
+          ["turbo-darwin-arm64", "npm:1.10.14"],\
+          ["turbo-linux-64", "npm:1.10.14"],\
+          ["turbo-linux-arm64", "npm:1.10.14"],\
+          ["turbo-windows-64", "npm:1.10.14"],\
+          ["turbo-windows-arm64", "npm:1.10.14"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["turbo-darwin-64", [\
-      ["npm:1.10.13", {\
-        "packageLocation": "./.yarn/unplugged/turbo-darwin-64-npm-1.10.13-18892dfcb7/node_modules/turbo-darwin-64/",\
+      ["npm:1.10.14", {\
+        "packageLocation": "./.yarn/unplugged/turbo-darwin-64-npm-1.10.14-6abb6186db/node_modules/turbo-darwin-64/",\
         "packageDependencies": [\
-          ["turbo-darwin-64", "npm:1.10.13"]\
+          ["turbo-darwin-64", "npm:1.10.14"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["turbo-darwin-arm64", [\
-      ["npm:1.10.13", {\
-        "packageLocation": "./.yarn/unplugged/turbo-darwin-arm64-npm-1.10.13-a32d7dd50e/node_modules/turbo-darwin-arm64/",\
+      ["npm:1.10.14", {\
+        "packageLocation": "./.yarn/unplugged/turbo-darwin-arm64-npm-1.10.14-be30ecbbff/node_modules/turbo-darwin-arm64/",\
         "packageDependencies": [\
-          ["turbo-darwin-arm64", "npm:1.10.13"]\
+          ["turbo-darwin-arm64", "npm:1.10.14"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["turbo-linux-64", [\
-      ["npm:1.10.13", {\
-        "packageLocation": "./.yarn/unplugged/turbo-linux-64-npm-1.10.13-0379470c69/node_modules/turbo-linux-64/",\
+      ["npm:1.10.14", {\
+        "packageLocation": "./.yarn/unplugged/turbo-linux-64-npm-1.10.14-d9f4201c1c/node_modules/turbo-linux-64/",\
         "packageDependencies": [\
-          ["turbo-linux-64", "npm:1.10.13"]\
+          ["turbo-linux-64", "npm:1.10.14"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["turbo-linux-arm64", [\
-      ["npm:1.10.13", {\
-        "packageLocation": "./.yarn/unplugged/turbo-linux-arm64-npm-1.10.13-20efa222e9/node_modules/turbo-linux-arm64/",\
+      ["npm:1.10.14", {\
+        "packageLocation": "./.yarn/unplugged/turbo-linux-arm64-npm-1.10.14-f353033dd1/node_modules/turbo-linux-arm64/",\
         "packageDependencies": [\
-          ["turbo-linux-arm64", "npm:1.10.13"]\
+          ["turbo-linux-arm64", "npm:1.10.14"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["turbo-windows-64", [\
-      ["npm:1.10.13", {\
-        "packageLocation": "./.yarn/unplugged/turbo-windows-64-npm-1.10.13-60265c2056/node_modules/turbo-windows-64/",\
+      ["npm:1.10.14", {\
+        "packageLocation": "./.yarn/unplugged/turbo-windows-64-npm-1.10.14-8c1ed968f3/node_modules/turbo-windows-64/",\
         "packageDependencies": [\
-          ["turbo-windows-64", "npm:1.10.13"]\
+          ["turbo-windows-64", "npm:1.10.14"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["turbo-windows-arm64", [\
-      ["npm:1.10.13", {\
-        "packageLocation": "./.yarn/unplugged/turbo-windows-arm64-npm-1.10.13-cb06ff17df/node_modules/turbo-windows-arm64/",\
+      ["npm:1.10.14", {\
+        "packageLocation": "./.yarn/unplugged/turbo-windows-arm64-npm-1.10.14-70e3e206e0/node_modules/turbo-windows-arm64/",\
         "packageDependencies": [\
-          ["turbo-windows-arm64", "npm:1.10.13"]\
+          ["turbo-windows-arm64", "npm:1.10.14"]\
         ],\
         "linkType": "HARD"\
       }]\

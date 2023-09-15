@@ -25,9 +25,7 @@
 		"Nathan Evans (naevans@microsoft.com)"
 	],
 	"scripts": {
-		"bundle_types": "node ../../scripts/bundleTypes",
-		"build_lib": "essex build --mode dual",
-		"build": "run-s build_lib bundle_types",
+		"build": "essex build --mode dual",
 		"clean": "essex clean dist lib",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
