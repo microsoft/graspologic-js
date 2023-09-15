@@ -4,8 +4,8 @@
  */
 import { DEFAULT_DRAW_AXES, DEFAULT_CORNER_AXES } from '@graspologic/renderer'
 import { memo, useContext, useEffect } from 'react'
-import { GraphRendererContext } from '../GraphView/context'
-import { useAxesRenderable } from './hooks/useAxesRenderable'
+import { GraphRendererContext } from '../GraphView/context.js'
+import { useAxesRenderable } from './hooks/useAxesRenderable.js'
 
 /**
  * The properties for the Axes component

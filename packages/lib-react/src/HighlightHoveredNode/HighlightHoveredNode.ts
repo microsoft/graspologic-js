@@ -2,12 +2,13 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import type {
+	ColorVector} from '@graspologic/renderer';
 import {
-	ColorVector,
 	DEFAULT_HOVER_HIGHLIGHT_COLOR,
 } from '@graspologic/renderer'
 import { memo, useEffect } from 'react'
-import { useHoveredVertexRenderable } from './hooks/useHoveredVertexRenderable'
+import { useHoveredVertexRenderable } from './hooks/useHoveredVertexRenderable.js'
 
 /**
  * Properties for the HighlightHoveredNode component

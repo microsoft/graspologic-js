@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer, Bounds } from '@graspologic/renderer'
+import type { GraphRenderer, Bounds } from '@graspologic/renderer'
 import { useEffect } from 'react'
 
 /**

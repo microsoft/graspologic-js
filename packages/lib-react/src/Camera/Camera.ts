@@ -2,15 +2,16 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { CameraState } from '@graspologic/camera'
-import { Bounds, CameraAdjustmentMode } from '@graspologic/renderer'
+import type { CameraState } from '@graspologic/camera'
+import type { Bounds} from '@graspologic/renderer';
+import { CameraAdjustmentMode } from '@graspologic/renderer'
 import { memo, useContext } from 'react'
 import { GraphRendererContext } from '../GraphView/context'
-import { useCameraAdjustmentMode } from './hooks/useCameraAdjustmentMode'
-import { useCameraBounds } from './hooks/useCameraBounds'
-import { useCameraStateSynchronization } from './hooks/useCameraStateSynchronization'
-import { usePanZoomBehavior } from './hooks/usePanZoomBehavior'
-import { useZoomSynchronization } from './hooks/useZoomSynchronization'
+import { useCameraAdjustmentMode } from './hooks/useCameraAdjustmentMode.js'
+import { useCameraBounds } from './hooks/useCameraBounds.js'
+import { useCameraStateSynchronization } from './hooks/useCameraStateSynchronization.js'
+import { usePanZoomBehavior } from './hooks/usePanZoomBehavior.js'
+import { useZoomSynchronization } from './hooks/useZoomSynchronization.js'
 
 export { CameraState } from '@graspologic/camera'
 

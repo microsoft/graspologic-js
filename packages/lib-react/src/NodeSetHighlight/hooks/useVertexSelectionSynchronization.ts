@@ -24,7 +24,7 @@ export function useVertexSelectionSynchronization(
 					renderer.scene.primitives(new Set(vertexIds)),
 				)
 				renderable.setData(vertices as Node[])
-			})
+			}).catch(console.log)
 		}
 	}, [renderer, renderable, vertexIds])
 }

@@ -2,10 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import {
-	enablePanZoomEvents,
+import type {
 	GraphRenderer,
-	Disconnect,
+	Disconnect} from '@graspologic/renderer';
+import {
+	enablePanZoomEvents
 } from '@graspologic/renderer'
 import { useEffect } from 'react'
 

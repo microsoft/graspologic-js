@@ -2,14 +2,15 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import type {
+	ColorVector} from '@graspologic/renderer';
 import {
-	ColorVector,
 	DEFAULT_HOVER_HIGHLIGHT_COLOR,
 } from '@graspologic/renderer'
 import { memo, useContext, useEffect } from 'react'
-import { GraphRendererContext } from '../GraphView'
-import { useVertexSelectionSynchronization } from './hooks/useVertexSelectionSynchronization'
-import { useVertexSetHighlightRenderable } from './hooks/useVertexSetHighlightRenderable'
+import { GraphRendererContext } from '../GraphView/index.js'
+import { useVertexSelectionSynchronization } from './hooks/useVertexSelectionSynchronization.js'
+import { useVertexSetHighlightRenderable } from './hooks/useVertexSetHighlightRenderable.js'
 
 /**
  * Properties for the NodeSetHighlight component

@@ -3,9 +3,9 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { memo, useContext } from 'react'
-import { GraphRendererContext } from '../GraphView'
-import { useVertexSelectionSynchronization } from './hooks/useVertexSelectionSynchronization'
-import { useVertexSetHighlightRenderable } from './hooks/useVertexSetLabelRenderable'
+import { GraphRendererContext } from '../GraphView/index.js'
+import { useVertexSelectionSynchronization } from './hooks/useVertexSelectionSynchronization.js'
+import { useVertexSetHighlightRenderable } from './hooks/useVertexSetLabelRenderable.js'
 
 /**
  * Properties for the NodeSetHighlight component

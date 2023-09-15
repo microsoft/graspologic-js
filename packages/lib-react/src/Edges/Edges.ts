@@ -15,7 +15,7 @@ import {
 	DEFAULT_EDGE_FILTERED_IN_SATURATION,
 } from '@graspologic/renderer'
 import { memo, useContext, useEffect } from 'react'
-import { GraphRendererContext } from '../GraphView'
+import { GraphRendererContext } from '../GraphView/index.js'
 
 /**
  * The set of properties for the Edges component

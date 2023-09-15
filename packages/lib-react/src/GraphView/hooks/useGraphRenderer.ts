@@ -2,12 +2,13 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer } from '@graspologic/graph'
-import {
-	WebGLGraphRenderer,
+import type { GraphContainer } from '@graspologic/graph'
+import type {
 	GraphRenderer,
 	Maybe,
-	Bounds,
+	Bounds} from '@graspologic/renderer';
+import {
+	WebGLGraphRenderer
 } from '@graspologic/renderer'
 import { useRef, useEffect, useState } from 'react'
 

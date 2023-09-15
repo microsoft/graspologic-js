@@ -3,7 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { useDimensions } from '@essex-js-toolkit/hooks'
-import { memo, useEffect, useRef, MutableRefObject, useMemo } from 'react'
+import type { MutableRefObject} from 'react';
+import { memo, useEffect, useRef, useMemo } from 'react'
 
 const DEFAULT_STYLE = {
 	/* position: absolute so we don't cause the parent element to continually expand */

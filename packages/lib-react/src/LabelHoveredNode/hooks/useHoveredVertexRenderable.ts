@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { VertexLabelRenderable } from '@graspologic/renderables-support'
-import { GraphRenderer, UsesWebGL } from '@graspologic/renderer'
+import type { GraphRenderer, UsesWebGL } from '@graspologic/renderer'
 import { useContext, useEffect, useMemo } from 'react'
 import { GraphRendererContext } from '../../GraphView/context'
 

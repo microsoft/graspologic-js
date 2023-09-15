@@ -2,32 +2,33 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { InputGraph, GraphContainer, Node } from '@graspologic/graph'
-import {
+import type { InputGraph, GraphContainer, Node } from '@graspologic/graph'
+import type {
 	NodeColorizer,
 	ColorVector,
+	GraphRenderer,
+	Maybe,
+	Bounds} from '@graspologic/renderer';
+import {
 	DEFAULT_BG_COLOR,
 	DEFAULT_HIDE_DESELECTED,
 	DEFAULT_IS_3D,
 	DEFAULT_INTERPOLATION_TIME,
-	GraphRenderer,
-	DEFAULT_DRAW_EDGES,
-	Maybe,
-	Bounds,
+	DEFAULT_DRAW_EDGES
 } from '@graspologic/renderer'
 import { memo, forwardRef, useCallback, useMemo } from 'react'
-import { SizedToParent } from '../SizedToParent'
-import { GraphRendererContext } from './context'
-import { use3DMode } from './hooks/use3DMode'
-import { useBindCallbacks } from './hooks/useBindCallbacks'
-import { useGraphColorizer } from './hooks/useGraphColorizer'
-import { useGraphContainer } from './hooks/useGraphContainer'
-import { useGraphHideDeselected } from './hooks/useGraphHideDeselected'
-import { useGraphImperativeApi } from './hooks/useGraphImperativeApi'
-import { useGraphInterpolationTime } from './hooks/useGraphInterpolationTime'
-import { useGraphRenderKickoff } from './hooks/useGraphRenderKickoff'
-import { useGraphRenderer } from './hooks/useGraphRenderer'
-import { useGraphRendererBackgroundColor } from './hooks/useGraphRendererBackgroundColor'
+import { SizedToParent } from '../SizedToParent/index.js'
+import { GraphRendererContext } from './context.js'
+import { use3DMode } from './hooks/use3DMode.js'
+import { useBindCallbacks } from './hooks/useBindCallbacks.js'
+import { useGraphColorizer } from './hooks/useGraphColorizer.js'
+import { useGraphContainer } from './hooks/useGraphContainer.js'
+import { useGraphHideDeselected } from './hooks/useGraphHideDeselected.js'
+import { useGraphImperativeApi } from './hooks/useGraphImperativeApi.js'
+import { useGraphInterpolationTime } from './hooks/useGraphInterpolationTime.js'
+import { useGraphRenderKickoff } from './hooks/useGraphRenderKickoff.js'
+import { useGraphRenderer } from './hooks/useGraphRenderer.js'
+import { useGraphRendererBackgroundColor } from './hooks/useGraphRendererBackgroundColor.js'
 
 const DEFAULT_STYLE = {
 	width: 500,

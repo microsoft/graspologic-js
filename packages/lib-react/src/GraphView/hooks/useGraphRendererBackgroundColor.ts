@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ColorVector, GraphRenderer } from '@graspologic/renderer'
+import type { ColorVector, GraphRenderer } from '@graspologic/renderer'
 import { useEffect } from 'react'
 
 /**

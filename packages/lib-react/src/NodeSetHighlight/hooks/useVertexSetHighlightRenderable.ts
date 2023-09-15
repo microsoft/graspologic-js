@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { VertexSetRenderable } from '@graspologic/renderables-support'
-import { GraphRenderer, UsesWebGL } from '@graspologic/renderer'
+import type { GraphRenderer, UsesWebGL } from '@graspologic/renderer'
 import { useMemo, useEffect } from 'react'
 
 /**

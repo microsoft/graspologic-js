@@ -2,8 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { computeBounds, GraphContainer } from '@graspologic/graph'
-import { Bounds3D } from '@graspologic/renderer'
+import type { GraphContainer } from '@graspologic/graph';
+import { computeBounds } from '@graspologic/graph'
+import type { Bounds3D } from '@graspologic/renderer'
 import { useMemo } from 'react'
 
 /**

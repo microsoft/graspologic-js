@@ -3,10 +3,10 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { memo, useContext } from 'react'
-import { GraphRendererContext } from '../GraphView/context'
-import { useVertexClickEvents } from './hooks/useVertexClickEvents'
-import { useVertexClickHandler } from './hooks/useVertexClickHandler'
-import { VertexClickHandler } from './types'
+import { GraphRendererContext } from '../GraphView/context.js'
+import { useVertexClickEvents } from './hooks/useVertexClickEvents.js'
+import { useVertexClickHandler } from './hooks/useVertexClickHandler.js'
+import type { VertexClickHandler } from './types.js'
 
 /**
  * Properties for the HandleNodeClicks Component

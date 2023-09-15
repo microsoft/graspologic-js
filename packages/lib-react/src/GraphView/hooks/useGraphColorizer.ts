@@ -2,9 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import {
+import type {
 	GraphRenderer,
-	NodeColorizer,
+	NodeColorizer} from '@graspologic/renderer';
+import {
 	colorizeRenderer,
 } from '@graspologic/renderer'
 import { useEffect } from 'react'

@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { AxesRenderable } from '@graspologic/renderables-support'
-import { UsesWebGL, GraphRenderer } from '@graspologic/renderer'
+import type { UsesWebGL, GraphRenderer } from '@graspologic/renderer'
 import { useEffect, useMemo } from 'react'
 
 /**

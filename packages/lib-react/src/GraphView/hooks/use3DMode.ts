@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer } from '@graspologic/renderer'
+import type { GraphRenderer } from '@graspologic/renderer'
 import { Quaternion } from 'math.gl'
 import { useEffect } from 'react'
 

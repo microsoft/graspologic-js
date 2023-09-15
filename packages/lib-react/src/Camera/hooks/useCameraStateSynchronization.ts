@@ -2,8 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { CameraState } from '@graspologic/camera'
-import { GraphRenderer } from '@graspologic/renderer'
+import type { CameraState } from '@graspologic/camera'
+import type { GraphRenderer } from '@graspologic/renderer'
 import { useEffect } from 'react'
 
 export function useCameraStateSynchronization(

@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import { memo } from 'react'
-import { useHoveredVertexRenderable } from './hooks/useHoveredVertexRenderable'
+import { useHoveredVertexRenderable } from './hooks/useHoveredVertexRenderable.js'
 
 /**
  * Properties for the LabelHoveredNode component
