@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Camera } from '@graspologic/camera'
-import { HasEvents, RenderConfiguration, Maybe, Id } from '@graspologic/common'
-import { Node, GraphContainer } from '@graspologic/graph'
-import { Scene } from './scene'
+import type { Camera } from '@graspologic/camera'
+import type { HasEvents, RenderConfiguration, Maybe, Id } from '@graspologic/common'
+import type { Node, GraphContainer } from '@graspologic/graph'
+import type { Scene } from './scene.js'
 
 export type InitializeHandler<T> = (context: T) => void
 

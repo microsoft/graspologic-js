@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ReaderStore } from '@graspologic/memstore'
+import type { ReaderStore } from '@graspologic/memstore'
 
 export type RegisterHandler<T> = (type: symbol, item: T) => any
 

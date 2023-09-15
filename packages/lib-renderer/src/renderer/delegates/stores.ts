@@ -2,16 +2,17 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import type {
+	GraphContainer} from '@graspologic/graph';
 import {
 	createNodeStore,
 	createEdgeStore,
 	nodeType,
-	edgeType,
-	GraphContainer,
+	edgeType
 } from '@graspologic/graph'
-import { ReaderStore } from '@graspologic/memstore'
-import { DataStore } from '../../types'
-import { GenericTypeStore } from './TypeStore'
+import type { ReaderStore } from '@graspologic/memstore'
+import type { DataStore } from '../../types/index.js'
+import { GenericTypeStore } from './TypeStore.js'
 
 /**
  * Constructs a generic data store with node and edge stores

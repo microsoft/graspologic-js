@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Disconnect } from '@graspologic/common'
+import type { Disconnect } from '@graspologic/common'
 import { Quaternion } from 'math.gl'
 // @ts-ignore
 import { EventManager } from 'mjolnir.js'
-import { GraphRenderer } from '../types'
+import type { GraphRenderer } from '../types/index.js'
 
 const AUTO_END_TIMER_LENGTH = 100
 

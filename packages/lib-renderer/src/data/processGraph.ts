@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphContainer, Node, Edge } from '@graspologic/graph'
-import { NodeColorizer, NodeBGRAColorizer } from '../types'
-import { createBGRAColorizer, correctColor } from '../util/colorizeRenderer'
+import type { GraphContainer, Node, Edge } from '@graspologic/graph'
+import type { NodeColorizer, NodeBGRAColorizer } from '../types/index.js'
+import { createBGRAColorizer, correctColor } from '../util/colorizeRenderer.js'
 
 /**
  * @internal

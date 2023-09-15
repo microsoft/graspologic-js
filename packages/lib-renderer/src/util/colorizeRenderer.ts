@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { GraphRenderer, NodeBGRAColorizer, NodeColorizer } from '../types'
+import type { GraphRenderer, NodeBGRAColorizer, NodeColorizer } from '../types/index.js'
 
 const DEFAULT_NAME = 'DEFAULT'
 

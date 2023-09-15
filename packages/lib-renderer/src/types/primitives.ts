@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 
-import { MemoryReader } from '@graspologic/memstore'
+import type { MemoryReader } from '@graspologic/memstore'
 
 /**
  * A basic graphical primitive object

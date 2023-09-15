@@ -2,44 +2,47 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Deferred, deferred } from '@essex-js-toolkit/toolbox'
+import type { Deferred} from '@essex-js-toolkit/toolbox';
+import { deferred } from '@essex-js-toolkit/toolbox'
 import { Camera } from '@graspologic/camera'
-import {
-	createConfiguration,
-	CameraAdjustmentMode,
-	EventEmitter,
+import type {
 	RenderConfiguration,
 	RenderConfigurationOptions,
 	Bounds3D,
 	Bounds2D,
+	ItemBasedRenderable,
+	BoundedRenderable,
+	RenderOptions} from '@graspologic/common';
+import {
+	createConfiguration,
+	CameraAdjustmentMode,
+	EventEmitter,
 	DEFAULT_WIDTH,
 	DEFAULT_HEIGHT,
 	fastDebounce,
-	ItemBasedRenderable,
-	BoundedRenderable,
-	Interpolator,
-	RenderOptions,
+	Interpolator
 } from '@graspologic/common'
-import {
+import type {
 	Node,
 	Edge,
-	nodeType,
-	edgeType,
-	GraphContainer,
 	NodeStore,
 	EdgeStore,
 	AnimatableNode,
 	AnimatableEdge,
-	Pos3D,
+	Pos3D} from '@graspologic/graph';
+import {
+	nodeType,
+	edgeType,
+	GraphContainer
 } from '@graspologic/graph'
-import { ReaderStore } from '@graspologic/memstore'
+import type { ReaderStore } from '@graspologic/memstore'
 import { EdgesRenderable } from '@graspologic/renderables-edges'
 import { NodesRenderable } from '@graspologic/renderables-nodes'
 import { AnimationLoop } from '@luma.gl/engine'
-import { AnimationProps } from '@luma.gl/engine/src/lib/animation-loop'
+import type { AnimationProps } from '@luma.gl/engine/src/lib/animation-loop'
 import { createGLContext } from '@luma.gl/gltools'
-import { processGraph } from '../data'
-import {
+import { processGraph } from '../data/index.js'
+import type {
 	NodeComponentColorizer,
 	Scene,
 	PositionMap,
@@ -49,12 +52,12 @@ import {
 	DataStore,
 	Primitive,
 	GraphRendererEvents,
-} from '../types'
+} from '../types/index.js'
 import {
 	Scenegraph,
 	createDataStore,
 	createDataStoreFromContainer,
-} from './delegates'
+} from './delegates/index.js'
 
 // typings are messed up for this
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -592,7 +595,7 @@ export class WebGLGraphRenderer
 
 		if (!this.kickoff) {
 			this.animationLoop.start()
-			this._kickoffDeferred.resolve()
+			void this._kickoffDeferred.resolve()
 			this.kickoff = true
 		}
 

@@ -2,9 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Renderable, RenderOptions } from '@graspologic/common'
-import { Edge, Node } from '@graspologic/graph'
-import { Primitive } from './primitives'
+import type { Renderable, RenderOptions } from '@graspologic/common'
+import type { Edge, Node } from '@graspologic/graph'
+import type { Primitive } from './primitives.js'
 
 /**
  * Represents a collection of primitives/renderables that are rendered

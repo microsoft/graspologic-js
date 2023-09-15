@@ -2,23 +2,24 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import {
+import type {
 	Renderable,
 	RenderConfiguration,
 	RenderOptions,
 } from '@graspologic/common'
-import {
+import type {
 	Edge,
 	Node,
-	nodeType,
-	edgeType,
 	EdgeStore,
-	NodeStore,
+	NodeStore} from '@graspologic/graph';
+import {
+	nodeType,
+	edgeType
 } from '@graspologic/graph'
-import { ReaderStore } from '@graspologic/memstore'
+import type { ReaderStore } from '@graspologic/memstore'
 import { ScreenQuadRenderable } from '@graspologic/renderables-support'
 import { setParameters } from '@luma.gl/gltools'
-import { DataStore, Scene, Primitive } from '../../types'
+import type { DataStore, Scene, Primitive } from '../../types/index.js'
 
 /**
  * @internal

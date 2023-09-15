@@ -2,10 +2,10 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Disconnect } from '@graspologic/common'
+import type { Disconnect } from '@graspologic/common'
 // @ts-ignore
 import { EventManager } from 'mjolnir.js'
-import { GraphRenderer } from '../types'
+import type { GraphRenderer } from '../types/index.js'
 
 /**
  * Enables click events on the given graph renderer
