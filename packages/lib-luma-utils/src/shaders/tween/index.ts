@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import vs from '@graspologic/renderer-glsl/dist/esm/tween/tween.glsl'
-import { linear } from '../easings'
+import { linear } from '../easings/index.js'
 export const tween = {
 	name: 'tween-module',
 	vs,

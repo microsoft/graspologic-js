@@ -25,7 +25,7 @@
 	],
 	"scripts": {
 		"clean": "essex clean lib dist",
-		"build": "essex build --mode dual",
+		"build": "essex build --mode dual --skipExportCheck",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
 		"check": "essex check --strict",

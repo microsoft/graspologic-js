@@ -4,7 +4,7 @@
  */
 import { MemoryLayout, AttributeType } from '@graspologic/memstore'
 import { Buffer } from '@luma.gl/webgl'
-import { GL_UNSIGNED_BYTE, GL_FLOAT, GL_UNSIGNED_INT } from './glConstants'
+import { GL_UNSIGNED_BYTE, GL_FLOAT, GL_UNSIGNED_INT } from './glConstants.js'
 
 /**
  * Returns the appropriate GL type representing the given Attribute Type

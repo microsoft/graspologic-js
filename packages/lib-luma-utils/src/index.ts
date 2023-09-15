@@ -2,11 +2,11 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-export * from './shaders'
-export * from './idFactory'
-export * from './adaptMemoryLayoutToLuma'
-export * from './glTypeMappings'
-export * from './glConstants'
-export * from './pickingColors'
-export * from './lerp3'
-export * from './slerp'
+export * from './shaders/index.js'
+export * from './idFactory.js'
+export * from './adaptMemoryLayoutToLuma.js'
+export * from './glTypeMappings.js'
+export * from './glConstants.js'
+export * from './pickingColors.js'
+export * from './lerp3.js'
+export * from './slerp.js'
