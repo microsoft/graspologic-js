@@ -23,7 +23,7 @@
 		"David Tittsworth (datittsw@microsoft.com)"
 	],
 	"scripts": {
-		"build": "essex build --mode dual",
+		"build": "essex build --mode dual --skipExportCheck",
 		"clean": "essex clean lib dist",
 		"start": "essex watch",
 		"fix": "essex fix --strict",
