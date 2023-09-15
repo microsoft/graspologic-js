@@ -2,11 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Bounds, EventEmitter } from '@graspologic/common'
+import type { Bounds} from '@graspologic/common';
+import { EventEmitter } from '@graspologic/common'
 import { Matrix4, Quaternion, Vector3 } from 'math.gl'
-import { CameraState } from './CameraState'
-import { TransitioningCameraState } from './TransitioningCameraState'
-import { computeCameraPosition } from './utils'
+import { CameraState } from './CameraState.js'
+import { TransitioningCameraState } from './TransitioningCameraState.js'
+import { computeCameraPosition } from './utils.js'
 
 const DEFAULT_WIDTH = 500
 const DEFAULT_HEIGHT = 500

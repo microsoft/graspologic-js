@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { Bounds } from '@graspologic/common'
+import type { Bounds } from '@graspologic/common'
 import { Matrix4, Vector3 } from 'math.gl'
 
 /**
