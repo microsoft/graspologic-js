@@ -8877,7 +8877,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", "npm:3.32.2"],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
@@ -8913,7 +8912,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", "npm:3.32.2"],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
@@ -8949,7 +8947,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", null],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
@@ -8983,7 +8980,6 @@ const RAW_RUNTIME_STATE =
           ["@luma.gl/gltools", "npm:8.5.21"],\
           ["@luma.gl/webgl", "npm:8.5.21"],\
           ["@types/node", "npm:20.6.1"],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
           ["webpack-bundle-analyzer", "npm:4.9.1"]\
@@ -9013,7 +9009,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", "npm:3.32.2"],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
@@ -9051,7 +9046,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", "npm:3.32.2"],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
@@ -9089,7 +9083,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", null],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
@@ -9125,7 +9118,6 @@ const RAW_RUNTIME_STATE =
           ["@luma.gl/shadertools", "npm:8.5.21"],\
           ["@luma.gl/webgl", "npm:8.5.21"],\
           ["@types/node", "npm:20.6.1"],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["glob", "npm:10.3.4"],\
           ["npm-run-all", "npm:4.1.5"],\
           ["typescript", "patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
@@ -9158,7 +9150,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", null],\
           ["glob", "npm:10.3.4"],\
           ["math.gl", "npm:3.6.3"],\
@@ -9198,7 +9189,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", "npm:3.32.2"],\
           ["glob", "npm:10.3.4"],\
           ["math.gl", "npm:3.6.3"],\
@@ -9238,7 +9228,6 @@ const RAW_RUNTIME_STATE =
           ["@types/core-js", null],\
           ["@types/node", "npm:20.6.1"],\
           ["@types/regenerator-runtime", null],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["core-js", "npm:3.32.2"],\
           ["glob", "npm:10.3.4"],\
           ["math.gl", "npm:3.6.3"],\
@@ -9275,8 +9264,6 @@ const RAW_RUNTIME_STATE =
           ["@luma.gl/gltools", "npm:8.5.21"],\
           ["@luma.gl/shadertools", "npm:8.5.21"],\
           ["@luma.gl/webgl", "npm:8.5.21"],\
-          ["@types/node", "npm:20.6.1"],\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["glob", "npm:10.3.4"],\
           ["math.gl", "npm:3.6.3"],\
           ["npm-run-all", "npm:4.1.5"],\
@@ -14555,18 +14542,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-webpack-npm-5.28.2-64ce2d893f-0b147aaaaa.zip/node_modules/@types/webpack/",\
         "packageDependencies": [\
           ["@types/webpack", "npm:5.28.2"],\
-          ["@types/node", "npm:20.6.1"],\
-          ["tapable", "npm:2.2.1"],\
-          ["webpack", "virtual:2d67f215b8d0b30d6de48091454f9ac0bc44ce2486e413f110a444bdcd7ffd89a7c2710e7287b5550234c60e51e819b9680eeeaf7d37929708edaa2a7ac74092#npm:5.88.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/webpack-bundle-analyzer", [\
-      ["npm:4.6.0", {\
-        "packageLocation": "./.yarn/cache/@types-webpack-bundle-analyzer-npm-4.6.0-38e8bff425-a0048e28f9.zip/node_modules/@types/webpack-bundle-analyzer/",\
-        "packageDependencies": [\
-          ["@types/webpack-bundle-analyzer", "npm:4.6.0"],\
           ["@types/node", "npm:20.6.1"],\
           ["tapable", "npm:2.2.1"],\
           ["webpack", "virtual:2d67f215b8d0b30d6de48091454f9ac0bc44ce2486e413f110a444bdcd7ffd89a7c2710e7287b5550234c60e51e819b9680eeeaf7d37929708edaa2a7ac74092#npm:5.88.2"]\
