@@ -1,3 +1,5 @@
+**This repository is the result of research efforts that are no longer active. It has been marked read-only on GitHub to preserve the public code, but is no longer maintained or accepting contributions.**
+
 # graspologic-js
 
 ![CI](https://github.com/microsoft/graspologic-js/workflows/CI/badge.svg)
